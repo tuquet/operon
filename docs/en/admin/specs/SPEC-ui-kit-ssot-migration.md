@@ -12,7 +12,7 @@
   - Hiện tại dự án bị phân mảnh 2 nguồn UI primitives: `@operon-core/shadcn-ui` (core framework nội bộ) và `@operon/vue-ui` (catalog package bên ngoài).
   - Gói `@operon/vue-ui` bên ngoài gây ra tình trạng "hộp đen" (code đã build minified), chặn HMR mượt mà, gây lỗi reactive (như sự cố Drawer không đóng được với 2 nút X), và làm chậm tốc độ reasoning của AI Agent do vòng lặp grep vô định.
 - **Mục tiêu đạt được:**
-  - Thiết lập [`admin/packages/@core/ui-kit/shadcn-ui`](file:///C:/Users/ndtu6/Repository/operon/admin/packages/@core/ui-kit/shadcn-ui) làm **Single Source of Truth (SSOT)** duy nhất cho mọi thành phần UI trong `admin`.
+  - Thiết lập [`admin/packages/@core/ui-kit/shadcn-ui`](file:////workspace/operon/admin/packages/@core/ui-kit/shadcn-ui) làm **Single Source of Truth (SSOT)** duy nhất cho mọi thành phần UI trong `admin`.
   - Khai tử (Deprecate & Remove) hoàn toàn phụ thuộc vào `@operon/vue-ui`.
   - Cung cấp 100% mã nguồn Vue SFC tường minh, giải phóng tốc độ reasoning của Agent và bảo đảm HMR tức thì.
   - Sửa dứt điểm cơ chế đóng mở của `vxe-row-detail-sheet.vue` bằng chuẩn `<SheetClose>` của `reka-ui`.

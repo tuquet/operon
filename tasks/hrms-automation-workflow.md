@@ -66,7 +66,7 @@
 | 5 | Lịch + cutoff | **08:00 Asia/Ho_Chi_Minh, T2–T6** (`0 8 * * 1-5`). Cutoff = hết ngày trước; chỉ ngày `< today`. |
 | 6 | Rollout submit | **Dry-run trước** nhiều ngày công; `mode=submit` chỉ bật sau **owner duyệt**, có policy gate. |
 | 7 | Vị trí adapter | Logic nằm trong block `javascript-code` (option A). Tham số **khai báo ở `trigger.data.parameters` trên canvas**, không có cơ chế riêng. |
-| 8 | Target đầu tiên | Tenant admin `e0f30395-3d42-41f6-a4ca-c11411e4f24b`; workstation `HNDW-NDTU6` (`24cf97b1-ee98-4f1f-b6c8-b8e5d63fc48d`); profile `hrms-cmc-03e6b9`. |
+| 8 | Target đầu tiên | Tenant admin `e0f30395-3d42-41f6-a4ca-c11411e4f24b`; workstation `NODE-LOCAL` (`24cf97b1-ee98-4f1f-b6c8-b8e5d63fc48d`); profile `hrms-cmc-03e6b9`. |
 | 9 | **Contract tham số** | **`trigger.data.parameters[]`** (schema Automa) là SSOT. Giá trị resolve theo §8.2. |
 | 10 | **Tái sử dụng** | Dùng **`includedWorkflows`** của Automa. Không tự chế subflow. |
 | 11 | **Cấu hình vận hành** | Không bao giờ nằm trong graph. Chỉ vào qua job/schedule params + Secret Store. |
@@ -410,7 +410,7 @@ opn automation run /tmp/hrms.workflow.json -p mode=dry-run     # hoặc KHÔNG -
 | 6 | Profile `hrms-cmc`: dùng proxy hay không? | cần chốt |
 | 7 | `browsers.profiles.id` cloud của `hrms-cmc` | xác nhận sau khi tạo |
 | 8 | ~~Hướng dispatch~~ | ✅ RESOLVED (a) |
-| 9 | Cài & chạy worker trên **máy nào** (VPS chưa có `opn`; `HNDW-NDTU6` là Windows) | **cần chốt — chặn Phase 3** |
+| 9 | Cài & chạy worker trên **máy nào** (VPS chưa có `opn`; `NODE-LOCAL` là Windows) | **cần chốt — chặn Phase 3** |
 | 10 | ~~Engine hỗ trợ secrets~~ | ✅ DONE (đổi dialect ở Phase 4) |
 | 11 | ~~Port credential sang máy khác~~ | ✅ DONE (device keypair + sealed DEK) |
 | 12 | Xoá `automation.workflows.variables` | theo §8.7 |

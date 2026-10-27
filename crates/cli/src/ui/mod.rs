@@ -102,7 +102,7 @@ mod tests {
         let rows = vec![
             TabularRow::new(
                 "Workstation",
-                "HNDW-NDTU6",
+                "NODE-LOCAL",
                 "Local Node Host",
                 badge_online("READY"),
             ),
@@ -125,7 +125,7 @@ mod tests {
         assert!(rendered.contains("SYSTEM & CLOUD TOPOLOGY"));
         assert!(rendered.contains("PROD"));
         assert!(rendered.contains("Workstation"));
-        assert!(rendered.contains("HNDW-NDTU6"));
+        assert!(rendered.contains("NODE-LOCAL"));
         assert!(rendered.contains("Local Node Host"));
         assert!(rendered.contains("READY"));
         assert!(rendered.contains("System operational"));

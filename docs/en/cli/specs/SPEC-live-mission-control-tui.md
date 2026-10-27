@@ -40,7 +40,7 @@ Màn hình chia làm 4 khu vực chính theo chuẩn Terminal Grid 80-120 cột:
 │   • Gateway VPS   : my-vps        │                                                       │
 ├───────────────────────────────────┼───────────────────────────────────────────────────────┤
 │ ● RUNNER & AUTOMA                 │ ● CLOUD & IDENTITY                                    │
-│   • Runner RPC    : 127.0.0.1:8765│   • Node Host  : HNDW-NDTU6                           │
+│   • Runner RPC    : 127.0.0.1:8765│   • Node Host  : NODE-LOCAL                           │
 │   • Daemon Status : [READY]       │   • Cloud Mesh : cdn.flowup.io.vn                     │
 │   • Workflows DB  : 12.5 KB       │   • Tenant     : Personal Workspace                   │
 │   • Active Jobs   : 0 pending     │   • Storage    : ~/.operon                                │
