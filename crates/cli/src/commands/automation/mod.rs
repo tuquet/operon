@@ -1,14 +1,12 @@
 pub mod config;
 pub mod executor;
 pub mod inspector;
-pub mod store;
 pub mod studio;
 pub mod table;
 
 pub use config::manage_config;
 pub use executor::run_workflow;
 pub use inspector::inspect_workflow;
-pub use store::{delete_workflow, export_workflow, import_workflow};
 pub use studio::open_studio;
 pub use table::list_workflows;
 
@@ -82,15 +80,19 @@ pub async fn handle(command: AutomationSubcommands) -> Result<(), Box<dyn std::e
             WorkflowCommands::List { search, format } => {
                 list_workflows(search, format.resolve()).await
             }
-            WorkflowCommands::Import {
-                file,
-                id,
-                name,
-                description,
-            } => import_workflow(file, id, name, description).await,
-            WorkflowCommands::Export { id, output } => export_workflow(id, output).await,
+            WorkflowCommands::Import { .. } => Err("Local SQLite import deprecated. Manage workflows via Supabase Cloud.".into()),
+            WorkflowCommands::Export { .. } => Err("Local SQLite export deprecated. Manage workflows via Supabase Cloud.".into()),
             WorkflowCommands::Info { id } => inspect_workflow(&id).await,
-            WorkflowCommands::Delete { id } => delete_workflow(id).await,
+            WorkflowCommands::Delete { id } => {
+                let repo = crate::infrastructure::cloud::CloudWorkflowRepository::connect().await?;
+                let ok = repo.delete(&id).await?;
+                if ok {
+                    crate::ui::Notify::success(format!("Workflow '{}' deleted from Cloud.", id));
+                } else {
+                    crate::ui::Notify::warn(format!("Workflow '{}' not found in Cloud.", id));
+                }
+                Ok(())
+            }
         },
         AutomationSubcommands::Inspect { workflow } => inspect_workflow(&workflow).await,
         AutomationSubcommands::Studio => open_studio(),
