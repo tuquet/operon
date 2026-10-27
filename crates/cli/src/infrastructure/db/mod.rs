@@ -16,7 +16,11 @@ pub struct AutomationDb {
 
 impl AutomationDb {
     pub fn new<P: AsRef<Path>>(path: P) -> Result<Self> {
-        let conn = Connection::open(path)?;
+        let path_ref = path.as_ref();
+        if let Some(parent) = path_ref.parent() {
+            let _ = std::fs::create_dir_all(parent);
+        }
+        let conn = Connection::open(path_ref)?;
         schema::init_db(&conn)?;
         Ok(Self { conn })
     }

@@ -1,156 +1,156 @@
-# CLI Commands Catalog
+# CLI commands catalog
 
-The `opn` CLI is architected around **6 focused command families** and an AI Agent MCP gateway. Every command provides sub-millisecond execution, structured JSON output via `--json`, and interactive diagnostics.
+The `opn` CLI provides commands across six functional domains, plus a Model Context Protocol (MCP) bridge for AI agents. All commands support structured JSON output with `--json`.
 
 ---
 
-## 1. `opn auth` — Cloud Identity & Multi-Tenancy
+## 1. `opn auth`: Identity and workspace management
 
-Manages operator credentials, device authorization, and multi-tenant workspace switching.
+Manages operator credentials, device pairing, and active tenant contexts.
 
 ```bash
 opn auth <subcommand> [options]
 ```
 
-### Subcommands & Options
+### Subcommands and options
 
-| Command | Arguments / Flags | Description |
+| Command | Arguments and flags | Description |
 | :--- | :--- | :--- |
-| `opn auth login` | `--otp <code>`, `--token <jwt>`, `--email <addr>` | Authenticate operator session via interactive prompt or token |
-| `opn auth logout` | `--all` | Revoke local stored session and purge active device tokens |
-| `opn auth whoami` | `--json` | Display current authenticated user, active tenant ID, and pairing status |
-| `opn auth tenant list` | `--json` | List all organizations/tenants accessible to the current operator |
-| `opn auth tenant switch <id>` | `<tenant-id>` | Switch the active workspace tenant context |
-| `opn auth tenant current` | `--json` | Print the current active tenant UUID |
+| `opn auth login` | `--otp <code>`, `--token <jwt>`, `--email <addr>` | Authenticates through interactive prompt or token. |
+| `opn auth logout` | `--all` | Clears stored session tokens and revokes local credentials. |
+| `opn auth whoami` | `--json` | Displays current operator identity and paired tenant ID. |
+| `opn auth tenant list` | `--json` | Lists all organizations accessible to the current operator. |
+| `opn auth tenant switch <id>` | `<tenant-id>` | Switches the active workspace tenant context. |
+| `opn auth tenant current` | `--json` | Prints the active tenant UUID. |
 
 ---
 
-## 2. `opn worker` — Distributed Compute Daemon
+## 2. `opn worker`: Process supervision daemon
 
-Autonomous background worker engine responsible for cloud fleet polling, workflow execution, and telemetry streaming.
+Runs the background daemon responsible for cloud fleet polling, job execution, and telemetry streaming.
 
 ```bash
 opn worker <subcommand> [options]
 ```
 
-### Subcommands & Options
+### Subcommands and options
 
-| Command | Arguments / Flags | Description |
+| Command | Arguments and flags | Description |
 | :--- | :--- | :--- |
-| `opn worker start` | `--daemon`, `--port <port>` | Start the local worker daemon process (default port: `9090`) |
-| `opn worker worker` | `--poll-interval <sec>` | Run as an autonomous fleet worker executing jobs from Supabase Cloud |
-| `opn worker stop` | `--graceful` | Send graceful shutdown signal to running worker daemon |
-| `opn worker restart` | — | Gracefully restart the active worker process |
-| `opn worker status` | `--json` | Inspect worker health, PID, process tree, and cloud sync status |
-| `opn worker logs` | `-f` (tail), `-n <lines>` | Stream worker execution logs and telemetry events in real time |
-| `opn worker probe` | `--json` | Probe local worker capabilities and return runtime manifest JSON |
-| `opn worker config` | `--edit`, `--show` | Display, inspect, or edit worker configuration (`~/.operon/automation/worker.json`) |
+| `opn worker start` | `--daemon`, `--port <port>` | Starts the local worker process (default port: `9090`). |
+| `opn worker worker` | `--poll-interval <sec>` | Runs an autonomous worker that polls jobs from Supabase Cloud. |
+| `opn worker stop` | `--graceful` | Sends a termination signal to the running worker daemon. |
+| `opn worker restart` | — | Restarts the active worker process. |
+| `opn worker status` | `--json` | Inspects daemon uptime, PID, active tasks, and cloud connectivity. |
+| `opn worker logs` | `-f`, `-n <lines>` | Streams worker logs in real time. |
+| `opn worker probe` | `--json` | Returns the local runtime and capability manifest as JSON. |
+| `opn worker config` | `--edit`, `--show` | Displays or edits worker settings (`~/.operon/worker/worker.json`). |
 
 ---
 
-## 3. `opn automation` — Workflow Orchestration Engine
+## 3. `opn automation`: Workflow execution engine
 
-Validates, executes, and coordinates headless browser automation workflows with Zero-Extension CDP stealth.
+Validates and executes browser automation workflows using native Rust CDP.
 
 ```bash
 opn automation <subcommand> [options]
 ```
 
-### Subcommands & Options
+### Subcommands and options
 
-| Command | Arguments / Flags | Description |
+| Command | Arguments and flags | Description |
 | :--- | :--- | :--- |
-| `opn automation run <path/id>` | `--headless`, `--browser <id>`, `--vars <k=v>` | Execute an automation workflow by JSON path or stored database ID |
-| `opn automation workflow list` | `--json` | List stored automation workflows in the local database or cloud vault |
-| `opn automation workflow info <id>` | `<id>` | Display detailed metadata and steps of a stored workflow |
-| `opn automation inspect <file>` | `<file.json>` | Validate workflow JSON syntax, schema compliance, and action blocks |
-| `opn automation studio` | `--port <port>` | Launch the visual Automa Web Studio in the default system browser |
-| `opn automation probe` | `--json` | Probe automation engine capabilities, active plugins, and execution blocks |
-| `opn automation config` | `--edit`, `--show` | Display or edit Automa configuration (`~/.operon/automation/automation.json`) |
+| `opn automation run <path/id>` | `--headless`, `--browser <id>`, `--vars <k=v>` | Executes an automation workflow by file path or stored workflow ID. |
+| `opn automation workflow list` | `--json` | Lists stored workflows in the local database or cloud repository. |
+| `opn automation workflow info <id>` | `<id>` | Displays metadata and execution graph for a stored workflow. |
+| `opn automation inspect <file>` | `<file.json>` | Validates workflow JSON syntax and block compatibility. |
+| `opn automation studio` | `--port <port>` | Launches the visual workflow editor in the default browser. |
+| `opn automation probe` | `--json` | Lists available block types and engine capabilities. |
+| `opn automation config` | `--edit`, `--show` | Displays or edits automation settings (`~/.operon/automation/automation.json`). |
 
 ---
 
-## 4. `opn gateway` — Network Mesh & Proxy Supervisor
+## 4. `opn gateway`: Network mesh and tunnel supervisor
 
-Controls the encrypted VPS tunnel mesh, embedded HTTP forwarder, and WebRTC leak shield.
+Controls encrypted VPS tunnels, the embedded HTTP forwarder, and WebRTC leak protection.
 
 ```bash
 opn gateway <subcommand> [options]
 ```
 
-### Subcommands & Options
+### Subcommands and options
 
-| Command | Arguments / Flags | Description |
+| Command | Arguments and flags | Description |
 | :--- | :--- | :--- |
-| `opn gateway start` | `--http`, `--ssh`, `[server-id]` | Start SOCKS5 dynamic proxy (`1080`) and embedded HTTP forwarder (`8118`) |
-| `opn gateway stop` | `[server-id]` | Gracefully stop running gateway tunnels and proxy daemons |
-| `opn gateway status` | `--json` | Display health dashboard of all configured VPSs, ports, and workloads |
-| `opn gateway probe` | `--target <url>`, `--json` | Probe egress connectivity, latency, public IP, and WebRTC leak protection |
-| `opn gateway check` | — | Validate gateway configuration schema (`~/.operon/gateway/gateway.json`) and keys |
-| `opn gateway enable <server>` | `<server-id>` | Enable a VPS node in the gateway mesh configuration |
-| `opn gateway disable <server>` | `<server-id>` | Disable a VPS node without deleting its configuration credentials |
-| `opn gateway config` | `--edit`, `--show` | View or edit canonical gateway configuration (`~/.operon/gateway/gateway.json`) |
+| `opn gateway start` | `--http`, `--ssh`, `[server-id]` | Starts SOCKS5 proxy (`1080`) and embedded HTTP forwarder (`8118`). |
+| `opn gateway stop` | `[server-id]` | Stops active tunnels and forwarder processes. |
+| `opn gateway status` | `--json` | Displays health status for configured VPS nodes and ports. |
+| `opn gateway probe` | `--target <url>`, `--json` | Tests egress connectivity, latency, public IP, and WebRTC shield. |
+| `opn gateway check` | — | Validates `~/.operon/gateway/gateway.json` schema and SSH credentials. |
+| `opn gateway enable <server>` | `<server-id>` | Activates a configured server node in the mesh. |
+| `opn gateway disable <server>` | `<server-id>` | Disables a server node without removing its configuration. |
+| `opn gateway config` | `--edit`, `--show` | Displays or edits `~/.operon/gateway/gateway.json`. |
 
 ---
 
-## 5. `opn browser` — Anti-Detect Browser Runtime & Sandbox
+## 5. `opn browser`: Browser runtime and profile sandboxes
 
-Controls dedicated stealth Chromium instances, deterministic hardware PRNG seeds, and profile storage.
+Controls stealth Chromium instances, deterministic hardware seeds, and profile data.
 
 ```bash
 opn browser <subcommand> [options]
 ```
 
-### Subcommands & Options
+### Subcommands and options
 
-| Command | Arguments / Flags | Description |
+| Command | Arguments and flags | Description |
 | :--- | :--- | :--- |
-| `opn browser install [engine]` | `[148]` | Download and provision isolated Chromium / Golden LTS runtime binaries |
-| `opn browser status` | `--json` | Inspect installed browser engines and active sandboxes |
-| `opn browser launch <profile>` | `--headless`, `--url <url>` | Launch browser profile with assigned fingerprint, hardware spoofing & proxy |
-| `opn browser ps` | `--json` | List active browser processes, assigned CDP debugging ports, and PIDs |
-| `opn browser stop [pid/id]` | `--force` | Terminate running browser instances gracefully |
-| `opn browser profile list` | `--json` | List all local and cloud browser profiles |
-| `opn browser profile create <name>` | `--proxy <url>`, `--ua <str>` | Create an anti-detect profile with unique hardware seeds & proxy binding |
-| `opn browser profile delete <id>` | `<id>` | Delete local browser profile and purge sandbox cache |
-| `opn browser profile test-proxy <id>` | `<id>` | Test proxy connectivity, latency, IP rotation, and WebRTC leak for profile |
-| `opn browser ext list` | — | List installed Chrome extensions in the browser sandbox |
+| `opn browser install [engine]` | `[148]` | Provisions the verified Chromium LTS runtime. |
+| `opn browser status` | `--json` | Inspects installed runtimes and active profile directories. |
+| `opn browser launch <profile>` | `--headless`, `--proxy <url>`, `--url <url>` | Launches an isolated profile with assigned hardware fingerprints. |
+| `opn browser ps` | `--json` | Lists running browser processes and active CDP debugging ports. |
+| `opn browser stop [pid/id]` | `--force` | Terminates active browser sessions. |
+| `opn browser profile list` | `--json` | Lists all local and cloud-synced browser profiles. |
+| `opn browser profile create <name>` | `--proxy <url>`, `--ua <str>` | Creates a profile with a deterministic hardware fingerprint. |
+| `opn browser profile delete <id>` | `<id>` | Deletes a profile directory and removes cached session data. |
+| `opn browser profile test-proxy <id>` | `<id>` | Tests proxy latency and verifies IP masking for the profile. |
+| `opn browser ext list` | — | Lists extensions installed in the browser runtime sandbox. |
 
 ---
 
-## 6. AI Agent MCP Protocol Bridge (`opn mcp`)
+## 6. AI agent MCP bridge (`opn mcp`)
 
-Exposes all Operonengine capabilities to AI coding agents (such as Antigravity, Claude Code, Cursor) via the standard Model Context Protocol.
+Exposes Operon CLI capabilities to AI coding assistants and automation agents using the Model Context Protocol (MCP).
 
 ```bash
 opn mcp
 ```
 
-- **Protocol**: JSON-RPC 2.0 over `stdio`.
-- **Exported Tools**: `status`, `workflow_list`, `workflow_inspect`, `workflow_run`, `runner_probe`, `cloud_whoami`, `browser_status`, `faker_generate`, `inbox_otp`, `inbox_status`.
+- **Transport**: JSON-RPC 2.0 over `stdio`.
+- **Exposed tools**: `status`, `workflow_list`, `workflow_inspect`, `workflow_run`, `worker_probe`, `cloud_whoami`, `browser_status`, `faker_generate`, `inbox_otp`, `inbox_status`.
 
 ---
 
-## 7. `opn secret` — Encrypted Secret Store
+## 7. `opn secret`: Encrypted secret store
 
-Tenant-scoped encrypted credential store. Values are referenced in workflows as `\{\{secrets.<name>\}\}` and **never** persisted in the workflow graph, job payload, or logs.
+Stores encrypted credentials locally and syncs them to the cloud control plane. Secrets are injected at runtime into workflows as `\{\{secrets.<name>\}\}` and are never written to disk logs or job execution records.
 
 ```bash
 opn secret <subcommand> [options]
 ```
 
-### Subcommands & Options
+### Subcommands and options
 
-| Command | Arguments / Flags | Description |
+| Command | Arguments and flags | Description |
 | :--- | :--- | :--- |
-| `opn secret init` | — | Create the local store key + device X25519 keypair |
-| `opn secret set <name> <value>` | `<name>`, `<value>` | Store/update a secret (AES-256-GCM at rest) |
-| `opn secret list` | `--format json` | List secret names (values are never printed) |
-| `opn secret rm <name>` | `<name>` | Remove a local secret |
-| `opn secret remote` | — | List secrets stored in Cloud (names only) |
-| `opn secret push` | — | Register device key, then upload **client-side encrypted** secrets |
-| `opn secret pull` | — | Receive the sealed DEK, fetch ciphertext, decrypt locally (no re-entry) |
-| `opn secret rotate` | — | Rotate the tenant DEK (re-encrypts values, re-seals for all devices) |
-| `opn secret path` | — | Print the local store path |
+| `opn secret init` | — | Generates local store keys and device X25519 keypairs. |
+| `opn secret set <name> <value>` | `<name>`, `<value>` | Encrypts and stores a secret using AES-256-GCM. |
+| `opn secret list` | `--format json` | Lists secret names without displaying values. |
+| `opn secret rm <name>` | `<name>` | Deletes a local secret. |
+| `opn secret remote` | — | Lists secrets registered in the cloud control plane. |
+| `opn secret push` | — | Uploads client-side encrypted secrets to the cloud. |
+| `opn secret pull` | — | Retrieves sealed data encryption keys (DEK) and decrypts values locally. |
+| `opn secret rotate` | — | Rotates the tenant encryption key and re-encrypts all stored secrets. |
+| `opn secret path` | — | Prints the filesystem path to the local secret store. |
 
-> See [`SPEC-secret-store`](/en/cloud/specs/SPEC-secret-store) for the envelope-encryption model (Vault KEK → per-tenant DEK) and device-portable provisioning.
+For detailed information on the envelope-encryption architecture, see the [secret store specification](/en/cloud/specs/SPEC-secret-store).

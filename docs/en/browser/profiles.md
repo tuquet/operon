@@ -1,39 +1,39 @@
-# Isolated Browser Profiles & Lifecycle Management
+# Isolated browser profiles
 
-Managing multi-account operations requires total data segregation. Commercial browsers share cached storage, DNS tables, and GPU contexts across tabs and windows, allowing anti-fraud trackers to correlate identities and execute portfolio-wide bans.
+Running multiple browser personas requires strict data segregation. Commercial browsers share cached storage, DNS caches, and GPU contexts across windows, which exposes identifying information to anti-bot systems.
 
-**Operon** provides strict filesystem, memory, and network isolation through its **Isolated Browser Profile Sandbox**, managed natively by the [`browser`](https://github.com/operon/browser) microservice.
+Operon isolates filesystem storage, memory state, and network sockets for every profile through the `browser` subsystem.
 
 ---
 
-## 1. Sandbox Filesystem Isolation
+## 1. Filesystem isolation
 
-Every browser profile resides in its own sandboxed directory under SSOT identified by its unique ID/UUID (`~/.operon/browser/profiles/<profile_id>/`).
+Every profile lives in an isolated directory under `~/.operon/browser/profiles/<profile_id>/`:
 
 ```text
 ~/.operon/browser/profiles/a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d/
-├── profile.json              # Deterministic hardware seeds & metadata
+├── profile.json              # Hardware parameters and metadata
 ├── Default/                  # Isolated Chromium user data
-│   ├── Cookies               # SQLite session cookie jar
+│   ├── Cookies               # SQLite session cookie store
 │   ├── Local Storage/        # LevelDB persistent web storage
-│   ├── IndexedDB/            # Client-side document databases
-│   └── Network/              # HTTP credentials, token caches
-└── extensions/               # Dedicated profile extension sandbox
+│   ├── IndexedDB/            # Client-side document database
+│   └── Network/              # Network credentials and token cache
+└── extensions/               # Dedicated extension directory
 ```
 
-- **Zero Cache Cross-Pollination**: Profile cookies, `localStorage`, `IndexedDB`, and session tokens are 100% physically separated.
-- **Dedicated Network Sockets**: SOCKS5 and HTTP proxy configurations bind directly to individual profile launch flags, guaranteeing that no traffic from Profile B leaks through the proxy of Profile A.
+- **Separated storage**: Cookies, `localStorage`, `IndexedDB`, and session tokens are strictly isolated per profile.
+- **Dedicated proxy sockets**: Proxy configurations apply per browser process, preventing network traffic leakage across profiles.
 
 ---
 
-## 2. Deterministic PRNG Hardware Specification (`profile.json`)
+## 2. Hardware profile specification (`profile.json`)
 
-When creating a profile, `browser` uses a 32-bit pseudorandom seed (`--seed <u32>`) to derive all hardware and environment attributes deterministically. Once generated, this digital signature remains immutable across reboots:
+When you create a profile, the runtime derives hardware attributes from a 32-bit pseudorandom seed (`--seed <u32>`). Once generated, the attributes remain deterministic:
 
 ```json
 {
   "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
-  "name": "Facebook-Ad-VN-01",
+  "name": "Production-Profile-01",
   "fingerprint_seed": 849201,
   "os_platform": "windows",
   "os_version": "10.0.0",
@@ -52,7 +52,7 @@ When creating a profile, `browser` uses a 32-bit pseudorandom seed (`--seed <u32
   "webrtc_mode": "proxy_shielded",
   "proxy": "socks5://127.0.0.1:1080",
   "group_name": "default",
-  "tags": ["facebook", "ads"],
+  "tags": ["production", "social"],
   "extensions": ["automation"],
   "startup_flags": [],
   "cloud_id": null,
@@ -63,36 +63,25 @@ When creating a profile, `browser` uses a 32-bit pseudorandom seed (`--seed <u32
 
 ---
 
+## 3. Profile management tasks
 
-### 2.1. Smart Proxy & Geo Alignment (GoLogin / AdsPower Architecture)
+Use `opn browser profile` commands to manage profile lifecycles:
 
-In commercial anti-detect browser operations, having an IP address from one region while the system clock or locale reflects a different geographical location is an immediate red flag for fraud engines (Cloudflare Turnstile, DataDome, Google, Facebook).
+### Create and inspect profiles
 
-Operon provides automated network and geography synchronization:
-- **`auto_timezone: true`**: When launching with a proxy, the worker probes the exit IP and queries local GeoIP tables to dynamically inject `--timezone=<Region/City>` into Chromium, matching the browser clock 100% to the proxy's physical location.
-- **`auto_locale: true`**: Automatically synchronizes the `Intl`, `navigator.languages`, and `Accept-Language` HTTP headers with the proxy's country code.
-- **`change_ip_url`**: Supports rotation webhooks for dynamic residential and mobile 4G/5G proxies. When specified, worker nodes can trigger an on-demand IP refresh prior to workflow execution.
-- **`webrtc_mode: "proxy_shielded"`**: Forces `--disable-non-proxied-udp` and sets the WebRTC IP handling policy to `disable_non_proxied_udp`, completely eliminating public STUN/TURN IP leaks.
-
----
-
-## 3. Command Reference
-
-All profile operations are exposed via `opn browser profile` (or `opn browser profile`):
-
-### Creating and Inspecting Profiles
-
-By default, profiles are created with a **Direct Connection** (`proxy = null`). To route traffic through a residential or SOCKS5 proxy, provide `--proxy <url>` explicitly:
+To create a profile with a direct connection:
 
 ```bash
-# 1. Create a clean profile (Direct connection by default - recommended for local testing)
 opn browser profile create "Acceptance-Clean" \
   --os windows \
   --cores 8 \
   --ram 16
+```
 
-# 2. Create a proxy-routed profile with deterministic PRNG seed and custom location
-opn browser profile create "TikTok-Agency-01" \
+To create a profile routed through a SOCKS5 proxy:
+
+```bash
+opn browser profile create "Target-Campaign-01" \
   --seed 94102 \
   --os windows \
   --cores 8 \
@@ -100,73 +89,81 @@ opn browser profile create "TikTok-Agency-01" \
   --proxy socks5://127.0.0.1:1080 \
   --timezone "Asia/Ho_Chi_Minh" \
   --locale "vi-VN"
+```
 
-# Inspect detailed hardware parameters and disk footprint
-opn browser profile inspect "TikTok-Agency-01"
+To view profile hardware settings:
 
-# List all local profiles with fingerprint summary table
+```bash
+opn browser profile inspect "Target-Campaign-01"
+```
+
+To list all local profiles:
+
+```bash
 opn browser profile list
 ```
 
-### Pre-Flight Proxy Fail-Safe Guardrail
+### Pre-flight proxy checks
 
-When a profile is configured with a `--proxy`, `opn browser launch` automatically executes an active pre-flight connectivity probe before starting Chromium:
-- **Fail-Safe Abort**: If the proxy server is offline, down, or refused, launch is aborted immediately (`[PRE-FLIGHT CHECK FAILED: PROXY UNREACHABLE]`) to prevent accidental real IP leaks or dead automation sessions.
-- **Bypass Flag**: To test offline pages or launch without waiting for proxy health checks, supply `--skip-proxy-check`.
-- **Runtime Override**: To run a proxied profile in direct mode without editing `profile.json`, supply an empty string `--proxy ""`:
+When a profile includes a `--proxy` configuration, `opn browser launch` probes the proxy before starting Chromium:
+
+- **Automatic abort**: If the proxy is unreachable, the launch aborts to avoid leaking your public IP address.
+- **Bypass check**: Use `--skip-proxy-check` to bypass connectivity checks for offline testing.
+- **Direct connection override**: Pass `--proxy ""` to run the profile without a proxy for a single session.
 
 ```bash
-# Verify proxy health, latency, and public egress IP independently
-opn browser profile test-proxy "TikTok-Agency-01" --timeout 5
+# Test proxy latency and connectivity
+opn browser profile test-proxy "Target-Campaign-01" --timeout 5
 
-# Override a profile's stored proxy with a direct connection
-opn browser launch "TikTok-Agency-01" --proxy "" --cdp
+# Override configured proxy with direct mode
+opn browser launch "Target-Campaign-01" --proxy "" --cdp
 
-# Bypass pre-flight probe guardrail
-opn browser launch "TikTok-Agency-01" --skip-proxy-check
+# Skip pre-flight check
+opn browser launch "Target-Campaign-01" --skip-proxy-check
 ```
 
-### Exporting & Archiving Profiles (Pack / Unpack)
+### Export and import profiles
 
-Operon incorporates a high-efficiency archive engine powered by **Zstandard (zstd)** with intelligent cache filtering. When archiving a profile, it strips disposable disk bloat (`Cache`, `Code Cache`, `GPUCache`, `Service Worker/CacheStorage`), reducing 500MB+ user directories to lightweight ~15MB portable snapshots:
+Operon uses Zstandard (`.tar.zst`) compression to archive profiles. The archiver automatically strips temporary caches (`Cache`, `Code Cache`, `GPUCache`), reducing storage from hundreds of megabytes to approximately 15MB:
 
 ```bash
-# Pack profile into a lightweight .tar.zst archive (Zstd level 3)
-opn browser profile pack "TikTok-Agency-01" -o ./TikTok-Agency-01.tar.zst
+# Pack profile into an archive
+opn browser profile pack "Target-Campaign-01" -o ./profile-backup.tar.zst
 
-# Restore profile from archive on another workstation or VPS
-opn browser profile unpack ./TikTok-Agency-01.tar.zst
+# Restore profile on another machine
+opn browser profile unpack ./profile-backup.tar.zst
 ```
 
-### Deleting Profiles
+### Delete profiles
+
+To delete a profile and remove all associated local files:
 
 ```bash
-# Permanently delete profile and purge all sandboxed data
-opn browser profile delete "TikTok-Agency-01" --force
+opn browser profile delete "Target-Campaign-01" --force
 ```
 
 ---
 
-## 4. Distributed Cloud Profile Synchronization (Supabase Cloud)
+## 4. Cloud synchronization
 
-In multi-node teams, profiles are stored centrally in Supabase Cloud (`browsers.profiles` table and `browser-profiles` storage bucket) and synchronized across workstations with distributed lease locks:
+To synchronize profiles across distributed workstations and workers using Supabase Cloud:
 
 ```bash
-# Upload session snapshot (cookies, localStorage) to Supabase Storage
-opn browser profile push "TikTok-Agency-01"
+# Upload session data (cookies and storage) to cloud storage
+opn browser profile push "Target-Campaign-01"
 
-# Download profile and session snapshot on a remote worker or workstation
-opn browser profile pull "TikTok-Agency-01"
+# Download profile to current workstation
+opn browser profile pull "Target-Campaign-01"
 
-# List central cloud browser profiles available to your organization
+# List profiles registered in cloud organization
 opn browser profile cloud list
 
-# Acquire exclusive lease lock (prevents team members from opening simultaneously)
-opn browser profile cloud acquire "TikTok-Agency-01"
+# Acquire lease lock before launching
+opn browser profile cloud acquire "Target-Campaign-01"
 
-# Launch session, execute automation, or perform manual work
-opn browser launch "TikTok-Agency-01"
+# Launch session and execute tasks
+opn browser launch "Target-Campaign-01"
 
-# Release distributed lease lock and synchronize cookie delta back to cloud
-opn browser profile cloud release "TikTok-Agency-01"
+# Release lock and push updated session state
+opn browser profile cloud release "Target-Campaign-01"
 ```

@@ -1,16 +1,12 @@
-# Stealth Chromium Runtime & Hardware Sandbox
+# Stealth Chromium runtime and hardware sandbox
 
-Commercial browsers leak machine identity at every layer. Telemetry daemons, hardware hash queries, audio context fingerprinting, and shared LevelDB caches broadcast your identity to every anti-fraud engine on the web.
+Commercial browsers expose machine identifiers through telemetry daemons, hardware queries, audio context profiling, and shared cache stores.
 
-**Stealth Chromium Runtime** is a decoupled antidetect browser subsystem powered by the [`browser`](https://github.com/operon/browser) crate. It uses a custom-built Chromium binary based on [`adryfish/fingerprint-chromium`](https://github.com/adryfish/fingerprint-chromium) (customized on [`ungoogled-software/ungoogled-chromium`](https://github.com/ungoogled-software/ungoogled-chromium)) with native C++ patches for Blink, V8, and Skia. It injects deterministic hardware seeds directly into C++ memory, strips WebRTC leaks at the packet level, and spoofs Bézier cursor dynamics. Anti-fraud systems (Turnstile, DataDome, Kasada, CreepJS) see a genuine consumer laptop.
-
-::: tip Standalone Microservice & CLI
-`browser` operates completely decoupled from the CLI. You can compile it as a standalone Rust crate, embed it into your custom scrapers, or launch isolated profiles directly via CLI using `opn browser` (or `opn browser`).
-:::
+The Stealth Chromium Runtime is a browser subsystem powered by the `browser` crate. It runs a custom Chromium binary based on `adryfish/fingerprint-chromium` (derived from `ungoogled-chromium`) with native patches in Blink, V8, and Skia. The engine injects deterministic hardware seeds into memory, eliminates WebRTC IP leaks, and generates realistic cursor trajectories.
 
 ---
 
-## 1. Core Architectural Pillars
+## 1. Architectural overview
 
 ```text
  ┌─────────────────────────────────────────────────────────────────────────┐
@@ -18,7 +14,7 @@ Commercial browsers leak machine identity at every layer. Telemetry daemons, har
  │                                                                         │
  │   ┌──────────────────────────┐       ┌──────────────────────────────┐   │
  │   │ C++ Chromium LTS Engine  │       │ Deterministic PRNG Spoofing  │   │
- │   │ (adryfish/ungoogled)     │       │ (Seed: u32)                  │   │
+ │   │ (ungoogled-chromium)     │       │ (Seed: u32)                  │   │
  │   ├──────────────────────────┤       ├──────────────────────────────┤   │
  │   │ • Zero Google Telemetry  │       │ • Canvas 2D Math Jitter      │   │
  │   │ • No Background Updates  │       │ • WebGL Vendor / GPU Model   │   │
@@ -29,7 +25,7 @@ Commercial browsers leak machine identity at every layer. Telemetry daemons, har
  │                 ▼                                   ▼                   │
  │   ┌─────────────────────────────────────────────────────────────────┐   │
  │   │                   Isolated Profile Sandboxes                    │   │
- │   │               (~/.operon/browser/profiles/<id>/)                    │   │
+ │   │               (~/.operon/browser/profiles/<id>/)                │   │
  │   │ • Segregated Cookies, LocalStorage, IndexedDB, LevelDB          │   │
  │   │ • Dedicated Proxy Tunnel (SOCKS5 / HTTP Adapter)                │   │
  │   │ • WebRTC STUN Protection (proxy_shielded | disabled | real)     │   │
@@ -39,65 +35,55 @@ Commercial browsers leak machine identity at every layer. Telemetry daemons, har
  └─────────────────────────────────────────────────────────────────────────┘
 ```
 
-1. **Custom C++ Antidetect Core (`adryfish/fingerprint-chromium`)**:
-   - Built on open-source `ungoogled-chromium` with native C++ patches.
-   - Pinned Golden LTS build: `v148.0.7778.215` (`ungoogled-chromium_148.0.7778.215-1.1`).
-   - Completely removes background Google services, crashpad reporters, and safe-browsing telemetry.
-2. **Deterministic C++ PRNG Seeds (`--fingerprint=<seed>`)**:
-   - Every profile is bound to an immutable 32-bit unsigned integer seed (`--seed <u32>`).
-   - The Chromium C++ engine uses this single seed to deterministically perturb Canvas 2D render paths, WebGL GPU parameters, AudioContext SNR, and internal PRNG calculations with 100% cross-session consistency.
-3. **Full Lifecycle Profile Sandbox**:
-   - Profiles live in isolated directories under `~/.operon/browser/profiles/<id>/`.
-   - Never shares cache, cookies, WebSQL, or local storage between profiles.
-4. **Display Geometry & HiDPI Scaling**:
-   - Configurable screen resolution (`screen_width`, `screen_height`, `device_pixel_ratio`) passed via `--window-size=W,H` and `--force-device-scale-factor=DPR`.
-5. **Zstandard Session Compression & Cloud Sync**:
-   - High-speed Zstandard level-3 compression (`.tar.zst`) with cache filtering for instant cloud backup to Supabase `browser-profiles` bucket.
+1. **Custom antidetect core**: Built on open-source `ungoogled-chromium` with native C++ patches. Removes background telemetry services, crash reporters, and automatic updater processes.
+2. **Deterministic PRNG seeds (`--fingerprint=<seed>`)**: Each profile binds to a 32-bit unsigned integer seed (`--seed <u32>`). The engine applies this seed to jitter Canvas 2D render paths, WebGL parameters, and AudioContext audio processing consistently across sessions.
+3. **Profile sandbox**: Profiles run in isolated directories under `~/.operon/browser/profiles/<id>/` without shared storage or socket pools.
+4. **Display geometry**: Screen dimensions and pixel ratios map directly to `--window-size=W,H` and `--force-device-scale-factor=DPR`.
+5. **Zstandard compression**: Profiles compress to `.tar.zst` archives with temporary cache directories excluded.
 
 ---
 
-## 2. End-to-End CLI User Flow
-
-Here is the complete operational lifecycle from fresh installation to automated execution and cloud synchronization:
+## 2. End-to-end CLI workflow
 
 ```mermaid
 flowchart TD
     A["Stage 1: Engine Provisioning\n(opn browser search / install)"] --> B["Stage 2: Profile Creation\n(opn browser profile create / inspect)"]
     B --> C["Stage 3: Stealth Execution\n(opn browser launch <profile>)"]
     C --> D{"Execution Mode"}
-    D -->|"Manual Browsing"| E["Interactive GUI\n(Nuôi nick / Account warmup)"]
+    D -->|"Interactive GUI"| E["Manual Operations\n(Account verification)"]
     D -->|"Headless Automation"| F["CDP Port 9222\n(Automa / Playwright / Runner)"]
     E --> G["Stage 4: Stealth Verification\n(opn browser verify)"]
     F --> G
     G --> H["Stage 5: Session Archival & Cloud Sync\n(opn browser profile pack / push / pull)"]
 ```
 
-### Stage 1: Engine Provisioning
+### Stage 1: Engine provisioning
 
-Discover and download official precompiled `adryfish/fingerprint-chromium` binaries:
+Search for available Chromium LTS runtime builds and download the pinned release:
 
 ```bash
-# 1. Search remote releases catalog on Supabase Cloud / GitHub
+# Search available remote builds
 opn browser search --remote
 
-# 2. Download and provision Golden LTS v148 (with SHA256 checksum verification)
+# Download and verify the Golden LTS runtime (v148)
 opn browser install 148
 
-# 3. List locally installed runtimes
+# List installed runtimes
 opn browser runtimes
 ```
-*Binaries are unpacked into `~/.operon/browser/runtimes/v148.0.7778.215/`.*
 
-### Stage 2: Profile Creation & Hardware Sandbox
+Runtimes unpack into `~/.operon/browser/runtimes/v148.0.7778.215/`.
 
-Initialize isolated profiles with deterministic hardware specifications:
+### Stage 2: Profile creation
+
+Create an isolated profile:
 
 ```bash
-# 1. Create a profile with randomized deterministic hardware
-opn browser profile create "Shopee-Shop-01"
+# Create profile with default randomized seed
+opn browser profile create "Shop-US-01"
 
-# 2. Or create a profile with explicit hardware, proxy, and timezone specs
-opn browser profile create "FB-Ads-US" \
+# Create profile with explicit hardware and proxy settings
+opn browser profile create "Marketing-US" \
   --os windows \
   --cores 16 \
   --ram 32 \
@@ -105,211 +91,76 @@ opn browser profile create "FB-Ads-US" \
   --timezone "America/New_York" \
   --locale "en-US"
 
-# 3. Test proxy connectivity and latency before launch
-opn browser profile test-proxy "FB-Ads-US"
+# Test proxy connectivity before launching
+opn browser profile test-proxy "Marketing-US"
 
-# 4. List all registered profiles and disk footprint
+# List all profiles
 opn browser profile list
 
-# 5. Inspect complete hardware fingerprint details
-opn browser profile inspect "FB-Ads-US"
+# Inspect hardware fingerprint parameters
+opn browser profile inspect "Marketing-US"
 ```
 
-### Stage 3: Stealth Execution
+### Stage 3: Profile execution
 
-Launch profiles in either interactive GUI mode or automated headless mode:
+Launch profiles in interactive GUI mode or automated headless mode:
 
 ```bash
-# Manual Browsing: Launch with GUI into target URL
-opn browser launch "Shopee-Shop-01" https://shopee.vn
+# Launch interactive browser window
+opn browser launch "Shop-US-01" https://example.com
 
-# Detached Launch: Release terminal immediately
-opn browser launch "FB-Ads-US" https://facebook.com --detach
+# Launch detached process and release terminal
+opn browser launch "Marketing-US" https://example.com --detach
 
-# Headless Automation: Launch with CDP gateway on port 9222 for Automa / Runner
-opn browser launch "FB-Ads-US" --headless --cdp --port 9222 --detach
+# Launch headless browser with CDP debugging enabled on port 9222
+opn browser launch "Marketing-US" --headless --cdp --port 9222 --detach
 
-# Monitor active browser sessions (PID, Port, WebSocket URL)
+# List running browser sessions
 opn browser ps
 
-# Stop running sessions
-opn browser stop "Shopee-Shop-01"
+# Stop browser sessions
+opn browser stop "Shop-US-01"
 opn browser stop --all
 ```
 
-### Stage 4: Stealth Verification
+### Stage 4: Fingerprint verification
 
-Verify anti-detect stealth quality against industry-standard fraud detection platforms:
+Verify detection resistance using anti-bot test suites:
 
 ```bash
-# Automatically launches the profile and executes test suite against CreepJS / Pixelscan
+# Launch profile against fingerprint verification suites
 opn browser verify
 ```
 
-### Stage 5: Session Archival & Cloud Sync
+### Stage 5: Session archival and cloud sync
 
-Preserve login cookies, localStorage, and token sessions across devices:
+Preserve session cookies, storage state, and credentials:
 
 ```bash
-# 1. Pack profile into a lightweight .tar.zst archive (cache stripped, <15MB)
-opn browser profile pack "Shopee-Shop-01" -o ./shopee.tar.zst
+# Pack profile into a lightweight .tar.zst archive
+opn browser profile pack "Shop-US-01" -o ./shop.tar.zst
 
-# 2. Upload session snapshot to Supabase Storage ('browser-profiles' bucket)
-opn browser profile push "Shopee-Shop-01"
+# Upload profile archive to Supabase Storage
+opn browser profile push "Shop-US-01"
 
-# 3. On a remote worker or new machine, pull the profile to resume session
-opn browser profile pull "Shopee-Shop-01"
+# Download profile to resume session on a remote worker
+opn browser profile pull "Shop-US-01"
 ```
 
 ---
 
-## 3. Deterministic Hardware Derivation Model
+## 3. Hardware derivation parameters
 
-When creating a profile without manual overrides, `browser` derives hardware attributes using deterministic modulo arithmetic on the 32-bit PRNG seed:
+When creating a profile without manual hardware flags, the engine derives hardware configurations deterministically from the seed:
 
-```rust
-// Core derivation logic from browser/src/profile.rs
-let cores = match seed % 3 {
-    0 => 8,
-    1 => 12,
-    _ => 16,
-};
-
-let ram = match seed % 3 {
-    0 => 16,
-    1 => 32,
-    _ => 16,
-};
-
-let slug = slugify(&name);
-let id = if slug.is_empty() {
-    format!("prf_{:08x}", seed)
-} else {
-    format!("{}-{:06x}", slug, seed & 0xFFFFFF)
-};
-```
-
-### Deterministic Spoofing Vectors
-
-| Hardware Attribute | Emulation Mechanism | Default / Derivation |
+| Hardware attribute | Configuration flag | Emulation mechanism |
 | :--- | :--- | :--- |
-| **Fingerprint Seed** | Immutable 32-bit PRNG seed | Random `u32` if omitted (`--fingerprint=<seed>`) |
-| **CPU Concurrency** | Injected via Blink C++ internals | `8`, `12`, or `16` cores (`--fingerprint-hardware-concurrency`) |
-| **Device Memory** | `navigator.deviceMemory` override | `16GB` or `32GB` (`seed % 3`) |
-| **OS Platform** | Platform headers & user-agent | `windows` (`--fingerprint-platform=windows`) |
-| **Browser Brand** | Chromium engine brand string | `Chrome` (`--fingerprint-brand=Chrome`) |
-| **Display Geometry** | Window dimensions & HiDPI | `--window-size=1920,1080 --force-device-scale-factor=1.00` |
-| **Timezone** | V8 Internationalization API | `Asia/Ho_Chi_Minh` (`--timezone=...`) |
-| **Locale & Lang** | `navigator.languages` & `Accept-Language` | `vi-VN` (`--lang=vi-VN --accept-lang=vi-VN,vi,en-US,en`) |
-| **WebRTC Mode** | UDP STUN packet filtering | `proxy_shielded` (`--disable-non-proxied-udp`) |
-
----
-
-## 4. Chromium Launcher & Flag Generation
-
-The launcher (`BrowserProfile::build_cli_args` in `browser/src/profile.rs`) dynamically generates secure command-line arguments to enforce stealth and stability:
-
-```bash
-# Core Arguments Generated by Launcher
---user-data-dir=~/.operon/browser/profiles/<id>
---no-first-run
---no-default-browser-check
---fingerprint=133742
---fingerprint-platform=windows
---fingerprint-platform-version=10.0.0
---fingerprint-brand=Chrome
---fingerprint-hardware-concurrency=8
---window-size=1920,1080
---force-device-scale-factor=1.00
---timezone=Asia/Ho_Chi_Minh
---lang=vi-VN
---accept-lang=vi-VN,vi,en-US,en
---proxy-server=socks5://127.0.0.1:1080
---disable-non-proxied-udp
-```
-
----
-
-## 5. Storage Layout & `profile.json` Schema
-
-All browser files strictly adhere to SSOT under `~/.operon/browser/`:
-
-```text
-~/.operon/browser/
-├── browser.json              # Active engine settings and manifest channel
-├── runtimes/                 # Dedicated Chromium execution binaries
-│   └── v148.0.7778.215/      # Pinned LTS Antidetect Chromium (adryfish)
-├── profiles/                 # Sandboxed profile data directories
-│   └── Facebook-Ad-US-01/
-│       ├── profile.json      # Profile hardware fingerprint manifest
-│       └── Default/          # Chromium LevelDB, cookies, storage
-└── extensions/               # Registered browser extensions
-    └── automation/
-```
-
-### Complete `profile.json` Schema
-
-```json
-{
-  "id": "fb-ads-us-849201",
-  "name": "FB-Ads-US",
-  "fingerprint_seed": 849201,
-  "os_platform": "windows",
-  "os_version": "10.0.0",
-  "browser_brand": "Chrome",
-  "hardware_concurrency": 8,
-  "device_memory_gb": 16,
-  "screen_width": 1920,
-  "screen_height": 1080,
-  "device_pixel_ratio": 1.0,
-  "timezone": "America/New_York",
-  "lang": "en-US",
-  "accept_lang": "en-US,en",
-  "sec_ch_ua": "\"Chromium\";v=\"148\", \"Not A(Brand\";v=\"24\", \"Google Chrome\";v=\"148\"",
-  "sec_ch_ua_platform": "\"Windows\"",
-  "sec_ch_ua_mobile": false,
-  "proxy": "socks5://user:pass@proxy-us.net:1080",
-  "webrtc_mode": "proxy_shielded",
-  "group_name": "default",
-  "tags": ["facebook", "ads"],
-  "extensions": ["automation"],
-  "startup_flags": [],
-  "cloud_id": null,
-  "cloud_synced_at": null,
-  "storage_path": null,
-  "storage_hash": null,
-  "storage_size_bytes": null,
-  "cookies_count": null,
-  "created_at": "1792560000"
-}
-```
-
----
-
-## 6. Quick Command Reference
-
-```bash
-# --- Engine Runtimes ---
-opn browser search --remote                  # Discover available engine releases
-opn browser install 148                      # Install Golden LTS v148
-opn browser runtimes                         # List installed local engines
-
-# --- Profiles ---
-opn browser profile list                     # List all local profiles
-opn browser profile create "Name" --proxy URL # Create a new profile
-opn browser profile inspect "Name"           # Inspect hardware fingerprint
-opn browser profile test-proxy "Name"        # Test proxy connectivity
-opn browser profile pack "Name"              # Compress into .tar.zst archive
-opn browser profile unpack ./backup.tar.zst  # Restore profile from archive
-opn browser profile push "Name"              # Upload snapshot to Supabase Cloud
-opn browser profile pull "Name"              # Download snapshot from Supabase Cloud
-opn browser profile delete "Name"            # Remove profile and sandbox
-
-# --- Launching ---
-opn browser launch "Name"                    # Open GUI browser
-opn browser launch "Name" URL --detach       # Open URL and detach terminal
-opn browser launch "Name" --headless --cdp   # Headless with CDP gateway (port 9222)
-opn browser ps                               # View running instances
-opn browser stop "Name"                      # Terminate instance
-opn browser verify                           # Run CreepJS/Pixelscan stealth verification
-```
+| **Fingerprint seed** | `--fingerprint=<seed>` | 32-bit unsigned PRNG seed |
+| **CPU concurrency** | `--fingerprint-hardware-concurrency=<n>` | Injected into Blink C++ internals (`8`, `12`, or `16`) |
+| **Device memory** | `navigator.deviceMemory` | Memory size (`16GB` or `32GB`) |
+| **Platform** | `--fingerprint-platform=windows` | User-agent client hints and platform headers |
+| **Browser brand** | `--fingerprint-brand=Chrome` | Client hints brand list |
+| **Display geometry** | `--window-size=1920,1080` | Viewport dimensions and device scale factor |
+| **Timezone** | `--timezone=America/New_York` | V8 internationalization API override |
+| **Language** | `--lang=en-US --accept-lang=en-US,en` | HTTP request headers and `navigator.languages` |
+| **WebRTC mode** | `--disable-non-proxied-udp` | Prevents non-proxied UDP packet leaks |
