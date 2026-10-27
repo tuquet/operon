@@ -1,127 +1,131 @@
 <div align="center">
 
-# ⚡ Operon
+# Operon
 
-**Ultra-High Performance Distributed Automation Mesh & Browser Sandbox Runtime in Rust**
+**Distributed automation mesh and antidetect browser sandbox runtime in Rust**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Rust](https://img.shields.io/badge/Rust-2024%20Edition-orange?logo=rust)](https://www.rust-lang.org)
 [![Docker](https://img.shields.io/badge/Docker-Core%20Stack-2496ED?logo=docker)](docker-compose.yml)
-[![Vue 3](https://img.shields.io/badge/Console-Vue%203%20%2B%20Shadcn-4FC08D?logo=vuedotjs)](console/)
+[![Console](https://img.shields.io/badge/Console-Vue%203%20%2B%20Shadcn-4FC08D?logo=vuedotjs)](console/)
 
-[Quick Start](#-quick-start) • [Architecture](#-architecture) • [CLI Usage](#-cli-usage) • [Contributing](.github/CONTRIBUTING.md)
+[Quickstart](#quickstart) • [Repository structure](#repository-structure) • [CLI usage](#cli-usage) • [Contributing](.github/CONTRIBUTING.md)
 
 </div>
 
 ---
 
-## 📖 Overview
+## Overview
 
-**Operon** is an enterprise-grade autonomous execution engine and browser orchestration platform. Built with high-concurrency Rust and orchestrated via a modern control plane, Operon allows developers and teams to coordinate distributed worker nodes, manage sandboxed browser sessions, and execute complex workflows reliably.
+Operon is an open-source execution runtime and browser orchestration platform. Built with high-concurrency Rust and backed by a Supabase control plane, Operon enables operators and automation agents to coordinate remote worker nodes, manage sandboxed browser sessions without fingerprint leaks, and execute automated browser workflows reliably.
 
-### Key Pillars
-- **🚀 Distributed Execution Engine (`crates/worker`)**: Zero-overhead worker runtime connecting to the mesh via authenticated WebSockets.
-- **🌐 Browser Sandbox Subsystem (`crates/browser`)**: Profile manager, fingerprint shielding, and CDP automation.
-- **🖥️ Operon Workstation (`console/`)**: Comprehensive administrative UI built on Vue 3, Tailwind CSS, and Shadcn.
-- **🔒 Operon Cloud (`cloud/`)**: Supabase-powered control plane featuring granular Row-Level Security (RLS) and isolated tenant spaces.
+### Core subsystems
+
+- **Worker daemon (`crates/worker`)**: Background process supervisor connecting workstations and remote VPS nodes over authenticated WebSockets.
+- **Browser sandbox (`crates/browser`)**: Profile manager, deterministic PRNG hardware masking, and native CDP automation engine.
+- **Admin workstation (`console/`)**: Administrative web console and desktop application built with Vue 3, Vite, Tailwind CSS, and Shadcn UI.
+- **Control plane (`cloud/`)**: Supabase-powered backend providing multi-tenant isolation, database schemas, and row-level security (RLS).
+- **Network gateway**: Dynamic SOCKS5 (`1080`) and embedded HTTP (`8118`) forwarder routing traffic through encrypted mesh tunnels.
 
 ---
 
-## 🚀 Quick Start
+## Repository structure
 
-### 1. Clone & Setup Environment
-```bash
-git clone https://github.com/operon/operon.git
-cd operon
-
-cp .env.example .env
+```text
+operon/
+├── crates/
+│   ├── cli/       # Canonical opn CLI toolchain
+│   ├── worker/    # Workstation daemon and process supervisor
+│   ├── browser/   # Stealth Chromium launcher and hardware sandbox
+│   └── faker/     # Synthetic identity generation engine
+├── console/       # Administrative web console and Tauri desktop app
+├── cloud/         # Supabase database schemas, migrations, and functions
+├── docs/          # Technical documentation (VitePress)
+└── docker-compose.yml # Unified local development stack
 ```
 
-### 2. Option A: Launch with Docker (Fastest)
-Operon comes with a production-ready Docker Compose configuration:
+---
+
+## Quickstart
+
+### Prerequisites
+
+- **Rust toolchain**: 1.82+ (2024 edition compatible)
+- **Node.js & pnpm**: Node 20+, pnpm 9+
+- **Docker**: Optional, for containerized local development
+
+### Option A: Launch with Docker Compose (Fastest)
+
+Run the entire ecosystem locally:
+
 ```bash
+cp .env.example .env
 docker compose up -d
 ```
+
 - **Daemon API & Worker Gateway**: `http://localhost:8765`
 - **Operon Workstation**: `http://localhost:5666`
 
 ---
 
-### 3. Option B: Local Bare-Metal Development (No Docker)
+### Option B: Local development from source
 
-For contributors and developers who want hot-reload, fast iteration, and step debugging directly on the host machine:
+1. **Configure environment variables**:
+   ```bash
+   cp .env.example .env
+   ```
 
-#### Prerequisites
-- **Rust Toolchain**: 1.82+ (2024 edition compatible)
-  ```bash
-  rustup update stable
-  ```
-- **Node.js & pnpm**: Node 20+, pnpm 9+
-  ```bash
-  corepack enable && corepack prepare pnpm@latest --activate
-  ```
-- *(Optional)* **Supabase CLI**: If you need local cloud backend and migrations.
+2. **Verify and build Rust backend**:
+   ```bash
+   # Verify all workspace crates compile
+   cargo check --workspace
 
-#### Step 1: Build & Run Rust Backend (CLI / Worker Mesh)
-You can compile and run the backend components directly using Cargo:
-```bash
-# Verify all workspace crates compile
-cargo check --workspace
+   # Run CLI commands in debug mode
+   cargo run -p operon -- doctor
 
-# Run CLI commands directly in debug mode
-cargo run -p operon -- status
+   # Start the background worker daemon directly
+   cargo run -p operon -- worker start --port 8765
+   ```
+   *To compile the production release binary, run `cargo build --release -p operon`. The binary is generated at `target/release/opn` (or `opn.exe` on Windows).*
 
-# Start the background Worker node daemon directly on port 8765
-cargo run -p operon -- worker start --port 8765
-```
-*(Tip: Or build the release binary once via `cargo build --release -p operon`, the binary will be located at `target/release/opn` or `opn.exe`)*
+3. **Start the administrative frontend**:
+   ```bash
+   cd console
+   pnpm install
+   pnpm dev
+   ```
 
-#### Step 2: Run Operon Workstation (Vue 3 Frontend)
-The frontend administrative workstation runs with Vite instant hot-reload:
-```bash
-cd console
-
-# Install workspace dependencies
-pnpm install
-
-# Start the local development server (default: http://localhost:5666)
-pnpm dev
-```
-
-#### Step 3: Run Desktop App (Tauri v2 Mode)
-If you are developing the desktop variant with native window integrations:
-```bash
-cd console
-pnpm dev:desktop
-```
-
-### 4. Run the CLI
-Use the provided smart shim:
-```bash
-./opn status
-./opn worker start
-```
+4. **Run Desktop App (Tauri v2 Mode)**:
+   ```bash
+   cd console
+   pnpm dev:desktop
+   ```
 
 ---
 
-## 🛠️ CLI Usage (`opn`)
+## CLI usage
 
-Operon provides dual binary identifiers for command-line convenience:
-- `opn <command>`: Ergonomic short command.
-- `operon <command>`: Canonical command for automation and CI/CD.
+The primary CLI executable is `opn`. All commands follow microservice domains:
 
 ```bash
-# Check runtime and mesh status
-opn status
+# Check runtime health, storage pillars, and dependencies
+opn doctor
 
-# Start a worker node
+# Start the background worker daemon
 opn worker start --port 8765
 
-# Generate synthetic personas/identities
+# Launch an isolated browser profile with proxy routing
+opn browser launch "Campaign-US" --proxy socks5://127.0.0.1:1080
+
+# Start network gateway forwarders (SOCKS5 on 1080, HTTP on 8118)
+opn gateway start --http
+
+# Generate synthetic personas and test identities
 opn faker identity --count 5
 ```
 
 ---
 
-## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
