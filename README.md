@@ -68,25 +68,30 @@ docker compose up -d
 
 ---
 
-### Option B: Local development from source
+### Option B: Local development from source (Fast Incremental DX)
+
+> [!TIP]
+> **Developer Experience (Fast Incremental Workflow):**
+> Do not use `cargo install` during active development, as it rebuilds the entire toolchain from scratch on each change. Instead, leverage Cargo's incremental compilation by invoking commands directly via `cargo run -p operon --bin opn -- <args>`.
 
 1. **Configure environment variables**:
    ```bash
    cp .env.example .env
    ```
 
-2. **Verify and build Rust backend**:
+2. **Verify workspace and run commands directly**:
    ```bash
-   # Verify all workspace crates compile
+   # Fast workspace check
    cargo check --workspace
 
-   # Run CLI commands in debug mode
-   cargo run -p operon -- doctor
+   # Run health check
+   cargo run -p operon --bin opn -- doctor
 
-   # Start the background worker daemon directly
-   cargo run -p operon -- worker start --port 8765
+   # Connect to Cloud Control Plane & start Worker with auto-claim loop
+   cargo run -p operon --bin opn -- auth login -e admin@operon.dev -p TestPassword123!
+   cargo run -p operon --bin opn -- worker start --cloud --claim
    ```
-   *To compile the production release binary, run `cargo build --release -p operon`. The binary is generated at `target/release/opn` (or `opn.exe` on Windows).*
+   *For production binaries, build via `cargo build --release -p operon`. The executable will be generated at `target/release/opn` (or `opn.exe` on Windows).*
 
 3. **Start the administrative frontend**:
    ```bash
@@ -103,16 +108,38 @@ docker compose up -d
 
 ---
 
+## Cloud Worker & Automation Architecture
+
+Operon implements a zero-intermediate-storage design. All jobs, schedules, and workflow states originate directly from the Supabase Control Plane (Single Source of Truth) without local SQLite synchronization or stale cache files:
+
+1. **Gateway Proxy Forwarder**:
+   ```bash
+   # Terminal 1: Launch SOCKS5 (1080) and HTTP (8118) tunnel
+   tq gateway start --http
+   ```
+
+2. **Dedicated Antidetect Chromium**:
+   Operon uses dedicated, patch-level Antidetect Chromium binaries (LTS `v148.0.7778.215`) provisioned directly from GitHub releases to `~/.operon/browser/runtimes/`. Local host browsers or unsanctioned binaries are never used.
+
+3. **Cloud Auto-Claim Loop**:
+   ```bash
+   # Terminal 2: Run Worker Daemon in auto-claim mode
+   cargo run -p operon --bin opn -- worker start --cloud --claim
+   ```
+   Worker periodically polls `automation_claim_jobs` over secure RPC, locks assigned tasks, spawns the sandboxed browser runtime, communicates via isolated CDP sockets (`no_proxy`), and writes real-time logs and completion statuses back to Supabase.
+
+---
+
 ## CLI usage
 
-The primary CLI executable is `opn`. All commands follow microservice domains:
+The primary CLI executable is `opn` (invoked directly as `opn` when installed or via `cargo run -p operon --bin opn -- <subcommand>` in dev mode). All commands follow microservice domains:
 
 ```bash
 # Check runtime health, storage pillars, and dependencies
 opn doctor
 
-# Start the background worker daemon
-opn worker start --port 8765
+# Start the background worker daemon with Supabase cloud claim loop
+opn worker start --cloud --claim
 
 # Launch an isolated browser profile with proxy routing
 opn browser launch "Campaign-US" --proxy socks5://127.0.0.1:1080
