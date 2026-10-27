@@ -1,14 +1,12 @@
-# Bridge Mesh Gateway & Protocol Tunnel Supervisor
+# Network gateway and tunnel supervisor
 
-Corporate firewalls and cloud network boundaries frequently inspect or drop outbound SSH/RPC traffic. Automation workflows that interact with restricted APIs or cloud databases risk leaking local IP addresses through unshielded sockets or DNS fallback.
-
-**Operon Gateway** is a standalone, kernel-level network tunnel supervisor and dynamic forwarder built with pure Rust. It maintains encrypted VPS mesh connections, runs an embedded HTTP-to-SOCKS5 proxy, and provides proactive WebRTC leak shielding.
+Operon Gateway (`opn gateway`) is a network tunnel supervisor and dynamic forwarder written in Rust. It manages encrypted VPS mesh connections, runs an embedded HTTP-to-SOCKS5 proxy, and provides proactive WebRTC leak protection for browser automation.
 
 ---
 
-## 🏗️ Architecture & Port Mapping
+## Architecture and port mapping
 
-Operon Gateway operates a dual-tier proxy routing model designed for both SOCKS5-aware binaries and standard HTTP/HTTPS CLI tooling:
+The gateway maintains a dual-tier proxy routing model designed for both SOCKS5-aware binaries and standard HTTP/HTTPS CLI tools:
 
 ```
 ┌────────────────────────────────────────────────────────┐
@@ -37,31 +35,34 @@ Operon Gateway operates a dual-tier proxy routing model designed for both SOCKS5
                            └──────────────────────────┘
 ```
 
-| Workload / Port | Protocol | Purpose & Routing |
+| Local endpoint | Protocol | Purpose and routing |
 |---|---|---|
-| **`127.0.0.1:1080`** | `SOCKS5` | Primary dynamic proxy tunnel to VPS via Cloudflare Access WebSocket. Used by `git spush`, headless browsers, and automation workers. |
-| **`127.0.0.1:8118`** | `HTTP / CONNECT` | Pure Rust embedded HTTP-to-SOCKS5 forwarder. Translates standard HTTP/HTTPS proxy traffic for tools like `supabase CLI`, `curl`, and `npm`. |
-| **`127.0.0.1:2222`** | `SSH` | Direct SSH connection to remote VPS command terminal. |
+| `127.0.0.1:1080` | `SOCKS5` | Primary dynamic proxy tunnel to VPS via Cloudflare Access WebSocket. Used by `git spush`, headless browsers, and automation workers. |
+| `127.0.0.1:8118` | `HTTP / CONNECT` | Pure Rust embedded HTTP-to-SOCKS5 forwarder. Translates standard HTTP/HTTPS proxy traffic for tools like Supabase CLI, `curl`, and `npm`. |
+| `127.0.0.1:2222` | `SSH` | Direct SSH connection to the remote VPS shell terminal. |
 
 ---
 
-## ⚡ Quickstart
+## Quickstart
 
-### 1. Launch Gateway Services
-Start both SOCKS5 (`1080`) and embedded HTTP (`8118`) forwarders:
+### 1. Launch gateway services
+
+Start both the SOCKS5 (`1080`) and embedded HTTP (`8118`) forwarders:
 
 ```bash
 opn gateway start --http
 ```
 
-### 2. Verify Tunnel Status
-Inspect connection state across all configured VPS nodes:
+### 2. Verify tunnel status
+
+Inspect the connection state across configured VPS nodes:
 
 ```bash
 opn gateway status
 ```
 
 Example output:
+
 ```json
 {
   "ready": true,
@@ -74,8 +75,9 @@ Example output:
 }
 ```
 
-### 3. Verify Egress & WebRTC Shield
-Probe external egress IP, latency, and leak protection:
+### 3. Verify egress and WebRTC protection
+
+Probe the external egress IP, latency, and leak protection:
 
 ```bash
 opn gateway probe
@@ -83,9 +85,9 @@ opn gateway probe
 
 ---
 
-## ⚙️ Configuration Reference
+## Configuration reference
 
-Gateway settings are stored at `~/.operon/gateway/gateway.json` (adhering to JSON Schema Draft 2020-12):
+Gateway configuration is stored in `~/.operon/gateway/gateway.json`:
 
 ```json
 {
@@ -117,8 +119,10 @@ Gateway settings are stored at `~/.operon/gateway/gateway.json` (adhering to JSO
 }
 ```
 
-### Node Lifecycle Management
+### Node lifecycle management
 
-- **Enable a node**: `opn gateway enable <server-id>`
-- **Disable a node**: `opn gateway disable <server-id>` (disables tunnel without removing configuration)
-- **Check configuration**: `opn gateway check` (validates SSH keys, open ports, and syntax)
+| Task | Command | Description |
+|---|---|---|
+| **Enable a node** | `opn gateway enable <server-id>` | Activates the specified server tunnel. |
+| **Disable a node** | `opn gateway disable <server-id>` | Disables the tunnel without deleting configuration. |
+| **Validate configuration** | `opn gateway check` | Verifies SSH keys, open ports, and configuration syntax. |

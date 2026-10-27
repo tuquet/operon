@@ -1,42 +1,52 @@
-# Distributed Worker Engine
+# Distributed worker engine
 
-The **Operon Worker** (`opn worker`) is a high-performance background daemon, process supervisor, and cloud execution node written in pure Rust. It connects workstations and cloud VPS instances into an autonomous, distributed compute fleet.
-
----
-
-## ⚡ Core Capabilities
-
-1. **Kernel-Level Process Tree Supervision**: Tracks and manages child browser and automation processes. Terminates orphaned Chromium instances with zero socket leakage.
-2. **Cloud Fleet Polling**: Subscribes to Supabase Realtime and executes queued automation workflows asynchronously.
-3. **Telemetry & Log Streaming**: Streams execution logs and resource metrics over Server-Sent Events (SSE) and WebSocket channels.
-4. **Resilient Local HTTP API**: Binds locally on `127.0.0.1:9090` to handle commands from the CLI, Web Admin, or AI Agent MCP tools.
+The Operon Worker (`opn worker`) is a background process supervisor and cloud execution node written in Rust. It coordinates workstations and cloud virtual private servers (VPS) into an autonomous execution fleet.
 
 ---
 
-## 🚀 Worker Operations
+## Core capabilities
 
-### Start the Worker Daemon
-To run the worker in the background:
+1. **Process tree supervision**: Monitors child browser processes and automation jobs. Terminates orphaned Chromium processes cleanly without dangling socket descriptors.
+2. **Cloud fleet polling**: Subscribes to Supabase Realtime queues to execute dispatched workflows asynchronously.
+3. **Telemetry streaming**: Emits execution logs and system resource metrics over Server-Sent Events (SSE) and WebSocket connections.
+4. **Local HTTP API**: Listens locally on `127.0.0.1:9090` to serve commands from the CLI, Web Admin, or AI Agent MCP tools.
+
+---
+
+## Worker operations
+
+### Start the worker daemon
+
+To launch the worker supervisor in the background:
 
 ```bash
 opn worker start --daemon
 ```
 
-### Run as Cloud Fleet Worker
-To listen for remote jobs dispatched from Supabase Cloud:
+### Run as a cloud fleet worker
+
+To poll and execute jobs dispatched from a central Supabase control plane:
 
 ```bash
 opn worker worker --poll-interval 5
 ```
 
-### Inspect Status & Health
-Check the daemon PID, uptime, memory footprint, and cloud pairing state:
+### Inspect status and health
+
+To query the daemon process ID, uptime, active jobs, and cloud connection status:
 
 ```bash
 opn worker status
 ```
 
-Example JSON response (`opn worker status --json`):
+For machine-readable JSON output:
+
+```bash
+opn worker status --json
+```
+
+Example JSON response:
+
 ```json
 {
   "status": "ONLINE",
@@ -49,8 +59,9 @@ Example JSON response (`opn worker status --json`):
 }
 ```
 
-### Stream Real-Time Logs
-Tail the worker's execution events:
+### Stream logs in real time
+
+To tail the worker log stream:
 
 ```bash
 opn worker logs -f
@@ -58,9 +69,9 @@ opn worker logs -f
 
 ---
 
-## ⚙️ Configuration Reference
+## Configuration reference
 
-Worker configuration is located at `~/.operon/worker/worker.json`:
+Worker settings reside in `~/.operon/worker/worker.json`:
 
 ```json
 {
@@ -73,7 +84,7 @@ Worker configuration is located at `~/.operon/worker/worker.json`:
 }
 ```
 
-Edit worker settings easily:
+To open the configuration in your default editor:
 
 ```bash
 opn worker config --edit

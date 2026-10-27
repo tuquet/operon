@@ -1,64 +1,41 @@
-# System Health & Ecosystem Diagnostics
+# System health and diagnostics
 
-Operating antidetect browser clusters, proxy mesh tunnels, and automated DAG workflows requires verified system dependencies, intact SQLite databases, and properly permissioned storage pillars.
+Operating browser fleets, network tunnels, and automated DAG workflows requires verified dependencies, intact SQLite databases, and properly permissioned storage directories.
 
-**Doctor** is a built-in automated diagnostic and self-healing engine (`opn doctor`) that verifies workstation readiness across all microservice pillars.
-
-<HairlineFigure name="query" />
+`opn doctor` is the built-in diagnostic and self-healing command that checks system readiness across all components.
 
 ---
 
-## 1. Running Comprehensive System Diagnostics
+## 1. Run diagnostic checks
 
-Execute the diagnostic scanner at any time:
+Execute the health check command:
 
 ```bash
-# Run complete ecosystem health check
 opn doctor
 ```
 
-The diagnostic scanner inspects 5 critical subsystems:
+`opn doctor` verifies five subsystems:
 
-```text
- 1. System Tool Dependencies:
-    • OpenSSH (ssh)       - Required for SOCKS5 tunneling and remote VPS access
-    • cloudflared         - Optional portable binary for Cloudflare Tunnel mesh
-    • Git                 - Version control for local workflow repositories
-
- 2. Dedicated Browser Runtime:
-    • C++ Chromium LTS    - Checks binary presence in ~/.operon/browser/runtimes/
-    • Executable Bit      - Verifies launch permissions and integrity hash
-
- 3. SSOT Storage Pillars (~/.operon/):
-    • ~/.operon/system/       - Machine identity (.machine_id) and credentials
-    • ~/.operon/automation/   - Workflow execution database (automation.sqlite)
-    • ~/.operon/worker/       - Worker supervisor daemon config and logs
-    • ~/.operon/browser/      - Profile sandboxes and antidetect runtimes
-    • ~/.operon/gateway/      - Mesh configuration and daemon PIDs
-    • ~/.operon/faker/        - Synthetic persona schemas and templates
-
- 4. Automation SQLite Database:
-    • automation.sqlite   - Verifies schema migrations and read/write access
-
- 5. AI Agent MCP Protocol:
-    • Native MCP Server   - Confirms JSON-RPC stdio responsiveness
-```
+1. **System dependencies**: Validates availability of `ssh` (OpenSSH for tunnels), `cloudflared` (optional mesh bridge), and `git`.
+2. **Chromium runtime**: Verifies executable permissions and file hashes in `~/.operon/browser/runtimes/`.
+3. **Storage pillars**: Checks directory permissions in `~/.operon/` (`system/`, `automation/`, `worker/`, `browser/`, `gateway/`, and `faker/`).
+4. **Automation database**: Verifies read/write access and migration state of `~/.operon/automation/automation.sqlite`.
+5. **AI agent MCP protocol**: Tests JSON-RPC stdio responsiveness for Model Context Protocol integrations.
 
 ---
 
-## 2. Diagnostic Output & Verdict Card
+## 2. Review diagnostic output
 
-When all dependencies are operational, displays a clean diagnostic verdict:
+When all dependencies are operational, `opn doctor` returns an operational verdict:
 
 ```text
 ╭─ DIAGNOSTIC VERDICT ────────────────────────────── ● ALL SYSTEMS OPERATIONAL ─╮
 │  All required ecosystem dependencies and runtimes are properly provisioned.    │
-│  Your workstation is 100% ready for autonomous browser workflows, antidetect   │
-│  spoofing, and gateway meshes.                                                  │
+│  Your workstation is 100% ready for autonomous browser workflows.             │
 ╰────────────────────────────────────────────────────────────────────────────────╯
 ```
 
-If a dependency is missing, Doctor highlights the specific missing component and displays actionable remediation instructions:
+If a dependency is missing, `opn doctor` outputs actionable recovery commands:
 
 ```text
   Tool / Runtime       Status        Action Needed
@@ -69,17 +46,10 @@ If a dependency is missing, Doctor highlights the specific missing component and
 
 ---
 
-## 3. Automated Self-Healing (`--fix`)
+## 3. Automatically remediate issues (`--fix`)
 
-When run with the `--fix` flag, automatically resolves configuration drift, missing runtimes, and storage inconsistencies:
+To resolve missing runtimes, rebuild corrupted databases, or repair directory permissions automatically, run:
 
 ```bash
-# Automatically remediate environment issues and download missing runtimes
 opn doctor --fix
 ```
-
-The remediation pipeline executes in sequence:
-1. **Initializes SSOT Pillars**: Creates all missing canonical storage directories under `~/.operon/`.
-2. **Initializes SQLite Store**: Runs schema migrations for `~/.operon/automation/automation.sqlite`.
-3. **Provisions Antidetect Chromium**: Downloads and unpacks the verified C++ Antidetect Chromium LTS release.
-4. **Validates Proxy Gateway**: Verifies SSH tunnel dependencies and default configurations.

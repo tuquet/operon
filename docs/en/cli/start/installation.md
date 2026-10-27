@@ -1,14 +1,12 @@
-# Quick Installation (15 Seconds)
+# Installation
 
-**Operon** is distributed as a standalone native binary for Windows, macOS, and Linux. You do **not** need to install external runtimes, Node.js, compilers, or heavy developer dependencies.
-
-<HairlineFigure name="slow" />
+Operon is distributed as a standalone native binary for Windows, macOS, and Linux. It has no dependencies on Node.js, external interpreters, or system-level compilers.
 
 ---
 
-## One-Liner Web Installer (Khuyến nghị / Recommended)
+## Standalone installation (Recommended)
 
-Run the appropriate command in your terminal:
+Run the installation script for your operating system:
 
 ::: code-group
 
@@ -28,26 +26,26 @@ wget -qO- https://raw.githubusercontent.com/operon/cli/main/install.sh | sh
 
 ---
 
-## What Happens During Installation
+## What the installer does
 
-In approximately 15 seconds, the automated installer completes:
+The automated installer performs four tasks:
 
-1. **Client Deployment**: Installs `opn` into user-space (`~/.operon/bin/`) without requiring administrator or root privileges.
-2. **PATH Configuration**: Registers the command globally so you can run `operon` from any terminal or shell.
-3. **Dedicated Antidetect Engine**: Provisions the optimized Antidetect Chromium LTS runtime.
-4. **Environment Check**: Validates network tunnels and local storage directories.
+1. **Deploys binary**: Copies `opn` into your user home directory (`~/.operon/bin/`) without requiring root or administrator privileges.
+2. **Updates system PATH**: Configures the shell PATH environment variable to expose `opn` globally.
+3. **Provisions Chromium runtime**: Downloads the verified, patch-compatible Chromium LTS engine to `~/.operon/browser/runtimes/`.
+4. **Initializes storage pillars**: Creates configuration directories and the SQLite database in `~/.operon/`.
 
 ---
 
-## Verifying Your Installation
+## Verify the installation
 
-Open a fresh terminal window and run:
+Open a new shell session and verify the installation:
 
 ```bash
 opn doctor
 ```
 
-When all systems are ready, you will see:
+When all components are provisioned, `opn doctor` outputs:
 
 ```text
 ╭─ DIAGNOSTIC VERDICT ────────────────────────────── ● ALL SYSTEMS OPERATIONAL ─╮
@@ -55,4 +53,3 @@ When all systems are ready, you will see:
 │  Your workstation is 100% ready for autonomous browser workflows.             │
 ╰────────────────────────────────────────────────────────────────────────────────╯
 ```
-

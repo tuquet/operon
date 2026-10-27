@@ -1,51 +1,55 @@
-# Creating Your First Profile
+# Creating your first profile
 
-Each **Operon** profile represents an isolated browser environment with its own unique digital fingerprint, cookies, cache, and optional proxy.
-
-<HairlineFigure name="terrain" />
+Each Operon profile represents an isolated browser environment with a dedicated digital fingerprint, independent cookie jar, separate cache, and optional proxy binding.
 
 ---
 
-## Step 1: Create a Profile
+## 1. Create a profile
 
-Create a new profile with a descriptive name matching your campaign or account:
+Run `opn browser profile create` followed by a profile identifier:
 
 ```bash
-opn browser profile create "Facebook-Ad-US-01"
+opn browser profile create "Store-US-01"
 ```
 
-automatically assigns:
-- An authentic hardware fingerprint (GPU WebGL, AudioContext, Canvas noise).
-- Realistic screen resolution and CPU concurrency.
-- Isolated sandbox storage in `~/.operon/browser/profiles/Facebook-Ad-US-01`.
+The CLI automatically provisions:
+- An authentic hardware fingerprint (WebGL parameters, AudioContext signature, and Canvas noise).
+- Realistic screen geometry and CPU core counts.
+- An isolated sandbox directory at `~/.operon/browser/profiles/Store-US-01`.
 
 ---
 
-## Step 2: Launch the Profile
+## 2. Launch the profile
 
-Open the profile in normal visual mode:
+To open the profile in an interactive window:
 
 ```bash
-opn browser launch "Facebook-Ad-US-01"
+opn browser launch "Store-US-01"
 ```
 
-To attach a proxy immediately upon launch:
+To route the profile through a proxy:
 
 ```bash
-opn browser launch "Facebook-Ad-US-01" --proxy socks5://127.0.0.1:1080
+opn browser launch "Store-US-01" --proxy socks5://127.0.0.1:1080
+```
+
+To launch headlessly for automated tasks:
+
+```bash
+opn browser launch "Store-US-01" --headless
 ```
 
 ---
 
-## Step 3: Verify the Digital Fingerprint
+## 3. Verify the profile fingerprint
 
-Once the browser window opens, navigate to any fingerprint testing website:
-- [Browserleaks.com](https://browserleaks.com)
-- [Pixelscan.net](https://pixelscan.net)
+When the browser window opens, verify detection resistance using any public fingerprint test suite:
+
+- [Browserleaks](https://browserleaks.com)
+- [Pixelscan](https://pixelscan.net)
 - [CreepJS](https://abrahamjuliot.github.io/creepjs/)
 
-You will observe:
-- **WebGL**: Emulates authentic graphics cards without leaking host hardware.
-- **WebRTC**: No local private IP address leaks.
-- **Canvas**: Consistent, noise-protected signature passing all anti-bot checks.
-- **Trust Score**: 100% green rating across major detection engines.
+Expected behavior:
+- **WebGL**: Reports standard discrete graphics hardware without revealing host hardware specs.
+- **WebRTC**: Preserves proxy isolation without exposing local IP addresses.
+- **Canvas**: Generates realistic entropy passing statistical bot-detection thresholds.
