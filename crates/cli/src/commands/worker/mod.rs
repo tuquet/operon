@@ -23,7 +23,8 @@ pub async fn handle(command: WorkerSubcommands) -> Result<(), Box<dyn std::error
             data_dir,
             log_level,
             cloud,
-        } => run_server(host, port, detach, data_dir, log_level, cloud).await,
+            claim,
+        } => run_server(host, port, detach, data_dir, log_level, cloud, claim).await,
         WorkerSubcommands::Worker {
             cloud_profile,
             workflow,
@@ -116,6 +117,7 @@ pub async fn handle_interactive() -> Result<(), Box<dyn std::error::Error>> {
                 data_dir: None,
                 log_level: Some("info".to_string()),
                 cloud: false,
+                claim: false,
             })
             .await
         }

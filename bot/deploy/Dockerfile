@@ -3,10 +3,11 @@ FROM node:20-alpine AS runtime
 ENV NODE_ENV=production
 ENV CI=true
 
-WORKDIR /app
+# Install tini for proper init process and signal forwarding (SIGTERM / SIGINT)
+RUN apk add --no-cache tini \
+    && corepack enable && corepack prepare pnpm@latest --activate
 
-# Enable pnpm via corepack
-RUN corepack enable && corepack prepare pnpm@latest --activate
+WORKDIR /app
 
 # Copy package manifests and source
 COPY package.json pnpm-lock.yaml* ./
@@ -18,4 +19,5 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-l
 # Non-root user
 USER node
 
+ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["node", "src/index.js"]

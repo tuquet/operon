@@ -623,6 +623,17 @@ pub async fn resolve_executable_path(_default_browser: &str) -> Result<String> {
         return Ok(abs_path.to_string_lossy().to_string());
     }
 
+    // Auto-detect host scoop chromium if available before downloading 180MB
+    #[cfg(windows)]
+    {
+        if let Ok(home) = env::var("USERPROFILE") {
+            let scoop_chromium = std::path::PathBuf::from(home).join("scoop\\apps\\chromium\\current\\chrome.exe");
+            if scoop_chromium.exists() {
+                return Ok(scoop_chromium.to_string_lossy().to_string());
+            }
+        }
+    }
+
     // Auto-provision dedicated C++ Antidetect Chromium on first run
     println!(
         "Dedicated C++ Antidetect Chromium runtime not found. Auto-provisioning Golden LTS..."

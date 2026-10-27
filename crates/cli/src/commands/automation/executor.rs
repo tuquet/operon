@@ -19,9 +19,7 @@ pub async fn run_workflow(
         .map(std::time::Duration::from_secs)
         .unwrap_or(std::time::Duration::from_secs(300));
     let mut config = AppConfig::load();
-    let db_path =
-        std::path::PathBuf::from(&config.data_dir).join(crate::constants::FILE_AUTOMATION_SQLITE);
-    let db = Arc::new(Mutex::new(AutomationDb::new(db_path)?));
+    let db = Arc::new(Mutex::new(AutomationDb::new_in_memory()?));
 
     let listener = tokio::net::TcpListener::bind("127.0.0.1:0").await?;
     let bound_port = listener.local_addr()?.port();

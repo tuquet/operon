@@ -647,6 +647,10 @@ pub enum WorkerSubcommands {
         /// Enable Autonomous Cloud Fleet Mesh worker mode
         #[arg(short = 'c', long)]
         cloud: bool,
+
+        /// Enable background Supabase job claiming loop
+        #[arg(long)]
+        claim: bool,
     },
 
     /// Run as an autonomous cloud fleet worker polling and executing jobs

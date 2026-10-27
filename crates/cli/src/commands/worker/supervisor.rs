@@ -300,7 +300,7 @@ pub async fn restart_daemon(detach: bool) -> Result<(), Box<dyn std::error::Erro
     let _ = stop_daemon(false).await;
     tokio::time::sleep(std::time::Duration::from_millis(1200)).await;
     crate::ui::Notify::info(crate::constants::MSG_SERVER_STARTING);
-    run_server(None, None, detach, None, None, false).await
+    run_server(None, None, detach, None, None, false, false).await
 }
 
 pub async fn run_server(
@@ -310,6 +310,7 @@ pub async fn run_server(
     data_dir_override: Option<PathBuf>,
     log_level_override: Option<String>,
     cloud: bool,
+    claim: bool,
 ) -> Result<(), Box<dyn std::error::Error>> {
     let mut config = AppConfig::load();
     if let Some(host) = host_override.clone() {
@@ -334,6 +335,9 @@ pub async fn run_server(
         let mut args = vec!["worker".to_string(), "start".to_string()];
         if cloud {
             args.push("-c".to_string());
+        }
+        if claim {
+            args.push("--claim".to_string());
         }
         if let Some(ref h) = host_override {
             args.push("-H".to_string());
@@ -420,8 +424,7 @@ pub async fn run_server(
     let pid_file_path = get_pid_file_path(&config.data_dir);
     let _ = std::fs::write(&pid_file_path, pid.to_string());
 
-    let db_path = Path::new(&config.data_dir).join(crate::constants::FILE_AUTOMATION_SQLITE);
-    let db = Arc::new(Mutex::new(AutomationDb::new(db_path)?));
+    let db = Arc::new(Mutex::new(AutomationDb::new_in_memory()?));
 
     let (tx, _) = tokio::sync::broadcast::channel(10000);
     let (worker_tx, _) = tokio::sync::broadcast::channel(10000);
@@ -439,6 +442,31 @@ pub async fn run_server(
     // Start background Cloud Telemetry & Inventory Reporter (runs if SUPABASE_URL is configured)
     let _reporter_handle =
         crate::infrastructure::cloud_reporter::CloudReporter::start_background_loop(state.clone());
+
+    // Start in-process Supabase Claim Loop if --claim is set or CLAIM_ENABLED=1
+    let claim_requested = claim || std::env::var("CLAIM_ENABLED").map(|v| v == "1" || v.to_lowercase() == "true").unwrap_or(false);
+    if claim_requested {
+        if let Some(creds) = crate::infrastructure::cloud_reporter::CloudReporter::load_credentials(&config.data_dir).await {
+            let resolved_cloud_url = config.cloud_url.clone().or_else(|| creds.cloud_url.clone()).unwrap_or_else(|| "https://dswhacsoaxgpfnkaxnhz.supabase.co".to_string());
+            let ident = ::worker::core::identity::DeviceIdentity {
+                device_id: creds.device_id.clone(),
+                tenant_id: creds.tenant_id.clone().unwrap_or_default(),
+                device_token: creds.device_token.clone(),
+                name: creds.name.clone(),
+                cloud_url: resolved_cloud_url,
+                api_key: creds.api_key.clone(),
+                env: "dev".to_string(),
+                enrolled_at: creds.registered_at.clone().unwrap_or_else(|| chrono::Utc::now().to_rfc3339()),
+            };
+            let engine = std::sync::Arc::new(::worker::core::engine::RunnerEngine::new());
+            let mut claim_cfg = ::worker::core::claim_loop::ClaimConfig::from_env();
+            claim_cfg.enabled = true;
+            let _ = ::worker::core::claim_loop::spawn(engine, ident, claim_cfg);
+            tracing::info!("In-process Supabase Cloud Claim Loop spawned successfully with Unified CredentialStore (SSOT).");
+        } else {
+            tracing::warn!("Claim loop requested but no enrolled DeviceCredentials found in ~/.operon/system/.identity.json");
+        }
+    }
 
     if cloud {
         let creds = crate::infrastructure::cloud_reporter::CloudReporter::load_credentials(

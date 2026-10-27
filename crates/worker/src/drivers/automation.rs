@@ -95,11 +95,7 @@ impl AutomaDriver {
     /// Performs an active capability negotiation and handshake probe with automation-core plugin
     pub async fn probe(&self, bin_name: &str) -> Result<AutomaManifest, String> {
         let mut cmd = Command::new(bin_name);
-        if bin_name.contains("operon") {
-            cmd.arg("automation").arg("probe");
-        } else {
-            cmd.arg("probe");
-        }
+        cmd.arg("automation").arg("probe");
 
         let output = tokio::time::timeout(Duration::from_secs(4), cmd.output())
             .await
@@ -368,9 +364,7 @@ impl ExecutionDriver for AutomaDriver {
 
         // 3. Assemble execution command using typed AutomaJobPayload & resolved BrowserConfig
         let mut cmd = Command::new(&bin_name);
-        if bin_name.contains("operon") {
-            cmd.arg("automation");
-        }
+        cmd.arg("automation");
 
         let cli_args = automa_payload.build_cli_args();
         for arg in cli_args {
