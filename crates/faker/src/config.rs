@@ -38,10 +38,9 @@ impl Default for FakerConfig {
 }
 
 impl FakerConfig {
-    /// Canonical root directory for SSOT (~/.operon/ or $TQ_HOME)
+    /// Canonical root directory for SSOT (~/.operon/ or $DATA_DIR)
     pub fn canonical_dir() -> PathBuf {
-        if let Ok(dir) = std::env::var(crate::constants::ENV_TQ_HOME)
-            .or_else(|_| std::env::var(crate::constants::ENV_SPECTER_HOME))
+        if let Ok(dir) = std::env::var(crate::constants::ENV_DATA_DIR)
         {
             if !dir.trim().is_empty() {
                 return PathBuf::from(dir);

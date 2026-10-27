@@ -14,8 +14,7 @@ pub const DEFAULT_AVATAR_STYLE: &str = "real";
 
 /// Canonical SSOT directory name under user home
 pub const DEFAULT_SSOT_DIR_NAME: &str = ".operon";
-pub const ENV_TQ_HOME: &str = "TQ_HOME";
-pub const ENV_SPECTER_HOME: &str = "SPECTER_HOME";
+pub const ENV_DATA_DIR: &str = "DATA_DIR";
 
 /// Pillar subdirectory name
 pub const PILLAR_DIR_FAKER: &str = "faker";
