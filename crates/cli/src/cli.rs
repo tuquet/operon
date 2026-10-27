@@ -98,7 +98,12 @@ pub enum Commands {
         command: Option<SecretSubcommands>,
     },
 
+    /// Launch the Workstation Control Plane UI (Job monitor, Devices, Browsers)
+    #[command(name = "workstation", aliases = ["desktop"])]
+    Workstation(crate::commands::workstation::WorkstationArgs),
+
     /// Run Model Context Protocol (MCP) JSON-RPC 2.0 stdio server for AI agents
+
     #[command(name = "mcp", hide = true)]
     Mcp,
 }
@@ -1461,3 +1466,7 @@ mod tests {
         Cli::command().debug_assert();
     }
 }
+
+
+
+

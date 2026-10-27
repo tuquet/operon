@@ -18,3 +18,4 @@ pub mod status;
 pub mod tenant;
 pub mod tui;
 pub mod worker;
+pub mod workstation;

@@ -83,6 +83,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 Ok(())
             }
         },
+        Some(Commands::Workstation(args)) => commands::workstation::handle(args).await,
         Some(Commands::Mcp) => commands::mcp::run().await,
         None => {
             let readiness = automation_core::core::readiness::quick_probe();
@@ -112,3 +113,4 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     Ok(())
 }
+

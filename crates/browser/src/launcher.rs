@@ -174,7 +174,7 @@ impl BrowserLauncher {
             "http://127.0.0.1:{}/json/version",
             self.options.debugging_port
         );
-        let client = reqwest::Client::new();
+        let client = reqwest::Client::builder().no_proxy().build().unwrap_or_else(|_| reqwest::Client::new());
 
         for _ in 0..60 {
             if let Some(child) = self.process.as_mut()
