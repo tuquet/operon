@@ -161,9 +161,8 @@ pub async fn run_workflow(
         } => res
     };
 
-    // Clean up server and browser child processes
+    // Clean up server
     _server_handle.abort();
-    crate::core::browser::manager::BrowserManager::destroy_all().await;
 
     // Explicitly drop state to release SQLite file handles
     drop(state);

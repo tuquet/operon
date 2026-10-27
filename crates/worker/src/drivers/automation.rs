@@ -367,6 +367,10 @@ impl ExecutionDriver for AutomaDriver {
         cmd.arg("automation");
 
         let cli_args = automa_payload.build_cli_args();
+        ctx.emit_log(
+            LogChannel::System,
+            &format!("Assembled automation command: {} automation {}", bin_name, cli_args.join(" ")),
+        );
         for arg in cli_args {
             cmd.arg(arg);
         }

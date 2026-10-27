@@ -116,7 +116,8 @@ impl CdpConnection {
     /// Discovers active page targets from Chromium debugging port HTTP API
     pub async fn discover_page_target(port: u16) -> Result<TargetInfo, String> {
         let endpoint = format!("http://127.0.0.1:{}/json/list", port);
-        let resp = reqwest::get(&endpoint).await.map_err(|e| {
+        let client = reqwest::Client::builder().no_proxy().build().unwrap_or_else(|_| reqwest::Client::new());
+        let resp = client.get(&endpoint).send().await.map_err(|e| {
             format!(
                 "Failed to query Chromium debug endpoint at {}: {}",
                 endpoint, e
