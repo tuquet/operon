@@ -88,7 +88,7 @@ use utoipa_swagger_ui::SwaggerUi;
         description = "Embedded Backend for Frontend (BFF) Gateway, WebSocket/SSE event hub, and SQLite storage gateway for the Ecosystem.",
         contact(
             name = "Ecosystem",
-            url = "https://github.com/tuquet/cli"
+            url = "https://github.com/operon/cli"
         ),
         license(
             name = "MIT"
@@ -252,11 +252,11 @@ pub fn create_router(state: crate::AppState) -> Router {
                         || host == "127.0.0.1"
                         || host == "tauri.localhost"
                         || host == "asset.localhost"
-                        || host == "tuquet.tq.com"
-                        || host == "tuquet.com"
-                        || host.ends_with(".tq.com")
+                        || host == "operon.operon.dev"
+                        || host == "operon.com"
+                        || host.ends_with(".operon.dev")
                         || s_trimmed == "https://automation-studio.vercel.app"
-                        || s_trimmed == "https://tuquet.github.io"
+                        || s_trimmed == "https://operon.github.io"
                 } else {
                     false
                 }
@@ -331,11 +331,11 @@ mod tests {
             "http://tauri.localhost",
             "https://tauri.localhost",
             "http://asset.localhost",
-            "https://tuquet.tq.com",
-            "http://tuquet.tq.com",
-            "https://app.tq.com",
-            "https://admin.tq.com",
-            "http://admin.tq.com",
+            "https://operon.operon.dev",
+            "http://operon.operon.dev",
+            "https://app.operon.dev",
+            "https://console.operon.dev",
+            "http://console.operon.dev",
             "http://localhost:5173",
             "http://127.0.0.1:8765",
             "chrome-extension://abcdefghijklmnop",

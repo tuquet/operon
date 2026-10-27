@@ -1,7 +1,7 @@
 {
   "name": "Admin",
   "short_name": "Admin",
-  "description": "Admin - Unified Management & Operations Console (console.tuquet.com)",
+  "description": "Admin - Unified Management & Operations Console (console.operon.com)",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#09090b",

@@ -2,7 +2,7 @@ use serde_json::json;
 
 pub async fn execute_runner_probe() -> Result<String, String> {
     let manifest = json!({
-        "protocol": "tuquet.automation.v1",
+        "protocol": "operon.automation.v1",
         "name": "worker",
         "version": env!("CARGO_PKG_VERSION"),
         "engine": "chromium-extension-worker",

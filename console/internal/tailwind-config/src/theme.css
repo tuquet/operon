@@ -7,7 +7,7 @@
  * to be overridden by utility classes.
  * Kept consistent with LAYER_ORDER_STATEMENT in internal/vite-config/src/plugins/css-layer.ts.
  */
-@layer properties, theme, base, ant, antd, el, td, tuquet, components, utilities;
+@layer properties, theme, base, ant, antd, el, td, operon, components, utilities;
 
 @import 'tailwindcss';
 @import 'tw-animate-css';
@@ -20,7 +20,7 @@
 @source '../../../apps/';
 @source '../../../docs/';
 @source '../../../playground/';
-@source '../../../node_modules/.pnpm/@tuquet+vue-ui*/**/*.mjs';
+@source '../../../node_modules/.pnpm/@operon+vue-ui*/**/*.mjs';
 @source '../../../../lib/packages/vue-ui/src/**/*.{vue,ts}';
 
 /* Dark mode uses .dark class selector, not prefers-color-scheme */

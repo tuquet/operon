@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { SelectOption } from '@tuquet/types';
+import type { SelectOption } from '@operon/types';
 
-import { ToggleGroup, ToggleGroupItem } from '@tuquet-core/shadcn-ui';
+import { ToggleGroup, ToggleGroupItem } from '@operon-core/shadcn-ui';
 
 defineOptions({
   name: 'PreferenceToggleItem',

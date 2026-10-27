@@ -1,13 +1,13 @@
 import { createApp, defineComponent, h, nextTick, ref } from 'vue';
 
-import { globalShareState } from '@tuquet/common-ui';
+import { globalShareState } from '@operon/common-ui';
 
 import { describe, expect, it, vi } from 'vitest';
 
 import { initComponentAdapter } from '../component';
 import { initSetupVbenForm, useVbenForm } from '../form';
 
-vi.mock('@tuquet/locales', () => ({
+vi.mock('@operon/locales', () => ({
   $t: (key: string) => key,
 }));
 
@@ -56,15 +56,15 @@ describe('workstation form & component adapter', () => {
       expect(inputEl.value).toBe('');
 
       // Simulate user typing into the input
-      inputEl.value = 'alice@tuquet.com';
+      inputEl.value = 'alice@operon.com';
       inputEl.dispatchEvent(new Event('input', { bubbles: true }));
       await nextTick();
 
-      expect(onUpdateModelValue).toHaveBeenCalledWith('alice@tuquet.com');
-      expect(onUpdateValue).toHaveBeenCalledWith('alice@tuquet.com');
-      expect(onChange).toHaveBeenCalledWith('alice@tuquet.com');
-      expect(currentValue.value).toBe('alice@tuquet.com');
-      expect(inputEl.value).toBe('alice@tuquet.com');
+      expect(onUpdateModelValue).toHaveBeenCalledWith('alice@operon.com');
+      expect(onUpdateValue).toHaveBeenCalledWith('alice@operon.com');
+      expect(onChange).toHaveBeenCalledWith('alice@operon.com');
+      expect(currentValue.value).toBe('alice@operon.com');
+      expect(inputEl.value).toBe('alice@operon.com');
 
       // Simulate form reset setting modelValue back to undefined
       currentValue.value = undefined;

@@ -5,7 +5,7 @@ import type {
   ContextMenuRootProps,
 } from 'reka-ui';
 
-import type { ClassType } from '@tuquet-core/typings';
+import type { ClassType } from '@operon-core/typings';
 
 import type { IContextMenuItem } from './interface';
 

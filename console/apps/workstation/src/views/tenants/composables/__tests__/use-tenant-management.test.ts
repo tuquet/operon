@@ -7,7 +7,7 @@ vi.mock('vue-router', () => ({
   useRouter: () => ({ push: mockPush }),
 }));
 
-vi.mock('@tuquet-core/shadcn-ui', () => ({
+vi.mock('@operon-core/shadcn-ui', () => ({
   toast: { error: vi.fn(), success: vi.fn() },
 }));
 
@@ -73,7 +73,7 @@ describe('useTenantManagement composable TDD suite', () => {
     selectTenant(target);
     expect(activeTenantId.value).toBe('tenant-99');
     expect(
-      localStorage.getItem('__TUQUET_ACTIVE_TENANT_ID__') ||
+      localStorage.getItem('__OPERON_ACTIVE_TENANT_ID__') ||
         localStorage.getItem('active_tenant_id'),
     ).toBeDefined();
   });

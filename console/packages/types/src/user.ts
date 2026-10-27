@@ -1,4 +1,4 @@
-import type { BasicUserInfo } from '@tuquet-core/typings';
+import type { BasicUserInfo } from '@operon-core/typings';
 
 /** User info */
 interface UserInfo extends BasicUserInfo {

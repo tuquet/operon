@@ -88,7 +88,7 @@ pub fn is_valid_browser_name(raw_name: &str) -> bool {
     let name = raw_name.to_lowercase();
     name.contains("chrome")
         || name.contains("chromium")
-        || name.contains("tuquet")
+        || name.contains("operon")
         || name.contains("brave")
         || name.contains("msedge")
         || name.contains("edge")
@@ -233,7 +233,7 @@ mod tests {
         assert!(is_valid_browser_name("chrome.exe"));
         assert!(is_valid_browser_name("chromium"));
         assert!(is_valid_browser_name("fingerprint-chromium.exe"));
-        assert!(is_valid_browser_name("tuquet.exe"));
+        assert!(is_valid_browser_name("operon.exe"));
         assert!(!is_valid_browser_name("notepad.exe"));
         assert!(!is_valid_browser_name("svchost.exe"));
     }

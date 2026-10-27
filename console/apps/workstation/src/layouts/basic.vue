@@ -1,21 +1,21 @@
 <script lang="ts" setup>
-import type { NotificationItem } from '@tuquet/layouts';
+import type { NotificationItem } from '@operon/layouts';
 
 import { computed, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { AuthenticationLoginExpiredModal } from '@tuquet/common-ui';
-import { useWatermark } from '@tuquet/hooks';
-import { BookOpenText, SvgGithubIcon } from '@tuquet/icons';
+import { AuthenticationLoginExpiredModal } from '@operon/common-ui';
+import { useWatermark } from '@operon/hooks';
+import { BookOpenText, SvgGithubIcon } from '@operon/icons';
 import {
   BasicLayout,
   LockScreen,
   Notification,
   UserDropdown,
-} from '@tuquet/layouts';
-import { preferences, usePreferences } from '@tuquet/preferences';
-import { useAccessStore, useUserStore } from '@tuquet/stores';
-import { openWindow } from '@tuquet/utils';
+} from '@operon/layouts';
+import { preferences, usePreferences } from '@operon/preferences';
+import { useAccessStore, useUserStore } from '@operon/stores';
+import { openWindow } from '@operon/utils';
 
 import { isTauriEnvironment } from '#/adapter/desktop';
 import WorkspaceSelector from '#/components/common/workspace-selector.vue';
@@ -28,7 +28,7 @@ const isDesktop = ref(isTauriEnvironment());
 
 const notifications = ref<NotificationItem[]>([
   {
-    avatar: 'https://tuquet.com/icons/cli.svg',
+    avatar: 'https://operon.com/icons/cli.svg',
     date: '10m ago',
     id: 1,
     isRead: true,
@@ -36,7 +36,7 @@ const notifications = ref<NotificationItem[]>([
     title: 'Received 14 new reports',
   },
   {
-    avatar: 'https://tuquet.com/icons/cli.svg',
+    avatar: 'https://operon.com/icons/cli.svg',
     date: '1h ago',
     id: 2,
     isRead: false,
@@ -75,7 +75,7 @@ const notifications = ref<NotificationItem[]>([
     isRead: false,
     message: 'Explore documentation and operational guides.',
     title: 'Documentation',
-    link: 'https://docs.tuquet.com',
+    link: 'https://docs.operon.com',
   },
 ]);
 
@@ -100,7 +100,7 @@ const menus = computed(() => [
   },
   {
     handler: () => {
-      openWindow('https://docs.tuquet.com', {
+      openWindow('https://docs.operon.com', {
         target: '_blank',
       });
     },
@@ -109,7 +109,7 @@ const menus = computed(() => [
   },
   {
     handler: () => {
-      openWindow('https://github.com/tuquet/console', {
+      openWindow('https://github.com/operon/console', {
         target: '_blank',
       });
     },
@@ -236,7 +236,7 @@ watch(
             :avatar
             :menus
             :text="userStore.userInfo?.realName"
-            description="admin@tuquet.com"
+            description="admin@operon.com"
             tag-text="ID"
             @clear-preferences-and-logout="handleLogout"
             @logout="handleLogout"

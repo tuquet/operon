@@ -16,7 +16,7 @@ import {
   EmptyHeader,
   Spinner,
   Textarea,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import {
   Copy,

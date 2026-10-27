@@ -11,7 +11,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import { ExternalLink, RefreshCw, Terminal } from '@lucide/vue';
 
@@ -111,7 +111,7 @@ function handleOpenAuthBridge() {
           </p>
           <div class="ml-7">
             <CliSnippetCard
-              command="tuquet login"
+              command="operon login"
               :label="$t('page.automation_view.cli_login_cmd_label')"
               :copied-label="$t('page.automation_view.cli_login_copied_label')"
             />

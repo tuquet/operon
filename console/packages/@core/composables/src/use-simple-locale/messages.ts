@@ -1,4 +1,4 @@
-import type { SupportedLanguagesType } from '@tuquet-core/typings';
+import type { SupportedLanguagesType } from '@operon-core/typings';
 
 export type Locale = SupportedLanguagesType;
 

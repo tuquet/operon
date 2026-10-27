@@ -1,8 +1,8 @@
-# Tuquet Worker
+# OperonWorker
 
 > Ultra-high-performance distributed execution engine, background runner daemon, and process supervisor.
 
-Official Documentation & Guides: **[https://docs.tuquet.com/en/worker/](https://docs.tuquet.com/en/worker/)**
+Official Documentation & Guides: **[https://docs.operon.com/en/worker/](https://docs.operon.com/en/worker/)**
 
 ---
 
@@ -11,7 +11,7 @@ Official Documentation & Guides: **[https://docs.tuquet.com/en/worker/](https://
 Start the background runner daemon:
 
 ```powershell
-tq worker start
+opn worker start
 ```
 
 ---
@@ -20,10 +20,10 @@ tq worker start
 
 Full architectural specifications, telemetry streaming, and distributed job execution guides are maintained at the official Documentation SSOT:
 
-👉 **[https://docs.tuquet.com/en/worker/](https://docs.tuquet.com/en/worker/)**
+👉 **[https://docs.operon.com/en/worker/](https://docs.operon.com/en/worker/)**
 
 ---
 
 ## License
 
-[MIT](LICENSE) © Tuquet
+[MIT](LICENSE) © Operon

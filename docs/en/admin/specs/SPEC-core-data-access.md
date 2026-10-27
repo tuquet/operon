@@ -9,7 +9,7 @@
 
 ## 1. Objective (Mục Tiêu & Phạm Vi)
 
-Thiết lập tầng truy cập dữ liệu trung tâm (Single Source of Truth — SSOT) cho `@tuquet/admin-web` kết nối trực tiếp tới Cloud PostgREST & GoTrue mà không phụ thuộc vào SDK `@supabase/supabase-js`:
+Thiết lập tầng truy cập dữ liệu trung tâm (Single Source of Truth — SSOT) cho `@operon/admin-web` kết nối trực tiếp tới Cloud PostgREST & GoTrue mà không phụ thuộc vào SDK `@supabase/supabase-js`:
 
 1. **Giao Tiếp Đa Schema PostgREST (`supabaseRequest`):**
    - Hỗ trợ đọc/ghi trên toàn bộ **7 schema chuyên biệt** của Cloud: `public`, `workers`, `automation`, `billing`, `commerce`, `media`, và `events`.
@@ -26,7 +26,7 @@ Thiết lập tầng truy cập dữ liệu trung tâm (Single Source of Truth �
 
 ## 2. Tech Stack
 
-- **Framework & Stores:** Vue 3.5, Pinia (`@tuquet/stores`), `@tuquet/access` (chế độ `'frontend'`).
+- **Framework & Stores:** Vue 3.5, Pinia (`@operon/stores`), `@operon/access` (chế độ `'frontend'`).
 - **HTTP & Auth Protocol:** Native `fetch` API chuẩn hóa qua `supabase-client.ts`, Supabase PostgREST v12 + GoTrue REST API.
 - **Testing:** Vitest (`happy-dom`).
 
@@ -39,7 +39,7 @@ Thiết lập tầng truy cập dữ liệu trung tâm (Single Source of Truth �
 pnpm exec vitest run apps/web-admin/src/api/core
 
 # 2. Kiểm tra kiểu dữ liệu TypeScript cho web-admin
-pnpm --filter @tuquet/admin-web run typecheck
+pnpm --filter @operon/admin-web run typecheck
 
 # 3. Kiểm tra linter và định dạng
 npx oxlint apps/web-admin/src/
@@ -113,7 +113,7 @@ export async function getInstalledPluginsApi(): Promise<string[]>;
    - Kiểm tra `readPlatformRole`: giải mã base64url JWT hợp lệ, token không có `platform_role`, và token sai định dạng.
    - Kiểm tra `flattenMemberships`: gộp quyền từ nhiều Workspace, khử trùng lặp `permission_id`, xử lý mảng `member_roles` rỗng.
    - Kiểm tra `supabaseRequest`: tự động gắn `Accept-Profile` cho `GET`/`HEAD` và `Content-Profile` cho `POST`/`PATCH`/`DELETE` trên cả 7 schemas.
-2. **Typecheck & Lint Gate:** `pnpm --filter @tuquet/admin-web run typecheck` và `pnpm run lint` đạt `0 errors`.
+2. **Typecheck & Lint Gate:** `pnpm --filter @operon/admin-web run typecheck` và `pnpm run lint` đạt `0 errors`.
 
 ---
 
@@ -125,7 +125,7 @@ export async function getInstalledPluginsApi(): Promise<string[]>;
   - Sử dụng `encodeURIComponent` khi truyền tham số động vào chuỗi truy vấn PostgREST.
 - **Ask first:**
   - Thêm schema PostgreSQL mới vào kiểu `SupabaseSchema`.
-  - Thay đổi cơ chế `accessMode` của `@tuquet/access`.
+  - Thay đổi cơ chế `accessMode` của `@operon/access`.
 - **Never:**
   - Không bao giờ đọc quyền `superadmin` từ `user_metadata` (do người dùng cuối có thể tự chỉnh sửa `user_metadata`; chỉ tin cậy `app_metadata.platform_role`).
   - Không đọc danh sách quyền từ JWT claim (do giới hạn cắt 25 quyền của JWT hook).
@@ -145,5 +145,5 @@ export async function getInstalledPluginsApi(): Promise<string[]>;
 
 ## 9. Resolved Decisions (Các Quyết Định Đã Chốt)
 
-1. **Xác thực Superadmin qua `app_metadata.platform_role`:** Đồng bộ với hàm bảo mật `public.is_platform_admin()` tại tầng cơ sở dữ liệu `tuquet/cloud`, đảm bảo tính nhất quán giữa quyền giao diện và chính sách Row-Level Security (RLS).
+1. **Xác thực Superadmin qua `app_metadata.platform_role`:** Đồng bộ với hàm bảo mật `public.is_platform_admin()` tại tầng cơ sở dữ liệu `operon/cloud`, đảm bảo tính nhất quán giữa quyền giao diện và chính sách Row-Level Security (RLS).
 2. **Single-Flight Access Cache:** Lưu promise đang chạy trong `access.ts` để hai lời gọi song song `fetchUserInfo()` và `getAccessCodesApi()` lúc khởi động ứng dụng dùng chung kết quả mà không nhân đôi truy vấn mạng.

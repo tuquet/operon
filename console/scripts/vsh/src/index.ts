@@ -1,4 +1,4 @@
-import { colors, consola } from '@tuquet/node-utils';
+import { colors, consola } from '@operon/node-utils';
 
 import { cac } from 'cac';
 

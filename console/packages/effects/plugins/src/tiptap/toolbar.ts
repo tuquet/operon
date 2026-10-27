@@ -27,11 +27,11 @@ import {
   Underline,
   Undo2,
   Unlink2,
-} from '@tuquet/icons';
-import { $t } from '@tuquet/locales';
-import { COLOR_PRESETS } from '@tuquet/preferences';
+} from '@operon/icons';
+import { $t } from '@operon/locales';
+import { COLOR_PRESETS } from '@operon/preferences';
 
-import { prompt } from '@tuquet-core/popup-ui';
+import { prompt } from '@operon-core/popup-ui';
 
 const headingLevels = [1, 2, 3, 4] as const;
 const editorColorPresets = [

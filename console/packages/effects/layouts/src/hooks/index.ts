@@ -7,7 +7,7 @@ import type {
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { preferences, usePreferences } from '@tuquet/preferences';
+import { preferences, usePreferences } from '@operon/preferences';
 
 /**
  * Transform component and attach name automatically

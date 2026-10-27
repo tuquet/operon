@@ -17,7 +17,7 @@ Content-Type: {{contentType}}
 {
   "name": "API_ENDPOINT",
   "key": "apiEndpoint",
-  "value": "https://api.tuquet.dev/v1"
+  "value": "https://api.operon.dev/v1"
 }
 
 ### 5.1.3 Xoa bien toan cuc theo Key hoac ID
@@ -94,7 +94,7 @@ DELETE {{baseUrl}}/api/v1/storage/tables/{{tableId}}
 GET {{baseUrl}}/api/v1/storage/backup/export
 
 ### 5.4.2 Export backup co ma hoa bang mat khau (AES-256-CBC + HMAC)
-GET {{baseUrl}}/api/v1/storage/backup/export?password=TuquetMasterKey2026
+GET {{baseUrl}}/api/v1/storage/backup/export?password=OperonMasterKey2026
 
 ### 5.4.3 Restore backup JSON vao SQLite
 POST {{baseUrl}}/api/v1/storage/backup/restore

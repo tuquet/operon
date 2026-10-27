@@ -30,7 +30,7 @@ Xây dựng 4 tuyến đường quản trị cấp cao dưới `/system/*` dành
 
 - **Framework:** Vue 3.5 (`<script setup lang="ts">`), Vue Router 4, TypeScript 5, `vue-i18n`.
 - **Table & Form Engine:** `useVbenVxeGrid` (`VxeTable`) và `VxeForm` từ `src/adapter/vxe-table.ts`.
-- **UI Components & Icons:** `@tuquet/vue-ui` (`Avatar`, `Badge`, `Button`, `Dialog`, `toast`), `@lucide/vue`, `RoleBadge`.
+- **UI Components & Icons:** `@operon/vue-ui` (`Avatar`, `Badge`, `Button`, `Dialog`, `toast`), `@lucide/vue`, `RoleBadge`.
 - **Data Access Layer:** `src/api/core/system.ts` (`public` và `billing` schemas).
 
 ---
@@ -42,7 +42,7 @@ Xây dựng 4 tuyến đường quản trị cấp cao dưới `/system/*` dành
 pnpm exec vitest run apps/web-admin/src/api/core/__tests__/system.test.ts apps/web-admin/src/router
 
 # 2. Kiểm tra kiểu dữ liệu TypeScript (0 errors)
-pnpm --filter @tuquet/admin-web run typecheck
+pnpm --filter @operon/admin-web run typecheck
 
 # 3. Kiểm tra linter và định dạng
 npx oxlint apps/web-admin/src/
@@ -159,7 +159,7 @@ export function filterSystemPermissions(
    - Kiểm tra `filterPlatformUsers`: lọc chính xác theo `tenant_filter` (`has_tenants`, `no_tenants`), `role_filter` (`owner`, `admin`, `member`, `viewer`), và tìm kiếm không phân biệt hoa thường trên cả 4 trường (`full_name`, `email`, `id` UUID, `tenant_name`/`tenant_slug`).
    - Kiểm tra `filterSystemRoles` và `filterSystemPermissions`: lọc chéo giữa `module`, `role`, `role_type` và từ khóa tìm kiếm.
    - Kiểm tra `getPlatformSubscriptionsApi` truyền đúng `{ schema: 'billing' }`.
-2. **Typecheck & Lint Gate:** `pnpm --filter @tuquet/admin-web run typecheck` và `pnpm run lint` đạt `0 errors`.
+2. **Typecheck & Lint Gate:** `pnpm --filter @operon/admin-web run typecheck` và `pnpm run lint` đạt `0 errors`.
 
 ---
 

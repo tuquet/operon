@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# TUQUET-CLOUD PLUGIN RUNNER UTILITY (BASH / LINUX / CI)
+# OPN-CLOUD PLUGIN RUNNER UTILITY (BASH / LINUX / CI)
 # Description: Automates atomic installation & uninstallation of plugins
 #              in canonical architectural order against local or linked Supabase.
 # ============================================================================
@@ -13,7 +13,7 @@ ACTION="${3:-install}"
 WITH_SEED="${4:-true}"
 
 echo "===================================================================="
-echo " [TUQUET-CLOUD] Plugin Pipeline Runner (Action: $ACTION, Target: $TARGET)"
+echo " [OPN-CLOUD] Plugin Pipeline Runner (Action: $ACTION, Target: $TARGET)"
 echo "===================================================================="
 
 if [[ "$ACTION" == "uninstall" ]]; then

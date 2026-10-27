@@ -109,8 +109,8 @@ mod tests {
         let hist_file = temp_dir.join("dev_history.json");
 
         let pkg = DiscoveredPackage {
-            id: "tuquet/admin".to_string(),
-            name: Some("@tuquet/admin".to_string()),
+            id: "operon/admin".to_string(),
+            name: Some("@operon/admin".to_string()),
             dir: temp_dir.clone(),
             package_manager: "pnpm".to_string(),
             framework: Some("Vite".to_string()),
@@ -120,7 +120,7 @@ mod tests {
         record_history_to_path(&hist_file, &pkg, "dev");
         let loaded = load_history_from_path(&hist_file);
         assert_eq!(loaded.len(), 1);
-        assert_eq!(loaded[0].project_id, "tuquet/admin");
+        assert_eq!(loaded[0].project_id, "operon/admin");
         assert_eq!(loaded[0].script, "dev");
         assert_eq!(loaded[0].run_count, 1);
 

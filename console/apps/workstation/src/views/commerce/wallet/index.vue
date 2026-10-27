@@ -11,8 +11,8 @@ import type {
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { Page } from '@tuquet/common-ui';
-import { usePreferences } from '@tuquet/preferences';
+import { Page } from '@operon/common-ui';
+import { usePreferences } from '@operon/preferences';
 
 import {
   Badge,
@@ -30,7 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
   toast,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import {
   Building2,

@@ -32,15 +32,15 @@ A single command for any workstation, VPS, or CI/CD environment:
 ::: code-group
 
 ```powershell [Windows (PowerShell)]
-powershell -c "irm https://raw.githubusercontent.com/tuquet/cli/main/install.ps1 | iex"
+powershell -c "irm https://raw.githubusercontent.com/operon/cli/main/install.ps1 | iex"
 ```
 
 ```bash [Linux / VPS / macOS]
-curl -fsSL https://raw.githubusercontent.com/tuquet/cli/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/operon/cli/main/install.sh | sh
 ```
 
 ```bash [Rust Cargo (Source)]
-cargo install --git https://github.com/tuquet/cli tuquet
+cargo install --git https://github.com/operon/cli operon
 ```
 
 :::
@@ -52,20 +52,20 @@ cargo install --git https://github.com/tuquet/cli tuquet
 The entire operational workflow condensed into straightforward, intuitive commands:
 
 ```bash
-# 1. Initialize SSOT environment (~/.tq/) and check system readiness
-tq doctor
+# 1. Initialize SSOT environment (~/.operon/) and check system readiness
+opn doctor
 
 # 2. Launch browser profile bound to residential proxy
-tq browser launch "Store-US-01" --proxy socks5://user:pass@ip:port
+opn browser launch "Store-US-01" --proxy socks5://user:pass@ip:port
 
 # 3. Probe latency and verify public egress IP
-tq gateway probe socks5://user:pass@ip:port
+opn gateway probe socks5://user:pass@ip:port
 
 # 4. Execute headless automation workflow via pure-Rust CDP driver
-tq automation run scrape-flow --headless
+opn automation run scrape-flow --headless
 
 # 5. Start background worker node for distributed tasks
-tq worker start --headless
+opn worker start --headless
 ```
 
 ---
@@ -74,11 +74,11 @@ tq worker start --headless
 
 | Domain | Canonical Command | Technology & Value Delivered |
 | :--- | :--- | :--- |
-| **Dropship & E-Com** | `tq browser launch` | Complete isolation of Canvas, WebGL, AudioContext, and Fonts. Each profile behaves as an independent physical device. |
-| **Web Scraping** | `tq automation run` | Pierces closed Shadow DOM, bypasses Turnstile, inertial deceleration scroll. Ultra-low RAM footprint. |
-| **Cloud Center** | `tq auth tenant` | Syncs profiles via Cloud Center (PostgreSQL 15+ & RLS). Distributed lease locks prevent account collisions. |
-| **Proxy Gateway** | `tq gateway probe` | Automated pre-flight probe verifies clean IP, country location, and eliminates WebRTC leaks before opening tabs. |
-| **Synthetic Personas** | `tq faker generate` | Generates authentic test identities (names, birthdays, addresses, valid CCCDs) for instant automated form filling. |
+| **Dropship & E-Com** | `opn browser launch` | Complete isolation of Canvas, WebGL, AudioContext, and Fonts. Each profile behaves as an independent physical device. |
+| **Web Scraping** | `opn automation run` | Pierces closed Shadow DOM, bypasses Turnstile, inertial deceleration scroll. Ultra-low RAM footprint. |
+| **Cloud Center** | `opn auth tenant` | Syncs profiles via Cloud Center (PostgreSQL 15+ & RLS). Distributed lease locks prevent account collisions. |
+| **Proxy Gateway** | `opn gateway probe` | Automated pre-flight probe verifies clean IP, country location, and eliminates WebRTC leaks before opening tabs. |
+| **Synthetic Personas** | `opn faker generate` | Generates authentic test identities (names, birthdays, addresses, valid CCCDs) for instant automated form filling. |
 
 ---
 
@@ -89,11 +89,11 @@ tq worker start --headless
 :::
 
 ::: details 2. Where is my profile data stored?
-100% Local-First. All profiles, session cookies, and execution histories reside under `~/.tq/` on your local workstation, or inside your self-hosted Cloud Center database. Zero data is ever sent to third-party telemetry servers.
+100% Local-First. All profiles, session cookies, and execution histories reside under `~/.operon/` on your local workstation, or inside your self-hosted Cloud Center database. Zero data is ever sent to third-party telemetry servers.
 :::
 
 ::: details 3. How do I coordinate browser fleets across multiple VPS instances?
-Use `tq browser profile cloud acquire/release` combined with the Cloud Center control plane. Headless worker nodes on VPS instances poll tasks, checkout profiles via lease locks, and synchronize session state automatically.
+Use `opn browser profile cloud acquire/release` combined with the Cloud Center control plane. Headless worker nodes on VPS instances poll tasks, checkout profiles via lease locks, and synchronize session state automatically.
 :::
 
 </div>

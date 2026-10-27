@@ -1,6 +1,6 @@
 # Distributed Worker Engine
 
-The **Tuquet Worker** (`tq worker`) is a high-performance background daemon, process supervisor, and cloud execution node written in pure Rust. It connects workstations and cloud VPS instances into an autonomous, distributed compute fleet.
+The **Operon Worker** (`opn worker`) is a high-performance background daemon, process supervisor, and cloud execution node written in pure Rust. It connects workstations and cloud VPS instances into an autonomous, distributed compute fleet.
 
 ---
 
@@ -19,24 +19,24 @@ The **Tuquet Worker** (`tq worker`) is a high-performance background daemon, pro
 To run the worker in the background:
 
 ```bash
-tq worker start --daemon
+opn worker start --daemon
 ```
 
 ### Run as Cloud Fleet Worker
 To listen for remote jobs dispatched from Supabase Cloud:
 
 ```bash
-tq worker worker --poll-interval 5
+opn worker worker --poll-interval 5
 ```
 
 ### Inspect Status & Health
 Check the daemon PID, uptime, memory footprint, and cloud pairing state:
 
 ```bash
-tq worker status
+opn worker status
 ```
 
-Example JSON response (`tq worker status --json`):
+Example JSON response (`opn worker status --json`):
 ```json
 {
   "status": "ONLINE",
@@ -53,18 +53,18 @@ Example JSON response (`tq worker status --json`):
 Tail the worker's execution events:
 
 ```bash
-tq worker logs -f
+opn worker logs -f
 ```
 
 ---
 
 ## ⚙️ Configuration Reference
 
-Worker configuration is located at `~/.tq/worker/worker.json`:
+Worker configuration is located at `~/.operon/worker/worker.json`:
 
 ```json
 {
-  "$schema": "https://tuquet.com/schema/config/runner.schema.json",
+  "$schema": "https://operon.com/schema/config/runner.schema.json",
   "server_port": 9090,
   "max_concurrent_jobs": 4,
   "poll_interval_secs": 5,
@@ -76,5 +76,5 @@ Worker configuration is located at `~/.tq/worker/worker.json`:
 Edit worker settings easily:
 
 ```bash
-tq worker config --edit
+opn worker config --edit
 ```

@@ -17,14 +17,14 @@ import type {
 
 import { isRef, toRaw } from 'vue';
 
-import { Store } from '@tuquet-core/shared/store';
+import { Store } from '@operon-core/shared/store';
 import {
   bindMethods,
   cloneDeep,
   isFunction,
   mergeWithArrayOverride,
   StateHandler,
-} from '@tuquet-core/shared/utils';
+} from '@operon-core/shared/utils';
 
 import { warnDeprecatedOnce } from './deprecation';
 import { resolveFieldNamePath } from './field-name';

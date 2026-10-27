@@ -26,7 +26,7 @@ pub struct AgentManifest {
 }
 
 impl AgentManifest {
-    /// Validates whether the agent matches tuquet.agent.v1 protocol specifications
+    /// Validates whether the agent matches operon.agent.v1 protocol specifications
     pub fn is_compatible(&self) -> bool {
         self.protocol
             .starts_with(crate::constants::PROTOCOL_PREFIX_AGENT)
@@ -56,7 +56,7 @@ pub struct AutomaManifest {
 }
 
 impl AutomaManifest {
-    /// Validates whether the plugin matches tuquet.automation.v1 protocol specifications
+    /// Validates whether the plugin matches operon.automation.v1 protocol specifications
     pub fn is_compatible(&self) -> bool {
         self.protocol
             .starts_with(crate::constants::PROTOCOL_PREFIX_AUTOMA)
@@ -84,7 +84,7 @@ pub struct BrowserManifest {
 }
 
 impl BrowserManifest {
-    /// Validates whether the browser engine matches tuquet.browser.v1 protocol specifications
+    /// Validates whether the browser engine matches operon.browser.v1 protocol specifications
     pub fn is_compatible(&self) -> bool {
         self.protocol
             .starts_with(crate::constants::PROTOCOL_PREFIX_BROWSER)

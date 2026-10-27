@@ -4,7 +4,7 @@ import type { AutomationOverviewSummary } from '#/api';
 import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-import { Page } from '@tuquet/common-ui';
+import { Page } from '@operon/common-ui';
 
 import {
   Badge,
@@ -13,7 +13,7 @@ import {
   EmptyDescription,
   EmptyHeader,
   toast,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import {
   ArrowRight,

@@ -3,9 +3,9 @@ import type { CSSProperties } from 'vue';
 
 import { computed, ref, useTemplateRef } from 'vue';
 
-import { Check, ChevronsRight } from '@tuquet/icons';
+import { Check, ChevronsRight } from '@operon/icons';
 
-import { Slot } from '@tuquet-core/shadcn-ui';
+import { Slot } from '@operon-core/shadcn-ui';
 
 const props = defineProps<{
   actionStyle: CSSProperties;

@@ -7,7 +7,7 @@ import type {
 
 import { computed } from 'vue';
 
-import { Badge, Button } from '@tuquet-core/shadcn-ui';
+import { Badge, Button } from '@operon-core/shadcn-ui';
 
 import { ShoppingBag } from '@lucide/vue';
 

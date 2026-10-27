@@ -7,7 +7,7 @@ import type { BaseChartProps } from '../chart';
 
 import { computed, ref, watch } from 'vue';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { Axis, GroupedBar, StackedBar } from '@unovis/ts';
 import {

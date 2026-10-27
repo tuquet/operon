@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "[rust] dev install (tq)",
+      "label": "[rust] dev install (opn)",
       "detail": "Biên dịch nhanh bản debug và cài trực tiếp vào cargo bin/PATH bằng cargo install.",
       "type": "shell",
       "command": "cargo install --path crates/cli --debug --locked --force",
@@ -49,10 +49,10 @@
       }
     },
     {
-      "label": "[rust] test cli (tuquet)",
-      "detail": "Chạy unit test và contract verification cho crate tuquet (crates/cli).",
+      "label": "[rust] test cli (operon)",
+      "detail": "Chạy unit test và contract verification cho crate operon (crates/cli).",
       "type": "shell",
-      "command": "cargo test -p tuquet --lib",
+      "command": "cargo test -p operon --lib",
       "group": "test",
       "problemMatcher": ["$rustc"],
       "presentation": {
@@ -136,7 +136,7 @@
     },
     {
       "label": "[web] console dev",
-      "detail": "Khởi động Vite dev server cho ứng dụng Tuquet Console / Workstation.",
+      "detail": "Khởi động Vite dev server cho ứng dụng OperonConsole / Workstation.",
       "type": "shell",
       "command": "pnpm dev",
       "problemMatcher": [],
@@ -194,7 +194,7 @@
       "label": "[infra] gateway start --http",
       "detail": "Khởi động Gateway tunnel (SOCKS5 port 1080 & HTTP forwarder port 8118).",
       "type": "shell",
-      "command": "tq gateway start --http",
+      "command": "opn gateway start --http",
       "problemMatcher": [],
       "presentation": {
         "echo": true,
@@ -206,7 +206,7 @@
       "label": "[infra] gateway status",
       "detail": "Kiểm tra trạng thái các port Gateway tunnel đang chạy.",
       "type": "shell",
-      "command": "tq gateway status",
+      "command": "opn gateway status",
       "problemMatcher": [],
       "presentation": {
         "echo": true,

@@ -5,7 +5,7 @@ Standard faker libraries generate garbage: bogus SSNs, impossible postal codes, 
 **Synthetic Persona Generator** is a standalone, offline-first identity synthesis engine written in pure Rust (`faker`). Usable as a standalone CLI, Rust crate, or wired into workflows. Generates 100% mathematically authentic Vietnamese Citizen Identity Cards (CCCD Modulo 11), cohesive 4-tier administrative addresses, demographically weighted surnames, and RFC 5322 ASCII-sanitized email pools in sub-millisecond runtime.
 
 ::: tip Standalone Microservice
-`faker` has zero external network calls. Add `faker = "0.1"` as a Rust dependency or call `tq faker generate` to synthesize test identities at 50,000 records per second.
+`faker` has zero external network calls. Add `faker = "0.1"` as a Rust dependency or call `opn faker generate` to synthesize test identities at 50,000 records per second.
 :::
 
 <HairlineFigure name="riffle" />
@@ -109,7 +109,7 @@ provides two avatar styles:
 
 ## 4. Complete Data Schema (JSON Output)
 
-When executing `tq faker generate -f json`, the generator produces a structured JSON payload adhering to the standard schema:
+When executing `opn faker generate -f json`, the generator produces a structured JSON payload adhering to the standard schema:
 
 ```json
 {
@@ -172,40 +172,40 @@ When executing `tq faker generate -f json`, the generator produces a structured 
 
 ## 5. Command Reference & Usage Examples
 
-The Faker engine is accessible via the CLI binary (`tq faker`) and the interactive REPL shell (`tq shell faker`).
+The Faker engine is accessible via the CLI binary (`opn faker`) and the interactive REPL shell (`opn shell faker`).
 
 ### Generating Personas in Formatted Terminal Table
 
 ```bash
 # Generate 5 Vietnamese personas in an interactive terminal table
-tq faker generate -n 5
+opn faker generate -n 5
 
 # Generate only female personas
-tq faker generate -n 10 --gender female
+opn faker generate -n 10 --gender female
 
 # Generate US or Japanese personas for cross-border testing
-tq faker generate -n 5 --nat US
-tq faker generate -n 5 --nat JP
+opn faker generate -n 5 --nat US
+opn faker generate -n 5 --nat JP
 ```
 
 ### Exporting Personas to JSON and CSV
 
 ```bash
 # Export 100 personas to a JSON file for automation pipelines
-tq faker generate -n 100 -f json -o ./users.json
+opn faker generate -n 100 -f json -o ./users.json
 
 # Export 250 verified personas to CSV for spreadsheet campaigns
-tq faker generate -n 250 -f csv -o ./accounts.csv --domain mycompany.com
+opn faker generate -n 250 -f csv -o ./accounts.csv --domain mycompany.com
 ```
 
 ### Inspecting a Single Detailed Identity Card
 
 ```bash
 # Render a single comprehensive persona card directly in terminal
-tq faker card
+opn faker card
 
 # Inspect a female persona with custom email domain
-tq faker card -g female -d enterprise.vn
+opn faker card -g female -d enterprise.vn
 ```
 
 Terminal output:
@@ -228,10 +228,10 @@ Terminal output:
 
 ## 6. SSOT Configuration & Storage Architecture (Pillar 5)
 
-All Faker settings and schema templates resolve exclusively to the canonical storage pillar under `~/.tq/faker/`:
+All Faker settings and schema templates resolve exclusively to the canonical storage pillar under `~/.operon/faker/`:
 
 ```text
-~/.tq/faker/
+~/.operon/faker/
 ├── faker.json                # Primary configuration & email domain pool
 └── templates/                # Custom demographic templates & local weights
 ```
@@ -240,10 +240,10 @@ All Faker settings and schema templates resolve exclusively to the canonical sto
 
 ```json
 {
-  "$schema": "https://tuquet.com/schema/config/faker.schema.json",
+  "$schema": "https://operon.com/schema/config/faker.schema.json",
   "email_domains": [
     "flowup.io.vn",
-    "tuquet.dev",
+    "operon.dev",
     "enterprise.internal"
   ],
   "default_domain": "flowup.io.vn",
@@ -257,13 +257,13 @@ All Faker settings and schema templates resolve exclusively to the canonical sto
 
 ```bash
 # Inspect active configuration card
-tq faker config --show
+opn faker config --show
 
-# Open ~/.tuquet/faker/faker.json in your default editor
-tq faker config --edit
+# Open ~/.operon/faker/faker.json in your default editor
+opn faker config --edit
 
 # Set or append a new default email domain
-tq faker config -d yourcompany.com
+opn faker config -d yourcompany.com
 ```
 
 ---
@@ -274,15 +274,15 @@ For rapid testing and continuous profile creation without shell startup overhead
 
 ```bash
 # Launch interactive REPL directly in the Faker scope
-tq shell faker
+opn shell faker
 ```
 
 ```text
-tuquet(faker)> generate -n 5
-tuquet(faker)> card -g female
-tuquet(faker)> config --show
-tuquet(faker)> back
-tuquet> exit
+operon(faker)> generate -n 5
+operon(faker)> card -g female
+operon(faker)> config --show
+operon(faker)> back
+operon> exit
 ```
 
 ---

@@ -13,7 +13,7 @@ pub const DEFAULT_NATIONALITY: &str = "US";
 pub const DEFAULT_AVATAR_STYLE: &str = "real";
 
 /// Canonical SSOT directory name under user home
-pub const DEFAULT_SSOT_DIR_NAME: &str = ".tq";
+pub const DEFAULT_SSOT_DIR_NAME: &str = ".operon";
 pub const ENV_TQ_HOME: &str = "TQ_HOME";
 pub const ENV_SPECTER_HOME: &str = "SPECTER_HOME";
 

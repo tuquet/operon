@@ -1,27 +1,27 @@
 <script lang="ts" setup>
 import type { SetupContext } from 'vue';
 
-import type { MenuRecordRaw } from '@tuquet/types';
+import type { MenuRecordRaw } from '@operon/types';
 
 import { computed, useSlots, watch } from 'vue';
 
-import { useRefresh } from '@tuquet/hooks';
-import { $t, i18n } from '@tuquet/locales';
+import { useRefresh } from '@operon/hooks';
+import { $t, i18n } from '@operon/locales';
 import {
   preferences,
   updatePreferences,
   usePreferences,
-} from '@tuquet/preferences';
+} from '@operon/preferences';
 import {
   useAccessStore,
   useTabbarStore,
   useTimezoneStore,
-} from '@tuquet/stores';
-import { cloneDeep, mapTree } from '@tuquet/utils';
+} from '@operon/stores';
+import { cloneDeep, mapTree } from '@operon/utils';
 
-import { VbenAdminLayout } from '@tuquet-core/layout-ui';
-import { VbenBackTop, VbenLogo } from '@tuquet-core/shadcn-ui';
-import { ELEMENT_ID_LAYOUT_SCROLL } from '@tuquet-core/shared/constants';
+import { VbenAdminLayout } from '@operon-core/layout-ui';
+import { VbenBackTop, VbenLogo } from '@operon-core/shadcn-ui';
+import { ELEMENT_ID_LAYOUT_SCROLL } from '@operon-core/shared/constants';
 
 import { Breadcrumb, CheckUpdates, Preferences } from '../widgets';
 import { LayoutContent, LayoutContentSpinner } from './content';

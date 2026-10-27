@@ -39,15 +39,15 @@ pub async fn handle_ext(
 
             card.add_line("");
             card.add_line("Management Commands:");
-            card.add_line("  tq browser ext catalog          Browse downloadable extensions");
-            card.add_line("  tq browser ext install <id>     Install extension from catalog");
-            card.add_line("  tq browser ext add <path>       Register custom local extension");
-            card.add_line("  tq browser ext enable <id>      Enable extension for sessions");
-            card.add_line("  tq browser ext disable <id>     Disable extension");
-            card.add_line("  tq browser ext remove <id>      Unregister custom extension");
-            card.add_line("  tq browser ext info <id>        View extension details");
-            card.add_line("  tq browser ext launch           Launch browser with extensions");
-            card.with_footer("Registry SSOT: ~/.tq/browser/extensions/registry.json");
+            card.add_line("  opn browser ext catalog          Browse downloadable extensions");
+            card.add_line("  opn browser ext install <id>     Install extension from catalog");
+            card.add_line("  opn browser ext add <path>       Register custom local extension");
+            card.add_line("  opn browser ext enable <id>      Enable extension for sessions");
+            card.add_line("  opn browser ext disable <id>     Disable extension");
+            card.add_line("  opn browser ext remove <id>      Unregister custom extension");
+            card.add_line("  opn browser ext info <id>        View extension details");
+            card.add_line("  opn browser ext launch           Launch browser with extensions");
+            card.with_footer("Registry SSOT: ~/.operon/browser/extensions/registry.json");
 
             println!();
             card.print();
@@ -100,7 +100,7 @@ pub async fn handle_ext(
 
             card.add_line("");
             card.add_line("Installation:");
-            card.add_line("  tq browser ext install <id>     Download and install extension");
+            card.add_line("  opn browser ext install <id>     Download and install extension");
             card.with_footer("Catalog Source: scoop catalog (GitHub / Local)");
 
             println!();
@@ -130,7 +130,7 @@ pub async fn handle_ext(
                     card.with_min_width(64);
                     card.add_kv("Target ID", id);
                     card.add_kv("Error", format!("{}", e));
-                    card.with_footer("Run 'tq browser ext catalog' to see available packages");
+                    card.with_footer("Run 'opn browser ext catalog' to see available packages");
                     println!();
                     card.print();
                     println!();
@@ -292,7 +292,7 @@ pub async fn handle_ext(
                 card.with_badge(badge_warn("NOT FOUND"));
                 card.with_min_width(64);
                 card.add_kv("ID", id);
-                card.add_line("Extension not found in local registry. Run 'tq browser ext list'.");
+                card.add_line("Extension not found in local registry. Run 'opn browser ext list'.");
                 println!();
                 card.print();
                 println!();

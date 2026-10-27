@@ -3,10 +3,10 @@ import type { AuthenticationProps } from './types';
 
 import { computed, watch } from 'vue';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
-import { useVbenModal } from '@tuquet-core/popup-ui';
-import { Slot, VbenAvatar } from '@tuquet-core/shadcn-ui';
+import { useVbenModal } from '@operon-core/popup-ui';
+import { Slot, VbenAvatar } from '@operon-core/shadcn-ui';
 
 interface Props extends AuthenticationProps {
   avatar?: string;

@@ -67,7 +67,7 @@ We strictly follow the [Conventional Commits](https://www.conventionalcommits.or
 2. Verify all tests and type checks pass locally before opening a PR:
    ```bash
    cargo test --workspace
-   cd console && pnpm --filter @tuquet/workstation typecheck && cd ..
+   cd console && pnpm --filter @operon/workstation typecheck && cd ..
    ```
 3. Open a Pull Request against `main` on GitHub with a clear description of the problem solved and testing steps.
 4. Maintain documentation integrity: Ensure new flags or public functions are adequately documented.
@@ -76,5 +76,5 @@ We strictly follow the [Conventional Commits](https://www.conventionalcommits.or
 
 ## 💬 Community & Questions
 
-- For general discussions and architecture questions, use [GitHub Discussions](https://github.com/tuquet/operon/discussions).
+- For general discussions and architecture questions, use [GitHub Discussions](https://github.com/operon/operon/discussions).
 - For security vulnerabilities, follow our [Security Policy](SECURITY.md).

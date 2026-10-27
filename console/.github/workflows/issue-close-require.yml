@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   close-issues:
-    if: github.repository == 'tuquet/console'
+    if: github.repository == 'operon/console'
     runs-on: ubuntu-latest
     steps:
       # Close inactive issues

@@ -218,7 +218,7 @@ pub async fn inspect_workflow(target: &str) -> Result<(), Box<dyn std::error::Er
     println!("============================================================");
     println!("Status: VALID WORKFLOW");
     println!("Execution command:");
-    println!("  tq automation run \"{}\"", target);
+    println!("  opn automation run \"{}\"", target);
     println!("============================================================");
 
     Ok(())

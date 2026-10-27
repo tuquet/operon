@@ -4,7 +4,7 @@ import {
   getLayoutScrollElement,
   getScrollbarWidth,
   needsScrollbar,
-} from '@tuquet-core/shared/utils';
+} from '@operon-core/shared/utils';
 
 import {
   useScrollLock as _useScrollLock,

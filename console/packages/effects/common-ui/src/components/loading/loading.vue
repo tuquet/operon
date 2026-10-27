@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { VbenLoading } from '@tuquet-core/shadcn-ui';
-import { cn } from '@tuquet-core/shared/utils';
+import { VbenLoading } from '@operon-core/shadcn-ui';
+import { cn } from '@operon-core/shared/utils';
 
 interface LoadingProps {
   class?: string;

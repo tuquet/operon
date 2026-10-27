@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { SelectOption } from '@tuquet/types';
+import type { SelectOption } from '@operon/types';
 
 import { useSlots } from 'vue';
 
-import { CircleHelp, CircleX } from '@tuquet/icons';
+import { CircleHelp, CircleX } from '@operon/icons';
 
-import { Input, VbenTooltip } from '@tuquet-core/shadcn-ui';
+import { Input, VbenTooltip } from '@operon-core/shadcn-ui';
 
 defineOptions({
   name: 'PreferenceSelectItem',

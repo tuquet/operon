@@ -17,7 +17,7 @@
 Quản trị toàn diện danh mục **Thực thể Trình duyệt Tự động hóa (Automation Browser Instances)** thuộc hạ tầng Worker node, đóng vai trò là môi trường thực thi kịch bản (Job execution runtime) có cấu hình chống nhận diện (fingerprint bypass) và proxy định tuyến:
 
 1. **Ranh giới Kiến Trúc (Local-First / Worker-Driven Authority SSOT):**
-   - **Máy trạm (Worker / Desktop App):** Là **Chủ thể thực thi (Executor & State Authority)**. Web Admin trên Desktop/LAN kết nối trực tiếp với daemon máy trạm hoặc mở browser cục bộ (`tq desktop`). Worker tự quản lý tiến trình Chromium cục bộ qua CDP và tệp dữ liệu tại `~/.tq/browser/`.
+   - **Máy trạm (Worker / Desktop App):** Là **Chủ thể thực thi (Executor & State Authority)**. Web Admin trên Desktop/LAN kết nối trực tiếp với daemon máy trạm hoặc mở browser cục bộ (`opn desktop`). Worker tự quản lý tiến trình Chromium cục bộ qua CDP và tệp dữ liệu tại `~/.operon/browser/`.
    - **Cloud (Supabase):** Thuần túy là **Kho lưu trữ mẫu (Profile Registry) & Bảng hiển thị từ xa (Telemetry Observer)**. Cloud **KHÔNG** can thiệp vào tiến trình OS, **KHÔNG** làm nhiệm vụ bẻ khóa cưỡng chế kiểu distributed lock tập trung.
    - **Đồng bộ thời gian thực (SSE Telemetry):** Cloud nhận sự kiện từ Worker qua HTTP POST và phát lại luồng **Server-Sent Events (SSE)** xuống Web Admin để cập nhật trạng thái theo thời gian thực (nhẹ hơn, bền bỉ hơn và tự reconnect tốt hơn WebSocket).
    - **Khái niệm "Gán máy trạm (Device Binding)" thay cho "Khóa cứng (Distributed Lock)":**
@@ -52,7 +52,7 @@ Quản trị toàn diện danh mục **Thực thể Trình duyệt Tự động 
 - **`error / detached`:** Worker thông báo gặp sự cố tiến trình, hoặc profile bị tách gán khỏi thiết bị.
 - **Cơ chế Hủy Gán / Giải Phóng (Unbind / Release Device):**
   - Vì Web Admin đồng thời là giao diện điều khiển của chính máy trạm (hoặc người quản trị từ xa): Cho phép người dùng hủy liên kết thiết bị để tái phân bổ profile: Gửi `PATCH /rest/v1/browsers?id=eq.{id}` với `{ locked_by_device_id: null, locked_at: null, status: 'idle' }`.
-  - Nếu thực thi ngay trên Desktop/Local Web Admin: Kích hoạt trực tiếp lệnh ngắt qua Tauri / CLI (`tq browser stop <id>`).
+  - Nếu thực thi ngay trên Desktop/Local Web Admin: Kích hoạt trực tiếp lệnh ngắt qua Tauri / CLI (`opn browser stop <id>`).
 
 ---
 
@@ -215,10 +215,10 @@ export const proxiesApi = {
 
 ```bash
 # 1. Chạy unit tests cho API automation & browsers
-pnpm --filter @tuquet/admin-web exec vitest run src/api/core/__tests__/automation.test.ts
+pnpm --filter @operon/admin-web exec vitest run src/api/core/__tests__/automation.test.ts
 
 # 2. Kiểm tra typecheck TypeScript
-pnpm --filter @tuquet/admin-web run typecheck
+pnpm --filter @operon/admin-web run typecheck
 
 # 3. Linter & Format check
 npx oxlint apps/web-admin/src/

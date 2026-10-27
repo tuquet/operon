@@ -1,7 +1,7 @@
-//! Local Secret Store for Tuquet — encrypted at rest with AES-256-GCM.
+//! Local Secret Store for Operon— encrypted at rest with AES-256-GCM.
 //!
-//! SSOT location: `~/.tq/system/secrets.json` (resolved from `DATA_DIR`).
-//! Key material: `SECRET_KEY` env (base64 or hex, 32 bytes) or `~/.tq/system/.secret_key`
+//! SSOT location: `~/.operon/system/secrets.json` (resolved from `DATA_DIR`).
+//! Key material: `SECRET_KEY` env (base64 or hex, 32 bytes) or `~/.operon/system/.secret_key`
 //! (64 hex chars, auto-generated on first write with `0600`).
 //!
 //! Workflows reference values as `{{secrets.<name>}}` — the value never lives in the
@@ -22,7 +22,7 @@ use rand::RngCore;
 pub const FILE_SECRETS_JSON: &str = "secrets.json";
 pub const FILE_SECRET_KEY: &str = ".secret_key";
 pub const ENV_SECRET_KEY: &str = "SECRET_KEY";
-pub const SSOT_DIR_NAME: &str = ".tq";
+pub const SSOT_DIR_NAME: &str = ".operon";
 
 const WIRE_VERSION: u64 = 1;
 const NONCE_LEN: usize = 12;
@@ -92,7 +92,7 @@ impl SecretStore {
             return decode_key(content.trim());
         }
         Err(format!(
-            "No Secret Store key found. Set {} env or run `tq secret init`.",
+            "No Secret Store key found. Set {} env or run `opn secret init`.",
             ENV_SECRET_KEY
         ))
     }
@@ -338,7 +338,7 @@ impl DeviceKeypair {
         B64.encode(self.public)
     }
 
-    /// Loads `~/.tq/system/.device_key`, creating a fresh keypair on first use.
+    /// Loads `~/.operon/system/.device_key`, creating a fresh keypair on first use.
     pub fn load_or_create(dir: &std::path::Path) -> Result<Self, String> {
         let kp = dir.join(FILE_DEVICE_KEY);
         if let Ok(hexs) = std::fs::read_to_string(&kp) {
@@ -433,7 +433,7 @@ pub fn aead_decrypt(key: &[u8; 32], ciphertext: &[u8], nonce: &[u8]) -> Result<V
 }
 
 // ===========================================================================
-// At-rest blob encryption (used for `~/.tq/system/.identity.json`)
+// At-rest blob encryption (used for `~/.operon/system/.identity.json`)
 // ===========================================================================
 
 fn load_or_create_key_at(path: &std::path::Path) -> Result<[u8; KEY_LEN], String> {

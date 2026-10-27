@@ -2,7 +2,7 @@ import type { ZodType } from 'zod';
 
 import { toRaw } from 'vue';
 
-import { isObject, isString } from '@tuquet-core/shared/utils';
+import { isObject, isString } from '@operon-core/shared/utils';
 
 import { ZodPipe } from 'zod';
 

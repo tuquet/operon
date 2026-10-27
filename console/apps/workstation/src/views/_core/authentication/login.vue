@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import type { VbenFormSchema } from '@tuquet/common-ui';
-import type { Recordable } from '@tuquet/types';
+import type { VbenFormSchema } from '@operon/common-ui';
+import type { Recordable } from '@operon/types';
 
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 
-import { AuthenticationLogin, z } from '@tuquet/common-ui';
-import { SvgGithubIcon } from '@tuquet/icons';
-import { $t } from '@tuquet/locales';
+import { AuthenticationLogin, z } from '@operon/common-ui';
+import { SvgGithubIcon } from '@operon/icons';
+import { $t } from '@operon/locales';
 
-import { Button } from '@tuquet-core/shadcn-ui';
+import { Button } from '@operon-core/shadcn-ui';
 
 import { loginWithGitHub } from '#/api/core/auth';
 import { useAuthStore } from '#/store';

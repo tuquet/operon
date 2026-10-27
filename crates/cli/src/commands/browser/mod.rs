@@ -104,7 +104,7 @@ pub async fn handle_interactive() -> Result<(), Box<dyn std::error::Error>> {
         .await;
     }
 
-    clack_intro("tq browser", "Antidetect Browser Hub");
+    clack_intro("opn browser", "Antidetect Browser Hub");
 
     let options = vec![
         ClackOption::new(
@@ -129,7 +129,7 @@ pub async fn handle_interactive() -> Result<(), Box<dyn std::error::Error>> {
         ),
         ClackOption::new(
             "Installed Chromium Runtimes",
-            "List downloaded Chromium versions in ~/.tq/browser/runtimes/",
+            "List downloaded Chromium versions in ~/.operon/browser/runtimes/",
             "list",
         ),
     ];

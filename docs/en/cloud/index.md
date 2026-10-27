@@ -1,6 +1,6 @@
 # Cloud Control Plane
 
-The **Tuquet Cloud** architecture provides multi-tenant database isolation, real-time job dispatching, proxy management, and fleet coordination built on top of Supabase and PostgreSQL 15+.
+The **Operon Cloud** architecture provides multi-tenant database isolation, real-time job dispatching, proxy management, and fleet coordination built on top of Supabase and PostgreSQL 15+.
 
 ---
 
@@ -22,7 +22,7 @@ The Cloud Control Plane orchestrates distributed compute workers and anti-detect
 
 Modern web automation requires tight alignment between browser hardware parameters (timezone, language) and the proxy egress IP. Mismatches (e.g. proxy IP in Frankfurt but browser timezone in Tokyo) immediately trigger bot detection.
 
-Tuquet Cloud models proxies and browser profiles with automated alignment flags:
+Operon Cloud models proxies and browser profiles with automated alignment flags:
 
 ### Profile Schema Alignment (`browsers.profiles`)
 
@@ -36,7 +36,7 @@ ALTER TABLE browsers.profiles
 
 - **`auto_timezone`**: When enabled, the browser engine probes the proxy's IP geolocation on startup and overrides the browser `Intl.DateTimeFormat` and JavaScript timezone to match the egress point.
 - **`auto_locale`**: Automatically overrides `navigator.language` and `Accept-Language` headers to match the proxy's country code.
-- **`change_ip_url`**: Rotation webhook URL for dynamic residential/mobile proxies. Invoked via `tq browser profile test-proxy` or before running an automation workflow to acquire a fresh clean IP.
+- **`change_ip_url`**: Rotation webhook URL for dynamic residential/mobile proxies. Invoked via `opn browser profile test-proxy` or before running an automation workflow to acquire a fresh clean IP.
 
 ### Proxy Fleet Schema (`workers.proxies`)
 
@@ -58,7 +58,7 @@ The centralized proxy pool supports health status, rotation endpoints, and multi
 All binary storage assets (profile tarball packs, workflow recordings, screenshot artifacts) are isolated using UUID-scoped storage paths:
 
 ```
-s3://tuquet-profiles/tenants/<tenant_id>/profiles/<profile_id>.tar.gz
+s3://operon-profiles/tenants/<tenant_id>/profiles/<profile_id>.tar.gz
 ```
 
 Database Row-Level Security (RLS) policies enforce that workers and CLI operators cannot acquire or inspect profiles outside their active authenticated `tenant_id`.
@@ -67,15 +67,15 @@ Database Row-Level Security (RLS) policies enforce that workers and CLI operator
 
 ## 🛠️ CLI Cloud Management
 
-Cloud operations are managed directly from the CLI via `tq auth`:
+Cloud operations are managed directly from the CLI via `opn auth`:
 
 ```bash
 # Check authenticated identity & active tenant
-tq auth whoami
+opn auth whoami
 
 # List accessible organization workspaces
-tq auth tenant list
+opn auth tenant list
 
 # Switch active tenant context
-tq auth tenant switch <tenant-uuid>
+opn auth tenant switch <tenant-uuid>
 ```

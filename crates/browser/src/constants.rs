@@ -4,7 +4,7 @@
 pub const DEFAULT_CDP_PORT: u16 = 9222;
 
 /// Canonical SSOT directory name under user home
-pub const DEFAULT_SSOT_DIR_NAME: &str = ".tq";
+pub const DEFAULT_SSOT_DIR_NAME: &str = ".operon";
 
 /// Pillar subdirectory name
 pub const PILLAR_DIR_BROWSER: &str = "browser";
@@ -12,7 +12,7 @@ pub const PILLAR_DIR_BROWSER: &str = "browser";
 /// Configuration filename
 pub const CONFIG_FILE_BROWSER_JSON: &str = "browser.json";
 
-/// Subdirectories under ~/.tq/browser/
+/// Subdirectories under ~/.operon/browser/
 pub const DIR_RUNTIMES: &str = "runtimes";
 pub const DIR_PROFILES: &str = "profiles";
 pub const DIR_EXTENSIONS: &str = "extensions";

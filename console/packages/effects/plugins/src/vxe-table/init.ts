@@ -1,10 +1,10 @@
-import type { SupportedLanguagesType } from '@tuquet-core/typings';
+import type { SupportedLanguagesType } from '@operon-core/typings';
 
 import type { SetupVxeTable } from './types';
 
 import { watch } from 'vue';
 
-import { usePreferences } from '@tuquet/preferences';
+import { usePreferences } from '@operon/preferences';
 
 import {
   VxeButton,

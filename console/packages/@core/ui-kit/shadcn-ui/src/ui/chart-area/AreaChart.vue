@@ -7,7 +7,7 @@ import type { BaseChartProps } from '../chart';
 
 import { computed, ref, useId, watch } from 'vue';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { Area, Axis, CurveType, Line } from '@unovis/ts';
 import { VisArea, VisAxis, VisLine, VisXYContainer } from '@unovis/vue';

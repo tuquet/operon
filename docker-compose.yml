@@ -1,7 +1,7 @@
-name: tuquet
+name: operon
 
 networks:
-  tuquet-net:
+  operon-net:
     driver: bridge
 
 volumes:
@@ -31,11 +31,11 @@ services:
       - SUPABASE_URL=${SUPABASE_URL:-}
       - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY:-}
       - RUST_LOG=${RUST_LOG:-info}
-      - DATA_DIR=/home/tuquet/.tq
+      - DATA_DIR=/home/operon/.operon
     volumes:
-      - daemon_data:/home/tuquet/.tq
+      - daemon_data:/home/operon/.operon
     networks:
-      - tuquet-net
+      - operon-net
     logging:
       driver: "json-file"
       options:
@@ -71,7 +71,7 @@ services:
       daemon:
         condition: service_healthy
     networks:
-      - tuquet-net
+      - operon-net
     logging:
       driver: "json-file"
       options:
@@ -93,7 +93,7 @@ services:
     ports:
       - "${DOCS_PORT:-3333}:80"
     networks:
-      - tuquet-net
+      - operon-net
     logging:
       driver: "json-file"
       options:
@@ -123,7 +123,7 @@ services:
       - ALLOWED_CHAT_IDS=${ALLOWED_CHAT_IDS:-}
       - ADMIN_USER_IDS=${ADMIN_USER_IDS:-}
     networks:
-      - tuquet-net
+      - operon-net
     logging:
       driver: "json-file"
       options:
@@ -145,13 +145,13 @@ services:
     environment:
       - PORT=8000
       - SECRET_KEY=${BUGSINK_SECRET_KEY:-<GENERATE_RANDOM_50_CHARS>}
-      - CREATE_SUPERUSER=${BUGSINK_ADMIN_CREDENTIALS:-admin@tuquet.local:admin123456}
+      - CREATE_SUPERUSER=${BUGSINK_ADMIN_CREDENTIALS:-admin@operon.local:admin123456}
       - BUGSINK_BASE_URL=http://localhost:${BUGSINK_PORT:-8000}
       - CORS_ALLOWED_ORIGINS=http://localhost:${VITE_PORT:-5666},http://127.0.0.1:${VITE_PORT:-5666}
     volumes:
       - bugsink_data:/data
     networks:
-      - tuquet-net
+      - operon-net
     logging:
       driver: "json-file"
       options:

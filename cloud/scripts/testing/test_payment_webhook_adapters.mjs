@@ -1,5 +1,5 @@
 // ============================================================================
-// TUQUET-CLOUD TEST SUITE: PAYMENT GATEWAY SQL & WEBHOOK ADAPTERS
+// OPN-CLOUD TEST SUITE: PAYMENT GATEWAY SQL & WEBHOOK ADAPTERS
 // Description: Verifies SQL security invariants in subscriptions/install.sql
 //              and unit-tests Bank, E-Wallet (MoMo/ZaloPay), Stripe, and
 //              Crypto (USDT) webhook adapters using native Web Crypto.

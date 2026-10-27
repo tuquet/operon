@@ -1,4 +1,4 @@
-import type { BuiltinThemeType, TimezoneOption } from '@tuquet-core/typings';
+import type { BuiltinThemeType, TimezoneOption } from '@operon-core/typings';
 
 interface BuiltinThemePreset {
   color: string;

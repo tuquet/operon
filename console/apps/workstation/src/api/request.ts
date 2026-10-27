@@ -1,19 +1,19 @@
 /**
  * Adjust this file according to specific business logic requirements
  */
-import type { RequestClientOptions } from '@tuquet/request';
+import type { RequestClientOptions } from '@operon/request';
 
-import { useAppConfig } from '@tuquet/hooks';
-import { preferences } from '@tuquet/preferences';
+import { useAppConfig } from '@operon/hooks';
+import { preferences } from '@operon/preferences';
 import {
   authenticateResponseInterceptor,
   defaultResponseInterceptor,
   errorMessageResponseInterceptor,
   RequestClient,
-} from '@tuquet/request';
-import { useAccessStore } from '@tuquet/stores';
+} from '@operon/request';
+import { useAccessStore } from '@operon/stores';
 
-import { toast } from '@tuquet-core/shadcn-ui';
+import { toast } from '@operon-core/shadcn-ui';
 
 import { useAuthStore } from '#/store';
 import { addNetworkBreadcrumb, captureError } from '#/utils/bugsink';

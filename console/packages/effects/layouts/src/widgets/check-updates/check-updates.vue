@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
-import { useVbenModal } from '@tuquet-core/popup-ui';
+import { useVbenModal } from '@operon-core/popup-ui';
 
 interface Props {
   // Polling interval in minutes

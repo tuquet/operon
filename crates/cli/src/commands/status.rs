@@ -53,7 +53,7 @@ pub async fn show_dashboard(format: OutputFormat) -> Result<(), Box<dyn std::err
         ),
         TabularRow::new(
             "SSOT Storage",
-            "~/.tq",
+            "~/.operon",
             "Microservices Root",
             badge_online("READY"),
         ),
@@ -83,7 +83,7 @@ pub async fn show_dashboard(format: OutputFormat) -> Result<(), Box<dyn std::err
         Some(if cloud_creds.is_some() {
             "Workstation enrolled in Cloud Mesh"
         } else {
-            "Run 'tq auth login' to authenticate with Cloud"
+            "Run 'opn auth login' to authenticate with Cloud"
         }),
         72,
     );
@@ -175,7 +175,7 @@ pub async fn show_dashboard(format: OutputFormat) -> Result<(), Box<dyn std::err
         Some(if daemon_running {
             "Runner daemon active on local endpoint"
         } else {
-            "Start runner daemon with 'tq runner start --port 8765'"
+            "Start runner daemon with 'opn runner start --port 8765'"
         }),
         72,
     );
@@ -227,12 +227,12 @@ pub async fn show_dashboard(format: OutputFormat) -> Result<(), Box<dyn std::err
                 .trim_start_matches(['/', '\\'])
                 .replace('\\', "/")
         )
-    } else if browser_status.executable_path.contains(".tq") {
+    } else if browser_status.executable_path.contains(".opn") {
         format!(
-            "~/.tq{}",
+            "~/.operon{}",
             browser_status
                 .executable_path
-                .split(".tq")
+                .split(".opn")
                 .nth(1)
                 .unwrap_or("")
                 .replace('\\', "/")
@@ -263,9 +263,9 @@ pub async fn show_dashboard(format: OutputFormat) -> Result<(), Box<dyn std::err
         ["COMPONENT", "VERSION / PATH", "ROLE / DETAILS", "STATUS"],
         &browser_rows,
         Some(if browser_status.installed {
-            "Engine ready. Run 'tq browser list' to manage profiles"
+            "Engine ready. Run 'opn browser list' to manage profiles"
         } else {
-            "Install dedicated runtime with 'tq browser install'"
+            "Install dedicated runtime with 'opn browser install'"
         }),
         72,
     );
@@ -309,7 +309,7 @@ pub async fn show_dashboard(format: OutputFormat) -> Result<(), Box<dyn std::err
     let mut gateway_card = create_network_topology_card(
         "NETWORK GATEWAY",
         &endpoints,
-        Some("Manage with 'tq gateway status' or 'tq gateway start'"),
+        Some("Manage with 'opn gateway status' or 'opn gateway start'"),
     );
     if git_active || ssh_active || http_active {
         gateway_card.with_badge(badge_online("CONNECTED"));
@@ -318,7 +318,7 @@ pub async fn show_dashboard(format: OutputFormat) -> Result<(), Box<dyn std::err
     }
 
     let payload = serde_json::json!({
-        "ecosystem": "tuquet",
+        "ecosystem": "operon",
         "cloud": {
             "enrolled": cloud_creds.is_some(),
             "device_id": cloud_creds.as_ref().map(|c| c.device_id.as_str()),
@@ -350,12 +350,12 @@ pub async fn show_dashboard(format: OutputFormat) -> Result<(), Box<dyn std::err
     });
 
     respond_with(format, &payload, |_| {
-        crate::ui::prompt::clack_intro("tq status", "Ecosystem Status");
+        crate::ui::prompt::clack_intro("opn status", "Ecosystem Status");
         if let Some(info) = crate::infrastructure::updater::get_cached_update()
             && info.has_update
         {
             crate::ui::prompt::clack_step_warn(format!(
-                "Update available: v{} -> v{} (run 'tq upgrade')",
+                "Update available: v{} -> v{} (run 'opn upgrade')",
                 info.current_version, info.latest_version
             ));
         }
@@ -364,6 +364,6 @@ pub async fn show_dashboard(format: OutputFormat) -> Result<(), Box<dyn std::err
         automation_card.print();
         browser_card.print();
         gateway_card.print();
-        crate::ui::prompt::clack_outro("Run 'tq tui' for full-screen live dashboard.");
+        crate::ui::prompt::clack_outro("Run 'opn tui' for full-screen live dashboard.");
     })
 }

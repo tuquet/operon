@@ -1,8 +1,8 @@
-# Tuquet CLI (`tq`)
+# OperonCLI (`opn`)
 
-> Unified command-line interface for the Tuquet autonomous agent ecosystem and distributed mesh runtime.
+> Unified command-line interface for the Operonautonomous agent ecosystem and distributed mesh runtime.
 
-Official Documentation & Guides: **[https://docs.tuquet.com/en/cli/](https://docs.tuquet.com/en/cli/)**
+Official Documentation & Guides: **[https://docs.operon.com/en/cli/](https://docs.operon.com/en/cli/)**
 
 ---
 
@@ -11,14 +11,14 @@ Official Documentation & Guides: **[https://docs.tuquet.com/en/cli/](https://doc
 ### Windows (Scoop)
 
 ```powershell
-scoop bucket add tuquet https://github.com/tuquet/scoop-bucket
-scoop install tuquet
+scoop bucket add operon https://github.com/operon/scoop-bucket
+scoop install operon
 ```
 
 ### macOS & Linux (curl)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/tuquet/cli/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/operon/cli/main/install.sh | sh
 ```
 
 ---
@@ -27,10 +27,10 @@ curl -fsSL https://raw.githubusercontent.com/tuquet/cli/main/install.sh | sh
 
 All commands, options, workflows, and combat playbooks are maintained at the official Documentation SSOT:
 
-👉 **[https://docs.tuquet.com/en/cli/](https://docs.tuquet.com/en/cli/)**
+👉 **[https://docs.operon.com/en/cli/](https://docs.operon.com/en/cli/)**
 
 ---
 
 ## License
 
-[MIT](LICENSE) © Tuquet
+[MIT](LICENSE) © Operon

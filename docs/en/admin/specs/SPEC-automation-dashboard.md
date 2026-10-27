@@ -44,9 +44,9 @@ Tách biệt rõ **tầng giám sát thống kê (`Overview Dashboard`)** và **
 
 ## 3. Tech Stack
 
-- **Framework:** Vue 3.5 (`<script setup lang="ts">`), Vue Router 4, TypeScript 5, `vue-i18n` (`@tuquet/locales`).
+- **Framework:** Vue 3.5 (`<script setup lang="ts">`), Vue Router 4, TypeScript 5, `vue-i18n` (`@operon/locales`).
 - **Data Grid & Form Engine:** `useVbenVxeGrid` (`VxeTable`) và `useVbenForm` từ `src/adapter/vxe-table.ts`.
-- **UI Components & Icons:** `@tuquet/vue-ui` (`Badge`, `Button`, `toast`), `@lucide/vue`.
+- **UI Components & Icons:** `@operon/vue-ui` (`Badge`, `Button`, `toast`), `@lucide/vue`.
 - **Data Access Layer:** `src/api/core/automation.ts` (kết hợp `schema: 'automation'`, `schema: 'workers'`, và `probeLocalDaemonApi`).
 
 ---
@@ -61,7 +61,7 @@ pnpm exec vitest run apps/web-admin/src
 pnpm run check:i18n
 
 # 3. Kiểm tra kiểu dữ liệu TypeScript và Linter
-pnpm --filter @tuquet/admin-web run typecheck
+pnpm --filter @operon/admin-web run typecheck
 pnpm run lint
 
 # 4. Đóng gói bản dựng cục bộ và cập nhật Nginx preview (Zero Git Push)

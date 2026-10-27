@@ -2,8 +2,8 @@ import type { ZodType } from 'zod';
 
 import type { Component, HtmlHTMLAttributes, Ref, UnwrapNestedRefs } from 'vue';
 
-import type { VbenButtonProps } from '@tuquet-core/shadcn-ui';
-import type { ClassType, MaybeComputedRef } from '@tuquet-core/typings';
+import type { VbenButtonProps } from '@operon-core/shadcn-ui';
+import type { ClassType, MaybeComputedRef } from '@operon-core/typings';
 
 import type { FormApi } from './form-api';
 import type { useFormLabelWidth } from './form-render/utils';

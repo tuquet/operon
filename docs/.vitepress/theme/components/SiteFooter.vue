@@ -24,12 +24,12 @@ const isVi = computed(() => {
       <div class="footer-brand-col">
         <div class="brand-title-row">
           <div class="brand-symbol">TQ</div>
-          <span class="brand-name">{{ isVi ? 'Tài Liệu Tuquet' : 'Docs' }}</span>
+          <span class="brand-name">{{ isVi ? 'Tài Liệu Operon' : 'Docs' }}</span>
         </div>
         <p class="brand-tagline">
           {{
             isVi
-              ? 'Cổng tài liệu kỹ thuật tập trung và hướng dẫn phát triển cho hệ sinh thái phần mềm mã nguồn mở Tuquet, tự động hóa và công cụ lập trình.'
+              ? 'Cổng tài liệu kỹ thuật tập trung và hướng dẫn phát triển cho hệ sinh thái phần mềm mã nguồn mở Operon, tự động hóa và công cụ lập trình.'
               : 'Central documentation portal and developer guides across the open-source ecosystem, stealth automation, and developer tooling.'
           }}
         </p>
@@ -43,9 +43,9 @@ const isVi = computed(() => {
         </div>
 
         <!-- Ecosystem Home Portal Link -->
-        <a href="https://tuquet.com" target="_blank" rel="noopener" class="home-chip">
+        <a href="https://operon.com" target="_blank" rel="noopener" class="home-chip">
           <Globe :size="12" aria-hidden="true" />
-          <span>{{ isVi ? 'Trang chủ hệ sinh thái tuquet.com' : 'Ecosystem portal tuquet.com' }}</span>
+          <span>{{ isVi ? 'Trang chủ hệ sinh thái operon.com' : 'Ecosystem portal operon.com' }}</span>
           <ExternalLink :size="10" aria-hidden="true" />
         </a>
       </div>
@@ -117,31 +117,31 @@ const isVi = computed(() => {
           <div class="nav-heading">{{ isVi ? 'CỘNG ĐỒNG & MÃ NGUỒN' : 'COMMUNITY & SOURCE' }}</div>
           <ul class="nav-list">
             <li>
-              <a href="https://tuquet.com" target="_blank" rel="noopener" class="ext-link">
-                {{ isVi ? 'Trang Chủ Tuquet' : 'Home' }}
+              <a href="https://operon.com" target="_blank" rel="noopener" class="ext-link">
+                {{ isVi ? 'Trang Chủ Operon' : 'Home' }}
                 <ExternalLink :size="10" aria-hidden="true" />
               </a>
             </li>
             <li>
-              <a href="https://github.com/tuquet" target="_blank" rel="noopener" class="ext-link">
-                GitHub: tuquet
+              <a href="https://github.com/operon" target="_blank" rel="noopener" class="ext-link">
+                GitHub: operon
                 <ExternalLink :size="10" aria-hidden="true" />
               </a>
             </li>
             <li>
-              <a href="https://github.com/tuquet/scoop-bucket" target="_blank" rel="noopener" class="ext-link">
+              <a href="https://github.com/operon/scoop-bucket" target="_blank" rel="noopener" class="ext-link">
                 Scoop Package Bucket
                 <ExternalLink :size="10" aria-hidden="true" />
               </a>
             </li>
             <li>
-              <a href="https://github.com/tuquet/docs" target="_blank" rel="noopener" class="ext-link">
+              <a href="https://github.com/operon/docs" target="_blank" rel="noopener" class="ext-link">
                 Documentation Repo
                 <ExternalLink :size="10" aria-hidden="true" />
               </a>
             </li>
             <li>
-              <a href="https://github.com/tuquet/cli" target="_blank" rel="noopener" class="ext-link">
+              <a href="https://github.com/operon/cli" target="_blank" rel="noopener" class="ext-link">
                 CLI Repo
                 <ExternalLink :size="10" aria-hidden="true" />
               </a>
@@ -159,12 +159,12 @@ const isVi = computed(() => {
         </p>
 
         <div class="bottom-links">
-          <a href="https://tuquet.com" target="_blank" rel="noopener" class="ext-link">
-            tuquet.com
+          <a href="https://operon.com" target="_blank" rel="noopener" class="ext-link">
+            operon.com
             <ExternalLink :size="10" aria-hidden="true" />
           </a>
           <span class="link-sep">&bull;</span>
-          <a href="https://github.com/tuquet" target="_blank" rel="noopener" class="ext-link">
+          <a href="https://github.com/operon" target="_blank" rel="noopener" class="ext-link">
             GitHub
             <ExternalLink :size="10" aria-hidden="true" />
           </a>

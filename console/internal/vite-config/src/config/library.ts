@@ -2,7 +2,7 @@ import type { ConfigEnv, UserConfig } from 'vite';
 
 import type { DefineLibraryOptions } from '../typing';
 
-import { readPackageJSON } from '@tuquet/node-utils';
+import { readPackageJSON } from '@operon/node-utils';
 
 import { defineConfig, mergeConfig } from 'vite';
 

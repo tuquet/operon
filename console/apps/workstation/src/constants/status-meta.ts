@@ -13,7 +13,7 @@ import type {
   TenantStatus,
   WalletTxType,
   WorkflowStatus,
-} from '@tuquet/constants';
+} from '@operon/constants';
 
 import type { EnumItemMeta } from './enum-helper';
 
@@ -32,7 +32,7 @@ import {
   TENANT_STATUS,
   WALLET_TX_TYPE,
   WORKFLOW_STATUS,
-} from '@tuquet/constants';
+} from '@operon/constants';
 
 import { STATUS_TONE } from './enum-helper';
 

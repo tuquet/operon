@@ -1,4 +1,4 @@
-import { defineOverridesPreferences } from '@tuquet/preferences';
+import { defineOverridesPreferences } from '@operon/preferences';
 
 /**
  * @description Project preferences configuration
@@ -13,7 +13,7 @@ export const overridesPreferences = defineOverridesPreferences({
     enableRefreshToken: true,
     locale: 'en-US',
     loginExpiredMode: 'modal',
-    name: 'Tuquet',
+    name: 'Operon',
     preferencesButtonPosition: 'header',
     authPageLayout: 'panel-right',
   },
@@ -28,8 +28,8 @@ export const overridesPreferences = defineOverridesPreferences({
     showIcon: false,
   },
   copyright: {
-    companyName: 'tuquet',
-    companySiteLink: 'https://tuquet.com',
+    companyName: 'operon',
+    companySiteLink: 'https://operon.com',
     date: '2026',
     enable: true,
     icp: '',

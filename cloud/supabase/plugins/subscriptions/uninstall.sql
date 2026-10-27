@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: SUBSCRIPTIONS, QUOTA & PAYMENT GATEWAY (UNINSTALLATION)
+-- OPN-CLOUD PLUGIN: SUBSCRIPTIONS, QUOTA & PAYMENT GATEWAY (UNINSTALLATION)
 -- Plugin ID: subscriptions
 -- Architecture: Atomic Zero-Orphan Cleanup via DROP SCHEMA CASCADE
 -- ============================================================================

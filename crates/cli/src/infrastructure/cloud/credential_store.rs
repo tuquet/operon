@@ -12,7 +12,7 @@ pub fn resolve_supabase_anon_key(saved: Option<&str>) -> Result<String, String> 
         return Ok(k.to_string());
     }
     std::env::var(crate::constants::envs::ENV_SUPABASE_ANON_KEY).map_err(|_| {
-        "SUPABASE_ANON_KEY is not set (and no saved cloud login). Add it to your environment          (see .env.example) or run `tq auth login`."
+        "SUPABASE_ANON_KEY is not set (and no saved cloud login). Add it to your environment          (see .env.example) or run `opn auth login`."
             .to_string()
     })
 }
@@ -30,7 +30,7 @@ pub fn resolve_supabase_url(configured: Option<&str>, saved: Option<&str>) -> Re
     }
     std::env::var(crate::constants::envs::ENV_SUPABASE_URL)
         .map_err(|_| {
-            "SUPABASE_URL is not set (and no saved cloud login). Add it to your environment              (see .env.example) or run `tq auth login`."
+            "SUPABASE_URL is not set (and no saved cloud login). Add it to your environment              (see .env.example) or run `opn auth login`."
                 .to_string()
         })
         .map(|u| u.trim_end_matches('/').to_string())
@@ -124,7 +124,7 @@ pub struct CloudStatusInfo {
     pub last_sync_at: Option<String>,
 }
 
-/// Local persistence store for Cloud identity in ~/.tq/system/.identity.json
+/// Local persistence store for Cloud identity in ~/.operon/system/.identity.json
 pub struct CredentialStore;
 
 impl CredentialStore {

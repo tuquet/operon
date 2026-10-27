@@ -193,8 +193,8 @@ CREATE OR REPLACE FUNCTION automation.tick_schedules(p_now TIMESTAMPTZ DEFAULT n
 **Nhịp chạy:** pg_cron gọi mỗi phút
 
 ```sql
-SELECT cron.schedule('tuquet_automation_tick', '* * * * *', $$SELECT automation.tick_schedules()$$);
-SELECT cron.schedule('tuquet_automation_reap', '* * * * *', $$SELECT automation.reap_stale_jobs()$$);
+SELECT cron.schedule('operon_automation_tick', '* * * * *', $$SELECT automation.tick_schedules()$$);
+SELECT cron.schedule('operon_automation_reap', '* * * * *', $$SELECT automation.reap_stale_jobs()$$);
 ```
 
 > Timezone **không** nằm ở cron expression mà ở `schedules.timezone` (mặc định `Asia/Ho_Chi_Minh` cho tenant Việt Nam) — để đổi múi giờ không phải sửa biểu thức.
@@ -254,7 +254,7 @@ Trình tự: `claim_next_job` → chạy engine (như `DispatchJob`) → `finish
 
 ## 12. Relay / Webhook (yêu cầu bảo mật đi kèm)
 
-`tuquet-error-relay` khai báo `WEBHOOK_SECRET` nhưng **không kiểm** ⇒ ai có URL đều bơm được alert vào group. Yêu cầu: xác thực HMAC-SHA256 trên body (`X-Tuquet-Signature`), so sánh **constant-time**, từ chối 401 khi sai/thiếu; giữ đường cũ trong 1 nhịp deploy để không mất alert (bật kiểm ở relay trước, client gửi kèm sau).
+`operon-error-relay` khai báo `WEBHOOK_SECRET` nhưng **không kiểm** ⇒ ai có URL đều bơm được alert vào group. Yêu cầu: xác thực HMAC-SHA256 trên body (`X-Operon-Signature`), so sánh **constant-time**, từ chối 401 khi sai/thiếu; giữ đường cũ trong 1 nhịp deploy để không mất alert (bật kiểm ở relay trước, client gửi kèm sau).
 
 ---
 
@@ -298,7 +298,7 @@ PostgREST production chỉ expose schema `public` ⇒ console gọi qua wrapper 
 
 ## 16. Migration & Rollout
 
-1. Áp `install.sql` (idempotent) lên `tuquet-cloud` — không downtime, không phá dữ liệu.
+1. Áp `install.sql` (idempotent) lên `operon-cloud` — không downtime, không phá dữ liệu.
 2. Bật pg_cron 2 job (`tick`, `reap`) sau khi `tick_schedules` được verify trên staging.
 3. Bật `TQ_CLAIM_ENABLED=1` **trên một worker** trước, theo dõi `queued_depth` + `stale_reaped_total`.
 4. Console: hiển thị `schedule_id`, `attempts`, `params_snapshot` ở trang chi tiết job (mở rộng SPEC-automation-jobs).

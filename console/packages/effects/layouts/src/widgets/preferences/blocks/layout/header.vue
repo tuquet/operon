@@ -3,9 +3,9 @@ import type {
   LayoutHeaderMenuAlignType,
   LayoutHeaderModeType,
   SelectOption,
-} from '@tuquet/types';
+} from '@operon/types';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
 import SelectItem from '../select-item.vue';
 import SwitchItem from '../switch-item.vue';

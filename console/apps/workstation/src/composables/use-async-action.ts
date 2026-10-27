@@ -2,7 +2,7 @@ import type { Ref } from 'vue';
 
 import { ref } from 'vue';
 
-import { toast } from '@tuquet-core/shadcn-ui';
+import { toast } from '@operon-core/shadcn-ui';
 
 import { $t } from '#/locales';
 import { captureError } from '#/utils/bugsink';

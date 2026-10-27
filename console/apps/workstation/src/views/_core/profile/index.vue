@@ -2,8 +2,8 @@
 import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { $t } from '@tuquet/locales';
-import { useUserStore } from '@tuquet/stores';
+import { $t } from '@operon/locales';
+import { useUserStore } from '@operon/stores';
 
 import {
   Avatar,
@@ -26,7 +26,7 @@ import {
   TabsTrigger,
   Textarea,
   toast,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import {
   ArrowLeft,
@@ -545,7 +545,7 @@ onMounted(async () => {
 
             <!-- CLI Command -->
             <CliSnippetCard
-              command="tuquet login"
+              command="operon login"
               :label="$t('profile.cliPairingCommand')"
             />
           </div>

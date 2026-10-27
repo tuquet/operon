@@ -7,18 +7,18 @@ import type {
 
 import type { Ref } from 'vue';
 
-import type { ClassType, DeepPartial } from '@tuquet/types';
+import type { ClassType, DeepPartial } from '@operon/types';
 
 import type {
   BaseFormComponentType,
   FormValues,
   VbenFormProps,
-} from '@tuquet-core/form-ui';
+} from '@operon-core/form-ui';
 
 import type { VxeGridApi } from './api';
 import type { ViewedRowOptions } from './viewed-row';
 
-import { useVbenForm } from '@tuquet-core/form-ui';
+import { useVbenForm } from '@operon-core/form-ui';
 
 export interface VxePaginationInfo {
   currentPage: number;

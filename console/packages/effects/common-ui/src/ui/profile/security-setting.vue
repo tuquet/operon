@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Recordable } from '@tuquet/types';
+import type { Recordable } from '@operon/types';
 
 import type { SettingProps } from './types';
 
@@ -10,7 +10,7 @@ import {
   FormItem,
   FormLabel,
   Switch,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 withDefaults(defineProps<SettingProps>(), {
   formSchema: () => [],

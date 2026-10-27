@@ -4,8 +4,8 @@ import type { RouteLocationNormalizedLoadedGeneric } from 'vue-router';
 import { unref } from 'vue';
 import { RouterView } from 'vue-router';
 
-import { usePreferences } from '@tuquet/preferences';
-import { getTabKey, storeToRefs, useTabbarStore } from '@tuquet/stores';
+import { usePreferences } from '@operon/preferences';
+import { getTabKey, storeToRefs, useTabbarStore } from '@operon/stores';
 
 import { transformComponent, useLayoutHook } from '../../hooks';
 import { IFrameRouterView } from '../../iframe';

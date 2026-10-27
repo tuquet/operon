@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { Recordable } from '@tuquet-core/typings';
+import type { Recordable } from '@operon-core/typings';
 
 import type { CollapsibleParamSchema } from './type';
 
 import { computed, nextTick, ref, useTemplateRef, watch } from 'vue';
 
-import { useNamespace } from '@tuquet-core/composables';
+import { useNamespace } from '@operon-core/composables';
 
 import { ChevronsDown } from '@lucide/vue';
 import {

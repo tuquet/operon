@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { CircleHelp } from '@lucide/vue';
 

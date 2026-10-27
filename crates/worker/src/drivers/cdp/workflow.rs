@@ -1216,7 +1216,7 @@ impl WorkflowDagExecutor {
     /// Writes an export artefact to disk.
     ///
     /// Automa hands the bytes to the browser's download API; a headless worker has no such
-    /// surface, so the file is written under `EXPORT_DIR` (default `~/.tq/automation/exports`)
+    /// surface, so the file is written under `EXPORT_DIR` (default `~/.operon/automation/exports`)
     /// and the path is returned. `onConflict` mirrors Automa: `uniquify` (default) keeps
     /// existing files and appends `-1`, `-2`…; `overwrite` replaces.
     fn write_export_file(
@@ -1231,7 +1231,7 @@ impl WorkflowDagExecutor {
             .map(std::path::PathBuf::from)
             .unwrap_or_else(|| {
                 let home = std::env::var("HOME").unwrap_or_else(|_| ".".to_string());
-                std::path::PathBuf::from(home).join(".tq/automation/exports")
+                std::path::PathBuf::from(home).join(".operon/automation/exports")
             });
         std::fs::create_dir_all(&dir)
             .map_err(|e| format!("export-data: cannot create {}: {e}", dir.display()))?;
@@ -1661,7 +1661,7 @@ impl WorkflowDagExecutor {
                     .ok_or_else(|| {
                         format!(
                             "google-sheets: missing credential — store the service-account JSON with \
-                             `tq secret set {} @key.json` and reference it as {{secrets@{}}}",
+                             `opn secret set {} @key.json` and reference it as {{secrets@{}}}",
                             crate::core::google_auth::SERVICE_ACCOUNT_SECRET,
                             crate::core::google_auth::SERVICE_ACCOUNT_SECRET
                         )
@@ -2677,7 +2677,7 @@ mod automa_block_tests {
     }
 
     fn export_dir(tag: &str) -> String {
-        let dir = std::env::temp_dir().join(format!("tq-export-{}-{}", std::process::id(), tag));
+        let dir = std::env::temp_dir().join(format!("opn-export-{}-{}", std::process::id(), tag));
         let _ = std::fs::remove_dir_all(&dir);
         std::env::set_var("EXPORT_DIR", &dir);
         dir.to_string_lossy().to_string()

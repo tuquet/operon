@@ -4,10 +4,10 @@ import type { FallbackProps } from './fallback';
 import { computed, defineAsyncComponent } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { ArrowLeft, RotateCw } from '@tuquet/icons';
-import { $t } from '@tuquet/locales';
+import { ArrowLeft, RotateCw } from '@operon/icons';
+import { $t } from '@operon/locales';
 
-import { VbenButton } from '@tuquet-core/shadcn-ui';
+import { VbenButton } from '@operon-core/shadcn-ui';
 
 interface Props extends FallbackProps {}
 

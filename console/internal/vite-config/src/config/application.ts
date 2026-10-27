@@ -4,7 +4,7 @@ import type { DefineApplicationOptions } from '../typing';
 
 import path, { relative } from 'node:path';
 
-import { findMonorepoRoot } from '@tuquet/node-utils';
+import { findMonorepoRoot } from '@operon/node-utils';
 
 import { NodePackageImporter } from 'sass-embedded';
 import { defineConfig, loadEnv, mergeConfig } from 'vite';
@@ -44,7 +44,7 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
       nitroMockOptions: {},
       print: !isBuild,
       printInfoMap: {
-        'Admin Docs': 'https://github.com/tuquet/console#readme',
+        'Admin Docs': 'https://github.com/operon/console#readme',
       },
       pwa: true,
       pwaOptions: getDefaultPwaOptions(appTitle),
@@ -108,7 +108,7 @@ function createCssOptions(injectGlobalScss = true): CSSOptions {
               const relativePath = relative(root, filepath);
               // Inject global styles into apps
               if (relativePath.startsWith(`apps${path.sep}`)) {
-                return `@use "@tuquet/styles/global" as *;\n${content}`;
+                return `@use "@operon/styles/global" as *;\n${content}`;
               }
               return content;
             },

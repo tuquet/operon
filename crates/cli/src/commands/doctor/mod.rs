@@ -20,7 +20,7 @@ pub async fn run(fix: bool, format: OutputFormat) -> Result<(), Box<dyn std::err
     if fix {
         if !format.is_json() {
             clack_intro(
-                "tq doctor --fix",
+                "opn doctor --fix",
                 "Automationtic Remediation & Environment Bootstrap",
             );
         }
@@ -48,7 +48,7 @@ pub async fn run(fix: bool, format: OutputFormat) -> Result<(), Box<dyn std::err
     respond_with(format, &report, |r| {
         if !fix {
             clack_intro(
-                "tq doctor",
+                "opn doctor",
                 "Ecosystem Environment & Dependency Diagnostics",
             );
         }
@@ -58,7 +58,7 @@ pub async fn run(fix: bool, format: OutputFormat) -> Result<(), Box<dyn std::err
 
         browser_card.print();
 
-        // 3. Canonical Microservice Storage Pillars (~/.tq/)
+        // 3. Canonical Microservice Storage Pillars (~/.operon/)
         let pillar_table = checks::check_storage_pillars();
         clack_step_info("CANONICAL MICROSERVICE STORAGE PILLARS (SSOT)");
         pillar_table.print();

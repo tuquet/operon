@@ -9,7 +9,7 @@ import type {
 import { computed, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-import { useUserStore } from '@tuquet/stores';
+import { useUserStore } from '@operon/stores';
 
 import {
   Button,
@@ -18,7 +18,7 @@ import {
   TabsList,
   TabsTrigger,
   toast,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import { ArrowLeft, Gauge, History, LayoutDashboard, Users } from '@lucide/vue';
 

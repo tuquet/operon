@@ -3,7 +3,7 @@
   "name": "collaborator",
   "description": "Collaborator Member Preset - standard member invited to tenant",
   "user": {
-    "email": "collaborator@tuquet.dev",
+    "email": "collaborator@operon.dev",
     "password": "DevPass!12345",
     "full_name": "Collaborator Dev",
     "avatar_url": "https://api.dicebear.com/7.x/identicon/svg?seed=collab",

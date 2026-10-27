@@ -1,6 +1,6 @@
 import type { Component } from 'vue';
 
-import type { BreadcrumbStyleType } from '@tuquet-core/typings';
+import type { BreadcrumbStyleType } from '@operon-core/typings';
 
 export interface IBreadcrumb {
   icon?: Component | string;

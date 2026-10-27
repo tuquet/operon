@@ -25,7 +25,7 @@ import { Cpu, ShieldCheck, Cloud, Network, Bot, ArrowRight } from 'lucide-vue-ne
           </p>
         </div>
         <div class="ev" aria-hidden="true">
-          <div class="ev-cmd"><b>$</b> tq worker probe</div>
+          <div class="ev-cmd"><b>$</b> opn worker probe</div>
           <div class="ev-row"><span>worker</span><b class="text-green"><i class="beat"></i>running (PID 4821)</b></div>
           <div class="ev-row"><span>active browsers</span><b>12 profiles · RSS 284MB</b></div>
           <div class="ev-row"><span>orphan processes</span><b class="text-green">0 zombie detected</b></div>
@@ -47,7 +47,7 @@ import { Cpu, ShieldCheck, Cloud, Network, Bot, ArrowRight } from 'lucide-vue-ne
           </p>
         </div>
         <div class="ev" aria-hidden="true">
-          <div class="ev-cmd"><b>$</b> tq browser verify --url "https://turnstile.zerocdn.com"</div>
+          <div class="ev-cmd"><b>$</b> opn browser verify --url "https://turnstile.zerocdn.com"</div>
           <div class="ev-row"><span>CDP debug port</span><b>--remote-debugging-port=0</b></div>
           <div class="ev-row"><span>navigator.webdriver</span><b class="text-green">false (Clean)</b></div>
           <div class="ev-row"><span>Cloudflare Turnstile</span><b class="text-green">Bypassed (1,240ms)</b></div>
@@ -69,7 +69,7 @@ import { Cpu, ShieldCheck, Cloud, Network, Bot, ArrowRight } from 'lucide-vue-ne
           </p>
         </div>
         <div class="ev" aria-hidden="true">
-          <div class="ev-cmd"><b>$</b> tq browser profile cloud acquire "scraper-node-01"</div>
+          <div class="ev-cmd"><b>$</b> opn browser profile cloud acquire "scraper-node-01"</div>
           <div class="ev-row"><span>control plane</span><b>PostgreSQL 15+ & RLS</b></div>
           <div class="ev-row"><span>lease lock</span><b class="text-green">ACQUIRED (TTL 1800s)</b></div>
           <div class="ev-row"><span>distributed fleet</span><b>1 Local Station + 3 Cloud VPS</b></div>
@@ -91,7 +91,7 @@ import { Cpu, ShieldCheck, Cloud, Network, Bot, ArrowRight } from 'lucide-vue-ne
           </p>
         </div>
         <div class="ev" aria-hidden="true">
-          <div class="ev-cmd"><b>$</b> tq proxy probe socks5://user:pass@127.0.0.1:1080</div>
+          <div class="ev-cmd"><b>$</b> opn proxy probe socks5://user:pass@127.0.0.1:1080</div>
           <div class="ev-row"><span>exit IP</span><b>198.51.100.42 (US - Comcast)</b></div>
           <div class="ev-row"><span>latency</span><b class="text-green">18ms (Fast)</b></div>
           <div class="ev-row"><span>WebRTC shield</span><b class="text-green">0 Host Leaks (Disabled)</b></div>
@@ -113,7 +113,7 @@ import { Cpu, ShieldCheck, Cloud, Network, Bot, ArrowRight } from 'lucide-vue-ne
           </p>
         </div>
         <div class="ev" aria-hidden="true">
-          <div class="ev-cmd"><b>$</b> tq mcp serve --stdio</div>
+          <div class="ev-cmd"><b>$</b> opn mcp serve --stdio</div>
           <div class="ev-row"><span>protocol</span><b>Model Context Protocol v1.0</b></div>
           <div class="ev-row"><span>exported tools</span><b>9 Native Tools</b></div>
           <div class="ev-row"><span>connected AI</span><b class="text-green">Claude Code · Cursor · AGY</b></div>

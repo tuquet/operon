@@ -52,11 +52,11 @@ Tách biệt rõ **tầng giám sát quản trị hệ thống (`System Overview
 
 ## 3. Tech Stack
 
-- **Framework:** Vue 3.5 (`<script setup lang="ts">`), Vue Router 4, TypeScript 5, `vue-i18n` (`@tuquet/locales`).
-- **Responsive State:** `usePreferences().isMobile` (`@tuquet/preferences`).
+- **Framework:** Vue 3.5 (`<script setup lang="ts">`), Vue Router 4, TypeScript 5, `vue-i18n` (`@operon/locales`).
+- **Responsive State:** `usePreferences().isMobile` (`@operon/preferences`).
 - **Data Grid & Form Engine:** `useVbenVxeGrid` từ `src/adapter/vxe-table.ts`.
 - **Data Access Layer:** `src/api/core/system.ts` (`calculateSystemOverviewSummary`, `getSystemOverviewApi`).
-- **UI Components & Icons:** `@tuquet/vue-ui` (`Avatar`, `Badge`, `Button`, `Dialog`, `toast`), `@lucide/vue`.
+- **UI Components & Icons:** `@operon/vue-ui` (`Avatar`, `Badge`, `Button`, `Dialog`, `toast`), `@lucide/vue`.
 
 ---
 
@@ -70,7 +70,7 @@ pnpm exec vitest run apps/web-admin/src/api/core/__tests__/ A
 pnpm run check:i18n
 
 # 3. Kiểm tra kiểu dữ liệu TypeScript và Linter
-pnpm --filter @tuquet/admin-web run typecheck
+pnpm --filter @operon/admin-web run typecheck
 pnpm run lint
 
 # 4. Đóng gói bản dựng cục bộ và cập nhật Nginx preview (Zero Git Push)
@@ -163,7 +163,7 @@ export interface SystemOverviewSummary {
    - Kiểm tra `getSystemOverviewApi` xử lý an toàn ngay cả khi người dùng không có quyền superadmin trên một số bảng con.
 2. **i18n & Typecheck Gate:**
    - `pnpm run check:i18n` pass 100% (`0` khóa thiếu).
-   - `pnpm --filter @tuquet/admin-web run typecheck` và `pnpm run lint` đạt `0 errors`.
+   - `pnpm --filter @operon/admin-web run typecheck` và `pnpm run lint` đạt `0 errors`.
 
 ---
 

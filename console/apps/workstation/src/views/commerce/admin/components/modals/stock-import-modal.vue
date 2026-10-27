@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
   Textarea,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import { $t } from '#/locales';
 

@@ -4,7 +4,7 @@ Running automated browser workloads with full graphical user interfaces (GUI win
 
 However, standard Chromium running in `--headless` or `--headless=new` mode is detected instantly by anti-bot platforms due to dozens of default telemetry flags.
 
-**Tuquet** provides **True Stealth Headless Mode**, combining lightweight zero-display performance with the identical C++ hardware fingerprint masking of full desktop browser releases.
+**Operon** provides **True Stealth Headless Mode**, combining lightweight zero-display performance with the identical C++ hardware fingerprint masking of full desktop browser releases.
 
 <HairlineFigure name="exploded" />
 
@@ -47,23 +47,23 @@ Organizations running data collection pipelines achieve **3x to 5x higher concur
 
 ```bash
 # Launch profile in true stealth headless mode
-tq browser launch "Scraper-Node-01" --headless
+opn browser launch "Scraper-Node-01" --headless
 
 # Launch headless profile with dedicated residential proxy
-tq browser launch "Scraper-Node-01" --headless --proxy socks5://127.0.0.1:1080
+opn browser launch "Scraper-Node-01" --headless --proxy socks5://127.0.0.1:1080
 
 # Launch headless with CDP gateway for Playwright / Puppeteer script attachment
-tq browser launch "Scraper-Node-01" --headless --port 9222 --detach
+opn browser launch "Scraper-Node-01" --headless --port 9222 --detach
 ```
 
 ### Executing Headless Automa Workflows
 
 ```bash
 # Execute workflow in headless mode with timeout safety
-tq automation run scrape-catalog --headless --timeout 90
+opn automation run scrape-catalog --headless --timeout 90
 
 # Execute headless workflow with runtime variable overrides
-tq automation run scrape-catalog \
+opn automation run scrape-catalog \
   --headless \
   -p TARGET_CATEGORY="electronics" \
   -p MAX_PAGES="10"

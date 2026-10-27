@@ -1,7 +1,7 @@
 import { reactive, watch } from 'vue';
 
-import { preferences, usePreferences } from '@tuquet/preferences';
-import { convertToRgb, updateCSSVariables } from '@tuquet/utils';
+import { preferences, usePreferences } from '@operon/preferences';
+import { convertToRgb, updateCSSVariables } from '@operon/utils';
 
 /**
  * Adapt design systems across various component libraries

@@ -18,7 +18,7 @@ import {
   get,
   isFunction,
   mergeWithArrayOverride,
-} from '@tuquet-core/shared/utils';
+} from '@operon-core/shared/utils';
 
 import { resolveChildUpdateFieldName } from '../field-name';
 

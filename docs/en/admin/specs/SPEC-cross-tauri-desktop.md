@@ -2,11 +2,11 @@
 
 ## 1. Objective
 
-Xây dựng phiên bản Native Desktop cho **Admin Console** (`@tuquet/admin`) dựa trên công nghệ **Tauri v2**, mang lại trải nghiệm phần mềm quản trị doanh nghiệp chuẩn Enterprise:
+Xây dựng phiên bản Native Desktop cho **Admin Console** (`@operon/admin`) dựa trên công nghệ **Tauri v2**, mang lại trải nghiệm phần mềm quản trị doanh nghiệp chuẩn Enterprise:
 
 - **Tốc độ & Tài nguyên tối ưu:** Khởi động dưới $500\text{ms}$, chiếm dụng RAM ban đầu $\le 40\text{MB}$ (so với $\ge 400\text{MB}$ của Electron).
 - **Trải nghiệm Native mượt mà:** Cửa sổ không bị giật/nhấp nháy trắng (zero white-flash), tự động ghi nhớ kích thước và tọa độ vị trí giữa các phiên làm việc (`window-state`), khay hệ thống (System Tray) tiện dụng, và chống chạy nhiều cửa sổ xung đột (`single-instance`).
-- **Tích hợp sâu hệ thống:** Tiếp nhận luồng xác thực Enterprise SSO qua giao thức Deep Linking `tuquet://auth/callback` (liên kết với route `/auth/desktop` có sẵn), gửi thông báo native trực tiếp khi có cảnh báo máy chủ/thanh toán, hỗ trợ hộp thoại lưu/mở tập tin native (`dialog`), và bộ nhớ lưu trữ offline bảo mật (`store`).
+- **Tích hợp sâu hệ thống:** Tiếp nhận luồng xác thực Enterprise SSO qua giao thức Deep Linking `operon://auth/callback` (liên kết với route `/auth/desktop` có sẵn), gửi thông báo native trực tiếp khi có cảnh báo máy chủ/thanh toán, hỗ trợ hộp thoại lưu/mở tập tin native (`dialog`), và bộ nhớ lưu trữ offline bảo mật (`store`).
 - **Bảo mật chuẩn Enterprise:** Tuân thủ mô hình phân quyền hạt mịn mới nhất của Tauri v2 (ACL Capabilities & Scoped Permissions), cô lập IPC, và thiết lập Content Security Policy (CSP) nghiêm ngặt.
 
 ---
@@ -24,7 +24,7 @@ Xây dựng phiên bản Native Desktop cho **Admin Console** (`@tuquet/admin`) 
   - `@tauri-apps/plugin-single-instance` (^2.x): Chống khởi chạy đa tiến trình song song.
   - `@tauri-apps/plugin-notification` (^2.x): Thông báo native OS.
   - `@tauri-apps/plugin-dialog` (^2.x): Hộp thoại chọn file/thư mục chuẩn native.
-  - `@tauri-apps/plugin-deep-link` (^2.x): Xử lý URL scheme `tuquet://`.
+  - `@tauri-apps/plugin-deep-link` (^2.x): Xử lý URL scheme `operon://`.
   - `@tauri-apps/plugin-store` (^2.x): Key-Value store bảo mật cục bộ.
   - `@tauri-apps/plugin-updater` (^2.x): Tự động cập nhật OTA có chữ ký điện tử Ed25519.
   - `@tauri-apps/plugin-process` (^2.x): Quản lý vòng đời tiến trình.
@@ -33,13 +33,13 @@ Xây dựng phiên bản Native Desktop cho **Admin Console** (`@tuquet/admin`) 
 
 ## 3. Commands
 
-Tất cả các lệnh được cấu hình đồng bộ qua `pnpm` và `turbo` tại gốc monorepo `tuquet/admin`:
+Tất cả các lệnh được cấu hình đồng bộ qua `pnpm` và `turbo` tại gốc monorepo `operon/admin`:
 
 ```bash
 # Khởi chạy môi trường Desktop Development (Hot-Reload đồng thời Vue 3 + Rust)
 pnpm run tauri:dev
 # Lệnh tương đương chạy trực tiếp trong apps/web-admin:
-# pnpm -F @tuquet/admin-web exec tauri dev
+# pnpm -F @operon/admin-web exec tauri dev
 
 # Kiểm tra cú pháp và loại trừ lỗi biên dịch Rust (Rust check)
 pnpm run tauri:check
@@ -49,7 +49,7 @@ pnpm run tauri:check
 # Đóng gói Desktop Application bản Release cục bộ (Windows MSI & NSIS exe)
 pnpm run tauri:build
 # Lệnh tương đương:
-# pnpm -F @tuquet/admin-web exec tauri build
+# pnpm -F @operon/admin-web exec tauri build
 
 # Kiểm tra chất lượng mã nguồn toàn diện (Typecheck + Lint + Console Gate)
 pnpm run check:type
@@ -88,7 +88,7 @@ admin/
 │       │   │   └── desktop/                  # Frontend Desktop Native Adapters
 │       │   │   │   ├── index.ts              # isTauri() detection, window helpers
 │       │   │   │   ├── notification.ts       # Native notification wrapper
-│       │   │   │   ├── deep-link.ts          # tuquet:// router handler
+│       │   │   │   ├── deep-link.ts          # operon:// router handler
 │       │   │   │   └── storage.ts            # Secure local store gateway
 │       │   └── views/
 │       │       └── _core/authentication/
@@ -201,7 +201,7 @@ export async function sendDesktopNotification(
 ### 5.3. Điều chế Vite Configuration (`apps/web-admin/vite.config.ts`)
 
 ```typescript
-import { defineConfig } from '@tuquet/vite-config';
+import { defineConfig } from '@operon/vite-config';
 
 const isTauri = Boolean(process.env.TAURI_ENV_PLATFORM);
 
@@ -235,7 +235,7 @@ export default defineConfig(async () => {
    - Vị trí: `apps/web-admin/src/adapter/desktop/__tests__/desktop.test.ts`
    - Chạy qua `vitest run --dom`. Đảm bảo các hàm fallback an toàn khi `__TAURI_INTERNALS__` vắng mặt trên Web.
 3. **Deep Linking Protocol Verification:**
-   - Kiểm tra parser xử lý callback `tuquet://auth/callback?token=...` đưa vào Vue Router và `useAccessStore()`.
+   - Kiểm tra parser xử lý callback `operon://auth/callback?token=...` đưa vào Vue Router và `useAccessStore()`.
 4. **End-to-End Build & Run Verification:**
    - Chạy lệnh `pnpm run tauri:build --debug` để nghiệm thu file nhị phân mà không cần ký số, kiểm tra thời gian khởi động và mức tiêu thụ RAM qua Task Manager / Activity Monitor.
 
@@ -247,7 +247,7 @@ export default defineConfig(async () => {
 | --- | --- |
 | **Luôn luôn làm (Always)** | - Bọc toàn bộ lời gọi `@tauri-apps/*` trong hàm kiểm tra `isTauriEnvironment()`.<br>- Sử dụng cấu hình Capabilities hạt mịn (`src-tauri/capabilities/*.json`), chỉ cấp quyền cần thiết.<br>- Đặt `visible: false` khi khởi tạo cửa sổ và kích hoạt `show()` sau khi DOM sẵn sàng.<br>- Đảm bảo tất cả 22 routes hiện có trong Web Admin hoạt động trơn tru trên Desktop. |
 | **Hỏi ý kiến trước (Ask first)** | - Bổ sung các plugin truy cập phần cứng sâu (như Bluetooth, NFC, Raw USB).<br>- Tùy chỉnh Window Chrome tùy biến không viền (Frameless Custom Titlebar) thay cho thanh tiêu đề hệ thống.<br>- Cấu hình server lưu trữ bản cập nhật OTA (GitHub Releases vs Cloudflare R2 / S3 riêng). |
-| **Tuyệt đối không làm (Never)** | - Cấu hình quyền `core:default` dạng wildcard không giới hạn.<br>- Bật PWA Service Worker trong chế độ đóng gói Desktop App.<br>- Nhúng trực tiếp secret keys / private signing keys vào mã nguồn git.<br>- Phá vỡ khả năng tương thích web của ứng dụng `@tuquet/admin-web`. |
+| **Tuyệt đối không làm (Never)** | - Cấu hình quyền `core:default` dạng wildcard không giới hạn.<br>- Bật PWA Service Worker trong chế độ đóng gói Desktop App.<br>- Nhúng trực tiếp secret keys / private signing keys vào mã nguồn git.<br>- Phá vỡ khả năng tương thích web của ứng dụng `@operon/admin-web`. |
 
 ---
 
@@ -257,7 +257,7 @@ export default defineConfig(async () => {
 2. [ ] **Zero Disruption to Web:** Lệnh `pnpm run build:admin` và `pnpm run check:console` vẫn vượt qua 100% (22/22 routes xanh, không ảnh hưởng web build).
 3. [ ] **RAM & Start-up Performance:** Ứng dụng Desktop khởi động hiển thị Dashboard trong $\le 800\text{ms}$, RAM tĩnh duy trì $\le 45\text{MB}$.
 4. [ ] **Single Instance & State Restoration:** Khởi động lần 2 tự động đưa cửa sổ hiện tại lên đầu (focus); đóng ứng dụng và mở lại giữ nguyên kích thước và vị trí màn hình.
-5. [ ] **Deep Link SSO Integration:** Nhấp link `tuquet://auth/callback` từ bên ngoài tự động kích hoạt callback và đồng bộ phiên đăng nhập vào Store.
+5. [ ] **Deep Link SSO Integration:** Nhấp link `operon://auth/callback` từ bên ngoài tự động kích hoạt callback và đồng bộ phiên đăng nhập vào Store.
 6. [ ] **Zero Emoji & Theme Invariant:** Giữ vững giao diện Shadcn Slate tokens và bộ icon `@lucide/vue`, hoàn toàn không xuất hiện unicode emojis.
 
 ---
@@ -272,5 +272,5 @@ export default defineConfig(async () => {
    - Vùng kéo cửa sổ chuẩn: Thẻ container gắn `data-tauri-drag-region`.
    - Các nút chức năng sử dụng `@lucide/vue` (`Minus`, `Square` / `Copy`, `X`).
 3. **Kênh Phát Hành & Cập Nhật Tự Động (GitHub Releases):**
-   - Cấu hình `@tauri-apps/plugin-updater` trỏ đến endpoint: `https://github.com/tuquet/console/releases/latest/download/latest.json`
+   - Cấu hình `@tauri-apps/plugin-updater` trỏ đến endpoint: `https://github.com/operon/console/releases/latest/download/latest.json`
    - Ký số nhị phân bằng thuật toán Ed25519; lưu public key vào `tauri.conf.json` và private key trên GitHub Actions Secrets (`TAURI_SIGNING_PRIVATE_KEY`).

@@ -379,7 +379,7 @@ describe('supabase-schema-registry — Enterprise Dynamic Schema & RLS Engine', 
     const userSchema = buildDynamicVxeFormSchema({
       resource: 'public.profiles',
       row: {
-        email: 'admin@tuquet.com',
+        email: 'admin@operon.com',
         full_name: 'Admin User',
         id: 'u_1',
         workspaces: [

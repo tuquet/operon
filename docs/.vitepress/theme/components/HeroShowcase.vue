@@ -76,10 +76,10 @@ function copyCode(text: string) {
       <div v-if="activeTab === 'browser'" class="card-body terminal-view">
         <div class="code-line prompt">
           <span class="prompt-symbol">$</span>
-          <span class="command-text">tuquet browser launch "Store-US-01" --proxy socks5://127.0.0.1:1080</span>
+          <span class="command-text">operon browser launch "Store-US-01" --proxy socks5://127.0.0.1:1080</span>
           <button 
             class="copy-btn" 
-            @click="copyCode('tuquet browser launch &quot;Store-US-01&quot; --proxy socks5://127.0.0.1:1080')"
+            @click="copyCode('operon browser launch &quot;Store-US-01&quot; --proxy socks5://127.0.0.1:1080')"
           >
             <span v-if="!copied" class="copy-inner"><Copy :size="11" /> Copy</span>
             <span v-else class="copied-text"><Check :size="11" /> Copied</span>
@@ -88,7 +88,7 @@ function copyCode(text: string) {
         <div class="log-stream">
           <div class="log-row info">
             <span class="log-prefix">[init]</span>
-            <span class="log-msg">Mounting isolated sandbox: ~/.tuquet/browser/profiles/Store-US-01</span>
+            <span class="log-msg">Mounting isolated sandbox: ~/.operon/browser/profiles/Store-US-01</span>
           </div>
           <div class="log-row success">
             <span class="log-prefix">[hardware]</span>
@@ -117,10 +117,10 @@ function copyCode(text: string) {
       <div v-if="activeTab === 'verify'" class="card-body terminal-view">
         <div class="code-line prompt">
           <span class="prompt-symbol">$</span>
-          <span class="command-text">tuquet browser verify --url "https://turnstile.zerocdn.com"</span>
+          <span class="command-text">operon browser verify --url "https://turnstile.zerocdn.com"</span>
           <button 
             class="copy-btn" 
-            @click="copyCode('tuquet browser verify --url &quot;https://turnstile.zerocdn.com&quot;')"
+            @click="copyCode('operon browser verify --url &quot;https://turnstile.zerocdn.com&quot;')"
           >
             <span v-if="!copied" class="copy-inner"><Copy :size="11" /> Copy</span>
             <span v-else class="copied-text"><Check :size="11" /> Copied</span>
@@ -158,10 +158,10 @@ function copyCode(text: string) {
       <div v-if="activeTab === 'automation'" class="card-body terminal-view">
         <div class="code-line prompt">
           <span class="prompt-symbol">$</span>
-          <span class="command-text">tuquet automation run ./workflows/scrape-catalog.json --headless</span>
+          <span class="command-text">operon automation run ./workflows/scrape-catalog.json --headless</span>
           <button 
             class="copy-btn" 
-            @click="copyCode('tuquet automation run ./workflows/scrape-catalog.json --headless')"
+            @click="copyCode('operon automation run ./workflows/scrape-catalog.json --headless')"
           >
             <span v-if="!copied" class="copy-inner"><Copy :size="11" /> Copy</span>
             <span v-else class="copied-text"><Check :size="11" /> Copied</span>
@@ -199,10 +199,10 @@ function copyCode(text: string) {
       <div v-if="activeTab === 'proxy'" class="card-body tunnel-view">
         <div class="code-line prompt">
           <span class="prompt-symbol">$</span>
-          <span class="command-text">tuquet proxy probe socks5://127.0.0.1:1080</span>
+          <span class="command-text">operon proxy probe socks5://127.0.0.1:1080</span>
           <button 
             class="copy-btn" 
-            @click="copyCode('tuquet proxy probe socks5://127.0.0.1:1080')"
+            @click="copyCode('operon proxy probe socks5://127.0.0.1:1080')"
           >
             <span v-if="!copied" class="copy-inner"><Copy :size="11" /> Copy</span>
             <span v-else class="copied-text"><Check :size="11" /> Copied</span>

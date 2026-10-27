@@ -2,7 +2,7 @@ import type { AxiosInstance, AxiosResponse } from 'axios';
 
 import type { RequestClientConfig, RequestClientOptions } from './types';
 
-import { bindMethods, isString, merge } from '@tuquet/utils';
+import { bindMethods, isString, merge } from '@operon/utils';
 
 import axios from 'axios';
 import qs from 'qs';

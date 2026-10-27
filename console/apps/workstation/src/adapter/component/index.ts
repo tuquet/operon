@@ -1,18 +1,18 @@
 /**
  * Universal component adapter for Vben Form / Common UI
- * Powered by @tuquet-core/shadcn-ui
+ * Powered by @operon-core/shadcn-ui
  */
 
 /* eslint-disable vue/one-component-per-file */
 
 import type { Component } from 'vue';
 
-import type { BaseFormComponentType, IconPickerProps } from '@tuquet/common-ui';
+import type { BaseFormComponentType, IconPickerProps } from '@operon/common-ui';
 
 import { defineComponent, h, ref } from 'vue';
 
-import { globalShareState, IconPicker } from '@tuquet/common-ui';
-import { $t } from '@tuquet/locales';
+import { globalShareState, IconPicker } from '@operon/common-ui';
+import { $t } from '@operon/locales';
 
 import {
   Button,
@@ -27,7 +27,7 @@ import {
   Switch,
   Textarea,
   toast,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 const withDefaultPlaceholder = (
   component: Component,

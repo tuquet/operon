@@ -3,11 +3,11 @@ import type { PlatformSubscription } from '#/api';
 
 import { ref } from 'vue';
 
-import { Page } from '@tuquet/common-ui';
-import { FILTER_ALL, SUBSCRIPTION_STATUS } from '@tuquet/constants';
-import { usePreferences } from '@tuquet/preferences';
+import { Page } from '@operon/common-ui';
+import { FILTER_ALL, SUBSCRIPTION_STATUS } from '@operon/constants';
+import { usePreferences } from '@operon/preferences';
 
-import { Badge, Button } from '@tuquet-core/shadcn-ui';
+import { Badge, Button } from '@operon-core/shadcn-ui';
 
 import { Plus, RefreshCw } from '@lucide/vue';
 

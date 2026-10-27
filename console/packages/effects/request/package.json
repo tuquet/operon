@@ -1,11 +1,11 @@
 {
-  "name": "@tuquet/request",
+  "name": "@operon/request",
   "version": "5.8.0",
-  "homepage": "https://github.com/tuquet/console",
-  "bugs": "https://github.com/tuquet/console/issues",
+  "homepage": "https://github.com/operon/console",
+  "bugs": "https://github.com/operon/console/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tuquet/console.git",
+    "url": "git+https://github.com/operon/console.git",
     "directory": "packages/effects/request"
   },
   "license": "MIT",
@@ -20,8 +20,8 @@
     }
   },
   "dependencies": {
-    "@tuquet/locales": "workspace:*",
-    "@tuquet/utils": "workspace:*",
+    "@operon/locales": "workspace:*",
+    "@operon/utils": "workspace:*",
     "axios": "catalog:",
     "qs": "catalog:"
   },

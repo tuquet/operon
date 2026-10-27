@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   action:
-    if: github.repository == 'tuquet/console'
+    if: github.repository == 'operon/console'
     runs-on: ubuntu-latest
     steps:
       - uses: dessant/lock-threads@v6

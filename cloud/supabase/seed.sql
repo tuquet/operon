@@ -1,5 +1,5 @@
 -- ============================================================================
--- SUPABASE SEED DATA: TUQUET ECOSYSTEM (DEVELOPMENT & QA ENVIRONMENT)
+-- SUPABASE SEED DATA: OPN ECOSYSTEM (DEVELOPMENT & QA ENVIRONMENT)
 -- Description: Foundation data for Testing Admin Console & Multi-Tenancy
 -- Universal Password for ALL accounts: TestPassword123!
 -- NOTE: workers.devices is NOT seeded here (dynamically enrolled via Tauri Desk)
@@ -29,7 +29,7 @@ BEGIN
                 '00000000-0000-0000-0000-000000000000',
                 'authenticated',
                 'authenticated',
-                'admin@tuquet.dev',
+                'admin@operon.dev',
                 v_pwd_hash,
                 now(),
                 '{"provider":"email","providers":["email"],"platform_role":"superadmin"}'::jsonb,
@@ -41,7 +41,7 @@ BEGIN
                 '00000000-0000-0000-0000-000000000000',
                 'authenticated',
                 'authenticated',
-                'owner@tuquet.dev',
+                'owner@operon.dev',
                 v_pwd_hash,
                 now(),
                 '{"provider":"email","providers":["email"]}'::jsonb,
@@ -53,7 +53,7 @@ BEGIN
                 '00000000-0000-0000-0000-000000000000',
                 'authenticated',
                 'authenticated',
-                'dev@tuquet.dev',
+                'dev@operon.dev',
                 v_pwd_hash,
                 now(),
                 '{"provider":"email","providers":["email"]}'::jsonb,
@@ -65,7 +65,7 @@ BEGIN
                 '00000000-0000-0000-0000-000000000000',
                 'authenticated',
                 'authenticated',
-                'guest@tuquet.dev',
+                'guest@operon.dev',
                 v_pwd_hash,
                 now(),
                 '{"provider":"email","providers":["email"]}'::jsonb,
@@ -88,10 +88,10 @@ BEGIN
             INSERT INTO auth.identities (
                 id, provider_id, user_id, identity_data, provider, last_sign_in_at, created_at, updated_at
             ) VALUES 
-                (gen_random_uuid(), v_admin_id::text, v_admin_id, jsonb_build_object('sub', v_admin_id::text, 'email', 'admin@tuquet.dev'), 'email', now(), now(), now()),
-                (gen_random_uuid(), v_owner_id::text, v_owner_id, jsonb_build_object('sub', v_owner_id::text, 'email', 'owner@tuquet.dev'), 'email', now(), now(), now()),
-                (gen_random_uuid(), v_dev_id::text, v_dev_id, jsonb_build_object('sub', v_dev_id::text, 'email', 'dev@tuquet.dev'), 'email', now(), now(), now()),
-                (gen_random_uuid(), v_guest_id::text, v_guest_id, jsonb_build_object('sub', v_guest_id::text, 'email', 'guest@tuquet.dev'), 'email', now(), now(), now())
+                (gen_random_uuid(), v_admin_id::text, v_admin_id, jsonb_build_object('sub', v_admin_id::text, 'email', 'admin@operon.dev'), 'email', now(), now(), now()),
+                (gen_random_uuid(), v_owner_id::text, v_owner_id, jsonb_build_object('sub', v_owner_id::text, 'email', 'owner@operon.dev'), 'email', now(), now(), now()),
+                (gen_random_uuid(), v_dev_id::text, v_dev_id, jsonb_build_object('sub', v_dev_id::text, 'email', 'dev@operon.dev'), 'email', now(), now(), now()),
+                (gen_random_uuid(), v_guest_id::text, v_guest_id, jsonb_build_object('sub', v_guest_id::text, 'email', 'guest@operon.dev'), 'email', now(), now(), now())
             ON CONFLICT (provider_id, provider) DO NOTHING;
         END IF;
     END IF;
@@ -99,10 +99,10 @@ BEGIN
     -- Profiles in public.profiles
     INSERT INTO public.profiles (id, email, full_name, avatar_url)
     VALUES 
-        (v_admin_id, 'admin@tuquet.dev', 'System Administrator', 'https://api.dicebear.com/7.x/identicon/svg?seed=admin'),
-        (v_owner_id, 'owner@tuquet.dev', 'Enterprise Owner', 'https://api.dicebear.com/7.x/identicon/svg?seed=owner'),
-        (v_dev_id, 'dev@tuquet.dev', 'Automation Engineer', 'https://api.dicebear.com/7.x/identicon/svg?seed=dev'),
-        (v_guest_id, 'guest@tuquet.dev', 'Sandbox Guest', 'https://api.dicebear.com/7.x/identicon/svg?seed=guest')
+        (v_admin_id, 'admin@operon.dev', 'System Administrator', 'https://api.dicebear.com/7.x/identicon/svg?seed=admin'),
+        (v_owner_id, 'owner@operon.dev', 'Enterprise Owner', 'https://api.dicebear.com/7.x/identicon/svg?seed=owner'),
+        (v_dev_id, 'dev@operon.dev', 'Automation Engineer', 'https://api.dicebear.com/7.x/identicon/svg?seed=dev'),
+        (v_guest_id, 'guest@operon.dev', 'Sandbox Guest', 'https://api.dicebear.com/7.x/identicon/svg?seed=guest')
     ON CONFLICT (id) DO UPDATE SET
         email = EXCLUDED.email,
         full_name = EXCLUDED.full_name,
@@ -116,7 +116,7 @@ VALUES
         'b0000000-0000-0000-0000-000000000001',
         'corp',
         'Enterprise Corp',
-        'https://api.dicebear.com/7.x/identicon/svg?seed=tuquetcorp',
+        'https://api.dicebear.com/7.x/identicon/svg?seed=operoncorp',
         'active',
         '{"plan": "enterprise", "region": "ap-southeast-1"}'::jsonb,
         'a0000000-0000-0000-0000-000000000001'
@@ -350,7 +350,7 @@ BEGIN
                 jsonb_build_object(
                     'nodes', jsonb_build_array(
                         jsonb_build_object('id', 'node-trigger', 'label', 'trigger', 'data', jsonb_build_object('type', 'cron', 'cron', '0 * * * *')),
-                        jsonb_build_object('id', 'node-goto', 'label', 'goto-url', 'data', jsonb_build_object('url', 'https://tuquet.com')),
+                        jsonb_build_object('id', 'node-goto', 'label', 'goto-url', 'data', jsonb_build_object('url', 'https://operon.com')),
                         jsonb_build_object('id', 'node-extract', 'label', 'extract-data', 'data', jsonb_build_object('selector', '.price-tag'))
                     ),
                     'edges', jsonb_build_array(

@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-pub const GITHUB_REPO: &str = "tuquet/cli";
+pub const GITHUB_REPO: &str = "operon/cli";
 pub const CACHE_TTL_SECS: u64 = 86400; // 24 hours
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

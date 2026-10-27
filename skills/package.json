@@ -1,17 +1,17 @@
 {
-  "name": "@tuquet/skills",
+  "name": "@operon/skills",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://github.com/tuquet/skills#readme",
+  "homepage": "https://github.com/operon/skills#readme",
   "bugs": {
-    "url": "https://github.com/tuquet/skills/issues"
+    "url": "https://github.com/operon/skills/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tuquet/skills.git"
+    "url": "git+https://github.com/operon/skills.git"
   },
   "license": "MIT",
-  "author": "Tuquet Team <dev@tuquet.com>",
+  "author": "Operon Team <dev@operon.com>",
   "type": "module",
   "packageManager": "pnpm@12.4.1",
   "engines": {

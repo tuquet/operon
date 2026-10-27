@@ -34,7 +34,7 @@ Use this quick-reference matrix for anti-hallucination audits during documentati
 | **`Plugin`** | `public.system_plugins` | ❌ *Module*, *Extension*, *Addon*, *Package* | Autonomous database module with a dedicated folder `supabase/plugins/<id>/` and PostgreSQL schema. |
 | **`Storage`** | `media.assets` & `tenant-assets` | ❌ *Vault*, *Media Bucket*, *File Drive* | Cloud media asset storage service. The term "Vault" is **FORBIDDEN** in cloud services. |
 | **`Browser`** | `workers.browsers` / `workers.node_browsers` | ❌ *Profile*, *Browser Profile*, *Anti-detect Profile* | Isolated anti-detect virtual browser container on local workstation disk or central cloud fleet. Calling a browser instance a "Profile" is **FORBIDDEN** to prevent confusion with `public.profiles`. |
-| **`Device / Worker`** | `workers.devices` | ❌ *Runner*, *Agent Node*, *Bot*, *Client Daemon* | Physical workstation, laptop, or edge node running CLI master (`tq`) or Worker daemon (`tq worker`) reporting heartbeats and telemetry to Cloud. |
+| **`Device / Worker`** | `workers.devices` | ❌ *Runner*, *Agent Node*, *Bot*, *Client Daemon* | Physical workstation, laptop, or edge node running CLI master (`opn`) or Worker daemon (`opn worker`) reporting heartbeats and telemetry to Cloud. |
 | **`Secret Store`** | `secrets.credentials`, `secrets.tenant_keys`, `secrets.devices` | ❌ *Vault*, *Keychain*, *Password Manager*, *Config Store*, *Env Store* | Tenant-scoped encrypted credential store (plugin `secrets`). Workflow values are referenced as `\{\{secrets.<name>\}\}`; the API never returns a plaintext value. The term **"Vault" is FORBIDDEN** as a service name. |
 | **`Credential`** | `secrets.credentials` | ❌ *Secret Key*, *Env Var*, *Password Field*, *Login* | One named encrypted value in the Secret Store, owned by a `Tenant` and stamped with `key_version`. Referenced in workflows as `\{\{secrets.<name>\}\}`. |
 | **`Device Key`** | `secrets.devices` | ❌ *Client Key*, *Agent Cert*, *Machine Secret* | X25519 public key of an enrolled `Device`; the tenant DEK is sealed to it (`crypto_box_seal`) so a new device receives credentials without re-entry. |
@@ -134,7 +134,7 @@ Use this quick-reference matrix for anti-hallucination audits during documentati
 
 1. **`Storage` (Never Use "Vault")**:
    - Cloud media asset storage service backed by the Supabase Storage Engine.
-   - The term "Vault" is strictly **FORBIDDEN** across all ecosystem layers. Local workflows and execution state reside exclusively in the canonical SQLite database `~/.tq/automation/automation.sqlite`.
+   - The term "Vault" is strictly **FORBIDDEN** across all ecosystem layers. Local workflows and execution state reside exclusively in the canonical SQLite database `~/.operon/automation/automation.sqlite`.
 2. **`Media Asset` (`media.assets`)**:
    - File metadata catalog: `file_path`, `mime_type`, `file_size_bytes`, `metadata JSONB`.
    - Schema: Resides in schema `media` (preventing collision with Supabase's internal `storage` schema).
@@ -175,7 +175,7 @@ Use this quick-reference matrix for anti-hallucination audits during documentati
 ### 3.6. Distributed Fleet & Automa Cloud Bridge Domain
 
 1. **`Device / Worker` (`workers.devices`)**:
-   - Execution machine node (Desktop Workstation, Laptop, or Cloud VPS running the master CLI `tq` or standalone worker daemon `tq worker`).
+   - Execution machine node (Desktop Workstation, Laptop, or Cloud VPS running the master CLI `opn` or standalone worker daemon `opn worker`).
    - Calling workers "Runners", "Bots", or "Agent Nodes" is strictly **FORBIDDEN**.
 2. **`Node Browser` (`workers.node_browsers`)**:
    - Node-local isolated browser container (`*.browser.json`) with distinct fingerprint, proxy, cookie jar, and local storage.
@@ -200,11 +200,11 @@ Use this quick-reference matrix for anti-hallucination audits during documentati
    Values are encrypted **client-side** (XChaCha20-Poly1305) and the server never receives plaintext.
    Referenced in workflows as `\{\{secrets.<name>\}\}`; never inlined into a workflow graph, job payload, or log.
 3. **`Device Key` (`secrets.devices`)**: the X25519 public key of an enrolled `Device`; the `Tenant DEK` is
-   sealed to it. A brand-new device obtains credentials via `tq secret pull` — no human re-entry.
+   sealed to it. A brand-new device obtains credentials via `opn secret pull` — no human re-entry.
 4. **`Tenant DEK` (`secrets.tenant_keys`)**: per-tenant data-encryption key wrapped by the server-side `KEK`.
 5. **Access**: device-authenticated RPCs (`public.secret_*`, verified against `workers.devices.device_token_hash`)
    and the permission codes `secrets:credentials:read`, `secrets:credentials:manage`, `secrets:store:rotate`.
-6. **Surface**: CLI `tq secret …`, CLI daemon `/api/v1/secrets*`, workstation console page `SystemSecrets`
+6. **Surface**: CLI `opn secret …`, CLI daemon `/api/v1/secrets*`, workstation console page `SystemSecrets`
    (`/system/secrets`).
 
 ## 4. Technical Naming & Casing Conventions

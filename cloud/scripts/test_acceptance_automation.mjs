@@ -1,5 +1,5 @@
 // ============================================================================
-// TUQUET E2E ACCEPTANCE TEST: REALTIME SUPABASE -> RUNNER -> AUTOMA BROWSER WORKFLOW
+// OPN E2E ACCEPTANCE TEST: REALTIME SUPABASE -> RUNNER -> AUTOMA BROWSER WORKFLOW
 // ============================================================================
 
 import { spawn } from "node:child_process";
@@ -14,8 +14,8 @@ if (!SERVICE_KEY) {
     process.exit(1);
 }
 const TENANT_ID = process.env.SUPABASE_TENANT_ID || "b0000000-0000-0000-0000-000000000001";
-const WORKFLOW_PATH = process.env.WORKFLOW_PATH || join(homedir(), "tq", "runner", "fixtures", "test_browser_workflow.json");
-const JOB_FILE = process.env.JOB_FILE || join(homedir(), "tq", "runner", "fixtures", "job_browser_automation.json");
+const WORKFLOW_PATH = process.env.WORKFLOW_PATH || join(homedir(), "opn", "runner", "fixtures", "test_browser_workflow.json");
+const JOB_FILE = process.env.JOB_FILE || join(homedir(), "opn", "runner", "fixtures", "job_browser_automation.json");
 
 async function main() {
     console.log("================================================================================");
@@ -23,10 +23,10 @@ async function main() {
     console.log("================================================================================");
 
     // 1. Verify Device Identity
-    const tuquetHome = process.env.TUQUET_HOME || process.env.SPECTER_HOME || (existsSync(join(homedir(), ".tuquet")) ? join(homedir(), ".tuquet") : join(homedir(), ".tuquet"));
-    const configPath = join(tuquetHome, "system", ".identity.json");
+    const operonHome = process.env.OPERON_HOME || process.env.SPECTER_HOME || (existsSync(join(homedir(), ".operon")) ? join(homedir(), ".operon") : join(homedir(), ".operon"));
+    const configPath = join(operonHome, "system", ".identity.json");
     if (!existsSync(configPath)) {
-        throw new Error(`Device identity not found at ${configPath}. Run 'tuquet runner enroll' first.`);
+        throw new Error(`Device identity not found at ${configPath}. Run 'operon runner enroll' first.`);
     }
 
     const identity = JSON.parse(readFileSync(configPath, "utf-8"));
@@ -73,12 +73,12 @@ async function main() {
     console.log(`      Status:         ${createdRun.status.toUpperCase()}`);
     console.log(`      Target Driver:  automation (Chromium CDP Sandbox)`);
 
-    // 3. Execute via tuquet runner run
+    // 3. Execute via operon runner run
     console.log(`\n[3/5] Executing job via runner run with real-time log ingestion to Supabase...`);
     const startTime = Date.now();
     let runnerStdout = "";
 
-    const runnerBin = process.env.RUNNER_BIN || (process.platform === "win32" ? "tuquet.exe" : "tq");
+    const runnerBin = process.env.RUNNER_BIN || (process.platform === "win32" ? "operon.exe" : "opn");
     const runnerArgs = ["runner", "run", JOB_FILE];
     const runnerProcess = spawn(runnerBin, runnerArgs, {
         shell: false,

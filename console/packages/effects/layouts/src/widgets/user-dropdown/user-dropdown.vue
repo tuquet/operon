@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import type { Component } from 'vue';
 
-import type { LanguageOption } from '@tuquet/constants';
-import type { SupportedLanguagesType } from '@tuquet/locales';
-import type { AnyFunction } from '@tuquet/types';
+import type { LanguageOption } from '@operon/constants';
+import type { SupportedLanguagesType } from '@operon/locales';
+import type { AnyFunction } from '@operon/types';
 
-import type { ClassType } from '@tuquet-core/typings';
+import type { ClassType } from '@operon-core/typings';
 
 import { computed, onUnmounted, ref, useTemplateRef, watch } from 'vue';
 
-import { onSupportLanguagesChange } from '@tuquet/constants';
-import { useHoverToggle, useRefresh } from '@tuquet/hooks';
+import { onSupportLanguagesChange } from '@operon/constants';
+import { useHoverToggle, useRefresh } from '@operon/hooks';
 import {
   Globe,
   Languages,
@@ -19,17 +19,17 @@ import {
   RotateCw,
   Search,
   Settings,
-} from '@tuquet/icons';
-import { $t, loadLocaleMessages } from '@tuquet/locales';
+} from '@operon/icons';
+import { $t, loadLocaleMessages } from '@operon/locales';
 import {
   preferences,
   updatePreferences,
   usePreferences,
-} from '@tuquet/preferences';
-import { useAccessStore } from '@tuquet/stores';
-import { isWindowsOs } from '@tuquet/utils';
+} from '@operon/preferences';
+import { useAccessStore } from '@operon/stores';
+import { isWindowsOs } from '@operon/utils';
 
-import { useVbenModal } from '@tuquet-core/popup-ui';
+import { useVbenModal } from '@operon-core/popup-ui';
 import {
   Badge,
   DropdownMenu,
@@ -43,7 +43,7 @@ import {
   VbenFullScreen,
   VbenIcon,
   VbenIconButton,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import { useFullscreen, useMagicKeys, whenever } from '@vueuse/core';
 

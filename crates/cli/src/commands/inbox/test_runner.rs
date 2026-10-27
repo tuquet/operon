@@ -148,7 +148,7 @@ pub async fn run_acceptance_test(
     }
 
     // 4. Ingestion & Regex Extraction Test
-    let test_recipient = format!("test_mmo_{}@tuquet.local", test_start.elapsed().as_millis());
+    let test_recipient = format!("test_mmo_{}@operon.local", test_start.elapsed().as_millis());
     let test_code = "839201";
     let t3 = Instant::now();
     let parsed = EmailParser::parse(
@@ -194,7 +194,7 @@ pub async fn run_acceptance_test(
             message_id: None,
             sender: "security@google.com".to_string(),
             recipient: test_recipient.clone(),
-            domain: "tuquet.local".to_string(),
+            domain: "operon.local".to_string(),
             subject: Some("Your Google verification code is 839201".to_string()),
             body_text: Some("G-839201 is your code".to_string()),
             body_html: None,

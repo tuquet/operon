@@ -1,13 +1,13 @@
 import type { ComputedRef } from 'vue';
 
-import type { MenuRecordRaw } from '@tuquet/types';
+import type { MenuRecordRaw } from '@operon/types';
 
 import { computed, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
-import { preferences } from '@tuquet/preferences';
-import { useAccessStore } from '@tuquet/stores';
-import { findRootMenuByPath } from '@tuquet/utils';
+import { preferences } from '@operon/preferences';
+import { useAccessStore } from '@operon/stores';
+import { findRootMenuByPath } from '@operon/utils';
 
 import { useNavigation } from './use-navigation';
 

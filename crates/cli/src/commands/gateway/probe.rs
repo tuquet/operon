@@ -50,7 +50,7 @@ pub async fn run_probe(
             card.add_kv("Error Details", err);
         }
         card.with_footer(
-            "Pre-flight egress check failed. Verify tunnel status with: tq gateway status",
+            "Pre-flight egress check failed. Verify tunnel status with: opn gateway status",
         );
     }
 

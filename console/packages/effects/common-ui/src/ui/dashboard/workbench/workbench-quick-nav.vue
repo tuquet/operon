@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
   VbenIcon,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 interface Props {
   items?: WorkbenchQuickNavItem[];

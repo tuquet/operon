@@ -19,7 +19,7 @@ pub async fn execute_status() -> Result<String, String> {
     } else {
         json!({
             "enrolled": false,
-            "message": "Workstation not enrolled with cloud fleet. Run 'tq login' to authenticate."
+            "message": "Workstation not enrolled with cloud fleet. Run 'opn login' to authenticate."
         })
     };
 
@@ -56,7 +56,7 @@ pub async fn execute_status() -> Result<String, String> {
     });
 
     let result = json!({
-        "ecosystem": "tuquet",
+        "ecosystem": "operon",
         "cloud": cloud_info,
         "worker": worker_info,
         "browser": browser_info
@@ -82,7 +82,7 @@ pub async fn execute_cloud_whoami() -> Result<String, String> {
     } else {
         let res = json!({
             "enrolled": false,
-            "message": "Workstation is not paired with Cloud. Use 'tq login' to connect."
+            "message": "Workstation is not paired with Cloud. Use 'opn login' to connect."
         });
         Ok(serde_json::to_string_pretty(&res).unwrap_or_default())
     }

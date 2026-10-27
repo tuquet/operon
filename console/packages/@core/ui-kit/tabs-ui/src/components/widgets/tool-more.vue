@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { DropdownMenuProps } from '@tuquet-core/shadcn-ui';
+import type { DropdownMenuProps } from '@operon-core/shadcn-ui';
 
-import { LayoutGrid } from '@tuquet-core/icons';
-import { VbenDropdownMenu } from '@tuquet-core/shadcn-ui';
+import { LayoutGrid } from '@operon-core/icons';
+import { VbenDropdownMenu } from '@operon-core/shadcn-ui';
 
 defineProps<DropdownMenuProps>();
 </script>

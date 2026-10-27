@@ -6,13 +6,13 @@ import { describe, expect, it, vi } from 'vitest';
 import { isInteractiveCellClick } from '../types';
 import VxeRowDetailSheet from '../vxe-row-detail-sheet.vue';
 
-vi.mock('@tuquet/preferences', () => ({
+vi.mock('@operon/preferences', () => ({
   usePreferences: () => ({
     isMobile: ref(false),
   }),
 }));
 
-vi.mock('@tuquet/plugins/vxe-table', () => ({
+vi.mock('@operon/plugins/vxe-table', () => ({
   VxeForm: defineComponent({
     name: 'VxeForm',
     setup(_, { slots }) {
@@ -33,7 +33,7 @@ vi.mock('@tuquet/plugins/vxe-table', () => ({
   }),
 }));
 
-vi.mock('@tuquet-core/shadcn-ui', () => ({
+vi.mock('@operon-core/shadcn-ui', () => ({
   Badge: defineComponent({
     setup(_, { slots }) {
       return () => h('span', { class: 'badge-stub' }, slots.default?.());

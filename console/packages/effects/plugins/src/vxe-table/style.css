@@ -1,6 +1,6 @@
 @import 'vxe-pc-ui/lib/form/style/style.css';
 
-@reference "@tuquet/tailwind-config/theme";
+@reference "@operon/tailwind-config/theme";
 
 :root .vxe-grid,
 :root .vxe-form {

@@ -2,7 +2,7 @@ import type { PluginOption } from 'vite';
 
 import type { PrintPluginOptions } from '../typing';
 
-import { colors } from '@tuquet/node-utils';
+import { colors } from '@operon/node-utils';
 
 export const vitePrintPlugin = (
   options: PrintPluginOptions = {},

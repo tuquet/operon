@@ -3,11 +3,11 @@ import type { DialogContentEmits, DialogContentProps } from 'reka-ui';
 
 import type { HTMLAttributes } from 'vue';
 
-import type { ClassType } from '@tuquet-core/typings';
+import type { ClassType } from '@operon-core/typings';
 
 import { computed, ref } from 'vue';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { X } from '@lucide/vue';
 import {

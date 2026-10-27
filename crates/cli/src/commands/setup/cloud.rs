@@ -19,10 +19,10 @@ pub async fn run(interactive: bool) -> Result<(), Box<dyn std::error::Error>> {
         if want_login.unwrap_or(false) {
             crate::commands::cloud::handle_interactive().await?;
         } else {
-            clack_step_ok("Cloud pairing deferred. You can pair anytime using 'tq login'.");
+            clack_step_ok("Cloud pairing deferred. You can pair anytime using 'opn login'.");
         }
     } else {
-        clack_step_ok("Cloud pairing skipped. You can pair anytime using 'tq login'.");
+        clack_step_ok("Cloud pairing skipped. You can pair anytime using 'opn login'.");
     }
 
     Ok(())

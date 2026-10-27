@@ -14,7 +14,7 @@ const observedColumns = vi.hoisted(() => [] as unknown[]);
 const observedToolbarConfigs = vi.hoisted(() => [] as unknown[]);
 const extendProxyOptionsMock = vi.hoisted(() => vi.fn());
 
-vi.mock('@tuquet/hooks', async () => {
+vi.mock('@operon/hooks', async () => {
   const { ref } = await import('vue');
   const gridOptions = ref({
     columns: [
@@ -44,23 +44,23 @@ vi.mock('@tuquet/hooks', async () => {
   };
 });
 
-vi.mock('@tuquet/preferences', async () => {
+vi.mock('@operon/preferences', async () => {
   const { ref } = await import('vue');
   const isMobile = ref(false);
   mockRefs.isMobile = isMobile;
   return { usePreferences: () => ({ isMobile }) };
 });
 
-vi.mock('@tuquet/icons', async () => {
+vi.mock('@operon/icons', async () => {
   const { defineComponent, h } = await import('vue');
   return {
     EmptyIcon: defineComponent(() => () => h('span')),
   };
 });
 
-vi.mock('@tuquet/locales', () => ({ $t: (key: string) => key }));
+vi.mock('@operon/locales', () => ({ $t: (key: string) => key }));
 
-vi.mock('@tuquet-core/shadcn-ui', async () => {
+vi.mock('@operon-core/shadcn-ui', async () => {
   const { defineComponent, h } = await import('vue');
   const Stub = defineComponent(
     (_, { slots }) =>

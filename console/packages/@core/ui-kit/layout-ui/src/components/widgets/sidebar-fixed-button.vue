@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Pin, PinOff } from '@tuquet-core/icons';
+import { Pin, PinOff } from '@operon-core/icons';
 
 const expandOnHover = defineModel<boolean>('expandOnHover');
 const expandOnHovering = defineModel<boolean>('expandOnHovering');

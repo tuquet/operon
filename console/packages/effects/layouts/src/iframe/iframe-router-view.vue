@@ -4,10 +4,10 @@ import type { RouteLocationNormalized } from 'vue-router';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
-import { preferences } from '@tuquet/preferences';
-import { useTabbarStore } from '@tuquet/stores';
+import { preferences } from '@operon/preferences';
+import { useTabbarStore } from '@operon/stores';
 
-import { VbenSpinner } from '@tuquet-core/shadcn-ui';
+import { VbenSpinner } from '@operon-core/shadcn-ui';
 
 defineOptions({ name: 'IFrameRouterView' });
 

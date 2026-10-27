@@ -1,15 +1,15 @@
 # Agent Engineering Directives & Strict SSOT
 
-Official operational directives, architectural constraints, and Single Source of Truth (SSOT) rules for autonomous AI coding agents operating across the Tuquet workspace.
+Official operational directives, architectural constraints, and Single Source of Truth (SSOT) rules for autonomous AI coding agents operating across the Operonworkspace.
 
 ::: tip Distributed via Skills CLI
-You can pull and configure Tuquet agent rules and skill suites directly into your workspace or agent runtime using:
+You can pull and configure Operonagent rules and skill suites directly into your workspace or agent runtime using:
 ```bash
-npx skills add tuquet/skills --skill='*'
+npx skills add operon/skills --skill='*'
 ```
 Or for a specific agent runtime (Cursor, Claude Code, Antigravity):
 ```bash
-npx skills add tuquet/skills --agent antigravity --skill='*' -y
+npx skills add operon/skills --agent antigravity --skill='*' -y
 ```
 :::
 
@@ -17,11 +17,11 @@ npx skills add tuquet/skills --agent antigravity --skill='*' -y
 
 ## 1. Single Source of Truth (SSOT) Architecture
 
-All ecosystem runtimes, daemons, and storage MUST resolve strictly to the canonical SSOT root: `~/.tq/<pillar>/` (or `$TQ_HOME/<pillar>/`).
+All ecosystem runtimes, daemons, and storage MUST resolve strictly to the canonical SSOT root: `~/.operon/<pillar>/` (or `$TQ_HOME/<pillar>/`).
 
 ```text
-~/.tq/
-├── bin/          # Global compiled binaries (tq, tuquet)
+~/.operon/
+├── bin/          # Global compiled binaries (opn, operon)
 ├── system/       # Machine identity (.machine_id, .identity.json), history, update cache
 ├── automation/   # SQLite database (automation.sqlite), daemon config (automation.json)
 ├── worker/       # Worker supervisor daemon config (worker.json), logs, PIDs
@@ -30,7 +30,7 @@ All ecosystem runtimes, daemons, and storage MUST resolve strictly to the canoni
 └── faker/        # Synthetic identity schema & domain pool configuration (faker.json)
 ```
 
-**Anti-Fragmentation Rule:** Prohibit saving directly to flat root paths (`~/.tq/workflows`) or legacy external paths (`~/.specter`, `~/.automation`).
+**Anti-Fragmentation Rule:** Prohibit saving directly to flat root paths (`~/.operon/workflows`) or legacy external paths (`~/.specter`, `~/.automation`).
 
 ---
 
@@ -40,7 +40,7 @@ The workspace is organized into focused repositories adhering to the Single Resp
 
 | Repository | Tech Stack | Responsibility | Key Paths / Files |
 | :--- | :--- | :--- | :--- |
-| **`cli`** | Rust (Axum, Tokio, Clap, Rusqlite) | Master CLI binary (`tq`), REST/WebSocket API (port 8765), Automation | `src/main.rs`, `src/api/routes.rs`, `src/commands/` |
+| **`cli`** | Rust (Axum, Tokio, Clap, Rusqlite) | Master CLI binary (`opn`), REST/WebSocket API (port 8765), Automation | `src/main.rs`, `src/api/routes.rs`, `src/commands/` |
 | **`admin`** | TypeScript, Vue 3, Vite, Tailwind v4, Shadcn | Unified Management Console (Web Admin), Preferences Engine, Fleet UI | `packages/@core/preferences/`, `apps/web-admin/` |
 | **`browser`** | Rust (CDP driver, command-group) | Dedicated browser management, profile sandbox, extension packer | `src/manager.rs`, `src/profile.rs`, `src/extension.rs` |
 | **`worker`** | Rust (Win32 Job Objects, Tokio) | Kernel-level process supervisor daemon (zero-zombie) | `src/main.rs`, `src/core/`, `src/drivers/` |
@@ -49,14 +49,14 @@ The workspace is organized into focused repositories adhering to the Single Resp
 | **`skills`** | Markdown / Shell / Node.js | Agent skills adhering to the Ponytail simplicity standard | `skills/*/SKILL.md` |
 | **`bot`** | Rust / TypeScript | Telegram ChatOps assistant daemon & health alerting | `src/` |
 | **`docs`** | TypeScript, Vue 3, VitePress | Official documentation portal & guides | `en/`, `.vitepress/`, `index.md` |
-| **`tuquet.com`** | TypeScript, Vite-SSG, Vue 3 | Official landing page & portfolio portal | `src/`, `public/`, `pages/` |
+| **`operon.com`** | TypeScript, Vite-SSG, Vue 3 | Official landing page & portfolio portal | `src/`, `public/`, `pages/` |
 
 ---
 
 ## 3. Engineering Boundaries & Invariants
 
 ### 1. Fail-Fast Strict SSOT & Zero-Shim Invariant
-- **No Backward Compatibility Shims / Aliases:** Strictly prohibited. When migrating to canonical schemas (`tuquet/cloud`), never retain temporary aliases (e.g. no `RUNNERS: 'workers'`, no union type `'runners.*' | 'workers.*'`).
+- **No Backward Compatibility Shims / Aliases:** Strictly prohibited. When migrating to canonical schemas (`operon/cloud`), never retain temporary aliases (e.g. no `RUNNERS: 'workers'`, no union type `'runners.*' | 'workers.*'`).
 - **Rip-and-Replace:** Standardize 100% across source definitions and all callsites. 
 - **Zero Drift & Fail-Fast:** Reject permissive fallbacks that conceal schema drift. Mismatched schemas or legacy terms must fail immediately so engineers and agents resolve the root cause.
 
@@ -83,7 +83,7 @@ The workspace is organized into focused repositories adhering to the Single Resp
 - Constant-time HMAC verification. Process name checks via `sysinfo` prior to terminating any PID.
 
 ### 6. Cloud Multi-Domain OAuth Allowlist
-- Every domain or subdomain initiating authentication must be explicitly configured in the cloud allowlist (`https://console.tuquet.com/**`, `https://*.tuquet.com/**`).
+- Every domain or subdomain initiating authentication must be explicitly configured in the cloud allowlist (`https://console.operon.com/**`, `https://*.operon.com/**`).
 
 ### 7. Preferences Engine & UI Invariants
 - **Deep-Clone Baseline Isolation:** Never share object references between initial preferences and reactive state. Always use `cloneValue()`.
@@ -96,12 +96,12 @@ The workspace is organized into focused repositories adhering to the Single Resp
 
 ## 4. MCP Tools Integration
 
-Tuquet natively exposes Model Context Protocol (MCP) endpoints for autonomous agents:
+Operon natively exposes Model Context Protocol (MCP) endpoints for autonomous agents:
 
-- `tuquet_status`: Real-time health dashboard, SSOT root inspection, active listeners.
-- `tuquet_workflow_list`: Inspect workflows stored in SQLite database.
-- `tuquet_workflow_inspect`: Deep inspect workflow nodes and triggers.
-- `tuquet_workflow_run`: Trigger headless workflow execution.
-- `tuquet_worker_probe`: Verify worker daemon liveness on port 8765.
-- `tuquet_browser_status`: Inspect installed Chromium runtimes and active profiles.
-- `tuquet_faker_generate`: Generate synthetic identities or validate CCCD.
+- `operon_status`: Real-time health dashboard, SSOT root inspection, active listeners.
+- `operon_workflow_list`: Inspect workflows stored in SQLite database.
+- `operon_workflow_inspect`: Deep inspect workflow nodes and triggers.
+- `operon_workflow_run`: Trigger headless workflow execution.
+- `operon_worker_probe`: Verify worker daemon liveness on port 8765.
+- `operon_browser_status`: Inspect installed Chromium runtimes and active profiles.
+- `operon_faker_generate`: Generate synthetic identities or validate CCCD.

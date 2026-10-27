@@ -4,21 +4,21 @@ import type {
   BaseFormComponentType,
   ExtendedFormApi,
   FormValues,
-} from '@tuquet-core/form-ui';
+} from '@operon-core/form-ui';
 
 import type { VxeGridProps } from './types';
 import type { ViewedRowHelper } from './viewed-row';
 
 import { toRaw } from 'vue';
 
-import { Store } from '@tuquet-core/shared/store';
+import { Store } from '@operon-core/shared/store';
 import {
   bindMethods,
   isBoolean,
   isFunction,
   mergeWithArrayOverride,
   StateHandler,
-} from '@tuquet-core/shared/utils';
+} from '@operon-core/shared/utils';
 
 function getDefaultState(): VxeGridProps {
   return {

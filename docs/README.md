@@ -1,8 +1,8 @@
-# Tuquet Documentation Portal
+# OperonDocumentation Portal
 
-> Official documentation, operational runbooks, architecture specifications, and combat playbooks for the Tuquet Ecosystem.
+> Official documentation, operational runbooks, architecture specifications, and combat playbooks for the OperonEcosystem.
 
-Production Portal (SSOT): **[https://docs.tuquet.com/](https://docs.tuquet.com/)**
+Production Portal (SSOT): **[https://docs.operon.com/](https://docs.operon.com/)**
 
 ---
 
@@ -23,4 +23,4 @@ pnpm build
 
 ## License
 
-MIT © Tuquet
+MIT © Operon

@@ -4,7 +4,7 @@ import type { EffectiveAccess } from '#/api/core/access';
 
 import { computed, onMounted, ref, watch } from 'vue';
 
-import { Page } from '@tuquet/common-ui';
+import { Page } from '@operon/common-ui';
 
 import {
   Badge,
@@ -13,7 +13,7 @@ import {
   TabsList,
   TabsTrigger,
   toast,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import { RefreshCw } from '@lucide/vue';
 

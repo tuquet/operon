@@ -3,8 +3,8 @@ import type { PlatformUser } from '#/api';
 
 import { ref } from 'vue';
 
-import { Page } from '@tuquet/common-ui';
-import { usePreferences } from '@tuquet/preferences';
+import { Page } from '@operon/common-ui';
+import { usePreferences } from '@operon/preferences';
 
 import {
   Avatar,
@@ -12,7 +12,7 @@ import {
   AvatarImage,
   Badge,
   Button,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import { Building2, RefreshCw, Users } from '@lucide/vue';
 

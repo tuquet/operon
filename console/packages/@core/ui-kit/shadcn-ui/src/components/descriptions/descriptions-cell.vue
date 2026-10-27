@@ -5,7 +5,7 @@ import type { DescriptionsRenderNode, DescriptionsSize } from './types';
 
 import { computed } from 'vue';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { VbenRenderContent } from '../render-content';
 

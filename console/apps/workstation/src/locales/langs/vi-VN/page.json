@@ -41,7 +41,7 @@
     "wallet_desc": "Quản lý số dư, nạp Xu và lịch sử giao dịch",
     "admin": "Quản trị cửa hàng",
     "admin_desc": "Quản lý sản phẩm, nạp kho, duyệt thanh toán và cổng nạp",
-    "publicStore": "Cửa hàng tài nguyên số Tuquet",
+    "publicStore": "Cửa hàng tài nguyên số Operon",
     "publicStore_desc": "Cửa hàng sản phẩm số tự động giao hàng 24/7"
   },
   "system": {
@@ -249,7 +249,7 @@
     "archive_or_delete": "Lưu trữ / xóa",
     "members_list_title": "Danh sách thành viên",
     "col_joined_at": "Tham gia",
-    "default_member_name": "Kỹ sư Tuquet",
+    "default_member_name": "Kỹ sư Operon",
     "role_owner": "Chủ sở hữu",
     "role_viewer": "Người xem",
     "status_invited": "Chờ chấp thuận",
@@ -736,7 +736,7 @@
     "product_type_label": "Loại sản phẩm",
     "provisioned_badge": "Đã cấp phát",
     "public_config_json_label": "Cấu hình JSON",
-    "public_store_brand": "Cửa hàng số Tuquet",
+    "public_store_brand": "Cửa hàng số Operon",
     "public_store_hero_desc": "Thanh toán tự động 24/7 qua VietQR, MoMo, Stripe, USDT. Cam kết không bán trùng.",
     "public_store_hero_title": "Cửa hàng tài khoản, license key & tài nguyên số",
     "public_store_tagline": "Giao tự động 24/7 • chống bán trùng",
@@ -902,6 +902,6 @@
     "not_enrolled": "Chưa kết nối Cloud",
     "remote_count": "trên cloud",
     "empty": "Chưa có credential nào. Thêm mới hoặc Tải về từ Cloud.",
-    "daemon_offline": "Không kết nối được CLI daemon (127.0.0.1:8765). Hãy chạy `tq worker start`."
+    "daemon_offline": "Không kết nối được CLI daemon (127.0.0.1:8765). Hãy chạy `opn worker start`."
   }
 }

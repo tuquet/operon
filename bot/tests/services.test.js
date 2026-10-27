@@ -21,7 +21,7 @@ describe('System Service Tests', () => {
   });
 
   test('checkSiteHealth pings website successfully with SSL', async () => {
-    const health = await checkSiteHealth('https://release.tuquet.com/');
+    const health = await checkSiteHealth('https://release.operon.com/');
     assert.equal(health.status, 200, 'HTTP status should be 200');
     assert.equal(health.isOk, true, 'Site health isOk should be true');
     assert.ok(health.latency > 0, 'Latency should be measured');
@@ -54,15 +54,15 @@ describe('System Service Tests', () => {
 
 describe('GitHub & Releases Service Tests', () => {
   test('getLatestRuns fetches workflow runs from GitHub', async () => {
-    const runs = await getLatestRuns('tuquet/tuquet.com', 1);
+    const runs = await getLatestRuns('operon/operon.com', 1);
     assert.ok(Array.isArray(runs), 'Runs should be an array');
     assert.ok(runs.length >= 1, 'Should return at least 1 run');
     assert.ok(runs[0].databaseId, 'Database ID should be present');
     assert.ok(runs[0].status, 'Status should be present');
   });
 
-  test('listRepos fetches repositories for user tuquet', async () => {
-    const repos = await listRepos('tuquet', 3);
+  test('listRepos fetches repositories for user operon', async () => {
+    const repos = await listRepos('operon', 3);
     assert.ok(Array.isArray(repos), 'Repos should be an array');
     assert.ok(repos.length > 0, 'Should return at least 1 repository');
     assert.ok(repos[0].name, 'Repo should have a name');
@@ -70,7 +70,7 @@ describe('GitHub & Releases Service Tests', () => {
   });
 
   test('getFailedLogs handles error log queries gracefully', async () => {
-    const result = await getFailedLogs('tuquet/tuquet.com');
+    const result = await getFailedLogs('operon/operon.com');
     assert.ok(typeof result.hasFailed === 'boolean');
     if (!result.hasFailed) {
       assert.ok(result.message);
@@ -88,19 +88,19 @@ describe('GitHub & Releases Service Tests', () => {
     assert.ok(releases[0].url, 'Release should have a url property');
   });
 
-  test('resolveRepo normalizes short repo names to tuquet/repo', () => {
-    assert.equal(resolveRepo('releases'), 'tuquet/releases');
-    assert.equal(resolveRepo('tuquet/cloud'), 'tuquet/cloud');
+  test('resolveRepo normalizes short repo names to operon/repo', () => {
+    assert.equal(resolveRepo('releases'), 'operon/releases');
+    assert.equal(resolveRepo('operon/cloud'), 'operon/cloud');
     assert.equal(resolveRepo('all'), 'all');
-    assert.equal(resolveRepo(''), 'tuquet/tuquet.com');
+    assert.equal(resolveRepo(''), 'operon/operon.com');
   });
 
   test('getMultiRepoCiSummary fetches latest workflow info for multiple repos', async () => {
-    const summary = await getMultiRepoCiSummary(['tuquet/tuquet.com', 'tuquet/releases']);
+    const summary = await getMultiRepoCiSummary(['operon/operon.com', 'operon/releases']);
     assert.equal(summary.length, 2);
-    assert.equal(summary[0].repo, 'tuquet/tuquet.com');
+    assert.equal(summary[0].repo, 'operon/operon.com');
     assert.equal(summary[0].hasRun, true);
-    assert.equal(summary[1].repo, 'tuquet/releases');
+    assert.equal(summary[1].repo, 'operon/releases');
     assert.equal(summary[1].hasRun, true);
     assert.ok(typeof summary[1].conclusion === 'string' || summary[1].conclusion === null, 'Conclusion should be string or null');
   });

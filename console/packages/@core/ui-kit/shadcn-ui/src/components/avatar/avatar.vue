@@ -7,7 +7,7 @@ import type {
 
 import type { CSSProperties } from 'vue';
 
-import type { ClassType } from '@tuquet-core/typings';
+import type { ClassType } from '@operon-core/typings';
 
 import { computed } from 'vue';
 

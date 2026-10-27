@@ -8,7 +8,7 @@ import type {
   FormValues,
 } from './types';
 
-import { cloneDeep, formatDate, isFunction } from '@tuquet-core/shared/utils';
+import { cloneDeep, formatDate, isFunction } from '@operon-core/shared/utils';
 
 import {
   deleteValueByFieldName,

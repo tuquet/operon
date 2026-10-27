@@ -32,7 +32,7 @@ pub async fn handle(
 
             let fmt = format.resolve();
             if !json_output && !fmt.is_json() {
-                clack_intro("tq schema commands", "CLI Command Manifest Catalog");
+                clack_intro("opn schema commands", "CLI Command Manifest Catalog");
                 show_commands_table(&filtered, pillar.as_deref());
                 clack_outro(&format!(
                     "Listed {} command(s). Use '--json' for machine export.",
@@ -57,7 +57,7 @@ pub async fn handle(
             }
             None => {
                 if is_interactive_tty() && !json_output {
-                    clack_intro("tq schema config", "Microservice JSON Schema Definitions");
+                    clack_intro("opn schema config", "Microservice JSON Schema Definitions");
                     let services = [
                         (
                             "gateway",
@@ -110,7 +110,7 @@ pub async fn handle(
                 println!("{}", pretty);
             } else {
                 clack_intro(
-                    "tq schema mcp",
+                    "opn schema mcp",
                     "Model Context Protocol (MCP) Tool Definitions",
                 );
                 let m = manifest();
@@ -121,7 +121,7 @@ pub async fn handle(
                     .collect();
                 show_commands_table(&mcp_cmds, None);
                 clack_outro(&format!(
-                    "Listed {} MCP-exported tool(s). Pass 'tq schema --json mcp' for raw JSON Schema.",
+                    "Listed {} MCP-exported tool(s). Pass 'opn schema --json mcp' for raw JSON Schema.",
                     mcp_cmds.len()
                 ));
             }
@@ -133,7 +133,7 @@ pub async fn handle(
 
 fn run_interactive_schema() -> Result<(), Box<dyn std::error::Error>> {
     clack_intro(
-        "tq schema",
+        "opn schema",
         "CLI Manifest & Microservice JSON Schema Inspector",
     );
 
@@ -213,7 +213,7 @@ fn run_interactive_schema() -> Result<(), Box<dyn std::error::Error>> {
         }
         3 => {
             show_config_overview();
-            clack_outro("Pass 'tq schema config <service>' to export raw JSON Schema.");
+            clack_outro("Pass 'opn schema config <service>' to export raw JSON Schema.");
         }
         4 => {
             let mcp_tools = export_mcp_tools();
@@ -258,7 +258,7 @@ fn show_overview() {
         );
     }
 
-    card.with_footer("Inspect: 'tq schema commands' | Export: 'tq schema --json'");
+    card.with_footer("Inspect: 'opn schema commands' | Export: 'opn schema --json'");
     card.print();
 }
 
@@ -297,7 +297,7 @@ fn show_commands_table(commands: &[&CommandDef], pillar_filter: Option<&str>) {
 
     for cmd in commands {
         let route_str = format!(
-            "{CYAN}tq {}{RESET}",
+            "{CYAN}opn {}{RESET}",
             cmd.route.join(" "),
             CYAN = colors::CYAN,
             RESET = colors::RESET,
@@ -366,17 +366,17 @@ fn show_config_overview() {
         RESET = colors::RESET,
     ));
     card.add_line(format!(
-        "    {CYAN}tq schema config gateway{RESET}   Output gateway.json schema",
+        "    {CYAN}opn schema config gateway{RESET}   Output gateway.json schema",
         CYAN = colors::CYAN,
         RESET = colors::RESET,
     ));
     card.add_line(format!(
-        "    {CYAN}tq schema config browser{RESET}  Output browser.json schema",
+        "    {CYAN}opn schema config browser{RESET}  Output browser.json schema",
         CYAN = colors::CYAN,
         RESET = colors::RESET,
     ));
     card.add_line(format!(
-        "    {CYAN}tq schema config automation{RESET}   Output automation.json schema",
+        "    {CYAN}opn schema config automation{RESET}   Output automation.json schema",
         CYAN = colors::CYAN,
         RESET = colors::RESET,
     ));

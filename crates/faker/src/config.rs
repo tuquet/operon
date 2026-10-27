@@ -38,7 +38,7 @@ impl Default for FakerConfig {
 }
 
 impl FakerConfig {
-    /// Canonical root directory for SSOT (~/.tq/ or $TQ_HOME)
+    /// Canonical root directory for SSOT (~/.operon/ or $TQ_HOME)
     pub fn canonical_dir() -> PathBuf {
         if let Ok(dir) = std::env::var(crate::constants::ENV_TQ_HOME)
             .or_else(|_| std::env::var(crate::constants::ENV_SPECTER_HOME))
@@ -53,14 +53,14 @@ impl FakerConfig {
         PathBuf::from(home).join(crate::constants::DEFAULT_SSOT_DIR_NAME)
     }
 
-    /// Single source of truth (SSOT) config path: ~/.tq/faker/faker.json
+    /// Single source of truth (SSOT) config path: ~/.operon/faker/faker.json
     pub fn config_path() -> PathBuf {
         let faker_dir = Self::canonical_dir().join(crate::constants::PILLAR_DIR_FAKER);
         let _ = fs::create_dir_all(&faker_dir);
         faker_dir.join(crate::constants::CONFIG_FILE_FAKER_JSON)
     }
 
-    /// Load config from ~/.tq/faker/faker.json.
+    /// Load config from ~/.operon/faker/faker.json.
     /// If file does not exist, automationtically creates default faker.json and returns it.
     pub fn load() -> Self {
         let path = Self::config_path();
@@ -80,7 +80,7 @@ impl FakerConfig {
         config
     }
 
-    /// Save configuration to ~/.tq/faker/faker.json
+    /// Save configuration to ~/.operon/faker/faker.json
     pub fn save(&self) -> Result<(), std::io::Error> {
         let path = Self::config_path();
         if let Some(parent) = path.parent() {
@@ -167,6 +167,6 @@ mod tests {
     #[test]
     fn test_canonical_dir() {
         let dir = FakerConfig::canonical_dir();
-        assert!(dir.to_string_lossy().contains(".tq") || dir.to_string_lossy().contains(".tq"));
+        assert!(dir.to_string_lossy().contains(".opn") || dir.to_string_lossy().contains(".opn"));
     }
 }

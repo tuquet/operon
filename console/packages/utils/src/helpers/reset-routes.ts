@@ -1,6 +1,6 @@
 import type { Router, RouteRecordName, RouteRecordRaw } from 'vue-router';
 
-import { traverseTreeValues } from '@tuquet-core/shared/utils';
+import { traverseTreeValues } from '@operon-core/shared/utils';
 
 /**
  * Reset all routes, except those specified in whitelist

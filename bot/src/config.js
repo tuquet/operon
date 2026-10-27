@@ -19,7 +19,7 @@ if (fs.existsSync(envPath)) {
 const configPath = path.join(rootDir, 'config', 'default.json');
 let defaultConfig = {
   botName: 'FlowupAI_bot',
-  defaultRepo: 'tuquet/tuquet.com',
+  defaultRepo: 'operon/operon.com',
   deployWorkflow: 'deploy-pages.yml',
   monitoredServices: ['telegram-bot', 'docker', 'ssh']
 };
@@ -45,8 +45,8 @@ export const config = {
   defaultRepo: process.env.GITHUB_DEFAULT_REPO || defaultConfig.defaultRepo,
   deployWorkflow: defaultConfig.deployWorkflow,
   websiteUrl: process.env.GITHUB_PAGES_URL || defaultConfig.websiteUrl,
-  releasesApiUrl: process.env.RELEASES_API_URL || defaultConfig.releasesApiUrl || 'https://release.tuquet.com/api/releases',
-  releasesFeedUrl: defaultConfig.releasesFeedUrl || 'https://release.tuquet.com/feed.xml',
+  releasesApiUrl: process.env.RELEASES_API_URL || defaultConfig.releasesApiUrl || 'https://release.operon.com/api/releases',
+  releasesFeedUrl: defaultConfig.releasesFeedUrl || 'https://release.operon.com/feed.xml',
   releasePollMinutes: defaultConfig.releasePollMinutes || 5,
   broadcastChats: (process.env.BROADCAST_CHAT_IDS || '')
     .split(',')

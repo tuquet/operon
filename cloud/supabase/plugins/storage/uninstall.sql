@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: MEDIA STORAGE & ASSETS MANAGEMENT (UNINSTALLATION SCRIPT)
+-- OPN-CLOUD PLUGIN: MEDIA STORAGE & ASSETS MANAGEMENT (UNINSTALLATION SCRIPT)
 -- Plugin ID: storage
 -- Architecture: Atomic Zero-Orphan Cleanup via DROP SCHEMA CASCADE
 -- ============================================================================

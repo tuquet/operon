@@ -20,7 +20,7 @@ COPY scripts ./scripts
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 # Build workstation
-RUN pnpm --filter @tuquet/workstation build
+RUN pnpm --filter @operon/workstation build
 
 # Production Stage: Nginx Alpine
 FROM nginx:stable-alpine AS production

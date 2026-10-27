@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'vue';
 
-import type { ClassType } from '@tuquet/types';
+import type { ClassType } from '@operon/types';
 
 export interface CaptchaData {
   /**

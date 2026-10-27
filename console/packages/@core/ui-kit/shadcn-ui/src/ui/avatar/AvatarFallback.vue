@@ -3,7 +3,7 @@ import type { AvatarFallbackProps } from 'reka-ui';
 
 import type { HTMLAttributes } from 'vue';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { reactiveOmit } from '@vueuse/core';
 import { AvatarFallback } from 'reka-ui';

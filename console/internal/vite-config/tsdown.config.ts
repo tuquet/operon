@@ -10,7 +10,7 @@ const loadingAssets = ['default-loading-antd.html', 'default-loading.html'];
 export default defineConfig({
   clean: true,
   deps: {
-    neverBundle: ['@tuquet/node-utils'],
+    neverBundle: ['@operon/node-utils'],
     skipNodeModulesBundle: true,
   },
   dts: {

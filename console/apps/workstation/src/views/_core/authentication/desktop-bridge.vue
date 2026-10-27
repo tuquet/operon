@@ -2,8 +2,8 @@
 import { computed, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-import { $t } from '@tuquet/locales';
-import { useAccessStore, useUserStore } from '@tuquet/stores';
+import { $t } from '@operon/locales';
+import { useAccessStore, useUserStore } from '@operon/stores';
 
 import {
   Alert,
@@ -20,7 +20,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import { CheckCircle2, Laptop } from '@lucide/vue';
 
@@ -56,7 +56,7 @@ const userName = computed(
     userStore.userInfo?.realName || userStore.userInfo?.username || 'Operator',
 );
 const userAvatar = computed(
-  () => userStore.userInfo?.avatar || 'https://tuquet.com/icons/cli.svg',
+  () => userStore.userInfo?.avatar || 'https://operon.com/icons/cli.svg',
 );
 
 // Tenancy
@@ -96,7 +96,7 @@ const errorMessage = ref('');
 const deepLinkUrl = computed(() => {
   const token = accessStore.accessToken || '';
   const refreshToken = accessStore.refreshToken || '';
-  return `tuquet://auth/callback?token=${encodeURIComponent(token)}&refresh_token=${encodeURIComponent(refreshToken)}&state=${encodeURIComponent(state.value)}&tenant_id=${encodeURIComponent(selectedTenant.value)}&machine_name=${encodeURIComponent(machineName.value)}`;
+  return `operon://auth/callback?token=${encodeURIComponent(token)}&refresh_token=${encodeURIComponent(refreshToken)}&state=${encodeURIComponent(state.value)}&tenant_id=${encodeURIComponent(selectedTenant.value)}&machine_name=${encodeURIComponent(machineName.value)}`;
 });
 
 function goToLogin() {
@@ -224,7 +224,7 @@ onMounted(() => {
       <template v-else-if="!isLoggedIn">
         <div class="text-center py-6 space-y-4">
           <Avatar class="size-16 mx-auto mb-2">
-            <AvatarImage src="https://tuquet.com/icons/cli.svg" />
+            <AvatarImage src="https://operon.com/icons/cli.svg" />
             <AvatarFallback>CLI</AvatarFallback>
           </Avatar>
           <h3 class="text-xl font-bold">

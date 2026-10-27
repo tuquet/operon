@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // ============================================================================
-// TUQUET-CLOUD TEST PRESET CLI (NODE.JS / ESM / CROSS-PLATFORM)
+// OPN-CLOUD TEST PRESET CLI (NODE.JS / ESM / CROSS-PLATFORM)
 // Description: SOLID CLI for provisioning and verifying test identities,
 //              tenants, memberships, and RLS access against Supabase.
 // ============================================================================
@@ -34,7 +34,7 @@ const colors = {
 
 function showBanner(title) {
   console.log(colors.cyan('='.repeat(68)));
-  console.log(colors.cyan(` [TUQUET-CLOUD-TEST-CLI] ${title}`));
+  console.log(colors.cyan(` [OPN-CLOUD-TEST-CLI] ${title}`));
   console.log(colors.cyan('='.repeat(68)));
 }
 

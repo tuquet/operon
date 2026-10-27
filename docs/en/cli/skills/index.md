@@ -2,10 +2,10 @@
 
 Autonomous coding agents like Claude Code, Cursor, and Google Antigravity excel at code generation, but when tasked with live web execution, they rely on naive headless browsers that trigger Cloudflare Turnstile and Akamai instantly.
 
-**AI Agent & MCP Protocol Gateway** equips autonomous agents with stealth combat tools via the open Model Context Protocol (MCP) over JSON-RPC 2.0 stdio. Standalone MCP server or launched via `tq mcp`. Agents inspect browser profiles, dispatch stealth CDP scrapers, generate mathematically valid personas, and monitor VPS node health without needing raw shell privileges.
+**AI Agent & MCP Protocol Gateway** equips autonomous agents with stealth combat tools via the open Model Context Protocol (MCP) over JSON-RPC 2.0 stdio. Standalone MCP server or launched via `opn mcp`. Agents inspect browser profiles, dispatch stealth CDP scrapers, generate mathematically valid personas, and monitor VPS node health without needing raw shell privileges.
 
 ::: tip Standalone Microservice
-Run `tq mcp` or pipe the JSON-RPC stream directly into any MCP client. AI agents get direct programmatic control over profiles, proxies, and scrapers without root or elevated bash access.
+Run `opn mcp` or pipe the JSON-RPC stream directly into any MCP client. AI agents get direct programmatic control over profiles, proxies, and scrapers without root or elevated bash access.
 :::
 
 ---
@@ -17,7 +17,7 @@ The **Model Context Protocol (MCP)** is an open industry standard that allows La
 ```text
  ┌─────────────────────────┐                ┌─────────────────────────┐
  │   Autonomous AI Agent   │                │     MCP Host    │
- │ (Claude Code, Cursor,   │ ── JSON-RPC ─► │     (tq mcp)       │
+ │ (Claude Code, Cursor,   │ ── JSON-RPC ─► │     (opn mcp)       │
  │  Google Antigravity)    │ ◄── stdio ───  │                         │
  └─────────────────────────┘                └───────────┬─────────────┘
                                                         │
@@ -32,7 +32,7 @@ The **Model Context Protocol (MCP)** is an open industry standard that allows La
 
 ## 2. Complete MCP Tools Catalog
 
-When launched via `tq mcp`, registers native tools into the AI agent's tool registry:
+When launched via `opn mcp`, registers native tools into the AI agent's tool registry:
 
 | Tool Name | Arguments | Capabilities & Agent Action |
 | :--- | :--- | :--- |
@@ -56,8 +56,8 @@ Add the server definition to `~/.gemini/antigravity-cli/mcp_config.json`:
 ```json
 {
   "mcpServers": {
-    "tuquet": {
-      "command": "tuquet",
+    "operon": {
+      "command": "operon",
       "args": ["mcp"]
     }
   }
@@ -70,8 +70,8 @@ Add to `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "tuquet": {
-      "command": "tuquet",
+    "operon": {
+      "command": "operon",
       "args": ["mcp"]
     }
   }
@@ -84,8 +84,8 @@ Add to `.cursor/mcp.json` or Workspace Settings:
 ```json
 {
   "mcpServers": {
-    "tuquet": {
-      "command": "tuquet",
+    "operon": {
+      "command": "operon",
       "args": ["mcp"]
     }
   }

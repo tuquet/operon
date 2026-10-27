@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD TEST IDENTITY & TENANT PROVISIONING HELPER
+-- OPN-CLOUD TEST IDENTITY & TENANT PROVISIONING HELPER
 -- Description: Stored procedure for atomic, idempotent provisioning of test
 --              identities in auth.users, auth.identities, public.profiles,
 --              public.tenants, public.tenant_members, and public.member_roles.
@@ -240,7 +240,7 @@ BEGIN
                         WHERE tm.tenant_id = v_tenant_id AND mr.role_id = v_owner_rid AND tm.user_id <> v_user_id
                     ) THEN
                         -- Ensure workspace administrator identity exists
-                        SELECT id INTO v_ws_admin_id FROM auth.users WHERE email = 'admin@tuquet.dev' LIMIT 1;
+                        SELECT id INTO v_ws_admin_id FROM auth.users WHERE email = 'admin@operon.dev' LIMIT 1;
                         IF v_ws_admin_id IS NULL THEN
                             v_ws_admin_id := extensions.gen_random_uuid();
                             INSERT INTO auth.users (
@@ -248,13 +248,13 @@ BEGIN
                                 raw_app_meta_data, raw_user_meta_data, created_at, updated_at
                             ) VALUES (
                                 v_ws_admin_id, '00000000-0000-0000-0000-000000000000'::uuid,
-                                'authenticated', 'authenticated', 'admin@tuquet.dev',
+                                'authenticated', 'authenticated', 'admin@operon.dev',
                                 extensions.crypt('AdminPass!12345', extensions.gen_salt('bf', 10)),
                                 now(), '{"provider": "email"}'::jsonb, '{"full_name": "Workspace Administrator"}'::jsonb,
                                 now(), now()
                             );
                             INSERT INTO public.profiles (id, email, full_name)
-                            VALUES (v_ws_admin_id, 'admin@tuquet.dev', 'Workspace Administrator')
+                            VALUES (v_ws_admin_id, 'admin@operon.dev', 'Workspace Administrator')
                             ON CONFLICT (id) DO NOTHING;
                         END IF;
 

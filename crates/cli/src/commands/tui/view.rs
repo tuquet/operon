@@ -21,7 +21,7 @@ impl TuiView {
         // 1. Header Bar
         crossterm::queue!(stdout, terminal::Clear(terminal::ClearType::UntilNewLine))?;
         let title = format!(
-            " [tq tui] TUQUET MISSION CONTROL v{} ",
+            " [opn tui] OPN MISSION CONTROL v{} ",
             env!("CARGO_PKG_VERSION")
         );
         let tick_indicator = if state.tick_count.is_multiple_of(2) {
@@ -200,19 +200,19 @@ impl TuiView {
         Self::print_box_line(
             stdout,
             width,
-            "  • tq automation run : Execute automation workflow directly",
+            "  • opn automation run : Execute automation workflow directly",
         )?;
         count += 1;
         Self::print_box_line(
             stdout,
             width,
-            "  • tq automation list: List all workflows stored in local database",
+            "  • opn automation list: List all workflows stored in local database",
         )?;
         count += 1;
         Self::print_box_line(
             stdout,
             width,
-            "  • tq worker start   : Start background worker daemon",
+            "  • opn worker start   : Start background worker daemon",
         )?;
         count += 1;
         Ok(count)
@@ -236,7 +236,7 @@ impl TuiView {
                 if state.browser.installed {
                     "[READY] (Installed)"
                 } else {
-                    "[MISSING] (Run 'tq browser install')"
+                    "[MISSING] (Run 'opn browser install')"
                 }
             ),
         )?;
@@ -294,13 +294,13 @@ impl TuiView {
         Self::print_box_line(
             stdout,
             width,
-            "  • tq browser launch : Launch isolated browser sandbox profile",
+            "  • opn browser launch : Launch isolated browser sandbox profile",
         )?;
         count += 1;
         Self::print_box_line(
             stdout,
             width,
-            "  • tq browser list   : Inspect registered browser profiles and PIDs",
+            "  • opn browser list   : Inspect registered browser profiles and PIDs",
         )?;
         count += 1;
         Ok(count)
@@ -390,13 +390,13 @@ impl TuiView {
         Self::print_box_line(
             stdout,
             width,
-            "  • tq gateway status  : Inspect multi-VPS mesh topology and latency",
+            "  • opn gateway status  : Inspect multi-VPS mesh topology and latency",
         )?;
         count += 1;
         Self::print_box_line(
             stdout,
             width,
-            "  • tq git <repo> push-gateway : Route git push operations through mesh",
+            "  • opn git <repo> push-gateway : Route git push operations through mesh",
         )?;
         count += 1;
         Ok(count)
@@ -464,25 +464,25 @@ impl TuiView {
         Self::print_box_line(
             stdout,
             width,
-            "  • tq auth login     : Authenticate operator account and pair workstation",
+            "  • opn auth login     : Authenticate operator account and pair workstation",
         )?;
         count += 1;
         Self::print_box_line(
             stdout,
             width,
-            "  • tq auth whoami    : Check active enrollment status and token claims",
+            "  • opn auth whoami    : Check active enrollment status and token claims",
         )?;
         count += 1;
         Self::print_box_line(
             stdout,
             width,
-            "  • tq auth tenant    : Switch or list accessible multi-tenant workspaces",
+            "  • opn auth tenant    : Switch or list accessible multi-tenant workspaces",
         )?;
         count += 1;
         Self::print_box_line(
             stdout,
             width,
-            "  • tq auth logout    : Revoke local token and disconnect workstation",
+            "  • opn auth logout    : Revoke local token and disconnect workstation",
         )?;
         count += 1;
         Ok(count)

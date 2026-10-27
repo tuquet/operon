@@ -4,7 +4,7 @@ import type { FormValidationTrigger } from './types';
 
 import { computed, inject, onUnmounted, provide, toRaw, watch } from 'vue';
 
-import { cloneDeep, isEqual } from '@tuquet-core/shared/utils';
+import { cloneDeep, isEqual } from '@operon-core/shared/utils';
 
 export interface FormCustomFieldContext {
   /** Registered getter function; a form item only accepts one */

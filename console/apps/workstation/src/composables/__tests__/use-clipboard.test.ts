@@ -2,11 +2,11 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useClipboard } from '../use-clipboard';
 
-vi.mock('@tuquet-core/shadcn-ui', () => ({
+vi.mock('@operon-core/shadcn-ui', () => ({
   toast: { error: vi.fn(), success: vi.fn() },
 }));
 
-vi.mock('@tuquet/locales', () => ({
+vi.mock('@operon/locales', () => ({
   $t: (key: string, params?: any) => `${key}:${JSON.stringify(params || {})}`,
 }));
 

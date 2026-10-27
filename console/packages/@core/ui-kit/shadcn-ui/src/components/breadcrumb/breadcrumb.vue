@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { BreadcrumbProps } from './types';
 
-import { ChevronDown } from '@tuquet-core/icons';
+import { ChevronDown } from '@operon-core/icons';
 
 import {
   Breadcrumb,

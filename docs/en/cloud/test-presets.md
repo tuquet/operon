@@ -53,7 +53,7 @@ scripts/testing/
 - **Plan**: `pro`
 
 ### `collaborator.json` (Member Preset)
-- **User Email**: `collaborator@tuquet.dev`
+- **User Email**: `collaborator@operon.dev`
 - **Password**: `DevPass!12345`
 - **Tenant Slug**: `collaborator-sandbox`
 - **Role**: `member`
@@ -77,11 +77,11 @@ node scripts/testing/test-cli.mjs list
 **Output:**
 ```
 ====================================================================
- [TUQUET-CLOUD-TEST-CLI] Available Test Presets
+ [OPN-CLOUD-TEST-CLI] Available Test Presets
 ====================================================================
 PRESET          EMAIL                          TENANT SLUG               ROLE     PLAN    
 ------------------------------------------------------------------------------------------
-collaborator    collaborator@tuquet.dev        collaborator-sandbox      member   free    
+collaborator    collaborator@operon.dev        collaborator-sandbox      member   free    
 tunyk           tunyk.93@gmail.com             tunyk-tenant              owner    pro     
 ```
 
@@ -101,7 +101,7 @@ node scripts/testing/test-cli.mjs apply --preset tunyk --verify
 **Output:**
 ```
 ====================================================================
- [TUQUET-CLOUD-TEST-CLI] Applying Test Preset: tunyk
+ [OPN-CLOUD-TEST-CLI] Applying Test Preset: tunyk
 ====================================================================
 --> Provisioning Identity & Tenant in Database (local)...
     [OK] User ID:     7196a0b7-97a9-4d93-9e8c-ef1950b26b58
@@ -173,7 +173,7 @@ Removes the test user and their test tenant:
   "name": "qa-tester",
   "description": "QA Automation Test Account",
   "user": {
-    "email": "qa@tuquet.dev",
+    "email": "qa@operon.dev",
     "password": "TestPassword!123",
     "full_name": "QA Automation Bot",
     "avatar_url": "https://api.dicebear.com/7.x/identicon/svg?seed=qa"

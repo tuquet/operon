@@ -318,7 +318,7 @@ pub struct BrowserConfig {
     /// Standard browser engine category (Chromium, Firefox, or Custom)
     #[serde(default, alias = "type", alias = "browserType")]
     pub browser_type: Option<BrowserType>,
-    /// Isolated browser profile identifier (sandbox directory name under ~/.tq/browser/profiles/)
+    /// Isolated browser profile identifier (sandbox directory name under ~/.operon/browser/profiles/)
     #[serde(default, alias = "profile", alias = "profileId", alias = "browserId")]
     pub browser_id: Option<String>,
     /// Specific Antidetect Chromium version ("148", "lts", "148.0.7778.215")
@@ -327,7 +327,7 @@ pub struct BrowserConfig {
     /// Launch in headless mode (default: true)
     #[serde(default)]
     pub headless: Option<bool>,
-    /// Custom user data directory (overrides default ~/.tq/browser/profiles/<id>)
+    /// Custom user data directory (overrides default ~/.operon/browser/profiles/<id>)
     #[serde(default, alias = "userDataDir")]
     pub user_data_dir: Option<String>,
     /// Chrome DevTools Protocol debugging port
@@ -484,7 +484,7 @@ pub struct AutomaJobPayload {
     /// Enable debug mode for verbose step-by-step logs
     #[serde(default, alias = "debugMode")]
     pub debug: Option<bool>,
-    /// Target execution CLI binary name ("tuquet", "automation", "automation-core")
+    /// Target execution CLI binary name ("operon", "automation", "automation-core")
     #[serde(default)]
     pub target: Option<String>,
     /// Timeout in milliseconds (if overriding job-level timeout)
@@ -571,7 +571,7 @@ impl AutomaJobPayload {
         cfg
     }
 
-    /// Converts this payload into CLI arguments for `tq automation run`
+    /// Converts this payload into CLI arguments for `opn automation run`
     pub fn build_cli_args(&self) -> Vec<String> {
         let mut args = vec!["run".to_string()];
         let wf_cfg = self.resolved_workflow_config();
@@ -663,7 +663,7 @@ pub struct BrowserJobPayload {
     /// Initial URL to navigate upon launch (if action is Launch)
     #[serde(default)]
     pub url: Option<String>,
-    /// Target CLI executable ("tuquet", "browser")
+    /// Target CLI executable ("operon", "browser")
     #[serde(default)]
     pub target: Option<String>,
 }
@@ -936,7 +936,7 @@ mod tests {
                 "path": "./workflows/data_miner.json",
                 "variables": {
                     "depth": 3,
-                    "target": "https://api.tq.dev"
+                    "target": "https://api.operon.dev"
                 }
             },
             "browser": "chromium"
@@ -951,7 +951,7 @@ mod tests {
         assert_eq!(vars.get("depth").and_then(|v| v.as_i64()), Some(3));
         assert_eq!(
             vars.get("target").and_then(|v| v.as_str()),
-            Some("https://api.tq.dev")
+            Some("https://api.operon.dev")
         );
 
         let args = payload.build_cli_args();
@@ -959,7 +959,7 @@ mod tests {
         assert!(args.contains(&"./workflows/data_miner.json".to_string()));
         assert!(args.contains(&"-p".to_string()));
         assert!(args.contains(&"depth=3".to_string()));
-        assert!(args.contains(&"target=https://api.tq.dev".to_string()));
+        assert!(args.contains(&"target=https://api.operon.dev".to_string()));
     }
 
     #[test]

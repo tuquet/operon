@@ -14,7 +14,7 @@ import {
   outputJSON,
   readJSON,
   UNICODE,
-} from '@tuquet/node-utils';
+} from '@operon/node-utils';
 
 import { publint } from 'publint';
 import { formatMessage } from 'publint/utils';

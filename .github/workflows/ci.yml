@@ -66,4 +66,4 @@ jobs:
       - name: Frontend Typecheck
         run: |
           cd console
-          pnpm --filter @tuquet/workstation typecheck
+          pnpm --filter @operon/workstation typecheck

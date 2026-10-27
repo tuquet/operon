@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { MenuRecordBadgeRaw } from '@tuquet-core/typings';
+import type { MenuRecordBadgeRaw } from '@operon-core/typings';
 
 import { computed } from 'vue';
 
-import { isValidColor } from '@tuquet-core/shared/color';
+import { isValidColor } from '@operon-core/shared/color';
 
 import BadgeDot from './menu-badge-dot.vue';
 

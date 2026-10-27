@@ -102,12 +102,12 @@ fn inject_mcp_config(config_file: &Path) -> Result<(), Box<dyn std::error::Error
         config_val["mcpServers"] = json!({});
     }
 
-    let cmd = if find_executable("tq").is_some() {
-        "tq".to_string()
+    let cmd = if find_executable("opn").is_some() {
+        "opn".to_string()
     } else {
         std::env::current_exe()
             .map(|p| p.display().to_string())
-            .unwrap_or_else(|_| "tq".to_string())
+            .unwrap_or_else(|_| "opn".to_string())
     };
 
     let mcp_def = json!({
@@ -115,8 +115,8 @@ fn inject_mcp_config(config_file: &Path) -> Result<(), Box<dyn std::error::Error
         "args": ["mcp"]
     });
 
-    // Set tuquet and remove old specter key if present
-    config_val["mcpServers"]["tuquet"] = mcp_def.clone();
+    // Set operon and remove old specter key if present
+    config_val["mcpServers"]["operon"] = mcp_def.clone();
     if let Some(servers) = config_val
         .get_mut("mcpServers")
         .and_then(|v| v.as_object_mut())

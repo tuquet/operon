@@ -121,7 +121,7 @@ impl FingerprintEngine {
         if let Ok(output) = cmd.output() {
             if output.status.success() {
                 let stdout = String::from_utf8_lossy(&output.stdout);
-                return stdout.contains("tuquet.agent.v1");
+                return stdout.contains("operon.agent.v1");
             }
         }
 
@@ -129,7 +129,7 @@ impl FingerprintEngine {
         if let Ok(output) = Command::new("claude-agy").arg("probe").output() {
             if output.status.success() {
                 let stdout = String::from_utf8_lossy(&output.stdout);
-                return stdout.contains("tuquet.agent.v1");
+                return stdout.contains("operon.agent.v1");
             }
         }
 
@@ -137,16 +137,16 @@ impl FingerprintEngine {
     }
 
     fn probe_automa() -> bool {
-        // 1. Primary: check 'tuquet' unified CLI binary
+        // 1. Primary: check 'operon' unified CLI binary
         let bin = if cfg!(windows) {
-            "tuquet.exe"
+            "operon.exe"
         } else {
-            "tuquet"
+            "operon"
         };
         if let Ok(output) = Command::new(bin).arg("automation").arg("probe").output() {
             if output.status.success() {
                 let stdout = String::from_utf8_lossy(&output.stdout);
-                return stdout.contains("tuquet.automation.v1");
+                return stdout.contains("operon.automation.v1");
             }
         }
 
@@ -162,7 +162,7 @@ impl FingerprintEngine {
         if let Ok(output) = cmd.output() {
             if output.status.success() {
                 let stdout = String::from_utf8_lossy(&output.stdout);
-                return stdout.contains("tuquet.automation.v1");
+                return stdout.contains("operon.automation.v1");
             }
         }
 
@@ -175,7 +175,7 @@ impl FingerprintEngine {
         if let Ok(output) = Command::new(core_name).arg("probe").output() {
             if output.status.success() {
                 let stdout = String::from_utf8_lossy(&output.stdout);
-                return stdout.contains("tuquet.automation.v1");
+                return stdout.contains("operon.automation.v1");
             }
         }
 

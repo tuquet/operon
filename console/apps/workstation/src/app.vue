@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue';
 
-import { Toaster } from '@tuquet-core/shadcn-ui';
-import { usePreferences } from '@tuquet/preferences';
+import { Toaster } from '@operon-core/shadcn-ui';
+import { usePreferences } from '@operon/preferences';
 
 import {
   initDesktopAuthHandling,

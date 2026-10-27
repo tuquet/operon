@@ -3,9 +3,9 @@ name = "faker"
 version = "1.0.0"
 edition = "2021"
 description = "Enterprise-grade synthetic persona and identity test data generator with validated national ID and geographic structures"
-authors = ["tuquet"]
+authors = ["operon"]
 license = "MIT"
-repository = "https://github.com/tuquet/faker"
+repository = "https://github.com/operon/faker"
 readme = "README.md"
 
 [lib]

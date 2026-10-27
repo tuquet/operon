@@ -15,7 +15,7 @@ fi
 echo "=== [2/5] Running Core Preferences Unit Tests ==="
 pnpm test:unit packages/@core/preferences/__tests__/preferences.test.ts
 
-echo "=== [3/5] Building @tuquet/admin-web (Local Only) ==="
+echo "=== [3/5] Building @operon/admin-web (Local Only) ==="
 export NODE_OPTIONS="--max-old-space-size=3072"
 if [ -d "apps/workstation/dist" ] && [ -f "apps/workstation/dist/index.html" ]; then
   rm -rf apps/workstation/dist.bak
@@ -23,8 +23,8 @@ if [ -d "apps/workstation/dist" ] && [ -f "apps/workstation/dist/index.html" ]; 
 fi
 trap 'if [ ! -f "apps/workstation/dist/index.html" ] && [ -d "apps/workstation/dist.bak" ]; then echo "Restoring previous dist backup to prevent Nginx 403..."; rm -rf apps/workstation/dist && mv apps/workstation/dist.bak apps/workstation/dist; fi' EXIT
 
-pnpm exec turbo build --filter="@tuquet/admin-web^..." --concurrency=1
-pnpm --filter @tuquet/admin-web run build
+pnpm exec turbo build --filter="@operon/admin-web^..." --concurrency=1
+pnpm --filter @operon/admin-web run build
 rm -rf apps/workstation/dist.bak
 
 echo "=== [4/5] Writing Build Metadata to dist ==="

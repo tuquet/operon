@@ -17,7 +17,7 @@ import {
   DialogTitle,
   Input,
   Label,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import {
   CheckCircle2,

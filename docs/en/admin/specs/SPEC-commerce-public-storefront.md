@@ -9,19 +9,19 @@
 
 ## 1. Objective (Mục Tiêu Nghiệp Vụ & Kỹ Thuật)
 
-Xây dựng phân hệ **Public Storefront (`/store`)** trong `@tuquet/admin-web` cho phép khách hàng vãng lai (Guest Checkout — không cần tài khoản đăng nhập) duyệt danh mục sản phẩm số công khai, thanh toán tự động qua đa kênh và nhận bàn giao sản phẩm tức thì thông qua mã bảo mật `claim_token`:
+Xây dựng phân hệ **Public Storefront (`/store`)** trong `@operon/admin-web` cho phép khách hàng vãng lai (Guest Checkout — không cần tài khoản đăng nhập) duyệt danh mục sản phẩm số công khai, thanh toán tự động qua đa kênh và nhận bàn giao sản phẩm tức thì thông qua mã bảo mật `claim_token`:
 
 1. **Truy cập Công khai Không Cần Đăng Nhập (`/store`):** Đăng ký trong `coreRoutes` (`src/router/routes/core.ts`, `ignoreAccess: true`), sử dụng cờ `{ skipAuth: true }` trên mọi lời gọi API để truy vấn qua `anon` key hợp lệ với chính sách RLS công khai (`visibility = 'public'`).
 2. **Danh Mục Sản Phẩm Số Công Khai (`catalog` mode):** Lọc theo danh mục, loại sản phẩm (`serial_stock`, `digital_file`) và tìm kiếm từ khóa; hiển thị tồn kho khả dụng, giá niêm yết theo `Xu` kèm quy đổi tham khảo sang tiền tệ cổng thanh toán.
-3. **Thanh Toán Khách Vãng Lai Đa Kênh (`GuestCheckoutDialog`):** Hỗ trợ đặt mua SKU công khai qua VietQR 24/7 (`bank_transfer`), Ví điện tử MoMo (`e_wallet`), Thẻ quốc tế Stripe (`card_intl`), và Crypto USDT (`crypto`); tự động lưu cặp `(order_code, claim_token)` vào `localStorage` (`TUQUET_GUEST_ORDERS`) và kiểm tra trạng thái đơn hàng mỗi 3 giây.
+3. **Thanh Toán Khách Vãng Lai Đa Kênh (`GuestCheckoutDialog`):** Hỗ trợ đặt mua SKU công khai qua VietQR 24/7 (`bank_transfer`), Ví điện tử MoMo (`e_wallet`), Thẻ quốc tế Stripe (`card_intl`), và Crypto USDT (`crypto`); tự động lưu cặp `(order_code, claim_token)` vào `localStorage` (`OPERON_GUEST_ORDERS`) và kiểm tra trạng thái đơn hàng mỗi 3 giây.
 4. **Tra Cứu Đơn Hàng & Nhận Tài Nguyên (`lookup` mode):** Cho phép khách hàng tra cứu lại đơn hàng bất kỳ lúc nào bằng cặp `order_code` (`ORD-...`) + `claim_token` (`CLM_...`) hoặc chọn nhanh từ danh sách đơn hàng đã lưu trên trình duyệt để sao chép tài khoản/key (`uid|pass|2fa`), tải tệp `.txt` hoặc tải tệp số.
 
 ---
 
 ## 2. Tech Stack
 
-- **Frontend Application:** `@tuquet/admin-web` (Vue 3 `<script setup lang="ts">`, TypeScript, Vue Router 4, `vue-i18n`).
-- **UI Components & Icons:** `@tuquet/vue-ui` (`Badge`, `Button`, `Dialog`, `DialogContent`, `DialogDescription`, `DialogHeader`, `DialogTitle`, `toast`), `@lucide/vue`.
+- **Frontend Application:** `@operon/admin-web` (Vue 3 `<script setup lang="ts">`, TypeScript, Vue Router 4, `vue-i18n`).
+- **UI Components & Icons:** `@operon/vue-ui` (`Badge`, `Button`, `Dialog`, `DialogContent`, `DialogDescription`, `DialogHeader`, `DialogTitle`, `toast`), `@lucide/vue`.
 - **Public Data Access Layer:** `src/api/core/billing.ts` (`skipAuth: true`) & `src/api/core/commerce.ts` (`skipAuth: true`).
 
 ---
@@ -30,10 +30,10 @@ Xây dựng phân hệ **Public Storefront (`/store`)** trong `@tuquet/admin-web
 
 ```bash
 # 1. Chạy unit tests cho API Core và Router
-pnpm --filter @tuquet/admin-web run test:unit -- src/api/core src/router
+pnpm --filter @operon/admin-web run test:unit -- src/api/core src/router
 
 # 2. Kiểm tra kiểu dữ liệu TypeScript (Zero errors)
-pnpm --filter @tuquet/admin-web run typecheck
+pnpm --filter @operon/admin-web run typecheck
 
 # 3. Quét tĩnh mã nguồn oxlint
 pnpm run lint
@@ -86,7 +86,7 @@ export interface SavedGuestOrderItem {
   total_credits: number;
 }
 
-const GUEST_ORDERS_STORAGE_KEY = 'TUQUET_GUEST_ORDERS';
+const GUEST_ORDERS_STORAGE_KEY = 'OPERON_GUEST_ORDERS';
 
 export function saveGuestOrderLocal(
   item: SavedGuestOrderItem,

@@ -1,7 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router';
 
-import { LOGIN_PATH } from '@tuquet/constants';
-import { preferences } from '@tuquet/preferences';
+import { LOGIN_PATH } from '@operon/constants';
+import { preferences } from '@operon/preferences';
 
 import { $t } from '#/locales';
 

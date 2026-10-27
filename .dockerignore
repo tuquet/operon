@@ -1,4 +1,4 @@
-# Tuquet Root Dockerignore
+# OperonRoot Dockerignore
 **/.git
 **/.github
 **/node_modules

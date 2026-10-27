@@ -11,7 +11,7 @@ import {
   gitAdd,
   outputJSON,
   toPosixPath,
-} from '@tuquet/node-utils';
+} from '@operon/node-utils';
 
 const CODE_WORKSPACE_FILE = join('admin.code-workspace');
 

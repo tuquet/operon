@@ -1,4 +1,4 @@
-import { consola } from '@tuquet/node-utils';
+import { consola } from '@operon/node-utils';
 
 import { cac } from 'cac';
 

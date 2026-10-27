@@ -902,6 +902,6 @@
     "not_enrolled": "Cloud not connected",
     "remote_count": "on cloud",
     "empty": "No credentials yet. Add one or Pull from Cloud.",
-    "daemon_offline": "Cannot reach the CLI daemon (127.0.0.1:8765). Start it with `tq worker start`."
+    "daemon_offline": "Cannot reach the CLI daemon (127.0.0.1:8765). Start it with `opn worker start`."
   }
 }

@@ -2,8 +2,8 @@ import type { App, Directive, DirectiveBinding } from 'vue';
 
 import { h, render } from 'vue';
 
-import { VbenLoading, VbenSpinner } from '@tuquet-core/shadcn-ui';
-import { isString } from '@tuquet-core/shared/utils';
+import { VbenLoading, VbenSpinner } from '@operon-core/shadcn-ui';
+import { isString } from '@operon-core/shared/utils';
 
 const LOADING_INSTANCE_KEY = Symbol('loading');
 const SPINNER_INSTANCE_KEY = Symbol('spinner');

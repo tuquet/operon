@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: CLOUD BROWSER PROFILES (UNINSTALLATION SCRIPT)
+-- OPN-CLOUD PLUGIN: CLOUD BROWSER PROFILES (UNINSTALLATION SCRIPT)
 -- Plugin ID: browsers
 -- ============================================================================
 

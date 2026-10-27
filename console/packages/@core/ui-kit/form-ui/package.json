@@ -1,12 +1,12 @@
 {
-  "name": "@tuquet-core/form-ui",
+  "name": "@operon-core/form-ui",
   "version": "5.8.0",
-  "homepage": "https://github.com/tuquet/console",
-  "bugs": "https://github.com/tuquet/console/issues",
+  "homepage": "https://github.com/operon/console",
+  "bugs": "https://github.com/operon/console/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tuquet/console.git",
-    "directory": "packages/@tuquet-core/uikit/form-ui"
+    "url": "git+https://github.com/operon/console.git",
+    "directory": "packages/@operon-core/uikit/form-ui"
   },
   "license": "MIT",
   "type": "module",
@@ -42,11 +42,11 @@
   "dependencies": {
     "@tanstack/store": "catalog:",
     "@tanstack/vue-form": "catalog:",
-    "@tuquet-core/composables": "workspace:*",
-    "@tuquet-core/icons": "workspace:*",
-    "@tuquet-core/shadcn-ui": "workspace:*",
-    "@tuquet-core/shared": "workspace:*",
-    "@tuquet-core/typings": "workspace:*",
+    "@operon-core/composables": "workspace:*",
+    "@operon-core/icons": "workspace:*",
+    "@operon-core/shadcn-ui": "workspace:*",
+    "@operon-core/shared": "workspace:*",
+    "@operon-core/typings": "workspace:*",
     "@vueuse/core": "catalog:",
     "vue": "catalog:",
     "zod": "catalog:",

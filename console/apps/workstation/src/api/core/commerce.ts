@@ -5,7 +5,7 @@ import type {
   CommerceStockMode,
   CommerceStockStatus,
   PaymentChannelType,
-} from '@tuquet/constants';
+} from '@operon/constants';
 
 import type { PaymentIntent } from './billing';
 
@@ -18,7 +18,7 @@ import {
   FILTER_ALL,
   PAYMENT_CHANNEL,
   STORAGE_KEYS,
-} from '@tuquet/constants';
+} from '@operon/constants';
 
 import { mapRawPaymentIntent } from './billing';
 import { supabaseRequest } from './supabase-client';

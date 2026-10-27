@@ -2,13 +2,13 @@
 
 - **Version**: `1.0.0`
 - **Status**: `Approved — Enterprise Standard`
-- **Scope**: `@tuquet/admin-web` (`apps/web-admin/src/views/**`)
+- **Scope**: `@operon/admin-web` (`apps/web-admin/src/views/**`)
 
 ---
 
 ## 1. Objective
 
-Enforce an enterprise-grade **"One Fact, One Place per Viewport" (Zero-Redundancy Information Architecture)** across `@tuquet/admin-web` dashboards, module overviews, workspace detail tabs, and multi-tab headers.
+Enforce an enterprise-grade **"One Fact, One Place per Viewport" (Zero-Redundancy Information Architecture)** across `@operon/admin-web` dashboards, module overviews, workspace detail tabs, and multi-tab headers.
 
 ### Enterprise Design Resolutions
 
@@ -38,7 +38,7 @@ Enforce an enterprise-grade **"One Fact, One Place per Viewport" (Zero-Redundanc
 ## 2. Tech Stack
 
 - **Framework**: Vue 3.5 (`<script setup lang="ts">`)
-- **UI Primitives**: `@tuquet/vue-ui` (`Badge`, `Button`, `Tabs`), `@tuquet-core/shadcn-ui` (`DonutChart`)
+- **UI Primitives**: `@operon/vue-ui` (`Badge`, `Button`, `Tabs`), `@operon-core/shadcn-ui` (`DonutChart`)
 - **I18n**: `vue-i18n` (`apps/web-admin/src/locales/langs/{en-US,vi-VN}/page.json`)
 - **Testing**: Vitest (`vitest run`)
 
@@ -47,10 +47,10 @@ Enforce an enterprise-grade **"One Fact, One Place per Viewport" (Zero-Redundanc
 ## 3. Commands
 
 ```bash
-pnpm --filter @tuquet/admin-web test:unit
+pnpm --filter @operon/admin-web test:unit
 pnpm check:i18n
 pnpm oxlint
-pnpm --filter @tuquet/admin-web typecheck
+pnpm --filter @operon/admin-web typecheck
 ```
 
 ---
@@ -113,7 +113,7 @@ apps/web-admin/src/
   - Analytics KPI cards do not render duplicate adjacent counts (`3 3`) or duplicate chart breakdowns (`Pro plan`, `Free tier`).
   - `WorkspaceHero` renders `Selected Workspace` instead of a second `Active` badge when `isCurrentActive` is true.
   - `WorkspaceOverviewTab` renders the 3 operational cards (`Tenant ID`, `Service Plan`, `Device Infrastructure`) without repeating `Workspace Name`, `Slug`, or `Created At`, and passes distinct `description` vs. `buttonText` to `DangerZoneCard`.
-- **Quality Gates**: `pnpm check:i18n`, `pnpm oxlint`, `pnpm --filter @tuquet/admin-web typecheck`.
+- **Quality Gates**: `pnpm check:i18n`, `pnpm oxlint`, `pnpm --filter @operon/admin-web typecheck`.
 
 ---
 

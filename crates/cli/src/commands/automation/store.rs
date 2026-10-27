@@ -96,7 +96,7 @@ pub async fn import_workflow(
     crate::ui::Notify::key_val("Table", "automation.workflows");
     crate::ui::Notify::divider();
     println!(" 💡 Ready to execute:");
-    println!("    tq automation run {} --headless", wf.name);
+    println!("    opn automation run {} --headless", wf.name);
     crate::ui::Notify::divider();
 
     Ok(())

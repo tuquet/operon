@@ -2,12 +2,12 @@
 layout: home
 
 hero:
-  name: "Tuquet Lab"
+  name: "Operon Lab"
   text: "Autonomous Agent Ecosystem & Distributed Mesh Runtime"
   tagline: "Research lab and runtime for autonomous agents — bridging secure mesh gateways, distributed execution workers, and stealth environments."
   image:
     src: /logo.svg
-    alt: "Tuquet Lab"
+    alt: "Operon Lab"
   actions:
     - theme: brand
       text: Explore Lab →

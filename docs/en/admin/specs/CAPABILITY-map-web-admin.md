@@ -23,12 +23,12 @@
 | 13 | `digital-commerce` | [`SPEC-commerce-digital-store.md`](SPEC-commerce-digital-store.md) | Phân hệ sản phẩm số (`schema: commerce`): 4 loại sản phẩm (`serial_stock`, `resource`, `digital_file`, `wallet_credit`), kho hàng chống bán trùng (`FOR UPDATE SKIP LOCKED`), máy trạng thái đơn hàng (`commerce.orders`) và giao hàng tự động xuyên schema (Auto-Fulfillment) | `payment-gateway`, `fleet-inventory`, `automation-engine` |
 | 14 | `admin-commerce-portal` | [`SPEC-commerce-admin-portal.md`](SPEC-commerce-admin-portal.md) | Cổng thương mại điện tử nội bộ dưới `/commerce`: Cửa hàng `/commerce/store`, Lịch sử đơn & nhận hàng `/commerce/orders`, Ví Xu `/wallet`, và Trung tâm quản trị `/commerce/admin` (sản phẩm, nạp kho hàng loạt, duyệt `manual_review`, cấu hình cổng thanh toán) | `payment-gateway`, `digital-commerce`, `superadmin-routes` |
 | 15 | `public-storefront` | [`SPEC-commerce-public-storefront.md`](SPEC-commerce-public-storefront.md) | Cửa hàng sản phẩm số công khai `/store` (`ignoreAccess: true`, `skipAuth: true`) cho khách vãng lai (Guest Checkout): thanh toán đa kênh (Realtime Polling 3s) và nhận bàn giao tức thì qua `claim_token` (`CLM_...`) | `payment-gateway`, `digital-commerce`, `admin-commerce-portal` |
-| 16 | `enum-constants-ssot` | [`SPEC-core-enum-constants-ssot.md`](SPEC-core-enum-constants-ssot.md) | Hệ thống Enum & Hằng số Đơn Nguồn Sự Thật (`as const` + Derived Union Types) tại `@tuquet/constants` và `#/constants`, đồng bộ tầng API (`src/api/core/*`), siêu dữ liệu huy hiệu (`StatusTone`) và bộ lọc đa ngôn ngữ (`buildEnumFilterOptions`) | `platform-foundation`, `i18n-en-vi`, `data-access` |
+| 16 | `enum-constants-ssot` | [`SPEC-core-enum-constants-ssot.md`](SPEC-core-enum-constants-ssot.md) | Hệ thống Enum & Hằng số Đơn Nguồn Sự Thật (`as const` + Derived Union Types) tại `@operon/constants` và `#/constants`, đồng bộ tầng API (`src/api/core/*`), siêu dữ liệu huy hiệu (`StatusTone`) và bộ lọc đa ngôn ngữ (`buildEnumFilterOptions`) | `platform-foundation`, `i18n-en-vi`, `data-access` |
 | 17 | `automation-dashboard` | [`SPEC-automation-dashboard.md`](SPEC-automation-dashboard.md) | Trang tổng quan `/automation/overview` tập trung toàn bộ KPI Kịch bản, Phiên chạy, Thiết bị, Trình duyệt & Proxy; lược bỏ khối thống kê rườm rà và tối ưu bộ lọc 2 cột trên Mobile cho 5 màn hình danh sách `/automation/*` | `automation-engine`, `fleet-inventory`, `i18n-en-vi` |
 | 18 | `workflow-mobile-first` | [`SPEC-automation-workflow-mobile-first.md`](SPEC-automation-workflow-mobile-first.md) | Giao diện Mobile-First cho `/automation/workflows`, `/automation/jobs`, `/automation/jobs/:id`: thu gọn cột `VxeGrid` theo `isMobile` (không cuộn ngang trên `375px`), thanh lọc gọn nhẹ và hộp thoại xem chi tiết quy trình `WorkflowDetailModal` chuẩn baseline | `automation-engine`, `enum-constants-ssot`, `i18n-en-vi` |
 | 19 | `system-dashboard` | [`SPEC-system-dashboard.md`](SPEC-system-dashboard.md) | Trang tổng quan `/system/overview` tập trung KPI của 6 phân hệ quản trị hệ thống (`plugins`, `plans`, `users`, `roles`, `subscriptions`, `audit-logs`), kèm tinh gọn bảng `VxeGrid` Mobile-First cho toàn bộ nhánh `/system/*` | `system-catalog`, `superadmin-routes`, `enum-constants-ssot`, `i18n-en-vi` |
 | 20 | `mobile-vxe-detail-sheet` | [`SPEC-ui-mobile-vxe-detail-sheet.md`](SPEC-ui-mobile-vxe-detail-sheet.md) | Chuẩn hóa Sheet chi tiết & sửa nhanh bằng `VxeForm` (`VxeRowDetailSheet`) kèm đầy đủ các trường và nút hành động khi chạm/click vào dòng trên toàn bộ 19 bảng `useVbenVxeGrid` (15 trang) | `tenants-truth`, `workflow-mobile-first`, `admin-commerce-portal`, `system-dashboard` |
-| 21 | `tauri-desktop` | [`SPEC-cross-tauri-desktop.md`](SPEC-cross-tauri-desktop.md) | Ứng dụng Native Desktop hoàn chỉnh trên nền tảng Tauri v2 (Frameless Titlebar, System Tray, SSO Deep Linking `tuquet://`, Window-state, Single-instance) | `platform-foundation`, `route-foundation` |
+| 21 | `tauri-desktop` | [`SPEC-cross-tauri-desktop.md`](SPEC-cross-tauri-desktop.md) | Ứng dụng Native Desktop hoàn chỉnh trên nền tảng Tauri v2 (Frameless Titlebar, System Tray, SSO Deep Linking `operon://`, Window-state, Single-instance) | `platform-foundation`, `route-foundation` |
 
 ---
 
@@ -76,7 +76,7 @@ flowchart TD
 
 ---
 
-## 3. Phụ Thuộc Liên Kho Lưu Trữ (`tuquet/cloud`)
+## 3. Phụ Thuộc Liên Kho Lưu Trữ (`operon/cloud`)
 
 - **`cloud:platform-superadmin`:** Hàm `public.is_platform_admin()` và các chính sách RLS `SELECT / UPDATE` xuyên tenant cho Platform Superadmin.
 - **`cloud:payment-gateway`:** Mở rộng `schema: billing` (`cloud/supabase/plugins/subscriptions/install.sql`) + Edge Function `cloud/supabase/functions/payment-webhook/`.

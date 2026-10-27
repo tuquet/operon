@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { alert, clearAllAlerts, confirm } from '../index';
 
-vi.mock('@tuquet-core/composables', () => {
+vi.mock('@operon-core/composables', () => {
   // Alert component internally uses function call $t(key), AlertBuilder uses $t.value(key),
   // thus supporting both call styles.
   const $t = Object.assign((key: string) => key, {
@@ -20,7 +20,7 @@ vi.mock('@tuquet-core/composables', () => {
   };
 });
 
-vi.mock('@tuquet-core/preferences', () => ({
+vi.mock('@operon-core/preferences', () => ({
   usePreferences: () => ({
     globalEscapeShortcutKey: { value: true },
   }),

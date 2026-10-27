@@ -3,9 +3,9 @@ import type { ToolbarType } from './types';
 
 import { computed, useId } from 'vue';
 
-import { preferences, usePreferences } from '@tuquet/preferences';
+import { preferences, usePreferences } from '@operon/preferences';
 
-import { VbenLogo } from '@tuquet-core/shadcn-ui';
+import { VbenLogo } from '@operon-core/shadcn-ui';
 
 import { Copyright } from '../basic/copyright';
 import AuthenticationFormView from './form.vue';

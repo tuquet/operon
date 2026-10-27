@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: MEDIA STORAGE & ASSETS MANAGEMENT (INSTALLATION SCRIPT)
+-- OPN-CLOUD PLUGIN: MEDIA STORAGE & ASSETS MANAGEMENT (INSTALLATION SCRIPT)
 -- Plugin ID: storage
 -- Version: 1.0.0
 -- Architecture: PostgreSQL Dedicated Schema Isolation (schema: media)

@@ -3,8 +3,8 @@
 # CLI - Modern Universal Web Installer (macOS & Linux)
 # ==============================================================================
 # Usage (Clean/Blank Machine):
-#   curl -fsSL https://raw.githubusercontent.com/tuquet/cli/main/install.sh | sh
-#   or: wget -qO- https://raw.githubusercontent.com/tuquet/cli/main/install.sh | sh
+#   curl -fsSL https://raw.githubusercontent.com/operon/cli/main/install.sh | sh
+#   or: wget -qO- https://raw.githubusercontent.com/operon/cli/main/install.sh | sh
 #
 # Requirements: macOS (arm64/x64) or Linux (x64/arm64)
 # ==============================================================================
@@ -81,53 +81,53 @@ RELEASE_NAME="${PLATFORM}-${TARGET_ARCH}"
 write_step "Detected environment: ${BOLD}${PLATFORM} (${TARGET_ARCH})${RESET}"
 
 # 2. Determine Canonical SSOT Paths
-TUQUET_DIR="${TUQUET_HOME:-${TUQUET_DIR:-${SPECTER_HOME:-${SPECTER_DIR:-${HOME}/.tuquet}}}}"
-SPECTER_DIR="${TUQUET_DIR}"
+OPERON_DIR="${OPERON_HOME:-${OPERON_DIR:-${SPECTER_HOME:-${SPECTER_DIR:-${HOME}/.operon}}}}"
+SPECTER_DIR="${OPERON_DIR}"
 SPECTER_BIN_DIR="${SPECTER_DIR}/bin"
-TARGET_EXE="${SPECTER_BIN_DIR}/tuquet"
+TARGET_EXE="${SPECTER_BIN_DIR}/operon"
 
 write_step "Preparing canonical SSOT directory: ${SPECTER_BIN_DIR}"
 mkdir -p "${SPECTER_BIN_DIR}"
 
 # 3. Check for local build binary (if running from repo) or download from GitHub
 LOCAL_BIN=""
-if [ -f "./cli/target/x86_64-unknown-linux-musl/release/tuquet" ]; then
-    LOCAL_BIN="./cli/target/x86_64-unknown-linux-musl/release/tuquet"
-elif [ -f "./cli/target/release/tuquet" ]; then
-    LOCAL_BIN="./cli/target/release/tuquet"
-elif [ -f "./target/release/tuquet" ]; then
-    LOCAL_BIN="./target/release/tuquet"
+if [ -f "./cli/target/x86_64-unknown-linux-musl/release/operon" ]; then
+    LOCAL_BIN="./cli/target/x86_64-unknown-linux-musl/release/operon"
+elif [ -f "./cli/target/release/operon" ]; then
+    LOCAL_BIN="./cli/target/release/operon"
+elif [ -f "./target/release/operon" ]; then
+    LOCAL_BIN="./target/release/operon"
 fi
 
 if [ -n "$LOCAL_BIN" ]; then
     write_step "Installing local compiled binary from: ${LOCAL_BIN}"
     cp -f "${LOCAL_BIN}" "${TARGET_EXE}"
     chmod +x "${TARGET_EXE}"
-    write_success "Installed tuquet to ${TARGET_EXE}"
+    write_success "Installed operon to ${TARGET_EXE}"
 else
-    TARBALL_URL="https://github.com/tuquet/cli/releases/latest/download/${RELEASE_NAME}.tar.gz"
-    FALLBACK_BIN_URL="https://github.com/tuquet/cli/releases/latest/download/${RELEASE_NAME}"
+    TARBALL_URL="https://github.com/operon/cli/releases/latest/download/${RELEASE_NAME}.tar.gz"
+    FALLBACK_BIN_URL="https://github.com/operon/cli/releases/latest/download/${RELEASE_NAME}"
 
     write_step "Downloading ${RELEASE_NAME} from GitHub Releases..."
 
     DOWNLOADED=0
-    TMP_DIR="$(mktemp -d 2>/dev/null || mktemp -d -t 'tuquet')"
+    TMP_DIR="$(mktemp -d 2>/dev/null || mktemp -d -t 'operon')"
 
     if command -v curl >/dev/null 2>&1; then
-        if curl -fsSL "${TARBALL_URL}" -o "${TMP_DIR}/tuquet.tar.gz" 2>/dev/null; then
-            tar -xzf "${TMP_DIR}/tuquet.tar.gz" -C "${TMP_DIR}"
-            if [ -f "${TMP_DIR}/tuquet" ]; then
-                mv -f "${TMP_DIR}/tuquet" "${TARGET_EXE}"
+        if curl -fsSL "${TARBALL_URL}" -o "${TMP_DIR}/operon.tar.gz" 2>/dev/null; then
+            tar -xzf "${TMP_DIR}/operon.tar.gz" -C "${TMP_DIR}"
+            if [ -f "${TMP_DIR}/operon" ]; then
+                mv -f "${TMP_DIR}/operon" "${TARGET_EXE}"
                 DOWNLOADED=1
             fi
         elif curl -fsSL "${FALLBACK_BIN_URL}" -o "${TARGET_EXE}" 2>/dev/null; then
             DOWNLOADED=1
         fi
     elif command -v wget >/dev/null 2>&1; then
-        if wget -q "${TARBALL_URL}" -O "${TMP_DIR}/tuquet.tar.gz" 2>/dev/null; then
-            tar -xzf "${TMP_DIR}/tuquet.tar.gz" -C "${TMP_DIR}"
-            if [ -f "${TMP_DIR}/tuquet" ]; then
-                mv -f "${TMP_DIR}/tuquet" "${TARGET_EXE}"
+        if wget -q "${TARBALL_URL}" -O "${TMP_DIR}/operon.tar.gz" 2>/dev/null; then
+            tar -xzf "${TMP_DIR}/operon.tar.gz" -C "${TMP_DIR}"
+            if [ -f "${TMP_DIR}/operon" ]; then
+                mv -f "${TMP_DIR}/operon" "${TARGET_EXE}"
                 DOWNLOADED=1
             fi
         elif wget -q "${FALLBACK_BIN_URL}" -O "${TARGET_EXE}" 2>/dev/null; then
@@ -143,7 +143,7 @@ else
 
     if [ "$DOWNLOADED" -eq 1 ]; then
         chmod +x "${TARGET_EXE}"
-        write_success "Downloaded and installed tuquet binary to ${TARGET_EXE}"
+        write_success "Downloaded and installed operon binary to ${TARGET_EXE}"
     else
         write_notice "Release asset ${RELEASE_NAME} not found on latest release. Checking existing local installation..."
         if [ ! -x "${TARGET_EXE}" ]; then
@@ -155,7 +155,7 @@ fi
 
 # 4. Configure PATH in Shell Profile
 write_step "Configuring PATH in shell profiles..."
-PATH_LINE="export PATH=\"\$HOME/.tuquet/bin:\$PATH\""
+PATH_LINE="export PATH=\"\$HOME/.operon/bin:\$PATH\""
 
 SHELL_PROFILES=""
 if [ -n "$BASH_VERSION" ] || [ -f "${HOME}/.bashrc" ]; then
@@ -175,7 +175,7 @@ fi
 CONFIGURED_ANY=0
 for PROFILE in $SHELL_PROFILES; do
     if [ -f "$PROFILE" ]; then
-        if ! grep -q "\.tuquet/bin" "$PROFILE" 2>/dev/null && ! grep -q "\.tuquet/bin" "$PROFILE" 2>/dev/null; then
+        if ! grep -q "\.operon/bin" "$PROFILE" 2>/dev/null && ! grep -q "\.operon/bin" "$PROFILE" 2>/dev/null; then
             printf "\n# CLI\n%s\n" "${PATH_LINE}" >> "$PROFILE"
             write_success "Added to PATH in ${PROFILE}"
             CONFIGURED_ANY=1
@@ -200,8 +200,8 @@ printf "${GREEN}================================================================
 printf "${GREEN}  SPECTER CLI INSTALLATION COMPLETED SUCCESSFULLY${RESET}\n"
 printf "${GREEN}==============================================================================${RESET}\n\n"
 printf "  To get started, reload your shell or run immediately:\n"
-printf "    ${CYAN}tuquet browser launch${RESET}  Launch Antidetect Chromium browser sandbox\n"
-printf "    ${CYAN}tuquet doctor${RESET}          Check environment and system shims\n"
-printf "    ${CYAN}tuquet status${RESET}          Inspect unified services dashboard\n"
-printf "    ${CYAN}tuquet gateway start${RESET}    Start secure SOCKS5 mesh tunnel\n\n"
+printf "    ${CYAN}operon browser launch${RESET}  Launch Antidetect Chromium browser sandbox\n"
+printf "    ${CYAN}operon doctor${RESET}          Check environment and system shims\n"
+printf "    ${CYAN}operon status${RESET}          Inspect unified services dashboard\n"
+printf "    ${CYAN}operon gateway start${RESET}    Start secure SOCKS5 mesh tunnel\n\n"
 printf "  ${GRAY}Single Source of Truth Root: ${SPECTER_DIR}${RESET}\n\n"

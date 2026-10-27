@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
 
-import type { MenuRecordRaw } from '@tuquet-core/typings';
+import type { MenuRecordRaw } from '@operon-core/typings';
 
 import { acceptHMRUpdate, defineStore } from 'pinia';
 

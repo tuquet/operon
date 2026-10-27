@@ -1,8 +1,8 @@
 import type { Component, VNode, VNodeArrayChildren } from 'vue';
 
-import type { Recordable } from '@tuquet-core/typings';
+import type { Recordable } from '@operon-core/typings';
 
-import { createContext } from '@tuquet-core/shadcn-ui';
+import { createContext } from '@operon-core/shadcn-ui';
 
 export type IconType = 'error' | 'info' | 'question' | 'success' | 'warning';
 

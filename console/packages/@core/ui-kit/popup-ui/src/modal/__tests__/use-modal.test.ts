@@ -8,7 +8,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { useVbenModal } from '../use-modal';
 
-vi.mock('@tuquet-core/preferences', () => ({
+vi.mock('@operon-core/preferences', () => ({
   usePreferences: () => ({
     globalEscapeShortcutKey: { value: true },
   }),

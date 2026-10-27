@@ -24,7 +24,7 @@ env:
 jobs:
   build-and-release:
     name: Build & Release Windows (x64 NSIS + MSI)
-    if: github.repository == 'tuquet/console'
+    if: github.repository == 'operon/console'
     runs-on: windows-latest
     timeout-minutes: 45
 
@@ -67,25 +67,25 @@ jobs:
         with:
           projectPath: ./apps/workstation
           tagName: ${{ env.TAG_NAME }}
-          releaseName: 'Tuquet Workstation ${{ env.TAG_NAME }}'
+          releaseName: 'Operon Workstation ${{ env.TAG_NAME }}'
           releaseBody: |
-            ### Tuquet Workstation Windows Production Release
+            ### OperonWorkstation Windows Production Release
 
-            Bản phát hành chính thức ứng dụng **Tuquet Workstation** dành cho hệ điều hành Windows x64.
+            Bản phát hành chính thức ứng dụng **Operon Workstation** dành cho hệ điều hành Windows x64.
 
             #### 📦 Tệp Cài Đặt (Release Downloads):
-            - **Windows NSIS Installer (`.exe`)**: [Tuquet-Workstation-Setup.exe](https://github.com/tuquet/console/releases/download/${{ env.TAG_NAME }}/Tuquet-Workstation-Setup.exe) (Khuyên dùng, hỗ trợ tự động cập nhật OTA)
-            - **Windows MSI Enterprise Package (`.msi`)**: [Tuquet-Workstation.msi](https://github.com/tuquet/console/releases/download/${{ env.TAG_NAME }}/Tuquet-Workstation.msi) (Triển khai chính sách Active Directory / Intune)
+            - **Windows NSIS Installer (`.exe`)**: [Operon-Workstation-Setup.exe](https://github.com/operon/console/releases/download/${{ env.TAG_NAME }}/Operon-Workstation-Setup.exe) (Khuyên dùng, hỗ trợ tự động cập nhật OTA)
+            - **Windows MSI Enterprise Package (`.msi`)**: [Operon-Workstation.msi](https://github.com/operon/console/releases/download/${{ env.TAG_NAME }}/Operon-Workstation.msi) (Triển khai chính sách Active Directory / Intune)
 
             #### 🛡️ Tính Năng Tích Hợp:
             - Native Webview2 hiệu năng cao với Custom Titlebar Shadcn Slate.
-            - Deep-Link SSO handler qua giao thức an toàn `tuquet://auth/callback`.
+            - Deep-Link SSO handler qua giao thức an toàn `operon://auth/callback`.
             - Tự động kiểm tra và nâng cấp phiên bản không gián đoạn (OTA Updater).
             - Thu nhỏ vào khay hệ thống (System Tray) phục vụ vận hành liên tục.
           releaseDraft: false
           prerelease: false
 
-      - name: Publish Direct Download Aliases (Tuquet-Workstation-Setup.exe & Tuquet-Workstation.msi)
+      - name: Publish Direct Download Aliases (Operon-Workstation-Setup.exe & Operon-Workstation.msi)
         shell: pwsh
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -97,8 +97,8 @@ jobs:
           $nsisExe = Get-ChildItem -Path "apps/workstation/src-tauri/target/release/bundle/nsis/*.exe" | Select-Object -First 1
           if ($nsisExe) {
             Write-Host "Found NSIS binary: $($nsisExe.FullName)"
-            Copy-Item -Path $nsisExe.FullName -Destination "Tuquet-Workstation-Setup.exe" -Force
-            gh release upload $tag "Tuquet-Workstation-Setup.exe" --clobber
+            Copy-Item -Path $nsisExe.FullName -Destination "Operon-Workstation-Setup.exe" -Force
+            gh release upload $tag "Operon-Workstation-Setup.exe" --clobber
           } else {
             Write-Warning "No NSIS .exe installer found in release bundle output."
           }
@@ -107,8 +107,8 @@ jobs:
           $msiFile = Get-ChildItem -Path "apps/workstation/src-tauri/target/release/bundle/msi/*.msi" | Select-Object -First 1
           if ($msiFile) {
             Write-Host "Found MSI binary: $($msiFile.FullName)"
-            Copy-Item -Path $msiFile.FullName -Destination "Tuquet-Workstation.msi" -Force
-            gh release upload $tag "Tuquet-Workstation.msi" --clobber
+            Copy-Item -Path $msiFile.FullName -Destination "Operon-Workstation.msi" -Force
+            gh release upload $tag "Operon-Workstation.msi" --clobber
           } else {
             Write-Warning "No MSI package found in release bundle output."
           }

@@ -1,7 +1,7 @@
 import { computed } from 'vue';
 
-import { preferences, updatePreferences } from '@tuquet/preferences';
-import { useAccessStore, useUserStore } from '@tuquet/stores';
+import { preferences, updatePreferences } from '@operon/preferences';
+import { useAccessStore, useUserStore } from '@operon/stores';
 
 function useAccess() {
   const accessStore = useAccessStore();

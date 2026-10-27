@@ -9,7 +9,7 @@ fn test_manifest_schema_and_json_validity() {
     let m = manifest();
 
     // 1. Basic manifest identity & SSOT standards
-    assert_eq!(m.name, "tuquet", "Manifest name must be 'tuquet'");
+    assert_eq!(m.name, "operon", "Manifest name must be 'operon'");
     assert!(!m.version.is_empty(), "Manifest version must not be empty");
     assert!(
         !m.description.is_empty(),
@@ -58,8 +58,8 @@ fn test_command_manifest_quality_and_schema_contract() {
     for cmd in &m.commands {
         // Assert ID uniqueness & convention
         assert!(
-            cmd.id.starts_with("tuquet."),
-            "Command ID '{}' must start with 'tuquet.'",
+            cmd.id.starts_with("operon."),
+            "Command ID '{}' must start with 'operon.'",
             cmd.id
         );
         assert!(
@@ -212,9 +212,9 @@ fn test_runtime_manifest_queries() {
     let auth_cmd = find_by_route(&["auth", "whoami"]);
     assert!(
         auth_cmd.is_some(),
-        "Expected 'tq auth whoami' to resolve via find_by_route"
+        "Expected 'opn auth whoami' to resolve via find_by_route"
     );
-    assert_eq!(auth_cmd.unwrap().id, "tuquet.cloud.whoami");
+    assert_eq!(auth_cmd.unwrap().id, "operon.cloud.whoami");
 }
 
 #[test]

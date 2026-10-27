@@ -3,8 +3,8 @@ import type { VbenButtonProps } from './button';
 
 import { computed } from 'vue';
 
-import { LoaderCircle } from '@tuquet-core/icons';
-import { cn } from '@tuquet-core/shared/utils';
+import { LoaderCircle } from '@operon-core/icons';
+import { cn } from '@operon-core/shared/utils';
 
 import { Primitive } from 'reka-ui';
 

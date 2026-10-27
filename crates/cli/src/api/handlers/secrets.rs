@@ -8,7 +8,7 @@
 //! - `/secrets/credentials/{name}`    → one credential row
 //! - `/secrets/tenant-keys/rotate`    → table `secrets.tenant_keys` (rotate the tenant DEK)
 //!
-//! Consumed by the workstation console (`tq desktop`). Values are never returned in
+//! Consumed by the workstation console (`opn desktop`). Values are never returned in
 //! plaintext by this API — only names/metadata (zero-knowledge; see SPEC-secret-store).
 
 use axum::{

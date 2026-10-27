@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { SystemPermission } from '#/api';
 
-import { usePreferences } from '@tuquet/preferences';
+import { usePreferences } from '@operon/preferences';
 
-import { Button } from '@tuquet-core/shadcn-ui';
+import { Button } from '@operon-core/shadcn-ui';
 
 import { Check, Copy, Folder, KeyRound } from '@lucide/vue';
 

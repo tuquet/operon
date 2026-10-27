@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { Recordable } from '@tuquet/types';
+import type { Recordable } from '@operon/types';
 
-import type { VbenFormSchema } from '@tuquet-core/form-ui';
+import type { VbenFormSchema } from '@operon-core/form-ui';
 
 import { computed, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
-import { useVbenForm } from '@tuquet-core/form-ui';
-import { VbenButton } from '@tuquet-core/shadcn-ui';
+import { useVbenForm } from '@operon-core/form-ui';
+import { VbenButton } from '@operon-core/shadcn-ui';
 
 import Title from './auth-title.vue';
 

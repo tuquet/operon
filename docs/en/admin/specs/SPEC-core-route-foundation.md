@@ -9,7 +9,7 @@
 
 ## 1. Objective (Mục Tiêu & Phạm Vi)
 
-Thiết lập kiến trúc định tuyến phân rã theo module và ranh giới Plugin cho `@tuquet/admin-web`, bao gồm **29 tuyến đường** phân bổ trên **6 nhóm điều hướng Sidebar** (`/dashboard`, `/tenants`, `/automation`, `/commerce`, `/system`) và cụm định tuyến lõi `core.ts`:
+Thiết lập kiến trúc định tuyến phân rã theo module và ranh giới Plugin cho `@operon/admin-web`, bao gồm **29 tuyến đường** phân bổ trên **6 nhóm điều hướng Sidebar** (`/dashboard`, `/tenants`, `/automation`, `/commerce`, `/system`) và cụm định tuyến lõi `core.ts`:
 
 1. **Cấu Trúc 6 Nhóm Điều Hướng Sidebar & Cụm Tuyến Lõi (29 Routes):**
    - **`dashboard.ts` (`order: 1`):** Trang chủ mặc định `/dashboard/analytics` (hiển thị Telemetry thực tế từ Cloud & Loopback Daemon).
@@ -28,8 +28,8 @@ Thiết lập kiến trúc định tuyến phân rã theo module và ranh giới
 
 ## 2. Tech Stack
 
-- **Router & Access Control:** Vue Router 4, `@tuquet/access` (`accessMode: 'frontend'`), `@tuquet/preferences`.
-- **Layout & Scroll Hooks:** `@tuquet/layouts` (`useLayoutHook`, `useLayoutScroll`), `@tuquet/stores` (`getTabKey`).
+- **Router & Access Control:** Vue Router 4, `@operon/access` (`accessMode: 'frontend'`), `@operon/preferences`.
+- **Layout & Scroll Hooks:** `@operon/layouts` (`useLayoutHook`, `useLayoutScroll`), `@operon/stores` (`getTabKey`).
 - **Icons:** `@lucide/vue` (`lucide:layout-dashboard`, `lucide:building-2`, `lucide:workflow`, `lucide:shopping-bag`, `lucide:shield-check`).
 
 ---
@@ -41,7 +41,7 @@ Thiết lập kiến trúc định tuyến phân rã theo module và ranh giới
 pnpm exec vitest run apps/web-admin/src/router
 
 # 2. Kiểm tra kiểu dữ liệu TypeScript toàn bộ workspace
-pnpm --filter @tuquet/admin-web run typecheck
+pnpm --filter @operon/admin-web run typecheck
 
 # 3. Kiểm tra linter và định dạng
 npx oxlint apps/web-admin/src/
@@ -174,7 +174,7 @@ scrollBehavior(to, _from, savedPosition) {
    - Kiểm tra lọc độc lập từng nhánh con trong các menu hỗn hợp (`/automation` với `automation` + `workers`; `/commerce` với `commerce` + `subscriptions`; `/system` với `core-iam` + `subscriptions`).
    - Kiểm tra tự động cắt tỉa (prune) menu cha khi 0 route con còn lại.
    - Kiểm tra bảo toàn tính bất biến (immutability) của mảng `routes` đầu vào.
-2. **Typecheck & Lint Gate:** `pnpm --filter @tuquet/admin-web run typecheck` và `pnpm run lint` đạt `0 errors`.
+2. **Typecheck & Lint Gate:** `pnpm --filter @operon/admin-web run typecheck` và `pnpm run lint` đạt `0 errors`.
 
 ---
 

@@ -1,7 +1,7 @@
 import type { Arrayable } from '@vueuse/core';
 import type { FlattenedItem } from 'reka-ui';
 
-import type { Recordable } from '@tuquet-core/typings';
+import type { Recordable } from '@operon-core/typings';
 
 export interface TreeProps {
   /** Allow unselecting existing option in single-select mode */

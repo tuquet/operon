@@ -3,7 +3,7 @@ import type { Tenant } from '#/api';
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { toast } from '@tuquet-core/shadcn-ui';
+import { toast } from '@operon-core/shadcn-ui';
 
 import { getActiveTenantId, setActiveTenantId } from '#/api';
 import { $t } from '#/locales';

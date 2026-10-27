@@ -2,7 +2,7 @@ import type { PluginOption } from 'vite';
 
 import { EOL } from 'node:os';
 
-import { dateUtil, readPackageJSON } from '@tuquet/node-utils';
+import { dateUtil, readPackageJSON } from '@operon/node-utils';
 
 /**
  * Inject license / copyright information
@@ -32,7 +32,7 @@ async function viteLicensePlugin(
   * Description: ${description}
   * Date Created: ${date}
   * Homepage: ${homepage}
-  * Contact: dev@tuquet.com
+  * Contact: dev@operon.com
 */
               `.trim();
 

@@ -4,7 +4,7 @@ import type { ShallowRef } from 'vue';
 
 import type { ToolbarAction, ToolbarMenuItem } from './types';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 interface UseTiptapToolbarOptions {
   editable: () => boolean;

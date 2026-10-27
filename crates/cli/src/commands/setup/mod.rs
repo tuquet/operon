@@ -81,7 +81,7 @@ pub async fn run(args: SetupArgs) -> Result<(), Box<dyn std::error::Error>> {
     if want_gateway {
         gateway::run(is_interactive).await?;
     } else {
-        clack_step_skip("Specter Gateway (configure anytime via 'tq setup gateway')");
+        clack_step_skip("Specter Gateway (configure anytime via 'opn setup gateway')");
     }
 
     // ─────────────────────────────────────────────────────────────────────────────
@@ -99,7 +99,7 @@ pub async fn run(args: SetupArgs) -> Result<(), Box<dyn std::error::Error>> {
     if want_browser || (b_status.installed && args.force) {
         browser::run(args.force).await?;
     } else if !b_status.installed {
-        clack_step_skip("Chromium download (install anytime via 'tq browser install')");
+        clack_step_skip("Chromium download (install anytime via 'opn browser install')");
     }
 
     // ─────────────────────────────────────────────────────────────────────────────
@@ -114,9 +114,9 @@ pub async fn run(args: SetupArgs) -> Result<(), Box<dyn std::error::Error>> {
     if want_cloud {
         cloud::run(is_interactive).await?;
     } else {
-        clack_step_skip("Cloud pairing (pair anytime via 'tq login')");
+        clack_step_skip("Cloud pairing (pair anytime via 'opn login')");
     }
 
-    clack_outro("Workstation setup complete! Run 'tq status' or 'tq tui' to get started.");
+    clack_outro("Workstation setup complete! Run 'opn status' or 'opn tui' to get started.");
     Ok(())
 }

@@ -1,8 +1,8 @@
 # Kiến Trúc Hệ Thống Admin (Admin Architecture)
 
 > **Mã tài liệu:** `ARCH-ADMIN-OVERVIEW`  
-> **Áp dụng cho:** `tuquet/admin` (`apps/web-admin`)  
-> **Backend gắn kết (SSOT):** `tuquet/cloud/supabase`  
+> **Áp dụng cho:** `operon/admin` (`apps/web-admin`)  
+> **Backend gắn kết (SSOT):** `operon/cloud/supabase`  
 > **Trạng thái:** **ACTIVE & ACCEPTED**  
 > **Tài liệu đặc tả từng route:** [`docs/routes/index.md`](../routes/index.md)  
 > **Chuẩn thiết kế giao diện:** [`docs/architecture/styling-guide.md`](styling-guide.md)
@@ -11,14 +11,14 @@
 
 ## 1. Tổng Quan Hệ Thống (System Overview)
 
-Web Admin là bảng điều khiển quản trị tập trung (Unified Management Console) của **Hệ sinh thái Tuquet**, đảm nhiệm 4 trụ cột cốt lõi:
+Web Admin là bảng điều khiển quản trị tập trung (Unified Management Console) của **Hệ sinh thái Operon**, đảm nhiệm 4 trụ cột cốt lõi:
 
 1. **Multi-Tenant IAM:** Quản lý danh tính, phân quyền thành viên và tổ chức không gian làm việc (Workspaces / Tenants).
 2. **Workers Fleet Control:** Điều phối và giám sát hạ tầng máy trạm phân tán (Desk, Headless Runners, Chromium automation profiles, Proxy pool).
 3. **Automa Engine Telemetry:** Giám sát kịch bản quy trình tự động hóa (Workflows), tiến độ các đợt chạy (Campaign Runs) và nhật ký thực thi (Execution Logs).
 4. **Digital Commerce & Multi-Channel Payment:** Cửa hàng sản phẩm số nội bộ (`/commerce/*`) và công khai (`/store`), Ví trả trước đơn vị `Xu` (`BIGINT`), cổng thanh toán đa kênh (VietQR, MoMo, Stripe, Crypto USDT) và tự động bàn giao tài nguyên (Auto-Fulfillment).
 
-Hệ thống kết nối trực tiếp đến **Cloud** (`tuquet/cloud/supabase`), tương tác với 7 schema chuyên biệt qua chuẩn PostgREST và tuân thủ nghiêm ngặt bảo mật Row Level Security (RLS).
+Hệ thống kết nối trực tiếp đến **Cloud** (`operon/cloud/supabase`), tương tác với 7 schema chuyên biệt qua chuẩn PostgREST và tuân thủ nghiêm ngặt bảo mật Row Level Security (RLS).
 
 ---
 
@@ -26,7 +26,7 @@ Hệ thống kết nối trực tiếp đến **Cloud** (`tuquet/cloud/supabase`
 
 1. **KISS & YAGNI (Keep It Simple, Stupid & You Aren't Gonna Need It):**
    - Loại bỏ thanh Tabbar Chrome ảo trong SPA (`preferences.tabbar.enable = false`) để tiết kiệm không gian màn hình.
-   - Header tối giản với các thành phần cốt lõi: Logo Tuquet, chuyển đổi Ngôn ngữ/Theme, Avatar & Menu người dùng.
+   - Header tối giản với các thành phần cốt lõi: Logo Operon, chuyển đổi Ngôn ngữ/Theme, Avatar & Menu người dùng.
    - Sidebar tinh gọn trong **6 nhóm chức năng chính**: `Dashboard`, `Workspaces`, `Automation`, `Commerce`, `Wallet`, `System`.
 2. **Dữ Liệu Đo Đếm Thực Tế (100% Real Telemetry — Zero Mock Data):**
    - Tuyệt đối không dùng Mock Data hay số liệu giả lập. Toàn bộ số liệu trên console phản ánh chính xác trạng thái thực tế từ cơ sở dữ liệu và telemetry máy trạm.

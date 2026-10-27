@@ -1,6 +1,6 @@
 import { computed } from 'vue';
 
-import { diff, diffStrict } from '@tuquet-core/shared/utils';
+import { diff, diffStrict } from '@operon-core/shared/utils';
 
 import { preferencesManager } from './preferences';
 import { isDarkTheme } from './update-css-variables';

@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import type { BreadcrumbStyleType } from '@tuquet/types';
+import type { BreadcrumbStyleType } from '@operon/types';
 
-import type { IBreadcrumb } from '@tuquet-core/shadcn-ui';
+import type { IBreadcrumb } from '@operon-core/shadcn-ui';
 
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
-import { VbenBreadcrumbView } from '@tuquet-core/shadcn-ui';
+import { VbenBreadcrumbView } from '@operon-core/shadcn-ui';
 
 import { resolveBreadcrumbMatches } from './breadcrumb-routes';
 

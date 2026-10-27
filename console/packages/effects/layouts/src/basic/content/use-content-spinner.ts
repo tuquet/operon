@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { preferences } from '@tuquet/preferences';
+import { preferences } from '@operon/preferences';
 
 /**
  * Content transition loading spinner:

@@ -6,9 +6,9 @@ import type {
 
 import { computed, nextTick, ref, unref, useAttrs, watch } from 'vue';
 
-import { LoaderCircle } from '@tuquet/icons';
+import { LoaderCircle } from '@operon/icons';
 
-import { cloneDeep, get, isEqual, isFunction } from '@tuquet-core/shared/utils';
+import { cloneDeep, get, isEqual, isFunction } from '@operon-core/shared/utils';
 
 import { objectOmit } from '@vueuse/core';
 

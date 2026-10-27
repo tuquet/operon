@@ -140,7 +140,7 @@ impl WorkflowResolver {
         }
 
         Err(WorkflowResolveError::NotFound(format!(
-            "Workflow '{}' not found in database. Use 'tq automation workflow list' to view available workflows.",
+            "Workflow '{}' not found in database. Use 'opn automation workflow list' to view available workflows.",
             wf_id
         )))
     }

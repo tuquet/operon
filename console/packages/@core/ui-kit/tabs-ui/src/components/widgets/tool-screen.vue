@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Fullscreen, Minimize2 } from '@tuquet-core/icons';
+import { Fullscreen, Minimize2 } from '@operon-core/icons';
 
 const screen = defineModel<boolean>('screen');
 

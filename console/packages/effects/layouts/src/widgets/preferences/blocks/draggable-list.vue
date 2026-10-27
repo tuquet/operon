@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { SelectOption } from '@tuquet/types';
+import type { SelectOption } from '@operon/types';
 
 import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue';
 
-import { GripVertical } from '@tuquet/icons';
-import { $t } from '@tuquet/locales';
+import { GripVertical } from '@operon/icons';
+import { $t } from '@operon/locales';
 
 import Sortable from 'sortablejs';
 

@@ -1,8 +1,8 @@
 [package]
 name = "workstation"
 version = "0.1.0"
-description = "Tuquet Workstation - Unified Management & Operations Console"
-authors = ["tuquet"]
+description = "Operon Workstation - Unified Management & Operations Console"
+authors = ["operon"]
 edition = "2021"
 
 [lib]

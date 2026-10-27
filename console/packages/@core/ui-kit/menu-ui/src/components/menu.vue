@@ -21,8 +21,8 @@ import {
   watchEffect,
 } from 'vue';
 
-import { useNamespace } from '@tuquet-core/composables';
-import { Ellipsis } from '@tuquet-core/icons';
+import { useNamespace } from '@operon-core/composables';
+import { Ellipsis } from '@operon-core/icons';
 
 import { useResizeObserver } from '@vueuse/core';
 

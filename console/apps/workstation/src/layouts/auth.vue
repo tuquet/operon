@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 
-import { AuthPageLayout } from '@tuquet/layouts';
-import { preferences, usePreferences } from '@tuquet/preferences';
+import { AuthPageLayout } from '@operon/layouts';
+import { preferences, usePreferences } from '@operon/preferences';
 
 import { isTauriEnvironment } from '#/adapter/desktop';
 import HairlinePhoneBanner from '#/components/common/hairline-phone-banner.vue';

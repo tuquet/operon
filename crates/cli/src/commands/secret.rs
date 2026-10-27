@@ -1,6 +1,6 @@
-//! `tq secret` — Secret Store (local encrypted + cloud, device-portable, zero-knowledge over wire).
+//! `opn secret` — Secret Store (local encrypted + cloud, device-portable, zero-knowledge over wire).
 //!
-//! Local : `~/.tq/system/secrets.json` (AES-256-GCM) + `~/.tq/system/.device_key` (X25519).
+//! Local : `~/.operon/system/secrets.json` (AES-256-GCM) + `~/.operon/system/.device_key` (X25519).
 //! Cloud : schema `secrets` (Vault KEK -> per-tenant DEK -> sealed to each device).
 //!         Values are XChaCha20-Poly1305 encrypted **client-side**; the server never
 //!         receives a plaintext value. See SPEC-secret-store.
@@ -55,8 +55,8 @@ pub async fn handle(cmd: SecretSubcommands) -> Result<(), Box<dyn std::error::Er
             );
             println!("  device pub : {}", B64.encode(kp.public));
             println!();
-            println!("Add a secret:  tq secret set <name> <value>");
-            println!("Sync to Cloud: tq secret push   |  On a new device: tq secret pull");
+            println!("Add a secret:  opn secret set <name> <value>");
+            println!("Sync to Cloud: opn secret push   |  On a new device: opn secret pull");
         }
         SecretSubcommands::Set { name, value } => {
             let value = resolve_secret_input(&value)?;

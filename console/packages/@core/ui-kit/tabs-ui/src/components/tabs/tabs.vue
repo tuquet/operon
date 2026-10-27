@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import type { TabDefinition } from '@tuquet-core/typings';
+import type { TabDefinition } from '@operon-core/typings';
 
 import type { TabConfig, TabsProps } from '../../types';
 
 import { computed } from 'vue';
 
-import { Pin, X } from '@tuquet-core/icons';
-import { VbenContextMenu, VbenIcon } from '@tuquet-core/shadcn-ui';
+import { Pin, X } from '@operon-core/icons';
+import { VbenContextMenu, VbenIcon } from '@operon-core/shadcn-ui';
 
 interface Props extends TabsProps {}
 

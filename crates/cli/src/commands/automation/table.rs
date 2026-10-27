@@ -90,11 +90,11 @@ pub async fn list_workflows(
         }
         if let Some(first) = workflows.first() {
             table = table.with_footer(format!(
-                "Run workflow with: tq automation run {} --headless",
+                "Run workflow with: opn automation run {} --headless",
                 first.id
             ));
         } else {
-            table = table.with_footer("Import a workflow with: tq automation workflow import <file.json> --id <workflow_id>");
+            table = table.with_footer("Import a workflow with: opn automation workflow import <file.json> --id <workflow_id>");
         }
         table.print();
         println!();

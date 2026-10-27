@@ -1,10 +1,10 @@
 <div align="center">
-  <img src="https://tuquet.com/icons/telegram-bot.svg" width="76" height="76" alt="ChatOps Logo" />
+  <img src="https://operon.com/icons/telegram-bot.svg" width="76" height="76" alt="ChatOps Logo" />
   <h1>ChatOps</h1>
   <p><strong>Telegram ChatOps &amp; Infrastructure Server Health Daemon</strong></p>
 
   <p>
-    <img src="https://img.shields.io/badge/Tuquet-ChatOps-blue.svg?logo=telegram" alt="ChatOps" />
+    <img src="https://img.shields.io/badge/Operon-ChatOps-blue.svg?logo=telegram" alt="ChatOps" />
     <img src="https://img.shields.io/badge/Runtime-Node.js-green.svg" alt="Node.js" />
     <img src="https://img.shields.io/badge/Role-DevOps%20ChatOps-cyan.svg" alt="DevOps ChatOps" />
   </p>
@@ -15,7 +15,7 @@
 ## 1. Cấu Trúc Ứng Dụng
 
 ```text
-bot/  # (e.g. ~/.tuquet/bot/ on local workstation or /opt/tuquet/bot/ on Linux server)
+bot/  # (e.g. ~/.operon/bot/ on local workstation or /opt/operon/bot/ on Linux server)
 ├── bin/
 │   └── telegram-bot      # CLI quản lý và điều khiển daemon
 ├── config/
@@ -41,7 +41,7 @@ bot/  # (e.g. ~/.tuquet/bot/ on local workstation or /opt/tuquet/bot/ on Linux s
 
 ## 2. Quản Trị Hệ Thống Qua CLI
 
-ChatOps daemon được điều khiển qua binary `telegram-bot` (liên kết toàn cục qua `/usr/local/bin/telegram-bot` trên Linux hoặc nằm trong `PATH` hệ sinh thái `~/.tuquet/bot/bin/`). Bạn có thể chạy các lệnh quản trị từ bất kỳ đâu:
+ChatOps daemon được điều khiển qua binary `telegram-bot` (liên kết toàn cục qua `/usr/local/bin/telegram-bot` trên Linux hoặc nằm trong `PATH` hệ sinh thái `~/.operon/bot/bin/`). Bạn có thể chạy các lệnh quản trị từ bất kỳ đâu:
 
 ```bash
 # Kiểm tra trạng thái daemon
@@ -80,7 +80,7 @@ telegram-bot run
 
 ## 4. Bảo Mật & Phân Quyền
 
-- Cấu hình file `config/.env` (hoặc `~/.tuquet/bot/config/.env`):
+- Cấu hình file `config/.env` (hoặc `~/.operon/bot/config/.env`):
   - `ALLOWED_CHAT_IDS`: Chỉ nhóm chat hoặc ID người dùng được phép mới có thể tương tác với bot.
   - `ADMIN_USER_IDS`: Chỉ tài khoản admin được cấu hình (ví dụ: `ADMIN_USER_IDS="<your_telegram_id>"`) mới có thể chạy các lệnh nhạy cảm như `/deploy`, `/server`, `/services`.
 
@@ -93,7 +93,7 @@ ChatOps cung cấp Composite Action chính chủ dùng chung cho toàn bộ ecos
 ```yaml
 - name: Send Telegram Notification
   if: always()
-  uses: tuquet/bot@main
+  uses: operon/bot@main
   with:
     bot-token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
     chat-id: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -104,7 +104,7 @@ ChatOps cung cấp Composite Action chính chủ dùng chung cho toàn bộ ecos
 ```yaml
 - name: Send Telegram Notification
   if: always()
-  uses: tuquet/bot@main
+  uses: operon/bot@main
   with:
     bot-token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
     chat-id: ${{ secrets.TELEGRAM_CHAT_ID }}

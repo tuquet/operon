@@ -1,5 +1,5 @@
 // ============================================================================
-// TUQUET-CLOUD SMOKE TEST (CI & POST-DEPLOYMENT VERIFICATION)
+// OPN-CLOUD SMOKE TEST (CI & POST-DEPLOYMENT VERIFICATION)
 // Description: Validates core Supabase Cloud endpoints, PostgREST queries,
 //              and essential tenant connectivity after automated deployment.
 // ============================================================================

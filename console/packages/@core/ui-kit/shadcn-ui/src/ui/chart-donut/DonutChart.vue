@@ -5,7 +5,7 @@ import type { BaseChartProps, KeyOf } from '../chart';
 
 import { computed, ref } from 'vue';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { Donut } from '@unovis/ts';
 import { VisDonut, VisSingleContainer } from '@unovis/vue';

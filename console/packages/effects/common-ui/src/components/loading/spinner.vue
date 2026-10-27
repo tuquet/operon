@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { VbenSpinner } from '@tuquet-core/shadcn-ui';
-import { cn } from '@tuquet-core/shared/utils';
+import { VbenSpinner } from '@operon-core/shadcn-ui';
+import { cn } from '@operon-core/shared/utils';
 
 interface SpinnerProps {
   class?: string;

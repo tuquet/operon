@@ -3,7 +3,7 @@ import type { ToolbarType } from './types';
 
 import { computed } from 'vue';
 
-import { preferences } from '@tuquet/preferences';
+import { preferences } from '@operon/preferences';
 
 import {
   AuthenticationColorToggle,

@@ -1,5 +1,5 @@
-import type { FormValues } from '@tuquet/common-ui';
-import type { VxeTableGridOptions } from '@tuquet/plugins/vxe-table';
+import type { FormValues } from '@operon/common-ui';
+import type { VxeTableGridOptions } from '@operon/plugins/vxe-table';
 
 import type { ComponentPropsMap, ComponentType } from './component';
 
@@ -10,7 +10,7 @@ import type {
 
 import { computed, defineComponent, Fragment, h, ref, watch } from 'vue';
 
-import { i18n } from '@tuquet/locales';
+import { i18n } from '@operon/locales';
 import {
   VxeForm as _VxeForm,
   VxeFormGather as _VxeFormGather,
@@ -23,10 +23,10 @@ import {
   VxeTextarea as _VxeTextarea,
   setupVbenVxeTable,
   useVbenVxeGrid as useGrid,
-} from '@tuquet/plugins/vxe-table';
-import { usePreferences } from '@tuquet/preferences';
+} from '@operon/plugins/vxe-table';
+import { usePreferences } from '@operon/preferences';
 
-import { Badge, Button } from '@tuquet-core/shadcn-ui';
+import { Badge, Button } from '@operon-core/shadcn-ui';
 
 import {
   isInteractiveCellClick,
@@ -637,4 +637,4 @@ export type {
   VxeDetailSheetMode,
   VxeDetailSheetOptions,
 } from '#/components/vxe-detail-sheet/types';
-export type * from '@tuquet/plugins/vxe-table';
+export type * from '@operon/plugins/vxe-table';

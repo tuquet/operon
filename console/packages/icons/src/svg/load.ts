@@ -1,6 +1,6 @@
-import type { IconifyIconStructure } from '@tuquet-core/icons';
+import type { IconifyIconStructure } from '@operon-core/icons';
 
-import { addIcon } from '@tuquet-core/icons';
+import { addIcon } from '@operon-core/icons';
 
 loadSvgIcons();
 

@@ -6,7 +6,7 @@ import type {
   ProxyProtocol,
   ProxyStatus,
   WorkflowStatus,
-} from '@tuquet/constants';
+} from '@operon/constants';
 
 import {
   BROWSER_STATUS,
@@ -18,7 +18,7 @@ import {
   PROXY_STATUS,
   SUPABASE_SCHEMA,
   WORKFLOW_STATUS,
-} from '@tuquet/constants';
+} from '@operon/constants';
 
 import { supabaseRequest } from './supabase-client';
 

@@ -6,7 +6,7 @@ import type {
 
 import { computed, ref, watch } from 'vue';
 
-import { usePreferences } from '@tuquet/preferences';
+import { usePreferences } from '@operon/preferences';
 
 import {
   Badge,
@@ -29,7 +29,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import { ArrowRight, Check, Copy, Database, Search, Table2 } from '@lucide/vue';
 

@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { ref, unref } from 'vue';
 
-import { Globe } from '@tuquet/icons';
-import { $t } from '@tuquet/locales';
-import { useTimezoneStore } from '@tuquet/stores';
+import { Globe } from '@operon/icons';
+import { $t } from '@operon/locales';
+import { useTimezoneStore } from '@operon/stores';
 
-import { useVbenModal } from '@tuquet-core/popup-ui';
+import { useVbenModal } from '@operon-core/popup-ui';
 import {
   Label,
   RadioGroup,
   RadioGroupItem,
   VbenIconButton,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 withDefaults(defineProps<{ showButton?: boolean }>(), { showButton: true });
 

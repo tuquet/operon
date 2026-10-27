@@ -9,7 +9,7 @@
 
 ## 1. Objective (Mục Tiêu Nghiệp Vụ & Kỹ Thuật)
 
-Xây dựng phân hệ giao diện Web **`admin-commerce-portal`** dưới nhóm định tuyến cấp 1 `/commerce` trong `@tuquet/admin-web`, kết nối trực tiếp với tầng API `src/api/core/billing.ts` và `src/api/core/commerce.ts` nhằm cung cấp trọn vẹn trải nghiệm thương mại điện tử nội bộ cho cả **Tenant Workspace** và **Platform Superadmin**:
+Xây dựng phân hệ giao diện Web **`admin-commerce-portal`** dưới nhóm định tuyến cấp 1 `/commerce` trong `@operon/admin-web`, kết nối trực tiếp với tầng API `src/api/core/billing.ts` và `src/api/core/commerce.ts` nhằm cung cấp trọn vẹn trải nghiệm thương mại điện tử nội bộ cho cả **Tenant Workspace** và **Platform Superadmin**:
 
 1. **Cửa Hàng Tài Nguyên Số (`/commerce/store`):** Duyệt danh mục sản phẩm số, chọn biến thể SKU, thanh toán 1 chạm bằng Ví Xu (`internal_wallet`) hoặc qua cổng ngoại vi (VietQR, MoMo, Stripe, Crypto USDT) kèm cơ chế tự động kiểm tra trạng thái đơn hàng mỗi 3 giây.
 2. **Lịch Sử Đơn Hàng & Nhận Tài Nguyên (`/commerce/orders`):** Tra cứu đơn hàng của Workspace bằng `useVbenVxeGrid`, mở hộp thoại nhận bàn giao tài nguyên (`serial_stock` sao chép 1 chạm / tải tệp `.txt`, `resource`, `digital_file`, `wallet_credit`).
@@ -20,9 +20,9 @@ Xây dựng phân hệ giao diện Web **`admin-commerce-portal`** dưới nhóm
 
 ## 2. Tech Stack
 
-- **Frontend Application:** `@tuquet/admin-web` (Vue 3 `<script setup lang="ts">`, TypeScript, Vue Router 4, `vue-i18n`).
+- **Frontend Application:** `@operon/admin-web` (Vue 3 `<script setup lang="ts">`, TypeScript, Vue Router 4, `vue-i18n`).
 - **Table & Form Engine:** `useVbenVxeGrid` từ `#/adapter/vxe-table` (`vxe-table`).
-- **UI Components & Icons:** `@tuquet/vue-ui` (`Badge`, `Button`, `Dialog`, `DialogContent`, `DialogDescription`, `DialogHeader`, `DialogTitle`, `toast`), `@lucide/vue`.
+- **UI Components & Icons:** `@operon/vue-ui` (`Badge`, `Button`, `Dialog`, `DialogContent`, `DialogDescription`, `DialogHeader`, `DialogTitle`, `toast`), `@lucide/vue`.
 - **Data Access Layer:** `src/api/core/billing.ts`, `src/api/core/commerce.ts`, `src/api/core/tenant.ts`.
 
 ---
@@ -31,10 +31,10 @@ Xây dựng phân hệ giao diện Web **`admin-commerce-portal`** dưới nhóm
 
 ```bash
 # 1. Chạy unit tests cho API Core và Router
-pnpm --filter @tuquet/admin-web run test:unit -- src/api/core src/router
+pnpm --filter @operon/admin-web run test:unit -- src/api/core src/router
 
 # 2. Kiểm tra kiểu dữ liệu TypeScript (Zero errors)
-pnpm --filter @tuquet/admin-web run typecheck
+pnpm --filter @operon/admin-web run typecheck
 
 # 3. Quét tĩnh mã nguồn oxlint
 pnpm run lint

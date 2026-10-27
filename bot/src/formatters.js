@@ -33,7 +33,7 @@ export function getMainKeyboard() {
 export async function formatMultiRepoCiMessage() {
   const list = await getMultiRepoCiSummary(config.monitoredRepos);
   const rows = list.map(item => {
-    const shortName = item.repo.replace(/^tuquet\//, '');
+    const shortName = item.repo.replace(/^operon\//, '');
     if (!item.hasRun) {
       return `⚪ <b>${escapeHtml(shortName)}:</b> <i>chưa có workflow</i>`;
     }
@@ -161,13 +161,13 @@ export async function formatReleasesMessage() {
 
   const text = [
     `<b>📦 Danh Sách Releases Gần Đây:</b>`,
-    `📡 <i>Nguồn: <a href="${escapeHtml(config.releasesFeedUrl)}">release.tuquet.com/feed.xml</a></i>`,
+    `📡 <i>Nguồn: <a href="${escapeHtml(config.releasesFeedUrl)}">release.operon.com/feed.xml</a></i>`,
     ``,
     lines.join('\n\n')
   ].join('\n');
 
   const keyboard = new InlineKeyboard()
-    .url('🌐 Mở Releases Portal', 'https://release.tuquet.com/')
+    .url('🌐 Mở Releases Portal', 'https://release.operon.com/')
     .text('🔄 Làm mới', 'action:releases')
     .row()
     .text('🔙 Menu chính', 'action:help');

@@ -109,7 +109,7 @@ async fn webhook_handler(
     // Optional secret verification
     if !state.secret.is_empty() {
         let provided_secret = headers
-            .get("X-Tuquet-Secret")
+            .get("X-Operon-Secret")
             .or_else(|| headers.get("x-secret"))
             .and_then(|v| v.to_str().ok());
 
@@ -118,7 +118,7 @@ async fn webhook_handler(
                 StatusCode::UNAUTHORIZED,
                 Json(serde_json::json!({
                     "ok": false,
-                    "error": "Invalid or missing X-Tuquet-Secret header"
+                    "error": "Invalid or missing X-Operon-Secret header"
                 })),
             );
         }
@@ -369,7 +369,7 @@ mod tests {
                     .method("POST")
                     .uri("/webhook")
                     .header("Content-Type", "application/json")
-                    .header("X-Tuquet-Secret", "test-secret")
+                    .header("X-Operon-Secret", "test-secret")
                     .body(axum::body::Body::from(
                         serde_json::to_vec(&webhook_payload).unwrap(),
                     ))

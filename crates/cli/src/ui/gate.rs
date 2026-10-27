@@ -5,7 +5,7 @@ use std::error::Error;
 pub async fn handle_readiness_gate(readiness: &WorkstationReadiness) -> Result<(), Box<dyn Error>> {
     match readiness.state {
         ReadinessState::Fresh => {
-            eprintln!("⚠ workstation not onboarded — run `tq setup` to initialize");
+            eprintln!("⚠ workstation not onboarded — run `opn setup` to initialize");
             std::process::exit(1);
         }
         ReadinessState::Degraded => {
@@ -18,7 +18,7 @@ pub async fn handle_readiness_gate(readiness: &WorkstationReadiness) -> Result<(
                 .issues
                 .first()
                 .map(|i| i.remedy.as_str())
-                .unwrap_or("run `tq doctor`");
+                .unwrap_or("run `opn doctor`");
             eprintln!(
                 "⚠ runtime out of sync ({}) — {}",
                 problems.join("; "),

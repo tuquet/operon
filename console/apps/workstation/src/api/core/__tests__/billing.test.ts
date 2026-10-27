@@ -358,7 +358,7 @@ describe('billing & payment-gateway core api', () => {
   describe('bank receiving accounts pool & rotation', () => {
     it('normalizes raw bank account row with daily limits and status', () => {
       const raw = {
-        account_name: 'TUQUET PLATFORM',
+        account_name: 'OPN PLATFORM',
         account_no: '0000123456789',
         bank_bin: '970422',
         bank_name: 'MBBank',
@@ -373,7 +373,7 @@ describe('billing & payment-gateway core api', () => {
 
       const mapped = mapRawBankReceivingAccount(raw);
       expect(mapped).toEqual({
-        account_name: 'TUQUET PLATFORM',
+        account_name: 'OPN PLATFORM',
         account_no: '0000123456789',
         bank_bin: '970422',
         bank_name: 'MBBank',
@@ -393,7 +393,7 @@ describe('billing & payment-gateway core api', () => {
     it('fetches, upserts, and toggles receiving accounts', async () => {
       vi.mocked(supabaseRequest).mockResolvedValueOnce([
         {
-          account_name: 'TUQUET PLATFORM',
+          account_name: 'OPN PLATFORM',
           account_no: '0000123456789',
           bank_bin: '970422',
           bank_name: 'MBBank',

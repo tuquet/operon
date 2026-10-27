@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RotateCw } from '@tuquet-core/icons';
+import { RotateCw } from '@operon-core/icons';
 
 const emit = defineEmits(['refresh']);
 

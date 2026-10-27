@@ -2,17 +2,17 @@ import type {
   VbenFormProps as FormProps,
   VbenFormSchema as FormSchema,
   FormValues,
-} from '@tuquet/common-ui';
+} from '@operon/common-ui';
 
 import type { ComponentPropsMap, ComponentType } from './component';
 
-import { setupVbenForm, useVbenForm as useForm, z } from '@tuquet/common-ui';
-import { $t } from '@tuquet/locales';
+import { setupVbenForm, useVbenForm as useForm, z } from '@operon/common-ui';
+import { $t } from '@operon/locales';
 
 async function initSetupVbenForm() {
   setupVbenForm<ComponentType>({
     config: {
-      // @tuquet-core/shadcn-ui components follow Vue 3 standard v-model (modelValue / onUpdate:modelValue)
+      // @operon-core/shadcn-ui components follow Vue 3 standard v-model (modelValue / onUpdate:modelValue)
       baseModelPropName: 'modelValue',
       modelPropNameMap: {
         Upload: 'fileList',

@@ -7,7 +7,7 @@ import {
   ref,
 } from 'vue';
 
-import { usePreferences } from '@tuquet/preferences';
+import { usePreferences } from '@operon/preferences';
 
 import { HL } from './hairline-kernel';
 

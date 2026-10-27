@@ -2,9 +2,9 @@
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
-import { Button, Input, Label, toast } from '@tuquet-core/shadcn-ui';
+import { Button, Input, Label, toast } from '@operon-core/shadcn-ui';
 
 import { updatePassword } from '#/api/core/auth';
 import { captureError } from '#/utils/bugsink';

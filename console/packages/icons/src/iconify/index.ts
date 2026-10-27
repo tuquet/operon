@@ -1,3 +1,3 @@
-export * from '@tuquet-core/icons';
+export * from '@operon-core/icons';
 
-export { X as MdiKeyboardEsc } from '@tuquet-core/icons';
+export { X as MdiKeyboardEsc } from '@operon-core/icons';

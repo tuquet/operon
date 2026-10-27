@@ -1,51 +1,51 @@
 {
   "folders": [
     {
-      "name": "⚡ Workspace Root",
+      "name": "Workspace Root",
       "path": "."
     },
     {
-      "name": "💻 CLI Core (tq)",
+      "name": "CLI Core (opn)",
       "path": "cli"
     },
     {
-      "name": "☁️ Cloud Control Plane",
+      "name": "Cloud Control Plane",
       "path": "cloud"
     },
     {
-      "name": "🖥️ Console Desktop & Web",
+      "name": "Console Desktop & Web",
       "path": "console"
     },
     {
-      "name": "🌐 Browser Runtime",
+      "name": "Browser Runtime",
       "path": "browser"
     },
     {
-      "name": "⚙️ Worker Engine",
+      "name": "Worker Engine",
       "path": "worker"
     },
     {
-      "name": "📖 Documentation Hub",
+      "name": "Documentation Hub",
       "path": "docs"
     },
     {
-      "name": "🎨 UI Component Library",
+      "name": "UI Component Library",
       "path": "lib"
     },
     {
-      "name": "🧠 AI Skills",
+      "name": "AI Skills",
       "path": "skills"
     },
     {
-      "name": "🤖 Telegram ChatOps",
+      "name": "Telegram ChatOps",
       "path": "bot"
     },
     {
-      "name": "🚀 Landing Page",
-      "path": "tuquet.com"
+      "name": "Landing Page",
+      "path": "operon.com"
     },
     {
-      "name": "🗺️ Yak Shaving Map",
+      "name": "Yak Shaving Map",
       "path": "yak-map"
     }
   ],

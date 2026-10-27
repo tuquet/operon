@@ -13,7 +13,7 @@ pub enum OutputFormat {
 #[derive(Parser, Debug)]
 #[command(
     name = "faker",
-    author = "Team <dev@tuquet.io>",
+    author = "Team <dev@operon.io>",
     version = env!("CARGO_PKG_VERSION"),
     about = "Synthetic Persona & Identity Generator with validated national ID and geographic structures"
 )]

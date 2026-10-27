@@ -14,7 +14,7 @@ const { mockCaptureError, mockToast } = vi.hoisted(() => ({
   },
 }));
 
-vi.mock('@tuquet-core/shadcn-ui', () => ({
+vi.mock('@operon-core/shadcn-ui', () => ({
   toast: mockToast,
 }));
 
@@ -57,11 +57,11 @@ describe('useAsyncAction & executeWithFeedback', () => {
 
   it('supports dynamic success message function', async () => {
     const { executeAction } = useAsyncAction();
-    await executeAction(async () => ({ name: 'Tuquet Core' }), {
+    await executeAction(async () => ({ name: 'Operon Core' }), {
       success: (data) => `Created ${data.name}`,
     });
 
-    expect(mockToast.success).toHaveBeenCalledWith('Created Tuquet Core');
+    expect(mockToast.success).toHaveBeenCalledWith('Created OperonCore');
   });
 
   it('handles error, reports to Bugsink, and shows error toast', async () => {

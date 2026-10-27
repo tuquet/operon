@@ -1,12 +1,12 @@
 {
-  "name": "@tuquet-core/icons",
+  "name": "@operon-core/icons",
   "version": "5.8.0",
-  "homepage": "https://github.com/tuquet/console",
-  "bugs": "https://github.com/tuquet/console/issues",
+  "homepage": "https://github.com/operon/console",
+  "bugs": "https://github.com/operon/console/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tuquet/console.git",
-    "directory": "packages/@tuquet-core/base/icons"
+    "url": "git+https://github.com/operon/console.git",
+    "directory": "packages/@operon-core/base/icons"
   },
   "license": "MIT",
   "type": "module",

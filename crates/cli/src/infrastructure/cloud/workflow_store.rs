@@ -86,16 +86,16 @@ impl CloudWorkflowRepository {
         let config = AppConfig::load();
         let creds = CredentialStore::load(&config.data_dir)
             .await
-            .ok_or_else(|| "Not authenticated. Run `tq auth login` first.".to_string())?;
+            .ok_or_else(|| "Not authenticated. Run `opn auth login` first.".to_string())?;
         let token = creds
             .access_token
             .clone()
             .filter(|t| !t.trim().is_empty())
-            .ok_or_else(|| "No user session found. Run `tq auth login` first.".to_string())?;
+            .ok_or_else(|| "No user session found. Run `opn auth login` first.".to_string())?;
         let tenant_id = creds
             .tenant_id
             .clone()
-            .ok_or_else(|| "No tenant bound. Run `tq auth login` again.".to_string())?;
+            .ok_or_else(|| "No tenant bound. Run `opn auth login` again.".to_string())?;
         let base = resolve_supabase_url(
             config.cloud_url.as_deref(),
             creds.cloud_url.as_deref(),

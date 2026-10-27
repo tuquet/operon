@@ -1,9 +1,9 @@
 import type { Router } from 'vue-router';
 
-import { LOGIN_PATH } from '@tuquet/constants';
-import { preferences } from '@tuquet/preferences';
-import { useAccessStore, useUserStore } from '@tuquet/stores';
-import { startProgress, stopProgress } from '@tuquet/utils';
+import { LOGIN_PATH } from '@operon/constants';
+import { preferences } from '@operon/preferences';
+import { useAccessStore, useUserStore } from '@operon/stores';
+import { startProgress, stopProgress } from '@operon/utils';
 
 import {
   isJwtTokenExpired,

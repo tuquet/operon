@@ -17,7 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
   toast,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import { VxeForm, VxeFormItem } from '#/adapter/vxe-table';
 import { $t } from '#/locales';
@@ -103,7 +103,7 @@ function handleOk() {
             <template #default>
               <Input
                 v-model="email"
-                placeholder="dev@tuquet.com"
+                placeholder="dev@operon.com"
                 type="email"
                 class="h-10"
               />

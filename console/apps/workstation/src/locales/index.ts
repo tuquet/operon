@@ -3,15 +3,15 @@ import type { App } from 'vue';
 import type {
   LocaleSetupOptions,
   SupportedLanguagesType,
-} from '@tuquet/locales';
+} from '@operon/locales';
 
 import {
   $t,
   setupI18n as coreSetup,
   i18n,
   loadLocalesMapFromDir,
-} from '@tuquet/locales';
-import { preferences } from '@tuquet/preferences';
+} from '@operon/locales';
+import { preferences } from '@operon/preferences';
 
 import dayjs from 'dayjs';
 

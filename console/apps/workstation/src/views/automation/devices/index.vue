@@ -4,8 +4,8 @@ import type { Device } from '#/api';
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
-import { Page } from '@tuquet/common-ui';
-import { usePreferences } from '@tuquet/preferences';
+import { Page } from '@operon/common-ui';
+import { usePreferences } from '@operon/preferences';
 
 import {
   AlertDialog,
@@ -20,7 +20,7 @@ import {
   Badge,
   Button,
   toast,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import { Cpu, HardDrive, Laptop, Plus, RefreshCw } from '@lucide/vue';
 

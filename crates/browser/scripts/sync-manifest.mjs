@@ -24,7 +24,7 @@ const GITHUB_API_URL = `https://api.github.com/repos/${UPSTREAM_REPO}/releases?p
 
 async function fetchReleases() {
   const headers = {
-    'User-Agent': 'Tuquet-Release-Watcher/1.0',
+    'User-Agent': 'Operon-Release-Watcher/1.0',
     'Accept': 'application/vnd.github.v3+json',
   };
 
@@ -44,7 +44,7 @@ async function fetchReleases() {
   // Fallback via curl
   try {
     const tokenHeader = process.env.GITHUB_TOKEN ? `-H "Authorization: token ${process.env.GITHUB_TOKEN}"` : '';
-    const cmd = `curl.exe -s -H "User-Agent: Tuquet-Release-Watcher/1.0" ${tokenHeader} "${GITHUB_API_URL}"`;
+    const cmd = `curl.exe -s -H "User-Agent: Operon-Release-Watcher/1.0" ${tokenHeader} "${GITHUB_API_URL}"`;
     const output = execSync(cmd, { encoding: 'utf-8', stdio: ['pipe', 'pipe', 'ignore'] });
     return JSON.parse(output);
   } catch (err) {

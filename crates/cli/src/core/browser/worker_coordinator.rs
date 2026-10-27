@@ -34,7 +34,7 @@ pub async fn ensure_browser_worker(
             if name_lower.contains("chrome")
                 || name_lower.contains("chromium")
                 || name_lower.contains("msedge")
-                || name_lower.contains("tuquet")
+                || name_lower.contains("operon")
             {
                 tracing::info!(
                     "Terminating stale browser process PID {} ({})",
@@ -61,7 +61,7 @@ pub async fn ensure_browser_worker(
                 }
             } else {
                 tracing::warn!(
-                    "Stale PID {} detected for browser {}, but process name '{}' does not match browser/tuquet. Skipping kill.",
+                    "Stale PID {} detected for browser {}, but process name '{}' does not match browser/operon. Skipping kill.",
                     _pid,
                     browser_id,
                     raw_name

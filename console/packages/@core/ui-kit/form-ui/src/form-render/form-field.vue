@@ -21,7 +21,7 @@ import {
   watch,
 } from 'vue';
 
-import { ChevronsDown, CircleAlert } from '@tuquet-core/icons';
+import { ChevronsDown, CircleAlert } from '@operon-core/icons';
 import {
   Button,
   FormControl,
@@ -32,8 +32,8 @@ import {
   VbenCollapsible,
   VbenRenderContent,
   VbenTooltip,
-} from '@tuquet-core/shadcn-ui';
-import { cn, isFunction, isObject, isString } from '@tuquet-core/shared/utils';
+} from '@operon-core/shadcn-ui';
+import { cn, isFunction, isObject, isString } from '@operon-core/shared/utils';
 
 import { getFormRule } from '../rule-registry';
 import { provideFormCustomField } from '../use-custom-field-value';

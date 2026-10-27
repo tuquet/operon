@@ -2,13 +2,13 @@ import type { VxeGridSlots, VxeGridSlotTypes } from 'vxe-table';
 
 import type { SlotsType } from 'vue';
 
-import type { BaseFormComponentType, FormValues } from '@tuquet-core/form-ui';
+import type { BaseFormComponentType, FormValues } from '@operon-core/form-ui';
 
 import type { ExtendedVxeGridApi, VxeGridProps } from './types';
 
 import { defineComponent, h, onBeforeUnmount } from 'vue';
 
-import { useStore } from '@tuquet-core/shared/store';
+import { useStore } from '@operon-core/shared/store';
 
 import { VxeGridApi } from './api';
 import VxeGrid from './use-vxe-grid.vue';

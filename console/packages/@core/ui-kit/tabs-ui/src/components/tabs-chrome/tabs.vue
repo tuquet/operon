@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { TabDefinition } from '@tuquet-core/typings';
+import type { TabDefinition } from '@operon-core/typings';
 
 import type { TabConfig, TabsProps } from '../../types';
 
 import { computed, ref } from 'vue';
 
-import { Pin, X } from '@tuquet-core/icons';
-import { VbenContextMenu, VbenIcon } from '@tuquet-core/shadcn-ui';
+import { Pin, X } from '@operon-core/icons';
+import { VbenContextMenu, VbenIcon } from '@operon-core/shadcn-ui';
 
 interface Props extends TabsProps {}
 
@@ -176,7 +176,7 @@ function onMouseDown(e: MouseEvent, tab: TabConfig) {
 </template>
 
 <style scoped>
-@reference "@tuquet/tailwind-config/theme";
+@reference "@operon/tailwind-config/theme";
 
 .tabs-chrome__item:not(.dragging) {
   @apply cursor-pointer;

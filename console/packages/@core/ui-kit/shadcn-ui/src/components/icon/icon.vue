@@ -3,13 +3,13 @@ import type { Component } from 'vue';
 
 import { computed } from 'vue';
 
-import { IconDefault, IconifyIcon } from '@tuquet-core/icons';
+import { IconDefault, IconifyIcon } from '@operon-core/icons';
 import {
   isFunction,
   isHttpUrl,
   isObject,
   isString,
-} from '@tuquet-core/shared/utils';
+} from '@operon-core/shared/utils';
 
 const props = defineProps<{
   // If none, whether to show default icon

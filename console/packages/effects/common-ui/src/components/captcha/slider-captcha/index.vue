@@ -7,9 +7,9 @@ import type {
 
 import { reactive, unref, useTemplateRef, watch, watchEffect } from 'vue';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { useTimeoutFn } from '@vueuse/core';
 

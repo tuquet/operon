@@ -8,8 +8,8 @@ import {
   watch,
 } from 'vue';
 
-import { $t } from '@tuquet/locales';
-import { usePreferences } from '@tuquet/preferences';
+import { $t } from '@operon/locales';
+import { usePreferences } from '@operon/preferences';
 
 defineOptions({ name: 'SplineRobotBanner' });
 

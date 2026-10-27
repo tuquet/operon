@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { BuiltinThemePreset } from '@tuquet/preferences';
-import type { BuiltinThemeType } from '@tuquet/types';
+import type { BuiltinThemePreset } from '@operon/preferences';
+import type { BuiltinThemeType } from '@operon/types';
 
 import { computed, ref } from 'vue';
 
-import { UserRoundPen } from '@tuquet/icons';
-import { $t } from '@tuquet/locales';
-import { BUILT_IN_THEME_PRESETS } from '@tuquet/preferences';
-import { convertToHsl, TinyColor } from '@tuquet/utils';
+import { UserRoundPen } from '@operon/icons';
+import { $t } from '@operon/locales';
+import { BUILT_IN_THEME_PRESETS } from '@operon/preferences';
+import { convertToHsl, TinyColor } from '@operon/utils';
 
 import { useThrottleFn } from '@vueuse/core';
 

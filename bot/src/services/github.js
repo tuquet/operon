@@ -100,7 +100,7 @@ export async function getFailedLogs(repo = config.defaultRepo, runId = null) {
 /**
  * List recent repositories
  */
-export async function listRepos(owner = 'tuquet', limit = 5) {
+export async function listRepos(owner = 'operon', limit = 5) {
   try {
     const cmd = `gh repo list "${owner}" -L ${limit} --json name,isPrivate,pushedAt,description,url`;
     const { stdout } = await execAsync(cmd, { timeout: 15000 });
@@ -119,7 +119,7 @@ export function resolveRepo(name) {
   const trimmed = name.trim();
   if (trimmed === 'all') return 'all';
   if (trimmed.includes('/')) return trimmed;
-  return `tuquet/${trimmed}`;
+  return `operon/${trimmed}`;
 }
 
 /**
@@ -246,7 +246,7 @@ export async function checkForCiUpdates(bot) {
 
         // Condition 3: Deploy or successful build on website / release workflows
         if (currentConclusion === 'success' && isNewRun && !wasFailure) {
-          if (item.repo === 'tuquet/tuquet.com' || item.repo === 'tuquet/tuquet.github.io' || item.workflowName.toLowerCase().includes('deploy') || item.workflowName.toLowerCase().includes('release')) {
+          if (item.repo === 'operon/operon.com' || item.repo === 'operon/operon.github.io' || item.workflowName.toLowerCase().includes('deploy') || item.workflowName.toLowerCase().includes('release')) {
             console.log(`[CI Monitor] Detected successful deploy/run on ${item.repo}`);
             const msg = [
               `🚀 <b>BUILD & DEPLOY THÀNH CÔNG: <code>${item.repo}</code></b>`,

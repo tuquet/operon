@@ -36,11 +36,11 @@ pub fn find_local_bucket_dir() -> Option<PathBuf> {
             home_path
                 .join("scoop")
                 .join("buckets")
-                .join("tuquet")
+                .join("operon")
                 .join("bucket"),
             home_path
                 .join("Repository")
-                .join("tuquet")
+                .join("operon")
                 .join("scoop-bucket")
                 .join("bucket"),
             home_path
@@ -112,7 +112,7 @@ pub async fn fetch_available_extensions() -> Result<Vec<RemoteExtensionManifest>
 
         for id in known_ids {
             let manifest_url = format!(
-                "https://raw.githubusercontent.com/tuquet/scoop-bucket/main/bucket/ext-{}.json",
+                "https://raw.githubusercontent.com/operon/scoop-bucket/main/bucket/ext-{}.json",
                 id
             );
             if let Ok(res) = client.get(&manifest_url).send().await
@@ -152,7 +152,7 @@ pub async fn install_remote_extension(id: &str, force: bool) -> Result<Extension
     let manifest = available
         .into_iter()
         .find(|m| m.id.eq_ignore_ascii_case(id))
-        .ok_or_else(|| anyhow!("Extension '{}' not found in scoop catalog. Run 'tq browser ext catalog' to see available packages.", id))?;
+        .ok_or_else(|| anyhow!("Extension '{}' not found in scoop catalog. Run 'opn browser ext catalog' to see available packages.", id))?;
 
     let ext_dir = ExtensionRegistry::resolve_extensions_dir().join(&manifest.id);
 

@@ -21,7 +21,7 @@ Xây dựng phân hệ Quản trị Workspace (`/tenants` và `/tenants/:id`) k�
      2. **Persistence Storage:** Ghi đè khóa `localStorage.setItem("active_tenant_id", id)` (`STORAGE_KEYS.ACTIVE_TENANT_ID`).
      3. **Bugsink Telemetry:** Gắn tag ngữ cảnh `setBugsinkTag("workspace_id", id)` cho toàn bộ log lỗi và exception phát sinh.
      4. **User Feedback:** Hiển thị thông báo toast thành công (`page.workspace.switched_to`).
-     5. **Event Broadcast:** Phát sự kiện Window Event `tq:workspace-changed` mang theo `{ detail: { tenantId, tenant } }` để các component phụ thuộc cập nhật lại dữ liệu.
+     5. **Event Broadcast:** Phát sự kiện Window Event `opn:workspace-changed` mang theo `{ detail: { tenantId, tenant } }` để các component phụ thuộc cập nhật lại dữ liệu.
      6. **Schema Registry Auto-fill:** Tự động điền giá trị mặc định `defaultValue: () => getActiveTenantId()` cho các trường `tenant_id` trong biểu mẫu `VxeForm` / `VxeGrid` khi tạo mới bản ghi.
 3. **Chi Tiết Workspace 4 Tabs Đồng Bộ URL (`/tenants/:id?tab=overview|members|usage|audit`):**
    - **Tab `overview`:** Hiển thị hồ sơ định danh Workspace (`VxeForm`), số lượng máy trạm Runner trực tuyến / tổng số từ `workers.devices`, gói thuê bao hiện hành từ `billing.subscriptions`, và các thao tác quản trị (chọn làm Workspace đang hoạt động, đổi tên/slug, lưu trữ/xóa).
@@ -35,7 +35,7 @@ Xây dựng phân hệ Quản trị Workspace (`/tenants` và `/tenants/:id`) k�
 
 - **Framework:** Vue 3.5 (`<script setup lang="ts">`), Vue Router 4, TypeScript 5.
 - **Data Grid & Form Engine:** `useVbenVxeGrid` (`VxeTable`) và `VxeForm` từ `src/adapter/vxe-table.ts`.
-- **UI & Icons:** `@tuquet/vue-ui` (`Badge`, `Button`, `Card`, `Dialog`, `Tabs`, `toast`), `@lucide/vue`.
+- **UI & Icons:** `@operon/vue-ui` (`Badge`, `Button`, `Card`, `Dialog`, `Tabs`, `toast`), `@lucide/vue`.
 - **Data Access Layer:** `src/api/core/tenant.ts` và `src/api/core/workspace-detail.ts`.
 
 ---
@@ -47,7 +47,7 @@ Xây dựng phân hệ Quản trị Workspace (`/tenants` và `/tenants/:id`) k�
 pnpm exec vitest run apps/web-admin/src/api/core/__tests__/workspace-detail.test.ts
 
 # 2. Kiểm tra kiểu dữ liệu TypeScript
-pnpm --filter @tuquet/admin-web run typecheck
+pnpm --filter @operon/admin-web run typecheck
 
 # 3. Kiểm tra linter và định dạng
 npx oxlint apps/web-admin/src/
@@ -180,7 +180,7 @@ export async function removeWorkspaceMemberApi(memberId: string): Promise<void>;
 2. **Component & Layout Verification:**
    - Kiểm tra `workspace-overview-tab.vue` không còn sử dụng `<VxeFormItem span="12">` gây vỡ chữ dọc trên màn hình hẹp.
    - Kiểm tra `0` kết quả `text-[11px]` trong toàn bộ `apps/web-admin/src/views/tenants/`.
-3. **Typecheck & Lint Gate:** `pnpm --filter @tuquet/admin-web run typecheck` và `pnpm run lint` đạt `0 errors`.
+3. **Typecheck & Lint Gate:** `pnpm --filter @operon/admin-web run typecheck` và `pnpm run lint` đạt `0 errors`.
 
 ---
 

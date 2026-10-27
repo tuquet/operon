@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: BROWSERS SEED DATA
+-- OPN-CLOUD PLUGIN: BROWSERS SEED DATA
 -- Description: Seeds authentic releases from adryfish/fingerprint-chromium
 -- ============================================================================
 
@@ -52,3 +52,35 @@ VALUES
         '2026-02-27T09:02:24Z'
     )
 ON CONFLICT (version, channel, os_platform, arch) DO NOTHING;
+
+
+-- ============================================================================
+-- 2. Default Browser Profiles (For First-time Superadmin Demo Experience)
+-- ============================================================================
+INSERT INTO browsers.profiles (
+    id, tenant_id, name, group_name, tags, browser_type, engine_version,
+    fingerprint_seed, os_platform, os_version, browser_brand, cpu_cores, ram_gb,
+    canvas_mode, webgl_mode, audio_mode, status, created_by
+)
+VALUES
+    (
+        '10000000-0000-0000-0000-000000000001',
+        'b0000000-0000-0000-0000-000000000001',
+        'Demo Sandbox Browser',
+        'demo',
+        ARRAY['quickstart', 'starter-demo'],
+        'ungoogled-chromium',
+        '148.0.7778.215',
+        88219342,
+        'windows',
+        '10.0.0',
+        'Chrome',
+        8,
+        16,
+        'noise',
+        'noise',
+        'noise',
+        'idle',
+        'a0000000-0000-0000-0000-000000000001'
+    )
+ON CONFLICT (id) DO NOTHING;

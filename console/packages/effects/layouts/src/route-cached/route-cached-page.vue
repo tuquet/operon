@@ -5,7 +5,7 @@ import type { RouteLocationNormalizedLoadedGeneric } from 'vue-router';
 
 import { watch } from 'vue';
 
-import { useTabbarStore } from '@tuquet/stores';
+import { useTabbarStore } from '@operon/stores';
 
 interface Props {
   component?: VNode;

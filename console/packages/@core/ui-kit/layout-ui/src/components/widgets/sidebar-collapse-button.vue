@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useSimpleLocale } from '@tuquet-core/composables';
-import { ChevronsLeft, ChevronsRight } from '@tuquet-core/icons';
-import { VbenButton } from '@tuquet-core/shadcn-ui';
+import { useSimpleLocale } from '@operon-core/composables';
+import { ChevronsLeft, ChevronsRight } from '@operon-core/icons';
+import { VbenButton } from '@operon-core/shadcn-ui';
 
 const collapsed = defineModel<boolean>('collapsed');
 const { $t } = useSimpleLocale();

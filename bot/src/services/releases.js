@@ -9,7 +9,7 @@ const STATE_FILE = path.join(config.dataDir, 'last_release.json');
  */
 export async function getLatestReleases(limit = 5) {
   // Strategy 1: Try structured API (primary then Netlify direct fallback)
-  for (const apiUrl of [config.releasesApiUrl, 'https://tuquet.netlify.app/api/releases']) {
+  for (const apiUrl of [config.releasesApiUrl, 'https://operon.netlify.app/api/releases']) {
     try {
       const res = await fetch(apiUrl, {
         headers: { 'User-Agent': 'FlowupAI-Bot/1.0' },
@@ -62,9 +62,9 @@ export async function getLatestReleases(limit = 5) {
         const guid = guidMatch ? guidMatch[1].trim() : link;
         const pubDate = pubDateMatch ? new Date(pubDateMatch[1]).toISOString() : new Date().toISOString();
 
-        // Extract repo and version from title e.g. "tuquet/scoop-bucket v1.0.0 released"
+        // Extract repo and version from title e.g. "operon/scoop-bucket v1.0.0 released"
         const parts = title.replace(/\s+released$/i, '').split(/\s+/);
-        const repo = parts[0] || 'tuquet';
+        const repo = parts[0] || 'operon';
         const version = parts[1] || '';
 
         items.push({
@@ -174,12 +174,12 @@ export async function checkForNewReleases(bot) {
 }
 
 /**
- * Check for new blog posts on tuquet.com/feed.xml and broadcast to Telegram
+ * Check for new blog posts on operon.com/feed.xml and broadcast to Telegram
  */
 export async function checkForNewBlogPosts(bot) {
   const BLOG_STATE_FILE = path.join(config.dataDir, 'last_blog_post.json');
   try {
-    const res = await fetch('https://tuquet.com/feed.xml', {
+    const res = await fetch('https://operon.com/feed.xml', {
       headers: { 'User-Agent': 'FlowupAI-Bot/1.0' },
       signal: AbortSignal.timeout(10000),
     });
@@ -198,7 +198,7 @@ export async function checkForNewBlogPosts(bot) {
       const descMatch = itemXml.match(/<description><!\[CDATA\[(.*?)\]\]><\/description>/) || itemXml.match(/<description>(.*?)<\/description>/);
 
       const title = titleMatch ? titleMatch[1].trim() : 'Bài viết mới';
-      const link = linkMatch ? linkMatch[1].trim() : 'https://tuquet.com/posts';
+      const link = linkMatch ? linkMatch[1].trim() : 'https://operon.com/posts';
       const guid = guidMatch ? guidMatch[1].trim() : link;
       const desc = descMatch ? descMatch[1].trim() : '';
 
@@ -240,7 +240,7 @@ export async function checkForNewBlogPosts(bot) {
         ``,
         `<i>${escapeHtml(post.desc)}</i>`,
         ``,
-        `🔗 <a href="${escapeHtml(post.link)}">Đọc bài viết trên tuquet.com</a>`,
+        `🔗 <a href="${escapeHtml(post.link)}">Đọc bài viết trên operon.com</a>`,
       ].join('\n');
 
       for (const chatId of targetChats) {

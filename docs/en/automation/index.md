@@ -2,13 +2,13 @@
 
 Web scrapers wrapped in Python or heavy Node.js runtimes collapse under concurrent load. Selenium and Playwright introduce massive abstraction layers, chew through gigabytes of RAM, and get trapped by Shadow DOM barriers and bot shields.
 
-**Tuquet Automation Engine** executes browser workflows using Chrome DevTools Protocol (CDP) over raw WebSockets in pure Rust — piercing closed Shadow DOM, handling 500+ concurrent contexts, and consuming only 15MB RAM per tab.
+**Operon Automation Engine** executes browser workflows using Chrome DevTools Protocol (CDP) over raw WebSockets in pure Rust — piercing closed Shadow DOM, handling 500+ concurrent contexts, and consuming only 15MB RAM per tab.
 
 ---
 
 ## 1. Architecture: Declarative Workflow & Headless Rust Engine
 
-Tuquet Automation resolves the tradeoff between simplicity and raw automation performance through a lightweight pipeline:
+Operon Automation resolves the tradeoff between simplicity and raw automation performance through a lightweight pipeline:
 
 ```text
  ┌─────────────────────────────────────────────────────────────┐
@@ -38,76 +38,76 @@ Tuquet Automation resolves the tradeoff between simplicity and raw automation pe
  │                             ▼                               │
  │   ┌─────────────────────────────────────────────────────┐   │
  │   │              Local SQLite Persistence               │   │
- │   │        (~/.tq/automation/automation.sqlite)         │   │
+ │   │        (~/.operon/automation/automation.sqlite)         │   │
  │   │  • Execution Logs, Step Traces, Workflow Records    │   │
  │   └─────────────────────────────────────────────────────┘   │
  └─────────────────────────────────────────────────────────────┘
 ```
 
-1. **Workflow Management (`tq automation list` / `/automation/workflows`)**:
+1. **Workflow Management (`opn automation list` / `/automation/workflows`)**:
    - Manage and trigger automation workflows via CLI or Web Admin.
 2. **Step-by-Step Execution Driver**:
    - Evaluates workflow action blocks, parameters, and variable substitutions.
 3. **Pure-Rust CDP Execution Driver**:
    - Communicates directly over local WebSockets using the Chrome DevTools Protocol (CDP). Bypasses heavy Node.js runtimes and WebDriver abstraction overhead.
 4. **Local SQLite Store & Cloud Telemetry**:
-   - Workflows and execution logs are stored locally in `~/.tq/automation/automation.sqlite` and synchronized to `/automation/jobs` when enrolled with a tenant.
+   - Workflows and execution logs are stored locally in `~/.operon/automation/automation.sqlite` and synchronized to `/automation/jobs` when enrolled with a tenant.
 
 ---
 
 ## 2. Command Reference
 
-All workflow actions can be executed via the `tq automation` command suite:
+All workflow actions can be executed via the `opn automation` command suite:
 
 ### Direct Workflow Execution
 
 ```bash
 # Execute a workflow from SQLite database via native browser worker
-tq automation run <workflow_id>
+opn automation run <workflow_id>
 
 # Execute in headless mode with a 60-second safety timeout
-tq automation run <workflow_id> --headless --timeout 60
+opn automation run <workflow_id> --headless --timeout 60
 
 # Pass runtime variables (key-value interpolation)
-tq automation run login-flow \
+opn automation run login-flow \
   -p USERNAME="admin@enterprise.vn" \
   -p TARGET_URL="https://app.enterprise.vn"
 
 # Execute workflow against a specific cloud browser profile
-tq automation run task-flow --cloud-profile "Facebook-Ad-VN"
+opn automation run task-flow --cloud-profile "Facebook-Ad-VN"
 ```
 
 ### Workflow Database Management
 
 ```bash
 # List all workflows saved in SQLite database
-tq automation list
+opn automation list
 
 # Filter workflows by keyword search
-tq automation list --search "shopee"
+opn automation list --search "shopee"
 
 # Import a workflow JSON file into SQLite database
-tq automation import ./flows/checkout.json --id "checkout-flow" --name "E-commerce Checkout"
+opn automation import ./flows/checkout.json --id "checkout-flow" --name "E-commerce Checkout"
 
 # Inspect detailed block sequence, parameters, and triggers
-tq automation inspect "checkout-flow"
+opn automation inspect "checkout-flow"
 
 # Export workflow from database to a standalone JSON file
-tq automation export "checkout-flow" -o ./exported.json
+opn automation export "checkout-flow" -o ./exported.json
 
 # Delete workflow from SQLite database
-tq automation delete "checkout-flow"
+opn automation delete "checkout-flow"
 ```
 
 ### Diagnostics & Engine Settings
 
 ```bash
 # Probe Automation engine manifest capabilities
-tq automation probe
+opn automation probe
 
-# Inspect or edit Automation configuration (~/.tq/automation/automation.json)
-tq automation config --show
-tq automation config --edit
+# Inspect or edit Automation configuration (~/.operon/automation/automation.json)
+opn automation config --show
+opn automation config --edit
 ```
 
 ---
@@ -153,10 +153,10 @@ Automation workflows are stored in SQLite (`automation.sqlite`) as declarative J
 
 ## 4. SSOT Storage & Microservice Pillar 2
 
-In strict adherence to Tuquet's SSOT architecture, all Automation files resolve exclusively to `~/.tq/automation/`:
+In strict adherence to Operon's SSOT architecture, all Automation files resolve exclusively to `~/.operon/automation/`:
 
 ```text
-~/.tq/automation/
+~/.operon/automation/
 ├── automation.json           # Engine configuration settings
 └── automation.sqlite         # Execution history, step logs, workflow records
 ```

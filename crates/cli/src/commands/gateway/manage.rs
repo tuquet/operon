@@ -12,7 +12,7 @@ pub fn toggle_server(
     let action_str = if enabled { "enabled" } else { "disabled" };
 
     clack_intro(
-        "tq gateway",
+        "opn gateway",
         if enabled {
             "Enable Gateway Server"
         } else {
@@ -84,7 +84,7 @@ pub fn toggle_server(
 
 pub async fn stop_gateway(server_opt: Option<&str>) -> Result<(), Box<dyn std::error::Error>> {
     let config = GatewayConfig::load()?;
-    clack_intro("tq gateway", "Stop Gateway Tunnels & Daemons");
+    clack_intro("opn gateway", "Stop Gateway Tunnels & Daemons");
 
     if let Some(target) = server_opt {
         if target.eq_ignore_ascii_case("all") {

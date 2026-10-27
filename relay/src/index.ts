@@ -21,7 +21,7 @@ function cleanCache() {
 }
 
 async function sendTelegramAlert(token: string, chatId: string, errorData: any) {
-  const message = `🚨 <b>[Tuquet Error Alert - Edge Relay]</b>\n\n` +
+  const message = `🚨 <b>[Operon Error Alert - Edge Relay]</b>\n\n` +
     `📦 <b>Project:</b> <code>${errorData.project}</code>\n` +
     `⚠️ <b>Type:</b> <code>${errorData.type}</code>\n` +
     `💬 <b>Message:</b> <code>${errorData.value}</code>\n` +
@@ -58,7 +58,7 @@ export default {
 
     // Health check
     if (url.pathname === '/' || url.pathname === '/health') {
-      return new Response(JSON.stringify({ status: 'ok', service: 'tuquet-error-relay' }), {
+      return new Response(JSON.stringify({ status: 'ok', service: 'operon-error-relay' }), {
         headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
       })
     }
@@ -91,7 +91,7 @@ export default {
           const errorValue = exc.value || eventPayload.message || 'Unknown error'
           const frame = exc.stacktrace?.frames?.[exc.stacktrace?.frames?.length - 1] || {}
           const location = frame.filename ? `${frame.filename}:${frame.lineno || '?'}` : (eventPayload.culprit || 'unknown')
-          const project = eventPayload.tags?.app || `tuquet-project-${projectId}`
+          const project = eventPayload.tags?.app || `operon-project-${projectId}`
           const userUrl = eventPayload.request?.url || 'N/A'
 
           // Check deduplication (anti-spam edge cache)

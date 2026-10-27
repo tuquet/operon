@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: TRANSACTIONAL OUTBOX & WEBHOOKS (UNINSTALLATION SCRIPT)
+-- OPN-CLOUD PLUGIN: TRANSACTIONAL OUTBOX & WEBHOOKS (UNINSTALLATION SCRIPT)
 -- Plugin ID: webhooks
 -- Architecture: Atomic Zero-Orphan Cleanup via DROP SCHEMA CASCADE
 -- ============================================================================

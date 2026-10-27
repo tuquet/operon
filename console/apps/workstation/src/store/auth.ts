@@ -1,18 +1,18 @@
-import type { Recordable, UserInfo } from '@tuquet/types';
+import type { Recordable, UserInfo } from '@operon/types';
 
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { LOGIN_PATH } from '@tuquet/constants';
-import { preferences } from '@tuquet/preferences';
+import { LOGIN_PATH } from '@operon/constants';
+import { preferences } from '@operon/preferences';
 import {
   resetAllStores,
   useAccessStore,
   useTabbarStore,
   useUserStore,
-} from '@tuquet/stores';
+} from '@operon/stores';
 
-import { toast } from '@tuquet-core/shadcn-ui';
+import { toast } from '@operon-core/shadcn-ui';
 
 import { defineStore } from 'pinia';
 

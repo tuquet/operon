@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "TuquetCloudTestPreset",
+  "title": "OperonCloudTestPreset",
   "description": "Declarative test preset definition for cloud identities and tenants",
   "type": "object",
   "required": ["name", "user"],

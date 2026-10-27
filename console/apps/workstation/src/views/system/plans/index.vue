@@ -3,10 +3,10 @@ import type { BillingPlan } from '#/api';
 
 import { ref } from 'vue';
 
-import { Page } from '@tuquet/common-ui';
-import { usePreferences } from '@tuquet/preferences';
+import { Page } from '@operon/common-ui';
+import { usePreferences } from '@operon/preferences';
 
-import { Badge, Button } from '@tuquet-core/shadcn-ui';
+import { Badge, Button } from '@operon-core/shadcn-ui';
 
 import {
   Cpu,

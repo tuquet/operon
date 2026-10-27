@@ -1,4 +1,4 @@
-import { oxlintConfig } from '@tuquet/oxlint-config';
+import { oxlintConfig } from '@operon/oxlint-config';
 
 import { defineConfig } from 'oxlint';
 

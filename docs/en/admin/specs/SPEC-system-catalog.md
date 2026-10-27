@@ -25,7 +25,7 @@ Xây dựng phân hệ Quản trị Danh mục Hệ thống (**System Catalog**)
 
 - **Framework:** Vue 3.5 (`<script setup lang="ts">`), Vue Router 4, TypeScript 5, `vue-i18n`.
 - **Data Grid & Form Engine:** `useVbenVxeGrid` (`VxeTable`) và `VxeForm` từ `src/adapter/vxe-table.ts`.
-- **UI & Icons:** `@tuquet/vue-ui` (`Badge`, `Button`, `Card`, `Dialog`, `toast`), `@lucide/vue`.
+- **UI & Icons:** `@operon/vue-ui` (`Badge`, `Button`, `Card`, `Dialog`, `toast`), `@lucide/vue`.
 - **Data Access Layer:** `src/api/core/system.ts`.
 
 ---
@@ -37,7 +37,7 @@ Xây dựng phân hệ Quản trị Danh mục Hệ thống (**System Catalog**)
 pnpm exec vitest run apps/web-admin/src/api/core/__tests__/system.test.ts
 
 # 2. Kiểm tra kiểu dữ liệu TypeScript
-pnpm --filter @tuquet/admin-web run typecheck
+pnpm --filter @operon/admin-web run typecheck
 
 # 3. Kiểm tra linter và định dạng
 npx oxlint apps/web-admin/src/
@@ -124,7 +124,7 @@ export async function getBillingPlansApi(): Promise<BillingPlanItem[]>;
    - Kiểm tra `isCorePlugin` nhận diện chính xác 6 Core Kernel Plugins (`core-iam`, `workers`, `automation`, `storage`, `subscriptions`, `webhooks`) và trả về `false` cho các plugin mở rộng (`commerce`).
    - Kiểm tra `mapRawPlugin` chuẩn hóa trường `is_core` và giá trị mặc định an toàn khi thiếu `manifest`.
    - Kiểm tra `getBillingPlansApi` truyền đúng `{ schema: 'billing' }` và `getSystemPluginsApi` truy vấn đúng `public.system_plugins`.
-2. **Typecheck & Lint Gate:** `pnpm --filter @tuquet/admin-web run typecheck` và `pnpm run lint` đạt `0 errors`.
+2. **Typecheck & Lint Gate:** `pnpm --filter @operon/admin-web run typecheck` và `pnpm run lint` đạt `0 errors`.
 
 ---
 

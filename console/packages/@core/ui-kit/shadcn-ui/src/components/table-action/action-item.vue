@@ -3,7 +3,7 @@ import type { ActionItem } from './types';
 
 import { computed, ref } from 'vue';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { Popover, PopoverContent, PopoverTrigger } from '../../ui';
 import { VbenButton } from '../button';

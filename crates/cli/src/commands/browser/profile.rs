@@ -157,7 +157,7 @@ pub async fn handle_profile(
                 profile.get_sandbox_dir(&base_dir).display().to_string(),
             );
             card.add_kv("Config File", meta_path.display().to_string());
-            card.with_footer(format!("Launch with: tq browser launch {}", profile.id));
+            card.with_footer(format!("Launch with: opn browser launch {}", profile.id));
             println!();
             card.print();
             println!();
@@ -240,7 +240,7 @@ pub async fn handle_profile(
                 }
                 Err(e) => {
                     eprintln!(
-                        "ERROR: (tq.browser.profile.delete) Failed to delete profile [{}]: {}",
+                        "ERROR: (opn.browser.profile.delete) Failed to delete profile [{}]: {}",
                         id, e
                     );
                     Err(e.into())
@@ -398,7 +398,7 @@ pub async fn handle_profile(
             if let Some(ref h) = profile.storage_hash {
                 card.add_kv("Verified SHA-256", h);
             }
-            card.with_footer(format!("Launch with: tq browser launch {}", profile.id));
+            card.with_footer(format!("Launch with: opn browser launch {}", profile.id));
             println!();
             card.print();
             println!();
@@ -439,7 +439,7 @@ pub async fn handle_profile(
                             "This profile is configured for DIRECT connection (no proxy).",
                         );
                         card.with_footer(
-                            "Set proxy with: tq browser profile create <name> --proxy socks5://...",
+                            "Set proxy with: opn browser profile create <name> --proxy socks5://...",
                         );
                         card.print();
                         println!();
@@ -524,7 +524,7 @@ async fn run_interactive_profile(
         ClackOption, clack_cancel, clack_intro, clack_note, clack_outro, clack_select, clack_text,
     };
 
-    clack_intro("tq browser profile", "Antidetect Browser Profile Manager");
+    clack_intro("opn browser profile", "Antidetect Browser Profile Manager");
     let profiles = crate::core::browser::BrowserProfile::list_all(base_dir)?;
     clack_note(
         "Profile Summary",

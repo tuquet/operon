@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { SupportedLanguagesType } from '@tuquet/locales';
-import type { CustomPreferencesRecord } from '@tuquet/preferences';
+import type { SupportedLanguagesType } from '@operon/locales';
+import type { CustomPreferencesRecord } from '@operon/preferences';
 import type {
   BreadcrumbStyleType,
   BuiltinThemeType,
@@ -11,9 +11,9 @@ import type {
   NavigationStyleType,
   PreferencesButtonPositionType,
   ThemeModeType,
-} from '@tuquet/types';
+} from '@operon/types';
 
-import type { SegmentedItem } from '@tuquet-core/shadcn-ui';
+import type { SegmentedItem } from '@operon-core/shadcn-ui';
 
 import { computed, ref } from 'vue';
 
@@ -26,23 +26,23 @@ import {
   PinOff,
   RotateCw,
   Settings,
-} from '@tuquet/icons';
-import { $t, loadLocaleMessages } from '@tuquet/locales';
+} from '@operon/icons';
+import { $t, loadLocaleMessages } from '@operon/locales';
 import {
   clearCache,
   preferences,
   resetPreferences,
   updateCustomPreferences,
   usePreferences,
-} from '@tuquet/preferences';
+} from '@operon/preferences';
 
-import { useVbenDrawer } from '@tuquet-core/popup-ui';
+import { useVbenDrawer } from '@operon-core/popup-ui';
 import {
   VbenButton,
   VbenIconButton,
   VbenSegmented,
-} from '@tuquet-core/shadcn-ui';
-import { globalShareState } from '@tuquet-core/shared/global-state';
+} from '@operon-core/shadcn-ui';
+import { globalShareState } from '@operon-core/shared/global-state';
 
 import { useClipboard } from '@vueuse/core';
 

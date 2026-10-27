@@ -20,11 +20,11 @@ pub mod ports {
 
 pub mod protocols {
     /// Protocol identifier for Automation workflow engine v1
-    pub const PROTOCOL_AUTOMATION_V1: &str = "tuquet.automation.v1";
+    pub const PROTOCOL_AUTOMATION_V1: &str = "operon.automation.v1";
     /// Protocol identifier for dedicated browser runtime v1
-    pub const PROTOCOL_BROWSER_V1: &str = "tuquet.browser.v1";
+    pub const PROTOCOL_BROWSER_V1: &str = "operon.browser.v1";
     /// Protocol identifier for distributed execution agent v1
-    pub const PROTOCOL_AGENT_V1: &str = "tuquet.agent.v1";
+    pub const PROTOCOL_AGENT_V1: &str = "operon.agent.v1";
 }
 
 pub mod pillars {
@@ -50,8 +50,8 @@ pub mod pillars {
 }
 
 pub mod envs {
-    // Canonical Tuquet Ecosystem Environment Variables (SSOT) — techstack naming (plan 011).
-    // No brand prefixes (TQ_/TUQUET_/SPECTER_/AUTOMA_ are banned). One name per variable,
+    // Canonical OperonEcosystem Environment Variables (SSOT) — techstack naming (plan 011).
+    // No brand prefixes (TQ_/OPERON_/SPECTER_/AUTOMA_ are banned). One name per variable,
     // no fallback chains — missing required values fail fast at the call site.
     pub const ENV_DATA_DIR: &str = "DATA_DIR";
     pub const ENV_APP_ENV: &str = "APP_ENV";
@@ -72,15 +72,15 @@ pub mod envs {
 
 pub mod endpoints {
     pub const DEFAULT_HOST: &str = "127.0.0.1";
-    pub const DEFAULT_CLOUD_URL: &str = "https://cloud.tq.dev";
+    pub const DEFAULT_CLOUD_URL: &str = "https://cloud.operon.dev";
     pub const DEFAULT_AUTOMATION_STUDIO_URL: &str = "https://automation-studio.vercel.app";
-    pub const DEFAULT_DOCS_URL: &str = "https://docs.tuquet.com/en/cli";
+    pub const DEFAULT_DOCS_URL: &str = "https://docs.operon.com/en/cli";
     pub const DEFAULT_UPDATE_CHANNEL: &str = "stable";
-    pub const GITHUB_REPO: &str = "tuquet/cli";
+    pub const GITHUB_REPO: &str = "operon/cli";
 }
 
 pub mod paths {
-    pub const DEFAULT_SSOT_ROOT_DIR: &str = ".tq";
+    pub const DEFAULT_SSOT_ROOT_DIR: &str = ".operon";
 
     pub const FILE_AUTOMATION_SQLITE: &str = "automation.sqlite";
     pub const FILE_GATEWAY_JSON: &str = "gateway.json";

@@ -3,7 +3,7 @@ import type { CollapsibleParamSchema } from './type';
 
 import { computed } from 'vue';
 
-import { globalShareState } from '@tuquet-core/shared/global-state';
+import { globalShareState } from '@operon-core/shared/global-state';
 
 interface Props {
   data: CollapsibleParamSchema;

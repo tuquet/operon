@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
 import {
   Alert,
   AlertDescription,
   AlertTitle,
   Button,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import { ShieldAlert, Trash2 } from '@lucide/vue';
 

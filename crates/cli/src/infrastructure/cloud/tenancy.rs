@@ -166,7 +166,7 @@ impl TenancyManager {
     ) -> Result<TenantInfo, Box<dyn std::error::Error + Send + Sync>> {
         let mut creds = CredentialStore::load(data_dir)
             .await
-            .ok_or("No active cloud session found on this machine. Run 'tq login' first.")?;
+            .ok_or("No active cloud session found on this machine. Run 'opn login' first.")?;
 
         let cloud_url = super::credential_store::resolve_supabase_url(
             None,
@@ -194,7 +194,7 @@ impl TenancyManager {
             (Some(tok), _) => tok.clone(),
             _ => {
                 return Err(
-                    "No active user session found. Please run 'tq login' to authenticate.".into(),
+                    "No active user session found. Please run 'opn login' to authenticate.".into(),
                 );
             }
         };

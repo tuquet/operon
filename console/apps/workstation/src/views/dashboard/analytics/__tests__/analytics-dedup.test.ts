@@ -16,7 +16,7 @@ vi.mock('#/locales', () => ({
   $t: (key: string) => key,
 }));
 
-vi.mock('@tuquet/locales', () => ({
+vi.mock('@operon/locales', () => ({
   $t: (key: string) => key,
 }));
 
@@ -77,7 +77,7 @@ vi.mock('../plugins-chart.vue', () => ({
   }),
 }));
 
-vi.mock('@tuquet-core/shadcn-ui', () => {
+vi.mock('@operon-core/shadcn-ui', () => {
   const Stub = (name: string) =>
     defineComponent({
       name,

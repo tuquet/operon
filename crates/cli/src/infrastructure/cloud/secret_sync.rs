@@ -1,6 +1,6 @@
 //! Cloud Secret Store client — device-authenticated sync of `{{secrets@name}}` values.
 //!
-//! Shared by the `tq secret` CLI command **and** the workstation TUI (`tq tui` → SECRETS tab).
+//! Shared by the `opn secret` CLI command **and** the workstation TUI (`opn tui` → SECRETS tab).
 //!
 //! Zero-knowledge over wire: values are XChaCha20-Poly1305 encrypted client-side with the
 //! tenant DEK; the DEK itself is received as a libsodium sealed box (X25519) bound to this
@@ -37,12 +37,12 @@ pub struct SecretClient {
 }
 
 impl SecretClient {
-    /// Builds a client from the enrolled device identity (`~/.tq/system/.identity.json`)
+    /// Builds a client from the enrolled device identity (`~/.operon/system/.identity.json`)
     /// and the local device keypair (`<store_dir>/.device_key`).
     pub async fn connect(store_dir: &Path) -> Result<Self, String> {
         let cfg = AppConfig::load();
         let creds = CredentialStore::load(&cfg.data_dir).await.ok_or_else(|| {
-            "Workstation not enrolled with Cloud. Run `tq auth login` first.".to_string()
+            "Workstation not enrolled with Cloud. Run `opn auth login` first.".to_string()
         })?;
 
         let cloud_url = resolve_supabase_url(

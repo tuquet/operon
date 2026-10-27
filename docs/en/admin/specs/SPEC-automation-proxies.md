@@ -89,10 +89,10 @@ export const proxiesApi = {
 
 ```bash
 # 1. Chạy unit tests cho API automation & proxies
-pnpm --filter @tuquet/admin-web exec vitest run src/api/core/__tests__/automation.test.ts
+pnpm --filter @operon/admin-web exec vitest run src/api/core/__tests__/automation.test.ts
 
 # 2. Kiểm tra typecheck TypeScript
-pnpm --filter @tuquet/admin-web run typecheck
+pnpm --filter @operon/admin-web run typecheck
 
 # 3. Linter & Format check
 npx oxlint apps/web-admin/src/

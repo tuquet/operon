@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { LanguageOption } from '@tuquet/constants';
-import type { SupportedLanguagesType } from '@tuquet/locales';
+import type { LanguageOption } from '@operon/constants';
+import type { SupportedLanguagesType } from '@operon/locales';
 
 import { onMounted, onUnmounted, ref, watch } from 'vue';
 
-import { onSupportLanguagesChange } from '@tuquet/constants';
-import { $t, loadLocaleMessages } from '@tuquet/locales';
-import { preferences, updatePreferences } from '@tuquet/preferences';
-import { useTimezoneStore } from '@tuquet/stores';
+import { onSupportLanguagesChange } from '@operon/constants';
+import { $t, loadLocaleMessages } from '@operon/locales';
+import { preferences, updatePreferences } from '@operon/preferences';
+import { useTimezoneStore } from '@operon/stores';
 
 import InputItem from '../input-item.vue';
 import SelectItem from '../select-item.vue';

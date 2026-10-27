@@ -1,11 +1,11 @@
 {
-  "name": "@tuquet/access",
+  "name": "@operon/access",
   "version": "5.8.0",
-  "homepage": "https://github.com/tuquet/console",
-  "bugs": "https://github.com/tuquet/console/issues",
+  "homepage": "https://github.com/operon/console",
+  "bugs": "https://github.com/operon/console/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tuquet/console.git",
+    "url": "git+https://github.com/operon/console.git",
     "directory": "packages/effects/permissions"
   },
   "license": "MIT",
@@ -20,10 +20,10 @@
     }
   },
   "dependencies": {
-    "@tuquet/preferences": "workspace:*",
-    "@tuquet/stores": "workspace:*",
-    "@tuquet/types": "workspace:*",
-    "@tuquet/utils": "workspace:*",
+    "@operon/preferences": "workspace:*",
+    "@operon/stores": "workspace:*",
+    "@operon/types": "workspace:*",
+    "@operon/utils": "workspace:*",
     "vue": "catalog:"
   }
 }

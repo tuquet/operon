@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import type { VbenFormSchema } from '@tuquet/common-ui';
-import type { Recordable } from '@tuquet/types';
+import type { VbenFormSchema } from '@operon/common-ui';
+import type { Recordable } from '@operon/types';
 
 import { computed, ref } from 'vue';
 
-import { AuthenticationForgetPassword, z } from '@tuquet/common-ui';
-import { $t } from '@tuquet/locales';
+import { AuthenticationForgetPassword, z } from '@operon/common-ui';
+import { $t } from '@operon/locales';
 
-import { toast } from '@tuquet-core/shadcn-ui';
+import { toast } from '@operon-core/shadcn-ui';
 
 import { resetPassword } from '#/api/core/auth';
 import { captureError } from '#/utils/bugsink';

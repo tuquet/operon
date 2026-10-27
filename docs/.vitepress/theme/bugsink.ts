@@ -1,6 +1,6 @@
 import type { App } from 'vue'
 
-export const DEFAULT_BUGSINK_DSN = 'https://tuquet@tuquet-error-relay.tunyk-93.workers.dev/1'
+export const DEFAULT_BUGSINK_DSN = 'https://operon@operon-error-relay.tunyk-93.workers.dev/1'
 
 const IGNORED_PATTERNS = [
   'ResizeObserver loop limit exceeded',
@@ -24,7 +24,7 @@ function parseBugsinkDsn(dsn: string): ParsedDsn | null {
     const projectId = url.pathname.replace(/^\/+/, '')
     if (!publicKey || !projectId)
       return null
-    const endpoint = `${url.protocol}//${url.host}/api/${projectId}/envelope/?sentry_version=7&sentry_key=${publicKey}&sentry_client=tuquet-bugsink/1.0.0`
+    const endpoint = `${url.protocol}//${url.host}/api/${projectId}/envelope/?sentry_version=7&sentry_key=${publicKey}&sentry_client=operon-bugsink/1.0.0`
     return { dsn, endpoint }
   }
   catch {

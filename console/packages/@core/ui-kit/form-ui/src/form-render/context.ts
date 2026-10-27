@@ -2,7 +2,7 @@ import type { FormLabelWidthContext, FormRenderProps } from '../types';
 
 import { computed } from 'vue';
 
-import { createContext } from '@tuquet-core/shadcn-ui';
+import { createContext } from '@operon-core/shadcn-ui';
 
 export const [injectRenderFormProps, provideFormRenderProps] = createContext<
   FormLabelWidthContext & FormRenderProps

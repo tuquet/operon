@@ -1,10 +1,10 @@
 import type { VxeGridProps, VxeUIExport } from 'vxe-table';
 
-import type { Recordable } from '@tuquet/types';
+import type { Recordable } from '@operon/types';
 
 import type { VxeGridApi } from './api';
 
-import { formatDate, formatDateTime, isFunction } from '@tuquet/utils';
+import { formatDate, formatDateTime, isFunction } from '@operon/utils';
 
 export function extendProxyOptions(
   api: VxeGridApi,

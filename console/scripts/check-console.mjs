@@ -17,7 +17,7 @@ const TARGET_URL = process.env.TARGET_URL || `http://${HOST}:${PORT}`;
 
 /**
  * Resolve standard Chrome/Chromium/Edge binary across Windows & Linux.
- * Note: Intentionally avoids anti-detect stealth browsers (~/.tq/browser/runtimes)
+ * Note: Intentionally avoids anti-detect stealth browsers (~/.operon/browser/runtimes)
  * because stealth builds suppress CDP Runtime.consoleAPICalled events at the Blink C++ layer.
  */
 function resolveStandardBrowserPath() {
@@ -115,7 +115,7 @@ function createSuperadminJwt() {
   const payload = Buffer.from(
     JSON.stringify({
       app_metadata: { platform_role: 'superadmin' },
-      email: 'admin@tuquet.com',
+      email: 'admin@operon.com',
       exp: Math.floor(Date.now() / 1000) + 3600,
       role: 'authenticated',
       sub: '00000000-0000-0000-0000-000000000001',
@@ -151,7 +151,7 @@ function isIgnoredBenignMessage(entry) {
     return true;
   }
 
-  // 3. Built-in upstream @tuquet/vite-config serve-time migration notice banner
+  // 3. Built-in upstream @operon/vite-config serve-time migration notice banner
   if (
     text.includes(
       'Named field slot control bindings moved to `slotProps.componentProps`',
@@ -195,7 +195,7 @@ async function runConsoleGate() {
   } else {
     cleanStaleViteTempDirs();
     console.log(
-      `🚀 Starting headless Vite dev server for @tuquet/workstation on port ${PORT}...`,
+      `🚀 Starting headless Vite dev server for @operon/workstation on port ${PORT}...`,
     );
     process.chdir(webAdminDir);
     viteServer = await createServer({
@@ -329,7 +329,7 @@ async function runConsoleGate() {
         return route.fulfill({
           body: JSON.stringify({
             app_metadata: { platform_role: 'superadmin' },
-            email: 'admin@tuquet.com',
+            email: 'admin@operon.com',
             id: '00000000-0000-0000-0000-000000000001',
             user_metadata: { full_name: 'Superadmin' },
           }),

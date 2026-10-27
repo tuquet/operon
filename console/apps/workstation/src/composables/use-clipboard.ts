@@ -1,8 +1,8 @@
 import { ref } from 'vue';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
-import { toast } from '@tuquet-core/shadcn-ui';
+import { toast } from '@operon-core/shadcn-ui';
 
 export function useClipboard() {
   const copiedField = ref<null | string>(null);

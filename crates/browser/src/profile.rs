@@ -146,7 +146,7 @@ impl BrowserProfile {
         }
     }
 
-    /// Resolves canonical default root directory for browser profiles: ~/.tq/browser/profiles
+    /// Resolves canonical default root directory for browser profiles: ~/.operon/browser/profiles
     pub fn default_profiles_dir() -> PathBuf {
         crate::resolver::canonical_ssot_dir()
             .join("browser")
@@ -251,7 +251,7 @@ impl BrowserProfile {
         base_dir.join("profiles").join(&self.id)
     }
 
-    /// Persists profile metadata to ~/.tq/browser/profiles/<id>/profile.json
+    /// Persists profile metadata to ~/.operon/browser/profiles/<id>/profile.json
     pub fn save(&self, base_dir: &Path) -> anyhow::Result<PathBuf> {
         let dir = self.get_sandbox_dir(base_dir);
         std::fs::create_dir_all(&dir)?;
@@ -261,7 +261,7 @@ impl BrowserProfile {
         Ok(meta_path)
     }
 
-    /// Loads a profile by ID, ID-prefix, or Name from ~/.tq/browser/profiles/
+    /// Loads a profile by ID, ID-prefix, or Name from ~/.operon/browser/profiles/
     pub fn load(id_or_name: &str, base_dir: &Path) -> anyhow::Result<Self> {
         let target = id_or_name.trim();
         let profiles_dir = base_dir.join("profiles");

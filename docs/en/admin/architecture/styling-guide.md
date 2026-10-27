@@ -1,7 +1,7 @@
 # Hướng Dẫn Thiết Kế Giao Diện & Design Tokens (UI Styling Guide)
 
 > **Mã tài liệu:** `ARCH-STYLING-GUIDE`  
-> **Áp dụng cho:** `tuquet/admin` (`apps/web-admin`)  
+> **Áp dụng cho:** `operon/admin` (`apps/web-admin`)  
 > **Tài liệu kiến trúc tổng thể:** [`docs/architecture/overview.md`](overview.md)  
 
 Tài liệu này là **Quy chuẩn Thiết kế Giao diện (SSOT)** áp dụng cho toàn bộ các màn hình, components và views trong hệ thống **Admin**.
@@ -16,7 +16,7 @@ Mục tiêu cốt lõi: Đảm bảo mọi màn hình khi lập trình viên ho�
 
 ## 1. Cơ Chế Hoạt Động Của Chế Độ Màu Sắc Built-in
 
-Hệ thống màu của Admin sử dụng kiến trúc CSS Variables (HSL) động được quản lý bởi `@tuquet/preferences` và `@tuquet-core/shared/color`:
+Hệ thống màu của Admin sử dụng kiến trúc CSS Variables (HSL) động được quản lý bởi `@operon/preferences` và `@operon-core/shared/color`:
 
 1. **Preset Nguồn:** Được định nghĩa tại `packages/@core/preferences/src/constants.ts` với 14 bộ màu cơ bản (`default`, `violet`, `pink`, `yellow`, `sky-blue`, `green`, `zinc`, `deep-green`, `deep-blue`, `orange`, `rose`, `neutral`, `slate`, `gray`).
 2. **Bộ sinh màu động (Color Generator):** Khi người dùng chọn một Preset hoặc nhập mã Hex tùy chọn, hàm `generatorColorVariables` (`packages/@core/base/shared/src/color/generator.ts`) phân tích màu qua thư viện `theme-colors` để sinh ra toàn bộ dải sắc thái:
@@ -93,7 +93,7 @@ Toàn bộ bảng dữ liệu và biểu mẫu sử dụng adapter `src/adapter/
 
 ### 2.7. Biểu Đồ Dữ Liệu (`AreaChart`, `DonutChart`, `BarChart` & `--chart-1..5`)
 
-Toàn bộ biểu đồ trong `@tuquet-core/shadcn-ui` (`AreaChart`, `DonutChart`, `BarChart`) sử dụng hàm `defaultColors()` trả về 5 biến CSS ngữ nghĩa `['hsl(var(--chart-1))', ..., 'hsl(var(--chart-5))']` thay cho mã màu Hex cố định:
+Toàn bộ biểu đồ trong `@operon-core/shadcn-ui` (`AreaChart`, `DonutChart`, `BarChart`) sử dụng hàm `defaultColors()` trả về 5 biến CSS ngữ nghĩa `['hsl(var(--chart-1))', ..., 'hsl(var(--chart-5))']` thay cho mã màu Hex cố định:
 
 - Khi người dùng đổi bất kỳ chủ đề nào trong **14 Built-in Themes** hoặc **Custom**, `updateCSSVariables` (`packages/@core/preferences/src/update-css-variables.ts`) tự động sinh 5 sắc độ `--chart-1` .. `--chart-5` đồng điệu với màu chủ đề (sắc độ `--primary-500/400/600/300/700` cho nhóm chủ đề có màu, và thang 5 bậc độ sáng tương phản cao cho nhóm chủ đề đơn sắc `zinc`, `neutral`, `slate`, `gray`).
 - **Quy tắc bắt buộc:** Không truyền mảng `:colors="['#38bdf8', ...]"` gán cứng mã Hex vào các biểu đồ Dashboard để biểu đồ luôn tự động chuyển màu theo Built-in Theme.

@@ -4,7 +4,7 @@
   "configurations": [
     {
       "type": "chrome",
-      "name": "tuquet admin playground dev",
+      "name": "operon admin playground dev",
       "request": "launch",
       "url": "http://localhost:5555",
       "env": { "NODE_ENV": "development" },
@@ -22,7 +22,7 @@
     },
     {
       "type": "chrome",
-      "name": "tuquet admin ele dev",
+      "name": "operon admin ele dev",
       "request": "launch",
       "url": "http://localhost:5777",
       "env": { "NODE_ENV": "development" },
@@ -31,7 +31,7 @@
     },
     {
       "type": "chrome",
-      "name": "tuquet admin naive dev",
+      "name": "operon admin naive dev",
       "request": "launch",
       "url": "http://localhost:5888",
       "env": { "NODE_ENV": "development" },

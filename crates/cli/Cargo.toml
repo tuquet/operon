@@ -1,10 +1,10 @@
 [package]
-name = "tuquet"
+name = "operon"
 version = "1.2.1"
 edition = "2024"
-default-run = "tq"
-description = "- Autonomous Browser Automation & Distributed Mesh Runtime"
-repository = "https://github.com/tuquet/cli"
+default-run = "opn"
+description = "Operon - Ultra-High Performance Distributed Automation Mesh & Browser Sandbox Runtime"
+repository = "https://github.com/operon/operon"
 license = "MIT"
 
 [lib]
@@ -12,7 +12,11 @@ name = "automation_core"
 path = "src/lib.rs"
 
 [[bin]]
-name = "tq"
+name = "opn"
+path = "src/main.rs"
+
+[[bin]]
+name = "operon"
 path = "src/main.rs"
 
 [dependencies]

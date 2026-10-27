@@ -1,6 +1,6 @@
-import { $t } from '@tuquet/locales';
-import { initPreferences, updatePreferences } from '@tuquet/preferences';
-import { unmountGlobalLoading } from '@tuquet/utils';
+import { $t } from '@operon/locales';
+import { initPreferences, updatePreferences } from '@operon/preferences';
+import { unmountGlobalLoading } from '@operon/utils';
 
 import {
   overridesPreferences,
@@ -35,7 +35,7 @@ if (typeof window !== 'undefined') {
       // Fail-safe
     }
 
-    const lastReloadKey = 'tq:last_preload_reload';
+    const lastReloadKey = 'opn:last_preload_reload';
     const lastReload = sessionStorage.getItem(lastReloadKey);
     const now = Date.now();
     if (!lastReload || now - Number(lastReload) > 10_000) {

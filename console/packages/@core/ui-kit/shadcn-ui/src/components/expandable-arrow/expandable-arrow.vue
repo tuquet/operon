@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { ChevronDown } from '@tuquet-core/icons';
-import { cn } from '@tuquet-core/shared/utils';
+import { ChevronDown } from '@operon-core/icons';
+import { cn } from '@operon-core/shared/utils';
 
 const props = defineProps<{
   class?: string;

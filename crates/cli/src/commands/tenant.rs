@@ -17,7 +17,7 @@ pub async fn handle(command: Option<TenantSubcommands>) -> Result<(), Box<dyn st
             if !crate::ui::is_interactive_tty() {
                 return show_current_tenant(OutputFormat::Json).await;
             }
-            clack_intro("tq auth tenant", "Multi-Tenant Workspace Controller");
+            clack_intro("opn auth tenant", "Multi-Tenant Workspace Controller");
             let opts = vec![
                 ClackOption::new(
                     "Current Active Workspace",
@@ -55,7 +55,7 @@ pub async fn list_tenants(format: OutputFormat) -> Result<(), Box<dyn std::error
         Some(c) => c,
         None => {
             return Err(
-                "No active cloud session found on this machine. Run 'tq auth login' first.".into(),
+                "No active cloud session found on this machine. Run 'opn auth login' first.".into(),
             );
         }
     };
@@ -79,17 +79,17 @@ pub async fn list_tenants(format: OutputFormat) -> Result<(), Box<dyn std::error
                     "message": "Workstation enrolled under standalone tenant. Log in with an operator account to manage multi-tenant workspaces."
                 });
                 return respond_with(format, &out, |_| {
-                    clack_intro("tq auth tenant", "Standalone Workstation Enrollment");
+                    clack_intro("opn auth tenant", "Standalone Workstation Enrollment");
                     crate::ui::clack_step_info(format!(
                         "Workstation enrolled under standalone tenant: \x1b[1;97m{}\x1b[0m",
                         tid
                     ));
                     clack_outro(
-                        "Log in with an operator account via 'tq auth login' to manage multi-tenant workspaces.",
+                        "Log in with an operator account via 'opn auth login' to manage multi-tenant workspaces.",
                     );
                 });
             }
-            return Err("Workstation is not logged in. Run 'tq auth login' first.".into());
+            return Err("Workstation is not logged in. Run 'opn auth login' first.".into());
         }
     };
 
@@ -185,9 +185,9 @@ pub async fn list_tenants(format: OutputFormat) -> Result<(), Box<dyn std::error
             ]);
         }
 
-        clack_intro("tq auth tenant", "Accessible Multi-Tenant Workspaces");
+        clack_intro("opn auth tenant", "Accessible Multi-Tenant Workspaces");
         table.print();
-        clack_outro("Switch active workspace: tq auth tenant switch [slug]");
+        clack_outro("Switch active workspace: opn auth tenant switch [slug]");
     })
 }
 
@@ -203,13 +203,13 @@ pub async fn switch_tenant(
             // Zero-Arg Interactive: load accessible tenants and let user select via Clack
             let creds = CredentialStore::load(&config.data_dir)
                 .await
-                .ok_or("No active cloud session found. Run 'tq auth login' first.")?;
+                .ok_or("No active cloud session found. Run 'opn auth login' first.")?;
             let tenants = creds.available_tenants.unwrap_or_default();
             if tenants.is_empty() {
-                return Err("No multi-tenant workspaces cached. Run 'tq auth tenant' or 'tq auth login' first.".into());
+                return Err("No multi-tenant workspaces cached. Run 'opn auth tenant' or 'opn auth login' first.".into());
             }
 
-            clack_intro("tq auth tenant switch", "Interactive Workspace Selector");
+            clack_intro("opn auth tenant switch", "Interactive Workspace Selector");
             let active_slug = creds.tenant_slug.as_deref().unwrap_or("");
             let mut default_idx = 0usize;
             let opts: Vec<ClackOption> = tenants
@@ -288,14 +288,14 @@ pub async fn show_current_tenant(format: OutputFormat) -> Result<(), Box<dyn std
         None => {
             let out = serde_json::json!({
                 "authenticated": false,
-                "message": "No active cloud session found on this machine. Run 'tq auth login' to authenticate."
+                "message": "No active cloud session found on this machine. Run 'opn auth login' to authenticate."
             });
             return respond_with(format, &out, |_| {
                 let mut card = Card::new("WORKSPACE");
                 card.with_badge(badge_offline("NOT AUTHENTICATED"));
                 card.with_min_width(64);
                 card.add_line("No active cloud session found on this machine.");
-                card.with_footer("Run 'tq auth login' to authenticate with Cloud");
+                card.with_footer("Run 'opn auth login' to authenticate with Cloud");
                 println!();
                 card.print();
                 println!();
@@ -337,7 +337,7 @@ pub async fn show_current_tenant(format: OutputFormat) -> Result<(), Box<dyn std
             card.add_kv("Logged In As", email);
         }
         card.add_kv("Runner Device", &creds.name);
-        card.with_footer("Run 'tq auth tenant' to view all available workspaces");
+        card.with_footer("Run 'opn auth tenant' to view all available workspaces");
         println!();
         card.print();
         println!();

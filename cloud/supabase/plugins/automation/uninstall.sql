@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: AUTOMATION CLOUD BRIDGE (UNINSTALLATION SCRIPT)
+-- OPN-CLOUD PLUGIN: AUTOMATION CLOUD BRIDGE (UNINSTALLATION SCRIPT)
 -- Plugin ID: automation
 -- Architecture: Atomic Zero-Orphan Cleanup via DROP SCHEMA CASCADE
 -- ============================================================================

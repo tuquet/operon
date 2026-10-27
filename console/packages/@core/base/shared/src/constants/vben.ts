@@ -1,12 +1,12 @@
 /**
  * GitHub repository URL
  */
-export const VBEN_GITHUB_URL = 'https://github.com/tuquet/console';
+export const VBEN_GITHUB_URL = 'https://github.com/operon/console';
 
 /**
  * Documentation URL
  */
-export const VBEN_DOC_URL = 'https://github.com/tuquet/console#readme';
+export const VBEN_DOC_URL = 'https://github.com/operon/console#readme';
 
 /**
  * @zh_CN Vben Logo
@@ -17,14 +17,14 @@ export const VBEN_LOGO_URL =
 /**
  * Homepage URL
  */
-export const VBEN_PREVIEW_URL = 'https://console.tuquet.com';
+export const VBEN_PREVIEW_URL = 'https://console.operon.com';
 
-export const VBEN_ANTDV_NEXT_PREVIEW_URL = 'https://console.tuquet.com';
+export const VBEN_ANTDV_NEXT_PREVIEW_URL = 'https://console.operon.com';
 
-export const VBEN_ELE_PREVIEW_URL = 'https://console.tuquet.com';
+export const VBEN_ELE_PREVIEW_URL = 'https://console.operon.com';
 
-export const VBEN_NAIVE_PREVIEW_URL = 'https://console.tuquet.com';
+export const VBEN_NAIVE_PREVIEW_URL = 'https://console.operon.com';
 
-export const VBEN_ANT_PREVIEW_URL = 'https://console.tuquet.com';
+export const VBEN_ANT_PREVIEW_URL = 'https://console.operon.com';
 
-export const VBEN_TD_PREVIEW_URL = 'https://console.tuquet.com';
+export const VBEN_TD_PREVIEW_URL = 'https://console.operon.com';

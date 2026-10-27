@@ -22,15 +22,15 @@ impl AutomaDriver {
         Self
     }
 
-    /// Resolves the executable path for the automation browser plugin (tuquet, automation, automation-core)
+    /// Resolves the executable path for the automation browser plugin (operon, automation, automation-core)
     fn resolve_automa_bin(&self, target: &str) -> String {
         let binary_name = if target.is_empty()
-            || target == "tq"
-            || target == "tuquet"
+            || target == "opn"
+            || target == "operon"
             || target == "automation"
             || target == "automation-core"
         {
-            let primary = if cfg!(windows) { "tq.exe" } else { "tq" };
+            let primary = if cfg!(windows) { "opn.exe" } else { "opn" };
             let fallback = if cfg!(windows) {
                 "automation.exe"
             } else {
@@ -52,17 +52,17 @@ impl AutomaDriver {
         let home_dir = std::env::var("DATA_DIR")
             .or_else(|_| std::env::var("USERPROFILE"))
             .unwrap_or_default();
-        let root = std::env::var("DATA_DIR").unwrap_or_else(|_| format!("{}/.tq", home_dir));
+        let root = std::env::var("DATA_DIR").unwrap_or_else(|_| format!("{}/.operon", home_dir));
         let legacy_bin = if cfg!(windows) {
-            "tuquet.exe"
+            "operon.exe"
         } else {
-            "tuquet"
+            "operon"
         };
         let mut candidates = vec![
             format!("{}/bin/{}", root, legacy_bin),
-            format!("{}/.tq/bin/{}", home_dir, legacy_bin),
+            format!("{}/.operon/bin/{}", home_dir, legacy_bin),
             format!("{}/bin/{}", root, binary_name),
-            format!("{}/.tq/bin/{}", home_dir, binary_name),
+            format!("{}/.operon/bin/{}", home_dir, binary_name),
             format!("/usr/local/bin/{}", binary_name),
             format!("target/release/{}", binary_name),
             format!("target/debug/{}", binary_name),
@@ -95,7 +95,7 @@ impl AutomaDriver {
     /// Performs an active capability negotiation and handshake probe with automation-core plugin
     pub async fn probe(&self, bin_name: &str) -> Result<AutomaManifest, String> {
         let mut cmd = Command::new(bin_name);
-        if bin_name.contains("tuquet") {
+        if bin_name.contains("operon") {
             cmd.arg("automation").arg("probe");
         } else {
             cmd.arg("probe");
@@ -368,7 +368,7 @@ impl ExecutionDriver for AutomaDriver {
 
         // 3. Assemble execution command using typed AutomaJobPayload & resolved BrowserConfig
         let mut cmd = Command::new(&bin_name);
-        if bin_name.contains("tuquet") {
+        if bin_name.contains("operon") {
             cmd.arg("automation");
         }
 
@@ -548,7 +548,7 @@ mod tests {
     #[test]
     fn test_resolve_automa_bin() {
         let driver = AutomaDriver::new();
-        let bin = driver.resolve_automa_bin("tuquet");
+        let bin = driver.resolve_automa_bin("operon");
         assert!(!bin.is_empty());
         // Verify custom target returns custom name
         assert_eq!(

@@ -3,8 +3,8 @@ import type { ActionItem } from './types';
 
 import { computed, ref } from 'vue';
 
-import { useSimpleLocale } from '@tuquet-core/composables';
-import { cn } from '@tuquet-core/shared/utils';
+import { useSimpleLocale } from '@operon-core/composables';
+import { cn } from '@operon-core/shared/utils';
 
 import {
   DropdownMenuItem,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TabOption } from '@tuquet/types';
+import type { TabOption } from '@operon/types';
 
 import { computed } from 'vue';
 
@@ -8,7 +8,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 interface Props {
   tabs?: TabOption[];

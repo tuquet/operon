@@ -1,16 +1,16 @@
 //! Enterprise Constants for Distributed Execution Engine & Runner Daemon
 
 /// Protocol identifiers
-pub const PROTOCOL_AUTOMA_V1: &str = "tuquet.automation.v1";
-pub const PROTOCOL_BROWSER_V1: &str = "tuquet.browser.v1";
-pub const PROTOCOL_AGENT_V1: &str = "tuquet.agent.v1";
-pub const PROTOCOL_AUTOMA_LEGACY: &str = "tuquet.automation.legacy";
-pub const PROTOCOL_AGENT_LEGACY: &str = "tuquet.agent.legacy";
+pub const PROTOCOL_AUTOMA_V1: &str = "operon.automation.v1";
+pub const PROTOCOL_BROWSER_V1: &str = "operon.browser.v1";
+pub const PROTOCOL_AGENT_V1: &str = "operon.agent.v1";
+pub const PROTOCOL_AUTOMA_LEGACY: &str = "operon.automation.legacy";
+pub const PROTOCOL_AGENT_LEGACY: &str = "operon.agent.legacy";
 
 /// Protocol prefixes for handshake negotiation
-pub const PROTOCOL_PREFIX_AUTOMA: &str = "tuquet.automation.";
-pub const PROTOCOL_PREFIX_BROWSER: &str = "tuquet.browser.";
-pub const PROTOCOL_PREFIX_AGENT: &str = "tuquet.agent.";
+pub const PROTOCOL_PREFIX_AUTOMA: &str = "operon.automation.";
+pub const PROTOCOL_PREFIX_BROWSER: &str = "operon.browser.";
+pub const PROTOCOL_PREFIX_AGENT: &str = "operon.agent.";
 
 /// Default network ports
 pub const DEFAULT_RUNNER_PORT: u16 = 8765;
@@ -28,12 +28,12 @@ pub const DEFAULT_LOCAL_ANON_KEY: &str = "placeholder-supabase-local-anon-key";
 pub const DEFAULT_DEV_ANON_KEY: &str = "placeholder-supabase-dev-anon-key";
 
 /// Canonical SSOT directory and filenames
-pub const DEFAULT_SSOT_DIR_NAME: &str = ".tq";
+pub const DEFAULT_SSOT_DIR_NAME: &str = ".operon";
 pub const FILE_IDENTITY_JSON: &str = ".identity.json";
 pub const FILE_ENVIRONMENTS_JSON: &str = "environments.json";
 
 /// Target binary names
-pub const TARGET_SPECTER_BIN: &str = "tuquet";
+pub const TARGET_SPECTER_BIN: &str = "operon";
 
 /// Default job execution timeouts and intervals
 pub const DEFAULT_JOB_TIMEOUT_MS: u64 = 60_000;

@@ -9,7 +9,7 @@ contact_links:
     about: Ask questions and discuss with other Vben users in real time.
 
   - name: ❓ Questions & Discussions
-    url: https://github.com/tuquet/console/discussions
+    url: https://github.com/operon/console/discussions
     about: Use GitHub discussions for message-board style questions and discussions.
 
 # Comment to be posted to on PRs from first time contributors in your repository

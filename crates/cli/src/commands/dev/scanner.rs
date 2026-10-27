@@ -95,7 +95,7 @@ const SCRIPT_PRIORITY: &[&str] = &[
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct DiscoveredPackage {
-    /// Short identifier for CLI selection & autocomplete (e.g. "web" or "tuquet/yak-map")
+    /// Short identifier for CLI selection & autocomplete (e.g. "web" or "operon/yak-map")
     pub id: String,
     /// Package name from package.json (if present)
     pub name: Option<String>,
@@ -134,7 +134,7 @@ impl DiscoveredPackage {
 pub fn scan_workspace_packages(start_dir: &Path) -> Vec<DiscoveredPackage> {
     let mut results = scan_from_root_parallel(start_dir, start_dir);
 
-    // Fallback: If inside a sub-repo with 0 package.json (e.g., `tuquet/cli`), scan parent workspace
+    // Fallback: If inside a sub-repo with 0 package.json (e.g., `operon/cli`), scan parent workspace
     if results.is_empty()
         && let Some(parent) = start_dir.parent()
         && parent.parent().is_some()
@@ -962,7 +962,7 @@ mod tests {
         fs::write(
             studio_dir.join("package.json"),
             r#"{
-                "name": "@tuquet/studio",
+                "name": "@operon/studio",
                 "scripts": {
                     "build": "tsc && vite build",
                     "dev": "vite --port 5173",
@@ -1028,7 +1028,7 @@ mod tests {
 
         let studio = discovered
             .iter()
-            .find(|p| p.name.as_deref() == Some("@tuquet/studio"))
+            .find(|p| p.name.as_deref() == Some("@operon/studio"))
             .unwrap();
         assert_eq!(studio.id, "apps/studio");
         assert_eq!(studio.package_manager, "pnpm");
@@ -1062,7 +1062,7 @@ mod tests {
         fs::write(
             fe_subrepo.join("package.json"),
             r#"{
-                "name": "@tuquet/web-app",
+                "name": "@operon/web-app",
                 "packageManager": "yarn@4.0.0",
                 "scripts": {
                     "dev": "astro dev",
@@ -1084,7 +1084,7 @@ mod tests {
             "Should fall back to parent workspace and find sibling web-app"
         );
         assert_eq!(discovered[0].id, "web-app");
-        assert_eq!(discovered[0].name.as_deref(), Some("@tuquet/web-app"));
+        assert_eq!(discovered[0].name.as_deref(), Some("@operon/web-app"));
         assert_eq!(discovered[0].package_manager, "yarn");
         assert_eq!(discovered[0].framework.as_deref(), Some("Astro"));
     }

@@ -43,7 +43,7 @@ afterEach(() => {
   document.body.innerHTML = '';
 });
 
-describe('tuquet progress', () => {
+describe('operon progress', () => {
   it('renders progressbar semantics with bounded value', async () => {
     const { root } = await mountProgress(42);
 

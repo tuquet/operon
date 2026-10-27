@@ -1,4 +1,4 @@
-import { get, isObject, set } from '@tuquet-core/shared/utils';
+import { get, isObject, set } from '@operon-core/shared/utils';
 
 export function deleteValueByFieldName(
   values: Record<string, any>,

@@ -39,7 +39,7 @@ import {
   WORKFLOW_STATUS_VALUES,
 } from '../index';
 
-describe('enum & Constants SSOT (@tuquet/constants + #/constants)', () => {
+describe('enum & Constants SSOT (@operon/constants + #/constants)', () => {
   it('exposes all canonical PostgREST schemas', () => {
     expect(SUPABASE_SCHEMA_VALUES).toEqual([
       'automation',
@@ -54,7 +54,7 @@ describe('enum & Constants SSOT (@tuquet/constants + #/constants)', () => {
     expect(SUPABASE_SCHEMA.AUTOMATION).toBe('automation');
     expect(SUPABASE_SCHEMA.COMMERCE).toBe('commerce');
     expect(SUPABASE_SCHEMA.WORKERS).toBe('workers');
-    expect(STORAGE_KEYS.ACTIVE_TENANT_ID).toBe('TUQUET_ACTIVE_TENANT_ID');
+    expect(STORAGE_KEYS.ACTIVE_TENANT_ID).toBe('OPERON_ACTIVE_TENANT_ID');
   });
 
   it('matches database CHECK constraints for Tenant, Automation & Fleet domains', () => {

@@ -4,7 +4,7 @@ import type { Ref } from 'vue';
 
 import { computed, effectScope, ref, unref, watch } from 'vue';
 
-import { isFunction } from '@tuquet/utils';
+import { isFunction } from '@operon/utils';
 
 import { tryOnScopeDispose, useElementHover } from '@vueuse/core';
 

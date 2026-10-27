@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: DIGITAL PRODUCTS STORE & AUTO-FULFILLMENT (INSTALLATION)
+-- OPN-CLOUD PLUGIN: DIGITAL PRODUCTS STORE & AUTO-FULFILLMENT (INSTALLATION)
 -- Plugin ID: commerce
 -- Version: 1.0.0
 -- Architecture: PostgreSQL Dedicated Schema Isolation (schema: commerce)
@@ -221,7 +221,7 @@ CREATE INDEX IF NOT EXISTS idx_commerce_deliveries_tenant
 INSERT INTO commerce.categories (slug, name, description, icon, sort_order, is_active)
 VALUES
     ('accounts-keys', 'Tai khoan & License Key', 'Tai khoan so, phoi MMO (uid|pass|2fa) va ma kich hoat phan mem giao tuc thi', 'lucide:key-round', 1, TRUE),
-    ('resources', 'Tai nguyen Tuquet', 'Proxy dan cu/datacenter, kich ban Automa mau va goi nang cap he sinh thai', 'lucide:cpu', 2, TRUE),
+    ('resources', 'Tai nguyen Operon', 'Proxy dan cu/datacenter, kich ban Automa mau va goi nang cap he sinh thai', 'lucide:cpu', 2, TRUE),
     ('digital-files', 'Tep so & Cong cu', 'Bo cai dat, tai lieu ky thuat va du lieu tai xuong', 'lucide:file-down', 3, TRUE),
     ('wallet-topup', 'Nap Xu Tra Truoc', 'Goi nap Xu tich luy vao vi Tenant kem uu dai tang them Xu', 'lucide:coins', 4, TRUE)
 ON CONFLICT (slug) DO UPDATE SET
@@ -278,7 +278,7 @@ BEGIN
         'resource',
         'tenant_only',
         TRUE,
-        ARRAY['proxy', 'tuquet', 'workers'],
+        ARRAY['proxy', 'operon', 'workers'],
         '{"resource_subtype": "proxy_pool"}'::jsonb,
         2
     )

@@ -4,13 +4,13 @@ import type { FormCommonConfig, FormFieldSchema } from '../types';
 
 import { computed } from 'vue';
 
-import { Plus, X } from '@tuquet-core/icons';
+import { Plus, X } from '@operon-core/icons';
 import {
   VbenButton,
   VbenIconButton,
   VbenRenderContent,
-} from '@tuquet-core/shadcn-ui';
-import { cn, get, set } from '@tuquet-core/shared/utils';
+} from '@operon-core/shadcn-ui';
+import { cn, get, set } from '@operon-core/shared/utils';
 
 import { injectRenderFormProps } from '../form-render/context';
 import FormField from '../form-render/form-field.vue';

@@ -37,7 +37,7 @@ describe('desktop native adapter suite', () => {
   describe('deep linking url parser', () => {
     it('successfully parses valid SSO callback URL', () => {
       const raw =
-        'tuquet://auth/callback?token=test-jwt-token&refresh_token=test-refresh-token&state=xyz123&tenant_id=tenant-uuid-1&machine_name=Workstation-01';
+        'operon://auth/callback?token=test-jwt-token&refresh_token=test-refresh-token&state=xyz123&tenant_id=tenant-uuid-1&machine_name=Workstation-01';
 
       const payload = parseDeepLinkAuthUrl(raw);
       expect(payload).not.toBeNull();
@@ -50,7 +50,7 @@ describe('desktop native adapter suite', () => {
 
     it('successfully parses Supabase OAuth hash fragment callback URL', () => {
       const raw =
-        'tuquet://auth/callback#access_token=supabase-jwt-token&refresh_token=supabase-refresh-token&token_type=bearer&expires_in=3600';
+        'operon://auth/callback#access_token=supabase-jwt-token&refresh_token=supabase-refresh-token&token_type=bearer&expires_in=3600';
 
       const payload = parseDeepLinkAuthUrl(raw);
       expect(payload).not.toBeNull();
@@ -58,12 +58,12 @@ describe('desktop native adapter suite', () => {
       expect(payload?.refreshToken).toBe('supabase-refresh-token');
     });
 
-    it('returns null for non-tuquet schemes or missing tokens', () => {
+    it('returns null for non-operon schemes or missing tokens', () => {
       expect(
-        parseDeepLinkAuthUrl('https://console.tuquet.com/auth/callback'),
+        parseDeepLinkAuthUrl('https://console.operon.com/auth/callback'),
       ).toBeNull();
       expect(
-        parseDeepLinkAuthUrl('tuquet://auth/callback?state=xyz'),
+        parseDeepLinkAuthUrl('operon://auth/callback?state=xyz'),
       ).toBeNull();
       expect(parseDeepLinkAuthUrl('invalid-url')).toBeNull();
     });

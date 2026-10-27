@@ -1,13 +1,13 @@
 import type { RouteLocationNormalizedGeneric } from 'vue-router';
 
-import type { TabDefinition } from '@tuquet/types';
+import type { TabDefinition } from '@operon/types';
 
-import type { IContextMenuItem } from '@tuquet-core/tabs-ui';
+import type { IContextMenuItem } from '@operon-core/tabs-ui';
 
 import { computed, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-import { useContentMaximize, useTabs } from '@tuquet/hooks';
+import { useContentMaximize, useTabs } from '@operon/hooks';
 import {
   ArrowLeftToLine,
   ArrowRightLeft,
@@ -20,10 +20,10 @@ import {
   PinOff,
   RotateCw,
   X,
-} from '@tuquet/icons';
-import { $t, useI18n } from '@tuquet/locales';
-import { getTabKey, useAccessStore, useTabbarStore } from '@tuquet/stores';
-import { filterTree } from '@tuquet/utils';
+} from '@operon/icons';
+import { $t, useI18n } from '@operon/locales';
+import { getTabKey, useAccessStore, useTabbarStore } from '@operon/stores';
+import { filterTree } from '@operon/utils';
 
 export function useTabbar() {
   const router = useRouter();

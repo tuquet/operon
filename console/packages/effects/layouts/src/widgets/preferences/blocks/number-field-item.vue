@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { SelectOption } from '@tuquet/types';
+import type { SelectOption } from '@operon/types';
 
 import { useSlots } from 'vue';
 
-import { CircleHelp } from '@tuquet/icons';
+import { CircleHelp } from '@operon/icons';
 
 import {
   NumberField,
@@ -12,7 +12,7 @@ import {
   NumberFieldIncrement,
   NumberFieldInput,
   VbenTooltip,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 defineOptions({
   name: 'PreferenceSelectItem',

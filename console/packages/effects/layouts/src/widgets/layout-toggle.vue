@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import type { AuthPageLayoutType } from '@tuquet/types';
+import type { AuthPageLayoutType } from '@operon/types';
 
-import type { VbenDropdownMenuItem } from '@tuquet-core/shadcn-ui';
+import type { VbenDropdownMenuItem } from '@operon-core/shadcn-ui';
 
 import { computed } from 'vue';
 
-import { InspectionPanel, PanelLeft, PanelRight } from '@tuquet/icons';
-import { $t } from '@tuquet/locales';
+import { InspectionPanel, PanelLeft, PanelRight } from '@operon/icons';
+import { $t } from '@operon/locales';
 import {
   preferences,
   updatePreferences,
   usePreferences,
-} from '@tuquet/preferences';
+} from '@operon/preferences';
 
-import { VbenDropdownRadioMenu, VbenIconButton } from '@tuquet-core/shadcn-ui';
+import { VbenDropdownRadioMenu, VbenIconButton } from '@operon-core/shadcn-ui';
 
 defineOptions({
   name: 'AuthenticationLayoutToggle',

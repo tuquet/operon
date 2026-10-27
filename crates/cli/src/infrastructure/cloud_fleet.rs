@@ -297,7 +297,7 @@ impl CloudFleetOrchestrator {
                     "\n{} Workstation not enrolled with Cloud.",
                     badge_error("AUTH ERROR")
                 );
-                eprintln!("Run 'tq worker enroll' or login to configure device credentials.\n");
+                eprintln!("Run 'opn worker enroll' or login to configure device credentials.\n");
                 return Err("Missing cloud device credentials".into());
             }
         };
@@ -413,7 +413,7 @@ impl CloudFleetOrchestrator {
         }
         card.add_kv(
             "Delta Storage",
-            format!("~/.tq/browser/profiles/{}.tar.zst", lease.profile.id),
+            format!("~/.operon/browser/profiles/{}.tar.zst", lease.profile.id),
         );
         card.add_kv(
             "Compressed Size",

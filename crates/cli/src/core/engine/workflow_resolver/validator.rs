@@ -49,7 +49,7 @@ pub fn validate_workflow_document(val: &serde_json::Value) -> Result<(), Workflo
     let supported = worker::drivers::cdp::supported_block_labels();
     let canvas_only = worker::drivers::cdp::CANVAS_ONLY_BLOCKS;
 
-    // A document may carry its graph as a flat `nodes` array (Tuquet form) or inside
+    // A document may carry its graph as a flat `nodes` array (Operon form) or inside
     // `drawflow` (what the Automa canvas actually exports). Both must be checked —
     // otherwise the coverage check silently passes for every real canvas export.
     let mut unsupported: Vec<String> = val

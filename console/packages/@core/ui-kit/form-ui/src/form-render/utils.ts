@@ -13,7 +13,7 @@ import {
   watch,
 } from 'vue';
 
-import { isString } from '@tuquet-core/shared/utils';
+import { isString } from '@operon-core/shared/utils';
 
 import { useResizeObserver } from '@vueuse/core';
 

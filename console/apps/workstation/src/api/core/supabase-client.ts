@@ -1,7 +1,7 @@
-import type { SupabaseSchema } from '@tuquet/constants';
+import type { SupabaseSchema } from '@operon/constants';
 
-import { $t } from '@tuquet/locales';
-import { useAccessStore } from '@tuquet/stores';
+import { $t } from '@operon/locales';
+import { useAccessStore } from '@operon/stores';
 
 import { addNetworkBreadcrumb, captureError } from '../../utils/bugsink';
 import { isJwtTokenExpired } from './jwt';
@@ -15,7 +15,7 @@ import {
 export * from './jwt';
 export type { SupabaseSchema };
 export * from './token-manager';
-export { SUPABASE_SCHEMA } from '@tuquet/constants';
+export { SUPABASE_SCHEMA } from '@operon/constants';
 
 export interface SupabaseRequestOptions extends RequestInit {
   _isRetry?: boolean;

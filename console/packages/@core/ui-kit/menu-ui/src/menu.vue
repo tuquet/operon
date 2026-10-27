@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { MenuRecordRaw } from '@tuquet-core/typings';
+import type { MenuRecordRaw } from '@operon-core/typings';
 
 import type { MenuProps } from './types';
 
-import { useForwardProps } from '@tuquet-core/composables';
+import { useForwardProps } from '@operon-core/composables';
 
 import { Menu } from './components';
 import SubMenu from './sub-menu.vue';

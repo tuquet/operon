@@ -2,7 +2,7 @@
 
 Modern automated testing and web scraping frameworks (Playwright, Puppeteer, Selenium, SeleniumBase) rely on the **Chrome DevTools Protocol (CDP)** to communicate with browser instances over bi-directional WebSockets.
 
-**Tuquet** provides direct, native CDP DevTools integration, enabling software engineers and AI agents to attach standard automation code directly to isolated, fingerprint-protected browser profiles without modifying their existing automation test suites.
+**Operon** provides direct, native CDP DevTools integration, enabling software engineers and AI agents to attach standard automation code directly to isolated, fingerprint-protected browser profiles without modifying their existing automation test suites.
 
 <HairlineFigure name="phosphor" />
 
@@ -35,13 +35,13 @@ To launch a profile and expose the CDP debugging gateway:
 
 ```bash
 # Launch profile with default remote debugging port 9222
-tq browser launch "Scraper-Node-01" --port 9222
+opn browser launch "Scraper-Node-01" --port 9222
 
 # Launch in headless mode with dedicated proxy
-tq browser launch "Scraper-Node-01" --port 9222 --headless --proxy socks5://127.0.0.1:1080
+opn browser launch "Scraper-Node-01" --port 9222 --headless --proxy socks5://127.0.0.1:1080
 
 # Detach process to run continuously in background
-tq browser launch "Scraper-Node-01" --port 9222 --detach
+opn browser launch "Scraper-Node-01" --port 9222 --detach
 ```
 
 ---

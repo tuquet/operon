@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { LayoutType } from '@tuquet/types';
+import type { LayoutType } from '@operon/types';
 
 import { computed, onMounted } from 'vue';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
 import CheckboxItem from '../checkbox-item.vue';
 import NumberFieldItem from '../number-field-item.vue';

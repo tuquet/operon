@@ -3,6 +3,6 @@
   "display": "Web Application",
   "extends": "./web.json",
   "compilerOptions": {
-    "types": ["vite/client", "@tuquet/types/global"]
+    "types": ["vite/client", "@operon/types/global"]
   }
 }

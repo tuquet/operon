@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { SelectOption } from '@tuquet/types';
+import type { SelectOption } from '@operon/types';
 
 import { computed } from 'vue';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
 import SwitchItem from '../switch-item.vue';
 import ToggleItem from '../toggle-item.vue';

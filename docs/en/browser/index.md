@@ -2,10 +2,10 @@
 
 Commercial browsers leak machine identity at every layer. Telemetry daemons, hardware hash queries, audio context fingerprinting, and shared LevelDB caches broadcast your identity to every anti-fraud engine on the web.
 
-**Stealth Chromium Runtime** is a decoupled antidetect browser subsystem powered by the [`browser`](https://github.com/tuquet/browser) crate. It uses a custom-built Chromium binary based on [`adryfish/fingerprint-chromium`](https://github.com/adryfish/fingerprint-chromium) (customized on [`ungoogled-software/ungoogled-chromium`](https://github.com/ungoogled-software/ungoogled-chromium)) with native C++ patches for Blink, V8, and Skia. It injects deterministic hardware seeds directly into C++ memory, strips WebRTC leaks at the packet level, and spoofs Bézier cursor dynamics. Anti-fraud systems (Turnstile, DataDome, Kasada, CreepJS) see a genuine consumer laptop.
+**Stealth Chromium Runtime** is a decoupled antidetect browser subsystem powered by the [`browser`](https://github.com/operon/browser) crate. It uses a custom-built Chromium binary based on [`adryfish/fingerprint-chromium`](https://github.com/adryfish/fingerprint-chromium) (customized on [`ungoogled-software/ungoogled-chromium`](https://github.com/ungoogled-software/ungoogled-chromium)) with native C++ patches for Blink, V8, and Skia. It injects deterministic hardware seeds directly into C++ memory, strips WebRTC leaks at the packet level, and spoofs Bézier cursor dynamics. Anti-fraud systems (Turnstile, DataDome, Kasada, CreepJS) see a genuine consumer laptop.
 
 ::: tip Standalone Microservice & CLI
-`browser` operates completely decoupled from the CLI. You can compile it as a standalone Rust crate, embed it into your custom scrapers, or launch isolated profiles directly via CLI using `tq browser` (or `tq browser`).
+`browser` operates completely decoupled from the CLI. You can compile it as a standalone Rust crate, embed it into your custom scrapers, or launch isolated profiles directly via CLI using `opn browser` (or `opn browser`).
 :::
 
 ---
@@ -29,7 +29,7 @@ Commercial browsers leak machine identity at every layer. Telemetry daemons, har
  │                 ▼                                   ▼                   │
  │   ┌─────────────────────────────────────────────────────────────────┐   │
  │   │                   Isolated Profile Sandboxes                    │   │
- │   │               (~/.tq/browser/profiles/<id>/)                    │   │
+ │   │               (~/.operon/browser/profiles/<id>/)                    │   │
  │   │ • Segregated Cookies, LocalStorage, IndexedDB, LevelDB          │   │
  │   │ • Dedicated Proxy Tunnel (SOCKS5 / HTTP Adapter)                │   │
  │   │ • WebRTC STUN Protection (proxy_shielded | disabled | real)     │   │
@@ -47,7 +47,7 @@ Commercial browsers leak machine identity at every layer. Telemetry daemons, har
    - Every profile is bound to an immutable 32-bit unsigned integer seed (`--seed <u32>`).
    - The Chromium C++ engine uses this single seed to deterministically perturb Canvas 2D render paths, WebGL GPU parameters, AudioContext SNR, and internal PRNG calculations with 100% cross-session consistency.
 3. **Full Lifecycle Profile Sandbox**:
-   - Profiles live in isolated directories under `~/.tq/browser/profiles/<id>/`.
+   - Profiles live in isolated directories under `~/.operon/browser/profiles/<id>/`.
    - Never shares cache, cookies, WebSQL, or local storage between profiles.
 4. **Display Geometry & HiDPI Scaling**:
    - Configurable screen resolution (`screen_width`, `screen_height`, `device_pixel_ratio`) passed via `--window-size=W,H` and `--force-device-scale-factor=DPR`.
@@ -62,14 +62,14 @@ Here is the complete operational lifecycle from fresh installation to automated 
 
 ```mermaid
 flowchart TD
-    A["Stage 1: Engine Provisioning\n(tq browser search / install)"] --> B["Stage 2: Profile Creation\n(tq browser profile create / inspect)"]
-    B --> C["Stage 3: Stealth Execution\n(tq browser launch <profile>)"]
+    A["Stage 1: Engine Provisioning\n(opn browser search / install)"] --> B["Stage 2: Profile Creation\n(opn browser profile create / inspect)"]
+    B --> C["Stage 3: Stealth Execution\n(opn browser launch <profile>)"]
     C --> D{"Execution Mode"}
     D -->|"Manual Browsing"| E["Interactive GUI\n(Nuôi nick / Account warmup)"]
     D -->|"Headless Automation"| F["CDP Port 9222\n(Automa / Playwright / Runner)"]
-    E --> G["Stage 4: Stealth Verification\n(tq browser verify)"]
+    E --> G["Stage 4: Stealth Verification\n(opn browser verify)"]
     F --> G
-    G --> H["Stage 5: Session Archival & Cloud Sync\n(tq browser profile pack / push / pull)"]
+    G --> H["Stage 5: Session Archival & Cloud Sync\n(opn browser profile pack / push / pull)"]
 ```
 
 ### Stage 1: Engine Provisioning
@@ -78,15 +78,15 @@ Discover and download official precompiled `adryfish/fingerprint-chromium` binar
 
 ```bash
 # 1. Search remote releases catalog on Supabase Cloud / GitHub
-tq browser search --remote
+opn browser search --remote
 
 # 2. Download and provision Golden LTS v148 (with SHA256 checksum verification)
-tq browser install 148
+opn browser install 148
 
 # 3. List locally installed runtimes
-tq browser runtimes
+opn browser runtimes
 ```
-*Binaries are unpacked into `~/.tq/browser/runtimes/v148.0.7778.215/`.*
+*Binaries are unpacked into `~/.operon/browser/runtimes/v148.0.7778.215/`.*
 
 ### Stage 2: Profile Creation & Hardware Sandbox
 
@@ -94,10 +94,10 @@ Initialize isolated profiles with deterministic hardware specifications:
 
 ```bash
 # 1. Create a profile with randomized deterministic hardware
-tq browser profile create "Shopee-Shop-01"
+opn browser profile create "Shopee-Shop-01"
 
 # 2. Or create a profile with explicit hardware, proxy, and timezone specs
-tq browser profile create "FB-Ads-US" \
+opn browser profile create "FB-Ads-US" \
   --os windows \
   --cores 16 \
   --ram 32 \
@@ -106,13 +106,13 @@ tq browser profile create "FB-Ads-US" \
   --locale "en-US"
 
 # 3. Test proxy connectivity and latency before launch
-tq browser profile test-proxy "FB-Ads-US"
+opn browser profile test-proxy "FB-Ads-US"
 
 # 4. List all registered profiles and disk footprint
-tq browser profile list
+opn browser profile list
 
 # 5. Inspect complete hardware fingerprint details
-tq browser profile inspect "FB-Ads-US"
+opn browser profile inspect "FB-Ads-US"
 ```
 
 ### Stage 3: Stealth Execution
@@ -121,20 +121,20 @@ Launch profiles in either interactive GUI mode or automated headless mode:
 
 ```bash
 # Manual Browsing: Launch with GUI into target URL
-tq browser launch "Shopee-Shop-01" https://shopee.vn
+opn browser launch "Shopee-Shop-01" https://shopee.vn
 
 # Detached Launch: Release terminal immediately
-tq browser launch "FB-Ads-US" https://facebook.com --detach
+opn browser launch "FB-Ads-US" https://facebook.com --detach
 
 # Headless Automation: Launch with CDP gateway on port 9222 for Automa / Runner
-tq browser launch "FB-Ads-US" --headless --cdp --port 9222 --detach
+opn browser launch "FB-Ads-US" --headless --cdp --port 9222 --detach
 
 # Monitor active browser sessions (PID, Port, WebSocket URL)
-tq browser ps
+opn browser ps
 
 # Stop running sessions
-tq browser stop "Shopee-Shop-01"
-tq browser stop --all
+opn browser stop "Shopee-Shop-01"
+opn browser stop --all
 ```
 
 ### Stage 4: Stealth Verification
@@ -143,7 +143,7 @@ Verify anti-detect stealth quality against industry-standard fraud detection pla
 
 ```bash
 # Automatically launches the profile and executes test suite against CreepJS / Pixelscan
-tq browser verify
+opn browser verify
 ```
 
 ### Stage 5: Session Archival & Cloud Sync
@@ -152,13 +152,13 @@ Preserve login cookies, localStorage, and token sessions across devices:
 
 ```bash
 # 1. Pack profile into a lightweight .tar.zst archive (cache stripped, <15MB)
-tq browser profile pack "Shopee-Shop-01" -o ./shopee.tar.zst
+opn browser profile pack "Shopee-Shop-01" -o ./shopee.tar.zst
 
 # 2. Upload session snapshot to Supabase Storage ('browser-profiles' bucket)
-tq browser profile push "Shopee-Shop-01"
+opn browser profile push "Shopee-Shop-01"
 
 # 3. On a remote worker or new machine, pull the profile to resume session
-tq browser profile pull "Shopee-Shop-01"
+opn browser profile pull "Shopee-Shop-01"
 ```
 
 ---
@@ -211,7 +211,7 @@ The launcher (`BrowserProfile::build_cli_args` in `browser/src/profile.rs`) dyna
 
 ```bash
 # Core Arguments Generated by Launcher
---user-data-dir=~/.tq/browser/profiles/<id>
+--user-data-dir=~/.operon/browser/profiles/<id>
 --no-first-run
 --no-default-browser-check
 --fingerprint=133742
@@ -232,10 +232,10 @@ The launcher (`BrowserProfile::build_cli_args` in `browser/src/profile.rs`) dyna
 
 ## 5. Storage Layout & `profile.json` Schema
 
-All browser files strictly adhere to SSOT under `~/.tq/browser/`:
+All browser files strictly adhere to SSOT under `~/.operon/browser/`:
 
 ```text
-~/.tq/browser/
+~/.operon/browser/
 ├── browser.json              # Active engine settings and manifest channel
 ├── runtimes/                 # Dedicated Chromium execution binaries
 │   └── v148.0.7778.215/      # Pinned LTS Antidetect Chromium (adryfish)
@@ -290,26 +290,26 @@ All browser files strictly adhere to SSOT under `~/.tq/browser/`:
 
 ```bash
 # --- Engine Runtimes ---
-tq browser search --remote                  # Discover available engine releases
-tq browser install 148                      # Install Golden LTS v148
-tq browser runtimes                         # List installed local engines
+opn browser search --remote                  # Discover available engine releases
+opn browser install 148                      # Install Golden LTS v148
+opn browser runtimes                         # List installed local engines
 
 # --- Profiles ---
-tq browser profile list                     # List all local profiles
-tq browser profile create "Name" --proxy URL # Create a new profile
-tq browser profile inspect "Name"           # Inspect hardware fingerprint
-tq browser profile test-proxy "Name"        # Test proxy connectivity
-tq browser profile pack "Name"              # Compress into .tar.zst archive
-tq browser profile unpack ./backup.tar.zst  # Restore profile from archive
-tq browser profile push "Name"              # Upload snapshot to Supabase Cloud
-tq browser profile pull "Name"              # Download snapshot from Supabase Cloud
-tq browser profile delete "Name"            # Remove profile and sandbox
+opn browser profile list                     # List all local profiles
+opn browser profile create "Name" --proxy URL # Create a new profile
+opn browser profile inspect "Name"           # Inspect hardware fingerprint
+opn browser profile test-proxy "Name"        # Test proxy connectivity
+opn browser profile pack "Name"              # Compress into .tar.zst archive
+opn browser profile unpack ./backup.tar.zst  # Restore profile from archive
+opn browser profile push "Name"              # Upload snapshot to Supabase Cloud
+opn browser profile pull "Name"              # Download snapshot from Supabase Cloud
+opn browser profile delete "Name"            # Remove profile and sandbox
 
 # --- Launching ---
-tq browser launch "Name"                    # Open GUI browser
-tq browser launch "Name" URL --detach       # Open URL and detach terminal
-tq browser launch "Name" --headless --cdp   # Headless with CDP gateway (port 9222)
-tq browser ps                               # View running instances
-tq browser stop "Name"                      # Terminate instance
-tq browser verify                           # Run CreepJS/Pixelscan stealth verification
+opn browser launch "Name"                    # Open GUI browser
+opn browser launch "Name" URL --detach       # Open URL and detach terminal
+opn browser launch "Name" --headless --cdp   # Headless with CDP gateway (port 9222)
+opn browser ps                               # View running instances
+opn browser stop "Name"                      # Terminate instance
+opn browser verify                           # Run CreepJS/Pixelscan stealth verification
 ```

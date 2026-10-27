@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: SUBSCRIPTIONS, QUOTA & PAYMENT GATEWAY (INSTALLATION)
+-- OPN-CLOUD PLUGIN: SUBSCRIPTIONS, QUOTA & PAYMENT GATEWAY (INSTALLATION)
 -- Plugin ID: subscriptions
 -- Version: 1.2.0
 -- Architecture: PostgreSQL Dedicated Schema Isolation (schema: billing)
@@ -231,7 +231,7 @@ VALUES
         'sepay',
         'VND',
         1000.000000,
-        '{"bank_bin": "970422", "bank_name": "MBBank", "account_no": "0000123456789", "account_name": "TUQUET PLATFORM", "qr_template": "compact2"}'::jsonb,
+        '{"bank_bin": "970422", "bank_name": "MBBank", "account_no": "0000123456789", "account_name": "OPN PLATFORM", "qr_template": "compact2"}'::jsonb,
         TRUE,
         2
     ),
@@ -242,7 +242,7 @@ VALUES
         'momo_ipn',
         'VND',
         1000.000000,
-        '{"wallet_provider": "MoMo", "wallet_phone": "0900000000", "account_name": "TUQUET PLATFORM"}'::jsonb,
+        '{"wallet_provider": "MoMo", "wallet_phone": "0900000000", "account_name": "OPN PLATFORM"}'::jsonb,
         TRUE,
         3
     ),
@@ -287,9 +287,9 @@ ON CONFLICT (gateway_id) DO NOTHING;
 
 INSERT INTO billing.bank_receiving_accounts (id, bank_bin, bank_name, account_no, account_name, qr_template, daily_limit_vnd, priority, is_active, status)
 VALUES
-    ('mbbank_primary', '970422', 'MBBank', '0000123456789', 'TUQUET PLATFORM', 'compact2', 300000000.00, 1, TRUE, 'active'),
-    ('vpbank_secondary', '970432', 'VPBank', '9888777666', 'TUQUET MEDIA CORP', 'compact2', 500000000.00, 2, TRUE, 'active'),
-    ('techcombank_backup', '970407', 'Techcombank', '19033445566778', 'TUQUET BACKUP', 'compact2', 150000000.00, 3, TRUE, 'active')
+    ('mbbank_primary', '970422', 'MBBank', '0000123456789', 'OPN PLATFORM', 'compact2', 300000000.00, 1, TRUE, 'active'),
+    ('vpbank_secondary', '970432', 'VPBank', '9888777666', 'OPN MEDIA CORP', 'compact2', 500000000.00, 2, TRUE, 'active'),
+    ('techcombank_backup', '970407', 'Techcombank', '19033445566778', 'OPN BACKUP', 'compact2', 150000000.00, 3, TRUE, 'active')
 ON CONFLICT (id) DO UPDATE SET
     bank_name = EXCLUDED.bank_name,
     account_no = EXCLUDED.account_no,
@@ -675,7 +675,7 @@ BEGIN
             -- Static fallback if bank pool table is unseeded
             v_bank_bin := COALESCE(v_gateway.public_config->>'bank_bin', '970422');
             v_account_no := COALESCE(v_gateway.public_config->>'account_no', '0000123456789');
-            v_account_name := COALESCE(v_gateway.public_config->>'account_name', 'TUQUET PLATFORM');
+            v_account_name := COALESCE(v_gateway.public_config->>'account_name', 'OPN PLATFORM');
             v_qr_template := COALESCE(v_gateway.public_config->>'qr_template', 'compact2');
         END IF;
 

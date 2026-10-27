@@ -31,7 +31,7 @@ const SecureLSConstructor =
 
 export interface InitStoreOptions {
   /**
-   * Application namespace. Prevents cache conflicts across multiple apps sharing @tuquet/stores; used as persistence prefix.
+   * Application namespace. Prevents cache conflicts across multiple apps sharing @operon/stores; used as persistence prefix.
    */
   namespace: string;
 }

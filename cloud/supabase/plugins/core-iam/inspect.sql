@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD COMPONENT: CORE IAM HEALTH & INTEGRITY INSPECTION
+-- OPN-CLOUD COMPONENT: CORE IAM HEALTH & INTEGRITY INSPECTION
 -- Purpose: Verify foundational tables, RLS enablement, and system plugin status
 -- ============================================================================
 

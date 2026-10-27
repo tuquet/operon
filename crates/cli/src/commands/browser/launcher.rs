@@ -49,7 +49,7 @@ pub async fn launch_browser(
             Err(e) => {
                 crate::ui::Notify::error(&e);
                 eprintln!(
-                    "Run 'tq browser profile list' to view available profiles, or 'profile create <name>'.\n"
+                    "Run 'opn browser profile list' to view available profiles, or 'profile create <name>'.\n"
                 );
                 return Err(e.into());
             }
@@ -66,13 +66,13 @@ pub async fn launch_browser(
             crate::core::browser::pid_tracker::find_active_session(&profile.id, &base_dir)
         {
             eprintln!(
-                "ERROR: (tq.browser.launch) Profile [{}] is already running (pid: {}, uptime: {}).",
+                "ERROR: (opn.browser.launch) Profile [{}] is already running (pid: {}, uptime: {}).",
                 profile.id,
                 active.pid,
                 active.uptime_formatted()
             );
             eprintln!(
-                "- To terminate the running instance: tq browser stop {}",
+                "- To terminate the running instance: opn browser stop {}",
                 profile.id
             );
             eprintln!("- To force a concurrent instance: re-run with '--force'.");
@@ -86,13 +86,13 @@ pub async fn launch_browser(
             let probe = crate::core::browser::ProxyProbe::probe(pxy, 4).await;
             if !probe.alive {
                 eprintln!(
-                    "ERROR: (tq.browser.launch) Proxy unreachable: {} ({})",
+                    "ERROR: (opn.browser.launch) Proxy unreachable: {} ({})",
                     pxy,
                     probe.error.as_deref().unwrap_or("connection failed")
                 );
                 eprintln!("- The configured proxy server is offline or unreachable.");
                 eprintln!("- To bypass this guardrail, launch with '--skip-proxy-check'.");
-                eprintln!("- Test proxy directly with: tq proxy probe {}", pxy);
+                eprintln!("- Test proxy directly with: opn proxy probe {}", pxy);
                 return Err("Proxy unreachable (pre-flight check failed)".into());
             }
 
@@ -116,7 +116,7 @@ pub async fn launch_browser(
             "Dedicated Antidetect Chromium runtime not found at: {}",
             exe_path
         ));
-        eprintln!("Run 'tq browser install' to download and set up Golden LTS v148.\n");
+        eprintln!("Run 'opn browser install' to download and set up Golden LTS v148.\n");
         return Err("Missing browser binary".into());
     }
 

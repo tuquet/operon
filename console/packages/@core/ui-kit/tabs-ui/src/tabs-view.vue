@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { TabsEmits, TabsProps } from './types';
 
-import { useForwardPropsEmits } from '@tuquet-core/composables';
-import { ChevronsLeft, ChevronsRight } from '@tuquet-core/icons';
-import { VbenScrollbar } from '@tuquet-core/shadcn-ui';
+import { useForwardPropsEmits } from '@operon-core/composables';
+import { ChevronsLeft, ChevronsRight } from '@operon-core/icons';
+import { VbenScrollbar } from '@operon-core/shadcn-ui';
 
 import { Tabs, TabsChrome } from './components';
 import { useTabsDrag } from './use-tabs-drag';

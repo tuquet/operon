@@ -3,7 +3,7 @@ import type { WorkspaceSubscription, WorkspaceUsageQuota } from '#/api';
 
 import { computed } from 'vue';
 
-import { Progress } from '@tuquet-core/shadcn-ui';
+import { Progress } from '@operon-core/shadcn-ui';
 
 import { Calendar, Cpu, HardDrive, PlayCircle, Users } from '@lucide/vue';
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, useSlots } from 'vue';
 
-import { Eye, EyeOff } from '@tuquet-core/icons';
-import { cn } from '@tuquet-core/shared/utils';
+import { Eye, EyeOff } from '@operon-core/icons';
+import { cn } from '@operon-core/shared/utils';
 
 import { Input } from '../../ui';
 import PasswordStrength from './password-strength.vue';

@@ -24,7 +24,7 @@ pub async fn handle(subcmd: Option<GatewaySubcommands>) -> Result<(), Box<dyn st
         Some(GatewaySubcommands::Status { format }) => {
             let fmt = format.resolve();
             if !fmt.is_json() {
-                clack_intro("tq gateway status", "Multi-VPS Mesh & Workload Topology");
+                clack_intro("opn gateway status", "Multi-VPS Mesh & Workload Topology");
             }
             show_status(fmt).await?;
             if !fmt.is_json() {
@@ -64,7 +64,7 @@ pub async fn handle(subcmd: Option<GatewaySubcommands>) -> Result<(), Box<dyn st
 }
 
 async fn run_interactive_gateway() -> Result<(), Box<dyn std::error::Error>> {
-    clack_intro("tq gateway", "Network Gateway & Multi-VPS Mesh Controller");
+    clack_intro("opn gateway", "Network Gateway & Multi-VPS Mesh Controller");
 
     let opts = vec![
         ClackOption::new(
@@ -84,12 +84,12 @@ async fn run_interactive_gateway() -> Result<(), Box<dyn std::error::Error>> {
         ),
         ClackOption::new(
             "Enable a Gateway Server",
-            "Interactively enable a server in ~/.tq/gateway/gateway.json",
+            "Interactively enable a server in ~/.operon/gateway/gateway.json",
             "Enable a Gateway Server",
         ),
         ClackOption::new(
             "Disable a Gateway Server",
-            "Interactively disable a server in ~/.tq/gateway/gateway.json",
+            "Interactively disable a server in ~/.operon/gateway/gateway.json",
             "Disable a Gateway Server",
         ),
         ClackOption::new(
@@ -99,7 +99,7 @@ async fn run_interactive_gateway() -> Result<(), Box<dyn std::error::Error>> {
         ),
         ClackOption::new(
             "Configure Gateway Settings",
-            "Inspect or edit ~/.tq/gateway/gateway.json",
+            "Inspect or edit ~/.operon/gateway/gateway.json",
             "Configure Gateway Settings",
         ),
     ];

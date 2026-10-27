@@ -3,7 +3,7 @@ import type { Router } from 'vue-router';
 import { nextTick, onScopeDispose } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { getLayoutScrollElement } from '@tuquet-core/shared/utils';
+import { getLayoutScrollElement } from '@operon-core/shared/utils';
 
 type LayoutScrollRouter = Pick<Router, 'afterEach' | 'beforeEach'>;
 

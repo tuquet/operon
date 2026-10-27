@@ -1,8 +1,8 @@
 import type { BuiltinThemePreset } from './constants';
 import type { Preferences } from './types';
 
-import { generatorColorVariables } from '@tuquet-core/shared/color';
-import { updateCSSVariables as executeUpdateCSSVariables } from '@tuquet-core/shared/utils';
+import { generatorColorVariables } from '@operon-core/shared/color';
+import { updateCSSVariables as executeUpdateCSSVariables } from '@operon-core/shared/utils';
 
 import { BUILT_IN_THEME_PRESETS } from './constants';
 

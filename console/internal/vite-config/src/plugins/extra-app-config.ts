@@ -4,7 +4,7 @@ import {
   colors,
   generatorContentHash,
   readPackageJSON,
-} from '@tuquet/node-utils';
+} from '@operon/node-utils';
 
 import { loadEnv } from '../utils/env';
 

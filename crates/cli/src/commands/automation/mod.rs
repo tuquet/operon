@@ -106,7 +106,7 @@ pub async fn handle_interactive() -> Result<(), Box<dyn std::error::Error>> {
         return list_workflows(None, crate::ui::OutputFormat::Json).await;
     }
 
-    clack_intro("tq automation", "Automation Workflow Engine");
+    clack_intro("opn automation", "Automation Workflow Engine");
 
     let options = vec![
         ClackOption::new(

@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-restricted-imports
-import { defineConfig } from '@tuquet/vite-config';
+import { defineConfig } from '@operon/vite-config';
 
 export default defineConfig(async () => {
   return {

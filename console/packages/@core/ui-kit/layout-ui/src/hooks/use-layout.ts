@@ -1,4 +1,4 @@
-import type { LayoutType } from '@tuquet-core/typings';
+import type { LayoutType } from '@operon-core/typings';
 
 import type { VbenLayoutProps } from '../vben-layout';
 

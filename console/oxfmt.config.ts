@@ -1,4 +1,4 @@
-import { defineConfig } from '@tuquet/oxfmt-config';
+import { defineConfig } from '@operon/oxfmt-config';
 
 export default defineConfig({
   ignorePatterns: [

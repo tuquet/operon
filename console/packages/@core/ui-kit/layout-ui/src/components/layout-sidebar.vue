@@ -3,8 +3,8 @@ import type { CSSProperties } from 'vue';
 
 import { computed, onUnmounted, shallowRef, useSlots } from 'vue';
 
-import { useScrollLock } from '@tuquet-core/composables';
-import { VbenScrollbar } from '@tuquet-core/shadcn-ui';
+import { useScrollLock } from '@operon-core/composables';
+import { VbenScrollbar } from '@operon-core/shadcn-ui';
 
 import { useSidebarDrag } from '../hooks/use-sidebar-drag';
 import { SidebarCollapseButton, SidebarFixedButton } from './widgets';

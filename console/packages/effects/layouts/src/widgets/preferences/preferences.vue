@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 
-import { Settings } from '@tuquet/icons';
-import { $t, loadLocaleMessages } from '@tuquet/locales';
-import { preferences, updatePreferences } from '@tuquet/preferences';
-import { capitalizeFirstLetter } from '@tuquet/utils';
+import { Settings } from '@operon/icons';
+import { $t, loadLocaleMessages } from '@operon/locales';
+import { preferences, updatePreferences } from '@operon/preferences';
+import { capitalizeFirstLetter } from '@operon/utils';
 
-import { useVbenDrawer } from '@tuquet-core/popup-ui';
-import { VbenButton } from '@tuquet-core/shadcn-ui';
+import { useVbenDrawer } from '@operon-core/popup-ui';
+import { VbenButton } from '@operon-core/shadcn-ui';
 
 import PreferencesDrawer from './preferences-drawer.vue';
 

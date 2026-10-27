@@ -35,7 +35,7 @@ Giải quyết triệt để tình trạng tràn chiều ngang (`minWidth: 850px
    - **Trên Desktop (`isMobile === false`):**
      - Hiển thị đầy đủ các cột (`name`, `version`, `status`, `created_at`, `updated_at`, `actions`) kèm nút mở `WorkflowDetailModal`.
 2. **Hộp Thoại Chi Tiết Quy Trình Chuẩn Baseline (`WorkflowDetailModal`):**
-   - Xây dựng `views/automation/workflows/components/modals/workflow-detail-modal.vue` sử dụng `Dialog` (`@tuquet/vue-ui`) + `VxeForm` / `VxeFormItem` (`readonly`, `custom-layout`):
+   - Xây dựng `views/automation/workflows/components/modals/workflow-detail-modal.vue` sử dụng `Dialog` (`@operon/vue-ui`) + `VxeForm` / `VxeFormItem` (`readonly`, `custom-layout`):
      - Khối Header tóm tắt: Icon `GitBranch`, Tên quy trình, Phiên bản (`v...`), và Huy hiệu trạng thái từ `WORKFLOW_STATUS_META`.
      - Lưới thuộc tính `VxeForm`: Mã quy trình (`id` kèm nút copy clipboard), Phiên bản (`version`), Mã Workspace (`tenant_id` kèm nút copy), Ngày tạo (`created_at`), Ngày cập nhật (`updated_at`), và Mô tả chi tiết (`description`).
      - Tối ưu hiển thị trên cả màn hình điện thoại (`max-h-[85vh] overflow-y-auto p-4 sm:max-w-lg`) và máy tính.
@@ -52,11 +52,11 @@ Giải quyết triệt để tình trạng tràn chiều ngang (`minWidth: 850px
 
 ## 3. Tech Stack
 
-- **Framework:** Vue 3.5 (`<script setup lang="ts">`), Vue Router 4, TypeScript 5, `vue-i18n` (`@tuquet/locales`).
-- **Responsive State:** `usePreferences()` (`isMobile` reactive computed từ `@tuquet/preferences`).
+- **Framework:** Vue 3.5 (`<script setup lang="ts">`), Vue Router 4, TypeScript 5, `vue-i18n` (`@operon/locales`).
+- **Responsive State:** `usePreferences()` (`isMobile` reactive computed từ `@operon/preferences`).
 - **Data Grid & Form Engine:** `useVbenVxeGrid`, `VxeForm`, `VxeFormItem` từ `src/adapter/vxe-table.ts`.
 - **SSOT Constants & Status Metadata:** `WORKFLOW_STATUS_META`, `CAMPAIGN_STATUS_META`, `getStatusMeta`, `buildEnumFilterOptions` từ `src/constants/index.ts`.
-- **UI Components & Icons:** `@tuquet/vue-ui` (`Badge`, `Button`, `Dialog`, `DialogContent`, `DialogHeader`, `DialogTitle`), `@lucide/vue`.
+- **UI Components & Icons:** `@operon/vue-ui` (`Badge`, `Button`, `Dialog`, `DialogContent`, `DialogHeader`, `DialogTitle`), `@lucide/vue`.
 
 ---
 
@@ -70,7 +70,7 @@ pnpm exec vitest run apps/web-admin/src/api/core/__tests__/automation.test.ts
 pnpm run check:i18n
 
 # 3. Kiểm tra kiểu dữ liệu TypeScript và Linter
-pnpm --filter @tuquet/admin-web run typecheck
+pnpm --filter @operon/admin-web run typecheck
 pnpm run lint
 
 # 4. Đóng gói bản dựng cục bộ và cập nhật Nginx preview (Zero Git Push)
@@ -104,7 +104,7 @@ apps/web-admin/src/
 ### 6.1. Cấu Hình Cột `VxeGrid` Thích Ứng Theo `isMobile` (`workflows/index.vue`)
 
 ```ts
-import { usePreferences } from '@tuquet/preferences';
+import { usePreferences } from '@operon/preferences';
 
 const { isMobile } = usePreferences();
 
@@ -212,7 +212,7 @@ watch([() => $t('page.workflows_view.col_name'), isMobile], () => {
 2. **Kiểm Định Đa Ngôn Ngữ (`check:i18n`):**
    - `pnpm run check:i18n` đạt `0` khóa thiếu, đối xứng 100% giữa `en-US` và `vi-VN`, `0` chuỗi tiếng Việt hardcode.
 3. **Typecheck & Lint Gate:**
-   - `pnpm --filter @tuquet/admin-web run typecheck` và `pnpm run lint` đạt `0 errors`.
+   - `pnpm --filter @operon/admin-web run typecheck` và `pnpm run lint` đạt `0 errors`.
 4. **Kiểm Thử Giao Diện Thực Tế (`build:local`):**
    - Kiểm tra trên khung nhìn Mobile (`375x667`) và Desktop (`1440x900`) tại `http://100.68.217.61/`: không xuất hiện thanh cuộn ngang bảng trên mobile, mở `WorkflowDetailModal` mượt mà.
 

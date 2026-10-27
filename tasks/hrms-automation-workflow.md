@@ -1,4 +1,4 @@
-# Task: Workflow HRMS Automation trên Tuquet (re-lock theo doctrine Automa schema)
+# Task: Workflow HRMS Automation trên Operon(re-lock theo doctrine Automa schema)
 
 > **Bản này thay thế hoàn toàn bản tiếng Anh trước đó** (còn trong git history). Lý do re-lock: hệ thống
 > đang xây workflow **trên schema của Automa** để dùng lại canvas kéo-thả của nó. Mọi thứ trước đây tự
@@ -6,20 +6,20 @@
 
 ## 0. Doctrine nền tảng — Automa schema là SSOT
 
-> **Workflow document = Automa schema = SSOT duy nhất. Tuquet KHÔNG định nghĩa lại bất cứ thứ gì đã có trong document.**
+> **Workflow document = Automa schema = SSOT duy nhất. OperonKHÔNG định nghĩa lại bất cứ thứ gì đã có trong document.**
 
 ### 0.1 Bốn nguyên tắc
 
 | # | Nguyên tắc |
 | --- | --- |
 | (a) | Mọi thứ **thuộc về tác giả workflow** (tham số, trigger, settings, globalData, table, tham chiếu secret, composition) → nằm **trong document**, theo đúng **dialect Automa**. |
-| (b) | Mọi thứ **thuộc vận hành Tuquet** (tenant, thiết bị, queue, lịch cloud, ciphertext, device key) → nằm **ngoài document** (job params / bảng cloud / Secret Store). |
+| (b) | Mọi thứ **thuộc vận hành Operon** (tenant, thiết bị, queue, lịch cloud, ciphertext, device key) → nằm **ngoài document** (job params / bảng cloud / Secret Store). |
 | (c) | Cầu nối duy nhất giữa hai thế giới = **giá trị truyền vào** + **secret**. Không nhét cấu hình vận hành vào graph. |
 | (d) | **Canvas khai báo mà engine bỏ qua = bug P0.** Nếu không honour thì canvas chỉ là authoring giả. |
 
 ### 0.2 Parity checklist — dialect bắt buộc
 
-| Khái niệm | Automa dialect | Tuquet hiện tại | Việc phải làm |
+| Khái niệm | Automa dialect | Operonhiện tại | Việc phải làm |
 | --- | --- | --- | --- |
 | Contract tham số | `trigger.data.parameters[]` = `{name*, type, defaultValue, placeholder, description}` — đã có trong `cli/schema/workflow.schema.json` (`$defs.blockData.properties.parameters`, `$defs.parameter`; `additionalProperties: true`) | ❌ engine bỏ qua | **honour + fail-fast** (Phase 1) |
 | Giá trị tham số | prompt UI (`/root/automa/src/params/App.vue`) → `workflow.params` | — | headless: lấy từ schedule/job (§8.2) |
@@ -29,7 +29,7 @@
 | Composition (tái sử dụng) | **`includedWorkflows`** (`/root/automa/src/utils/workflowData.js` — export nhúng workflow con) + block execute-workflow | ❌ | **dùng lại**, không tự chế subflow |
 | Trigger | **top-level `trigger`** + node `trigger`; canvas có `TriggerCronJob`, `TriggerInterval`, `TriggerDate`, `TriggerSpecificDay`, `TriggerContextMenu`, `TriggerKeyboardShortcut`, `TriggerVisitWeb`, `TriggerElementChange` | engine chỉ nhận job push | map ⇄ `automation.schedules` (§8.5) |
 | Flags | `isDisabled`, `testingMode`, `hostId`, `teamId`, `settings{onError, blockDelay, concurrency}` | một phần | honour; map tenant ↔ `hostId`/`teamId` |
-| Mở rộng | `$defs.parameter.additionalProperties: true` | — | thêm field Tuquet **bên trong** parameter (vd `"secret": true`), **không** thêm cột mới |
+| Mở rộng | `$defs.parameter.additionalProperties: true` | — | thêm field Operon**bên trong** parameter (vd `"secret": true`), **không** thêm cột mới |
 
 ### 0.3 Nguyên tắc chống "im lặng": **declared ⇒ satisfied**
 
@@ -39,7 +39,7 @@
 
 ### 0.4 Hai host, một document
 
-| | Automa host (extension) | Tuquet host (fleet) |
+| | Automa host (extension) | Operonhost (fleet) |
 | --- | --- | --- |
 | Định nghĩa | canvas editor (authoring) | console read-only + RPC `public.workflow_*` |
 | Giá trị tham số | prompt UI | schedule/job params (headless) |
@@ -93,7 +93,7 @@
 
 ## 3. Mục tiêu
 
-Chuyển luồng HRMS thủ công (đọc timesheet → phát hiện ngày thiếu giờ → gửi đơn `TIME_OFF`) thành workflow Automation của Tuquet, chạy bởi workstation đã enroll.
+Chuyển luồng HRMS thủ công (đọc timesheet → phát hiện ngày thiếu giờ → gửi đơn `TIME_OFF`) thành workflow Automation của Operon, chạy bởi workstation đã enroll.
 
 Scheduler Supabase materialize `automation.schedules` → job; workstation (fleet mode) claim, chạy workflow qua engine native + browser (CDP cho session, API cho HRMS), báo cáo trạng thái + log về Cloud.
 
@@ -101,13 +101,13 @@ Cloud **không bao giờ** chạy Node CLI trực tiếp và **không** mở Chr
 
 ## 4. Khối đã có (verified)
 
-- `tq auth login` — auth + enrollment (`cli/src/commands/cloud.rs`).
-- `tq worker` — `start` (gồm `--cloud`), `status`, `logs`.
+- `opn auth login` — auth + enrollment (`cli/src/commands/cloud.rs`).
+- `opn worker` — `start` (gồm `--cloud`), `status`, `logs`.
 - Worker fleet transport — WS outbound (`worker/src/transport/ws_client.rs`) + `workers.enroll_device` / `heartbeat`.
-- `tq automation` — `run`, `inspect`, `workflow list/import/export/info/delete`.
-- `tq browser` — `profile list/create/inspect/pack/unpack/push/pull/cloud` + runtime CDP (`~/.tq/browser/runtimes/v148.0.7778.215/chrome`).
+- `opn automation` — `run`, `inspect`, `workflow list/import/export/info/delete`.
+- `opn browser` — `profile list/create/inspect/pack/unpack/push/pull/cloud` + runtime CDP (`~/.opn/browser/runtimes/v148.0.7778.215/chrome`).
 - **Workflow store cloud-first** — CLI/console qua RPC `public.workflow_list/get/upsert/delete` (PostgREST chỉ expose `public`, nếu không sẽ `PGRST106`); `cli/src/infrastructure/cloud/workflow_store.rs`.
-- **Secret Store v2** — `tq secret init/set/list/rm/path/push/pull/remote/rotate`; local `~/.tq/system/secrets.json` (AES-256-GCM) + device keypair X25519 (`~/.tq/system/.device_key`); plugin `secrets` v2 (`secrets.credentials`, `secrets.tenant_keys`, `secrets.devices.wrapped_dek`).
+- **Secret Store v2** — `opn secret init/set/list/rm/path/push/pull/remote/rotate`; local `~/.opn/system/secrets.json` (AES-256-GCM) + device keypair X25519 (`~/.opn/system/.device_key`); plugin `secrets` v2 (`secrets.credentials`, `secrets.tenant_keys`, `secrets.devices.wrapped_dek`).
 - **Cloud queue** — `automation.workflows` / `jobs` / `execution_logs` / `schedules` / `packages`; hàm hiện có **chỉ 3**: `claim_next_job(p_worker_id, p_batch_size)` (FOR UPDATE SKIP LOCKED), `reap_stale_jobs(p_stale_interval)`, `notify_job_queued()`. `jobs.parameters` là `jsonb` và **đã có GIN index** (`idx_automation_jobs_params_gin`).
 - **Antidetect profile + lease** — `browsers.profiles`, `browsers.fingerprint_templates`, `browsers.releases`, `acquire_profile` / `release_profile`.
 - **Block engine** (`worker/src/drivers/cdp/workflow.rs`) — nhãn đã verify: `trigger`, `delay`, `new-tab`, `javascript-code`, `webhook`, `conditions`, `while-loop`, `loop-data`, `insert-data`, `get-text`, `attribute-value`, `event-click`, `forms`, `tab-url`. Interpolation: `{{variables.*}}`, `{{table.*}}`, `{{loopData.*}}`.
@@ -123,7 +123,7 @@ Cloud **không bao giờ** chạy Node CLI trực tiếp và **không** mở Chr
 
 ## 5. Nguồn sự thật / tham chiếu audit
 
-### 5.1 Contract workflow (Tuquet)
+### 5.1 Contract workflow (Operon)
 
 | Concern | Tham chiếu | Dùng để |
 | --- | --- | --- |
@@ -316,7 +316,7 @@ alter table automation.workflows drop column variables;   -- cột chết, trùn
 3. Đặt `trigger.type` phù hợp chế độ fleet (không `manual`).
 4. Upsert qua `workflow_upsert` (đi qua publish-time validation).
 
-**Verify:** `tq automation inspect` pass; `workflow_get` trả `has_cred=false`; validation chặn được graph cố tình để thiếu default.
+**Verify:** `opn automation inspect` pass; `workflow_get` trả `has_cred=false`; validation chặn được graph cố tình để thiếu default.
 
 ### Phase 3 — Workstation browser & worker
 
@@ -328,12 +328,12 @@ alter table automation.workflows drop column variables;   -- cột chết, trùn
 
 ### Phase 4 — Secrets (`{{secrets@name}}`) + session
 
-1. `tq secret set hrms_username` / `hrms_password` (Secret Store, mã hoá).
+1. `opn secret set hrms_username` / `hrms_password` (Secret Store, mã hoá).
 2. **Migrate** workflow `a27093ce`: `{{secrets.hrms_*}}` → **`{{secrets@hrms_*}}`**.
 3. Session reuse từ snapshot profile — password **không** dùng lúc chạy.
-4. `tq secret push` → máy khác `pull` chạy được cùng job.
+4. `opn secret push` → máy khác `pull` chạy được cùng job.
 
-**Verify:** payload + log không plaintext; máy mới chỉ với `tq secret pull` chạy được; token sai bị từ chối.
+**Verify:** payload + log không plaintext; máy mới chỉ với `opn secret pull` chạy được; token sai bị từ chối.
 
 ### Phase 5 — Cloud scheduling & enqueue
 
@@ -358,17 +358,17 @@ Phase **1 → 2 → 3** ở dry-run, một tenant, một nhân viên, không sub
 ## 11. Lệnh verify
 
 ```bash
-# Build (xem skill tuquet-workspace)
+# Build (xem skill operon-workspace)
 # Browser + profile
-tq browser profile list
-tq browser profile inspect hrms-cmc-03e6b9
+opn browser profile list
+opn browser profile inspect hrms-cmc-03e6b9
 
 # Secrets (dialect mới)
-tq secret list && tq secret remote
+opn secret list && opn secret remote
 
 # Workflow: validate + chạy local (positional = ĐƯỜNG DẪN FILE)
-tq automation inspect /tmp/hrms.workflow.json
-tq automation run /tmp/hrms.workflow.json -p mode=dry-run     # hoặc KHÔNG -p ⇒ lấy default từ trigger
+opn automation inspect /tmp/hrms.workflow.json
+opn automation run /tmp/hrms.workflow.json -p mode=dry-run     # hoặc KHÔNG -p ⇒ lấy default từ trigger
 
 # Cloud (sau Phase 5)
 #   select status, result_summary, params_snapshot from automation.jobs
@@ -392,7 +392,7 @@ tq automation run /tmp/hrms.workflow.json -p mode=dry-run     # hoặc KHÔNG -p
 | Hai phiên HRMS song song | Cao | lease `browsers.profiles` + reap stale |
 | **Engine bỏ qua canvas declared** | Cao | Phase 1 parity + publish-time validation (§0.3) |
 | Login RSA đổi key/flow | Trung bình | dùng form browser (SPA tự mã hoá), không hard-code |
-| Session/JWT mất khi đổi máy | Trung bình | snapshot + `tq secret push/pull` |
+| Session/JWT mất khi đổi máy | Trung bình | snapshot + `opn secret push/pull` |
 | Fingerprint bị phát hiện | Trung bình | engine C++ fingerprint-chromium + CreepJS + webrtc shield |
 | Hiểu sai `absent_time` | Trung bình | chỉ dùng `absent_time` server |
 | Bật submit quá sớm | Cao | policy gate + owner approval |
@@ -410,7 +410,7 @@ tq automation run /tmp/hrms.workflow.json -p mode=dry-run     # hoặc KHÔNG -p
 | 6 | Profile `hrms-cmc`: dùng proxy hay không? | cần chốt |
 | 7 | `browsers.profiles.id` cloud của `hrms-cmc` | xác nhận sau khi tạo |
 | 8 | ~~Hướng dispatch~~ | ✅ RESOLVED (a) |
-| 9 | Cài & chạy worker trên **máy nào** (VPS chưa có `tq`; `HNDW-NDTU6` là Windows) | **cần chốt — chặn Phase 3** |
+| 9 | Cài & chạy worker trên **máy nào** (VPS chưa có `opn`; `HNDW-NDTU6` là Windows) | **cần chốt — chặn Phase 3** |
 | 10 | ~~Engine hỗ trợ secrets~~ | ✅ DONE (đổi dialect ở Phase 4) |
 | 11 | ~~Port credential sang máy khác~~ | ✅ DONE (device keypair + sealed DEK) |
 | 12 | Xoá `automation.workflows.variables` | theo §8.7 |

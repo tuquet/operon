@@ -346,7 +346,7 @@ impl GatewaySupervisor {
 
 pub(crate) fn is_valid_gateway_process_name(raw_name: &str) -> bool {
     let name = raw_name.to_lowercase();
-    name.contains("cloudflared") || name.contains("ssh") || name.contains("tuquet")
+    name.contains("cloudflared") || name.contains("ssh") || name.contains("operon")
 }
 
 fn kill_pid(sys: &System, pid_u32: u32) {
@@ -358,7 +358,7 @@ fn kill_pid(sys: &System, pid_u32: u32) {
             info!("Killed PID {} ({})", pid_u32, name);
         } else {
             tracing::warn!(
-                "Refusing to kill PID {} with name '{}': not cloudflared, ssh, or tq (stale PID)",
+                "Refusing to kill PID {} with name '{}': not cloudflared, ssh, or opn (stale PID)",
                 pid_u32,
                 name
             );
@@ -376,8 +376,8 @@ mod tests {
         assert!(is_valid_gateway_process_name("cloudflared.exe"));
         assert!(is_valid_gateway_process_name("ssh"));
         assert!(is_valid_gateway_process_name("ssh.exe"));
-        assert!(is_valid_gateway_process_name("tuquet"));
-        assert!(is_valid_gateway_process_name("tuquet.exe"));
+        assert!(is_valid_gateway_process_name("operon"));
+        assert!(is_valid_gateway_process_name("operon.exe"));
 
         // Innocent processes must NOT match
         assert!(!is_valid_gateway_process_name("explorer.exe"));

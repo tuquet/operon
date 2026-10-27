@@ -4,7 +4,7 @@ import type {
   AccessModeType,
   GenerateMenuAndRoutesOptions,
   RouteRecordRaw,
-} from '@tuquet/types';
+} from '@operon/types';
 
 import { defineComponent, h } from 'vue';
 
@@ -16,7 +16,7 @@ import {
   isFunction,
   isString,
   mapTree,
-} from '@tuquet/utils';
+} from '@operon/utils';
 
 async function generateAccessible(
   mode: AccessModeType,

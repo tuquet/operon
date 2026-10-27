@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { MenuRecordRaw } from '@tuquet-core/typings';
+import type { MenuRecordRaw } from '@operon-core/typings';
 
 import { computed } from 'vue';
 

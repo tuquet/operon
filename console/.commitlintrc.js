@@ -1,1 +1,1 @@
-export { default } from '@tuquet/commitlint-config';
+export { default } from '@operon/commitlint-config';

@@ -1,10 +1,10 @@
 import { ref, unref } from 'vue';
 
-import { DEFAULT_TIME_ZONE_OPTIONS } from '@tuquet-core/preferences';
+import { DEFAULT_TIME_ZONE_OPTIONS } from '@operon-core/preferences';
 import {
   getCurrentTimezone,
   setCurrentTimezone,
-} from '@tuquet-core/shared/utils';
+} from '@operon-core/shared/utils';
 
 import { acceptHMRUpdate, defineStore } from 'pinia';
 

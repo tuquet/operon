@@ -10,7 +10,7 @@ import { useContentSpinner } from '../use-content-spinner';
 // preferences is a module-level singleton; test uses mutable mock to toggle settings
 const mockPreferences = vi.hoisted(() => ({ transition: { loading: true } }));
 
-vi.mock('@tuquet/preferences', () => ({
+vi.mock('@operon/preferences', () => ({
   preferences: mockPreferences,
 }));
 

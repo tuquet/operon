@@ -2,7 +2,7 @@
 
 Operating antidetect browser clusters, proxy mesh tunnels, and automated DAG workflows requires verified system dependencies, intact SQLite databases, and properly permissioned storage pillars.
 
-**Doctor** is a built-in automated diagnostic and self-healing engine (`tq doctor`) that verifies workstation readiness across all microservice pillars.
+**Doctor** is a built-in automated diagnostic and self-healing engine (`opn doctor`) that verifies workstation readiness across all microservice pillars.
 
 <HairlineFigure name="query" />
 
@@ -14,7 +14,7 @@ Execute the diagnostic scanner at any time:
 
 ```bash
 # Run complete ecosystem health check
-tq doctor
+opn doctor
 ```
 
 The diagnostic scanner inspects 5 critical subsystems:
@@ -26,16 +26,16 @@ The diagnostic scanner inspects 5 critical subsystems:
     • Git                 - Version control for local workflow repositories
 
  2. Dedicated Browser Runtime:
-    • C++ Chromium LTS    - Checks binary presence in ~/.tuquet/browser/runtimes/
+    • C++ Chromium LTS    - Checks binary presence in ~/.operon/browser/runtimes/
     • Executable Bit      - Verifies launch permissions and integrity hash
 
- 3. SSOT Storage Pillars (~/.tq/):
-    • ~/.tq/system/       - Machine identity (.machine_id) and credentials
-    • ~/.tq/automation/   - Workflow execution database (automation.sqlite)
-    • ~/.tq/worker/       - Worker supervisor daemon config and logs
-    • ~/.tq/browser/      - Profile sandboxes and antidetect runtimes
-    • ~/.tq/gateway/      - Mesh configuration and daemon PIDs
-    • ~/.tq/faker/        - Synthetic persona schemas and templates
+ 3. SSOT Storage Pillars (~/.operon/):
+    • ~/.operon/system/       - Machine identity (.machine_id) and credentials
+    • ~/.operon/automation/   - Workflow execution database (automation.sqlite)
+    • ~/.operon/worker/       - Worker supervisor daemon config and logs
+    • ~/.operon/browser/      - Profile sandboxes and antidetect runtimes
+    • ~/.operon/gateway/      - Mesh configuration and daemon PIDs
+    • ~/.operon/faker/        - Synthetic persona schemas and templates
 
  4. Automation SQLite Database:
     • automation.sqlite   - Verifies schema migrations and read/write access
@@ -64,7 +64,7 @@ If a dependency is missing, Doctor highlights the specific missing component and
   Tool / Runtime       Status        Action Needed
   ──────────────────────────────────────────────────────────────────────────
   ssh (OpenSSH)        ● MISSING     sudo apt install openssh-client
-  Chromium LTS         ○ NOT FOUND   Run 'tq doctor --fix' to auto-download
+  Chromium LTS         ○ NOT FOUND   Run 'opn doctor --fix' to auto-download
 ```
 
 ---
@@ -75,11 +75,11 @@ When run with the `--fix` flag, automatically resolves configuration drift, miss
 
 ```bash
 # Automatically remediate environment issues and download missing runtimes
-tq doctor --fix
+opn doctor --fix
 ```
 
 The remediation pipeline executes in sequence:
-1. **Initializes SSOT Pillars**: Creates all missing canonical storage directories under `~/.tq/`.
-2. **Initializes SQLite Store**: Runs schema migrations for `~/.tq/automation/automation.sqlite`.
+1. **Initializes SSOT Pillars**: Creates all missing canonical storage directories under `~/.operon/`.
+2. **Initializes SQLite Store**: Runs schema migrations for `~/.operon/automation/automation.sqlite`.
 3. **Provisions Antidetect Chromium**: Downloads and unpacks the verified C++ Antidetect Chromium LTS release.
 4. **Validates Proxy Gateway**: Verifies SSH tunnel dependencies and default configurations.

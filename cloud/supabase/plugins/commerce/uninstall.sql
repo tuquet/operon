@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: DIGITAL PRODUCTS STORE & AUTO-FULFILLMENT (UNINSTALLATION)
+-- OPN-CLOUD PLUGIN: DIGITAL PRODUCTS STORE & AUTO-FULFILLMENT (UNINSTALLATION)
 -- Plugin ID: commerce
 -- Architecture: Atomic Zero-Orphan Cleanup via DROP SCHEMA CASCADE
 -- ============================================================================

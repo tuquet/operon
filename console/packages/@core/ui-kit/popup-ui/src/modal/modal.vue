@@ -12,9 +12,9 @@ import {
   watch,
 } from 'vue';
 
-import { usePriorityValues, useSimpleLocale } from '@tuquet-core/composables';
-import { Expand, Shrink } from '@tuquet-core/icons';
-import { usePreferences } from '@tuquet-core/preferences';
+import { usePriorityValues, useSimpleLocale } from '@operon-core/composables';
+import { Expand, Shrink } from '@operon-core/icons';
+import { usePreferences } from '@operon-core/preferences';
 import {
   Dialog,
   DialogContent,
@@ -27,10 +27,10 @@ import {
   VbenIconButton,
   VbenLoading,
   VisuallyHidden,
-} from '@tuquet-core/shadcn-ui';
-import { ELEMENT_ID_MAIN_CONTENT } from '@tuquet-core/shared/constants';
-import { globalShareState } from '@tuquet-core/shared/global-state';
-import { cn } from '@tuquet-core/shared/utils';
+} from '@operon-core/shadcn-ui';
+import { ELEMENT_ID_MAIN_CONTENT } from '@operon-core/shared/constants';
+import { globalShareState } from '@operon-core/shared/global-state';
+import { cn } from '@operon-core/shared/utils';
 
 import { useModalDraggable } from './use-modal-draggable';
 

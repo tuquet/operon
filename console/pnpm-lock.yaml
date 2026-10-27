@@ -538,34 +538,34 @@ importers:
       '@tsdown/css':
         specifier: 'catalog:'
         version: 0.22.14(jiti@2.7.0)(postcss@8.5.28)(sass-embedded@1.103.1)(sass@1.103.1)(tsdown@0.22.14)(yaml@2.9.1)
-      '@tuquet/commitlint-config':
+      '@operon/commitlint-config':
         specifier: workspace:*
         version: link:internal/lint-configs/commitlint-config
-      '@tuquet/eslint-config':
+      '@operon/eslint-config':
         specifier: workspace:*
         version: link:internal/lint-configs/eslint-config
-      '@tuquet/oxfmt-config':
+      '@operon/oxfmt-config':
         specifier: workspace:*
         version: link:internal/lint-configs/oxfmt-config
-      '@tuquet/oxlint-config':
+      '@operon/oxlint-config':
         specifier: workspace:*
         version: link:internal/lint-configs/oxlint-config
-      '@tuquet/stylelint-config':
+      '@operon/stylelint-config':
         specifier: workspace:*
         version: link:internal/lint-configs/stylelint-config
-      '@tuquet/tailwind-config':
+      '@operon/tailwind-config':
         specifier: workspace:*
         version: link:internal/tailwind-config
-      '@tuquet/tsconfig':
+      '@operon/tsconfig':
         specifier: workspace:*
         version: link:internal/tsconfig
-      '@tuquet/turbo-run':
+      '@operon/turbo-run':
         specifier: workspace:*
         version: link:scripts/turbo-run
-      '@tuquet/vite-config':
+      '@operon/vite-config':
         specifier: workspace:*
         version: link:internal/vite-config
-      '@tuquet/vsh':
+      '@operon/vsh':
         specifier: workspace:*
         version: link:scripts/vsh
       '@types/node':
@@ -673,49 +673,49 @@ importers:
       '@tauri-apps/plugin-window-state':
         specifier: 'catalog:'
         version: 2.5.0
-      '@tuquet-core/shadcn-ui':
+      '@operon-core/shadcn-ui':
         specifier: workspace:*
         version: link:../../packages/@core/ui-kit/shadcn-ui
-      '@tuquet/access':
+      '@operon/access':
         specifier: workspace:*
         version: link:../../packages/effects/access
-      '@tuquet/common-ui':
+      '@operon/common-ui':
         specifier: workspace:*
         version: link:../../packages/effects/common-ui
-      '@tuquet/constants':
+      '@operon/constants':
         specifier: workspace:*
         version: link:../../packages/constants
-      '@tuquet/hooks':
+      '@operon/hooks':
         specifier: workspace:*
         version: link:../../packages/effects/hooks
-      '@tuquet/icons':
+      '@operon/icons':
         specifier: workspace:*
         version: link:../../packages/icons
-      '@tuquet/layouts':
+      '@operon/layouts':
         specifier: workspace:*
         version: link:../../packages/effects/layouts
-      '@tuquet/locales':
+      '@operon/locales':
         specifier: workspace:*
         version: link:../../packages/locales
-      '@tuquet/plugins':
+      '@operon/plugins':
         specifier: workspace:*
         version: link:../../packages/effects/plugins
-      '@tuquet/preferences':
+      '@operon/preferences':
         specifier: workspace:*
         version: link:../../packages/preferences
-      '@tuquet/request':
+      '@operon/request':
         specifier: workspace:*
         version: link:../../packages/effects/request
-      '@tuquet/stores':
+      '@operon/stores':
         specifier: workspace:*
         version: link:../../packages/stores
-      '@tuquet/styles':
+      '@operon/styles':
         specifier: workspace:*
         version: link:../../packages/styles
-      '@tuquet/types':
+      '@operon/types':
         specifier: workspace:*
         version: link:../../packages/types
-      '@tuquet/utils':
+      '@operon/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       '@vueuse/core':
@@ -752,7 +752,7 @@ importers:
       '@commitlint/config-conventional':
         specifier: 'catalog:'
         version: 21.2.2
-      '@tuquet/node-utils':
+      '@operon/node-utils':
         specifier: workspace:*
         version: link:../../node-utils
       commitlint-plugin-function-rules:
@@ -770,7 +770,7 @@ importers:
       '@eslint/js':
         specifier: 'catalog:'
         version: 10.0.1(eslint@10.12.0(jiti@2.7.0)(supports-color@10.2.2))
-      '@tuquet/oxlint-config':
+      '@operon/oxlint-config':
         specifier: workspace:*
         version: link:../oxlint-config
       '@typescript-eslint/parser':
@@ -921,7 +921,7 @@ importers:
 
   internal/tsconfig:
     dependencies:
-      '@tuquet/types':
+      '@operon/types':
         specifier: workspace:*
         version: link:../../packages/types
       vite:
@@ -939,7 +939,7 @@ importers:
       '@tailwindcss/vite':
         specifier: 'catalog:'
         version: 4.3.3(vite@8.3.4(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass-embedded@1.103.1)(sass@1.103.1)(terser@5.50.0)(yaml@2.9.0))
-      '@tuquet/node-utils':
+      '@operon/node-utils':
         specifier: workspace:*
         version: link:../node-utils
       archiver:
@@ -1088,10 +1088,10 @@ importers:
 
   packages/@core/composables:
     dependencies:
-      '@tuquet-core/shared':
+      '@operon-core/shared':
         specifier: workspace:*
         version: link:../base/shared
-      '@tuquet-core/typings':
+      '@operon-core/typings':
         specifier: workspace:*
         version: link:../base/typings
       '@vueuse/core':
@@ -1113,10 +1113,10 @@ importers:
 
   packages/@core/preferences:
     dependencies:
-      '@tuquet-core/shared':
+      '@operon-core/shared':
         specifier: workspace:*
         version: link:../base/shared
-      '@tuquet-core/typings':
+      '@operon-core/typings':
         specifier: workspace:*
         version: link:../base/typings
       '@vueuse/core':
@@ -1134,19 +1134,19 @@ importers:
       '@tanstack/vue-form':
         specifier: 'catalog:'
         version: 1.33.5(vue@3.5.41(typescript@6.0.3))
-      '@tuquet-core/composables':
+      '@operon-core/composables':
         specifier: workspace:*
         version: link:../../composables
-      '@tuquet-core/icons':
+      '@operon-core/icons':
         specifier: workspace:*
         version: link:../../base/icons
-      '@tuquet-core/shadcn-ui':
+      '@operon-core/shadcn-ui':
         specifier: workspace:*
         version: link:../shadcn-ui
-      '@tuquet-core/shared':
+      '@operon-core/shared':
         specifier: workspace:*
         version: link:../../base/shared
-      '@tuquet-core/typings':
+      '@operon-core/typings':
         specifier: workspace:*
         version: link:../../base/typings
       '@vueuse/core':
@@ -1171,19 +1171,19 @@ importers:
 
   packages/@core/ui-kit/layout-ui:
     dependencies:
-      '@tuquet-core/composables':
+      '@operon-core/composables':
         specifier: workspace:*
         version: link:../../composables
-      '@tuquet-core/icons':
+      '@operon-core/icons':
         specifier: workspace:*
         version: link:../../base/icons
-      '@tuquet-core/shadcn-ui':
+      '@operon-core/shadcn-ui':
         specifier: workspace:*
         version: link:../shadcn-ui
-      '@tuquet-core/shared':
+      '@operon-core/shared':
         specifier: workspace:*
         version: link:../../base/shared
-      '@tuquet-core/typings':
+      '@operon-core/typings':
         specifier: workspace:*
         version: link:../../base/typings
       '@vueuse/core':
@@ -1199,22 +1199,22 @@ importers:
 
   packages/@core/ui-kit/menu-ui:
     dependencies:
-      '@tuquet-core/composables':
+      '@operon-core/composables':
         specifier: workspace:*
         version: link:../../composables
-      '@tuquet-core/design':
+      '@operon-core/design':
         specifier: workspace:*
         version: link:../../base/design
-      '@tuquet-core/icons':
+      '@operon-core/icons':
         specifier: workspace:*
         version: link:../../base/icons
-      '@tuquet-core/shadcn-ui':
+      '@operon-core/shadcn-ui':
         specifier: workspace:*
         version: link:../shadcn-ui
-      '@tuquet-core/shared':
+      '@operon-core/shared':
         specifier: workspace:*
         version: link:../../base/shared
-      '@tuquet-core/typings':
+      '@operon-core/typings':
         specifier: workspace:*
         version: link:../../base/typings
       '@vueuse/core':
@@ -1236,22 +1236,22 @@ importers:
 
   packages/@core/ui-kit/popup-ui:
     dependencies:
-      '@tuquet-core/composables':
+      '@operon-core/composables':
         specifier: workspace:*
         version: link:../../composables
-      '@tuquet-core/icons':
+      '@operon-core/icons':
         specifier: workspace:*
         version: link:../../base/icons
-      '@tuquet-core/preferences':
+      '@operon-core/preferences':
         specifier: workspace:*
         version: link:../../preferences
-      '@tuquet-core/shadcn-ui':
+      '@operon-core/shadcn-ui':
         specifier: workspace:*
         version: link:../shadcn-ui
-      '@tuquet-core/shared':
+      '@operon-core/shared':
         specifier: workspace:*
         version: link:../../base/shared
-      '@tuquet-core/typings':
+      '@operon-core/typings':
         specifier: workspace:*
         version: link:../../base/typings
       '@vueuse/core':
@@ -1270,19 +1270,19 @@ importers:
       '@lucide/vue':
         specifier: 'catalog:'
         version: 1.34.0(vue@3.5.41(typescript@6.0.3))
-      '@tuquet-core/composables':
+      '@operon-core/composables':
         specifier: workspace:*
         version: link:../../composables
-      '@tuquet-core/design':
+      '@operon-core/design':
         specifier: workspace:*
         version: link:../../base/design
-      '@tuquet-core/icons':
+      '@operon-core/icons':
         specifier: workspace:*
         version: link:../../base/icons
-      '@tuquet-core/shared':
+      '@operon-core/shared':
         specifier: workspace:*
         version: link:../../base/shared
-      '@tuquet-core/typings':
+      '@operon-core/typings':
         specifier: workspace:*
         version: link:../../base/typings
       '@unovis/ts':
@@ -1309,19 +1309,19 @@ importers:
 
   packages/@core/ui-kit/tabs-ui:
     dependencies:
-      '@tuquet-core/composables':
+      '@operon-core/composables':
         specifier: workspace:*
         version: link:../../composables
-      '@tuquet-core/design':
+      '@operon-core/design':
         specifier: workspace:*
         version: link:../../base/design
-      '@tuquet-core/icons':
+      '@operon-core/icons':
         specifier: workspace:*
         version: link:../../base/icons
-      '@tuquet-core/shadcn-ui':
+      '@operon-core/shadcn-ui':
         specifier: workspace:*
         version: link:../shadcn-ui
-      '@tuquet-core/typings':
+      '@operon-core/typings':
         specifier: workspace:*
         version: link:../../base/typings
       '@vueuse/core':
@@ -1337,25 +1337,25 @@ importers:
 
   packages/constants:
     dependencies:
-      '@tuquet-core/shared':
+      '@operon-core/shared':
         specifier: workspace:*
         version: link:../@core/base/shared
-      '@tuquet-core/typings':
+      '@operon-core/typings':
         specifier: workspace:*
         version: link:../@core/base/typings
 
   packages/effects/access:
     dependencies:
-      '@tuquet/preferences':
+      '@operon/preferences':
         specifier: workspace:*
         version: link:../../preferences
-      '@tuquet/stores':
+      '@operon/stores':
         specifier: workspace:*
         version: link:../../stores
-      '@tuquet/types':
+      '@operon/types':
         specifier: workspace:*
         version: link:../../types
-      '@tuquet/utils':
+      '@operon/utils':
         specifier: workspace:*
         version: link:../../utils
       vue:
@@ -1364,37 +1364,37 @@ importers:
 
   packages/effects/common-ui:
     dependencies:
-      '@tuquet-core/design':
+      '@operon-core/design':
         specifier: workspace:*
         version: link:../../@core/base/design
-      '@tuquet-core/form-ui':
+      '@operon-core/form-ui':
         specifier: workspace:*
         version: link:../../@core/ui-kit/form-ui
-      '@tuquet-core/popup-ui':
+      '@operon-core/popup-ui':
         specifier: workspace:*
         version: link:../../@core/ui-kit/popup-ui
-      '@tuquet-core/preferences':
+      '@operon-core/preferences':
         specifier: workspace:*
         version: link:../../@core/preferences
-      '@tuquet-core/shadcn-ui':
+      '@operon-core/shadcn-ui':
         specifier: workspace:*
         version: link:../../@core/ui-kit/shadcn-ui
-      '@tuquet-core/shared':
+      '@operon-core/shared':
         specifier: workspace:*
         version: link:../../@core/base/shared
-      '@tuquet/constants':
+      '@operon/constants':
         specifier: workspace:*
         version: link:../../constants
-      '@tuquet/hooks':
+      '@operon/hooks':
         specifier: workspace:*
         version: link:../hooks
-      '@tuquet/icons':
+      '@operon/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@tuquet/locales':
+      '@operon/locales':
         specifier: workspace:*
         version: link:../../locales
-      '@tuquet/types':
+      '@operon/types':
         specifier: workspace:*
         version: link:../../types
       '@vueuse/core':
@@ -1437,19 +1437,19 @@ importers:
 
   packages/effects/hooks:
     dependencies:
-      '@tuquet-core/composables':
+      '@operon-core/composables':
         specifier: workspace:*
         version: link:../../@core/composables
-      '@tuquet/preferences':
+      '@operon/preferences':
         specifier: workspace:*
         version: link:../../preferences
-      '@tuquet/stores':
+      '@operon/stores':
         specifier: workspace:*
         version: link:../../stores
-      '@tuquet/types':
+      '@operon/types':
         specifier: workspace:*
         version: link:../../types
-      '@tuquet/utils':
+      '@operon/utils':
         specifier: workspace:*
         version: link:../../utils
       '@vueuse/core':
@@ -1467,58 +1467,58 @@ importers:
 
   packages/effects/layouts:
     dependencies:
-      '@tuquet-core/composables':
+      '@operon-core/composables':
         specifier: workspace:*
         version: link:../../@core/composables
-      '@tuquet-core/design':
+      '@operon-core/design':
         specifier: workspace:*
         version: link:../../@core/base/design
-      '@tuquet-core/form-ui':
+      '@operon-core/form-ui':
         specifier: workspace:*
         version: link:../../@core/ui-kit/form-ui
-      '@tuquet-core/layout-ui':
+      '@operon-core/layout-ui':
         specifier: workspace:*
         version: link:../../@core/ui-kit/layout-ui
-      '@tuquet-core/menu-ui':
+      '@operon-core/menu-ui':
         specifier: workspace:*
         version: link:../../@core/ui-kit/menu-ui
-      '@tuquet-core/popup-ui':
+      '@operon-core/popup-ui':
         specifier: workspace:*
         version: link:../../@core/ui-kit/popup-ui
-      '@tuquet-core/shadcn-ui':
+      '@operon-core/shadcn-ui':
         specifier: workspace:*
         version: link:../../@core/ui-kit/shadcn-ui
-      '@tuquet-core/shared':
+      '@operon-core/shared':
         specifier: workspace:*
         version: link:../../@core/base/shared
-      '@tuquet-core/tabs-ui':
+      '@operon-core/tabs-ui':
         specifier: workspace:*
         version: link:../../@core/ui-kit/tabs-ui
-      '@tuquet-core/typings':
+      '@operon-core/typings':
         specifier: workspace:*
         version: link:../../@core/base/typings
-      '@tuquet/constants':
+      '@operon/constants':
         specifier: workspace:*
         version: link:../../constants
-      '@tuquet/hooks':
+      '@operon/hooks':
         specifier: workspace:*
         version: link:../hooks
-      '@tuquet/icons':
+      '@operon/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@tuquet/locales':
+      '@operon/locales':
         specifier: workspace:*
         version: link:../../locales
-      '@tuquet/preferences':
+      '@operon/preferences':
         specifier: workspace:*
         version: link:../../preferences
-      '@tuquet/stores':
+      '@operon/stores':
         specifier: workspace:*
         version: link:../../stores
-      '@tuquet/types':
+      '@operon/types':
         specifier: workspace:*
         version: link:../../types
-      '@tuquet/utils':
+      '@operon/utils':
         specifier: workspace:*
         version: link:../../utils
       '@types/sortablejs':
@@ -1575,40 +1575,40 @@ importers:
       '@tiptap/vue-3':
         specifier: 'catalog:'
         version: 3.30.3(@floating-ui/dom@1.8.0)(@tiptap/core@3.30.3(@tiptap/pm@3.30.3))(@tiptap/pm@3.30.3)(vue@3.5.41(typescript@6.0.3))
-      '@tuquet-core/design':
+      '@operon-core/design':
         specifier: workspace:*
         version: link:../../@core/base/design
-      '@tuquet-core/form-ui':
+      '@operon-core/form-ui':
         specifier: workspace:*
         version: link:../../@core/ui-kit/form-ui
-      '@tuquet-core/popup-ui':
+      '@operon-core/popup-ui':
         specifier: workspace:*
         version: link:../../@core/ui-kit/popup-ui
-      '@tuquet-core/shadcn-ui':
+      '@operon-core/shadcn-ui':
         specifier: workspace:*
         version: link:../../@core/ui-kit/shadcn-ui
-      '@tuquet-core/shared':
+      '@operon-core/shared':
         specifier: workspace:*
         version: link:../../@core/base/shared
-      '@tuquet-core/typings':
+      '@operon-core/typings':
         specifier: workspace:*
         version: link:../../@core/base/typings
-      '@tuquet/hooks':
+      '@operon/hooks':
         specifier: workspace:*
         version: link:../hooks
-      '@tuquet/icons':
+      '@operon/icons':
         specifier: workspace:*
         version: link:../../icons
-      '@tuquet/locales':
+      '@operon/locales':
         specifier: workspace:*
         version: link:../../locales
-      '@tuquet/preferences':
+      '@operon/preferences':
         specifier: workspace:*
         version: link:../../preferences
-      '@tuquet/types':
+      '@operon/types':
         specifier: workspace:*
         version: link:../../types
-      '@tuquet/utils':
+      '@operon/utils':
         specifier: workspace:*
         version: link:../../utils
       '@vueuse/core':
@@ -1632,10 +1632,10 @@ importers:
 
   packages/effects/request:
     dependencies:
-      '@tuquet/locales':
+      '@operon/locales':
         specifier: workspace:*
         version: link:../../locales
-      '@tuquet/utils':
+      '@operon/utils':
         specifier: workspace:*
         version: link:../../utils
       axios:
@@ -1654,7 +1654,7 @@ importers:
 
   packages/icons:
     dependencies:
-      '@tuquet-core/icons':
+      '@operon-core/icons':
         specifier: workspace:*
         version: link:../@core/base/icons
 
@@ -1663,10 +1663,10 @@ importers:
       '@intlify/core-base':
         specifier: 'catalog:'
         version: 11.4.10
-      '@tuquet-core/composables':
+      '@operon-core/composables':
         specifier: workspace:*
         version: link:../@core/composables
-      '@tuquet-core/typings':
+      '@operon-core/typings':
         specifier: workspace:*
         version: link:../@core/base/typings
       vue:
@@ -1678,22 +1678,22 @@ importers:
 
   packages/preferences:
     dependencies:
-      '@tuquet-core/preferences':
+      '@operon-core/preferences':
         specifier: workspace:*
         version: link:../@core/preferences
-      '@tuquet-core/typings':
+      '@operon-core/typings':
         specifier: workspace:*
         version: link:../@core/base/typings
 
   packages/stores:
     dependencies:
-      '@tuquet-core/preferences':
+      '@operon-core/preferences':
         specifier: workspace:*
         version: link:../@core/preferences
-      '@tuquet-core/shared':
+      '@operon-core/shared':
         specifier: workspace:*
         version: link:../@core/base/shared
-      '@tuquet-core/typings':
+      '@operon-core/typings':
         specifier: workspace:*
         version: link:../@core/base/typings
       pinia:
@@ -1714,13 +1714,13 @@ importers:
 
   packages/styles:
     dependencies:
-      '@tuquet-core/design':
+      '@operon-core/design':
         specifier: workspace:*
         version: link:../@core/base/design
 
   packages/types:
     dependencies:
-      '@tuquet-core/typings':
+      '@operon-core/typings':
         specifier: workspace:*
         version: link:../@core/base/typings
       vue:
@@ -1732,10 +1732,10 @@ importers:
 
   packages/utils:
     dependencies:
-      '@tuquet-core/shared':
+      '@operon-core/shared':
         specifier: workspace:*
         version: link:../@core/base/shared
-      '@tuquet-core/typings':
+      '@operon-core/typings':
         specifier: workspace:*
         version: link:../@core/base/typings
       vue-router:
@@ -1747,7 +1747,7 @@ importers:
       '@clack/prompts':
         specifier: 'catalog:'
         version: 1.7.0
-      '@tuquet/node-utils':
+      '@operon/node-utils':
         specifier: workspace:*
         version: link:../../internal/node-utils
       cac:
@@ -1756,7 +1756,7 @@ importers:
 
   scripts/vsh:
     dependencies:
-      '@tuquet/node-utils':
+      '@operon/node-utils':
         specifier: workspace:*
         version: link:../../internal/node-utils
       cac:

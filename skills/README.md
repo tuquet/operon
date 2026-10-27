@@ -1,6 +1,6 @@
 # Skills
 
-A curated collection of [Agent Skills](https://agentskills.io/home) reflecting Tuquet's engineering standards, quality benchmarks, and best practices for AI coding agents.
+A curated collection of [Agent Skills](https://agentskills.io/home) reflecting Operon's engineering standards, quality benchmarks, and best practices for AI coding agents.
 
 > [!IMPORTANT]
 > Built on top of an open-source architecture for keeping agent skills synchronized with upstream sources, Skills provides enterprise-grade runbooks and autonomous workflows across Google Antigravity, Claude Code, Cursor, and Codex.
@@ -12,26 +12,26 @@ A curated collection of [Agent Skills](https://agentskills.io/home) reflecting T
 To install all skills from this repository into your project, use the [skills](https://github.com/vercel-labs/skills) CLI:
 
 ```bash
-npx skills add tuquet/skills --skill='*'
+npx skills add operon/skills --skill='*'
 ```
 
 Or install all of them globally for all projects on your workstation:
 
 ```bash
-npx skills add tuquet/skills --skill='*' -g
+npx skills add operon/skills --skill='*' -g
 ```
 
 Or install only agent
 
 ```bash
-npx skills add tuquet/skills --agent antigravity --skill='*' -y
+npx skills add operon/skills --agent antigravity --skill='*' -y
 ```
 
 To install an individual skill:
 
 ```bash
-npx skills add tuquet/skills --skill=vue
-npx skills add tuquet/skills --skill=vitest
+npx skills add operon/skills --skill=vue
+npx skills add operon/skills --skill=vitest
 ```
 
 ---
@@ -48,11 +48,11 @@ Manually maintained engineering standards, setup conventions, and workflows.
 
 | Skill | Description | Author |
 |-------|-------------|--------|
-| [antfu](skills/antfu) | Anthony Fu's preferences and best practices for app/library projects (eslint, pnpm, vitest, vue, etc.) | @tuquet/skills |
-| [antfu-create-pr](skills/antfu-create-pr) | Open reviewable PRs with Conventional Commits title, evidence-based body, before/after screenshots | @tuquet/skills |
-| [google-cli-command](skills/google-cli-command) | Google Cloud CLI grammar, noun-verb ergonomics, POSIX/GNU flag standards | @tuquet/skills |
-| [google-console-output](skills/google-console-output) | Google terminal output standard, Rule of Silence, clean stdout/stderr, pipeable flags | @tuquet/skills |
-| [google-developer-docs](skills/google-developer-docs) | Google Developer Documentation Style Guide, active voice, task-based technical documentation | @tuquet/skills |
+| [antfu](skills/antfu) | Anthony Fu's preferences and best practices for app/library projects (eslint, pnpm, vitest, vue, etc.) | @operon/skills |
+| [antfu-create-pr](skills/antfu-create-pr) | Open reviewable PRs with Conventional Commits title, evidence-based body, before/after screenshots | @operon/skills |
+| [google-cli-command](skills/google-cli-command) | Google Cloud CLI grammar, noun-verb ergonomics, POSIX/GNU flag standards | @operon/skills |
+| [google-console-output](skills/google-console-output) | Google terminal output standard, Rule of Silence, clean stdout/stderr, pipeable flags | @operon/skills |
+| [google-developer-docs](skills/google-developer-docs) | Google Developer Documentation Style Guide, active voice, task-based technical documentation | @operon/skills |
 
 ### Production Engineering & Reliability
 

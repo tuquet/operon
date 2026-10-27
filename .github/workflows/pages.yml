@@ -1,7 +1,7 @@
 name: Deploy Pages
 
-# The `tuquet` repo aggregates the ecosystem via git submodules, one of which (`worker`)
-# points at the now-private `tuquet/runner`. GitHub's legacy Pages build clones submodules
+# The `operon` repo aggregates the ecosystem via git submodules, one of which (`worker`)
+# points at the now-private `operon/runner`. GitHub's legacy Pages build clones submodules
 # anonymously and therefore can never succeed — so build through Actions instead and skip
 # submodule checkouts: the published site only needs this repository's own content.
 

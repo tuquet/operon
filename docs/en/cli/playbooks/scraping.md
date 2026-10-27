@@ -2,7 +2,7 @@
 
 Modern data collection, competitive intelligence, and price monitoring pipelines face sophisticated anti-bot countermeasures. Target websites deploy Cloudflare Turnstile, DataDome, PerimeterX, and Akamai to block generic HTTP requests (curl, Python Requests) and flag standard headless browsers within milliseconds.
 
-**Tuquet** provides a high-throughput, undetectable web extraction engine that combines true stealth headless execution with native Chrome DevTools Protocol (CDP) and distributed worker orchestration.
+**Operon** provides a high-throughput, undetectable web extraction engine that combines true stealth headless execution with native Chrome DevTools Protocol (CDP) and distributed worker orchestration.
 
 <HairlineFigure name="sieve" />
 
@@ -15,7 +15,7 @@ Modern data collection, competitive intelligence, and price monitoring pipelines
  │            DISTRIBUTED HIGH-VOLUME SCRAPING STACK           │
  │                                                             │
  │   ┌──────────────────────┐       ┌──────────────────────┐   │
- │   │ Cron / Airflow / CI  │ ────► │ tq automation run   │   │
+ │   │ Cron / Airflow / CI  │ ────► │ opn automation run   │   │
  │   │ Orchestration Trigger│       │ (or worker daemon)   │   │
  │   └──────────────────────┘       └──────────┬───────────┘   │
  │                                             │               │
@@ -62,7 +62,7 @@ Modern data collection, competitive intelligence, and price monitoring pipelines
 
 ```bash
 # Launch a headless scraper profile through residential proxy
-tq browser launch "Scraper-Node-01" \
+opn browser launch "Scraper-Node-01" \
   --headless \
   --proxy socks5://127.0.0.1:1080 \
   --port 9222 \
@@ -73,7 +73,7 @@ tq browser launch "Scraper-Node-01" \
 
 ```bash
 # Run automated extraction workflow by stored ID with runtime parameter substitution
-tq automation run ecommerce-catalog \
+opn automation run ecommerce-catalog \
   --headless \
   --timeout 120 \
   -p TARGET_URL="https://example-store.com/products" \
@@ -86,5 +86,5 @@ In distributed scraping fleets, worker nodes continuously poll tasks from the ce
 
 ```bash
 # Start background worker daemon polling extraction jobs every 10s
-tq worker start --headless
+opn worker start --headless
 ```

@@ -67,10 +67,10 @@ impl Notify {
         clack_cancel(&msg.to_string());
     }
 
-    /// Clack-styled section header (`┌  tq  title`)
+    /// Clack-styled section header (`┌  opn  title`)
     pub fn header(title: impl std::fmt::Display) {
         let clean = strip_ansi_codes(&title.to_string());
-        clack_intro("tuquet", &clean);
+        clack_intro("operon", &clean);
     }
 
     /// Clack vertical rail connector / divider

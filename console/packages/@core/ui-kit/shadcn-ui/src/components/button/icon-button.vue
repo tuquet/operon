@@ -4,7 +4,7 @@ import type { VbenButtonProps } from './button';
 
 import { computed, useSlots } from 'vue';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { VbenTooltip } from '../tooltip';
 import VbenButton from './button.vue';

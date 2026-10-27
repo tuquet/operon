@@ -7,18 +7,18 @@ import type {
   RouteRecordNormalized,
 } from 'vue-router';
 
-import type { TabDefinition } from '@tuquet-core/typings';
+import type { TabDefinition } from '@operon-core/typings';
 
 import { markRaw, nextTick, toRaw } from 'vue';
 
-import { preferences } from '@tuquet-core/preferences';
+import { preferences } from '@operon-core/preferences';
 import {
   createStack,
   openWindow,
   Stack,
   startProgress,
   stopProgress,
-} from '@tuquet-core/shared/utils';
+} from '@operon-core/shared/utils';
 
 import { acceptHMRUpdate, defineStore } from 'pinia';
 

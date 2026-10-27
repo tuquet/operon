@@ -3,7 +3,7 @@ import type { NumberFieldDecrementProps } from 'reka-ui';
 
 import type { HTMLAttributes } from 'vue';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { Minus } from '@lucide/vue';
 import { reactiveOmit } from '@vueuse/core';

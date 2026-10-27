@@ -6,12 +6,12 @@ import type { ExtendedFormApi, FormActions, VbenFormProps } from './types';
 
 import { computed, toRaw, unref, useSlots } from 'vue';
 
-import { createContext } from '@tuquet-core/shadcn-ui';
+import { createContext } from '@operon-core/shadcn-ui';
 import {
   isString,
   mergeWithArrayOverride,
   set,
-} from '@tuquet-core/shared/utils';
+} from '@operon-core/shared/utils';
 
 import {
   object,

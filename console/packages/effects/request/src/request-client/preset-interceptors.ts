@@ -1,8 +1,8 @@
 import type { RequestClient } from './request-client';
 import type { MakeErrorMessageFn, ResponseInterceptorConfig } from './types';
 
-import { $t } from '@tuquet/locales';
-import { isFunction } from '@tuquet/utils';
+import { $t } from '@operon/locales';
+import { isFunction } from '@operon/utils';
 
 import axios from 'axios';
 

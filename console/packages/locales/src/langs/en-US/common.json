@@ -141,7 +141,7 @@
   "requiredFieldsMissing": "Please fill in required fields",
   "code": "Code",
   "successful": "Operation completed successfully",
-  "tqCliCommand": "Tuquet CLI command",
+  "tqCliCommand": "Operon CLI command",
   "windowMinimize": "Minimize",
   "windowMaximize": "Maximize",
   "windowRestore": "Restore",

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "name": "browser-runtimes",
-  "description": "Curated Manifest of C++ Antidetect Chromium Runtimes for Tuquet",
+  "description": "Curated Manifest of C++ Antidetect Chromium Runtimes for Operon",
   "updated_at": "2026-10-06T08:50:01.315Z",
   "default_channel": "lts",
   "channels": {

@@ -19,7 +19,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let home = std::env::var("USERPROFILE")
         .or_else(|_| std::env::var("HOME"))
         .unwrap_or_default();
-    let chrome_bin = PathBuf::from(&home).join(".tq/browser/runtimes/stealth/chrome.exe");
+    let chrome_bin = PathBuf::from(&home).join(".operon/browser/runtimes/stealth/chrome.exe");
 
     if !chrome_bin.exists() {
         eprintln!(

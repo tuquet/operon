@@ -1,6 +1,6 @@
 import { execSync } from 'node:child_process';
 
-import { getPackagesSync } from '@tuquet/node-utils';
+import { getPackagesSync } from '@operon/node-utils';
 
 const { packages } = getPackagesSync();
 

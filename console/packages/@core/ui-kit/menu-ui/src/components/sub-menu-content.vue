@@ -3,9 +3,9 @@ import type { MenuItemProps } from '../types';
 
 import { computed } from 'vue';
 
-import { useNamespace } from '@tuquet-core/composables';
-import { ChevronDown, ChevronRight } from '@tuquet-core/icons';
-import { VbenIcon } from '@tuquet-core/shadcn-ui';
+import { useNamespace } from '@operon-core/composables';
+import { ChevronDown, ChevronRight } from '@operon-core/icons';
+import { VbenIcon } from '@operon-core/shadcn-ui';
 
 import { useMenuContext } from '../hooks';
 

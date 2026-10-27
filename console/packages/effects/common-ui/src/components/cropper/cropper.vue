@@ -853,7 +853,7 @@ defineExpose({ getCropImage });
 </template>
 
 <style scoped>
-@reference "@tuquet/tailwind-config/theme";
+@reference "@operon/tailwind-config/theme";
 
 .cropper-action-wrapper {
   @apply box-border flex items-center justify-center;

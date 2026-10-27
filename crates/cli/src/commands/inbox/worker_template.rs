@@ -100,7 +100,7 @@ export default {{
         method: "POST",
         headers: {{
           "Content-Type": "application/json",
-          "X-Tuquet-Secret": secret
+          "X-Operon-Secret": secret
         }},
         body: JSON.stringify({{
           id: messageId,

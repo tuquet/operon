@@ -37,7 +37,7 @@ describe('mapRawMembersToWorkspaceMembers', () => {
         profiles: {
           id: 'user-owner',
           full_name: 'Nguyen Dinh Tu',
-          email: 'admin@tuquet.com',
+          email: 'admin@operon.com',
           avatar_url: 'https://avatar.com/1.png',
         },
         member_roles: [
@@ -59,7 +59,7 @@ describe('mapRawMembersToWorkspaceMembers', () => {
         profiles: {
           id: 'user-dev',
           full_name: null,
-          email: 'dev@tuquet.com',
+          email: 'dev@operon.com',
           avatar_url: null,
         },
         member_roles: [
@@ -84,7 +84,7 @@ describe('mapRawMembersToWorkspaceMembers', () => {
       status: 'active',
       joined_at: '2026-10-01T00:00:00Z',
       full_name: 'Nguyen Dinh Tu',
-      email: 'admin@tuquet.com',
+      email: 'admin@operon.com',
       avatar_url: 'https://avatar.com/1.png',
       role: {
         id: '00000000-0000-0000-0000-000000000001',
@@ -94,7 +94,7 @@ describe('mapRawMembersToWorkspaceMembers', () => {
     });
 
     expect(result[1]?.role.name).toBe('member');
-    expect(result[1]?.full_name).toBe('dev@tuquet.com'); // Fallback to email when full_name is null
+    expect(result[1]?.full_name).toBe('dev@operon.com'); // Fallback to email when full_name is null
   });
 
   it('should fallback to owner role if user is tenant owner and has no explicit member_roles row', () => {
@@ -106,7 +106,7 @@ describe('mapRawMembersToWorkspaceMembers', () => {
         joined_at: '2026-10-01T00:00:00Z',
         profiles: {
           id: 'user-creator',
-          email: 'creator@tuquet.com',
+          email: 'creator@operon.com',
         },
         member_roles: [],
       },

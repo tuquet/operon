@@ -5,7 +5,7 @@ import type { AlertProps } from './alert';
 
 import { computed, h, nextTick, ref } from 'vue';
 
-import { useSimpleLocale } from '@tuquet-core/composables';
+import { useSimpleLocale } from '@operon-core/composables';
 import {
   CircleAlert,
   CircleCheckBig,
@@ -13,8 +13,8 @@ import {
   CircleX,
   Info,
   X,
-} from '@tuquet-core/icons';
-import { usePreferences } from '@tuquet-core/preferences';
+} from '@operon-core/icons';
+import { usePreferences } from '@operon-core/preferences';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -25,9 +25,9 @@ import {
   VbenButton,
   VbenLoading,
   VbenRenderContent,
-} from '@tuquet-core/shadcn-ui';
-import { globalShareState } from '@tuquet-core/shared/global-state';
-import { cn } from '@tuquet-core/shared/utils';
+} from '@operon-core/shadcn-ui';
+import { globalShareState } from '@operon-core/shared/global-state';
+import { cn } from '@operon-core/shared/utils';
 
 import { provideAlertContext } from './alert';
 

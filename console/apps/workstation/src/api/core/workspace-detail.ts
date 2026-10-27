@@ -1,6 +1,6 @@
 import type { Tenant } from './tenant';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
 import { supabaseRequest } from './supabase-client';
 
@@ -162,7 +162,7 @@ export function mapRawMembersToWorkspaceMembers(
       resolvedRole = getDefaultOwnerRole();
     }
 
-    const email = m.profiles?.email || 'member@tuquet.com';
+    const email = m.profiles?.email || 'member@operon.com';
     const fullName = m.profiles?.full_name || email;
 
     return {

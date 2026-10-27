@@ -2,7 +2,7 @@
 
 Operating high-concurrency browser automation, affiliate advertising accounts, and e-commerce stores across multiple countries requires an organized, distributed egress network. Routing all traffic through a single proxy endpoint creates a single point of failure and increases the risk of correlated account bans.
 
-**Bridge Mesh** enables you to orchestrate and multiplex an entire fleet of remote Virtual Private Servers (VPS) and residential proxies from a single workstation using the pure-Rust [`gateway`](https://github.com/tuquet/cli) engine.
+**Bridge Mesh** enables you to orchestrate and multiplex an entire fleet of remote Virtual Private Servers (VPS) and residential proxies from a single workstation using the pure-Rust [`gateway`](https://github.com/operon/cli) engine.
 
 <HairlineFigure name="patch" />
 
@@ -40,7 +40,7 @@ Each configured server endpoint in `gateway.json` is mapped to deterministic loc
 
 Network tunnels across the public internet frequently experience silent connection drops, TCP resets, or ISP renegotiations. Standard SSH tunnels detach or become zombie sockets, silently halting automation tasks or causing traffic to fail over to insecure direct routes.
 
-Tuquet's supervisor mode (`--foreground` / `-f`) eliminates this vulnerability:
+Operon's supervisor mode (`--foreground` / `-f`) eliminates this vulnerability:
 
 ```text
   Supervisor Ping Loop (Every 5s)
@@ -51,7 +51,7 @@ Tuquet's supervisor mode (`--foreground` / `-f`) eliminates this vulnerability:
        │
        └── NO (Socket Dropped / Timeout)
              │
-             ├── 1. Terminate Stale PID (~/.tuquet/gateway/pids/<server>.json)
+             ├── 1. Terminate Stale PID (~/.operon/gateway/pids/<server>.json)
              ├── 2. Calculate Exponential Backoff (1s, 2s, 4s...)
              ├── 3. Re-establish Encrypted Tunnel Handshake
              └── 4. Re-bind Local Listeners & Signal Controller Ready
@@ -61,11 +61,11 @@ Tuquet's supervisor mode (`--foreground` / `-f`) eliminates this vulnerability:
 
 ## 3. Configuration & Multi-Server Mesh (`gateway.json`)
 
-All mesh server definitions are declared in SSOT Pillar 4 (`~/.tq/gateway/gateway.json`):
+All mesh server definitions are declared in SSOT Pillar 4 (`~/.operon/gateway/gateway.json`):
 
 ```json
 {
-  "$schema": "https://tuquet.com/schema/config/gateway.schema.json",
+  "$schema": "https://operon.com/schema/config/gateway.schema.json",
   "workstation": {
     "name": "WORKSTATION-MAIN",
     "default_server": "vps-us-01"
@@ -112,31 +112,31 @@ All mesh server definitions are declared in SSOT Pillar 4 (`~/.tq/gateway/gatewa
 
 ```bash
 # Start all enabled gateway servers in background
-tq gateway start
+opn gateway start
 
 # Start bridges and launch embedded HTTP-to-SOCKS5 adapter (port 8118)
-tq gateway start --http
+opn gateway start --http
 
 # Start gateway with direct local SSH port forwarding (port 2222, 2223...)
-tq gateway start --ssh
+opn gateway start --ssh
 
 # Start only servers matching a specific tag (e.g. all US nodes)
-tq gateway start -t us
+opn gateway start -t us
 
 # Run supervisor in foreground with auto-healing and live telemetry
-tq gateway start -f
+opn gateway start -f
 ```
 
 ### Inspecting Mesh Health & Managing Nodes
 
 ```bash
 # Display live interactive health check dashboard
-tq gateway status
+opn gateway status
 
 # Enable or disable servers without editing JSON manually
-tq gateway enable vps-de-03
-tq gateway disable vps-sg-02
+opn gateway enable vps-de-03
+opn gateway disable vps-sg-02
 
 # Terminate all active gateway tunnel processes
-tq gateway stop all
+opn gateway stop all
 ```

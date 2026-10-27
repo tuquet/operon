@@ -1,6 +1,6 @@
 # Creating Your First Profile
 
-Each **Tuquet** profile represents an isolated browser environment with its own unique digital fingerprint, cookies, cache, and optional proxy.
+Each **Operon** profile represents an isolated browser environment with its own unique digital fingerprint, cookies, cache, and optional proxy.
 
 <HairlineFigure name="terrain" />
 
@@ -11,13 +11,13 @@ Each **Tuquet** profile represents an isolated browser environment with its own 
 Create a new profile with a descriptive name matching your campaign or account:
 
 ```bash
-tq browser profile create "Facebook-Ad-US-01"
+opn browser profile create "Facebook-Ad-US-01"
 ```
 
 automatically assigns:
 - An authentic hardware fingerprint (GPU WebGL, AudioContext, Canvas noise).
 - Realistic screen resolution and CPU concurrency.
-- Isolated sandbox storage in `~/.tq/browser/profiles/Facebook-Ad-US-01`.
+- Isolated sandbox storage in `~/.operon/browser/profiles/Facebook-Ad-US-01`.
 
 ---
 
@@ -26,13 +26,13 @@ automatically assigns:
 Open the profile in normal visual mode:
 
 ```bash
-tq browser launch "Facebook-Ad-US-01"
+opn browser launch "Facebook-Ad-US-01"
 ```
 
 To attach a proxy immediately upon launch:
 
 ```bash
-tq browser launch "Facebook-Ad-US-01" --proxy socks5://127.0.0.1:1080
+opn browser launch "Facebook-Ad-US-01" --proxy socks5://127.0.0.1:1080
 ```
 
 ---

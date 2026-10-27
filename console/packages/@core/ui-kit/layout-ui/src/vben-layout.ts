@@ -3,7 +3,7 @@ import type {
   LayoutHeaderModeType,
   LayoutType,
   ThemeModeType,
-} from '@tuquet-core/typings';
+} from '@operon-core/typings';
 
 interface VbenLayoutProps {
   /**

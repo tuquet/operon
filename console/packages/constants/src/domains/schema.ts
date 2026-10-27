@@ -23,9 +23,9 @@ export const SUPABASE_SCHEMA_VALUES = Object.values(
  * Canonical Browser LocalStorage Keys for Admin
  */
 export const STORAGE_KEYS = {
-  ACTIVE_TENANT_ID: 'TUQUET_ACTIVE_TENANT_ID',
-  AUTH_BANNER_MODE: 'tuquet:auth-banner-mode',
-  GUEST_ORDERS: 'TUQUET_GUEST_ORDERS',
+  ACTIVE_TENANT_ID: 'OPERON_ACTIVE_TENANT_ID',
+  AUTH_BANNER_MODE: 'operon:auth-banner-mode',
+  GUEST_ORDERS: 'OPERON_GUEST_ORDERS',
 } as const;
 
 export type StorageKey = (typeof STORAGE_KEYS)[keyof typeof STORAGE_KEYS];

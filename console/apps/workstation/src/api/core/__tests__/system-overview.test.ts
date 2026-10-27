@@ -176,7 +176,7 @@ describe('system overview aggregation (SPEC-system-dashboard)', () => {
       users: Array.from({ length: 6 }, (_, idx) => ({
         avatar_url: null,
         created_at: '2026-10-01',
-        email: `user${idx}@tuquet.com`,
+        email: `user${idx}@operon.com`,
         full_name: `User ${idx}`,
         id: `u_${idx}`,
         primary_role: 'member',

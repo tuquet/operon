@@ -1,4 +1,4 @@
-import { defineConfig } from '@tuquet/eslint-config';
+import { defineConfig } from '@operon/eslint-config';
 
 export default defineConfig([
   {

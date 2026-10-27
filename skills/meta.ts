@@ -17,7 +17,7 @@ export const submodules = {
 }
 
 /**
- * Hand-written skills with @tuquet/skills preferences/tastes/recommendations
+ * Hand-written skills with @operon/skills preferences/tastes/recommendations
  */
 export const manual = [
   'antfu',

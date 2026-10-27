@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-import type { ThemeModeType } from '@tuquet/types';
+import type { ThemeModeType } from '@operon/types';
 
-import { MoonStar, Sun, SunMoon } from '@tuquet/icons';
-import { $t } from '@tuquet/locales';
+import { MoonStar, Sun, SunMoon } from '@operon/icons';
+import { $t } from '@operon/locales';
 import {
   preferences,
   updatePreferences,
   usePreferences,
-} from '@tuquet/preferences';
+} from '@operon/preferences';
 
 import {
   ToggleGroup,
   ToggleGroupItem,
   VbenTooltip,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import ThemeButton from './theme-button.vue';
 

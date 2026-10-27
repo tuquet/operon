@@ -4,7 +4,7 @@ import type {
   MenuRecordBadgeRaw,
   Recordable,
   ThemeModeType,
-} from '@tuquet-core/typings';
+} from '@operon-core/typings';
 
 interface MenuProps {
   /**

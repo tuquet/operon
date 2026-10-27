@@ -4,10 +4,10 @@ import type { Job } from '#/api';
 import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-import { Page } from '@tuquet/common-ui';
-import { usePreferences } from '@tuquet/preferences';
+import { Page } from '@operon/common-ui';
+import { usePreferences } from '@operon/preferences';
 
-import { Badge, Button } from '@tuquet-core/shadcn-ui';
+import { Badge, Button } from '@operon-core/shadcn-ui';
 
 import { Eye, Laptop, PlayCircle, RefreshCw } from '@lucide/vue';
 

@@ -1,7 +1,7 @@
-# Tài Liệu Kỹ Thuật Admin (`@tuquet/admin-web`)
+# Tài Liệu Kỹ Thuật Admin (`@operon/admin-web`)
 
 > **Mã tài liệu:** `DOCS-INDEX`  
-> **Áp dụng cho:** `tuquet/admin` (`apps/web-admin`)  
+> **Áp dụng cho:** `operon/admin` (`apps/web-admin`)  
 > **Trạng thái:** **ACTIVE & ACCEPTED**
 
 Chào mừng đến với trung tâm tài liệu kỹ thuật chính thức (Single Source of Truth — SSOT) của ứng dụng **Admin** (Web Admin). Toàn bộ kiến trúc, quyết định thiết kế, đặc tả tuyến đường và 15 bản đặc tả module chuẩn hóa được tổ chức thành 4 trụ cột dưới đây.
@@ -50,6 +50,6 @@ Bộ **15 bản đặc tả kỹ thuật chuẩn hóa (Canonical Module Specs)**
 - [`specs/SPEC-commerce-digital-store.md`](specs/SPEC-commerce-digital-store.md) — Kho sản phẩm số (`schema: commerce`), chống bán trùng `FOR UPDATE SKIP LOCKED` và giao hàng tự động xuyên schema (Auto-Fulfillment).
 - [`specs/admin-commerce-portal.md`](specs/SPEC-commerce-admin-portal.md) — Cổng thương mại điện tử nội bộ `/commerce/{store,orders,wallet,admin}`.
 - [`specs/public-storefront.md`](specs/SPEC-commerce-public-storefront.md) — Cửa hàng sản phẩm số công khai `/store` (Guest Checkout & tra cứu `claim_token`).
-- [`specs/SPEC-cross-tauri-desktop.md`](specs/SPEC-cross-tauri-desktop.md) — Ứng dụng Native Desktop hoàn chỉnh trên nền tảng Tauri v2 (Frameless Titlebar, System Tray, SSO Deep Linking `tuquet://`).
+- [`specs/SPEC-cross-tauri-desktop.md`](specs/SPEC-cross-tauri-desktop.md) — Ứng dụng Native Desktop hoàn chỉnh trên nền tảng Tauri v2 (Frameless Titlebar, System Tray, SSO Deep Linking `operon://`).
 
 ---

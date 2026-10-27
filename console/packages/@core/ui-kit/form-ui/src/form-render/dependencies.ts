@@ -18,7 +18,7 @@ import {
   isBoolean,
   isEqual,
   isFunction,
-} from '@tuquet-core/shared/utils';
+} from '@operon-core/shared/utils';
 
 import { warnDeprecatedOnce } from '../deprecation';
 import { resolveFieldNamePath } from '../field-name';

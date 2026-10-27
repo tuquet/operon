@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { CircleX } from '@tuquet-core/icons';
+import { CircleX } from '@operon-core/icons';
 
 import {
   Select,

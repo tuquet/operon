@@ -1,11 +1,11 @@
-import type { Sortable } from '@tuquet-core/composables';
-import type { EmitType } from '@tuquet-core/typings';
+import type { Sortable } from '@operon-core/composables';
+import type { EmitType } from '@operon-core/typings';
 
 import type { TabsProps } from './types';
 
 import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 
-import { useIsMobile, useSortable } from '@tuquet-core/composables';
+import { useIsMobile, useSortable } from '@operon-core/composables';
 
 // A dragged child element might be found; ensure the dragged DOM is the tab element
 function findParentElement(element: HTMLElement) {

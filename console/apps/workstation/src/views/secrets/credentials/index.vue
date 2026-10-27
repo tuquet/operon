@@ -3,7 +3,7 @@ import type { CredentialRow, CredentialStatus } from '#/api';
 
 import { computed, onMounted, ref } from 'vue';
 
-import { Page } from '@tuquet/common-ui';
+import { Page } from '@operon/common-ui';
 
 import {
   Alert,
@@ -19,7 +19,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import {
   AlertCircle,

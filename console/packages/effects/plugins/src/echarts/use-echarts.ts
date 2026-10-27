@@ -2,7 +2,7 @@ import type { EChartsOption } from 'echarts';
 
 import type { Ref } from 'vue';
 
-import type { Nullable } from '@tuquet/types';
+import type { Nullable } from '@operon/types';
 
 import type EchartsUI from './echarts-ui.vue';
 
@@ -18,7 +18,7 @@ import {
   watch,
 } from 'vue';
 
-import { usePreferences } from '@tuquet/preferences';
+import { usePreferences } from '@operon/preferences';
 
 import {
   tryOnUnmounted,

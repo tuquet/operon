@@ -1,5 +1,5 @@
-import type { IContextMenuItem } from '@tuquet-core/shadcn-ui';
-import type { TabDefinition, TabsStyleType } from '@tuquet-core/typings';
+import type { IContextMenuItem } from '@operon-core/shadcn-ui';
+import type { TabDefinition, TabsStyleType } from '@operon-core/typings';
 
 export type TabsEmits = {
   close: [string];

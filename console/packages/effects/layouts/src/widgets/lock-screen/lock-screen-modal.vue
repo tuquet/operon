@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { Recordable } from '@tuquet/types';
+import type { Recordable } from '@operon/types';
 
 import { computed, reactive } from 'vue';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
-import { useVbenForm, z } from '@tuquet-core/form-ui';
-import { useVbenModal } from '@tuquet-core/popup-ui';
-import { VbenAvatar, VbenButton } from '@tuquet-core/shadcn-ui';
+import { useVbenForm, z } from '@operon-core/form-ui';
+import { useVbenModal } from '@operon-core/popup-ui';
+import { VbenAvatar, VbenButton } from '@operon-core/shadcn-ui';
 
 interface Props {
   avatar?: string;

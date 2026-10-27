@@ -19,7 +19,7 @@ const mockPreferences = vi.hoisted(() => ({
   }),
 }));
 
-vi.mock('@tuquet/preferences', () => mockPreferences);
+vi.mock('@operon/preferences', () => mockPreferences);
 
 const routerHolder = vi.hoisted(() => ({
   current: undefined as Router | undefined,

@@ -1,4 +1,4 @@
-import { createIconifyIcon } from '@tuquet-core/icons';
+import { createIconifyIcon } from '@operon-core/icons';
 
 import './load.js';
 

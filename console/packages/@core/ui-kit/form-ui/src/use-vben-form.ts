@@ -8,7 +8,7 @@ import type {
 
 import { defineComponent, h, isReactive, onBeforeUnmount, watch } from 'vue';
 
-import { useSelector } from '@tuquet-core/shared/store';
+import { useSelector } from '@operon-core/shared/store';
 
 import { FormApi } from './form-api';
 import VbenUseForm from './vben-use-form.vue';

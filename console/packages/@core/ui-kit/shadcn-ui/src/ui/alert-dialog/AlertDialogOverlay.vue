@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useScrollLock } from '@tuquet-core/composables';
-import { cn } from '@tuquet-core/shared/utils';
+import { useScrollLock } from '@operon-core/composables';
+import { cn } from '@operon-core/shared/utils';
 
 const props = withDefaults(
   defineProps<{

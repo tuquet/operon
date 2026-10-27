@@ -3,9 +3,9 @@ import type { MenuItemProps, MenuItemRegistered } from '../types';
 
 import { computed, onBeforeUnmount, onMounted, reactive, useSlots } from 'vue';
 
-import { useNamespace } from '@tuquet-core/composables';
-import { VbenIcon, VbenTooltip } from '@tuquet-core/shadcn-ui';
-import { isHttpUrl } from '@tuquet-core/shared/utils';
+import { useNamespace } from '@operon-core/composables';
+import { VbenIcon, VbenTooltip } from '@operon-core/shadcn-ui';
+import { isHttpUrl } from '@operon-core/shared/utils';
 
 import qs from 'qs';
 

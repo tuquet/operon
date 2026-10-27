@@ -11,8 +11,8 @@ export * from './page';
 export * from './resize';
 export * from './tippy';
 export * from './tree';
-export * from '@tuquet-core/form-ui';
-export * from '@tuquet-core/popup-ui';
+export * from '@operon-core/form-ui';
+export * from '@operon-core/popup-ui';
 
 // For documentation
 export {
@@ -35,7 +35,7 @@ export {
   VbenSelect,
   VbenSpinner,
   VbenTableAction,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 export type {
   ActionItem,
@@ -47,5 +47,5 @@ export type {
   DescriptionsSize,
   FlattenedItem,
   TableActionProps,
-} from '@tuquet-core/shadcn-ui';
-export { globalShareState } from '@tuquet-core/shared/global-state';
+} from '@operon-core/shadcn-ui';
+export { globalShareState } from '@operon-core/shared/global-state';

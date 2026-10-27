@@ -1,7 +1,7 @@
 //! Google service-account authentication for the `google-sheets` block.
 //!
 //! Automa authenticates to Google through the browser extension's own identity. A headless
-//! worker has no browser session, so Tuquet uses a **service account** held in the Secret
+//! worker has no browser session, so Operonuses a **service account** held in the Secret
 //! Store: workflows reference it as `{{secrets@google_service_account}}`, and the credential
 //! never enters the workflow document, the job payload or the logs.
 //!

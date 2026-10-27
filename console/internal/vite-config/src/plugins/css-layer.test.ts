@@ -13,7 +13,7 @@ function createBundle(assets: FakeAsset[]) {
 }
 
 const LAYER_ORDER_STATEMENT =
-  '@layer properties, theme, base, ant, antd, el, td, tuquet, components, utilities;';
+  '@layer properties, theme, base, ant, antd, el, td, operon, components, utilities;';
 
 describe('viteCssLayerPlugin', () => {
   it('wraps matching css modules in the target layer', () => {

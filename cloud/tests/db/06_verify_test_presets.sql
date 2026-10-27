@@ -28,10 +28,10 @@ DECLARE
     v_identity_count INT;
 BEGIN
     v_res := public.provision_test_identity(
-        p_email => 'test_preset_runner@tuquet.dev',
+        p_email => 'test_preset_runner@operon.dev',
         p_password => 'PresetTest!12345',
         p_full_name => 'Test Preset Runner',
-        p_avatar_url => 'https://avatars.githubusercontent.com/u/tuquet',
+        p_avatar_url => 'https://avatars.githubusercontent.com/u/operon',
         p_user_metadata => '{"test": true}'::jsonb,
         p_tenant_slug => 'test-preset-org',
         p_tenant_name => 'Test Preset Organization',
@@ -46,7 +46,7 @@ BEGIN
     SELECT count(1) INTO v_user_count
     FROM auth.users
     WHERE id = v_user_id
-      AND email = 'test_preset_runner@tuquet.dev'
+      AND email = 'test_preset_runner@operon.dev'
       AND email_confirmed_at IS NOT NULL
       AND confirmation_token = ''
       AND recovery_token = '';
@@ -65,7 +65,7 @@ BEGIN
     END IF;
 
     -- Assert public.profiles
-    IF NOT EXISTS (SELECT 1 FROM public.profiles WHERE id = v_user_id AND email = 'test_preset_runner@tuquet.dev') THEN
+    IF NOT EXISTS (SELECT 1 FROM public.profiles WHERE id = v_user_id AND email = 'test_preset_runner@operon.dev') THEN
         RAISE EXCEPTION 'TEST FAILED: Profile was not created in public.profiles';
     END IF;
 

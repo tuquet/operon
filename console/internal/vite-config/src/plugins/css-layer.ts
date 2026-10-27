@@ -25,7 +25,7 @@ function escapeRegExp(value: string): string {
  * variables written by utility classes.
  */
 const LAYER_ORDER_STATEMENT =
-  '@layer properties, theme, base, ant, antd, el, td, tuquet, components, utilities;';
+  '@layer properties, theme, base, ant, antd, el, td, operon, components, utilities;';
 
 /**
  * Wraps CSS from specified packages inside @layer:

@@ -5,7 +5,7 @@ import type { HTMLAttributes } from 'vue';
 
 import type { ButtonVariants } from '../button';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { ChevronLeft } from '@lucide/vue';
 import { reactiveOmit } from '@vueuse/core';

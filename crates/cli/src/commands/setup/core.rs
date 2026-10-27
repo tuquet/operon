@@ -8,7 +8,7 @@ pub struct CoreResult {
     pub db_path: PathBuf,
 }
 
-/// Provision SSOT directories (~/.tq/) and initialize SQLite DB
+/// Provision SSOT directories (~/.operon/) and initialize SQLite DB
 pub fn run(verbose: bool) -> Result<CoreResult, Box<dyn std::error::Error>> {
     let root = canonical_ssot_dir();
 

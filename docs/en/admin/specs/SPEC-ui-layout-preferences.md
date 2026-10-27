@@ -9,17 +9,17 @@
 
 ## 1. Objective (Mục Tiêu & Phạm Vi)
 
-Đảm bảo tính nhất quán tuyệt đối, khả năng đáp ứng đa thiết bị (Mobile/Tablet/Desktop), đồng bộ hóa dải màu biểu đồ (`Chart Palette`), **Logo thương hiệu SVG** và **hệ thống biểu tượng Lucide (`@lucide/vue` / `VbenIcon`)** theo chủ đề Built-in và an toàn vận hành trong hệ thống Layout & Preferences của Admin (`@tuquet/admin-web`, `@tuquet/preferences`, `@tuquet-core/shadcn-ui`, `@tuquet-core/menu-ui`, `@tuquet-core/tabs-ui`, `@tuquet/layouts`, `@tuquet-core/layout-ui`):
+Đảm bảo tính nhất quán tuyệt đối, khả năng đáp ứng đa thiết bị (Mobile/Tablet/Desktop), đồng bộ hóa dải màu biểu đồ (`Chart Palette`), **Logo thương hiệu SVG** và **hệ thống biểu tượng Lucide (`@lucide/vue` / `VbenIcon`)** theo chủ đề Built-in và an toàn vận hành trong hệ thống Layout & Preferences của Admin (`@operon/admin-web`, `@operon/preferences`, `@operon-core/shadcn-ui`, `@operon-core/menu-ui`, `@operon-core/tabs-ui`, `@operon/layouts`, `@operon-core/layout-ui`):
 
 1. **Chống Khóa Cứng Giao Diện (Anti-Lockout Invariant):** Khi người dùng thay đổi bất kỳ cài đặt nào trong Preferences Drawer (tắt Header, tắt Sidebar, đổi vị trí nút Settings), hệ thống luôn bảo toàn khả năng mở lại Preferences Drawer, điều hướng trang và Đăng xuất.
 2. **Bảo Toàn Khả Năng Đáp Ứng Đa Thiết Bị (Zero Horizontal Overflow & Viewport Preservation):** Khắc phục tràn ngang ở chế độ `compact` (`width: min(100%, 1200px)`), cố định thanh Footer chuẩn lề, và bảo toàn trạng thái runtime `app.isMobile` khi nhấn `resetPreferences()`.
 3. **Đồng Bộ 100% Giữa Preferences Control UI và Runtime Layout:** Mọi công tắc trong Preferences Drawer phản ánh đúng trạng thái thực tế ở runtime (vô hiệu hóa kèm tooltip các tùy chọn không áp dụng cho chế độ layout hiện tại như `sidebar.enable` trong `sidebar-nav` hoặc `navigationSplit` ngoài `mixed-nav`).
 4. **Đồng Bộ Hóa Màu Sắc Biểu Đồ Theo Chủ Đề Built-in (`Built-in Theme Chart Palette Sync`):**
-   - Loại bỏ toàn bộ mã màu Hex gán cứng (`#38bdf8`, `#10b981`, `#a855f7`, `#94a3b8`, `#0284c7`) trong `defaultColors()` (`@tuquet-core/shadcn-ui`) và các biểu đồ trên trang `/dashboard/analytics` (`GrowthChart`, `PlansChart`, `PluginsChart`).
+   - Loại bỏ toàn bộ mã màu Hex gán cứng (`#38bdf8`, `#10b981`, `#a855f7`, `#94a3b8`, `#0284c7`) trong `defaultColors()` (`@operon-core/shadcn-ui`) và các biểu đồ trên trang `/dashboard/analytics` (`GrowthChart`, `PlansChart`, `PluginsChart`).
    - Tự động tính toán và cập nhật 5 biến CSS ngữ nghĩa `--chart-1` .. `--chart-5` trên `:root` mỗi khi người dùng thay đổi `theme.builtinType` (14 chủ đề có sẵn hoặc `custom`) hoặc chuyển đổi `Light / Dark Mode` trong `updateCSSVariables()`.
 5. **Đồng Bộ Hóa Màu Sắc Logo SVG & Hệ Thống Icon Lucide Theo Chủ Đề Built-in (`Brand SVG Logo & Lucide Icon Theme Sync`):**
    - **Logo thương hiệu SVG (`VbenLogo` & `AuthPageLayout`):** Chuyển đổi từ thẻ `<img src="/logo.svg">` tĩnh (vốn dùng dải màu xám cứng `#FAFAFA -> #A1A1AA` và bị trình duyệt cô lập khỏi các biến CSS trên `:root`) sang **Inline SVG Logo** liên kết trực tiếp với các biến CSS chủ đề (`hsl(var(--chart-4))`, `hsl(var(--chart-1))`, `hsl(var(--chart-3))`, `hsl(var(--primary))`), giúp logo trên Sidebar, Header và trang Đăng nhập đổi màu tức thì theo Built-in Theme đang chọn.
-   - **Hệ thống biểu tượng Lucide trên Thanh Điều Hướng (`Sidebar / Header / Mixed Menu`) và Thanh Tab (`Tabbar`):** Đồng bộ các biến `--menu-item-active-color: hsl(var(--primary))`, `--menu-item-active-background-color: hsl(var(--primary) / 15%)` ở cả Light và Dark mode trong `@tuquet-core/menu-ui` và `@tuquet-core/tabs-ui` (loại bỏ các quy tắc `.is-dark` / `dark:text-accent-foreground` / `dark:bg-accent` đang triệt tiêu màu Built-in Theme khi ở chế độ tối).
+   - **Hệ thống biểu tượng Lucide trên Thanh Điều Hướng (`Sidebar / Header / Mixed Menu`) và Thanh Tab (`Tabbar`):** Đồng bộ các biến `--menu-item-active-color: hsl(var(--primary))`, `--menu-item-active-background-color: hsl(var(--primary) / 15%)` ở cả Light và Dark mode trong `@operon-core/menu-ui` và `@operon-core/tabs-ui` (loại bỏ các quy tắc `.is-dark` / `dark:text-accent-foreground` / `dark:bg-accent` đang triệt tiêu màu Built-in Theme khi ở chế độ tối).
    - **Hệ thống biểu tượng Lucide trên toàn bộ các trang Nghiệp Vụ (`apps/web-admin/src/views/**`):** Chuẩn hóa khung chứa icon trên thẻ KPI Metric Cards, thanh chỉ số `Stats Bar`, huy hiệu icon đầu dòng trong bảng `VxeGrid`, icon tiêu đề Modal và icon trạng thái rỗng (`#empty`) từ màu xám tĩnh (`bg-muted text-foreground`, `text-muted-foreground`) sang token chủ đề `bg-primary/10 text-primary` và `text-primary` / `text-primary/60`.
 
 ---
@@ -27,8 +27,8 @@
 ## 2. Tech Stack
 
 - **Framework:** Vue 3.5 (`<script setup lang="ts">`), Vue Router 4, Pinia.
-- **Design System, Icons & Charts:** `@tuquet-core/shadcn-ui` (`VbenLogo`, `VbenIcon`, `AreaChart`, `DonutChart`, `BarChart`), `@tuquet-core/menu-ui`, `@tuquet-core/tabs-ui`, `@tuquet-core/layout-ui`, Tailwind CSS v4, Lucide Icons (`@lucide/vue`).
-- **State & Color Engine:** `@tuquet/preferences` (`PreferenceManager` singleton, `usePreferences`, `updateCSSVariables`), `@tuquet-core/shared/color` (`generatorColorVariables`, `TinyColor`, `convertToHslCssVar`).
+- **Design System, Icons & Charts:** `@operon-core/shadcn-ui` (`VbenLogo`, `VbenIcon`, `AreaChart`, `DonutChart`, `BarChart`), `@operon-core/menu-ui`, `@operon-core/tabs-ui`, `@operon-core/layout-ui`, Tailwind CSS v4, Lucide Icons (`@lucide/vue`).
+- **State & Color Engine:** `@operon/preferences` (`PreferenceManager` singleton, `usePreferences`, `updateCSSVariables`), `@operon-core/shared/color` (`generatorColorVariables`, `TinyColor`, `convertToHslCssVar`).
 
 ---
 
@@ -39,7 +39,7 @@
 pnpm exec vitest run packages/@core/preferences packages/@core/ui-kit/shadcn-ui packages/@core/ui-kit/layout-ui
 
 # 2. Kiểm tra kiểu dữ liệu TypeScript toàn workspace (0 lỗi)
-pnpm --filter @tuquet/admin-web run typecheck
+pnpm --filter @operon/admin-web run typecheck
 
 # 3. Kiểm tra linter và chuẩn hóa định dạng
 pnpm run lint
@@ -116,7 +116,7 @@ apps/web-admin/
 | **5. Breadcrumb (`breadcrumb`)** | Người dùng không rõ vì sao Breadcrumb ẩn ở chế độ `header-nav` / `mixed-nav` hoặc màn hình nhỏ. | Hiển thị ở breakpoint Desktop (`lg:block`, $\ge 1024\text{px}$) và bổ sung tooltip giải thích trong `breadcrumb.vue`. |
 | **6. Navigation (`navigation`)** | Công tắc `navigationSplit` vẫn cho phép bật khi không ở chế độ menu hỗn hợp (`mixed-nav`). | Gắn `:disabled="!isMixedNav"` trên công tắc `navigationSplit` trong `navigation.vue`. |
 | **7. Widget (`widget`)** | Nguy cơ mất hoàn toàn nút mở Preferences nếu tắt mọi vị trí hiển thị. | Luôn duy trì ít nhất một điểm truy cập mở Preferences Drawer (Header, Floating Fixed Button hoặc phím tắt). |
-| **8. Footer (`footer`)** | Bật `footer.enable = true` nhưng tắt `copyright.enable` làm thanh chân trang rỗng 0px hoặc lệch lề. | Áp dụng `right-0 border-t border-border bg-card/90 backdrop-blur-sm` và nhãn bản quyền mặc định `Copyright © 2026 Tuquet`. |
+| **8. Footer (`footer`)** | Bật `footer.enable = true` nhưng tắt `copyright.enable` làm thanh chân trang rỗng 0px hoặc lệch lề. | Áp dụng `right-0 border-t border-border bg-card/90 backdrop-blur-sm` và nhãn bản quyền mặc định `Copyright © 2026 Operon`. |
 | **9. Runtime Viewport (`app.isMobile`)** | Nhấn `resetPreferences()` trên điện thoại ghi đè `isMobile = false`, làm sập Drawer di động. | Bảo toàn giá trị runtime `currentIsMobile = this.state.app.isMobile` qua thao tác reset và loại trừ `isMobile` khỏi `diffPreference`. |
 | **10. Chart Theme Palette (`--chart-1..5`)** | Biểu đồ dùng màu Hex cố định (`#38bdf8`, `#10b981`) bị lệch tông khi đổi sang `violet`, `rose`, `green`, `neutral`, `zinc`... | Tự động sinh `--chart-1..5` trong `update-css-variables.ts` từ chủ đề Built-in đang chọn và dùng `hsl(var(--chart-1..5))` trong `defaultColors()`. |
 | **11. Brand SVG Logo (`VbenLogo`)** | Thẻ `<img src="/logo.svg">` bị trình duyệt cô lập khỏi biến CSS `:root` và dùng mã màu xám cố định (`#FAFAFA -> #A1A1AA`). | Dựng Inline SVG trong `VbenLogo` & `AuthPageLayout` với `<linearGradient>` dùng `hsl(var(--chart-4))`, `hsl(var(--chart-1))`, `hsl(var(--chart-3))`. |
@@ -166,7 +166,7 @@ apps/web-admin/
    - `packages/@core/ui-kit/shadcn-ui/src/components/logo/__tests__/logo.test.ts`: Kiểm tra `VbenLogo` dựng inline `<svg>` chứa biến CSS chủ đề (`hsl(var(--chart-1`) khi dùng `/logo.svg` và fallback sang `<VbenAvatar />` khi truyền URL ảnh ngoài.
 2. **Static Audit & Typecheck:**
    - Kiểm tra quy tắc SSOT trong `internal/tailwind-config/src/theme.css`, `menu.vue`, `normal-menu.vue`, `tabs.vue`, `tabs-chrome/tabs.vue`.
-   - Chạy `pnpm --filter @tuquet/admin-web run typecheck` và `pnpm run lint` đạt `0 errors`.
+   - Chạy `pnpm --filter @operon/admin-web run typecheck` và `pnpm run lint` đạt `0 errors`.
 
 ---
 
@@ -194,7 +194,7 @@ apps/web-admin/
 - [x] **SC6 — SSOT Built-in Theme Lucide Icons Coherence:**
   - Menu Sidebar/Header và Tabbar đang active hiển thị icon & chữ theo màu `hsl(var(--primary))` + nền `hsl(var(--primary) / 15%)` đồng nhất trên cả Light & Dark mode.
   - Quy tắc CSS tập trung trong `internal/tailwind-config/src/theme.css` tự động chuyển toàn bộ hộp icon KPI Card, Stats Bar, huy hiệu icon đầu dòng bảng `VxeGrid`, Modal Header và Empty State sang tông màu `--primary` mà không cần sửa thủ công các file `views/**`.
-- [x] **SC7 — Zero Regression:** Toàn bộ unit tests, `pnpm --filter @tuquet/admin-web run typecheck`, `pnpm run lint` và `pnpm run build:local` kết thúc với `0 errors`.
+- [x] **SC7 — Zero Regression:** Toàn bộ unit tests, `pnpm --filter @operon/admin-web run typecheck`, `pnpm run lint` và `pnpm run build:local` kết thúc với `0 errors`.
 
 ---
 

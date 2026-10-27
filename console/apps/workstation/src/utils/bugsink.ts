@@ -241,7 +241,7 @@ export function initBugsink(
         // Tag events specifically as Admin client
         event.tags = {
           ...event.tags,
-          app: 'tuquet-admin',
+          app: 'operon-admin',
         };
 
         // Redact any sensitive tokens from URL
@@ -293,7 +293,7 @@ export function initBugsink(
     }
 
     if (typeof window !== 'undefined') {
-      window.addEventListener('tq:workspace-changed', ((
+      window.addEventListener('opn:workspace-changed', ((
         event: CustomEvent<{ tenantId?: string }>,
       ) => {
         if (event.detail?.tenantId) {

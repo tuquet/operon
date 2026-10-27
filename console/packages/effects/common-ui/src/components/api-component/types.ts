@@ -1,6 +1,6 @@
 import type { Component } from 'vue';
 
-import type { AnyPromiseFunction } from '@tuquet/types';
+import type { AnyPromiseFunction } from '@operon/types';
 
 export type ApiComponentOptionsItem = {
   [name: string]: any;

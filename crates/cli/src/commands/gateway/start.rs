@@ -38,7 +38,7 @@ pub async fn start_gateway(
         && !opts.ssh;
 
     if is_interactive {
-        clack_intro("tq gateway start", "Autonomous SOCKS5 & HTTP Forwarder");
+        clack_intro("opn gateway start", "Autonomous SOCKS5 & HTTP Forwarder");
 
         // 1. Select gateway mode (Zero icons, plain technical)
         let mode_options = vec![
@@ -146,7 +146,7 @@ async fn start_gateway_core(
                 })?;
                 if !srv.is_enabled() {
                     clack_step_warn(format!(
-                        "Server '{}' is disabled in {} (Enable with: tq gateway enable {})",
+                        "Server '{}' is disabled in {} (Enable with: opn gateway enable {})",
                         target,
                         GatewayConfig::config_path().display(),
                         target
@@ -161,7 +161,7 @@ async fn start_gateway_core(
     };
 
     if servers_to_start.is_empty() {
-        clack_step_warn("No enabled servers to start. (Run 'tq gateway enable' to enable one)");
+        clack_step_warn("No enabled servers to start. (Run 'opn gateway enable' to enable one)");
         clack_outro("0 servers activated.");
         return Ok(());
     }
@@ -249,7 +249,7 @@ async fn start_gateway_core(
     }
     eprintln!("  Supervisor     : active (probe: 5s, auto-heal: enabled)");
     eprintln!(
-        "\n[watchdog] Press Ctrl+C to detach (daemon keeps running). Run 'tq gateway stop' to terminate.\n"
+        "\n[watchdog] Press Ctrl+C to detach (daemon keeps running). Run 'opn gateway stop' to terminate.\n"
     );
 
     // Unified Watchdog Loop: Streams live health and detaches cleanly on Ctrl+C without killing tunnels
@@ -258,7 +258,7 @@ async fn start_gateway_core(
         tokio::select! {
             _ = tokio::signal::ctrl_c() => {
                 eprintln!("\nDetached. Gateway watchdog continues running in background.");
-                eprintln!("Use 'tq gateway status' to inspect or 'tq gateway stop' to terminate.");
+                eprintln!("Use 'opn gateway status' to inspect or 'opn gateway stop' to terminate.");
                 break;
             }
             _ = interval.tick() => {

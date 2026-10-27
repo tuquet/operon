@@ -1,1 +1,1 @@
-import '@tuquet-core/design';
+import '@operon-core/design';

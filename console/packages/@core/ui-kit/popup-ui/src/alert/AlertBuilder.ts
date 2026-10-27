@@ -1,14 +1,14 @@
 import type { Component, VNode } from 'vue';
 
-import type { Recordable } from '@tuquet-core/typings';
+import type { Recordable } from '@operon-core/typings';
 
 import type { AlertProps, BeforeCloseScope, PromptProps } from './alert';
 
 import { h, nextTick, ref, render } from 'vue';
 
-import { useSimpleLocale } from '@tuquet-core/composables';
-import { Input, VbenRenderContent } from '@tuquet-core/shadcn-ui';
-import { isFunction, isString } from '@tuquet-core/shared/utils';
+import { useSimpleLocale } from '@operon-core/composables';
+import { Input, VbenRenderContent } from '@operon-core/shadcn-ui';
+import { isFunction, isString } from '@operon-core/shared/utils';
 
 import Alert from './alert.vue';
 

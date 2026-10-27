@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { BuiltinThemeType } from '@tuquet/types';
+import type { BuiltinThemeType } from '@operon/types';
 
-import { Palette } from '@tuquet/icons';
+import { Palette } from '@operon/icons';
 import {
   COLOR_PRESETS,
   preferences,
   updatePreferences,
-} from '@tuquet/preferences';
+} from '@operon/preferences';
 
-import { VbenIconButton } from '@tuquet-core/shadcn-ui';
+import { VbenIconButton } from '@operon-core/shadcn-ui';
 
 defineOptions({
   name: 'AuthenticationColorToggle',

@@ -2,11 +2,11 @@
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { $t } from '@tuquet/locales';
-import { preferences } from '@tuquet/preferences';
-import { useAccessStore, useUserStore } from '@tuquet/stores';
+import { $t } from '@operon/locales';
+import { preferences } from '@operon/preferences';
+import { useAccessStore, useUserStore } from '@operon/stores';
 
-import { Button, Card, Spinner, toast } from '@tuquet-core/shadcn-ui';
+import { Button, Card, Spinner, toast } from '@operon-core/shadcn-ui';
 
 import { Copy, ExternalLink, Laptop } from '@lucide/vue';
 
@@ -129,7 +129,7 @@ onMounted(async () => {
       if (isDesktopTarget) {
         loading.value = false;
         isDesktopBridge.value = true;
-        const targetDeepLink = `tuquet://auth/callback?token=${encodeURIComponent(accessToken)}${refreshToken ? `&refresh_token=${encodeURIComponent(refreshToken)}` : ''}`;
+        const targetDeepLink = `operon://auth/callback?token=${encodeURIComponent(accessToken)}${refreshToken ? `&refresh_token=${encodeURIComponent(refreshToken)}` : ''}`;
         deepLinkUrl.value = targetDeepLink;
 
         // Automatically trigger protocol handler

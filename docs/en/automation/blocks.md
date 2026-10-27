@@ -1,6 +1,6 @@
 # Block Coverage & Automa Parity
 
-Tuquet executes workflows authored on the **Automa canvas**, so the workflow document is the
+Operon executes workflows authored on the **Automa canvas**, so the workflow document is the
 single source of truth. This page records exactly which Automa blocks the engine implements,
 and what happens when a document uses one it does not.
 
@@ -43,7 +43,7 @@ Both shapes are accepted:
 | Shape | Produced by | Notes |
 | --- | --- | --- |
 | `drawflow.nodes` / `drawflow.edges` | the Automa canvas (export) | the canonical form; verbatim exports are regression-tested under `cli/fixtures/automa-export-*.json` |
-| `nodes` / `edges` | Tuquet API/CLI authors | flat shorthand, same node objects |
+| `nodes` / `edges` | OperonAPI/CLI authors | flat shorthand, same node objects |
 
 Also honoured from the document root: `id`, `name`, `table` / `dataColumns`, `globalData` /
 `global_data`, `settings` (`onError`, `blockDelay`, `restartTimes`, `saveLog`, `debugMode`),
@@ -54,7 +54,7 @@ Also honoured from the document root: `id`, `name`, `table` / `dataColumns`, `gl
 Automa hands the bytes to the browser download API. Headless has no such surface, so the
 artefact is written to disk and the **path is returned** as the block output:
 
-* directory: `TQ_EXPORT_DIR`, default `~/.tq/automation/exports`
+* directory: `TQ_EXPORT_DIR`, default `~/.operon/automation/exports`
 * `type`: `csv` (BOM when `addBOMHeader`, delimiter from `csvDelimiter`), `json` (pretty), `plain-text`
 * `onConflict`: `uniquify` (default — appends `-1`, `-2`, …) or `overwrite`
 * CSV header order follows the declared `table` columns first, then any extra keys
@@ -85,7 +85,7 @@ unknown types (`number`, `json`, `date`) pass through untouched.
 ## `google-sheets`
 
 Automa talks to Google with the browser extension's own identity. A headless worker has no
-browser session, so Tuquet uses a **service account** stored in the Secret Store — the
+browser session, so Operonuses a **service account** stored in the Secret Store — the
 credential never enters the workflow document, the job payload or the logs.
 
 Setup (once):
@@ -97,9 +97,9 @@ Setup (once):
 4. Store the key:
 
    ```bash
-   tq secret set google_service_account @/path/key.json
-   tq secret list                       # google_service_account -> ********
-   grep -c private_key ~/.tq/system/secrets.json   # must be 0
+   opn secret set google_service_account @/path/key.json
+   opn secret list                       # google_service_account -> ********
+   grep -c private_key ~/.operon/system/secrets.json   # must be 0
    ```
 
 Actions mirror Automa's `handlerGoogleSheets.js`, driven by the block's own `data`:

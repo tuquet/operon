@@ -1,4 +1,4 @@
-import type { RouteRecordRaw } from '@tuquet/types';
+import type { RouteRecordRaw } from '@operon/types';
 
 import { describe, expect, it } from 'vitest';
 

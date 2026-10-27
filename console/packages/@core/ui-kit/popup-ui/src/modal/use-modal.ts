@@ -19,8 +19,8 @@ import {
   shallowReactive,
 } from 'vue';
 
-import { usePreferences } from '@tuquet-core/preferences';
-import { useSelector } from '@tuquet-core/shared/store';
+import { usePreferences } from '@operon-core/preferences';
+import { useSelector } from '@operon-core/shared/store';
 
 import { ModalApi } from './modal-api';
 import VbenModal from './modal.vue';

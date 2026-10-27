@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
-import { Badge } from '@tuquet-core/shadcn-ui';
+import { Badge } from '@operon-core/shadcn-ui';
 
 interface RoleConfig {
   class: string;

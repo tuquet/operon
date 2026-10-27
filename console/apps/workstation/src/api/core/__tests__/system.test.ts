@@ -53,7 +53,7 @@ describe('system core api & helpers', () => {
         description: 'Multi-Tenant IAM Kernel',
         id: 'core-iam',
         installed_at: '2026-10-11T00:00:00Z',
-        manifest: { author: 'tuquet' },
+        manifest: { author: 'operon' },
         name: 'Core IAM',
         schema_name: 'public',
         status: 'installed',
@@ -69,7 +69,7 @@ describe('system core api & helpers', () => {
         installed_at: '2026-10-11T00:00:00Z',
         is_core: true,
         is_system: true,
-        manifest: { author: 'tuquet' },
+        manifest: { author: 'operon' },
         metadata: {},
         name: 'Core IAM',
         schema_name: 'public',
@@ -126,7 +126,7 @@ describe('system core api & helpers', () => {
       const raw = {
         avatar_url: 'https://example.com/a.jpg',
         created_at: '2026-10-01T00:00:00Z',
-        email: 'user@tuquet.com',
+        email: 'user@operon.com',
         full_name: 'Test User',
         id: 'u-99',
         tenant_members: [{ count: 4 }],
@@ -226,7 +226,7 @@ describe('system core api & helpers', () => {
         {
           avatar_url: 'https://example.com/avatar.png',
           created_at: '2026-10-10T00:00:00Z',
-          email: 'admin@tuquet.com',
+          email: 'admin@operon.com',
           full_name: 'Admin User',
           id: 'u-1',
           tenant_members: [{ count: 3 }],
@@ -249,7 +249,7 @@ describe('system core api & helpers', () => {
         .mockResolvedValueOnce([
           {
             created_at: '2026-10-10T00:00:00Z',
-            email: 'fallback@tuquet.com',
+            email: 'fallback@operon.com',
             full_name: 'Fallback User',
             id: 'u-fallback',
             tenant_members: [{ count: 2 }],
@@ -380,7 +380,7 @@ describe('system core api & helpers', () => {
       const raw = {
         avatar_url: null,
         created_at: '2026-10-05T00:00:00Z',
-        email: 'architect@tuquet.com',
+        email: 'architect@operon.com',
         full_name: 'Cloud Architect',
         id: 'uuid-arch-01',
         tenant_members: [
@@ -412,7 +412,7 @@ describe('system core api & helpers', () => {
     it('should filter platform users by tenant_filter, role_filter, and multi-field search (name, email, UUID, workspace)', () => {
       const users = [
         mapRawPlatformUser({
-          email: 'founder@tuquet.com',
+          email: 'founder@operon.com',
           full_name: 'Alice Founder',
           id: '11111111-aaaa-bbbb-cccc-000000000001',
           tenant_members: [
@@ -431,7 +431,7 @@ describe('system core api & helpers', () => {
           ],
         }),
         mapRawPlatformUser({
-          email: 'ops@tuquet.com',
+          email: 'ops@operon.com',
           full_name: 'Bob Operator',
           id: '22222222-dddd-eeee-ffff-000000000002',
           tenant_members: [],
@@ -461,7 +461,7 @@ describe('system core api & helpers', () => {
       ).toHaveLength(1);
       // Search by Email
       expect(
-        filterPlatformUsers(users, { search: 'founder@tuquet.com' }),
+        filterPlatformUsers(users, { search: 'founder@operon.com' }),
       ).toHaveLength(1);
       // Search by Workspace slug/name
       expect(filterPlatformUsers(users, { search: 'hq' })).toHaveLength(1);

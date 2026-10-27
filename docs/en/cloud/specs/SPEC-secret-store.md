@@ -1,6 +1,6 @@
 # SPEC-secret-store: Encrypted Secret Store & Device-Portable Credentials
 
-> **Status:** Implemented (v2) · **Schema:** `secrets` · **Surfaces:** `tq secret` (CLI) · `\{\{secrets.*\}\}` (engine) · `cloud/supabase/plugins/secrets`
+> **Status:** Implemented (v2) · **Schema:** `secrets` · **Surfaces:** `opn secret` (CLI) · `\{\{secrets.*\}\}` (engine) · `cloud/supabase/plugins/secrets`
 > **Related:** [`architecture`](../architecture.md), [`terminology`](../terminology.md), [CLI commands](/en/cli/commands/)
 
 ---
@@ -10,9 +10,9 @@
 A **tenant-scoped, encrypted-at-rest secret store** so that:
 
 1. Workflow credentials never appear in plaintext in a workflow graph, a job payload, a log line, or git.
-2. An **enrolled workstation obtains credentials without a human re-typing them** — a new device runs jobs right after `tq auth login` + `tq secret pull`.
+2. An **enrolled workstation obtains credentials without a human re-typing them** — a new device runs jobs right after `opn auth login` + `opn secret pull`.
 3. The **server never receives a plaintext secret value** (zero-knowledge over the wire), and the DEK is **sealed to each device's public key**.
-4. The design is native to Tuquet (multi-tenant + RLS + device enrollment + `~/.tq` SSOT).
+4. The design is native to Operon(multi-tenant + RLS + device enrollment + `~/.operon` SSOT).
 
 Non-goals: hardware-backed keys, per-secret version history, audit UI.
 
@@ -46,7 +46,7 @@ Device (CLI, Rust)                                   Server (Postgres)
   unseal(sealed DEK, private key)   ◀──────────────────────────────────────┘
   encrypt(value, DEK) ── ciphertext+nonce ─────▶  secret_put        (server sees ciphertext only)
                   ◀── ciphertext+nonce ────────  secret_fetch
-  local cache: ~/.tq/system/secrets.json (AES-256-GCM, per-device key)
+  local cache: ~/.operon/system/secrets.json (AES-256-GCM, per-device key)
 ```
 
 **Cross-language crypto contract** (verified Rust ↔ Postgres, both directions):
@@ -107,29 +107,29 @@ Granted to system roles: `owner`/`admin` → all three; `member` → `secrets:cr
 
 ```text
 New workstation
-  1. tq auth login                 # operator auth -> enrolls device (device_token)
-  2. tq secret init                # generates local X25519 keypair (~/.tq/system/.device_key)
-  3. tq secret pull                # registers public key -> unseals DEK -> decrypts values
-  4. tq automation run …           # engine resolves \{\{secrets.*\}\} from the local store
+  1. opn auth login                 # operator auth -> enrolls device (device_token)
+  2. opn secret init                # generates local X25519 keypair (~/.operon/system/.device_key)
+  3. opn secret pull                # registers public key -> unseals DEK -> decrypts values
+  4. opn automation run …           # engine resolves \{\{secrets.*\}\} from the local store
 ```
 
 Verified E2E: device A pushed 2 secrets; device B (separate keypair, no re-entry) pulled and ran the job.
 
 ---
 
-## 6. CLI reference — `tq secret`
+## 6. CLI reference — `opn secret`
 
 | Command | Description |
 | :--- | :--- |
-| `tq secret init` | Create the local store key + device X25519 keypair. |
-| `tq secret set <name> <value>` | Store a secret locally (AES-256-GCM). |
-| `tq secret list [--format json]` | List names (values never printed). |
-| `tq secret rm <name>` | Remove a secret. |
-| `tq secret remote` | List Cloud secrets (names + key_version). |
-| `tq secret push` | Register device key, then upload **client-side encrypted** values. |
-| `tq secret pull` | Register/receive the sealed DEK, fetch ciphertext, decrypt locally. |
-| `tq secret rotate` | Rotate the tenant DEK (server re-encrypts values, re-seals for all devices). |
-| `tq secret path` | Print the local store path. |
+| `opn secret init` | Create the local store key + device X25519 keypair. |
+| `opn secret set <name> <value>` | Store a secret locally (AES-256-GCM). |
+| `opn secret list [--format json]` | List names (values never printed). |
+| `opn secret rm <name>` | Remove a secret. |
+| `opn secret remote` | List Cloud secrets (names + key_version). |
+| `opn secret push` | Register device key, then upload **client-side encrypted** values. |
+| `opn secret pull` | Register/receive the sealed DEK, fetch ciphertext, decrypt locally. |
+| `opn secret rotate` | Rotate the tenant DEK (server re-encrypts values, re-seals for all devices). |
+| `opn secret path` | Print the local store path. |
 
 ---
 
@@ -144,7 +144,7 @@ Verified E2E: device A pushed 2 secrets; device B (separate keypair, no re-entry
 
 ## 7b. Workstation UI — credential management
 
-The workstation console (`apps/workstation`, Vue + Tauri, launched via `tq desktop`) exposes a
+The workstation console (`apps/workstation`, Vue + Tauri, launched via `opn desktop`) exposes a
 credential management page so operators never need the CLI. It talks to the **local CLI daemon**
 (`127.0.0.1:8765`) because the local keypair and encrypted store live on the workstation.
 
@@ -174,17 +174,17 @@ Paths mirror the **schema / table names** (`secrets`, `secrets.credentials`, `se
 
 ## 8. Local storage
 
-- `~/.tq/system/secrets.json` — AES-256-GCM envelope `{version,alg,nonce,ciphertext}`; key from `TQ_SECRET_KEY` or `~/.tq/system/.secret_key` (0600).
-- `~/.tq/system/.device_key` — X25519 secret (0600); `~/.tq/system/.device_pub`.
-- `~/.tq/system/.identity.json` — **encrypted at rest** (AES-256-GCM, key `~/.tq/system/.identity_key`, 0600); legacy plaintext is still readable.
+- `~/.operon/system/secrets.json` — AES-256-GCM envelope `{version,alg,nonce,ciphertext}`; key from `TQ_SECRET_KEY` or `~/.operon/system/.secret_key` (0600).
+- `~/.operon/system/.device_key` — X25519 secret (0600); `~/.operon/system/.device_pub`.
+- `~/.operon/system/.identity.json` — **encrypted at rest** (AES-256-GCM, key `~/.operon/system/.identity_key`, 0600); legacy plaintext is still readable.
 
 ---
 
 ## 9. Rotation & revocation
 
-- **Rotate DEK**: `tq secret rotate` (or the UI **Rotate DEK** button) → `public.secret_rotate` generates a new DEK, re-encrypts all credentials, re-seals for every registered device (`key_version++`).
+- **Rotate DEK**: `opn secret rotate` (or the UI **Rotate DEK** button) → `public.secret_rotate` generates a new DEK, re-encrypts all credentials, re-seals for every registered device (`key_version++`).
 - **Revoke device**: delete/disable the `workers.devices` row → `_verify_device` fails → no DEK, no values. Other devices unaffected.
-- **Rotate a credential**: `tq secret set <name> <new>` + `tq secret push`.
+- **Rotate a credential**: `opn secret set <name> <new>` + `opn secret push`.
 
 ---
 
@@ -199,9 +199,9 @@ Paths mirror the **schema / table names** (`secrets`, `secrets.credentials`, `se
 ## 11. Verification
 
 ```bash
-tq secret init && tq secret set hrms_password '***'
-grep -c '<plaintext>' ~/.tq/system/secrets.json      # 0
-tq secret push && tq secret remote
-# on another machine (same tenant): tq auth login && tq secret pull
-tq automation run <file>.workflow.json --headless --browser-id <id>   # resolves \{\{secrets.*\}\}
+opn secret init && opn secret set hrms_password '***'
+grep -c '<plaintext>' ~/.operon/system/secrets.json      # 0
+opn secret push && opn secret remote
+# on another machine (same tenant): opn auth login && opn secret pull
+opn automation run <file>.workflow.json --headless --browser-id <id>   # resolves \{\{secrets.*\}\}
 ```

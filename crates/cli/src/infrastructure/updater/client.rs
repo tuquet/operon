@@ -8,7 +8,7 @@ pub fn create_http_client(timeout_secs: u64) -> Result<reqwest::Client, reqwest:
     let mut builder = reqwest::Client::builder()
         .timeout(Duration::from_secs(timeout_secs))
         .user_agent(format!(
-            "tuquet/{} ({}; {})",
+            "operon/{} ({}; {})",
             env!("CARGO_PKG_VERSION"),
             std::env::consts::OS,
             std::env::consts::ARCH
@@ -52,7 +52,7 @@ pub async fn fetch_bytes_with_fallback(url: &str, timeout_secs: u64) -> Result<V
     // Fallback to OS-native curl (uses Windows Schannel / macOS SecureTransport / system CA store)
     let curl_bin = if cfg!(windows) { "curl.exe" } else { "curl" };
     let ua = format!(
-        "User-Agent: tuquet/{} ({}; {})",
+        "User-Agent: operon/{} ({}; {})",
         env!("CARGO_PKG_VERSION"),
         std::env::consts::OS,
         std::env::consts::ARCH
@@ -95,7 +95,7 @@ pub async fn check_and_save_latest_version() -> Result<UpdateInfo, Box<dyn std::
     let release_url = json
         .get("html_url")
         .and_then(|v| v.as_str())
-        .unwrap_or("https://github.com/tuquet/cli/releases")
+        .unwrap_or("https://github.com/operon/cli/releases")
         .to_string();
 
     let current = env!("CARGO_PKG_VERSION").to_string();

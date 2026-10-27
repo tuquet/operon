@@ -19,7 +19,7 @@ pub async fn bootstrap(force_browser: bool) -> Result<(), Box<dyn std::error::Er
     let root = canonical_ssot_dir();
 
     // ─────────────────────────────────────────────────────────────────────────────
-    // 1. Create Canonical SSOT Pillar Directories (~/.tq/)
+    // 1. Create Canonical SSOT Pillar Directories (~/.operon/)
     // ─────────────────────────────────────────────────────────────────────────────
     let dirs = [
         root.join("bin"),
@@ -104,12 +104,12 @@ pub async fn bootstrap(force_browser: bool) -> Result<(), Box<dyn std::error::Er
             config_val["mcpServers"] = json!({});
         }
 
-        let cmd = if find_executable("tq").is_some() {
-            "tq".to_string()
+        let cmd = if find_executable("opn").is_some() {
+            "opn".to_string()
         } else {
             std::env::current_exe()
                 .map(|p| p.display().to_string())
-                .unwrap_or_else(|_| "tq".to_string())
+                .unwrap_or_else(|_| "opn".to_string())
         };
 
         let mcp_def = json!({
@@ -117,19 +117,19 @@ pub async fn bootstrap(force_browser: bool) -> Result<(), Box<dyn std::error::Er
             "args": ["mcp"]
         });
 
-        // Register tq MCP server and remove legacy tq if present
-        config_val["mcpServers"]["tuquet"] = mcp_def;
+        // Register opn MCP server and remove legacy opn if present
+        config_val["mcpServers"]["operon"] = mcp_def;
         if let Some(servers) = config_val
             .get_mut("mcpServers")
             .and_then(|v| v.as_object_mut())
         {
-            servers.remove("tuquet");
+            servers.remove("operon");
         }
 
         if let Ok(pretty) = serde_json::to_string_pretty(&config_val) {
             if std::fs::write(&mcp_config_file, pretty).is_ok() {
                 println!(
-                    "  {GREEN}✓{RESET} Registered native tq MCP stdio server in ~/.gemini/config/mcp_config.json",
+                    "  {GREEN}✓{RESET} Registered native opn MCP stdio server in ~/.gemini/config/mcp_config.json",
                     GREEN = colors::GREEN,
                     RESET = colors::RESET,
                 );
@@ -187,7 +187,7 @@ pub async fn bootstrap(force_browser: bool) -> Result<(), Box<dyn std::error::Er
     card.add_kv("SQLite Database", "automation.sqlite (Schema initialized)");
     card.add_kv(
         "MCP Agent Protocol",
-        "tq stdio server registered (~/.gemini/config/mcp_config.json)",
+        "opn stdio server registered (~/.gemini/config/mcp_config.json)",
     );
     let b_status = crate::core::browser::resolver::get_runtime_status();
     card.add_kv(
@@ -195,10 +195,10 @@ pub async fn bootstrap(force_browser: bool) -> Result<(), Box<dyn std::error::Er
         if b_status.installed {
             "Golden LTS v148 (Antidetect Chromium)"
         } else {
-            "Pending download (tq browser install)"
+            "Pending download (opn browser install)"
         },
     );
-    card.with_footer("Next: Run 'tq doctor' to inspect dependencies or 'tq status' for dashboard.");
+    card.with_footer("Next: Run 'opn doctor' to inspect dependencies or 'opn status' for dashboard.");
     card.print();
     println!();
 

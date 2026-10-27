@@ -86,7 +86,7 @@ pub fn quick_probe() -> WorkstationReadiness {
             issues: vec![ReadinessIssue {
                 component: "SSOT Core".into(),
                 title: "Workstation has not been onboarded yet".into(),
-                remedy: "Run 'tq setup' to initialize workstation".into(),
+                remedy: "Run 'opn setup' to initialize workstation".into(),
                 is_critical: true,
             }],
             ssot_root,
@@ -105,7 +105,7 @@ pub fn quick_probe() -> WorkstationReadiness {
         issues.push(ReadinessIssue {
             component: "Browser Engine".into(),
             title: "Antidetect Chromium Golden LTS is not installed".into(),
-            remedy: "Run 'tq browser install 148'".into(),
+            remedy: "Run 'opn browser install 148'".into(),
             is_critical: false,
         });
     }
@@ -116,7 +116,7 @@ pub fn quick_probe() -> WorkstationReadiness {
         issues.push(ReadinessIssue {
             component: "OpenSSH".into(),
             title: "SSH client binary not found in PATH".into(),
-            remedy: "Install OpenSSH or run 'tq doctor --fix'".into(),
+            remedy: "Install OpenSSH or run 'opn doctor --fix'".into(),
             is_critical: true,
         });
     }

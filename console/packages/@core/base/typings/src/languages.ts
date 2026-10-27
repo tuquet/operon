@@ -6,7 +6,7 @@
  * Extend via declaration merging:
  *
  * ```ts
- * declare module '@tuquet-core/typings' {
+ * declare module '@operon-core/typings' {
  *   interface SupportedLanguages {
  *     'zh-TW': 'Traditional Chinese';
  *   }

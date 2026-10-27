@@ -1,9 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@tuquet/tsconfig/web.json",
+  "extends": "@operon/tsconfig/web.json",
   "compilerOptions": {
     "paths": {
-      "@tuquet-core/shadcn-ui/*": ["./src/*"]
+      "@operon-core/shadcn-ui/*": ["./src/*"]
     }
   },
   "include": ["src"],

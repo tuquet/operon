@@ -5,7 +5,7 @@ import { computed, getCurrentInstance, unref, useAttrs, useSlots } from 'vue';
 import {
   getFirstNonNullOrUndefined,
   kebabToCamelCase,
-} from '@tuquet-core/shared/utils';
+} from '@operon-core/shared/utils';
 
 /**
  * Sequentially resolve value from slots, attrs, props, and state

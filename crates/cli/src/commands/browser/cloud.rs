@@ -13,7 +13,7 @@ pub async fn handle_profile_cloud(
         Some(c) => c,
         None => {
             crate::ui::Notify::error(crate::constants::MSG_NOT_ENROLLED);
-            eprintln!("Run 'tq login' to authenticate and pair your workstation first.\n");
+            eprintln!("Run 'opn login' to authenticate and pair your workstation first.\n");
             return Err("Workstation not enrolled with Cloud".into());
         }
     };
@@ -69,7 +69,7 @@ pub async fn handle_profile_cloud(
             );
             header_card.add_kv("Cloud Endpoint", cloud_url);
             header_card
-                .with_footer("Acquire exclusive lease with: tq browser profile cloud acquire <id>");
+                .with_footer("Acquire exclusive lease with: opn browser profile cloud acquire <id>");
             header_card.print();
             println!();
 
@@ -310,7 +310,7 @@ pub async fn handle_profile_cloud(
                 card.add_kv("Session Snapshot", "Restored (.tar.zst + LevelDB intact)");
             }
             card.with_footer(format!(
-                "Launch session with: tq browser launch {}",
+                "Launch session with: opn browser launch {}",
                 profile.id
             ));
             card.print();
@@ -423,7 +423,7 @@ pub async fn handle_profile_cloud(
             );
             card.add_kv(
                 "Delta Archive",
-                format!("~/.tq/browser/{}", canonical_rel_storage),
+                format!("~/.operon/browser/{}", canonical_rel_storage),
             );
             card.add_kv(
                 "Compressed Size",
@@ -509,12 +509,12 @@ pub async fn handle_profile_push(
     {
         Some(c) => c,
         None => {
-            let err = "Workstation not enrolled with Cloud fleet. Run 'tq auth login' first.";
+            let err = "Workstation not enrolled with Cloud fleet. Run 'opn auth login' first.";
             if json {
                 println!("{}", serde_json::json!({ "success": false, "error": err }));
             } else {
                 crate::ui::Notify::error(err);
-                eprintln!("Run 'tq auth login' to authenticate with your workspace.\n");
+                eprintln!("Run 'opn auth login' to authenticate with your workspace.\n");
             }
             return Err(err.into());
         }
@@ -686,7 +686,7 @@ pub async fn handle_profile_pull(
     {
         Some(c) => c,
         None => {
-            let err = "Workstation not enrolled with Cloud fleet. Run 'tq auth login' first.";
+            let err = "Workstation not enrolled with Cloud fleet. Run 'opn auth login' first.";
             if json {
                 println!("{}", serde_json::json!({ "success": false, "error": err }));
             } else {
@@ -850,7 +850,7 @@ pub async fn handle_profile_pull(
         profile.get_sandbox_dir(&base_dir).display().to_string(),
     );
     card.with_footer(format!(
-        "Profile session restored safely. Launch with: tq browser launch {}",
+        "Profile session restored safely. Launch with: opn browser launch {}",
         profile.id
     ));
     card.print();

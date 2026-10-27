@@ -31,13 +31,13 @@
 
 ### 1. Clone & Setup Environment
 ```bash
-git clone https://github.com/tuquet/operon.git
+git clone https://github.com/operon/operon.git
 cd operon
 
 cp .env.example .env
 ```
 
-### 2. Launch the Core Stack
+### 2. Option A: Launch with Docker (Fastest)
 Operon comes with a production-ready Docker Compose configuration:
 ```bash
 docker compose up -d
@@ -45,7 +45,57 @@ docker compose up -d
 - **Daemon API & Worker Gateway**: `http://localhost:8765`
 - **Operon Workstation**: `http://localhost:5666`
 
-### 3. Run the CLI
+---
+
+### 3. Option B: Local Bare-Metal Development (No Docker)
+
+For contributors and developers who want hot-reload, fast iteration, and step debugging directly on the host machine:
+
+#### Prerequisites
+- **Rust Toolchain**: 1.82+ (2024 edition compatible)
+  ```bash
+  rustup update stable
+  ```
+- **Node.js & pnpm**: Node 20+, pnpm 9+
+  ```bash
+  corepack enable && corepack prepare pnpm@latest --activate
+  ```
+- *(Optional)* **Supabase CLI**: If you need local cloud backend and migrations.
+
+#### Step 1: Build & Run Rust Backend (CLI / Worker Mesh)
+You can compile and run the backend components directly using Cargo:
+```bash
+# Verify all workspace crates compile
+cargo check --workspace
+
+# Run CLI commands directly in debug mode
+cargo run -p operon -- status
+
+# Start the background Worker node daemon directly on port 8765
+cargo run -p operon -- worker start --port 8765
+```
+*(Tip: Or build the release binary once via `cargo build --release -p operon`, the binary will be located at `target/release/opn` or `opn.exe`)*
+
+#### Step 2: Run Operon Workstation (Vue 3 Frontend)
+The frontend administrative workstation runs with Vite instant hot-reload:
+```bash
+cd console
+
+# Install workspace dependencies
+pnpm install
+
+# Start the local development server (default: http://localhost:5666)
+pnpm dev
+```
+
+#### Step 3: Run Desktop App (Tauri v2 Mode)
+If you are developing the desktop variant with native window integrations:
+```bash
+cd console
+pnpm dev:desktop
+```
+
+### 4. Run the CLI
 Use the provided smart shim:
 ```bash
 ./opn status

@@ -1,5 +1,5 @@
-import { $t } from '@tuquet/locales';
-import { useAccessStore } from '@tuquet/stores';
+import { $t } from '@operon/locales';
+import { useAccessStore } from '@operon/stores';
 
 import { decodeJwtPayload, supabaseRequest } from './supabase-client';
 

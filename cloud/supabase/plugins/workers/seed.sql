@@ -1,9 +1,9 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: WORKERS (SEED DATA)
+-- OPN-CLOUD PLUGIN: WORKERS (SEED DATA)
 -- Description: Foundation proxies and cloud browser profiles
 -- NOTE: WORKERS.devices is NOT seeded here.
 --       Physical devices/workstations are dynamically enrolled via Tauri Desk
---       or 'tuquet worker start' using the RPC function WORKERS.enroll_device().
+--       or 'operon worker start' using the RPC function WORKERS.enroll_device().
 -- ============================================================================
 
 -- Ensure a default local gateway proxy is available for testing
@@ -19,5 +19,5 @@ INSERT INTO workers.proxies (
     'Local Bridge',
     'active',
     5,
-    ARRAY['Local Bridge SOCKS5', 'Tuquet-Bridge']
+    ARRAY['Local Bridge SOCKS5', 'Operon-Bridge']
 ) ON CONFLICT (id) DO NOTHING;

@@ -2,11 +2,11 @@
 import type {
   PreferencesButtonPositionType,
   SelectOption,
-} from '@tuquet/types';
+} from '@operon/types';
 
 import { computed } from 'vue';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
 import DraggableList from '../draggable-list.vue';
 

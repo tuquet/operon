@@ -3,8 +3,8 @@ import type { ActionItem, TableActionProps } from './types';
 
 import { computed, ref } from 'vue';
 
-import { Ellipsis } from '@tuquet-core/icons';
-import { cn } from '@tuquet-core/shared/utils';
+import { Ellipsis } from '@operon-core/icons';
+import { cn } from '@operon-core/shared/utils';
 
 import {
   DropdownMenu,

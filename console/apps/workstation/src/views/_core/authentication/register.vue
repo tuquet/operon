@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import type { VbenFormSchema } from '@tuquet/common-ui';
-import type { Recordable } from '@tuquet/types';
+import type { VbenFormSchema } from '@operon/common-ui';
+import type { Recordable } from '@operon/types';
 
 import { computed, h, ref } from 'vue';
 
-import { AuthenticationRegister, z } from '@tuquet/common-ui';
-import { $t } from '@tuquet/locales';
+import { AuthenticationRegister, z } from '@operon/common-ui';
+import { $t } from '@operon/locales';
 
 defineOptions({ name: 'Register' });
 

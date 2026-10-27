@@ -198,11 +198,11 @@ const cliCommandsSidebar = [
     text: 'Commands Catalog',
     items: [
       { text: 'Core Commands Overview', link: '/en/cli/commands/' },
-      { text: '1. tq auth (IAM & Context)', link: '/en/cli/commands/#_1-tq-auth-authentication-session-context' },
-      { text: '2. tq worker (Fleet Worker)', link: '/en/cli/commands/#_2-tq-worker-execution-node-fleet-worker' },
-      { text: '3. tq automation (Workflows)', link: '/en/cli/commands/#_3-tq-automation-workflow-automation-orchestration' },
-      { text: '4. tq gateway (Network Mesh)', link: '/en/cli/commands/#_4-tq-gateway-secure-network-vps-mesh' },
-      { text: '7. tq secret (Secret Store)', link: '/en/cli/commands/#_7-tq-secret-encrypted-secret-store' },
+      { text: '1. opn auth (IAM & Context)', link: '/en/cli/commands/#_1-opn-auth-authentication-session-context' },
+      { text: '2. opn worker (Fleet Worker)', link: '/en/cli/commands/#_2-opn-worker-execution-node-fleet-worker' },
+      { text: '3. opn automation (Workflows)', link: '/en/cli/commands/#_3-opn-automation-workflow-automation-orchestration' },
+      { text: '4. opn gateway (Network Mesh)', link: '/en/cli/commands/#_4-opn-gateway-secure-network-vps-mesh' },
+      { text: '7. opn secret (Secret Store)', link: '/en/cli/commands/#_7-opn-secret-encrypted-secret-store' },
     ],
   },
 ]
@@ -301,7 +301,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/tuquet' },
+      { icon: 'github', link: 'https://github.com/operon' },
     ],
   },
 

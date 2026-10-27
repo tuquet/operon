@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ToggleGroup, ToggleGroupItem } from '@tuquet-core/shadcn-ui';
+import { ToggleGroup, ToggleGroupItem } from '@operon-core/shadcn-ui';
 
 defineOptions({
   name: 'PreferenceColorMode',

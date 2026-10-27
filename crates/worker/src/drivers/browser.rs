@@ -24,11 +24,11 @@ impl BrowserDriver {
         Self
     }
 
-    /// Resolves the executable path for the browser manager (tuquet, browser)
+    /// Resolves the executable path for the browser manager (operon, browser)
     fn resolve_browser_bin(&self, target: &str) -> String {
         let binary_name =
-            if target.is_empty() || target == "tq" || target == "tuquet" || target == "browser" {
-                let primary = if cfg!(windows) { "tq.exe" } else { "tq" };
+            if target.is_empty() || target == "opn" || target == "operon" || target == "browser" {
+                let primary = if cfg!(windows) { "opn.exe" } else { "opn" };
                 let fallback = if cfg!(windows) {
                     "browser.exe"
                 } else {
@@ -50,17 +50,17 @@ impl BrowserDriver {
         let home_dir = std::env::var("DATA_DIR")
             .or_else(|_| std::env::var("USERPROFILE"))
             .unwrap_or_default();
-        let root = std::env::var("DATA_DIR").unwrap_or_else(|_| format!("{}/.tq", home_dir));
+        let root = std::env::var("DATA_DIR").unwrap_or_else(|_| format!("{}/.operon", home_dir));
         let legacy_bin = if cfg!(windows) {
-            "tuquet.exe"
+            "operon.exe"
         } else {
-            "tuquet"
+            "operon"
         };
         let mut candidates = vec![
             format!("{}/bin/{}", root, legacy_bin),
-            format!("{}/.tq/bin/{}", home_dir, legacy_bin),
+            format!("{}/.operon/bin/{}", home_dir, legacy_bin),
             format!("{}/bin/{}", root, binary_name),
-            format!("{}/.tq/bin/{}", home_dir, binary_name),
+            format!("{}/.operon/bin/{}", home_dir, binary_name),
             format!("/usr/local/bin/{}", binary_name),
             format!("target/release/{}", binary_name),
             format!("target/debug/{}", binary_name),
@@ -90,10 +90,10 @@ impl BrowserDriver {
         binary_name.to_string()
     }
 
-    /// Performs active capability discovery probe with tq browser subsystem
+    /// Performs active capability discovery probe with opn browser subsystem
     pub async fn probe(&self, bin_name: &str) -> Result<BrowserManifest, String> {
         let mut cmd = Command::new(bin_name);
-        if bin_name.contains("tuquet") {
+        if bin_name.contains("operon") {
             cmd.arg("browser").arg("status");
         } else {
             cmd.arg("status");
@@ -157,7 +157,7 @@ impl ExecutionDriver for BrowserDriver {
         // 1. Extract typed browser payload
         let payload: BrowserJobPayload =
             serde_json::from_value(job.payload.clone()).unwrap_or_default();
-        let target = payload.target.as_deref().unwrap_or("tuquet");
+        let target = payload.target.as_deref().unwrap_or("operon");
         let bin_name = self.resolve_browser_bin(target);
 
         // 2. Handshake / Discovery
@@ -171,7 +171,7 @@ impl ExecutionDriver for BrowserDriver {
 
         // 3. Assemble execution command
         let mut cmd = Command::new(&bin_name);
-        let is_master = bin_name.contains("tuquet");
+        let is_master = bin_name.contains("operon");
         if is_master {
             cmd.arg("browser");
         }
@@ -351,7 +351,7 @@ mod tests {
     #[test]
     fn test_resolve_browser_bin() {
         let driver = BrowserDriver::new();
-        let bin = driver.resolve_browser_bin("tuquet");
+        let bin = driver.resolve_browser_bin("operon");
         assert!(!bin.is_empty());
         assert_eq!(
             driver.resolve_browser_bin("/custom/bin/browser"),

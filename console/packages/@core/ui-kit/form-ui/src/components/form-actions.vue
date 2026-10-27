@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, toRaw, unref, watch } from 'vue';
 
-import { useSimpleLocale } from '@tuquet-core/composables';
-import { VbenExpandableArrow } from '@tuquet-core/shadcn-ui';
-import { cn, isFunction, triggerWindowResize } from '@tuquet-core/shared/utils';
+import { useSimpleLocale } from '@operon-core/composables';
+import { VbenExpandableArrow } from '@operon-core/shadcn-ui';
+import { cn, isFunction, triggerWindowResize } from '@operon-core/shared/utils';
 
 import { COMPONENT_MAP } from '../config';
 import { injectFormProps } from '../use-form-context';

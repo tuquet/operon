@@ -1,11 +1,11 @@
 {
-  "$schema": "https://tuquet.com/schema/cli.manifest.schema.json",
-  "productName": "Tuquet",
-  "cliAlias": "tuquet",
-  "canonicalRoot": "tuquet",
+  "$schema": "https://operon.com/schema/cli.manifest.schema.json",
+  "productName": "Operon",
+  "cliAlias": "operon",
+  "canonicalRoot": "operon",
   "category": "Hạ tầng Tự động hóa & Trình duyệt Ẩn danh All-in-One",
   "tagline": "Vũ khí All-in-One miễn phí chuẩn kỹ thuật cao dành cho dân MMO, Dropshipping và Web Scraper.",
-  "organization": "Tuquet",
-  "mcpServerName": "tuquet",
-  "telegram": "tuquet"
+  "organization": "Operon",
+  "mcpServerName": "operon",
+  "telegram": "operon"
 }

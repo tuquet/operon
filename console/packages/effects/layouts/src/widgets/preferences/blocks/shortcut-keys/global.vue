@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-import { $t } from '@tuquet/locales';
-import { isWindowsOs } from '@tuquet/utils';
+import { $t } from '@operon/locales';
+import { isWindowsOs } from '@operon/utils';
 
-import { Kbd } from '@tuquet-core/shadcn-ui';
+import { Kbd } from '@operon-core/shadcn-ui';
 
 import SwitchItem from '../switch-item.vue';
 

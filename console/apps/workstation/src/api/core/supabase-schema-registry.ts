@@ -1,10 +1,10 @@
-import type { SupabaseSchema } from '@tuquet/constants';
+import type { SupabaseSchema } from '@operon/constants';
 
 import type { EffectiveAccess } from './access';
 
 import type { EnumItemMeta, ResolvedStatusMeta } from '#/constants';
 
-import { SUPABASE_SCHEMA } from '@tuquet/constants';
+import { SUPABASE_SCHEMA } from '@operon/constants';
 
 import {
   BROWSER_STATUS_META,

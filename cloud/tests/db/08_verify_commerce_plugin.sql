@@ -115,7 +115,7 @@ BEGIN
         'internal_wallet',
         v_test_tenant_id,
         'internal_wallet',
-        'buyer@tuquet.com',
+        'buyer@operon.com',
         'idem-wallet-order-1'
     );
 
@@ -140,7 +140,7 @@ BEGIN
         'internal_wallet',
         v_test_tenant_id,
         'internal_wallet',
-        'buyer@tuquet.com',
+        'buyer@operon.com',
         'idem-proxy-order-1'
     );
 
@@ -207,7 +207,7 @@ BEGIN
         'e_wallet',
         v_test_tenant_id,
         'momo_ewallet',
-        'buyer@tuquet.com',
+        'buyer@operon.com',
         'idem-topup-order-1'
     );
     v_topup_intent_id := (v_topup_order_res->'payment_intent'->>'id')::uuid;

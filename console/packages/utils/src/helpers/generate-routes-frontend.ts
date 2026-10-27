@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
 
-import { filterTree, mapTree } from '@tuquet-core/shared/utils';
+import { filterTree, mapTree } from '@operon-core/shared/utils';
 
 /**
  * Dynamically generate routes - Frontend mode

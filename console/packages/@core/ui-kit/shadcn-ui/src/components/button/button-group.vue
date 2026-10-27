@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 defineOptions({ name: 'VbenButtonGroup' });
 

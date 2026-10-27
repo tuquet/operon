@@ -2,13 +2,13 @@
 
 Corporate firewalls and cloud network boundaries frequently inspect or drop outbound SSH/RPC traffic. Automation workflows that interact with restricted APIs or cloud databases risk leaking local IP addresses through unshielded sockets or DNS fallback.
 
-**Tuquet Gateway** is a standalone, kernel-level network tunnel supervisor and dynamic forwarder built with pure Rust. It maintains encrypted VPS mesh connections, runs an embedded HTTP-to-SOCKS5 proxy, and provides proactive WebRTC leak shielding.
+**Operon Gateway** is a standalone, kernel-level network tunnel supervisor and dynamic forwarder built with pure Rust. It maintains encrypted VPS mesh connections, runs an embedded HTTP-to-SOCKS5 proxy, and provides proactive WebRTC leak shielding.
 
 ---
 
 ## 🏗️ Architecture & Port Mapping
 
-Tuquet Gateway operates a dual-tier proxy routing model designed for both SOCKS5-aware binaries and standard HTTP/HTTPS CLI tooling:
+Operon Gateway operates a dual-tier proxy routing model designed for both SOCKS5-aware binaries and standard HTTP/HTTPS CLI tooling:
 
 ```
 ┌────────────────────────────────────────────────────────┐
@@ -51,14 +51,14 @@ Tuquet Gateway operates a dual-tier proxy routing model designed for both SOCKS5
 Start both SOCKS5 (`1080`) and embedded HTTP (`8118`) forwarders:
 
 ```bash
-tq gateway start --http
+opn gateway start --http
 ```
 
 ### 2. Verify Tunnel Status
 Inspect connection state across all configured VPS nodes:
 
 ```bash
-tq gateway status
+opn gateway status
 ```
 
 Example output:
@@ -78,18 +78,18 @@ Example output:
 Probe external egress IP, latency, and leak protection:
 
 ```bash
-tq gateway probe
+opn gateway probe
 ```
 
 ---
 
 ## ⚙️ Configuration Reference
 
-Gateway settings are stored at `~/.tq/gateway/gateway.json` (adhering to JSON Schema Draft 2020-12):
+Gateway settings are stored at `~/.operon/gateway/gateway.json` (adhering to JSON Schema Draft 2020-12):
 
 ```json
 {
-  "$schema": "https://tuquet.com/schema/config/gateway.schema.json",
+  "$schema": "https://operon.com/schema/config/gateway.schema.json",
   "default_user": "root",
   "http_proxy_port": 8118,
   "auto_reconnect": true,
@@ -119,6 +119,6 @@ Gateway settings are stored at `~/.tq/gateway/gateway.json` (adhering to JSON Sc
 
 ### Node Lifecycle Management
 
-- **Enable a node**: `tq gateway enable <server-id>`
-- **Disable a node**: `tq gateway disable <server-id>` (disables tunnel without removing configuration)
-- **Check configuration**: `tq gateway check` (validates SSH keys, open ports, and syntax)
+- **Enable a node**: `opn gateway enable <server-id>`
+- **Disable a node**: `opn gateway disable <server-id>` (disables tunnel without removing configuration)
+- **Check configuration**: `opn gateway check` (validates SSH keys, open ports, and syntax)

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { SetupContext } from 'vue';
 
-import type { Recordable } from '@tuquet/types';
+import type { Recordable } from '@operon/types';
 
 import type {
   JsonViewerAction,
@@ -14,7 +14,7 @@ import { computed, ref, useAttrs } from 'vue';
 import VueJsonPretty from 'vue-json-pretty';
 import 'vue-json-pretty/lib/styles.css';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
 import JsonBigint from 'json-bigint';
 

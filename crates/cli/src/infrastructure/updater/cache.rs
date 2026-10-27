@@ -32,12 +32,12 @@ pub fn cleanup_stale_update_files() {
 
     for dir in dirs_to_clean {
         for stale in &[
-            "tuquet.exe.old",
-            "tq.exe.old",
-            "tuquet.old",
-            "tq.old",
-            "tuquet.tmp_new",
-            "tq.tmp_new",
+            "operon.exe.old",
+            "opn.exe.old",
+            "operon.old",
+            "opn.old",
+            "operon.tmp_new",
+            "opn.tmp_new",
         ] {
             let p = dir.join(stale);
             if p.exists() {

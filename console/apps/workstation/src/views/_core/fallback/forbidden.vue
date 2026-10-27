@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Fallback } from '@tuquet/common-ui';
+import { Fallback } from '@operon/common-ui';
 
 defineOptions({ name: 'Fallback403Demo' });
 </script>

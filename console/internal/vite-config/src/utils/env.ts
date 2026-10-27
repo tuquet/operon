@@ -3,7 +3,7 @@ import type { ApplicationPluginOptions } from '../typing';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { fs } from '@tuquet/node-utils';
+import { fs } from '@operon/node-utils';
 
 import dotenv from 'dotenv';
 

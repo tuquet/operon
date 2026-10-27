@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { watch } from 'vue';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
 import {
   NumberField,
@@ -9,7 +9,7 @@ import {
   NumberFieldDecrement,
   NumberFieldIncrement,
   NumberFieldInput,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 defineOptions({
   name: 'PreferenceFontSize',

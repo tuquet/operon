@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { AlertDialogContentEmits, AlertDialogContentProps } from 'reka-ui';
 
-import type { ClassType } from '@tuquet-core/typings';
+import type { ClassType } from '@operon-core/typings';
 
 import { ref } from 'vue';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { reactiveOmit } from '@vueuse/core';
 import {

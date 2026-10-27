@@ -45,7 +45,7 @@ impl EnvExpander {
 
 pub use crate::constants::DEFAULT_SSOT_ROOT_DIR as DEFAULT_SSOT_DIR_NAME;
 
-/// Resolves the canonical SSOT root directory (~/.tq/ or $DATA_DIR)
+/// Resolves the canonical SSOT root directory (~/.operon/ or $DATA_DIR)
 pub fn canonical_ssot_dir() -> std::path::PathBuf {
     if let Ok(dir) = std::env::var(crate::constants::envs::ENV_DATA_DIR)
     {
@@ -60,7 +60,7 @@ pub fn canonical_ssot_dir() -> std::path::PathBuf {
     std::path::PathBuf::from(home).join(crate::constants::DEFAULT_SSOT_ROOT_DIR)
 }
 
-/// Canonical root directory for (~/.tq/)
+/// Canonical root directory for (~/.operon/)
 pub fn canonical_dir() -> std::path::PathBuf {
     canonical_ssot_dir()
 }
@@ -89,6 +89,6 @@ mod tests {
     #[test]
     fn test_canonical_ssot_dir() {
         let dir = canonical_ssot_dir();
-        assert!(dir.to_string_lossy().contains(".tuquet") || dir.to_string_lossy().contains(".tq"));
+        assert!(dir.to_string_lossy().contains(".operon") || dir.to_string_lossy().contains(".opn"));
     }
 }

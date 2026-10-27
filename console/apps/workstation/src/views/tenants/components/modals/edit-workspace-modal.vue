@@ -12,7 +12,7 @@ import {
   DialogTitle,
   Input,
   toast,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import { VxeForm, VxeFormItem } from '#/adapter/vxe-table';
 import { $t } from '#/locales';

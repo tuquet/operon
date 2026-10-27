@@ -62,7 +62,7 @@
 
 - **Frontend Core:** Vue 3.5+, TypeScript 5.8+, Tailwind CSS v4.
 - **UI & VXE Engine:**
-  - `@tuquet/vue-ui`: `Sheet`, `SheetContent`, `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetFooter`, `Popover`, `PopoverTrigger`, `PopoverContent`, `Badge`, `Button`, `Input`, `Switch`, `Textarea`.
+  - `@operon/vue-ui`: `Sheet`, `SheetContent`, `SheetHeader`, `SheetTitle`, `SheetDescription`, `SheetFooter`, `Popover`, `PopoverTrigger`, `PopoverContent`, `Badge`, `Button`, `Input`, `Switch`, `Textarea`.
   - `#/adapter/vxe-table` (`vxe-table` + `vxe-pc-ui`): `useVbenVxeGrid`, `VxeForm`, `VxeFormItem`.
 - **Data & Security Layer:**
   - `supabaseRequest({ method: 'POST' | 'PATCH', schema, preferRepresentation: true })` (`src/api/core/supabase-client.ts`).
@@ -72,13 +72,13 @@
 
 ```bash
 # Kiểm tra khóa đa ngôn ngữ đối xứng en-US & vi-VN
-pnpm --filter @tuquet/admin-web run check:i18n
+pnpm --filter @operon/admin-web run check:i18n
 
 # Chạy bộ kiểm thử đơn vị (Vitest)
-pnpm --filter @tuquet/admin-web exec vitest run src/api/core/__tests__/supabase-schema-registry.test.ts src/components/vxe-detail-sheet/__tests__/vxe-row-detail-sheet.test.ts
+pnpm --filter @operon/admin-web exec vitest run src/api/core/__tests__/supabase-schema-registry.test.ts src/components/vxe-detail-sheet/__tests__/vxe-row-detail-sheet.test.ts
 
 # Kiểm tra kiểu tĩnh TypeScript
-pnpm --filter @tuquet/admin-web run typecheck
+pnpm --filter @operon/admin-web run typecheck
 ```
 
 ---

@@ -5,7 +5,7 @@ import {
   findMonorepoRoot,
   getPackages,
   readPackageJSON,
-} from '@tuquet/node-utils';
+} from '@operon/node-utils';
 
 import { readWorkspaceManifest } from '@pnpm/workspace.read-manifest';
 

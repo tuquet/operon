@@ -31,7 +31,7 @@ concurrency:
 
 jobs:
   ci-windows:
-    uses: tuquet/tuquet/.github/workflows/reusable-rust-ci.yml@main
+    uses: operon/operon/.github/workflows/reusable-rust-ci.yml@main
     secrets: inherit
     with:
       os: windows-latest
@@ -39,7 +39,7 @@ jobs:
       run-release-build: true
 
   ci-linux:
-    uses: tuquet/tuquet/.github/workflows/reusable-rust-ci.yml@main
+    uses: operon/operon/.github/workflows/reusable-rust-ci.yml@main
     secrets: inherit
     with:
       os: ubuntu-latest

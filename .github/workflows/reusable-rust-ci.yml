@@ -1,18 +1,5 @@
 name: Reusable Rust CI
 
-# Shared Rust CI for the Tuquet repos.
-#
-#   jobs:
-#     ci-linux:
-#       uses: tuquet/tuquet/.github/workflows/reusable-rust-ci.yml@main
-#       secrets: inherit
-#       with:
-#         os: ubuntu-latest
-#         target: x86_64-unknown-linux-gnu
-#         run-release-build: true
-#
-# Callers: runner, browser, faker.
-
 on:
   workflow_call:
     inputs:

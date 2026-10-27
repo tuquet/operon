@@ -22,7 +22,7 @@ Content-Type: {{contentType}}
             "parameters": [
               {
                 "name": "searchQuery",
-                "value": "tuquet automation direct inline run"
+                "value": "operon automation direct inline run"
               }
             ]
           }
@@ -43,7 +43,7 @@ Content-Type: {{contentType}}
           "label": "javascript-code",
           "data": {
             "description": "Dien tu khoa va submit form tim kiem",
-            "code": "const query = (typeof automationRefData === 'function' ? automationRefData('variables', 'searchQuery') : null) || '{{ variables.searchQuery }}' || 'tuquet automation'; const searchInput = document.querySelector('textarea[name=\"q\"]') || document.querySelector('input[name=\"q\"]'); if (searchInput) { searchInput.focus(); searchInput.value = query; searchInput.dispatchEvent(new Event('input', { bubbles: true })); searchInput.form?.submit(); } else { window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(query); } if (typeof automationNextBlock === 'function') automationNextBlock({ query, action: 'searched' });",
+            "code": "const query = (typeof automationRefData === 'function' ? automationRefData('variables', 'searchQuery') : null) || '{{ variables.searchQuery }}' || 'operon automation'; const searchInput = document.querySelector('textarea[name=\"q\"]') || document.querySelector('input[name=\"q\"]'); if (searchInput) { searchInput.focus(); searchInput.value = query; searchInput.dispatchEvent(new Event('input', { bubbles: true })); searchInput.form?.submit(); } else { window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(query); } if (typeof automationNextBlock === 'function') automationNextBlock({ query, action: 'searched' });",
             "context": "webpage",
             "preloadScripts": [],
             "timeout": 10000
@@ -87,7 +87,7 @@ Content-Type: {{contentType}}
     "headless": false,
     "closeBrowserOnFinish": false,
     "variables": {
-      "searchQuery": "tuquet automation pure open source chromium"
+      "searchQuery": "operon automation pure open source chromium"
     }
   }
 }

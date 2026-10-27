@@ -259,7 +259,7 @@ bot.command('releases', async (ctx) => {
 // /repos
 bot.command('repos', async (ctx) => {
   try {
-    const repos = await listRepos('tuquet', 5);
+    const repos = await listRepos('operon', 5);
     const lines = repos.map(r => {
       const lock = r.isPrivate ? '🔒' : '🌐';
       const date = new Date(r.pushedAt).toLocaleDateString('vi-VN');
@@ -383,7 +383,7 @@ bot.on('callback_query:data', async (ctx) => {
     }
   } else if (data === 'action:repos') {
     try {
-      const repos = await listRepos('tuquet', 5);
+      const repos = await listRepos('operon', 5);
       const lines = repos.map(r => {
         const lock = r.isPrivate ? '🔒' : '🌐';
         const date = new Date(r.pushedAt).toLocaleDateString('vi-VN');
@@ -436,10 +436,10 @@ async function start() {
         }, ciIntervalMs);
         console.log(`[Bot] CI monitor polling every ${config.ciPollMinutes} minute(s) across ${config.monitoredRepos.length} repos.`);
       } else {
-        console.log('[Bot] CI background polling disabled (using event-driven tuquet/bot@main).');
+        console.log('[Bot] CI background polling disabled (using event-driven operon/bot@main).');
       }
 
-      // Initialize blog feed monitor for tuquet.com
+      // Initialize blog feed monitor for operon.com
       checkForNewBlogPosts(bot);
       const blogIntervalMs = 60 * 1000;
       setInterval(() => {

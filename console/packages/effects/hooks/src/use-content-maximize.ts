@@ -1,4 +1,4 @@
-import { updatePreferences, usePreferences } from '@tuquet/preferences';
+import { updatePreferences, usePreferences } from '@operon/preferences';
 /**
  * Maximize content area
  */

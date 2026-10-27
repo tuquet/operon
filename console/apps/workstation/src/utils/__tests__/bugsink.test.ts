@@ -30,7 +30,7 @@ describe('bugsink telemetry utility', () => {
   describe('sanitizeUrl', () => {
     it('redacts sensitive query parameters', () => {
       const url =
-        'https://tuquet.com/api/v1/auth?access_token=secret123&refresh_token=refresh456&role=admin';
+        'https://operon.com/api/v1/auth?access_token=secret123&refresh_token=refresh456&role=admin';
       const sanitized = sanitizeUrl(url);
       expect(sanitized).toContain('access_token=%5BREDACTED%5D');
       expect(sanitized).toContain('refresh_token=%5BREDACTED%5D');
@@ -96,7 +96,7 @@ describe('bugsink telemetry utility', () => {
     it('deduplicates identical Error instances', () => {
       const dummyApp = { config: {}, use: vi.fn() } as any;
       initBugsink(dummyApp, undefined, {
-        dsn: 'https://tuquet@test-relay.example.com/1',
+        dsn: 'https://operon@test-relay.example.com/1',
       });
 
       const err = new Error('Test unique error');
@@ -109,7 +109,7 @@ describe('bugsink telemetry utility', () => {
     it('captures informational message', () => {
       const dummyApp = { config: {}, use: vi.fn() } as any;
       initBugsink(dummyApp, undefined, {
-        dsn: 'https://tuquet@test-relay.example.com/1',
+        dsn: 'https://operon@test-relay.example.com/1',
       });
 
       captureMessage('Notice message', 'warning', { foo: 'bar' });
@@ -123,7 +123,7 @@ describe('bugsink telemetry utility', () => {
   describe('initBugsink', () => {
     it('initializes Sentry when DSN is provided', () => {
       const dummyApp = { config: {}, use: vi.fn() } as any;
-      const testDsn = 'https://tuquet@test-error-relay.example.com/1';
+      const testDsn = 'https://operon@test-error-relay.example.com/1';
       initBugsink(dummyApp, undefined, { dsn: testDsn });
 
       expect(Sentry.init).toHaveBeenCalledWith(

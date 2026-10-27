@@ -163,7 +163,7 @@ describe('commerce core api (digital-commerce)', () => {
           order_id: 'ord-1',
         },
         order: {
-          buyer_email: 'owner@tuquet.com',
+          buyer_email: 'owner@operon.com',
           buyer_tenant_id: 'tenant-1',
           created_at: '2026-10-14T10:05:00Z',
           discount_credits: 0,
@@ -194,7 +194,7 @@ describe('commerce core api (digital-commerce)', () => {
       });
 
       const result = await createCheckoutOrder({
-        buyer_email: 'owner@tuquet.com',
+        buyer_email: 'owner@operon.com',
         buyer_tenant_id: 'tenant-1',
         gateway_code: 'internal_wallet',
         idempotency_key: 'idem-1',
@@ -206,7 +206,7 @@ describe('commerce core api (digital-commerce)', () => {
         '/rest/v1/rpc/create_checkout_order',
         {
           body: JSON.stringify({
-            _buyer_email: 'owner@tuquet.com',
+            _buyer_email: 'owner@operon.com',
             _buyer_tenant_id: 'tenant-1',
             _gateway_code: 'internal_wallet',
             _idempotency_key: 'idem-1',
@@ -365,7 +365,7 @@ describe('commerce core api (digital-commerce)', () => {
 
       const orders = [
         mapRawCommerceOrder({
-          buyer_email: 'owner@tuquet.com',
+          buyer_email: 'owner@operon.com',
           buyer_tenant_id: 'tenant-1',
           id: 'ord-1',
           order_code: 'ORD-261014-AAA111',
@@ -399,7 +399,7 @@ describe('commerce core api (digital-commerce)', () => {
         await import('../commerce');
 
       const saved = saveGuestOrderLocal({
-        buyer_email: 'guest@tuquet.com',
+        buyer_email: 'guest@operon.com',
         claim_token: 'CLM_1234567890ABCDEF',
         created_at: '2026-10-14T12:00:00Z',
         order_code: 'ORD-261014-GUEST99',

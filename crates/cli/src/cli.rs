@@ -16,8 +16,8 @@ pub fn get_styles() -> Styles {
 /// - Autonomous Browser Automation & Distributed Mesh Runtime
 #[derive(Parser, Debug)]
 #[command(
-    name = "tuquet",
-    author = "Ecosystem <tuquet@users.noreply.github.com>",
+    name = "operon",
+    author = "Ecosystem <operon@users.noreply.github.com>",
     version = env!("CARGO_PKG_VERSION"),
     about = "Autonomous Browser Automation & Distributed Mesh Runtime",
     styles = get_styles(),
@@ -105,7 +105,7 @@ pub enum Commands {
 
 #[derive(Subcommand, Debug, Clone)]
 pub enum SecretSubcommands {
-    /// Initialise the local Secret Store key (~/.tq/system/.secret_key)
+    /// Initialise the local Secret Store key (~/.operon/system/.secret_key)
     #[command(name = "init")]
     Init,
     /// Store or update a secret value
@@ -228,7 +228,7 @@ pub enum GatewaySubcommands {
         server: Option<String>,
     },
 
-    /// Enable a server in gateway configuration (~/.tq/gateway/gateway.json)
+    /// Enable a server in gateway configuration (~/.operon/gateway/gateway.json)
     #[command(name = "enable")]
     Enable {
         /// Server identifier to enable (e.g. my-vps, may-b; omit to select interactively)
@@ -236,7 +236,7 @@ pub enum GatewaySubcommands {
         server: Option<String>,
     },
 
-    /// Disable a server in gateway configuration (~/.tq/gateway/gateway.json)
+    /// Disable a server in gateway configuration (~/.operon/gateway/gateway.json)
     #[command(name = "disable")]
     Disable {
         /// Server identifier to disable (e.g. my-vps, may-b; omit to select interactively)
@@ -244,7 +244,7 @@ pub enum GatewaySubcommands {
         server: Option<String>,
     },
 
-    /// Validate ~/.tq/gateway/gateway.json configuration schema, ports, and workloads
+    /// Validate ~/.operon/gateway/gateway.json configuration schema, ports, and workloads
     #[command(name = "check")]
     Check,
 
@@ -255,7 +255,7 @@ pub enum GatewaySubcommands {
         #[arg(value_name = "ARGS")]
         args: Vec<String>,
 
-        /// Open ~/.tq/gateway/gateway.json in your default editor
+        /// Open ~/.operon/gateway/gateway.json in your default editor
         #[arg(short, long)]
         edit: bool,
 
@@ -399,7 +399,7 @@ pub enum InboxSubcommands {
         limit: usize,
     },
 
-    /// Inspect or edit inbox configuration (~/.tq/inbox/inbox.json)
+    /// Inspect or edit inbox configuration (~/.operon/inbox/inbox.json)
     #[command(name = "config")]
     Config {
         /// Optional option key and value (e.g. 'key', 'key value', or 'set key value')
@@ -516,7 +516,7 @@ pub enum FakerSubcommands {
         raw: bool,
     },
 
-    /// Manage synthetic persona configuration (~/.tq/faker/faker.json)
+    /// Manage synthetic persona configuration (~/.operon/faker/faker.json)
     #[command(name = "config")]
     Config {
         /// Optional option key and value (e.g. 'key', 'key value', or 'set key value')
@@ -602,7 +602,7 @@ pub enum AutomationSubcommands {
     /// Probe Automation manifest capabilities
     Probe,
 
-    /// Display, inspect, or edit Automation configuration (~/.tq/automation/automation.json)
+    /// Display, inspect, or edit Automation configuration (~/.operon/automation/automation.json)
     #[command(name = "config")]
     Config {
         /// Optional option key and value (e.g. 'key', 'key value', or 'set key value')
@@ -719,7 +719,7 @@ pub enum WorkerSubcommands {
         output: PathBuf,
     },
 
-    /// Display, inspect, or edit Runner daemon configuration (~/.tq/automation/runner.json)
+    /// Display, inspect, or edit Runner daemon configuration (~/.operon/automation/runner.json)
     #[command(name = "config")]
     Config {
         /// Optional option key and value (e.g. 'key', 'key value', or 'set key value')
@@ -797,7 +797,7 @@ pub enum CloudSubcommands {
         command: Option<TenantSubcommands>,
     },
 
-    /// Display, inspect, or edit System & Cloud configuration (~/.tq/system/system.json)
+    /// Display, inspect, or edit System & Cloud configuration (~/.operon/system/system.json)
     #[command(name = "config")]
     Config {
         /// Optional option key and value (e.g. 'key', 'key value', or 'set key value')
@@ -1009,7 +1009,7 @@ pub enum BrowserCommands {
         command: Option<ProfileCommands>,
     },
 
-    /// Display, inspect, or edit dedicated browser configuration (~/.tq/browser/browser.json)
+    /// Display, inspect, or edit dedicated browser configuration (~/.operon/browser/browser.json)
     #[command(name = "config")]
     Config {
         /// Optional option key and value (e.g. 'key', 'key value', or 'set key value')
@@ -1426,7 +1426,7 @@ pub struct SetupArgs {
 
 #[derive(Subcommand, Debug, Clone)]
 pub enum SetupComponent {
-    /// Initialize SSOT directory (~/.tq) and database
+    /// Initialize SSOT directory (~/.operon) and database
     #[command(name = "core")]
     Core,
 

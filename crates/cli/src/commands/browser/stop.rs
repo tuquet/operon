@@ -45,7 +45,7 @@ pub async fn handle_stop(
                 return Ok(());
             }
             eprintln!(
-                "Specify a profile to stop: tq browser stop <profile_name|profile_id>, or stop all with '--all'."
+                "Specify a profile to stop: opn browser stop <profile_name|profile_id>, or stop all with '--all'."
             );
             eprintln!(
                 "Active profiles: {}",
@@ -73,7 +73,7 @@ pub async fn handle_stop(
             "No running browser profile found matching '{}'.",
             target
         ));
-        eprintln!("Run 'tq browser ps' to view active profiles.\n");
+        eprintln!("Run 'opn browser ps' to view active profiles.\n");
         return Err(format!("Running profile '{}' not found", target).into());
     }
 

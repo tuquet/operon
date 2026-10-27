@@ -13,15 +13,15 @@ Mục tiêu chính:
 ## Tech Stack
 
 - Vue 3 + TypeScript
-- `@tuquet/plugins/vxe-table` + `vxe-pc-ui` renderer API (`vxeUI.renderer.add`)
-- `@tuquet/vue-ui` (Badge, Button, Tooltip) + `@tuquet/icons` (Lucide)
+- `@operon/plugins/vxe-table` + `vxe-pc-ui` renderer API (`vxeUI.renderer.add`)
+- `@operon/vue-ui` (Badge, Button, Tooltip) + `@operon/icons` (Lucide)
 - Vitest cho Unit Tests
 
 ## Commands
 
 - Build: `pnpm run build:admin`
-- Typecheck: `pnpm --filter @tuquet/admin-web run typecheck`
-- Test: `pnpm --filter @tuquet/admin-web run test`
+- Typecheck: `pnpm --filter @operon/admin-web run typecheck`
+- Test: `pnpm --filter @operon/admin-web run test`
 - Lint: `npx oxlint apps/web-admin/src/`
 
 ## Project Structure

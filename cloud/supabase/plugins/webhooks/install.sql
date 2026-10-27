@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: TRANSACTIONAL OUTBOX & WEBHOOKS (INSTALLATION SCRIPT)
+-- OPN-CLOUD PLUGIN: TRANSACTIONAL OUTBOX & WEBHOOKS (INSTALLATION SCRIPT)
 -- Plugin ID: webhooks
 -- Version: 1.0.0
 -- Architecture: PostgreSQL Dedicated Schema Isolation (schema: events)

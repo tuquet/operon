@@ -5,7 +5,7 @@ import type { SheetVariants } from './sheet';
 
 import { computed, ref } from 'vue';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { X } from '@lucide/vue';
 import { DialogClose, DialogContent, useForwardPropsEmits } from 'reka-ui';

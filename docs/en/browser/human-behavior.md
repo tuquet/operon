@@ -4,13 +4,13 @@ Modern anti-bot security platforms (Cloudflare Turnstile, DataDome, Akamai Bot M
 
 Standard automation scripts (such as default Playwright or Puppeteer scripts) move cursors along straight mathematical vectors or teleport instantly between coordinates, triggering immediate CAPTCHA challenges or silent account flags.
 
-**Tuquet** solves this by embedding a **Biometric Human Dynamics Engine** that generates mathematically organic movement curves, realistic keystroke latencies, and physical mouse-wheel inertia.
+**Operon** solves this by embedding a **Biometric Human Dynamics Engine** that generates mathematically organic movement curves, realistic keystroke latencies, and physical mouse-wheel inertia.
 
 ---
 
 ## 1. Cubic Bézier Curve Trajectory Mathematics
 
-Tuquet models cursor movements using parametric **Cubic Bézier Curves** modulated by randomized physical control points:
+Operon models cursor movements using parametric **Cubic Bézier Curves** modulated by randomized physical control points:
 
 $$B(t) = (1-t)^3 P_0 + 3(1-t)^2 t P_1 + 3(1-t) t^2 P_2 + t^3 P_3, \quad t \in [0, 1]$$
 
@@ -32,7 +32,7 @@ $$B(t) = (1-t)^3 P_0 + 3(1-t)^2 t P_1 + 3(1-t) t^2 P_2 + t^3 P_3, \quad t \in [0
 2. **Dynamic Control Points ($P_1, P_2$)**:
    - Randomly offset along the movement vector to simulate the biomechanical arc of a human forearm and wrist.
 3. **Target Overshoot & Correction**:
-   - High-speed human ballistic movements frequently overshoot target buttons by 2–5 pixels before an optical feedback loop corrects the trajectory back to the center of the element. Tuquet emulates this correction phase automatically.
+   - High-speed human ballistic movements frequently overshoot target buttons by 2–5 pixels before an optical feedback loop corrects the trajectory back to the center of the element. Operonemulates this correction phase automatically.
 
 ---
 
@@ -93,7 +93,7 @@ Verify human dynamics and Turnstile challenge bypass rates on your workstation:
 
 ```bash
 # Launch visual browser verification against live Cloudflare Turnstile
-tq browser verify --url "https://turnstile.zeroclick.io"
+opn browser verify --url "https://turnstile.zeroclick.io"
 ```
 
 The verification command renders cursor trajectories in real time, demonstrating smooth Bézier curve navigation, target deceleration, and successful automated challenge resolution.

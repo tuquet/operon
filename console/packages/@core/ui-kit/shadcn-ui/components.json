@@ -9,7 +9,7 @@
     "cssVariables": true
   },
   "aliases": {
-    "components": "@tuquet-core/shadcn-ui/components",
-    "utils": "@tuquet-core/shared/utils"
+    "components": "@operon-core/shadcn-ui/components",
+    "utils": "@operon-core/shared/utils"
   }
 }

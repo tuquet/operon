@@ -1,5 +1,5 @@
 // ============================================================================
-// TUQUET E2E ACCEPTANCE TEST: REALTIME SUPABASE -> RUNNER -> CLAUDE-AGY
+// OPN E2E ACCEPTANCE TEST: REALTIME SUPABASE -> RUNNER -> CLAUDE-AGY
 // ============================================================================
 
 import { spawn } from "node:child_process";
@@ -21,10 +21,10 @@ async function main() {
     console.log("================================================================================");
 
     // 1. Verify Device Identity
-    const tuquetHome = process.env.TUQUET_HOME || process.env.SPECTER_HOME || (existsSync(join(homedir(), ".tuquet")) ? join(homedir(), ".tuquet") : join(homedir(), ".tuquet"));
-    const configPath = join(tuquetHome, "system", ".identity.json");
+    const operonHome = process.env.OPERON_HOME || process.env.SPECTER_HOME || (existsSync(join(homedir(), ".operon")) ? join(homedir(), ".operon") : join(homedir(), ".operon"));
+    const configPath = join(operonHome, "system", ".identity.json");
     if (!existsSync(configPath)) {
-        throw new Error(`Device identity not found at ${configPath}. Run 'tuquet runner enroll' first.`);
+        throw new Error(`Device identity not found at ${configPath}. Run 'operon runner enroll' first.`);
     }
 
     const identity = JSON.parse(readFileSync(configPath, "utf-8"));
@@ -71,12 +71,12 @@ async function main() {
     console.log(`      Status:         ${createdRun.status.toUpperCase()}`);
     console.log(`      Target Driver:  agent (claude-agy)`);
 
-    // 3. Execute via tuquet runner (Real-time Execution & Log Streaming)
+    // 3. Execute via operon runner (Real-time Execution & Log Streaming)
     console.log(`\n[3/5] Executing job via runner (claude-agy driver) with real-time log ingestion...`);
     const startTime = Date.now();
     let runnerStdout = "";
 
-    const runnerBin = process.env.RUNNER_BIN || (process.platform === "win32" ? "tuquet.exe" : "tq");
+    const runnerBin = process.env.RUNNER_BIN || (process.platform === "win32" ? "operon.exe" : "opn");
     const runnerArgs = ["runner", "exec", "-d", "agent", "-p", promptText];
     const runnerProcess = spawn(runnerBin, runnerArgs, {
         shell: false,

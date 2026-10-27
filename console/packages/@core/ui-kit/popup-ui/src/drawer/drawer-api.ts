@@ -1,7 +1,7 @@
 import type { DrawerApiOptions, DrawerState } from './drawer';
 
-import { Store } from '@tuquet-core/shared/store';
-import { bindMethods, isFunction } from '@tuquet-core/shared/utils';
+import { Store } from '@operon-core/shared/store';
+import { bindMethods, isFunction } from '@operon-core/shared/utils';
 
 export class DrawerApi<TData = unknown> {
   // Shared data

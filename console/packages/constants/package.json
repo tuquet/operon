@@ -1,11 +1,11 @@
 {
-  "name": "@tuquet/constants",
+  "name": "@operon/constants",
   "version": "5.8.0",
-  "homepage": "https://github.com/tuquet/console",
-  "bugs": "https://github.com/tuquet/console/issues",
+  "homepage": "https://github.com/operon/console",
+  "bugs": "https://github.com/operon/console/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tuquet/console.git",
+    "url": "git+https://github.com/operon/console.git",
     "directory": "packages/constants"
   },
   "license": "MIT",
@@ -20,7 +20,7 @@
     }
   },
   "dependencies": {
-    "@tuquet-core/shared": "workspace:*",
-    "@tuquet-core/typings": "workspace:*"
+    "@operon-core/shared": "workspace:*",
+    "@operon-core/typings": "workspace:*"
   }
 }

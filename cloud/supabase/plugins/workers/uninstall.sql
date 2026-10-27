@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: workers & COMPUTE FLEET (UNINSTALLATION SCRIPT)
+-- OPN-CLOUD PLUGIN: workers & COMPUTE FLEET (UNINSTALLATION SCRIPT)
 -- Plugin ID: workers
 -- ============================================================================
 

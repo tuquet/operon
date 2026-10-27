@@ -1,11 +1,11 @@
 {
-  "name": "@tuquet/preferences",
+  "name": "@operon/preferences",
   "version": "5.8.0",
-  "homepage": "https://github.com/tuquet/console",
-  "bugs": "https://github.com/tuquet/console/issues",
+  "homepage": "https://github.com/operon/console",
+  "bugs": "https://github.com/operon/console/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tuquet/console.git",
+    "url": "git+https://github.com/operon/console.git",
     "directory": "packages/preferences"
   },
   "license": "MIT",
@@ -20,7 +20,7 @@
     }
   },
   "dependencies": {
-    "@tuquet-core/preferences": "workspace:*",
-    "@tuquet-core/typings": "workspace:*"
+    "@operon-core/preferences": "workspace:*",
+    "@operon-core/typings": "workspace:*"
   }
 }

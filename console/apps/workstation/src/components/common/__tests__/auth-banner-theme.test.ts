@@ -7,7 +7,7 @@ import AuthLayout from '../../../layouts/auth.vue';
 
 const isDarkRef = ref(true);
 
-vi.mock('@tuquet/preferences', () => ({
+vi.mock('@operon/preferences', () => ({
   preferences: {
     app: { name: 'Specter' },
     logo: { source: '/logo.svg', sourceDark: '/logo-dark.svg' },
@@ -17,7 +17,7 @@ vi.mock('@tuquet/preferences', () => ({
   }),
 }));
 
-vi.mock('@tuquet/layouts', () => ({
+vi.mock('@operon/layouts', () => ({
   AuthPageLayout: defineComponent({
     name: 'AuthPageLayoutStub',
     setup(_props, { slots }) {

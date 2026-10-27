@@ -5,7 +5,7 @@
     "description": "Lightweight native process launcher, WebSocket event hub, and SQLite storage gateway for the Ecosystem.",
     "contact": {
       "name": "Ecosystem",
-      "url": "https://github.com/tuquet/cli"
+      "url": "https://github.com/operon/cli"
     },
     "license": {
       "name": "MIT"
@@ -4239,7 +4239,7 @@
           "message": "Browser session launched successfully",
           "pid": 12345,
           "status": "success",
-          "userDataDir": "C:\\Users\\<username>\\.tuquet\\browser\\profiles\\default",
+          "userDataDir": "C:\\Users\\<username>\\.operon\\browser\\profiles\\default",
           "wsUrl": "ws://127.0.0.1:54321/devtools/browser/abc-123"
         }
       },

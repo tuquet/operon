@@ -10,13 +10,13 @@ import {
   useLayoutFooterStyle,
   useLayoutHeaderStyle,
   useLayoutViewportHeight,
-} from '@tuquet-core/composables';
-import { PanelLeftClose, PanelLeftOpen } from '@tuquet-core/icons';
-import { VbenIconButton } from '@tuquet-core/shadcn-ui';
+} from '@operon-core/composables';
+import { PanelLeftClose, PanelLeftOpen } from '@operon-core/icons';
+import { VbenIconButton } from '@operon-core/shadcn-ui';
 import {
   ELEMENT_ID_LAYOUT_SCROLL,
   ELEMENT_ID_MAIN_CONTENT,
-} from '@tuquet-core/shared/constants';
+} from '@operon-core/shared/constants';
 
 import { useEventListener, useScroll } from '@vueuse/core';
 

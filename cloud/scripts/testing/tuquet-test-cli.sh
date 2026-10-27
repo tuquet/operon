@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # ============================================================================
-# TUQUET-CLOUD TEST PRESET CLI (POSIX BASH WRAPPER)
+# OPN-CLOUD TEST PRESET CLI (POSIX BASH WRAPPER)
 # Description: Delegates to Node.js CLI engine
 # ============================================================================
 

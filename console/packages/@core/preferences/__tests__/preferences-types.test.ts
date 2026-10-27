@@ -1,4 +1,4 @@
-import type { DeepPartial } from '@tuquet-core/typings';
+import type { DeepPartial } from '@operon-core/typings';
 
 import { describe, expectTypeOf, it } from 'vitest';
 

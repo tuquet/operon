@@ -2,10 +2,10 @@
 name = "worker"
 version = "0.1.0"
 edition = "2021"
-authors = ["tuquet"]
+authors = ["operon"]
 description = "Ultra-high performance universal distributed execution engine in Rust"
 license = "MIT"
-repository = "https://github.com/tuquet/worker"
+repository = "https://github.com/operon/worker"
 readme = "README.md"
 
 [lib]

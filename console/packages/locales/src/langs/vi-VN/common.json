@@ -141,7 +141,7 @@
   "requiredFieldsMissing": "Vui lòng điền đủ mục bắt buộc",
   "code": "Mã",
   "successful": "Thao tác thành công",
-  "tqCliCommand": "Lệnh Tuquet CLI",
+  "tqCliCommand": "Lệnh OperonCLI",
   "windowMinimize": "Thu nhỏ",
   "windowMaximize": "Phóng to",
   "windowRestore": "Khôi phục",

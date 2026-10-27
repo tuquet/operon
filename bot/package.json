@@ -1,5 +1,5 @@
 {
-  "name": "@tuquet/bot",
+  "name": "@operon/bot",
   "version": "1.0.0",
   "description": "Telegram ChatOps and Server Monitoring assistant daemon for GitHub Actions and Linux VPS",
   "keywords": [
@@ -10,16 +10,16 @@
     "monitoring",
     "github-actions"
   ],
-  "homepage": "https://github.com/tuquet/bot#readme",
+  "homepage": "https://github.com/operon/bot#readme",
   "bugs": {
-    "url": "https://github.com/tuquet/bot/issues"
+    "url": "https://github.com/operon/bot/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tuquet/bot.git"
+    "url": "git+https://github.com/operon/bot.git"
   },
   "license": "MIT",
-  "author": "Tuquet Team <dev@tuquet.com>",
+  "author": "Operon Team <dev@operon.com>",
   "type": "module",
   "engines": {
     "node": ">=20.18.0",

@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   reply-labeled:
-    if: github.repository == 'tuquet/console'
+    if: github.repository == 'operon/console'
     runs-on: ubuntu-latest
     steps:
       - name: remove enhancement pending

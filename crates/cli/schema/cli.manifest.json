@@ -1,19 +1,19 @@
 {
-  "$schema": "https://tuquet.com/schema/cli.manifest.schema.json",
-  "name": "tuquet",
+  "$schema": "https://operon.com/schema/cli.manifest.schema.json",
+  "name": "operon",
   "version": "1.0.0",
   "description": "- Autonomous Browser Automation & Distributed Mesh Runtime",
-  "homepage": "https://tuquet.com",
-  "repository": "https://github.com/tuquet/cli",
+  "homepage": "https://operon.com",
+  "repository": "https://github.com/operon/cli",
   "brand": {
-    "productName": "Tuquet",
-    "cliAlias": "tuquet",
-    "canonicalRoot": "tuquet",
+    "productName": "Operon",
+    "cliAlias": "operon",
+    "canonicalRoot": "operon",
     "category": "Hạ tầng Tự động hóa & Trình duyệt Ẩn danh All-in-One",
     "tagline": "Vũ khí All-in-One miễn phí chuẩn kỹ thuật cao dành cho dân MMO, Dropshipping và Web Scraper.",
-    "organization": "Tuquet",
-    "mcpServerName": "tuquet",
-    "telegram": "tuquet"
+    "organization": "Operon",
+    "mcpServerName": "operon",
+    "telegram": "operon"
   },
   "pillars": [
     "system",
@@ -27,7 +27,7 @@
   ],
   "commands": [
     {
-      "id": "tuquet.automation.inspect",
+      "id": "operon.automation.inspect",
       "route": [
         "automation",
         "inspect"
@@ -49,7 +49,7 @@
       }
     },
     {
-      "id": "tuquet.automation.probe",
+      "id": "operon.automation.probe",
       "route": [
         "automation",
         "probe"
@@ -59,7 +59,7 @@
       "description": "Probe Automation manifest capabilities and protocol version."
     },
     {
-      "id": "tuquet.automation.run",
+      "id": "operon.automation.run",
       "route": [
         "automation",
         "run"
@@ -107,7 +107,7 @@
       }
     },
     {
-      "id": "tuquet.automation.studio",
+      "id": "operon.automation.studio",
       "route": [
         "automation",
         "studio"
@@ -117,7 +117,7 @@
       "description": "Launch Automation Web Studio in default system browser."
     },
     {
-      "id": "tuquet.automation.workflow.delete",
+      "id": "operon.automation.workflow.delete",
       "route": [
         "automation",
         "workflow",
@@ -144,7 +144,7 @@
       ]
     },
     {
-      "id": "tuquet.automation.workflow.export",
+      "id": "operon.automation.workflow.export",
       "route": [
         "automation",
         "workflow",
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "id": "tuquet.automation.workflow.import",
+      "id": "operon.automation.workflow.import",
       "route": [
         "automation",
         "workflow",
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "id": "tuquet.automation.workflow.info",
+      "id": "operon.automation.workflow.info",
       "route": [
         "automation",
         "workflow",
@@ -228,7 +228,7 @@
       ]
     },
     {
-      "id": "tuquet.automation.workflow.list",
+      "id": "operon.automation.workflow.list",
       "route": [
         "automation",
         "workflow",
@@ -278,7 +278,7 @@
       }
     },
     {
-      "id": "tuquet.browser.clean",
+      "id": "operon.browser.clean",
       "route": [
         "browser",
         "clean"
@@ -288,7 +288,7 @@
       "description": "Delete installed browser runtime to reclaim disk space."
     },
     {
-      "id": "tuquet.browser.ext.add",
+      "id": "operon.browser.ext.add",
       "route": [
         "browser",
         "ext",
@@ -315,7 +315,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.ext.catalog",
+      "id": "operon.browser.ext.catalog",
       "route": [
         "browser",
         "ext",
@@ -334,7 +334,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.ext.disable",
+      "id": "operon.browser.ext.disable",
       "route": [
         "browser",
         "ext",
@@ -353,7 +353,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.ext.enable",
+      "id": "operon.browser.ext.enable",
       "route": [
         "browser",
         "ext",
@@ -372,7 +372,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.ext.info",
+      "id": "operon.browser.ext.info",
       "route": [
         "browser",
         "ext",
@@ -392,7 +392,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.ext.install",
+      "id": "operon.browser.ext.install",
       "route": [
         "browser",
         "ext",
@@ -420,7 +420,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.ext.launch",
+      "id": "operon.browser.ext.launch",
       "route": [
         "browser",
         "ext",
@@ -446,7 +446,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.ext.list",
+      "id": "operon.browser.ext.list",
       "route": [
         "browser",
         "ext",
@@ -457,7 +457,7 @@
       "description": "List all registered browser extensions."
     },
     {
-      "id": "tuquet.browser.ext.path",
+      "id": "operon.browser.ext.path",
       "route": [
         "browser",
         "ext",
@@ -477,7 +477,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.ext.remove",
+      "id": "operon.browser.ext.remove",
       "route": [
         "browser",
         "ext",
@@ -496,7 +496,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.install",
+      "id": "operon.browser.install",
       "route": [
         "browser",
         "install"
@@ -523,7 +523,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.launch",
+      "id": "operon.browser.launch",
       "route": [
         "browser",
         "launch"
@@ -612,7 +612,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.list",
+      "id": "operon.browser.list",
       "route": [
         "browser",
         "list"
@@ -651,7 +651,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.path",
+      "id": "operon.browser.path",
       "route": [
         "browser",
         "path"
@@ -661,7 +661,7 @@
       "description": "Print the absolute executable path of the browser (for scripting / integrations)."
     },
     {
-      "id": "tuquet.browser.profile.cloud.acquire",
+      "id": "operon.browser.profile.cloud.acquire",
       "route": [
         "browser",
         "profile",
@@ -689,7 +689,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.profile.cloud.list",
+      "id": "operon.browser.profile.cloud.list",
       "route": [
         "browser",
         "profile",
@@ -709,7 +709,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.profile.cloud.release",
+      "id": "operon.browser.profile.cloud.release",
       "route": [
         "browser",
         "profile",
@@ -737,7 +737,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.profile.create",
+      "id": "operon.browser.profile.create",
       "route": [
         "browser",
         "profile",
@@ -790,7 +790,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.profile.delete",
+      "id": "operon.browser.profile.delete",
       "route": [
         "browser",
         "profile",
@@ -818,7 +818,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.profile.inspect",
+      "id": "operon.browser.profile.inspect",
       "route": [
         "browser",
         "profile",
@@ -866,7 +866,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.profile.list",
+      "id": "operon.browser.profile.list",
       "route": [
         "browser",
         "profile",
@@ -874,7 +874,7 @@
       ],
       "pillar": "browser",
       "title": "List Browser Profiles",
-      "description": "List all local browser profiles in ~/.tuquet/browser/profiles/.",
+      "description": "List all local browser profiles in ~/.operon/browser/profiles/.",
       "options": [
         {
           "name": "format",
@@ -906,7 +906,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.profile.pack",
+      "id": "operon.browser.profile.pack",
       "route": [
         "browser",
         "profile",
@@ -940,7 +940,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.profile.test_proxy",
+      "id": "operon.browser.profile.test_proxy",
       "route": [
         "browser",
         "profile",
@@ -974,7 +974,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.profile.unpack",
+      "id": "operon.browser.profile.unpack",
       "route": [
         "browser",
         "profile",
@@ -1000,7 +1000,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.ps",
+      "id": "operon.browser.ps",
       "route": [
         "browser",
         "ps"
@@ -1039,7 +1039,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.search",
+      "id": "operon.browser.search",
       "route": [
         "browser",
         "search"
@@ -1058,7 +1058,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.status",
+      "id": "operon.browser.status",
       "route": [
         "browser",
         "status"
@@ -1101,7 +1101,7 @@
       }
     },
     {
-      "id": "tuquet.browser.stop",
+      "id": "operon.browser.stop",
       "route": [
         "browser",
         "stop"
@@ -1135,7 +1135,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.use",
+      "id": "operon.browser.use",
       "route": [
         "browser",
         "use"
@@ -1153,7 +1153,7 @@
       ]
     },
     {
-      "id": "tuquet.browser.verify",
+      "id": "operon.browser.verify",
       "route": [
         "browser",
         "verify"
@@ -1186,24 +1186,24 @@
       ]
     },
     {
-      "id": "tuquet.gateway.check",
+      "id": "operon.gateway.check",
       "route": [
         "gateway",
         "check"
       ],
       "pillar": "gateway",
       "title": "Validate Gateway Configuration",
-      "description": "Validate ~/.tuquet/gateway/gateway.json configuration schema, ports, and workloads."
+      "description": "Validate ~/.operon/gateway/gateway.json configuration schema, ports, and workloads."
     },
     {
-      "id": "tuquet.gateway.disable",
+      "id": "operon.gateway.disable",
       "route": [
         "gateway",
         "disable"
       ],
       "pillar": "gateway",
       "title": "Disable Gateway Server",
-      "description": "Disable a server in gateway configuration (~/.tuquet/gateway/gateway.json).",
+      "description": "Disable a server in gateway configuration (~/.operon/gateway/gateway.json).",
       "arguments": [
         {
           "name": "server",
@@ -1214,14 +1214,14 @@
       ]
     },
     {
-      "id": "tuquet.gateway.enable",
+      "id": "operon.gateway.enable",
       "route": [
         "gateway",
         "enable"
       ],
       "pillar": "gateway",
       "title": "Enable Gateway Server",
-      "description": "Enable a server in gateway configuration (~/.tuquet/gateway/gateway.json).",
+      "description": "Enable a server in gateway configuration (~/.operon/gateway/gateway.json).",
       "arguments": [
         {
           "name": "server",
@@ -1232,7 +1232,7 @@
       ]
     },
     {
-      "id": "tuquet.gateway.start",
+      "id": "operon.gateway.start",
       "route": [
         "gateway",
         "start"
@@ -1271,7 +1271,7 @@
       ]
     },
     {
-      "id": "tuquet.gateway.status",
+      "id": "operon.gateway.status",
       "route": [
         "gateway",
         "status"
@@ -1310,7 +1310,7 @@
       ]
     },
     {
-      "id": "tuquet.gateway.stop",
+      "id": "operon.gateway.stop",
       "route": [
         "gateway",
         "stop"
@@ -1328,7 +1328,7 @@
       ]
     },
     {
-      "id": "tuquet.proxy.probe",
+      "id": "operon.proxy.probe",
       "route": [
         "gateway",
         "probe"
@@ -1361,7 +1361,7 @@
       ]
     },
     {
-      "id": "tuquet.runner.logs",
+      "id": "operon.runner.logs",
       "route": [
         "worker",
         "logs"
@@ -1387,7 +1387,7 @@
       ]
     },
     {
-      "id": "tuquet.runner.probe",
+      "id": "operon.runner.probe",
       "route": [
         "worker",
         "probe"
@@ -1401,7 +1401,7 @@
       }
     },
     {
-      "id": "tuquet.runner.restart",
+      "id": "operon.runner.restart",
       "route": [
         "worker",
         "restart"
@@ -1420,7 +1420,7 @@
       ]
     },
     {
-      "id": "tuquet.runner.start",
+      "id": "operon.runner.start",
       "route": [
         "worker",
         "start"
@@ -1446,7 +1446,7 @@
       ]
     },
     {
-      "id": "tuquet.runner.status",
+      "id": "operon.runner.status",
       "route": [
         "worker",
         "status"
@@ -1485,7 +1485,7 @@
       ]
     },
     {
-      "id": "tuquet.runner.stop",
+      "id": "operon.runner.stop",
       "route": [
         "worker",
         "stop"
@@ -1504,7 +1504,7 @@
       ]
     },
     {
-      "id": "tuquet.runner.worker",
+      "id": "operon.runner.worker",
       "route": [
         "worker",
         "worker"
@@ -1546,7 +1546,7 @@
       ]
     },
     {
-      "id": "tuquet.cloud.login",
+      "id": "operon.cloud.login",
       "route": [
         "auth",
         "login"
@@ -1559,7 +1559,7 @@
           "name": "url",
           "short": "u",
           "type": "string",
-          "description": "Cloud endpoint URL (e.g. https://cloud.tuquet.dev)."
+          "description": "Cloud endpoint URL (e.g. https://cloud.operon.dev)."
         },
         {
           "name": "email",
@@ -1637,7 +1637,7 @@
       ]
     },
     {
-      "id": "tuquet.cloud.logout",
+      "id": "operon.cloud.logout",
       "route": [
         "auth",
         "logout"
@@ -1647,7 +1647,7 @@
       "description": "Log out and disconnect this workstation from Cloud."
     },
     {
-      "id": "tuquet.cloud.whoami",
+      "id": "operon.cloud.whoami",
       "route": [
         "auth",
         "whoami"
@@ -1690,7 +1690,7 @@
       }
     },
     {
-      "id": "tuquet.cloud.tenant.list",
+      "id": "operon.cloud.tenant.list",
       "route": [
         "auth",
         "tenant",
@@ -1730,7 +1730,7 @@
       ]
     },
     {
-      "id": "tuquet.cloud.tenant.switch",
+      "id": "operon.cloud.tenant.switch",
       "route": [
         "auth",
         "tenant",
@@ -1778,7 +1778,7 @@
       ]
     },
     {
-      "id": "tuquet.cloud.tenant.current",
+      "id": "operon.cloud.tenant.current",
       "route": [
         "auth",
         "tenant",
@@ -1818,7 +1818,7 @@
       ]
     },
     {
-      "id": "tuquet.env",
+      "id": "operon.env",
       "title": "Manage Environment & Secrets",
       "description": "Inspect, validate, and switch environment profiles with secret masking and leak prevention",
       "route": [

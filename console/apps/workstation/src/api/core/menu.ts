@@ -1,4 +1,4 @@
-import type { RouteRecordStringComponent } from '@tuquet/types';
+import type { RouteRecordStringComponent } from '@operon/types';
 
 /**
  * Lấy danh sách menu (sử dụng frontend routing cố định)

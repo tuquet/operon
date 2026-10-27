@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: AUTOMATION CLOUD BRIDGE (MOCK SEED DATA)
+-- OPN-CLOUD PLUGIN: AUTOMATION CLOUD BRIDGE (MOCK SEED DATA)
 -- Schema: automation
 -- ============================================================================
 
@@ -53,6 +53,23 @@ VALUES
                 jsonb_build_object('id', 'sub_edge_1', 'source', 'sub_detect', 'target', 'sub_verify', 'sourceHandle', 'sub_detect-output-1', 'targetHandle', 'sub_verify-input-1')
             )
         ),
+        'a0000000-0000-0000-0000-000000000001'
+    )
+ON CONFLICT (id) DO NOTHING;
+-- 3. Canonical Quickstart Demo Workflow (Google Search & Scrape)
+INSERT INTO automation.workflows (
+    id, tenant_id, name, description, version, status, graph_data, settings, created_by
+)
+VALUES
+    (
+        'c0000000-0000-0000-0000-000000000002',
+        'b0000000-0000-0000-0000-000000000001',
+        'Quickstart: Google Search & Scrape',
+        'Interactive Demo: Launches sandboxed Chromium via CDP, navigates to Google, types query, and verifies output in real-time.',
+        '1.0.0',
+        'published',
+        '{"nodes": [{"id": "start", "type": "trigger", "label": "Manual Start"}, {"id": "open_url", "type": "browser-open", "label": "Open Google", "data": {"url": "https://www.google.com"}}, {"id": "type_search", "type": "browser-type", "label": "Search Query", "data": {"selector": "textarea[name=q], input[name=q]", "text": "Operon Rust Automation Mesh"}}, {"id": "press_enter", "type": "browser-press-key", "label": "Submit", "data": {"key": "Enter"}}, {"id": "wait_res", "type": "browser-wait", "label": "Wait Results", "data": {"selector": "#search", "timeout": 10000}}], "edges": [{"id": "e1", "source": "start", "target": "open_url"}, {"id": "e2", "source": "open_url", "target": "type_search"}, {"id": "e3", "source": "type_search", "target": "press_enter"}, {"id": "e4", "source": "press_enter", "target": "wait_res"}]}'::jsonb,
+        '{"concurrency": 1, "headed": true, "browser_profile_id": "10000000-0000-0000-0000-000000000001"}'::jsonb,
         'a0000000-0000-0000-0000-000000000001'
     )
 ON CONFLICT (id) DO NOTHING;

@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import type { MenuRecordRaw } from '@tuquet/types';
+import type { MenuRecordRaw } from '@operon/types';
 
-import type { NormalMenuProps } from '@tuquet-core/menu-ui';
+import type { NormalMenuProps } from '@operon-core/menu-ui';
 
 import { onBeforeMount, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
-import { findMenuByPath } from '@tuquet/utils';
+import { findMenuByPath } from '@operon/utils';
 
-import { NormalMenu } from '@tuquet-core/menu-ui';
+import { NormalMenu } from '@operon-core/menu-ui';
 
 interface Props extends NormalMenuProps {}
 

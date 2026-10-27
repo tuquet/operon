@@ -34,10 +34,10 @@ Xây dựng hệ thống **Cổng Thanh Toán Đa Kênh Mở Rộng (Extensible 
 
 ```bash
 # 1. Chạy unit tests cho lớp API billing trong Web Admin
-pnpm --filter @tuquet/admin-web run test:unit -- src/api/core/__tests__/billing.test.ts
+pnpm --filter @operon/admin-web run test:unit -- src/api/core/__tests__/billing.test.ts
 
 # 2. Kiểm tra kiểu tĩnh TypeScript
-pnpm --filter @tuquet/admin-web run typecheck
+pnpm --filter @operon/admin-web run typecheck
 
 # 3. Kiểm tra quy tắc linter oxlint
 pnpm run lint

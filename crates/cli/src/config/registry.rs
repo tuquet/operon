@@ -113,7 +113,7 @@ impl ConfigRegistry {
             card.add_kv(&label, format!("{}{}", entry.path.display(), status));
         }
 
-        card.with_footer("Tip: 'tq <service> config' for raw path or '--edit' to open in editor");
+        card.with_footer("Tip: 'opn <service> config' for raw path or '--edit' to open in editor");
         card.print();
         println!();
     }
@@ -121,7 +121,7 @@ impl ConfigRegistry {
     pub fn schema_url(service: &str) -> String {
         let canonical = Self::canonical_service(service).unwrap_or(service);
         format!(
-            "https://raw.githubusercontent.com/tuquet/schema/main/config/{}.schema.json",
+            "https://raw.githubusercontent.com/operon/schema/main/config/{}.schema.json",
             canonical
         )
     }
@@ -265,7 +265,7 @@ mod tests {
                     .path
                     .to_string_lossy()
                     .contains(crate::constants::DEFAULT_SSOT_ROOT_DIR)
-                    || entry.path.to_string_lossy().contains(".tq") || entry.path.to_string_lossy().contains(".tuquet")
+                    || entry.path.to_string_lossy().contains(".opn") || entry.path.to_string_lossy().contains(".operon")
             );
         }
     }
@@ -291,11 +291,11 @@ mod tests {
     fn test_schema_url_resolution() {
         assert_eq!(
             ConfigRegistry::schema_url("faker"),
-            "https://raw.githubusercontent.com/tuquet/schema/main/config/faker.schema.json"
+            "https://raw.githubusercontent.com/operon/schema/main/config/faker.schema.json"
         );
         assert_eq!(
             ConfigRegistry::schema_url("browser"),
-            "https://raw.githubusercontent.com/tuquet/schema/main/config/browser.schema.json"
+            "https://raw.githubusercontent.com/operon/schema/main/config/browser.schema.json"
         );
     }
 
@@ -333,7 +333,7 @@ mod tests {
         assert!(val.get("$schema").is_some());
         assert_eq!(
             val["$schema"].as_str().unwrap(),
-            "https://raw.githubusercontent.com/tuquet/schema/main/config/faker.schema.json"
+            "https://raw.githubusercontent.com/operon/schema/main/config/faker.schema.json"
         );
 
         // 2. Existing file without $schema gets $schema injected

@@ -58,7 +58,7 @@ const customConfig: Linter.Config[] = [
     },
   },
   {
-    // @core internal components must not import packages from @tuquet/*
+    // @core internal components must not import packages from @operon/*
     files: ['packages/@core/**/**'],
     ignores: restrictedImportIgnores,
     rules: {
@@ -67,9 +67,9 @@ const customConfig: Linter.Config[] = [
         {
           patterns: [
             {
-              group: ['@tuquet/*'],
+              group: ['@operon/*'],
               message:
-                'The @core package cannot import the @tuquet package, please use the @core package itself',
+                'The @core package cannot import the @operon package, please use the @core package itself',
             },
           ],
         },
@@ -77,7 +77,7 @@ const customConfig: Linter.Config[] = [
     },
   },
   {
-    // @core/shared internal components must not import packages from @tuquet/* or @tuquet-core/*
+    // @core/shared internal components must not import packages from @operon/* or @operon-core/*
     files: ['packages/@core/base/**/**'],
     ignores: restrictedImportIgnores,
     rules: {
@@ -86,9 +86,9 @@ const customConfig: Linter.Config[] = [
         {
           patterns: [
             {
-              group: ['@tuquet/*', '@tuquet-core/*'],
+              group: ['@operon/*', '@operon-core/*'],
               message:
-                'The @tuquet-core/shared package cannot import the @tuquet package, please use the @core/shared package itself',
+                'The @operon-core/shared package cannot import the @operon package, please use the @core/shared package itself',
             },
           ],
         },
@@ -97,7 +97,7 @@ const customConfig: Linter.Config[] = [
   },
 
   {
-    // Must not import packages from @tuquet/*
+    // Must not import packages from @operon/*
     files: [
       'packages/types/**/**',
       'packages/utils/**/**',
@@ -115,9 +115,9 @@ const customConfig: Linter.Config[] = [
         {
           patterns: [
             {
-              group: ['@tuquet/*'],
+              group: ['@operon/*'],
               message:
-                'The @tuquet package cannot be imported, please use the @core package itself',
+                'The @operon package cannot be imported, please use the @core package itself',
             },
           ],
         },

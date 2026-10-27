@@ -3,9 +3,9 @@ import type { FormGroupSchema } from '../types';
 
 import { computed, ref, watch } from 'vue';
 
-import { ChevronsDown } from '@tuquet-core/icons';
-import { VbenCollapsible, VbenRenderContent } from '@tuquet-core/shadcn-ui';
-import { cn } from '@tuquet-core/shared/utils';
+import { ChevronsDown } from '@operon-core/icons';
+import { VbenCollapsible, VbenRenderContent } from '@operon-core/shadcn-ui';
+import { cn } from '@operon-core/shared/utils';
 
 import { injectRenderFormProps } from './context';
 

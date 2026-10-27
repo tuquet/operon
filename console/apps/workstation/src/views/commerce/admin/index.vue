@@ -15,7 +15,7 @@ import type {
 
 import { computed, ref, watch } from 'vue';
 
-import { usePreferences } from '@tuquet/preferences';
+import { usePreferences } from '@operon/preferences';
 
 import {
   Badge,
@@ -37,7 +37,7 @@ import {
   TabsTrigger,
   Textarea,
   toast,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import {
   AlertTriangle,

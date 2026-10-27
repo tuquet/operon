@@ -41,7 +41,7 @@ import {
   toast,
   ToggleGroup,
   ToggleGroupItem,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import {
   Building2,

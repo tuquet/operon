@@ -15,7 +15,7 @@ import type {
   SupportedLanguagesType,
   TabsStyleType,
   ThemeModeType,
-} from '@tuquet-core/typings';
+} from '@operon-core/typings';
 
 type CustomPreferencesValue = boolean | number | string;
 

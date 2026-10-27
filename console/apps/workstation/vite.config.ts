@@ -1,6 +1,6 @@
 import process from 'node:process';
 
-import { defineConfig } from '@tuquet/vite-config';
+import { defineConfig } from '@operon/vite-config';
 
 const isTauri = Boolean(process.env.TAURI_ENV_PLATFORM);
 
@@ -19,7 +19,7 @@ export default defineConfig(async () => {
             manifest: {
               background_color: '#09090b',
               description:
-                'Admin - Unified Management & Operations Console (console.tuquet.com)',
+                'Admin - Unified Management & Operations Console (console.operon.com)',
               display: 'standalone',
               icons: [
                 {

@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue';
 
-import { globalShareState } from '@tuquet-core/shared/global-state';
+import { globalShareState } from '@operon-core/shared/global-state';
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 

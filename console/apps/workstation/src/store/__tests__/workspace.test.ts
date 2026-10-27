@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useWorkspaceStore } from '../workspace';
 
-vi.mock('@tuquet-core/shadcn-ui', () => ({
+vi.mock('@operon-core/shadcn-ui', () => ({
   toast: { error: vi.fn(), success: vi.fn() },
 }));
 

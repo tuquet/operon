@@ -12,7 +12,7 @@ import type { NormalizedFormFieldSchema } from './schema';
 
 import { computed, reactive, toRaw, toRefs } from 'vue';
 
-import { cn, isString } from '@tuquet-core/shared/utils';
+import { cn, isString } from '@operon-core/shared/utils';
 
 import { provideFormRenderProps } from './context';
 import { useExpandable } from './expandable';

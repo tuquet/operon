@@ -140,12 +140,12 @@ impl ServerSelector {
 }
 
 impl GatewayConfig {
-    /// Canonical root path for SSOT storage (~/.tq/)
+    /// Canonical root path for SSOT storage (~/.operon/)
     pub fn canonical_dir() -> PathBuf {
         crate::config::canonical_ssot_dir()
     }
 
-    /// Single Canonical config path: ~/.tq/gateway/gateway.json (SSOT)
+    /// Single Canonical config path: ~/.operon/gateway/gateway.json (SSOT)
     pub fn config_path() -> PathBuf {
         crate::config::canonical_ssot_dir()
             .join(crate::constants::PILLAR_GATEWAY)
@@ -166,7 +166,7 @@ impl GatewayConfig {
         Ok(Self::default_config())
     }
 
-    /// Save configuration back to canonical file ~/.tq/gateway/gateway.json
+    /// Save configuration back to canonical file ~/.operon/gateway/gateway.json
     pub fn save(&self) -> Result<(), Box<dyn std::error::Error>> {
         let path = Self::config_path();
         if let Some(parent) = path.parent() {

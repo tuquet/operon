@@ -169,7 +169,7 @@ pub fn handle_tools_list(id: Option<Value>) -> JsonRpcResponse {
                     },
                     "domain": {
                         "type": "string",
-                        "description": "Optional custom email domain (e.g. 'flowup.io.vn'). If omitted, follows ~/.tq/faker/faker.json configuration."
+                        "description": "Optional custom email domain (e.g. 'flowup.io.vn'). If omitted, follows ~/.operon/faker/faker.json configuration."
                     },
                     "format": {
                         "type": "string",

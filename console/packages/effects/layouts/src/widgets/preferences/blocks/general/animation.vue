@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
 import SwitchItem from '../switch-item.vue';
 

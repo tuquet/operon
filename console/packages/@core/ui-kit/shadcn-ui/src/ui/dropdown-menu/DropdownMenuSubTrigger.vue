@@ -3,7 +3,7 @@ import type { DropdownMenuSubTriggerProps } from 'reka-ui';
 
 import type { HTMLAttributes } from 'vue';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { ChevronRight } from '@lucide/vue';
 import { reactiveOmit } from '@vueuse/core';

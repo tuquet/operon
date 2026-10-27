@@ -2,7 +2,7 @@
 
 Modern anti-bot security systems (Cloudflare Turnstile, DataDome, Kasada, Akamai, PerimeterX) no longer rely solely on IP addresses and HTTP cookies to identify users. They interrogate hardware attributes, browser engine internals, and audio/video rendering sub-systems to construct a persistent **Digital Browser Fingerprint**.
 
-**Tuquet** provides comprehensive, mathematically consistent hardware and software fingerprint masking implemented directly inside the C++ Chromium engine.
+**Operon** provides comprehensive, mathematically consistent hardware and software fingerprint masking implemented directly inside the C++ Chromium engine.
 
 <HairlineFigure name="padlock" />
 
@@ -25,7 +25,7 @@ Modern anti-fraud scripts detect these overrides within milliseconds through:
 
 ```text
  ┌─────────────────────────────────────────────────────────────┐
- │                TUQUET C++ CHROMIUM ENGINE                  │
+ │                OPN C++ CHROMIUM ENGINE                  │
  │                                                             │
  │   ┌──────────────────────┐       ┌──────────────────────┐   │
  │   │  Blink Rendering &   │       │  V8 JavaScript VM    │   │
@@ -85,10 +85,10 @@ includes a built-in automated test command to verify stealth capabilities agains
 
 ```bash
 # Execute live Turnstile and anti-bot verification in a visual browser window
-tq browser verify --url "https://turnstile.zeroclick.io"
+opn browser verify --url "https://turnstile.zeroclick.io"
 
 # Verify with custom challenge timeout
-tq browser verify --timeout 45
+opn browser verify --timeout 45
 ```
 
 Terminal output:

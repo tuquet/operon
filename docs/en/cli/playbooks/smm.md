@@ -4,7 +4,7 @@ Digital growth teams, social media marketing (SMM) agencies, and community manag
 
 Social networks employ aggressive behavioral heuristics to detect automated or multi-managed accounts. If two accounts share device signatures, navigate pages with robotic click timing, or toggle between geographically conflicting IP addresses, algorithms trigger immediate shadowbans, algorithmic reach throttling, or forced SMS/phone verification checkpoints.
 
-**Tuquet** enables growth teams to scale social media operations safely by combining deep fingerprint masking with organic biometric human dynamics.
+**Operon** enables growth teams to scale social media operations safely by combining deep fingerprint masking with organic biometric human dynamics.
 
 <HairlineFigure name="phone" />
 
@@ -51,14 +51,14 @@ Social networks employ aggressive behavioral heuristics to detect automated or m
 
 ```bash
 # 1. Create a dedicated profile for a Twitter/X growth account
-tq browser profile create "Twitter-Brand-US" \
+opn browser profile create "Twitter-Brand-US" \
   --seed 94102 \
   --proxy socks5://127.0.0.1:1080 \
   --timezone "America/New_York"
 
 # 2. Verify proxy leak protection before opening
-tq browser profile test-proxy "Twitter-Brand-US"
+opn browser profile test-proxy "Twitter-Brand-US"
 
 # 3. Launch profile in visual interactive mode
-tq browser launch "Twitter-Brand-US"
+opn browser launch "Twitter-Brand-US"
 ```

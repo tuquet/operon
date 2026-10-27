@@ -1,11 +1,11 @@
-import type { MenuRecordRaw } from '@tuquet/types';
+import type { MenuRecordRaw } from '@operon/types';
 
 import { computed, onBeforeMount, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
-import { preferences, usePreferences } from '@tuquet/preferences';
-import { useAccessStore } from '@tuquet/stores';
-import { findRootMenuByPath } from '@tuquet/utils';
+import { preferences, usePreferences } from '@operon/preferences';
+import { useAccessStore } from '@operon/stores';
+import { findRootMenuByPath } from '@operon/utils';
 
 import { useNavigation } from './use-navigation';
 

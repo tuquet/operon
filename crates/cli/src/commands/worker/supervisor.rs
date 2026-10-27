@@ -22,7 +22,7 @@ pub fn get_log_file_path(data_dir: &str) -> PathBuf {
 pub fn is_valid_worker_name(raw_name: &str) -> bool {
     let name = raw_name.trim().to_lowercase();
     let base = name.strip_suffix(".exe").unwrap_or(&name);
-    base == "tq"
+    base == "opn"
 }
 
 use crate::ui::{OutputFormat, respond_with};
@@ -140,7 +140,7 @@ pub async fn check_status(
                     Some(crate::ui::badge_offline("OFFLINE")),
                     ["COMPONENT", "ENDPOINT / ROUTE", "ROLE / DETAILS", "STATUS"],
                     &rows,
-                    Some("Start local daemon with 'tq worker start -d'"),
+                    Some("Start local daemon with 'opn worker start -d'"),
                     72,
                 );
                 println!();
@@ -182,7 +182,7 @@ pub async fn stop_daemon(force: bool) -> Result<(), Box<dyn std::error::Error>> 
                 .map(|s| s.to_string_lossy())
                 .collect::<Vec<_>>()
                 .join(" ");
-            if (cmd.contains("worker") || cmd.contains("tuquet"))
+            if (cmd.contains("worker") || cmd.contains("operon"))
                 && cmd.contains("start")
                 && !found_pids.contains(&p_u32)
             {
@@ -210,7 +210,7 @@ pub async fn stop_daemon(force: bool) -> Result<(), Box<dyn std::error::Error>> 
             card.with_badge(crate::ui::badge_offline("NOT RUNNING"));
             card.with_min_width(64);
             card.add_line("No active runner daemon process found on this machine.");
-            card.with_footer("Start daemon with 'tq runner start -d'");
+            card.with_footer("Start daemon with 'opn runner start -d'");
             println!();
             card.print();
             println!();
@@ -237,12 +237,12 @@ pub async fn stop_daemon(force: bool) -> Result<(), Box<dyn std::error::Error>> 
         let raw_name = proc.name().to_string_lossy();
         if !is_valid_worker_name(&raw_name) {
             tracing::warn!(
-                "Stale PID {} detected: process name '{}' does not match tq. Skipping kill.",
+                "Stale PID {} detected: process name '{}' does not match opn. Skipping kill.",
                 pid,
                 raw_name
             );
             eprintln!(
-                "Warning: Stale PID {} detected: process name '{}' does not match tq. Skipping kill.",
+                "Warning: Stale PID {} detected: process name '{}' does not match opn. Skipping kill.",
                 pid, raw_name
             );
             continue;
@@ -287,7 +287,7 @@ pub async fn stop_daemon(force: bool) -> Result<(), Box<dyn std::error::Error>> 
         card.add_kv("Terminated PID(s)", pids_str);
     }
     card.add_line("Runner worker daemon has been gracefully terminated.");
-    card.with_footer("Start daemon again with 'tq runner start -d'");
+    card.with_footer("Start daemon again with 'opn runner start -d'");
     println!();
     card.print();
     println!();
@@ -392,7 +392,7 @@ pub async fn run_server(
             format!("http://{}:{}", config.server_host, config.server_port),
         );
         card.add_kv("Log File", log_file_path.display().to_string());
-        card.with_footer("Stop daemon with 'tq worker stop'");
+        card.with_footer("Stop daemon with 'opn worker stop'");
         println!();
         card.print();
         println!();

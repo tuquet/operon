@@ -3,7 +3,7 @@ import type { NumberFieldRootEmits, NumberFieldRootProps } from 'reka-ui';
 
 import type { HTMLAttributes } from 'vue';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { reactiveOmit } from '@vueuse/core';
 import { NumberFieldRoot, useForwardPropsEmits } from 'reka-ui';

@@ -1,4 +1,4 @@
-import type { Recordable } from '@tuquet/types';
+import type { Recordable } from '@operon/types';
 
 /**
  * Cache object to avoid duplicate remote API requests

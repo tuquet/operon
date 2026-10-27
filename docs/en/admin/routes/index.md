@@ -1,7 +1,7 @@
 # Tài Liệu Đặc Tả Hệ Thống Định Tuyến (Admin Routing Reference)
 
 > **Mã tài liệu:** `ARCH-ADMIN-ROUTES`  
-> **Áp dụng cho:** `tuquet/admin` (`apps/web-admin`)  
+> **Áp dụng cho:** `operon/admin` (`apps/web-admin`)  
 > **Tài liệu kiến trúc tổng thể:** [`docs/architecture/overview.md`](../architecture/overview.md)  
 > **Quyết định liên quan:** | | ---
 

@@ -17,7 +17,7 @@ pub async fn run(force: bool) -> Result<(), Box<dyn std::error::Error>> {
         }
         Err(e) => {
             clack_step_warn(format!(
-                "Browser download deferred: {}. You can install later via 'tq browser install'",
+                "Browser download deferred: {}. You can install later via 'opn browser install'",
                 e
             ));
         }

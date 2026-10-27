@@ -5,7 +5,7 @@ import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 
-import { execa } from '@tuquet/node-utils';
+import { execa } from '@operon/node-utils';
 
 const require = createRequire(import.meta.url);
 const knipMain = require.resolve('knip');
@@ -16,13 +16,13 @@ const DEFAULT_CONFIG = {
   ignoreBinaries: [] as string[],
   ignoreDependencies: [
     '@iconify/json',
-    '@tuquet-core/design',
-    '@tuquet/commitlint-config',
-    '@tuquet/eslint-config',
-    '@tuquet/stylelint-config',
-    '@tuquet/tailwind-config',
-    '@tuquet/vite-config',
-    '@tuquet/oxlint-config',
+    '@operon-core/design',
+    '@operon/commitlint-config',
+    '@operon/eslint-config',
+    '@operon/stylelint-config',
+    '@operon/tailwind-config',
+    '@operon/vite-config',
+    '@operon/oxlint-config',
     'playwright',
     'rimraf',
     'tailwindcss',

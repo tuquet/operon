@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { TreeProps } from '@tuquet-core/shadcn-ui';
+import type { TreeProps } from '@operon-core/shadcn-ui';
 
-import { Inbox } from '@tuquet/icons';
-import { $t } from '@tuquet/locales';
+import { Inbox } from '@operon/icons';
+import { $t } from '@operon/locales';
 
-import { treePropsDefaults, VbenTree } from '@tuquet-core/shadcn-ui';
+import { treePropsDefaults, VbenTree } from '@operon-core/shadcn-ui';
 
 const props = withDefaults(defineProps<TreeProps>(), treePropsDefaults());
 </script>

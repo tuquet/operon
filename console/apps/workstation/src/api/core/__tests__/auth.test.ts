@@ -15,7 +15,7 @@ vi.mock('@tauri-apps/plugin-opener', () => ({
 
 vi.mock('../supabase-client', () => ({
   getSupabaseConfig: () => ({
-    supabaseUrl: 'https://test-supabase.tuquet.com',
+    supabaseUrl: 'https://test-supabase.operon.com',
     anonKey: 'test-anon-key',
   }),
   isJwtTokenExpired: () => false,
@@ -45,7 +45,7 @@ describe('auth api - github oauth desktop risk mitigation', () => {
     await loginWithGitHub();
 
     expect(window.location.href).toContain(
-      'https://test-supabase.tuquet.com/auth/v1/authorize?provider=github&redirect_to=',
+      'https://test-supabase.operon.com/auth/v1/authorize?provider=github&redirect_to=',
     );
     expect(window.location.href).toContain(
       encodeURIComponent('http://localhost:5320/auth/callback'),
@@ -66,7 +66,7 @@ describe('auth api - github oauth desktop risk mitigation', () => {
     expect(openUrl).toHaveBeenCalledTimes(1);
     const calledUrl = vi.mocked(openUrl).mock.calls[0]?.[0];
     expect(calledUrl).toContain(
-      'https://test-supabase.tuquet.com/auth/v1/authorize?provider=github&redirect_to=',
+      'https://test-supabase.operon.com/auth/v1/authorize?provider=github&redirect_to=',
     );
     expect(calledUrl).toContain('target%3Ddesktop');
   });

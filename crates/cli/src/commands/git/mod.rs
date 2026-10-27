@@ -73,7 +73,7 @@ pub async fn handle(
     let interactive_flow = !list && (repo_query.is_none() || action_query.is_none());
 
     if interactive_flow {
-        clack_intro("tq git", "Multi-Repo Git Radar");
+        clack_intro("opn git", "Multi-Repo Git Radar");
     }
 
     let sp = if interactive_flow {
@@ -707,7 +707,7 @@ fn render_git_list(repos: &[DiscoveredGitRepo], scan_label: &str, format: Output
                 },
             ])
             .with_footer(format!(
-                "Scanned {} repository(s) ({}) • Run 'tq git [repo]' for actions",
+                "Scanned {} repository(s) ({}) • Run 'opn git [repo]' for actions",
                 repos.len(),
                 scan_label
             ));
@@ -743,7 +743,7 @@ fn render_git_list(repos: &[DiscoveredGitRepo], scan_label: &str, format: Output
                 .collect();
 
             let footer = format!(
-                "Found {} repo(s) • Run 'tq git' to push via Gateway or inspect",
+                "Found {} repo(s) • Run 'opn git' to push via Gateway or inspect",
                 repos.len()
             );
             let card = create_tabular_card(
@@ -776,7 +776,7 @@ MM Cargo.toml
 ";
         let repo = parse_git_status_porcelain(
             sample,
-            "tuquet/cli".to_string(),
+            "operon/cli".to_string(),
             PathBuf::from("C:/repo/cli"),
         );
         assert_eq!(repo.branch, "main");

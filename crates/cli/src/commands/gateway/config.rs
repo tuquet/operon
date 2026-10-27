@@ -5,7 +5,7 @@ use crate::ui::prompt::{
 
 pub fn check_config() -> Result<(), Box<dyn std::error::Error>> {
     let config_path = GatewayConfig::config_path();
-    clack_intro("tq gateway", "Configuration Validator");
+    clack_intro("opn gateway", "Configuration Validator");
     clack_step_info(format!(
         "Checking configuration at {}...",
         config_path.display()

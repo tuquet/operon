@@ -4,7 +4,7 @@ Decentralized finance (DeFi) protocols, Layer 2 networks (zkSync, LayerZero, Arb
 
 Off-chain clustering algorithms detect Sybil farming rings by identifying shared canvas signatures, identical browser extensions, common WebRTC IP leaks, and concurrent RPC node access.
 
-**Tuquet** provides Web3 operators and DeFi researchers with isolated wallet environments, independent hardware fingerprints, and dedicated proxy channels.
+**Operon** provides Web3 operators and DeFi researchers with isolated wallet environments, independent hardware fingerprints, and dedicated proxy channels.
 
 <HairlineFigure name="lockers" />
 
@@ -51,14 +51,14 @@ Off-chain clustering algorithms detect Sybil farming rings by identifying shared
 
 ```bash
 # 1. Create a dedicated profile for a Web3 wallet node
-tq browser profile create "Web3-Node-01" \
+opn browser profile create "Web3-Node-01" \
   --seed 748291 \
   --proxy socks5://127.0.0.1:1080 \
   --timezone "Asia/Singapore"
 
 # 2. Verify proxy leak protection
-tq browser profile test-proxy "Web3-Node-01"
+opn browser profile test-proxy "Web3-Node-01"
 
 # 3. Launch the profile with Web3 wallet extension active
-tq browser launch "Web3-Node-01"
+opn browser launch "Web3-Node-01"
 ```

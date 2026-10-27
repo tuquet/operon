@@ -2,7 +2,7 @@ import type { App, WritableComputedRef } from 'vue';
 
 import { createApp, nextTick } from 'vue';
 
-import { ELEMENT_ID_LAYOUT_SCROLL } from '@tuquet-core/shared/constants';
+import { ELEMENT_ID_LAYOUT_SCROLL } from '@operon-core/shared/constants';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 

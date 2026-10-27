@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { MenuRecordRaw } from '@tuquet/types';
+import type { MenuRecordRaw } from '@operon/types';
 
 import { nextTick, onMounted, ref, shallowRef, watch } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { SearchX, X } from '@tuquet/icons';
-import { $t } from '@tuquet/locales';
-import { mapTree, traverseTreeValues, uniqueByField } from '@tuquet/utils';
+import { SearchX, X } from '@operon/icons';
+import { $t } from '@operon/locales';
+import { mapTree, traverseTreeValues, uniqueByField } from '@operon/utils';
 
-import { VbenIcon, VbenScrollbar } from '@tuquet-core/shadcn-ui';
-import { isHttpUrl } from '@tuquet-core/shared/utils';
+import { VbenIcon, VbenScrollbar } from '@operon-core/shadcn-ui';
+import { isHttpUrl } from '@operon-core/shared/utils';
 
 import {
   onKeyStroke,

@@ -2,12 +2,12 @@ import type {
   CustomPreferencesRecord,
   Preferences,
   PreferencesExtension,
-} from '@tuquet-core/preferences';
-import type { DeepPartial } from '@tuquet-core/typings';
+} from '@operon-core/preferences';
+import type { DeepPartial } from '@operon-core/typings';
 
 /**
  * If you want all apps to use the same default preferences, you can define them here
- * instead of modifying the default preferences in @tuquet-core/preferences.
+ * instead of modifying the default preferences in @operon-core/preferences.
  * @param preferences
  * @returns
  */
@@ -24,8 +24,8 @@ function definePreferencesExtension<
 
 /** Application copyright preferences for app overrides */
 const appCopyrightPreferences = {
-  companyName: 'Tuquet',
-  companySiteLink: 'https://tuquet.com',
+  companyName: 'Operon',
+  companySiteLink: 'https://operon.com',
   date: '2026',
   enable: true,
   icp: '',
@@ -39,4 +39,4 @@ export {
   definePreferencesExtension,
 };
 
-export * from '@tuquet-core/preferences';
+export * from '@operon-core/preferences';

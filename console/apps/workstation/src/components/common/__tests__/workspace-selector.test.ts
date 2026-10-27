@@ -69,7 +69,7 @@ vi.mock('#/api/core/tenant', () => ({
   setActiveTenantId: vi.fn(),
 }));
 
-vi.mock('@tuquet-core/shadcn-ui', () => ({
+vi.mock('@operon-core/shadcn-ui', () => ({
   Badge: defineComponent({
     name: 'Badge',
     setup(_props, { slots }) {

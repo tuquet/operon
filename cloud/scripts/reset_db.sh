@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# TUQUET-CLOUD DATABASE RESET & PROVISIONING ORCHESTRATOR (BASH / LINUX / CI)
+# OPN-CLOUD DATABASE RESET & PROVISIONING ORCHESTRATOR (BASH / LINUX / CI)
 # Description: Resets Supabase database (local Docker or linked Cloud project),
 #              runs foundational migrations, applies canonical plugins in order,
 #              and seeds Model 1 standard QA test data.
@@ -16,7 +16,7 @@ FORCE="${5:-false}"
 PROJECT_REF="dswhacsoaxgpfnkaxnhz"
 
 echo "===================================================================="
-echo " [TUQUET-CLOUD] Database Reset & Provisioning Orchestrator (Target: $TARGET)"
+echo " [OPN-CLOUD] Database Reset & Provisioning Orchestrator (Target: $TARGET)"
 echo "===================================================================="
 
 if [ "$TARGET" != "local" ]; then

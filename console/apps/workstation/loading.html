@@ -49,22 +49,22 @@
     transition: all 0.6s cubic-bezier(0.32, 0.72, 0, 1);
   }
 
-  .tq-stage {
+  .opn-stage {
     position: relative;
     width: 240px;
     height: 196px;
   }
 
-  .tq-stage svg {
+  .opn-stage svg {
     width: 100%;
     height: 100%;
     display: block;
     overflow: visible;
   }
 
-  .tq-stage path,
-  .tq-stage ellipse,
-  .tq-stage line {
+  .opn-stage path,
+  .opn-stage ellipse,
+  .opn-stage line {
     fill: var(--hl-plate);
     stroke: var(--hl-mid);
     stroke-width: 1.05;
@@ -73,50 +73,50 @@
     vector-effect: non-scaling-stroke;
   }
 
-  .tq-stage .nf {
+  .opn-stage .nf {
     fill: none;
   }
 
-  .tq-stage .sil {
+  .opn-stage .sil {
     stroke: var(--hl-edge);
   }
 
-  .tq-stage .hi {
+  .opn-stage .hi {
     stroke: var(--hl-hi);
   }
 
-  .tq-stage .lo {
+  .opn-stage .lo {
     stroke: var(--hl-lo);
   }
 
-  .tq-stage .dash {
+  .opn-stage .dash {
     fill: none;
     stroke: var(--hl-lo);
     stroke-dasharray: 1.5 3.5;
   }
 
-  .tq-stage .dot {
+  .opn-stage .dot {
     stroke: none;
     fill: var(--hl-hi);
   }
 
-  .tq-stage .dot-m {
+  .opn-stage .dot-m {
     stroke: none;
     fill: var(--hl-edge);
   }
 
-  .tq-stage .dot-off {
+  .opn-stage .dot-off {
     stroke: none;
     fill: var(--hl-lo);
   }
 
-  .tq-ghost-group {
-    animation: tq-levitate 2.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  .opn-ghost-group {
+    animation: opn-levitate 2.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
     transform-origin: 120px 86px;
   }
 
-  .tq-shadow-ring {
-    animation: tq-pulse 2.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  .opn-shadow-ring {
+    animation: opn-pulse 2.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
     transform-origin: 120px 146px;
   }
 
@@ -140,7 +140,7 @@
     animation-delay: 1.4s;
   }
 
-  .tq-meta {
+  .opn-meta {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -183,10 +183,10 @@
     width: 44%;
     height: 100%;
     background: var(--hl-hi);
-    animation: tq-scan 1.6s cubic-bezier(0.32, 0.72, 0, 1) infinite;
+    animation: opn-scan 1.6s cubic-bezier(0.32, 0.72, 0, 1) infinite;
   }
 
-  @keyframes tq-levitate {
+  @keyframes opn-levitate {
     0%,
     100% {
       transform: translateY(0px);
@@ -196,7 +196,7 @@
     }
   }
 
-  @keyframes tq-pulse {
+  @keyframes opn-pulse {
     0%,
     100% {
       transform: scale(1);
@@ -221,7 +221,7 @@
     }
   }
 
-  @keyframes tq-scan {
+  @keyframes opn-scan {
     0% {
       transform: translateX(-110%);
     }
@@ -231,7 +231,7 @@
   }
 </style>
 <div class="loading" id="__app-loading__">
-  <div class="tq-stage" aria-hidden="true">
+  <div class="opn-stage" aria-hidden="true">
     <svg viewBox="0 0 240 196">
       <!-- Fading reflection under the isometric plinth -->
       <path
@@ -264,7 +264,7 @@
       <ellipse class="pillar-dot p5" cx="139" cy="164" rx="2.2" ry="1.1" />
 
       <!-- Isometric levitation target ring & vertical dashed guides -->
-      <g class="tq-shadow-ring">
+      <g class="opn-shadow-ring">
         <ellipse class="dash" cx="120" cy="146" rx="28" ry="14" />
         <ellipse class="nf lo" cx="120" cy="146" rx="14" ry="7" />
         <ellipse class="dot-m" cx="120" cy="146" rx="2.2" ry="1.1" />
@@ -274,7 +274,7 @@
       <line class="dash" x1="120" y1="160" x2="120" y2="115" />
 
       <!-- Hovering 3D Hairline Ghost -->
-      <g class="tq-ghost-group">
+      <g class="opn-ghost-group">
         <!-- 3D extruded back rim of the Ghost -->
         <path
           class="lo"
@@ -302,9 +302,9 @@
     </svg>
   </div>
 
-  <div class="tq-meta">
+  <div class="opn-meta">
     <div class="title">%VITE_APP_TITLE%</div>
-    <div class="sub-readout">tq · console</div>
+    <div class="sub-readout">opn · console</div>
     <div class="scan-track">
       <div class="scan-bar"></div>
     </div>

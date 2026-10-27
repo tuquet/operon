@@ -1,163 +1,163 @@
 {
   "folders": [
     {
-      "name": "@tuquet/workstation",
+      "name": "@operon/workstation",
       "path": "apps/workstation"
     },
     {
-      "name": "@tuquet/docs",
+      "name": "@operon/docs",
       "path": "docs"
     },
     {
-      "name": "@tuquet/commitlint-config",
+      "name": "@operon/commitlint-config",
       "path": "internal/lint-configs/commitlint-config"
     },
     {
-      "name": "@tuquet/eslint-config",
+      "name": "@operon/eslint-config",
       "path": "internal/lint-configs/eslint-config"
     },
     {
-      "name": "@tuquet/oxfmt-config",
+      "name": "@operon/oxfmt-config",
       "path": "internal/lint-configs/oxfmt-config"
     },
     {
-      "name": "@tuquet/oxlint-config",
+      "name": "@operon/oxlint-config",
       "path": "internal/lint-configs/oxlint-config"
     },
     {
-      "name": "@tuquet/stylelint-config",
+      "name": "@operon/stylelint-config",
       "path": "internal/lint-configs/stylelint-config"
     },
     {
-      "name": "@tuquet/node-utils",
+      "name": "@operon/node-utils",
       "path": "internal/node-utils"
     },
     {
-      "name": "@tuquet/tailwind-config",
+      "name": "@operon/tailwind-config",
       "path": "internal/tailwind-config"
     },
     {
-      "name": "@tuquet/tsconfig",
+      "name": "@operon/tsconfig",
       "path": "internal/tsconfig"
     },
     {
-      "name": "@tuquet/vite-config",
+      "name": "@operon/vite-config",
       "path": "internal/vite-config"
     },
     {
-      "name": "@tuquet-core/design",
+      "name": "@operon-core/design",
       "path": "packages/@core/base/design"
     },
     {
-      "name": "@tuquet-core/icons",
+      "name": "@operon-core/icons",
       "path": "packages/@core/base/icons"
     },
     {
-      "name": "@tuquet-core/shared",
+      "name": "@operon-core/shared",
       "path": "packages/@core/base/shared"
     },
     {
-      "name": "@tuquet-core/typings",
+      "name": "@operon-core/typings",
       "path": "packages/@core/base/typings"
     },
     {
-      "name": "@tuquet-core/composables",
+      "name": "@operon-core/composables",
       "path": "packages/@core/composables"
     },
     {
-      "name": "@tuquet-core/preferences",
+      "name": "@operon-core/preferences",
       "path": "packages/@core/preferences"
     },
     {
-      "name": "@tuquet-core/form-ui",
+      "name": "@operon-core/form-ui",
       "path": "packages/@core/ui-kit/form-ui"
     },
     {
-      "name": "@tuquet-core/layout-ui",
+      "name": "@operon-core/layout-ui",
       "path": "packages/@core/ui-kit/layout-ui"
     },
     {
-      "name": "@tuquet-core/menu-ui",
+      "name": "@operon-core/menu-ui",
       "path": "packages/@core/ui-kit/menu-ui"
     },
     {
-      "name": "@tuquet-core/popup-ui",
+      "name": "@operon-core/popup-ui",
       "path": "packages/@core/ui-kit/popup-ui"
     },
     {
-      "name": "@tuquet-core/shadcn-ui",
+      "name": "@operon-core/shadcn-ui",
       "path": "packages/@core/ui-kit/shadcn-ui"
     },
     {
-      "name": "@tuquet-core/tabs-ui",
+      "name": "@operon-core/tabs-ui",
       "path": "packages/@core/ui-kit/tabs-ui"
     },
     {
-      "name": "@tuquet/constants",
+      "name": "@operon/constants",
       "path": "packages/constants"
     },
     {
-      "name": "@tuquet/access",
+      "name": "@operon/access",
       "path": "packages/effects/access"
     },
     {
-      "name": "@tuquet/common-ui",
+      "name": "@operon/common-ui",
       "path": "packages/effects/common-ui"
     },
     {
-      "name": "@tuquet/hooks",
+      "name": "@operon/hooks",
       "path": "packages/effects/hooks"
     },
     {
-      "name": "@tuquet/layouts",
+      "name": "@operon/layouts",
       "path": "packages/effects/layouts"
     },
     {
-      "name": "@tuquet/plugins",
+      "name": "@operon/plugins",
       "path": "packages/effects/plugins"
     },
     {
-      "name": "@tuquet/request",
+      "name": "@operon/request",
       "path": "packages/effects/request"
     },
     {
-      "name": "@tuquet/icons",
+      "name": "@operon/icons",
       "path": "packages/icons"
     },
     {
-      "name": "@tuquet/locales",
+      "name": "@operon/locales",
       "path": "packages/locales"
     },
     {
-      "name": "@tuquet/preferences",
+      "name": "@operon/preferences",
       "path": "packages/preferences"
     },
     {
-      "name": "@tuquet/stores",
+      "name": "@operon/stores",
       "path": "packages/stores"
     },
     {
-      "name": "@tuquet/styles",
+      "name": "@operon/styles",
       "path": "packages/styles"
     },
     {
-      "name": "@tuquet/types",
+      "name": "@operon/types",
       "path": "packages/types"
     },
     {
-      "name": "@tuquet/utils",
+      "name": "@operon/utils",
       "path": "packages/utils"
     },
     {
-      "name": "@tuquet/playground",
+      "name": "@operon/playground",
       "path": "playground"
     },
     {
-      "name": "@tuquet/turbo-run",
+      "name": "@operon/turbo-run",
       "path": "scripts/turbo-run"
     },
     {
-      "name": "@tuquet/vsh",
+      "name": "@operon/vsh",
       "path": "scripts/vsh"
     }
   ]

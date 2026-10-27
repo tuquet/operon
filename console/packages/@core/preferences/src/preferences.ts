@@ -1,4 +1,4 @@
-import type { DeepPartial } from '@tuquet-core/typings';
+import type { DeepPartial } from '@operon-core/typings';
 
 import type {
   CustomPreferencesField,
@@ -10,8 +10,8 @@ import type {
 
 import { markRaw, reactive, readonly, watch } from 'vue';
 
-import { MemoryStorageDriver, StorageManager } from '@tuquet-core/shared/cache';
-import { isMacOs, mergeWithArrayOverride } from '@tuquet-core/shared/utils';
+import { MemoryStorageDriver, StorageManager } from '@operon-core/shared/cache';
+import { isMacOs, mergeWithArrayOverride } from '@operon-core/shared/utils';
 
 import {
   breakpointsTailwind,

@@ -1,10 +1,10 @@
 import { createApp, watchEffect } from 'vue';
 
-import { registerAccessDirective } from '@tuquet/access';
-import { registerLoadingDirective } from '@tuquet/common-ui/es/loading';
-import { preferences } from '@tuquet/preferences';
-import { initStores } from '@tuquet/stores';
-import '@tuquet/styles';
+import { registerAccessDirective } from '@operon/access';
+import { registerLoadingDirective } from '@operon/common-ui/es/loading';
+import { preferences } from '@operon/preferences';
+import { initStores } from '@operon/stores';
+import '@operon/styles';
 
 import { useTitle } from '@vueuse/core';
 
@@ -82,11 +82,11 @@ async function bootstrap(namespace: string) {
   registerAccessDirective(app);
 
   // Initialize Tippy
-  const { initTippy } = await import('@tuquet/common-ui/es/tippy');
+  const { initTippy } = await import('@operon/common-ui/es/tippy');
   initTippy(app);
 
   // Configure Motion plugin
-  const { MotionPlugin } = await import('@tuquet/plugins/motion');
+  const { MotionPlugin } = await import('@operon/plugins/motion');
   app.use(MotionPlugin);
 
   // Dynamically update document title

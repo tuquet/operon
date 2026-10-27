@@ -3,7 +3,7 @@ import type { CountToProps } from './types';
 
 import { computed, onMounted, ref, watch } from 'vue';
 
-import { isString } from '@tuquet-core/shared/utils';
+import { isString } from '@operon-core/shared/utils';
 
 import { TransitionPresets, useTransition } from '@vueuse/core';
 

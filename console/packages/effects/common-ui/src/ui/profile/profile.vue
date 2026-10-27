@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Props } from './types';
 
-import { preferences } from '@tuquet-core/preferences';
+import { preferences } from '@operon-core/preferences';
 import {
   Card,
   Separator,
@@ -9,7 +9,7 @@ import {
   TabsList,
   TabsTrigger,
   VbenAvatar,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import { Page } from '../../components';
 

@@ -1,4 +1,4 @@
-import { useAccessStore } from '@tuquet/stores';
+import { useAccessStore } from '@operon/stores';
 
 export type UnauthorizedHandler = () => Promise<void> | void;
 

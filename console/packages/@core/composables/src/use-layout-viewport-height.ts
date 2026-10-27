@@ -1,6 +1,6 @@
 import { onMounted, onUnmounted } from 'vue';
 
-import { CSS_VARIABLE_LAYOUT_VIEWPORT_HEIGHT } from '@tuquet-core/shared/constants';
+import { CSS_VARIABLE_LAYOUT_VIEWPORT_HEIGHT } from '@operon-core/shared/constants';
 
 import { useCssVar, useEventListener } from '@vueuse/core';
 

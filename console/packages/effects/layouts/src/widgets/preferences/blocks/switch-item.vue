@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useSlots } from 'vue';
 
-import { CircleHelp } from '@tuquet/icons';
+import { CircleHelp } from '@operon/icons';
 
-import { Switch, VbenTooltip } from '@tuquet-core/shadcn-ui';
+import { Switch, VbenTooltip } from '@operon-core/shadcn-ui';
 
 defineOptions({
   name: 'PreferenceSwitchItem',

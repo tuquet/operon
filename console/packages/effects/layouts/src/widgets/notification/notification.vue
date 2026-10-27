@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 import type { NotificationItem } from './types';
 
-import { Bell, CircleCheckBig, CircleX, MailCheck } from '@tuquet/icons';
-import { $t } from '@tuquet/locales';
+import { Bell, CircleCheckBig, CircleX, MailCheck } from '@operon/icons';
+import { $t } from '@operon/locales';
 
 import {
   VbenButton,
   VbenIconButton,
   VbenPopover,
   VbenScrollbar,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import { useToggle } from '@vueuse/core';
 

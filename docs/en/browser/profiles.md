@@ -2,16 +2,16 @@
 
 Managing multi-account operations requires total data segregation. Commercial browsers share cached storage, DNS tables, and GPU contexts across tabs and windows, allowing anti-fraud trackers to correlate identities and execute portfolio-wide bans.
 
-**Tuquet** provides strict filesystem, memory, and network isolation through its **Isolated Browser Profile Sandbox**, managed natively by the [`browser`](https://github.com/tuquet/browser) microservice.
+**Operon** provides strict filesystem, memory, and network isolation through its **Isolated Browser Profile Sandbox**, managed natively by the [`browser`](https://github.com/operon/browser) microservice.
 
 ---
 
 ## 1. Sandbox Filesystem Isolation
 
-Every browser profile resides in its own sandboxed directory under SSOT identified by its unique ID/UUID (`~/.tq/browser/profiles/<profile_id>/`).
+Every browser profile resides in its own sandboxed directory under SSOT identified by its unique ID/UUID (`~/.operon/browser/profiles/<profile_id>/`).
 
 ```text
-~/.tq/browser/profiles/a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d/
+~/.operon/browser/profiles/a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d/
 ├── profile.json              # Deterministic hardware seeds & metadata
 ├── Default/                  # Isolated Chromium user data
 │   ├── Cookies               # SQLite session cookie jar
@@ -68,7 +68,7 @@ When creating a profile, `browser` uses a 32-bit pseudorandom seed (`--seed <u32
 
 In commercial anti-detect browser operations, having an IP address from one region while the system clock or locale reflects a different geographical location is an immediate red flag for fraud engines (Cloudflare Turnstile, DataDome, Google, Facebook).
 
-Tuquet provides automated network and geography synchronization:
+Operon provides automated network and geography synchronization:
 - **`auto_timezone: true`**: When launching with a proxy, the worker probes the exit IP and queries local GeoIP tables to dynamically inject `--timezone=<Region/City>` into Chromium, matching the browser clock 100% to the proxy's physical location.
 - **`auto_locale: true`**: Automatically synchronizes the `Intl`, `navigator.languages`, and `Accept-Language` HTTP headers with the proxy's country code.
 - **`change_ip_url`**: Supports rotation webhooks for dynamic residential and mobile 4G/5G proxies. When specified, worker nodes can trigger an on-demand IP refresh prior to workflow execution.
@@ -78,7 +78,7 @@ Tuquet provides automated network and geography synchronization:
 
 ## 3. Command Reference
 
-All profile operations are exposed via `tq browser profile` (or `tq browser profile`):
+All profile operations are exposed via `opn browser profile` (or `opn browser profile`):
 
 ### Creating and Inspecting Profiles
 
@@ -86,13 +86,13 @@ By default, profiles are created with a **Direct Connection** (`proxy = null`). 
 
 ```bash
 # 1. Create a clean profile (Direct connection by default - recommended for local testing)
-tq browser profile create "Acceptance-Clean" \
+opn browser profile create "Acceptance-Clean" \
   --os windows \
   --cores 8 \
   --ram 16
 
 # 2. Create a proxy-routed profile with deterministic PRNG seed and custom location
-tq browser profile create "TikTok-Agency-01" \
+opn browser profile create "TikTok-Agency-01" \
   --seed 94102 \
   --os windows \
   --cores 8 \
@@ -102,47 +102,47 @@ tq browser profile create "TikTok-Agency-01" \
   --locale "vi-VN"
 
 # Inspect detailed hardware parameters and disk footprint
-tq browser profile inspect "TikTok-Agency-01"
+opn browser profile inspect "TikTok-Agency-01"
 
 # List all local profiles with fingerprint summary table
-tq browser profile list
+opn browser profile list
 ```
 
 ### Pre-Flight Proxy Fail-Safe Guardrail
 
-When a profile is configured with a `--proxy`, `tq browser launch` automatically executes an active pre-flight connectivity probe before starting Chromium:
+When a profile is configured with a `--proxy`, `opn browser launch` automatically executes an active pre-flight connectivity probe before starting Chromium:
 - **Fail-Safe Abort**: If the proxy server is offline, down, or refused, launch is aborted immediately (`[PRE-FLIGHT CHECK FAILED: PROXY UNREACHABLE]`) to prevent accidental real IP leaks or dead automation sessions.
 - **Bypass Flag**: To test offline pages or launch without waiting for proxy health checks, supply `--skip-proxy-check`.
 - **Runtime Override**: To run a proxied profile in direct mode without editing `profile.json`, supply an empty string `--proxy ""`:
 
 ```bash
 # Verify proxy health, latency, and public egress IP independently
-tq browser profile test-proxy "TikTok-Agency-01" --timeout 5
+opn browser profile test-proxy "TikTok-Agency-01" --timeout 5
 
 # Override a profile's stored proxy with a direct connection
-tq browser launch "TikTok-Agency-01" --proxy "" --cdp
+opn browser launch "TikTok-Agency-01" --proxy "" --cdp
 
 # Bypass pre-flight probe guardrail
-tq browser launch "TikTok-Agency-01" --skip-proxy-check
+opn browser launch "TikTok-Agency-01" --skip-proxy-check
 ```
 
 ### Exporting & Archiving Profiles (Pack / Unpack)
 
-Tuquet incorporates a high-efficiency archive engine powered by **Zstandard (zstd)** with intelligent cache filtering. When archiving a profile, it strips disposable disk bloat (`Cache`, `Code Cache`, `GPUCache`, `Service Worker/CacheStorage`), reducing 500MB+ user directories to lightweight ~15MB portable snapshots:
+Operon incorporates a high-efficiency archive engine powered by **Zstandard (zstd)** with intelligent cache filtering. When archiving a profile, it strips disposable disk bloat (`Cache`, `Code Cache`, `GPUCache`, `Service Worker/CacheStorage`), reducing 500MB+ user directories to lightweight ~15MB portable snapshots:
 
 ```bash
 # Pack profile into a lightweight .tar.zst archive (Zstd level 3)
-tq browser profile pack "TikTok-Agency-01" -o ./TikTok-Agency-01.tar.zst
+opn browser profile pack "TikTok-Agency-01" -o ./TikTok-Agency-01.tar.zst
 
 # Restore profile from archive on another workstation or VPS
-tq browser profile unpack ./TikTok-Agency-01.tar.zst
+opn browser profile unpack ./TikTok-Agency-01.tar.zst
 ```
 
 ### Deleting Profiles
 
 ```bash
 # Permanently delete profile and purge all sandboxed data
-tq browser profile delete "TikTok-Agency-01" --force
+opn browser profile delete "TikTok-Agency-01" --force
 ```
 
 ---
@@ -153,20 +153,20 @@ In multi-node teams, profiles are stored centrally in Supabase Cloud (`browsers.
 
 ```bash
 # Upload session snapshot (cookies, localStorage) to Supabase Storage
-tq browser profile push "TikTok-Agency-01"
+opn browser profile push "TikTok-Agency-01"
 
 # Download profile and session snapshot on a remote worker or workstation
-tq browser profile pull "TikTok-Agency-01"
+opn browser profile pull "TikTok-Agency-01"
 
 # List central cloud browser profiles available to your organization
-tq browser profile cloud list
+opn browser profile cloud list
 
 # Acquire exclusive lease lock (prevents team members from opening simultaneously)
-tq browser profile cloud acquire "TikTok-Agency-01"
+opn browser profile cloud acquire "TikTok-Agency-01"
 
 # Launch session, execute automation, or perform manual work
-tq browser launch "TikTok-Agency-01"
+opn browser launch "TikTok-Agency-01"
 
 # Release distributed lease lock and synchronize cookie delta back to cloud
-tq browser profile cloud release "TikTok-Agency-01"
+opn browser profile cloud release "TikTok-Agency-01"
 ```

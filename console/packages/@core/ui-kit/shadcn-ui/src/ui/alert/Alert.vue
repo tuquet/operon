@@ -3,7 +3,7 @@ import type { HTMLAttributes } from 'vue';
 
 import type { AlertVariants } from './alert';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { alertVariants } from './alert';
 

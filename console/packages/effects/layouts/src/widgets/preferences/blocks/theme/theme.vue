@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { Component } from 'vue';
 
-import type { ThemeModeType } from '@tuquet/types';
+import type { ThemeModeType } from '@operon/types';
 
 import { watch } from 'vue';
 
-import { MoonStar, Sun, SunMoon } from '@tuquet/icons';
-import { $t } from '@tuquet/locales';
-import { usePreferences } from '@tuquet/preferences';
+import { MoonStar, Sun, SunMoon } from '@operon/icons';
+import { $t } from '@operon/locales';
+import { usePreferences } from '@operon/preferences';
 
 import SwitchItem from '../switch-item.vue';
 

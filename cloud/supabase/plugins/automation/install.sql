@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: AUTOMATION CLOUD BRIDGE (INSTALLATION SCRIPT)
+-- OPN-CLOUD PLUGIN: AUTOMATION CLOUD BRIDGE (INSTALLATION SCRIPT)
 -- Plugin ID: automation
 -- Version: 1.0.0
 -- Architecture: PostgreSQL Dedicated Schema Isolation (schema: automation)
@@ -1018,8 +1018,8 @@ GRANT EXECUTE ON FUNCTION automation.reap_stale_jobs(INTERVAL) TO service_role;
 DO $$
 BEGIN
     IF EXISTS (SELECT 1 FROM pg_extension WHERE extname = 'pg_cron') THEN
-        PERFORM cron.schedule('tuquet_automation_tick', '* * * * *', $cron$SELECT automation.tick_schedules()$cron$);
-        PERFORM cron.schedule('tuquet_automation_reap', '* * * * *', $cron$SELECT automation.reap_stale_jobs()$cron$);
+        PERFORM cron.schedule('operon_automation_tick', '* * * * *', $cron$SELECT automation.tick_schedules()$cron$);
+        PERFORM cron.schedule('operon_automation_reap', '* * * * *', $cron$SELECT automation.reap_stale_jobs()$cron$);
         RAISE NOTICE 'pg_cron: automation tick + reap scheduled';
     ELSE
         RAISE NOTICE 'pg_cron not installed — automation tick/reap not scheduled';
@@ -1207,5 +1207,5 @@ SELECT public.register_plugin(
     ARRAY['workers']::TEXT[],
     'Distributed browser automation coordinator, composite package blocks, batch job executions, and telemetry',
     FALSE,
-    '{"author": "Tuquet Team", "license": "MIT"}'::jsonb
+    '{"author": "Operon Team", "license": "MIT"}'::jsonb
 );

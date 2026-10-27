@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://tuquet.dev/schema/workflow.schema.json",
-  "title": "Tuquet Automation Workflow",
-  "description": "Compatibility schema for Tuquet workflows and Automa-compatible workflow exports.",
+  "$id": "https://operon.dev/schema/workflow.schema.json",
+  "title": "Operon Automation Workflow",
+  "description": "Compatibility schema for Operonworkflows and Automa-compatible workflow exports.",
   "type": "object",
   "anyOf": [
     { "required": ["drawflow"] },
@@ -63,7 +63,7 @@
       "type": "string"
     },
     "drawflow": {
-      "description": "Flat Tuquet graph, legacy Automa graph, or a JSON-encoded graph.",
+      "description": "Flat Operongraph, legacy Automa graph, or a JSON-encoded graph.",
       "oneOf": [
         { "$ref": "#/$defs/drawflow" },
         { "type": "string" }

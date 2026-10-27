@@ -5,8 +5,8 @@ import type { ValueType, VbenButtonGroupProps } from './button';
 
 import { computed, ref, watch } from 'vue';
 
-import { Circle, CircleCheckBig, LoaderCircle } from '@tuquet-core/icons';
-import { cn, isFunction } from '@tuquet-core/shared/utils';
+import { Circle, CircleCheckBig, LoaderCircle } from '@operon-core/icons';
+import { cn, isFunction } from '@operon-core/shared/utils';
 
 import { objectOmit } from '@vueuse/core';
 

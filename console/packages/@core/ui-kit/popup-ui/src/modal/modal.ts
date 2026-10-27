@@ -1,6 +1,6 @@
 import type { Component, Ref } from 'vue';
 
-import type { ClassType, MaybePromise } from '@tuquet-core/typings';
+import type { ClassType, MaybePromise } from '@operon-core/typings';
 
 import type { ModalApi } from './modal-api';
 

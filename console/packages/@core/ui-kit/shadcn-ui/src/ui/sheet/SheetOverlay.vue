@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { inject } from 'vue';
 
-import { useScrollLock } from '@tuquet-core/composables';
+import { useScrollLock } from '@operon-core/composables';
 
 useScrollLock();
 const id = inject('DISMISSABLE_DRAWER_ID');

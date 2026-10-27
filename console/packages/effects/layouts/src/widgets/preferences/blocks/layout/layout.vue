@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import type { Component } from 'vue';
 
-import type { LayoutType } from '@tuquet/types';
+import type { LayoutType } from '@operon/types';
 
 import { computed } from 'vue';
 
-import { CircleHelp } from '@tuquet/icons';
-import { $t } from '@tuquet/locales';
+import { CircleHelp } from '@operon/icons';
+import { $t } from '@operon/locales';
 
-import { VbenTooltip } from '@tuquet-core/shadcn-ui';
+import { VbenTooltip } from '@operon-core/shadcn-ui';
 
 import {
   FullContent,

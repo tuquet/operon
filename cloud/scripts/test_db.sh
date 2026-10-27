@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# TUQUET-CLOUD DATABASE TEST RUNNER
+# OPN-CLOUD DATABASE TEST RUNNER
 # Description: Executes automated SQL verification suites against local Supabase
 # ============================================================================
 
@@ -9,7 +9,7 @@ set -euo pipefail
 TARGET="${1:-local}"
 
 echo "===================================================================="
-echo " [TUQUET-CLOUD] Database Test Suite Runner (Target: $TARGET)"
+echo " [OPN-CLOUD] Database Test Suite Runner (Target: $TARGET)"
 echo "===================================================================="
 
 TEST_FILES=(

@@ -2,7 +2,7 @@
 
 Web Real-Time Communication (WebRTC) is an essential browser technology enabling peer-to-peer audio, video, and data communication without plugins. However, WebRTC poses an existential threat to multi-account operations and antidetect browsing because it was designed to discover the fastest direct network path between peers—even when operating behind network proxies or VPNs.
 
-**Tuquet** eliminates this vulnerability through **Native WebRTC STUN Suppression** and remote DNS resolution built directly into the C++ Chromium engine.
+**Operon** eliminates this vulnerability through **Native WebRTC STUN Suppression** and remote DNS resolution built directly into the C++ Chromium engine.
 
 <HairlineFigure name="dish" />
 
@@ -77,7 +77,7 @@ Verify that your workstation is 100% leak-proof across independent audit platfor
 
 ```bash
 # Launch test profile with proxy and open WebRTC leak verification tool
-tq browser launch "Test-Profile" \
+opn browser launch "Test-Profile" \
   --proxy socks5://127.0.0.1:1080 \
   --url "https://browserleaks.com/webrtc"
 ```

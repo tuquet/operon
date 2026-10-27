@@ -10,12 +10,12 @@ export interface DeepLinkAuthPayload {
 
 /**
  * Parses deep link callback URL in the form:
- * tuquet://auth/callback?token=...&refresh_token=... (gateway format)
- * OR tuquet://auth/callback#access_token=...&refresh_token=... (Supabase OAuth format)
+ * operon://auth/callback?token=...&refresh_token=... (gateway format)
+ * OR operon://auth/callback#access_token=...&refresh_token=... (Supabase OAuth format)
  */
 export function parseDeepLinkAuthUrl(url: string): DeepLinkAuthPayload | null {
   try {
-    if (!url || !url.startsWith('tuquet://')) return null;
+    if (!url || !url.startsWith('operon://')) return null;
 
     // Support both query params (?token=...) and hash fragment (#access_token=...) from Supabase OAuth
     let searchPart = '';
@@ -109,10 +109,10 @@ export async function initDesktopAuthHandling(): Promise<() => void> {
 
   return setupDeepLinkListener(async (payload) => {
     try {
-      const { useAccessStore, useUserStore } = await import('@tuquet/stores');
-      const { preferences } = await import('@tuquet/preferences');
-      const { toast } = await import('@tuquet-core/shadcn-ui');
-      const { $t } = await import('@tuquet/locales');
+      const { useAccessStore, useUserStore } = await import('@operon/stores');
+      const { preferences } = await import('@operon/preferences');
+      const { toast } = await import('@operon-core/shadcn-ui');
+      const { $t } = await import('@operon/locales');
       const { getAccessCodes } = await import('#/api');
       const { useAuthStore } = await import('#/store');
       const { router } = await import('#/router');

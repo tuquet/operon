@@ -43,8 +43,8 @@ const defaultPreferences: Preferences = {
     styleType: 'normal',
   },
   copyright: {
-    companyName: 'Tuquet',
-    companySiteLink: 'https://tuquet.com',
+    companyName: 'Operon',
+    companySiteLink: 'https://operon.com',
     date: '2026',
     enable: true,
     icp: '',

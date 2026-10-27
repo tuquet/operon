@@ -12,7 +12,7 @@ pub async fn run_upgrade() -> Result<(), Box<dyn std::error::Error>> {
         ClackSpinner, clack_intro, clack_outro, clack_step_info, clack_step_ok, clack_step_warn,
     };
 
-    clack_intro("tq upgrade", "CLI Self-Updater & Release Manager");
+    clack_intro("opn upgrade", "CLI Self-Updater & Release Manager");
     let sp = ClackSpinner::start(format!(
         "Checking for latest release from GitHub ({})...",
         GITHUB_REPO
@@ -58,7 +58,7 @@ pub async fn run_upgrade() -> Result<(), Box<dyn std::error::Error>> {
     let current_exe = std::env::current_exe()?;
     let exe_lower = current_exe.to_string_lossy().to_lowercase();
     let is_scoop_install =
-        exe_lower.contains("scoop\\apps\\tuquet") || exe_lower.contains("scoop/apps/tuquet");
+        exe_lower.contains("scoop\\apps\\operon") || exe_lower.contains("scoop/apps/operon");
 
     // 1. If installed as a dedicated Scoop app, delegate to scoop update
     if is_scoop_install {
@@ -77,7 +77,7 @@ pub async fn run_upgrade() -> Result<(), Box<dyn std::error::Error>> {
             clack_step_info("Detected Scoop installation. Executing package upgrade...");
 
             if let Ok(output) = tokio::process::Command::new("powershell")
-                .args(["-NoProfile", "-Command", "scoop update tuquet"])
+                .args(["-NoProfile", "-Command", "scoop update operon"])
                 .output()
                 .await
             {
@@ -138,7 +138,7 @@ async fn perform_in_place_self_update(
 
     // Find best asset match:
     // 1. Archive matching OS and Arch (e.g. windows-x64.zip, linux-x64.tar.gz)
-    // 2. Raw binary matching OS (tuquet.exe, tuquet)
+    // 2. Raw binary matching OS (operon.exe, operon)
     let mut selected_asset: Option<(String, String, u64)> = None;
     let mut checksum_asset: Option<(String, String)> = None;
 
@@ -157,13 +157,13 @@ async fn perform_in_place_self_update(
                 checksum_asset = Some((name.to_string(), download_url.to_string()));
             }
 
-            // Match full prefix archive (tuquet)
+            // Match full prefix archive (operon)
             if name.starts_with(&prefix) && (name.ends_with(".zip") || name.ends_with(".tar.gz")) {
                 selected_asset = Some((name.to_string(), download_url.to_string(), size));
                 break;
             }
             // Match naming with arch and os
-            if name.contains("tuquet")
+            if name.contains("operon")
                 && name.contains(arch)
                 && name.contains(os)
                 && name.ends_with(".zip")
@@ -172,7 +172,7 @@ async fn perform_in_place_self_update(
             }
             // Fallback raw binary
             if selected_asset.is_none()
-                && (name == "tq.exe" || name == "tq" || name == "tuquet.exe" || name == "tuquet")
+                && (name == "opn.exe" || name == "opn" || name == "operon.exe" || name == "operon")
             {
                 selected_asset = Some((name.to_string(), download_url.to_string(), size));
             }
@@ -240,10 +240,10 @@ async fn perform_in_place_self_update(
         for i in 0..archive.len() {
             let mut file = archive.by_index(i)?;
             let file_name = file.name().to_string();
-            if file_name.ends_with("tq.exe")
-                || file_name.ends_with("tq")
-                || file_name.ends_with("tuquet.exe")
-                || file_name.ends_with("tuquet")
+            if file_name.ends_with("opn.exe")
+                || file_name.ends_with("opn")
+                || file_name.ends_with("operon.exe")
+                || file_name.ends_with("operon")
             {
                 let mut buf = Vec::new();
                 file.read_to_end(&mut buf)?;
@@ -251,7 +251,7 @@ async fn perform_in_place_self_update(
                 break;
             }
         }
-        extracted.ok_or("Failed to locate 'tq' executable inside the downloaded ZIP archive")?
+        extracted.ok_or("Failed to locate 'opn' executable inside the downloaded ZIP archive")?
     } else if asset_name.ends_with(".tar.gz") {
         println!(
             "{} Extracting binary from Tarball archive in-memory...",
@@ -265,10 +265,10 @@ async fn perform_in_place_self_update(
         for entry in tar_archive.entries()? {
             let mut entry = entry?;
             let path = entry.path()?.to_string_lossy().to_string();
-            if path.ends_with("tq")
-                || path.ends_with("tq.exe")
-                || path.ends_with("tuquet")
-                || path.ends_with("tuquet.exe")
+            if path.ends_with("opn")
+                || path.ends_with("opn.exe")
+                || path.ends_with("operon")
+                || path.ends_with("operon.exe")
             {
                 let mut buf = Vec::new();
                 entry.read_to_end(&mut buf)?;
@@ -276,15 +276,15 @@ async fn perform_in_place_self_update(
                 break;
             }
         }
-        extracted.ok_or("Failed to locate 'tq' executable inside the downloaded tarball archive")?
+        extracted.ok_or("Failed to locate 'opn' executable inside the downloaded tarball archive")?
     } else {
         // Direct raw binary
         downloaded_bytes.to_vec()
     };
 
-    // Swap executable in-place for `tq` only, and purge any legacy `tuquet.exe`
+    // Swap executable in-place for `opn` only, and purge any legacy `operon.exe`
     println!(
-        "{} Performing atomic in-place binary swap (tq)...",
+        "{} Performing atomic in-place binary swap (opn)...",
         crate::ui::badge_step("SWAP")
     );
 
@@ -296,7 +296,7 @@ async fn perform_in_place_self_update(
 
     atomic_swap_binary(&target_spc, &binary_bytes)?;
 
-    // If the user ran `tuquet.exe update` from an older install, remove the legacy `tuquet.exe`
+    // If the user ran `operon.exe update` from an older install, remove the legacy `operon.exe`
     if current_exe != target_spc {
         let old_legacy = current_exe.with_extension("exe.old");
         let _ = std::fs::rename(current_exe, &old_legacy);
@@ -335,22 +335,22 @@ async fn perform_in_place_self_update(
 fn platform_binary_name() -> &'static str {
     #[cfg(windows)]
     {
-        "tq.exe"
+        "opn.exe"
     }
     #[cfg(not(windows))]
     {
-        "tq"
+        "opn"
     }
 }
 
 fn legacy_binary_name() -> &'static str {
     #[cfg(windows)]
     {
-        "tuquet.exe"
+        "operon.exe"
     }
     #[cfg(not(windows))]
     {
-        "tuquet"
+        "operon"
     }
 }
 

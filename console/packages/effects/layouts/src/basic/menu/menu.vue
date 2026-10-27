@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { MenuRecordRaw } from '@tuquet/types';
+import type { MenuRecordRaw } from '@operon/types';
 
-import type { MenuProps } from '@tuquet-core/menu-ui';
+import type { MenuProps } from '@operon-core/menu-ui';
 
-import { Menu } from '@tuquet-core/menu-ui';
+import { Menu } from '@operon-core/menu-ui';
 
 interface Props extends MenuProps {
   menus?: MenuRecordRaw[];

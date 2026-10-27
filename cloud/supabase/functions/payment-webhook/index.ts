@@ -1,5 +1,5 @@
 // ============================================================================
-// TUQUET-CLOUD EDGE FUNCTION: UNIFIED MULTI-PLATFORM PAYMENT WEBHOOK
+// OPN-CLOUD EDGE FUNCTION: UNIFIED MULTI-PLATFORM PAYMENT WEBHOOK
 // Endpoint: POST /functions/v1/payment-webhook?gateway_id=<id>
 // Architecture: Pluggable Provider Adapter + Idempotent ACID Settlement RPC
 // ============================================================================

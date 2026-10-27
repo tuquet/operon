@@ -121,7 +121,7 @@ impl ProfilePacker {
             let _ = builder.add(&local_ignore);
         }
 
-        // 2. Global shared .profileignore in ~/.tq/browser/profiles/.profileignore
+        // 2. Global shared .profileignore in ~/.operon/browser/profiles/.profileignore
         if let Some(parent) = profile_dir.parent() {
             let global_ignore = parent.join(".profileignore");
             if global_ignore.exists() {

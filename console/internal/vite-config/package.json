@@ -1,12 +1,12 @@
 {
-  "name": "@tuquet/vite-config",
+  "name": "@operon/vite-config",
   "version": "5.8.0",
   "private": true,
-  "homepage": "https://github.com/tuquet/console",
-  "bugs": "https://github.com/tuquet/console/issues",
+  "homepage": "https://github.com/operon/console",
+  "bugs": "https://github.com/operon/console/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tuquet/console.git",
+    "url": "git+https://github.com/operon/console.git",
     "directory": "internal/vite-config"
   },
   "license": "MIT",
@@ -30,7 +30,7 @@
     "@intlify/unplugin-vue-i18n": "catalog:",
     "@jspm/generator": "catalog:",
     "@tailwindcss/vite": "catalog:",
-    "@tuquet/node-utils": "workspace:*",
+    "@operon/node-utils": "workspace:*",
     "archiver": "catalog:",
     "cheerio": "catalog:",
     "get-port": "catalog:",

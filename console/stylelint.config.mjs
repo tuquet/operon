@@ -1,4 +1,4 @@
 export default {
-  extends: ['@tuquet/stylelint-config'],
+  extends: ['@operon/stylelint-config'],
   root: true,
 };

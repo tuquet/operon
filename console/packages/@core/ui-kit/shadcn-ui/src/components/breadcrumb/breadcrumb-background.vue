@@ -50,7 +50,7 @@ function handleClick(index: number, path?: string) {
   </ul>
 </template>
 <style scoped>
-@reference "@tuquet/tailwind-config/theme";
+@reference "@operon/tailwind-config/theme";
 
 li {
   @apply h-7;

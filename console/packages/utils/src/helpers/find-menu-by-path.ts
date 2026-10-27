@@ -1,4 +1,4 @@
-import type { MenuRecordRaw } from '@tuquet-core/typings';
+import type { MenuRecordRaw } from '@operon-core/typings';
 
 function findMenuByPath(
   list: MenuRecordRaw[],

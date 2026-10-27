@@ -1,12 +1,12 @@
 import type {
   ComponentRecordType,
   GenerateMenuAndRoutesOptions,
-} from '@tuquet/types';
+} from '@operon/types';
 
-import { generateAccessible } from '@tuquet/access';
-import { preferences } from '@tuquet/preferences';
+import { generateAccessible } from '@operon/access';
+import { preferences } from '@operon/preferences';
 
-import { toast } from '@tuquet-core/shadcn-ui';
+import { toast } from '@operon-core/shadcn-ui';
 
 import { getAllMenusApi } from '#/api';
 import { listInstalledPlugins } from '#/api/core/access';

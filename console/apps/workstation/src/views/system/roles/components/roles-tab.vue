@@ -2,9 +2,9 @@
 import type { SystemRole } from '#/api';
 import type { EffectiveAccess } from '#/api/core/access';
 
-import { usePreferences } from '@tuquet/preferences';
+import { usePreferences } from '@operon/preferences';
 
-import { Badge, Button } from '@tuquet-core/shadcn-ui';
+import { Badge, Button } from '@operon-core/shadcn-ui';
 
 import { Lock, Plus, ShieldCheck } from '@lucide/vue';
 

@@ -73,7 +73,7 @@ pub const WINDOWS_ESSENTIAL_ENV_VARS: &[&str] = &[
     "COMPUTERNAME",
 ];
 
-/// Non-secret Tuquet runtime environment variables that can safely ride along
+/// Non-secret Operonruntime environment variables that can safely ride along
 pub const CONTEXT_VARS: &[&str] =
     &["DATA_DIR", "TENANT_ID", "SESSION_ID", "PROFILE"];
 
@@ -108,7 +108,7 @@ where
             continue;
         }
 
-        // 3. Allowed Tuquet context vars: pass through
+        // 3. Allowed Operoncontext vars: pass through
         if CONTEXT_VARS.contains(&upper_key.as_str()) {
             clean_env.insert(key.to_string(), val.to_string());
             continue;
@@ -172,7 +172,7 @@ pub async fn handle(
     } else {
         let interactive_scan = !list && !check && switch_profile.is_none();
         if interactive_scan {
-            clack_intro("tq env", "Environment Inspector & Profile Switcher");
+            clack_intro("opn env", "Environment Inspector & Profile Switcher");
             intro_shown = true;
         }
         let sp = if interactive_scan {
@@ -210,7 +210,7 @@ pub async fn handle(
             return Ok(());
         }
 
-        // Non-interactive multi-project overview when `tq env -l` or `tq env --check` is run without a project arg
+        // Non-interactive multi-project overview when `opn env -l` or `opn env --check` is run without a project arg
         if project.is_none() && (list || check) {
             let reports: Vec<EnvProjectReport> = pool
                 .iter()
@@ -284,7 +284,7 @@ pub async fn handle(
 
     if !intro_shown {
         clack_intro(
-            "tq env",
+            "opn env",
             &format!(
                 "{} • {} keys, {} missing vs template, {} empty",
                 report.project_id,
@@ -533,7 +533,7 @@ pub fn sync_missing_keys_to_dotenv(
     if !content.is_empty() && !content.ends_with('\n') {
         content.push('\n');
     }
-    content.push_str("\n# Synced from .env.example by tq env\n");
+    content.push_str("\n# Synced from .env.example by opn env\n");
     for (k, v) in missing_keys {
         content.push_str(&format!("{}={}\n", k, v));
     }

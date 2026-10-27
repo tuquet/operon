@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-import { Settings } from '@tuquet/icons';
+import { Settings } from '@operon/icons';
 
-import { VbenIconButton } from '@tuquet-core/shadcn-ui';
+import { VbenIconButton } from '@operon-core/shadcn-ui';
 
 import Preferences from './preferences.vue';
 

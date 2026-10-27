@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: WORKERS & COMPUTE FLEET (INSTALLATION SCRIPT)
+-- OPN-CLOUD PLUGIN: WORKERS & COMPUTE FLEET (INSTALLATION SCRIPT)
 -- Plugin ID: workers
 -- Version: 1.0.0
 -- Architecture: PostgreSQL Dedicated Schema Isolation (schema: workers)

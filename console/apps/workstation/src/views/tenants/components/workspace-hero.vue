@@ -3,7 +3,7 @@ import type { Tenant } from '#/api';
 
 import { computed } from 'vue';
 
-import { Avatar, AvatarFallback, Badge, Button } from '@tuquet-core/shadcn-ui';
+import { Avatar, AvatarFallback, Badge, Button } from '@operon-core/shadcn-ui';
 
 import {
   Calendar,

@@ -1,5 +1,5 @@
 -- ============================================================================
--- TUQUET-CLOUD PLUGIN: CLOUD BROWSER PROFILES & ANTIDETECT ENGINE CATALOG
+-- OPN-CLOUD PLUGIN: CLOUD BROWSER PROFILES & ANTIDETECT ENGINE CATALOG
 -- Plugin ID: browsers
 -- Version: 1.1.0
 -- Architecture: PostgreSQL Dedicated Schema Isolation (schema: browsers)
@@ -754,7 +754,7 @@ SELECT public.register_plugin(
     ARRAY['core-iam']::TEXT[],
     'Virtual antidetect browser profiles (Ungoogled/adryfish), deterministic C++ PRNG fingerprints, remote engine releases catalog, and session storage sync',
     FALSE,
-    '{"author": "Tuquet Team", "license": "MIT"}'::jsonb
+    '{"author": "Operon Team", "license": "MIT"}'::jsonb
 );
 
 -- 10. Backward Compatibility Views for legacy callers

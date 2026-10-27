@@ -4,9 +4,9 @@ import type {
   ExRouteRecordRaw,
   MenuRecordRaw,
   RouteMeta,
-} from '@tuquet-core/typings';
+} from '@operon-core/typings';
 
-import { filterTree, mapTree, sortTree } from '@tuquet-core/shared/utils';
+import { filterTree, mapTree, sortTree } from '@operon-core/shared/utils';
 
 /**
  * Generate menu list based on routes

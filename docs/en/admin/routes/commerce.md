@@ -120,4 +120,4 @@ Phân hệ thương mại điện tử gồm **3 tuyến đường nội bộ** 
 - **Quyền Truy Cập:** Public (`ignoreAccess: true`, sử dụng `{ skipAuth: true }` trên mọi lời gọi API)
 - **Chức Năng Cốt Lõi:**
   - Cho phép khách hàng vãng lai duyệt các sản phẩm `visibility = 'public'` (`serial_stock`, `digital_file`), đặt mua qua VietQR / MoMo / Stripe / USDT mà không cần đăng nhập.
-  - Tự động lưu cặp `(order_code, claim_token)` vào `localStorage` (`TUQUET_GUEST_ORDERS`), hỗ trợ URL query `?order=ORD-...&token=CLM_...` và polling 3 giây qua `getGuestOrderDeliveriesApi` để bàn giao sản phẩm ngay trên trình duyệt.
+  - Tự động lưu cặp `(order_code, claim_token)` vào `localStorage` (`OPERON_GUEST_ORDERS`), hỗ trợ URL query `?order=ORD-...&token=CLM_...` và polling 3 giây qua `getGuestOrderDeliveriesApi` để bàn giao sản phẩm ngay trên trình duyệt.

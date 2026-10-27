@@ -24,7 +24,7 @@ import {
   EmptyMedia,
   Progress,
   toast,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 import {
   AlertCircle,

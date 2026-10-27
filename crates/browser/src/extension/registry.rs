@@ -5,21 +5,21 @@ use std::path::PathBuf;
 
 use super::models::Extension;
 
-/// Persistent registry of browser extensions managed by Tuquet
+/// Persistent registry of browser extensions managed by Operon
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct ExtensionRegistry {
     pub extensions: HashMap<String, Extension>,
 }
 
 impl ExtensionRegistry {
-    /// Resolves canonical extensions directory: ~/.tq/browser/extensions/
+    /// Resolves canonical extensions directory: ~/.operon/browser/extensions/
     pub fn resolve_extensions_dir() -> PathBuf {
         crate::resolver::canonical_ssot_dir()
             .join("browser")
             .join("extensions")
     }
 
-    /// Registry JSON storage path: ~/.tq/browser/extensions/registry.json
+    /// Registry JSON storage path: ~/.operon/browser/extensions/registry.json
     pub fn registry_file_path() -> PathBuf {
         Self::resolve_extensions_dir().join("registry.json")
     }
@@ -71,7 +71,7 @@ impl ExtensionRegistry {
         registry
     }
 
-    /// Persists registry to ~/.tq/browser/extensions/registry.json
+    /// Persists registry to ~/.operon/browser/extensions/registry.json
     pub fn save(&self) -> Result<()> {
         let dir = Self::resolve_extensions_dir();
         if !dir.exists() {

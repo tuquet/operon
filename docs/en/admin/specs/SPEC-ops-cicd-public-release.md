@@ -4,7 +4,7 @@
 
 | Module ID | Responsibility | Depends on |
 | --- | --- | --- |
-| `public-repo` | Chuẩn hóa repo Public: Loại bỏ triệt để reference upstream cũ (`tuquet/admin`), rà soát chống rò rỉ secrets, cập nhật `SECURITY.md`, `LICENSE`, badges và release instructions. | — |
+| `public-repo` | Chuẩn hóa repo Public: Loại bỏ triệt để reference upstream cũ (`operon/admin`), rà soát chống rò rỉ secrets, cập nhật `SECURITY.md`, `LICENSE`, badges và release instructions. | — |
 | `ci-pipeline` | Tự động hóa Quality Gate trên GitHub Actions (PR & Push `main`): Lint, Typecheck, Unit Test, Headless Console Gate, và Rust Backend `cargo check`. | `public-repo` |
 | `cd-release` | Tự động hóa đóng gói phát hành Windows Desktop App (Tauri v2) khi push tag (`v*.*.*`): Build NSIS `.exe` & MSI, ký số OTA với Ed25519, upload artifacts & `latest.json` lên GitHub Releases. | `ci-pipeline` |
 
@@ -14,7 +14,7 @@
 
 ## 2. Assumptions (Giả định cốt lõi)
 
-1. **Repository đích:** Repository GitHub công khai mang định danh `tuquet/admin` (hoặc repo public của tổ chức Tuquet).
+1. **Repository đích:** Repository GitHub công khai mang định danh `operon/admin` (hoặc repo public của tổ chức Operon).
 2. **Kích hoạt phát hành (Release Trigger):** Kích hoạt tự động khi push Git tag định dạng SemVer `v*.*.*` (ví dụ: `v0.1.0`, `v1.0.0`) hoặc qua nút bấm thủ công `workflow_dispatch` trên GitHub Actions.
 3. **Môi trường Runner:**
    - **CI Pipeline:** Chạy trên `ubuntu-latest` để tối ưu thời gian và chi phí tính toán (compute minutes).
@@ -23,15 +23,15 @@
    - Public Key (`dW50cnVzdGVk...`) đã được cấu hình cố định trong `apps/web-admin/src-tauri/tauri.conf.json`.
    - Private Key được cấu hình an toàn trên GitHub Secrets dưới tên `TAURI_SIGNING_PRIVATE_KEY` (và `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` nếu có). Không lưu private key trong git code.
 5. **Artifacts phát hành:** File phát hành tải về cho người dùng bao gồm:
-   - `Tuquet-Admin_<version>_x64-setup.exe` (Bộ cài đặt Windows NSIS phổ biến nhất)
-   - `Tuquet-Admin_<version>_x64_en-US.msi` (Bộ cài đặt Windows Enterprise MSI)
+   - `Operon-Admin_<version>_x64-setup.exe` (Bộ cài đặt Windows NSIS phổ biến nhất)
+   - `Operon-Admin_<version>_x64_en-US.msi` (Bộ cài đặt Windows Enterprise MSI)
    - `latest.json` & `*.sig` (Manifest cập nhật tự động phục vụ `@tauri-apps/plugin-updater`).
 
 ---
 
 ## 3. Objective
 
-Xây dựng hệ thống CI/CD chuẩn Enterprise cho repository `tuquet/admin` khi chuyển sang trạng thái Public Repository:
+Xây dựng hệ thống CI/CD chuẩn Enterprise cho repository `operon/admin` khi chuyển sang trạng thái Public Repository:
 
 - **Public Hygiene:** Loại bỏ hoàn toàn tàn dư upstream cũ, bảo vệ secrets, tài liệu hóa cách tải và cài đặt rõ ràng.
 - **Continuous Integration (CI):** Ngăn chặn 100% hồi quy mã nguồn bằng cách bắt buộc vượt qua 5 lớp kiểm định trước khi merge vào nhánh `main`.
@@ -78,7 +78,7 @@ pnpm run tauri:build         # Đóng gói hoàn chỉnh MSI + NSIS EXE Installe
 │   ├── ci.yml                 # Pipeline CI chạy khi PR và Push to main (5 Quality Gates)
 │   ├── release.yml            # Pipeline CD Release build Desktop Windows App khi push tag v*.*.*
 │   └── deploy.yml             # Web deployment pipeline (nếu có Cloudflare/Vercel)
-├── ISSUE_TEMPLATE/            # Templates báo cáo lỗi và yêu cầu tính năng chuẩn Tuquet
+├── ISSUE_TEMPLATE/            # Templates báo cáo lỗi và yêu cầu tính năng chuẩn Operon
 ├── pull_request_template.md   # PR template với checklist kiểm thử
 SECURITY.md                    # Chính sách báo cáo lỗ hổng bảo mật cho Public Repo
 LICENSE                        # Giấy phép nguồn mở MIT chính thức
@@ -92,14 +92,14 @@ index.md                      # Bổ sung Badges trạng thái CI & Release Down
 ### 7.1. Module `public-repo`: Dọn Dẹp & Vệ Sinh Repo
 
 1. **Thay thế định danh repo cũ:**
-   - Quét và thay thế toàn bộ chuỗi `tuquet/admin` thành `tuquet/admin` trong `.github/workflows/`, `.github/config.yml`, `.github/dependabot.yml`, và `.github/release-drafter.yml`.
+   - Quét và thay thế toàn bộ chuỗi `operon/admin` thành `operon/admin` trong `.github/workflows/`, `.github/config.yml`, `.github/dependabot.yml`, và `.github/release-drafter.yml`.
 2. **Bảo mật & Open Source Hygiene:**
-   - Tạo file `SECURITY.md` định rõ địa chỉ nhận thông báo lỗ hổng (`security@tuquet.com`) và phạm vi hỗ trợ phiên bản.
+   - Tạo file `SECURITY.md` định rõ địa chỉ nhận thông báo lỗ hổng (`security@operon.com`) và phạm vi hỗ trợ phiên bản.
    - Xác nhận file `LICENSE` chuẩn MIT License mang tên sở hữu `Team`.
    - Bổ sung Badges trên `index.md`:
-     - GitHub CI Status: `[![CI](https://github.com/tuquet/console/actions/workflows/ci.yml/badge.svg)](https://github.com/tuquet/console/actions/workflows/ci.yml)`
-     - GitHub Latest Release: `[![Release](https://img.shields.io/github/v/release/tuquet/admin?display_name=tag)](https://github.com/tuquet/console/releases)`
-     - Direct Download EXE: `[Tải Admin cho Windows (.exe)](https://github.com/tuquet/console/releases/latest/download/admin-setup.exe)`
+     - GitHub CI Status: `[![CI](https://github.com/operon/console/actions/workflows/ci.yml/badge.svg)](https://github.com/operon/console/actions/workflows/ci.yml)`
+     - GitHub Latest Release: `[![Release](https://img.shields.io/github/v/release/operon/admin?display_name=tag)](https://github.com/operon/console/releases)`
+     - Direct Download EXE: `[Tải Admin cho Windows (.exe)](https://github.com/operon/console/releases/latest/download/admin-setup.exe)`
 
 ### 7.2. Module `ci-pipeline`: Cải Tiến CI Workflow (`.github/workflows/ci.yml`)
 
@@ -156,7 +156,7 @@ Các bước chi tiết trên runner `windows-latest`:
 - **Luôn luôn làm (Always):**
   - Tách bạch rõ ràng giữa CI (chạy trên Linux nhanh, tiết kiệm chi phí) và CD Release (chạy trên Windows để đóng gói native Windows MSI/NSIS).
   - Sử dụng GitHub Actions Secrets cho Private Key, không bao giờ in hay log private key ra console runner.
-  - Đảm bảo các link download trên index trỏ trực tiếp đến `https://github.com/tuquet/console/releases/latest/download/...`.
+  - Đảm bảo các link download trên index trỏ trực tiếp đến `https://github.com/operon/console/releases/latest/download/...`.
 - **Hỏi ý kiến trước (Ask first):**
   - Nếu muốn hỗ trợ thêm macOS (`.dmg`) hoặc Linux (`.AppImage`/`.deb`) trong CD pipeline (yêu cầu thêm runner `macos-latest` và `ubuntu-latest`).
 - **Không bao giờ làm (Never):**
@@ -167,7 +167,7 @@ Các bước chi tiết trên runner `windows-latest`:
 
 ## 9. Success Criteria (Tiêu Chí Nghiệm Thu)
 
-1. **Repo Sanitization Clean:** Không còn bất kỳ file workflow hay template nào tham chiếu tới `tuquet/admin`.
+1. **Repo Sanitization Clean:** Không còn bất kỳ file workflow hay template nào tham chiếu tới `operon/admin`.
 2. **OSS Compliance:** Đầy đủ file `LICENSE` (MIT) và `SECURITY.md`.
 3. **CI Pipeline Validation:** File `.github/workflows/ci.yml` chuẩn cú pháp GitHub Actions, bao gồm cả gate `tauri:check` và `check:console`.
 4. **CD Release Workflow Ready:** File `.github/workflows/release.yml` sẵn sàng biên dịch trên Windows runner, tích hợp `tauri-action`, tự động tạo GitHub Release và đính kèm file cài đặt `.exe`, `.msi`, cùng `latest.json` khi push tag `v*.*.*`.

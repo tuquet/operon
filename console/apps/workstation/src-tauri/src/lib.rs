@@ -42,7 +42,7 @@ pub fn run() {
             }
             // If single-instance receives deep-link URL on secondary launch
             for arg in args {
-                if arg.starts_with("tuquet://") {
+                if arg.starts_with("operon://") {
                     let _ = app.emit("deep-link-received", arg);
                 }
             }
@@ -92,5 +92,5 @@ pub fn run() {
             Ok(())
         })
         .run(tauri::generate_context!())
-        .expect("error while running tq admin tauri application");
+        .expect("error while running opn admin tauri application");
 }

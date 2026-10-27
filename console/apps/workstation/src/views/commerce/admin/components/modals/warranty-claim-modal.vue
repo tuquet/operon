@@ -3,7 +3,7 @@ import type { CommerceOrder } from '#/api/core/commerce';
 
 import { ref, watch } from 'vue';
 
-import { $t } from '@tuquet/locales';
+import { $t } from '@operon/locales';
 
 import {
   Button,
@@ -14,7 +14,7 @@ import {
   DialogTitle,
   Input,
   Label,
-} from '@tuquet-core/shadcn-ui';
+} from '@operon-core/shadcn-ui';
 
 interface Props {
   claiming?: boolean;

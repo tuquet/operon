@@ -1,17 +1,17 @@
 {
-  "name": "@tuquet/docs",
+  "name": "@operon/docs",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://docs.tuquet.com",
+  "homepage": "https://docs.operon.com",
   "bugs": {
-    "url": "https://github.com/tuquet/docs/issues"
+    "url": "https://github.com/operon/docs/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tuquet/docs.git"
+    "url": "git+https://github.com/operon/docs.git"
   },
   "license": "MIT",
-  "author": "Tuquet Team <dev@tuquet.com>",
+  "author": "Operon Team <dev@operon.com>",
   "type": "module",
   "packageManager": "pnpm@10.5.2",
   "engines": {

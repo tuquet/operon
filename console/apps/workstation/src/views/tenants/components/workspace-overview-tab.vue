@@ -3,7 +3,7 @@ import type { Tenant, WorkspaceSubscription } from '#/api';
 
 import { useRouter } from 'vue-router';
 
-import { Badge, Button } from '@tuquet-core/shadcn-ui';
+import { Badge, Button } from '@operon-core/shadcn-ui';
 
 import { Check, Copy, ExternalLink, Layers } from '@lucide/vue';
 

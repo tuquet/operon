@@ -1,4 +1,4 @@
-import type { BasicUserInfo } from '@tuquet/types';
+import type { BasicUserInfo } from '@operon/types';
 
 export interface Props {
   title?: string;

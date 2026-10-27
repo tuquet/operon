@@ -3,7 +3,7 @@ import type { CSSProperties } from 'vue';
 
 import { computed, useTemplateRef } from 'vue';
 
-import { VbenSpineText } from '@tuquet-core/shadcn-ui';
+import { VbenSpineText } from '@operon-core/shadcn-ui';
 
 const props = defineProps<{
   contentStyle: CSSProperties;

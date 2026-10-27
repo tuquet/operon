@@ -87,8 +87,8 @@ catalog:
   '@tiptap/starter-kit': ^3.30.3
   '@tiptap/vue-3': ^3.30.3
   '@tsdown/css': ^0.22.14
-  '@tuquet/vue-table': 0.2.2
-  '@tuquet/vue-ui': 0.3.0
+  '@operon/vue-table': 0.2.2
+  '@operon/vue-ui': 0.3.0
   '@types/archiver': ^8.0.0
   '@types/html-minifier-terser': ^7.0.2
   '@types/json-bigint': ^1.0.4

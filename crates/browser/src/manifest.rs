@@ -4,7 +4,7 @@ use std::collections::HashMap;
 use std::time::Duration;
 
 pub const RAW_MANIFEST_URL: &str =
-    "https://raw.githubusercontent.com/tuquet/browser/main/manifest.json";
+    "https://raw.githubusercontent.com/operon/browser/main/manifest.json";
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BrowserManifest {

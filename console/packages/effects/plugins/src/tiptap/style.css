@@ -1,4 +1,4 @@
-@reference "@tuquet/tailwind-config/theme";
+@reference "@operon/tailwind-config/theme";
 
 .vben-tiptap-content h1 {
   @apply text-2xl font-bold leading-[1.4];

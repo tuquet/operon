@@ -1,7 +1,7 @@
 import type { RequestClient } from '../request-client';
 import type { RequestClientConfig } from '../types';
 
-import { isUndefined } from '@tuquet/utils';
+import { isUndefined } from '@operon/utils';
 
 class FileUploader {
   private client: RequestClient;

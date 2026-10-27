@@ -1,5 +1,5 @@
-import { $t } from '@tuquet/locales';
-import { useAccessStore } from '@tuquet/stores';
+import { $t } from '@operon/locales';
+import { useAccessStore } from '@operon/stores';
 
 import { isTauriEnvironment } from '#/adapter/desktop';
 
@@ -233,7 +233,7 @@ export async function updatePassword(
  * GitHub OAuth Login (Supabase GoTrue REST)
  * On Desktop (Tauri): Uses Web Bridge pattern (like VS Code / Linear / Figma).
  * Opens the external system browser pointing to the Web Callback gateway with `target=desktop`.
- * The web gateway then seamlessly hands the token back to the desktop application via `tuquet://auth/callback`.
+ * The web gateway then seamlessly hands the token back to the desktop application via `operon://auth/callback`.
  * On Web: redirects via standard window.location.href.
  */
 export async function loginWithGitHub(redirectTo?: string): Promise<void> {

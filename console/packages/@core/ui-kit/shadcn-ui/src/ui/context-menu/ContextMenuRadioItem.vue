@@ -6,7 +6,7 @@ import type {
 
 import type { HTMLAttributes } from 'vue';
 
-import { cn } from '@tuquet-core/shared/utils';
+import { cn } from '@operon-core/shared/utils';
 
 import { Circle } from '@lucide/vue';
 import { reactiveOmit } from '@vueuse/core';

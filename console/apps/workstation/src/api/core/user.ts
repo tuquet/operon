@@ -1,6 +1,6 @@
-import type { UserInfo } from '@tuquet/types';
+import type { UserInfo } from '@operon/types';
 
-import { useAccessStore } from '@tuquet/stores';
+import { useAccessStore } from '@operon/stores';
 
 import { getEffectiveAccess } from './access';
 import { supabaseRequest } from './supabase-client';
@@ -32,7 +32,7 @@ export async function getCurrentUser(): Promise<UserInfo> {
     meta.full_name ||
     meta.display_name ||
     user.email?.split('@')[0] ||
-    'Tuquet';
+    'Operon';
   const avatar = meta.avatar_url || '';
 
   const roles = effectiveAccess.isSuperadmin
