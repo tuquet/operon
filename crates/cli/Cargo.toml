@@ -15,10 +15,6 @@ path = "src/lib.rs"
 name = "opn"
 path = "src/main.rs"
 
-[[bin]]
-name = "operon"
-path = "src/main.rs"
-
 [dependencies]
 faker = { path = "../faker" }
 browser = { path = "../browser", features = ["utoipa"] }

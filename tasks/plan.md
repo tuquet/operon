@@ -1,33 +1,32 @@
-# Implementation Plan: Unify Automation Execution into Supabase (SSOT Convergence)
+# Implementation Plan: Total Elimination of SQLite in Favor of Supabase SSOT
 
-Based on approved spec: [`spec-automation-supabase-ssot.md`](file:////.gemini/antigravity/brain/193e6030-3c4e-45d8-b114-da4bb68f3c2f/spec-automation-supabase-ssot.md)
+Based on approved spec: [`spec-total-sqlite-elimination.md`](file:///C:/Users/ndtu6/.gemini/antigravity/brain/193e6030-3c4e-45d8-b114-da4bb68f3c2f/spec-total-sqlite-elimination.md)
 
 ## 1. Overview
-Refactor `crates/cli` automation commands to completely eliminate local SQLite and transient Axum runners, redirecting all workflow queries and job dispatches directly to Supabase PostgREST RPCs (`public.workflow_list`, `public.workflow_get`, `automation.enqueue_job`).
+Execute the complete removal of `rusqlite` and local database persistence in `crates/cli`. Unify Workflows, Browser Profiles, and Job Dispatches into direct Supabase PostgREST and RPC calls.
 
 ---
 
-## 2. Execution Phases
+## 2. Implementation Slices
 
-### Phase 1: Clean Up Fragmented Local Runners
-- Remove `crates/cli/src/commands/automation/store.rs` (SQLite import/export).
-- Refactor `crates/cli/src/cli.rs`:
-  - Simplify `AutomationSubcommands::Run` to accept `target: String` (name or UUID).
-  - Clean up obsolete flags (`--workflow-json`, raw file positions).
-  - Remove `AutomationSubcommands::Workflow` (import/export subcommands).
+### Slice 1: Adapt AppState & Models
+- Update `crates/cli/src/core/models/id.rs`: Remove `rusqlite::types::ToSql` and `FromSql` traits.
+- Update `crates/cli/src/core/error.rs`: Remove `rusqlite::Error` mapping.
+- Update `crates/cli/src/lib.rs`: Remove `AutomationDb` from `AppState`.
 
-### Phase 2: Implement Direct Supabase Client for Automation CLI
-- In `crates/cli/src/commands/automation/table.rs`:
-  - Call Supabase RPC `public.workflow_list()` using `DeviceIdentity` / PostgREST client.
-  - Display workflows cleanly in terminal table or JSON format.
-- In `crates/cli/src/commands/automation/executor.rs`:
-  - Call Supabase RPC `public.workflow_get(p_target)` to resolve workflow ID and settings.
-  - Call Supabase RPC `automation.enqueue_job` to register the job in `automation.jobs`.
-  - Output Job ID and listen to execution logs/status.
+### Slice 2: Migrate Handlers from SQLite to Supabase
+- Refactor `crates/cli/src/api/handlers/settings.rs`: In-memory config store based on `AppConfig`.
+- Refactor `crates/cli/src/api/handlers/browsers.rs`: Query Supabase `browsers.profiles` or in-memory active process map.
+- Refactor `crates/cli/src/api/handlers/jobs/`: Route job execution directly to Supabase RPCs.
+- Refactor `crates/cli/src/core/engine/workflow_resolver/`: Remove `AutomationDb` references.
 
-### Phase 3: Verification & Build
-- Verify workspace compiles cleanly: `cargo check --workspace`.
-- Test CLI commands:
-  - `cargo run -p operon -- automation list`
-  - `cargo run -p operon -- automation run "Quickstart: Google Search & Scrape"`
-- Commit and push to GitHub repository via `git spush origin main`.
+### Slice 3: Purge SQLite Layer & rusqlite Dependency
+- Delete `crates/cli/src/infrastructure/db/` directory.
+- Delete `crates/cli/src/commands/automation/store.rs`.
+- Update `crates/cli/src/commands/inbox/storage.rs` to in-memory TTL store.
+- Remove `rusqlite` from `crates/cli/Cargo.toml`.
+
+### Slice 4: Workspace Verification & Push
+- Run `cargo check --workspace` to ensure clean compilation.
+- Commit: `refactor(core): purge SQLite and converge all state onto Supabase SSOT`.
+- Push to GitHub: `git spush origin main`.
