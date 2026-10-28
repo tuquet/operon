@@ -13,6 +13,8 @@ pub use table::list_workflows;
 use crate::cli::{AutomationSubcommands, WorkflowCommands};
 
 pub async fn handle(command: AutomationSubcommands) -> Result<(), Box<dyn std::error::Error>> {
+    // Invariant A2: CLI Centralized Auth Guard
+    let _ = crate::commands::auth_guard::require_auth("opn automation").await?;
     match command {
         AutomationSubcommands::Run {
             workflow_pos,

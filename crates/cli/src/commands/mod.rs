@@ -1,3 +1,4 @@
+pub mod auth_guard;
 pub mod automation;
 pub mod browser;
 pub mod cloud;

@@ -58,3 +58,47 @@ Both interface over the local loopback port `127.0.0.1:8765` and filesystem stat
 ### Invariant D1: Unified Device Identity
 - Cloud registration credentials reside strictly at `~/.operon/system/.identity.json`.
 - In-process claim loops and detached cloud workers must query the same single-source-of-truth credential store.
+
+---
+
+## 4. Authentication & Access Gate Contract (Zero Unauthorized Bypass)
+
+### Context
+Operon features two interactive user surfaces: the GUI Workstation and the CLI (`opn`). Both interface with Cloud fleet execution, remote browser automation, and tenant-scoped resources.
+
+---
+
+### Invariant A1: Workstation UI Hard Route Guard (Zero Unauthorized View Leak)
+- **Rule:** Unauthenticated users must never access internal application views or trigger authenticated API requests.
+- **Enforcement:**
+  - Route navigation interceptor (`guard.ts`) must evaluate `accessToken` on all routes outside `coreRouteNames` (`/auth/login`, `/auth/callback`).
+  - Unauthenticated requests must redirect immediately to `/auth/login?redirect=<target>` with `replace: true`.
+  - HTTP 401 responses from background API requests must trigger immediate token refresh or session eviction, redirecting to login.
+
+---
+
+### Invariant A2: CLI Centralized Auth Guard (The "AGY Gate")
+- **Rule:** Protected CLI commands must verify an active cloud session or workstation identity before execution, failing fast with Google-standard guidance when unauthenticated.
+- **Enforcement:**
+  - **Exempt Subcommands (Allowlist):**
+    - `opn auth login`, `opn auth status`, `opn auth logout`
+    - `opn gateway *` (workstation network manager)
+    - `opn env *` (local environment audit)
+    - `opn faker *` (local test data generator)
+    - `opn --version`, `opn --help`
+  - **Protected Subcommands (Guard Required):**
+    - `opn automation *` (workflow execution & sync)
+    - `opn tenant *` (multi-tenant workspace switching)
+    - `opn worker start --cloud`, `opn worker claim`, `opn worker enroll`
+    - `opn browser cloud *` (remote cloud browser automation)
+  - **Failure Mechanics:** If no valid credentials exist in `~/.operon/system/.identity.json`, abort immediately with exit code `1`, presenting an authenticated prompt card directing the user to `opn auth login`.
+
+---
+
+### Invariant A3: Shared Session Single-Source-of-Truth
+- **Rule:** Authentication performed in either UI or CLI must be mutually recognized.
+- **Enforcement:**
+  - `opn auth login` populates `~/.operon/system/.identity.json`.
+  - Workstation GUI reads device identity and token on boot to bootstrap authentication state.
+  - Logging out on either surface revokes local session tokens.
+
