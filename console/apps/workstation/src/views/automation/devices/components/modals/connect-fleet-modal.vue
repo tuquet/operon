@@ -111,7 +111,7 @@ function handleOpenAuthBridge() {
           </p>
           <div class="ml-7">
             <CliSnippetCard
-              command="operon login"
+              command="opn login"
               :label="$t('page.automation_view.cli_login_cmd_label')"
               :copied-label="$t('page.automation_view.cli_login_copied_label')"
             />

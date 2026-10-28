@@ -115,6 +115,7 @@ function getStatusLabel(status: string): string {
                 size="icon"
                 class="size-6 shrink-0 rounded-md text-muted-foreground hover:bg-muted hover:text-foreground"
                 :title="$t('page.workflows_view.workflow_id')"
+                :aria-label="$t('page.workflows_view.workflow_id')"
                 @click="
                   copyToClipboard(
                     props.workflow.id,

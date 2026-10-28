@@ -441,6 +441,7 @@ watch(
               class="h-7 gap-1 px-1.5 text-xs text-warning hover:text-warning"
               :disabled="isUnbinding[row.id]"
               :title="$t('page.automation_view.browser_unlocked')"
+              :aria-label="$t('page.automation_view.browser_unlocked')"
               @click="handleUnbind(row)"
             >
               <Unlock class="size-3 shrink-0" />
@@ -453,6 +454,7 @@ watch(
               size="sm"
               class="h-7 gap-1 px-2 text-xs"
               :title="$t('common.edit')"
+              :aria-label="$t('common.edit')"
               @click="() => gridApi.openDetailSheet(row)"
             >
               <Pencil class="size-3 shrink-0" />
@@ -463,6 +465,7 @@ watch(
               size="sm"
               class="h-7 gap-1 px-2 text-xs"
               :title="$t('common.copy')"
+              :aria-label="$t('common.copy')"
               @click="copyToClipboard(row.id, 'Browser ID')"
             >
               <Copy class="size-3 shrink-0" />

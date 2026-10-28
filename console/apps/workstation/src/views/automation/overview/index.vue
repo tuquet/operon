@@ -251,6 +251,7 @@ onMounted(() => {
           type="button"
           variant="outline"
           class="group flex h-auto flex-col items-stretch justify-between rounded-xl border border-border/60 bg-card p-3 text-left font-normal shadow-xs transition-all hover:border-primary/40 hover:bg-muted/20 sm:p-4"
+          :aria-label="`${mod.title}: ${mod.total}`"
           @click="navigateTo(mod.path)"
         >
           <div class="flex items-center justify-between gap-2">
