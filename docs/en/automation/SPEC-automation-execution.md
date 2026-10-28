@@ -5,7 +5,7 @@
 > **RPC surface:** `automation.enqueue_job`, `automation.tick_schedules`, `automation.claim_next_job`, `automation.finish_job`, `automation.log_job_events`, `automation.renew_job_lease`, `automation.reap_stale_jobs`, `automation.cron_matches`, `automation.cron_field_matches`
 > **Worker-facing (public schema, device-token auth):** `public.automation_claim_jobs`, `public.automation_finish_job`, `public.automation_renew_job_lease`, `public.automation_log_job_events`
 > **Phân quyền (RBAC):** `automation:jobs:read` · `automation:jobs:manage` · `automation:schedules:manage`; mọi hàm `SECURITY DEFINER` chỉ gọi được bởi `service_role` hoặc tenant sở hữu
-> **Liên kết:** [`SPEC-automation-jobs`](../admin/specs/SPEC-automation-jobs.md) · [`SPEC-secret-store`](../cloud/specs/SPEC-secret-store.md) · [`Block Coverage & Automa Parity`](./blocks.md) · [`Workflow Automation`](./index.md)
+> **Liên kết:** [`SPEC-automation-jobs`](../console/specs/SPEC-automation-jobs.md) · [`SPEC-secret-store`](../cloud/specs/SPEC-secret-store.md) · [`Block Coverage & Automa Parity`](./blocks.md) · [`Workflow Automation`](./index.md)
 > **Ngày cập nhật:** `2026-10-24`
 > **Trạng thái:** **ACCEPTED — chờ triển khai (Phase 3 + Phase 5)**
 
@@ -23,7 +23,7 @@ Ba mảnh còn thiếu — đây là toàn bộ phạm vi:
 | 2 | **Lịch chạy** | Không có `enqueue_job`/`tick_schedules`, không có pg_cron; `automation.schedules` **thiếu cột `parameters`** |
 | 3 | **Chống chạy trùng** | Không có `idempotency_key` ⇒ rủi ro double-approve (HRMS) / double-DM |
 
-**Ngoài phạm vi:** thay đổi định dạng document workflow (đã chốt ở [`blocks.md`](./blocks.md)); Secret Store (đã có SPEC riêng); UI console (đã có [`SPEC-automation-jobs`](../admin/specs/SPEC-automation-jobs.md)).
+**Ngoài phạm vi:** thay đổi định dạng document workflow (đã chốt ở [`blocks.md`](./blocks.md)); Secret Store (đã có SPEC riêng); UI console (đã có [`SPEC-automation-jobs`](../console/specs/SPEC-automation-jobs.md)).
 
 ---
 

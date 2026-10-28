@@ -1,7 +1,7 @@
 //! HTTP surface for the local encrypted **Secret Store** (schema `secrets`).
 //!
 //! Route naming follows the database schema / table names (see
-//! `docs/en/admin/specs/SPEC-core-route-foundation.md` §5.1):
+//! `docs/en/console/specs/SPEC-core-route-foundation.md` §5.1):
 //!
 //! - `/secrets`                       → schema-level status
 //! - `/secrets/credentials`           → table `secrets.credentials`

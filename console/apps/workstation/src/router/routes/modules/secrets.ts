@@ -6,7 +6,7 @@ import { $t } from '#/locales';
  * Secret Store routes — the module group mirrors the plugin/schema id (`secrets`) and the
  * child segment mirrors the table (`secrets.credentials`), exactly like
  * `/automation/workflows` (plugin `automation` → table `automation.workflows`).
- * See docs/en/admin/specs/SPEC-core-route-foundation.md §5.1 and SPEC-secret-store.
+ * See docs/en/console/specs/SPEC-core-route-foundation.md §5.1 and SPEC-secret-store.
  */
 const routes: RouteRecordRaw[] = [
   {

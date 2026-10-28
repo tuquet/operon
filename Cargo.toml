@@ -5,4 +5,7 @@ members = [
     "crates/browser",
     "crates/faker",
 ]
+exclude = [
+    "console/apps/workstation/src-tauri",
+]
 resolver = "2"
