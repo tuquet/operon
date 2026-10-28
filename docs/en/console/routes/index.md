@@ -131,8 +131,6 @@ Mọi route quản trị đều tuân thủ các quy tắc sau:
 ## 6. Liên Kết Chi Tiết Từng Module
 
 - [Dashboard & Analytics](dashboard.md)
-- [Tenants / Workspaces](tenants.md)
 - [Automation Engine & Workers Fleet](automation.md)
-- [Digital Commerce & Public Storefront](commerce.md)
 - [System Catalog & Governance](system.md)
 - [Auth & Core Routes](auth.md)

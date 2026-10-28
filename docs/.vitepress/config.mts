@@ -32,19 +32,6 @@ const automationSidebar = [
   },
 ]
 
-const gatewaySidebar = [
-  {
-    text: 'Network Gateway',
-    collapsed: false,
-    items: [
-      { text: 'SOCKS5 & HTTP Tunnels', link: '/en/gateway/' },
-      { text: 'Priority & Roadmap', link: '/en/gateway/roadmap' },
-      { text: 'Multi-Server Mesh', link: '/en/gateway/mesh' },
-      { text: 'WebRTC Leak Shield', link: '/en/gateway/webrtc' },
-    ],
-  },
-]
-
 const workerSidebar = [
   {
     text: 'Distributed Worker',
@@ -97,9 +84,7 @@ const consoleSidebar = [
       { text: 'Overview & Matrix', link: '/en/console/routes/' },
       { text: 'Authentication (Auth)', link: '/en/console/routes/auth' },
       { text: 'Analytics Dashboard', link: '/en/console/routes/dashboard' },
-      { text: 'Tenants & Workspaces', link: '/en/console/routes/tenants' },
       { text: 'Automation Subsystem', link: '/en/console/routes/automation' },
-      { text: 'Digital Commerce', link: '/en/console/routes/commerce' },
       { text: 'System & Governance', link: '/en/console/routes/system' },
     ],
   },
@@ -119,7 +104,6 @@ const consoleSidebar = [
       { text: 'SPEC: Route Foundation', link: '/en/console/specs/SPEC-core-route-foundation' },
       { text: 'SPEC: Data Access Layer', link: '/en/console/specs/SPEC-core-data-access' },
       { text: 'SPEC: Superadmin Routes', link: '/en/console/specs/SPEC-system-superadmin-routes' },
-      { text: 'SPEC: Tenants Source of Truth', link: '/en/console/specs/SPEC-tenants-management-truth' },
       { text: 'SPEC: UI Information Deduplication', link: '/en/console/specs/SPEC-ui-info-deduplication' },
       { text: 'SPEC: System Dashboard', link: '/en/console/specs/SPEC-system-dashboard' },
       { text: 'SPEC: System Catalog', link: '/en/console/specs/SPEC-system-catalog' },
@@ -129,10 +113,6 @@ const consoleSidebar = [
       { text: 'SPEC: Automation Devices', link: '/en/console/specs/SPEC-automation-devices' },
       { text: 'SPEC: Automation Proxies', link: '/en/console/specs/SPEC-automation-proxies' },
       { text: 'SPEC: Workflow Mobile First', link: '/en/console/specs/SPEC-automation-workflow-mobile-first' },
-      { text: 'SPEC: Digital Commerce', link: '/en/console/specs/SPEC-commerce-digital-store' },
-      { text: 'SPEC: Payment Gateway', link: '/en/console/specs/SPEC-commerce-payment-gateway' },
-      { text: 'SPEC: Public Storefront', link: '/en/console/specs/SPEC-commerce-public-storefront' },
-      { text: 'SPEC: Admin Commerce Portal', link: '/en/console/specs/SPEC-commerce-admin-portal' },
       { text: 'SPEC: Layout Preferences Coherence', link: '/en/console/specs/SPEC-ui-layout-preferences' },
       { text: 'SPEC: Vxe Cell Renderers', link: '/en/console/specs/SPEC-ui-vxe-cell-renderers' },
       { text: 'SPEC: Mobile Vxe Detail Sheet', link: '/en/console/specs/SPEC-ui-mobile-vxe-detail-sheet' },
@@ -166,21 +146,9 @@ const cliSidebar = [
     ],
   },
   {
-    text: 'Combat Playbooks',
-    collapsed: false,
-    items: [
-      { text: 'Affiliate & Media Buying', link: '/en/cli/playbooks/affiliate' },
-      { text: 'E-commerce & Dropshipping', link: '/en/cli/playbooks/ecommerce' },
-      { text: 'Web Scraping & Data Mining', link: '/en/cli/playbooks/scraping' },
-      { text: 'Social Media Management', link: '/en/cli/playbooks/smm' },
-      { text: 'Crypto & Airdrop Farming', link: '/en/cli/playbooks/crypto' },
-    ],
-  },
-  {
     text: 'Identity & AI Protocol',
     collapsed: false,
     items: [
-      { text: 'Personas & CCCD Generator', link: '/en/cli/faker/' },
       { text: 'AI Agent & MCP Protocol', link: '/en/cli/skills/' },
       { text: 'Agent Rules & Strict SSOT', link: '/en/cli/skills/agent-rules' },
     ],
@@ -201,33 +169,12 @@ const cliCommandsSidebar = [
       { text: '1. opn auth (IAM & Context)', link: '/en/cli/commands/#_1-opn-auth-authentication-session-context' },
       { text: '2. opn worker (Fleet Worker)', link: '/en/cli/commands/#_2-opn-worker-execution-node-fleet-worker' },
       { text: '3. opn automation (Workflows)', link: '/en/cli/commands/#_3-opn-automation-workflow-automation-orchestration' },
-      { text: '4. opn gateway (Network Mesh)', link: '/en/cli/commands/#_4-opn-gateway-secure-network-vps-mesh' },
       { text: '7. opn secret (Secret Store)', link: '/en/cli/commands/#_7-opn-secret-encrypted-secret-store' },
     ],
   },
 ]
 
 // 3. Combat Playbooks Sidebar
-const playbooksSidebar = [
-  {
-    text: 'Combat Playbooks',
-    collapsed: false,
-    items: [
-      { text: 'Affiliate & Media Buying', link: '/en/cli/playbooks/affiliate' },
-      { text: 'E-commerce & Dropshipping', link: '/en/cli/playbooks/ecommerce' },
-      { text: 'Web Scraping & Data Mining', link: '/en/cli/playbooks/scraping' },
-      { text: 'Social Media Management', link: '/en/cli/playbooks/smm' },
-      { text: 'Crypto & Airdrop Farming', link: '/en/cli/playbooks/crypto' },
-    ],
-  },
-  {
-    text: 'CLI',
-    items: [
-      { text: '← Back to CLI Docs', link: '/en/cli/' },
-    ],
-  },
-]
-
 export default defineConfig({
   base: '/',
   lastUpdated: true,
@@ -262,12 +209,11 @@ export default defineConfig({
         items: [
           { text: 'Stealth Chromium Browser', link: '/en/browser/' },
           { text: 'Automation Engine', link: '/en/automation/' },
-          { text: 'Network Gateway', link: '/en/gateway/' },
           { text: 'Distributed Worker', link: '/en/worker/' },
           { text: 'Cloud Control Plane', link: '/en/cloud/' },
           { text: 'Console Portal & Control Center', link: '/en/console/' },
         ],
-        activeMatch: '^/en/(browser|automation|worker|gateway|cloud|console)/',
+        activeMatch: '^/en/(browser|automation|worker|cloud|console)/',
       },
       {
         text: 'CLI Tooling',
@@ -276,7 +222,6 @@ export default defineConfig({
           { text: 'Quickstart (15s)', link: '/en/cli/start/quickstart' },
           { text: 'Installation Guide', link: '/en/cli/start/installation' },
           { text: 'Commands Reference', link: '/en/cli/commands/' },
-          { text: 'Combat Playbooks', link: '/en/cli/playbooks/affiliate' },
           { text: 'AI Agent & MCP Protocol', link: '/en/cli/skills/' },
         ],
         activeMatch: '^/en/cli/',
@@ -286,7 +231,6 @@ export default defineConfig({
         sidebar: {
       '/en/browser/': browserSidebar,
       '/en/automation/': automationSidebar,
-      '/en/gateway/': gatewaySidebar,
       '/en/worker/': workerSidebar,
       '/en/cloud/': cloudSidebar,
       '/en/console/': consoleSidebar,

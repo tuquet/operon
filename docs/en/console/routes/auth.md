@@ -54,7 +54,6 @@
 }
 ```
 
-- **Chức Năng:** Cửa hàng sản phẩm số công khai dành cho khách vãng lai (`Guest Checkout`), không yêu cầu đăng nhập (`ignoreAccess: true`), sử dụng `{ skipAuth: true }` trên tầng API và bàn giao tài nguyên tự động qua `claim_token` (xem chi tiết tại [`docs/routes/commerce.md`](commerce.md)).
 
 ---
 
