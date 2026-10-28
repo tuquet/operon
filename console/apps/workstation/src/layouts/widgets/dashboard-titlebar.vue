@@ -40,9 +40,6 @@ async function handleClose() {
 
 onMounted(async () => {
   isMaximized.value = await isWindowMaximized();
-  checkInterval = setInterval(async () => {
-    isMaximized.value = await isWindowMaximized();
-  }, 1000);
 });
 
 onUnmounted(() => {
