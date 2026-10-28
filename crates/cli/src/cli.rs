@@ -50,13 +50,6 @@ pub enum Commands {
         command: Option<AutomationSubcommands>,
     },
 
-    /// Secure network gateway, VPS tunnel mesh & proxy manager
-    #[command(name = "gateway")]
-    Gateway {
-        #[command(subcommand)]
-        command: Option<GatewaySubcommands>,
-    },
-
     /// Manage environment variables, local secrets vault, and workspace sync
     #[command(name = "env")]
     Env {
@@ -177,98 +170,6 @@ pub enum SchemaSubcommands {
     Mcp,
 }
 
-#[derive(Subcommand, Debug, Clone)]
-pub enum GatewaySubcommands {
-    /// Probe proxy egress connectivity, latency, and WebRTC leak shield
-    #[command(name = "probe")]
-    Probe {
-        /// Target proxy URL to probe (defaults to socks5://127.0.0.1:1080)
-        #[arg(value_name = "URL")]
-        url: Option<String>,
-
-        /// Probe timeout in seconds
-        #[arg(short, long, default_value_t = 5)]
-        timeout: u64,
-
-        /// Output results in raw JSON format
-        #[arg(short, long)]
-        json: bool,
-    },
-    /// Show health check dashboard of all configured VPSs, ports, and workloads
-    #[command(name = "status")]
-    Status {
-        #[command(flatten)]
-        format: crate::ui::FormatArgs,
-    },
-
-    /// Start a gateway connection for configured servers (default: all enabled)
-    #[command(name = "start")]
-    Start {
-        /// Target server identifier or pattern (e.g. my-vps, vps-*, or omit for all enabled)
-        #[arg(value_name = "SERVER")]
-        server: Option<String>,
-
-        /// Filter servers by tag (e.g. mmo, git, clean-ip)
-        #[arg(short = 't', long)]
-        tag: Option<String>,
-
-        /// Also start the pure Rust embedded HTTP-to-SOCKS5 gateway (port 8118)
-        #[arg(long)]
-        http: bool,
-
-        /// Also start local SSH port forwarding (e.g. port 2222) for direct SSH access
-        #[arg(long)]
-        ssh: bool,
-
-        /// Run supervisor in foreground (keeps running until Ctrl+C, auto-heals dropped tunnels)
-        #[arg(short = 'f', long)]
-        foreground: bool,
-    },
-
-    /// Stop running gateway tunnels and proxy daemons
-    #[command(name = "stop")]
-    Stop {
-        /// Server identifier to stop (or 'all' to terminate all gateway processes)
-        #[arg(value_name = "SERVER")]
-        server: Option<String>,
-    },
-
-    /// Enable a server in gateway configuration (~/.operon/gateway/gateway.json)
-    #[command(name = "enable")]
-    Enable {
-        /// Server identifier to enable (e.g. my-vps, may-b; omit to select interactively)
-        #[arg(value_name = "SERVER")]
-        server: Option<String>,
-    },
-
-    /// Disable a server in gateway configuration (~/.operon/gateway/gateway.json)
-    #[command(name = "disable")]
-    Disable {
-        /// Server identifier to disable (e.g. my-vps, may-b; omit to select interactively)
-        #[arg(value_name = "SERVER")]
-        server: Option<String>,
-    },
-
-    /// Validate ~/.operon/gateway/gateway.json configuration schema, ports, and workloads
-    #[command(name = "check")]
-    Check,
-
-    /// Display, inspect, or edit the canonical gateway configuration file
-    #[command(name = "config")]
-    Config {
-        /// Optional option key and value (e.g. 'key', 'key value', or 'set key value')
-        #[arg(value_name = "ARGS")]
-        args: Vec<String>,
-
-        /// Open ~/.operon/gateway/gateway.json in your default editor
-        #[arg(short, long)]
-        edit: bool,
-
-        /// Display structured configuration details and summary card
-        #[arg(short, long)]
-        show: bool,
-    },
-}
 
 #[derive(Subcommand, Debug, Clone)]
 pub enum InboxSubcommands {
@@ -1444,7 +1345,6 @@ pub enum SetupComponent {
     Mcp,
 
     /// Configure Specter Gateway VPS tunnel & verify SOCKS5 mesh proxy
-    #[command(name = "gateway")]
     Gateway,
 
     /// Provision Antidetect Chromium browser sandbox

@@ -30,20 +30,8 @@ pub async fn handle(command: AutomationSubcommands) -> Result<(), Box<dyn std::e
         } => {
             let target_workflow = workflow.or(workflow_pos);
             if safe {
-                if !crate::infrastructure::gateway::probe_port(1080) {
-                    crate::ui::Notify::info(
-                        "Safe mode: Gateway is offline. Auto-starting gateway...",
-                    );
-                    let _ = crate::commands::gateway::start::start_gateway(
-                        crate::commands::gateway::start::GatewayStartOptions {
-                            server: None,
-                            tag: None,
-                            http: true,
-                            ssh: false,
-                            foreground: false,
-                        },
-                    )
-                    .await;
+                if !crate::core::network::probe_port(1080) {
+                    return Err("Safe Mode: SOCKS5 tunnel is offline on port 1080. Run 'tunnel on' before starting workflows.".into());
                 }
                 let probe =
                     crate::core::browser::ProxyProbe::probe("socks5://127.0.0.1:1080", 5).await;

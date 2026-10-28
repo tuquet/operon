@@ -7,7 +7,6 @@ pub mod dev;
 pub mod doctor;
 pub mod env_cmd;
 pub mod faker;
-pub mod gateway;
 pub mod git;
 pub mod inbox;
 pub mod mcp;

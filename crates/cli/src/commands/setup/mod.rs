@@ -1,7 +1,6 @@
 pub mod browser;
 pub mod cloud;
 pub mod core;
-pub mod gateway;
 pub mod mcp;
 
 use crate::cli::{SetupArgs, SetupComponent};
@@ -23,7 +22,7 @@ pub async fn run(args: SetupArgs) -> Result<(), Box<dyn std::error::Error>> {
                 return Ok(());
             }
             SetupComponent::Gateway => {
-                gateway::run(true).await?;
+                clack_step_skip("Network gateway decoupled: manage using 'tunnel on'");
                 return Ok(());
             }
             SetupComponent::Browser => {
@@ -79,7 +78,7 @@ pub async fn run(args: SetupArgs) -> Result<(), Box<dyn std::error::Error>> {
     };
 
     if want_gateway {
-        gateway::run(is_interactive).await?;
+        clack_step_skip("Network gateway decoupled: manage using 'tunnel on'");
     } else {
         clack_step_skip("Specter Gateway (configure anytime via 'opn setup gateway')");
     }

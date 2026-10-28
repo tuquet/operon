@@ -2,8 +2,8 @@ use std::path::Path;
 
 use super::types::DiagnosticItem;
 use crate::config::{AppConfig, canonical_dir};
-use crate::infrastructure::gateway::probe_port;
-use crate::infrastructure::gateway::tools::find_executable;
+use crate::core::network::probe_port;
+use crate::core::network::find_executable;
 use crate::ui::{
     Card, Column, Table, badge_error, badge_online, badge_warn, create_network_topology_card,
     default_workstation_endpoints,
@@ -315,27 +315,11 @@ pub fn check_network_topology() -> Card {
     let runner_port = app_cfg.server_port;
     let runner_active = probe_port(runner_port);
 
-    let gateway_cfg = crate::infrastructure::gateway::GatewayConfig::load()
-        .unwrap_or_else(|_| crate::infrastructure::gateway::GatewayConfig::default_config());
-    let git_port = gateway_cfg
-        .workloads
-        .as_ref()
-        .and_then(|w| w.git.as_ref())
-        .map(|g| g.port)
-        .unwrap_or(crate::constants::DEFAULT_SOCKS5_PORT);
+    let git_port = 1080;
     let git_active = probe_port(git_port);
-    let ssh_port = gateway_cfg
-        .servers
-        .get("my-vps")
-        .and_then(|s| s.local_ssh_port)
-        .unwrap_or(crate::constants::DEFAULT_SSH_TUNNEL_PORT);
+    let ssh_port = 2222;
     let ssh_active = probe_port(ssh_port);
-    let http_port = gateway_cfg
-        .workloads
-        .as_ref()
-        .and_then(|w| w.supabase.as_ref())
-        .map(|s| s.http_port)
-        .unwrap_or(crate::constants::DEFAULT_HTTP_GATEWAY_PORT);
+    let http_port = 8118;
     let http_active = probe_port(http_port);
 
     let endpoints = default_workstation_endpoints(
@@ -351,7 +335,7 @@ pub fn check_network_topology() -> Card {
     create_network_topology_card(
         "NETWORK TOPOLOGY & LISTENERS",
         &endpoints,
-        Some("Tunnels run on demand. Start with 'opn gateway start' or 'opn runner start'"),
+        Some("Tunnels run on demand. Start with 'tunnel on' or 'opn runner start'"),
     )
 }
 

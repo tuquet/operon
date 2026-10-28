@@ -3,7 +3,6 @@ use crate::config::browser::BrowserConfig;
 use crate::config::inbox::InboxConfig;
 use crate::config::runner::RunnerConfig;
 use crate::config::system::SystemConfig;
-use crate::infrastructure::gateway::GatewayConfig;
 use crate::ui::{Card, badge_online};
 use faker::config::FakerConfig;
 use std::path::PathBuf;
@@ -21,7 +20,6 @@ impl ConfigRegistry {
     pub const ALL_SERVICES: &'static [&'static str] = crate::constants::ALL_PILLARS;
 
     pub fn list_all() -> Vec<PillarConfigEntry> {
-        let gateway_path = GatewayConfig::config_path();
         let faker_path = FakerConfig::config_path();
         let browser_path = BrowserConfig::config_path();
         let automation_path = AutomationConfig::config_path();
@@ -30,12 +28,6 @@ impl ConfigRegistry {
         let inbox_path = InboxConfig::config_path();
 
         vec![
-            PillarConfigEntry {
-                pillar: crate::constants::PILLAR_GATEWAY,
-                title: "Network Gateway & Multi-VPS Mesh",
-                exists: gateway_path.exists(),
-                path: gateway_path,
-            },
             PillarConfigEntry {
                 pillar: crate::constants::PILLAR_FAKER,
                 title: "Synthetic Identity & Persona Generator",
@@ -77,7 +69,6 @@ impl ConfigRegistry {
 
     pub fn canonical_service(service: &str) -> Option<&'static str> {
         match service.to_ascii_lowercase().as_str() {
-            "gateway" | "tunnel" | "vps" => Some(crate::constants::PILLAR_GATEWAY),
             "faker" | "user" | "persona" => Some(crate::constants::PILLAR_FAKER),
             "browser" | "chromium" | "chrome" => Some(crate::constants::PILLAR_BROWSER),
             "automation" | "workflow" => Some(crate::constants::PILLAR_AUTOMATION),
@@ -90,7 +81,6 @@ impl ConfigRegistry {
 
     pub fn resolve_service_path(service: &str) -> Option<PathBuf> {
         match Self::canonical_service(service) {
-            Some(crate::constants::PILLAR_GATEWAY) => Some(GatewayConfig::config_path()),
             Some(crate::constants::PILLAR_FAKER) => Some(FakerConfig::config_path()),
             Some(crate::constants::PILLAR_BROWSER) => Some(BrowserConfig::config_path()),
             Some(crate::constants::PILLAR_AUTOMATION) => Some(AutomationConfig::config_path()),
@@ -128,10 +118,6 @@ impl ConfigRegistry {
 
     pub fn get_default_json(service: &str) -> serde_json::Value {
         match Self::canonical_service(service) {
-            Some(crate::constants::PILLAR_GATEWAY) => {
-                serde_json::to_value(crate::infrastructure::gateway::GatewayConfig::default())
-                    .unwrap_or_default()
-            }
             Some(crate::constants::PILLAR_FAKER) => {
                 serde_json::to_value(faker::config::FakerConfig::default()).unwrap_or_default()
             }

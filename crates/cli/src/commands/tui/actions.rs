@@ -1,25 +1,8 @@
 use super::state::TuiState;
-use crate::infrastructure::gateway::GatewaySupervisor;
 
 pub async fn toggle_gateway(state: &mut TuiState) {
-    if state.gateway.socks5_online || state.gateway.http_online {
-        state.status_message = "Stopping Specter Gateway tunnels...".to_string();
-        let _ = GatewaySupervisor::stop_all();
-        state.refresh().await;
-        state.status_message = "Specter Gateway stopped.".to_string();
-    } else {
-        state.status_message = "Starting Specter Gateway (SOCKS5 + HTTP)...".to_string();
-        let opts = crate::commands::gateway::start::GatewayStartOptions {
-            server: None,
-            tag: None,
-            http: true,
-            ssh: false,
-            foreground: false,
-        };
-        let _ = crate::commands::gateway::start::start_gateway(opts).await;
-        state.refresh().await;
-        state.status_message = "Specter Gateway online.".to_string();
-    }
+    state.status_message = "Please use 'tunnel on' or 'tunnel off' in your terminal.".to_string();
+    state.refresh().await;
 }
 
 pub async fn kill_browsers(state: &mut TuiState) {

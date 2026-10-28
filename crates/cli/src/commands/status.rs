@@ -271,32 +271,14 @@ pub async fn show_dashboard(format: OutputFormat) -> Result<(), Box<dyn std::err
     );
 
     // 4. NETWORK GATEWAY
-    let gateway_config = crate::infrastructure::gateway::GatewayConfig::load()
-        .unwrap_or_else(|_| crate::infrastructure::gateway::GatewayConfig::default_config());
-    let git_port = gateway_config
-        .workloads
-        .as_ref()
-        .and_then(|w| w.git.as_ref())
-        .map(|g| g.port)
-        .unwrap_or(crate::constants::DEFAULT_SOCKS5_PORT);
-    let primary_ssh_port = gateway_config
-        .servers
-        .get("my-vps")
-        .and_then(|s| s.local_ssh_port)
-        .unwrap_or(crate::constants::DEFAULT_SSH_TUNNEL_PORT);
-    let http_port = gateway_config
-        .workloads
-        .as_ref()
-        .and_then(|w| w.supabase.as_ref())
-        .map(|s| s.http_port)
-        .unwrap_or(crate::constants::DEFAULT_HTTP_GATEWAY_PORT);
-
+    let git_port = 1080;
+    let primary_ssh_port = 2222;
+    let http_port = 8118;
     let (git_active, ssh_active, http_active) = tokio::join!(
-        crate::infrastructure::gateway::probe_port_async(git_port),
-        crate::infrastructure::gateway::probe_port_async(primary_ssh_port),
-        crate::infrastructure::gateway::probe_port_async(http_port),
+        crate::core::network::probe_port_async(git_port),
+        crate::core::network::probe_port_async(primary_ssh_port),
+        crate::core::network::probe_port_async(http_port),
     );
-
     let endpoints = default_workstation_endpoints(
         git_port,
         git_active,
@@ -309,7 +291,7 @@ pub async fn show_dashboard(format: OutputFormat) -> Result<(), Box<dyn std::err
     let mut gateway_card = create_network_topology_card(
         "NETWORK GATEWAY",
         &endpoints,
-        Some("Manage with 'opn gateway status' or 'opn gateway start'"),
+        Some("Manage with 'tunnel status' or 'tunnel on'"),
     );
     if git_active || ssh_active || http_active {
         gateway_card.with_badge(badge_online("CONNECTED"));

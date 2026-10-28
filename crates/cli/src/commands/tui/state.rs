@@ -162,30 +162,13 @@ impl TuiState {
         self.last_tick = Instant::now();
 
         // 1. Probe Gateway
-        let gateway_cfg = crate::infrastructure::gateway::GatewayConfig::load()
-            .unwrap_or_else(|_| crate::infrastructure::gateway::GatewayConfig::default_config());
-        let git_port = gateway_cfg
-            .workloads
-            .as_ref()
-            .and_then(|w| w.git.as_ref())
-            .map(|g| g.port)
-            .unwrap_or(1080);
-        let http_port = gateway_cfg
-            .workloads
-            .as_ref()
-            .and_then(|w| w.supabase.as_ref())
-            .map(|s| s.http_port)
-            .unwrap_or(8118);
-        let ssh_port = gateway_cfg
-            .servers
-            .get("my-vps")
-            .and_then(|s| s.local_ssh_port)
-            .unwrap_or(2222);
-
+        let git_port = 1080;
+        let http_port = 8118;
+        let ssh_port = 2222;
         let (git_active, http_active, ssh_active) = tokio::join!(
-            crate::infrastructure::gateway::probe_port_async(git_port),
-            crate::infrastructure::gateway::probe_port_async(http_port),
-            crate::infrastructure::gateway::probe_port_async(ssh_port),
+            crate::core::network::probe_port_async(git_port),
+            crate::core::network::probe_port_async(http_port),
+            crate::core::network::probe_port_async(ssh_port),
         );
 
         self.gateway = GatewayState {
@@ -195,17 +178,9 @@ impl TuiState {
             http_port,
             ssh_online: ssh_active,
             ssh_port,
-            default_server: gateway_cfg
-                .workstation
-                .as_ref()
-                .and_then(|w| w.default_server.clone())
-                .unwrap_or_else(|| "my-vps".to_string()),
-            active_servers: if git_active || ssh_active || http_active {
-                1
-            } else {
-                0
-            },
-            total_servers: gateway_cfg.servers.len(),
+            default_server: "my-vps".to_string(),
+            active_servers: if git_active || ssh_active || http_active { 1 } else { 0 },
+            total_servers: 1,
         };
 
         // 2. Probe Browser Fleet

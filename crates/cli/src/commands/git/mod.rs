@@ -5,8 +5,7 @@ use std::process::{Command, Stdio};
 use crate::commands::dev::scanner::{
     collect_machine_scan_roots, format_clean_package_id, get_user_home_dir, should_skip_dir_entry,
 };
-use crate::commands::gateway::start::{GatewayStartOptions, start_gateway};
-use crate::infrastructure::gateway::probe_port;
+use crate::core::network::probe_port;
 use crate::ui::{
     ClackOption, ClackSpinner, Column, Notify, OutputFormat, Table, TabularRow, badge_online,
     badge_warn, clack_cancel, clack_intro, clack_multiselect, clack_outro, clack_select, colors,
@@ -277,15 +276,7 @@ pub async fn handle(
     };
 
     if selected_action == "push-gateway" && !probe_port(1080) {
-        println!("  \x1b[36m◆\x1b[0m  Starting Gateway SOCKS5 tunnel (127.0.0.1:1080)...");
-        start_gateway(GatewayStartOptions {
-            server: None,
-            tag: Some("git"),
-            http: false,
-            ssh: false,
-            foreground: false,
-        })
-        .await?;
+        return Err("SOCKS5 tunnel on port 1080 is offline. Run 'tunnel on' before pushing.".into());
     }
 
     let is_batch = target_repos.len() > 1;

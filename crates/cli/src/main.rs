@@ -44,16 +44,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 Ok(())
             }
         },
-        Some(Commands::Gateway { command }) => match command {
-            Some(cmd) => commands::gateway::handle(Some(cmd)).await,
-            None => {
-                let mut cmd = Cli::command();
-                if let Some(sub) = cmd.find_subcommand_mut("gateway") {
-                    let _ = sub.print_help();
-                }
-                Ok(())
-            }
-        },
         Some(Commands::Env {
             project,
             check,
