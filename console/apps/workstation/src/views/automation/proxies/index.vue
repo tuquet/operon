@@ -37,43 +37,36 @@ function getColumns() {
     {
       field: 'host',
       title: $t('page.automation_view.col_proxy_address'),
-      minWidth: 220,
       slots: { default: 'proxy-cell' },
     },
     {
       field: 'country_code',
       title: $t('page.automation_view.col_location_type'),
-      minWidth: 190,
       slots: { default: 'location-cell' },
     },
     {
       field: 'latency_ms',
       title: $t('page.automation_view.col_latency'),
-      minWidth: 130,
       slots: { default: 'latency-cell' },
     },
     {
       field: 'error_count',
       title: $t('common.error'),
-      minWidth: 100,
       slots: { default: 'error-cell' },
     },
     {
       field: 'status',
       title: $t('common.status'),
-      minWidth: 140,
       slots: { default: 'status-cell' },
     },
     {
       field: 'last_checked_at',
       title: $t('page.automation_view.col_last_checked'),
-      minWidth: 160,
       cellRender: { name: 'CellDate' },
     },
     {
       field: 'actions',
       title: $t('common.actions'),
-      minWidth: 110,
       align: 'right' as const,
       showOverflow: false,
       slots: { default: 'actions-cell' },

@@ -88,49 +88,49 @@ function getColumns() {
     {
       field: 'name',
       title: $t('page.automation_view.col_workstation'),
-      minWidth: 240,
+
       slots: { default: 'name-cell' },
     },
     {
       field: 'os_info',
       title: $t('page.automation_view.col_os'),
-      minWidth: 140,
+
       slots: { default: 'os-cell' },
     },
     {
       field: 'hardware',
       title: $t('page.automation_view.col_hardware'),
-      minWidth: 190,
+
       slots: { default: 'hardware-cell' },
     },
     {
       field: 'driver_type',
       title: $t('page.automation_view.col_driver'),
-      minWidth: 130,
+
       slots: { default: 'driver-cell' },
     },
     {
       field: 'status',
       title: $t('common.status'),
-      minWidth: 140,
+
       slots: { default: 'status-cell' },
     },
     {
       field: 'active_jobs',
       title: $t('term.jobs'),
-      minWidth: 110,
+
       slots: { default: 'jobs-cell' },
     },
     {
       field: 'last_heartbeat_at',
       title: $t('page.fleet_view.col_last_seen'),
-      minWidth: 150,
+
       cellRender: { name: 'CellDate' },
     },
     {
       field: 'actions',
       title: $t('common.actions'),
-      minWidth: 115,
+
       align: 'right' as const,
       showOverflow: false,
       slots: { default: 'actions-cell' },

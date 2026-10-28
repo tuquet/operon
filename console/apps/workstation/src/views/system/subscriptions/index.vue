@@ -56,37 +56,31 @@ function getColumns() {
     {
       field: 'tenant_name',
       title: $t('term.workspace'),
-      minWidth: 220,
       slots: { default: 'workspace-cell' },
     },
     {
       field: 'plan_name',
       title: $t('term.plan'),
-      minWidth: 150,
       slots: { default: 'plan-cell' },
     },
     {
       field: 'price_monthly_usd',
       title: $t('page.system_view.subs_col_unit_price'),
-      minWidth: 150,
       slots: { default: 'price-cell' },
     },
     {
       field: 'status',
       title: $t('common.status'),
-      minWidth: 160,
       slots: { default: 'status-cell' },
     },
     {
       field: 'current_period_end',
       title: $t('page.system_view.subs_col_next_billing'),
-      minWidth: 170,
       cellRender: { name: 'CellDate' },
     },
     {
       field: 'cancel_at_period_end',
       title: $t('page.system_view.subs_col_auto_renew'),
-      minWidth: 150,
       align: 'right' as const,
       slots: { default: 'renewal-cell' },
     },

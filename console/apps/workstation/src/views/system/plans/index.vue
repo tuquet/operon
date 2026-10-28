@@ -40,43 +40,36 @@ function getColumns() {
     {
       field: 'name',
       title: $t('page.system_view.plans_col_name'),
-      minWidth: 200,
       slots: { default: 'name-cell' },
     },
     {
       field: 'price_monthly_usd',
       title: $t('page.system_view.plans_col_price'),
-      minWidth: 140,
       slots: { default: 'price-cell' },
     },
     {
       field: 'max_members',
       title: $t('page.system_view.plans_col_max_members'),
-      minWidth: 170,
       slots: { default: 'members-cell' },
     },
     {
       field: 'max_storage_mb',
       title: $t('page.system_view.plans_col_storage'),
-      minWidth: 140,
       slots: { default: 'storage-cell' },
     },
     {
       field: 'max_monthly_runs',
       title: $t('page.system_view.plans_col_monthly_runs'),
-      minWidth: 160,
       slots: { default: 'runs-cell' },
     },
     {
       field: 'is_active',
       title: $t('common.status'),
-      minWidth: 130,
       slots: { default: 'status-cell' },
     },
     {
       field: 'created_at',
       title: $t('common.createdAt'),
-      minWidth: 150,
       align: 'right' as const,
       cellRender: { name: 'CellDate' },
     },

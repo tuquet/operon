@@ -58,37 +58,31 @@ function getColumns() {
     {
       field: 'name',
       title: $t('page.jobs_view.col_name'),
-      minWidth: 260,
       slots: { default: 'name-cell' },
     },
     {
       field: 'device',
       title: $t('page.jobs_view.col_runner'),
-      minWidth: 170,
       slots: { default: 'device-cell' },
     },
     {
       field: 'progress',
       title: $t('page.jobs_view.col_progress'),
-      minWidth: 190,
       slots: { default: 'progress-cell' },
     },
     {
       field: 'status',
       title: $t('page.jobs_view.col_status'),
-      minWidth: 140,
       slots: { default: 'status-cell' },
     },
     {
       field: 'created_at',
       title: $t('page.jobs_view.col_created_at'),
-      minWidth: 160,
       cellRender: { name: 'CellDate' },
     },
     {
       field: 'actions',
       title: $t('page.jobs_view.col_actions'),
-      minWidth: 110,
       align: 'right' as const,
       showOverflow: false,
       slots: { default: 'actions-cell' },

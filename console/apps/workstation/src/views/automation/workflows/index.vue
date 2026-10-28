@@ -44,31 +44,31 @@ function getColumns() {
     {
       field: 'name',
       title: $t('page.workflows_view.col_name'),
-      minWidth: 260,
+
       slots: { default: 'name-cell' },
     },
     {
       field: 'version',
       title: $t('page.workflows_view.col_version'),
-      minWidth: 130,
+
       slots: { default: 'version-cell' },
     },
     {
       field: 'status',
       title: $t('page.workflows_view.col_status'),
-      minWidth: 145,
+
       slots: { default: 'status-cell' },
     },
     {
       field: 'created_at',
       title: $t('page.workflows_view.col_created_at'),
-      minWidth: 145,
+
       cellRender: { name: 'CellDate' },
     },
     {
       field: 'updated_at',
       title: $t('page.workflows_view.col_updated_at'),
-      minWidth: 145,
+
       cellRender: { name: 'CellDate' },
     },
   ];

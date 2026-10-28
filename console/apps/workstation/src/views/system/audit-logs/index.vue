@@ -26,37 +26,31 @@ function getColumns() {
     {
       field: 'created_at',
       title: $t('page.system_view.audit_col_time'),
-      minWidth: 170,
       cellRender: { name: 'CellDate' },
     },
     {
       field: 'action',
       title: $t('page.system_view.audit_col_action'),
-      minWidth: 160,
       slots: { default: 'action-cell' },
     },
     {
       field: 'entity_type',
       title: $t('page.system_view.audit_col_entity'),
-      minWidth: 160,
       slots: { default: 'entity-cell' },
     },
     {
       field: 'tenant_id',
       title: $t('page.system_view.audit_col_tenant_id'),
-      minWidth: 150,
       slots: { default: 'tenant-cell' },
     },
     {
       field: 'actor_id',
       title: $t('page.system_view.audit_col_actor'),
-      minWidth: 140,
       slots: { default: 'actor-cell' },
     },
     {
       field: 'ip_address',
       title: $t('page.system_view.audit_col_ip'),
-      minWidth: 140,
       slots: { default: 'ip-cell' },
     },
   ];

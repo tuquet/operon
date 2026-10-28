@@ -136,37 +136,31 @@ function getColumns() {
     {
       field: 'tx_type',
       title: $t('page.commerce_view.tx_type_label'),
-      minWidth: 175,
       slots: { default: 'type-cell' },
     },
     {
       field: 'description',
       title: $t('common.description'),
-      minWidth: 240,
       slots: { default: 'desc-cell' },
     },
     {
       field: 'amount_credits',
       title: $t('page.commerce_view.col_amount_change'),
-      minWidth: 155,
       slots: { default: 'amount-cell' },
     },
     {
       field: 'balance_after_credits',
       title: $t('page.commerce_view.col_balance_after'),
-      minWidth: 155,
       slots: { default: 'balance-cell' },
     },
     {
       field: 'reference_id',
       title: $t('page.commerce_view.col_reference_id'),
-      minWidth: 175,
       slots: { default: 'ref-cell' },
     },
     {
       field: 'created_at',
       title: $t('page.commerce_view.col_created_time'),
-      minWidth: 165,
       slots: { default: 'date-cell' },
     },
   ];

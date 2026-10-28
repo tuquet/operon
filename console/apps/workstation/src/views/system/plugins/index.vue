@@ -41,31 +41,26 @@ function getColumns() {
     {
       field: 'name',
       title: $t('term.plugin'),
-      minWidth: 220,
       slots: { default: 'plugin-cell' },
     },
     {
       field: 'is_core',
       title: $t('page.system_view.plugins_col_type'),
-      minWidth: 150,
       slots: { default: 'type-cell' },
     },
     {
       field: 'version',
       title: $t('page.system_view.plugins_col_version_schema'),
-      minWidth: 200,
       slots: { default: 'version-cell' },
     },
     {
       field: 'status',
       title: $t('common.status'),
-      minWidth: 140,
       slots: { default: 'status-cell' },
     },
     {
       field: 'installed_at',
       title: $t('page.system_view.plugins_col_installed_at'),
-      minWidth: 150,
       align: 'right' as const,
       cellRender: { name: 'CellDate' },
     },

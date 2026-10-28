@@ -55,28 +55,24 @@ function getPermColumns() {
     {
       field: 'id',
       title: $t('page.system_view.perms_col_id'),
-      minWidth: 230,
       align: 'left' as const,
       slots: { default: 'perm-id-cell' },
     },
     {
       field: 'module',
       title: $t('page.system_view.roles_col_module'),
-      minWidth: 155,
       align: 'left' as const,
       slots: { default: 'perm-module-cell' },
     },
     {
       field: 'description',
       title: $t('page.system_view.perms_col_desc'),
-      minWidth: 260,
       align: 'left' as const,
       slots: { default: 'perm-desc-cell' },
     },
     {
       field: 'roles',
       title: $t('page.system_view.roles_col_assigned_roles'),
-      minWidth: 260,
       align: 'left' as const,
       slots: { default: 'perm-roles-cell' },
     },

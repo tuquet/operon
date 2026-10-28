@@ -140,37 +140,31 @@ function getColumns() {
     {
       field: 'order_code',
       title: $t('page.commerce_view.col_order_code'),
-      minWidth: 190,
       slots: { default: 'code-cell' },
     },
     {
       field: 'payment_method',
       title: $t('page.commerce_view.col_payment_method'),
-      minWidth: 170,
       slots: { default: 'method-cell' },
     },
     {
       field: 'total_credits',
       title: $t('page.commerce_view.total_payment'),
-      minWidth: 150,
       slots: { default: 'total-cell' },
     },
     {
       field: 'status',
       title: $t('common.status'),
-      minWidth: 155,
       slots: { default: 'status-cell' },
     },
     {
       field: 'created_at',
       title: $t('page.commerce_view.col_created_time'),
-      minWidth: 165,
       slots: { default: 'date-cell' },
     },
     {
       field: 'actions',
       title: $t('page.commerce_view.col_delivery'),
-      minWidth: 150,
       align: 'right' as const,
       slots: { default: 'action-cell' },
     },

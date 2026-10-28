@@ -30,19 +30,31 @@
       content="black-translucent"
     />
     <meta name="apple-mobile-web-app-title" content="Admin" />
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-HM8RJDZ15Q"
-    ></script>
+    <!-- Google tag (gtag.js) - only active in production to prevent tracking & storage blocking in dev -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-
-      gtag('config', 'G-HM8RJDZ15Q');
+      (function () {
+        if (
+          location.hostname !== 'localhost' &&
+          location.hostname !== '127.0.0.1' &&
+          !location.hostname.endsWith('.local')
+        ) {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HM8RJDZ15Q';
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'G-HM8RJDZ15Q');
+        } else {
+          // No-op mock for dev environment to avoid undefined reference errors
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () {};
+        }
+      })();
     </script>
     <style>
       html,

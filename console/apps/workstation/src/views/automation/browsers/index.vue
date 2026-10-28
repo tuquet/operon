@@ -84,43 +84,43 @@ function getColumns() {
     {
       field: 'name',
       title: $t('page.automation_view.col_browser_profile'),
-      minWidth: 240,
+
       slots: { default: 'name-cell' },
     },
     {
       field: 'locked_by_device',
       title: $t('page.automation_view.col_locked_by'),
-      minWidth: 160,
+
       slots: { default: 'lock-cell' },
     },
     {
       field: 'proxy',
       title: $t('page.automation_view.col_proxy_routing'),
-      minWidth: 200,
+
       slots: { default: 'proxy-cell' },
     },
     {
       field: 'storage_size_bytes',
       title: $t('page.automation_view.col_storage_cookies'),
-      minWidth: 170,
+
       slots: { default: 'storage-cell' },
     },
     {
       field: 'status',
       title: $t('common.status'),
-      minWidth: 140,
+
       slots: { default: 'status-cell' },
     },
     {
       field: 'created_at',
       title: $t('common.createdAt'),
-      minWidth: 160,
+
       cellRender: { name: 'CellDate' },
     },
     {
       field: 'actions',
       title: $t('common.actions'),
-      minWidth: 110,
+
       align: 'right' as const,
       showOverflow: false,
       slots: { default: 'actions-cell' },

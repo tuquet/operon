@@ -9,6 +9,10 @@ import { Page } from '@operon/common-ui';
 import {
   Badge,
   Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
   Empty,
   EmptyDescription,
   EmptyHeader,
@@ -284,15 +288,13 @@ onMounted(() => {
     <!-- 3. Recent Jobs & Worker Devices -->
     <div class="grid grid-cols-1 gap-3.5 sm:gap-4 lg:grid-cols-2">
       <!-- Recent Runs -->
-      <div
-        class="rounded-xl border border-border/60 bg-card p-3.5 shadow-xs sm:p-4"
-      >
-        <div class="mb-3 flex items-center justify-between gap-2">
+      <Card class="rounded-xl border border-border/60 shadow-xs">
+        <CardHeader class="flex flex-row items-center justify-between gap-2 p-3.5 pb-3 sm:p-4 sm:pb-3">
           <div class="flex items-center gap-2">
             <PlayCircle class="size-4 text-muted-foreground" />
-            <h3 class="font-semibold text-foreground">
+            <CardTitle class="text-base font-semibold text-foreground">
               {{ $t('page.automation_view.overview_recent_runs') }}
-            </h3>
+            </CardTitle>
           </div>
           <Button
             variant="ghost"
@@ -303,89 +305,89 @@ onMounted(() => {
             <span>{{ $t('page.automation_view.overview_view_all') }}</span>
             <ArrowRight class="size-3" />
           </Button>
-        </div>
+        </CardHeader>
 
-        <div
-          v-if="overview.recentRuns.length > 0"
-          class="divide-y divide-border/40"
-        >
+        <CardContent class="p-3.5 pt-0 sm:p-4 sm:pt-0">
           <div
-            v-for="run in overview.recentRuns"
-            :key="run.id"
-            class="flex items-center justify-between gap-3 py-2.5 first:pt-0 last:pb-0"
+            v-if="overview.recentRuns.length > 0"
+            class="divide-y divide-border/40"
           >
-            <div class="min-w-0 flex-1">
-              <div class="flex items-center gap-2">
-                <span class="truncate text-foreground sm:">
-                  {{ run.name }}
-                </span>
-                <Badge variant="outline" class="shrink-0">
-                  <span
-                    class="mr-1 size-1.5 rounded-full"
-                    :class="{
-                      'bg-primary animate-pulse': run.status === 'running',
-                      'bg-success': run.status === 'completed',
-                      'bg-destructive': run.status === 'failed',
-                      'bg-muted-foreground':
-                        run.status !== 'running' &&
-                        run.status !== 'completed' &&
-                        run.status !== 'failed',
-                    }"
-                  ></span>
-                  {{ getRunStatusLabel(run.status) }}
-                </Badge>
-              </div>
-              <div class="mt-1 flex items-center gap-2 text-muted-foreground">
-                <span class="truncate">
-                  {{
-                    run.workflow?.name ||
-                    $t('page.jobs_view.unassigned_workflow')
-                  }}
-                </span>
-                <span>&bull;</span>
-                <span class="">
-                  {{
-                    calculateProgressPercentage(
-                      run.completed_tasks,
-                      run.total_tasks,
-                    )
-                  }}%
-                </span>
-              </div>
-            </div>
-
-            <Button
-              variant="ghost"
-              size="sm"
-              class="h-7 shrink-0 gap-1 px-2"
-              @click="router.push(`/automation/jobs/${run.id}`)"
+            <div
+              v-for="run in overview.recentRuns"
+              :key="run.id"
+              class="flex items-center justify-between gap-3 py-2.5 first:pt-0 last:pb-0"
             >
-              <FileText class="size-3.5" />
-              <span class="hidden sm:inline">{{
-                $t('page.jobs_view.logs_btn')
-              }}</span>
-            </Button>
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center gap-2">
+                  <span class="truncate text-foreground sm:">
+                    {{ run.name }}
+                  </span>
+                  <Badge variant="outline" class="shrink-0">
+                    <span
+                      class="mr-1 size-1.5 rounded-full"
+                      :class="{
+                        'bg-primary animate-pulse': run.status === 'running',
+                        'bg-success': run.status === 'completed',
+                        'bg-destructive': run.status === 'failed',
+                        'bg-muted-foreground':
+                          run.status !== 'running' &&
+                          run.status !== 'completed' &&
+                          run.status !== 'failed',
+                      }"
+                    ></span>
+                    {{ getRunStatusLabel(run.status) }}
+                  </Badge>
+                </div>
+                <div class="mt-1 flex items-center gap-2 text-muted-foreground">
+                  <span class="truncate">
+                    {{
+                      run.workflow?.name ||
+                      $t('page.jobs_view.unassigned_workflow')
+                    }}
+                  </span>
+                  <span>&bull;</span>
+                  <span class="">
+                    {{
+                      calculateProgressPercentage(
+                        run.completed_tasks,
+                        run.total_tasks,
+                      )
+                    }}%
+                  </span>
+                </div>
+              </div>
+
+              <Button
+                variant="ghost"
+                size="sm"
+                class="h-7 shrink-0 gap-1 px-2"
+                @click="router.push(`/automation/jobs/${run.id}`)"
+              >
+                <FileText class="size-3.5" />
+                <span class="hidden sm:inline">{{
+                  $t('page.jobs_view.logs_btn')
+                }}</span>
+              </Button>
+            </div>
           </div>
-        </div>
-        <Empty v-else class="border-none py-6">
-          <EmptyHeader>
-            <EmptyDescription>
-              {{ $t('page.jobs_view.empty_title') }}
-            </EmptyDescription>
-          </EmptyHeader>
-        </Empty>
-      </div>
+          <Empty v-else class="border-none py-6">
+            <EmptyHeader>
+              <EmptyDescription>
+                {{ $t('page.jobs_view.empty_title') }}
+              </EmptyDescription>
+            </EmptyHeader>
+          </Empty>
+        </CardContent>
+      </Card>
 
       <!-- Recent Devices -->
-      <div
-        class="rounded-xl border border-border/60 bg-card p-3.5 shadow-xs sm:p-4"
-      >
-        <div class="mb-3 flex items-center justify-between gap-2">
+      <Card class="rounded-xl border border-border/60 shadow-xs">
+        <CardHeader class="flex flex-row items-center justify-between gap-2 p-3.5 pb-3 sm:p-4 sm:pb-3">
           <div class="flex items-center gap-2">
             <Laptop class="size-4 text-muted-foreground" />
-            <h3 class="font-semibold text-foreground">
+            <CardTitle class="text-base font-semibold text-foreground">
               {{ $t('page.automation_view.overview_recent_devices') }}
-            </h3>
+            </CardTitle>
           </div>
           <Button
             variant="ghost"
@@ -396,69 +398,71 @@ onMounted(() => {
             <span>{{ $t('page.automation_view.overview_view_all') }}</span>
             <ArrowRight class="size-3" />
           </Button>
-        </div>
+        </CardHeader>
 
-        <div
-          v-if="overview.recentDevices.length > 0"
-          class="divide-y divide-border/40"
-        >
+        <CardContent class="p-3.5 pt-0 sm:p-4 sm:pt-0">
           <div
-            v-for="device in overview.recentDevices"
-            :key="device.id"
-            class="flex items-center justify-between gap-3 py-2.5 first:pt-0 last:pb-0"
+            v-if="overview.recentDevices.length > 0"
+            class="divide-y divide-border/40"
           >
-            <div class="min-w-0 flex-1">
-              <div class="flex items-center gap-2">
-                <span class="truncate text-foreground sm:">
-                  {{ device.name }}
-                </span>
-                <Badge variant="outline" class="shrink-0 capitalize">
-                  {{ device.os_info }}
-                </Badge>
-              </div>
-              <div class="mt-1 flex items-center gap-2 text-muted-foreground">
-                <span class="inline-flex items-center gap-1">
-                  <Cpu class="size-3" />
-                  {{
-                    $t('page.automation_view.cpu_cores_unit', [
-                      device.cpu_cores,
+            <div
+              v-for="device in overview.recentDevices"
+              :key="device.id"
+              class="flex items-center justify-between gap-3 py-2.5 first:pt-0 last:pb-0"
+            >
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center gap-2">
+                  <span class="truncate text-foreground sm:">
+                    {{ device.name }}
+                  </span>
+                  <Badge variant="outline" class="shrink-0 capitalize">
+                    {{ device.os_info }}
+                  </Badge>
+                </div>
+                <div class="mt-1 flex items-center gap-2 text-muted-foreground">
+                  <span class="inline-flex items-center gap-1">
+                    <Cpu class="size-3" />
+                    {{
+                      $t('page.automation_view.cpu_cores_unit', [
+                        device.cpu_cores,
+                      ])
+                    }}
+                  </span>
+                  <span>&bull;</span>
+                  <span>{{ device.ram_gb }} GB</span>
+                  <span>&bull;</span>
+                  <span>{{
+                    $t('page.automation_view.active_jobs_unit', [
+                      device.active_jobs,
                     ])
-                  }}
-                </span>
-                <span>&bull;</span>
-                <span>{{ device.ram_gb }} GB</span>
-                <span>&bull;</span>
-                <span>{{
-                  $t('page.automation_view.active_jobs_unit', [
-                    device.active_jobs,
-                  ])
-                }}</span>
+                  }}</span>
+                </div>
               </div>
-            </div>
 
-            <Badge variant="outline" class="shrink-0">
-              <span
-                class="mr-1 size-1.5 rounded-full"
-                :class="{
-                  'bg-success': device.status === 'idle',
-                  'bg-primary animate-pulse': device.status === 'busy',
-                  'bg-warning': device.status === 'maintenance',
-                  'bg-muted-foreground':
-                    device.status === 'offline' || device.status === 'disabled',
-                }"
-              ></span>
-              {{ getDeviceStatusLabel(device.status) }}
-            </Badge>
+              <Badge variant="outline" class="shrink-0">
+                <span
+                  class="mr-1 size-1.5 rounded-full"
+                  :class="{
+                    'bg-success': device.status === 'idle',
+                    'bg-primary animate-pulse': device.status === 'busy',
+                    'bg-warning': device.status === 'maintenance',
+                    'bg-muted-foreground':
+                      device.status === 'offline' || device.status === 'disabled',
+                  }"
+                ></span>
+                {{ getDeviceStatusLabel(device.status) }}
+              </Badge>
+            </div>
           </div>
-        </div>
-        <Empty v-else class="border-none py-6">
-          <EmptyHeader>
-            <EmptyDescription>
-              {{ $t('page.fleet_view.devices_empty') }}
-            </EmptyDescription>
-          </EmptyHeader>
-        </Empty>
-      </div>
+          <Empty v-else class="border-none py-6">
+            <EmptyHeader>
+              <EmptyDescription>
+                {{ $t('page.fleet_view.devices_empty') }}
+              </EmptyDescription>
+            </EmptyHeader>
+          </Empty>
+        </CardContent>
+      </Card>
     </div>
 
     <ConnectFleetModal
