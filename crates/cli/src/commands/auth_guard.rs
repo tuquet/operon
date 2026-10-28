@@ -32,7 +32,7 @@ fn render_unauthenticated_card(command_context: &str) {
     let mut card = crate::ui::Card::new("AUTHENTICATION REQUIRED");
     card.with_badge(crate::ui::badge_error("UNAUTHENTICATED"));
     card.with_min_width(68);
-    card.add_line(&format!(
+    card.add_line(format!(
         "Command '{}' requires an authenticated operator or workstation session.",
         command_context
     ));

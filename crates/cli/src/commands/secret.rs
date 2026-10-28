@@ -12,6 +12,7 @@ use base64::engine::general_purpose::STANDARD as B64;
 
 use crate::cli::SecretSubcommands;
 use crate::infrastructure::cloud::SecretClient;
+use crate::ui::card::Card;
 use worker::core::secrets::{DeviceKeypair, SecretStore};
 
 /// Reads a secret value from a file (`@path`) or stdin (`-`).
@@ -39,24 +40,21 @@ pub async fn handle(cmd: SecretSubcommands) -> Result<(), Box<dyn std::error::Er
         SecretSubcommands::Init => {
             store.ensure_key()?;
             let kp = DeviceKeypair::load_or_create(store.dir())?;
-            println!("Secret Store ready.");
-            println!("  dir        : {}", store.dir().display());
-            println!(
-                "  store      : {}",
-                store.dir().join("secrets.json").display()
+            let mut card = Card::new("SECRET STORE READY");
+            card.with_badge("INITIALIZED");
+            card.add_kv("dir", store.dir().display().to_string());
+            card.add_kv("store", store.dir().join("secrets.json").display().to_string());
+            card.add_kv(
+                "store key",
+                format!("{} (0600)", store.dir().join(".secret_key").display()),
             );
-            println!(
-                "  store key  : {} (0600)",
-                store.dir().join(".secret_key").display()
+            card.add_kv(
+                "device key",
+                format!("{} (0600, X25519)", store.dir().join(".device_key").display()),
             );
-            println!(
-                "  device key : {} (0600, X25519)",
-                store.dir().join(".device_key").display()
-            );
-            println!("  device pub : {}", B64.encode(kp.public));
-            println!();
-            println!("Add a secret:  opn secret set <name> <value>");
-            println!("Sync to Cloud: opn secret push   |  On a new device: opn secret pull");
+            card.add_kv("device pub", B64.encode(kp.public));
+            card.with_footer("Add: opn secret set <name> <val> | Sync: opn secret push");
+            card.print();
         }
         SecretSubcommands::Set { name, value } => {
             let value = resolve_secret_input(&value)?;
