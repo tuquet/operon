@@ -116,6 +116,36 @@ impl ConfigRegistry {
         )
     }
 
+    pub fn get_schema_json(service: &str) -> Option<serde_json::Value> {
+        match Self::canonical_service(service) {
+            Some(crate::constants::PILLAR_FAKER) => {
+                let schema = schemars::schema_for!(faker::config::FakerConfig);
+                serde_json::to_value(&schema).ok()
+            }
+            Some(crate::constants::PILLAR_BROWSER) => {
+                let schema = schemars::schema_for!(crate::config::BrowserConfig);
+                serde_json::to_value(&schema).ok()
+            }
+            Some(crate::constants::PILLAR_AUTOMATION) => {
+                let schema = schemars::schema_for!(crate::config::AutomationConfig);
+                serde_json::to_value(&schema).ok()
+            }
+            Some(crate::constants::PILLAR_WORKER) => {
+                let schema = schemars::schema_for!(crate::config::RunnerConfig);
+                serde_json::to_value(&schema).ok()
+            }
+            Some(crate::constants::PILLAR_SYSTEM) => {
+                let schema = schemars::schema_for!(crate::config::SystemConfig);
+                serde_json::to_value(&schema).ok()
+            }
+            Some(crate::constants::PILLAR_INBOX) => {
+                let schema = schemars::schema_for!(crate::config::InboxConfig);
+                serde_json::to_value(&schema).ok()
+            }
+            _ => None,
+        }
+    }
+
     pub fn get_default_json(service: &str) -> serde_json::Value {
         match Self::canonical_service(service) {
             Some(crate::constants::PILLAR_FAKER) => {
@@ -233,11 +263,22 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_list_all_contains_seven_pillars() {
+    fn test_schemars_dynamic_schema_generation() {
+        let pillars = ["faker", "browser", "automation", "worker", "system", "inbox"];
+        for p in pillars {
+            let schema = ConfigRegistry::get_schema_json(p);
+            assert!(schema.is_some(), "Schema must be generated");
+            let val = schema.unwrap();
+            assert!(val.get("properties").is_some(), "Schema must have properties");
+        }
+    }
+
+    #[test]
+    fn test_list_all_contains_six_pillars() {
         let list = ConfigRegistry::list_all();
-        assert_eq!(list.len(), 7);
+        assert_eq!(list.len(), 6);
         let pillars: Vec<&str> = list.iter().map(|e| e.pillar).collect();
-        assert!(pillars.contains(&"gateway"));
+        // gateway decoupled
         assert!(pillars.contains(&"faker"));
         assert!(pillars.contains(&"browser"));
         assert!(pillars.contains(&"automation") || pillars.contains(&"automation"));
@@ -258,8 +299,8 @@ mod tests {
 
     #[test]
     fn test_resolve_service_path_aliases() {
-        assert!(ConfigRegistry::resolve_service_path("gateway").is_some());
-        assert!(ConfigRegistry::resolve_service_path("tunnel").is_some());
+        // gateway decoupled
+        // gateway decoupled
         assert!(ConfigRegistry::resolve_service_path("faker").is_some());
         assert!(ConfigRegistry::resolve_service_path("user").is_some());
         assert!(ConfigRegistry::resolve_service_path("browser").is_some());

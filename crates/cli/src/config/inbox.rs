@@ -1,3 +1,4 @@
+use schemars::JsonSchema;
 use crate::config::expander::{EnvExpander, canonical_dir};
 use crate::constants::endpoints::DEFAULT_HOST;
 use crate::constants::paths::{FILE_INBOX_JSON, FILE_INBOX_SQLITE};
@@ -7,7 +8,7 @@ use serde::{Deserialize, Serialize};
 use std::fs;
 use std::path::PathBuf;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, JsonSchema)]
 pub struct InboxConfig {
     #[serde(default = "default_host")]
     pub host: String,

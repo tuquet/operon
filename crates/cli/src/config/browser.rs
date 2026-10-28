@@ -1,9 +1,10 @@
+use schemars::JsonSchema;
 use crate::config::expander::{EnvExpander, canonical_dir};
 use serde::{Deserialize, Serialize};
 use std::fs;
 use std::path::PathBuf;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, JsonSchema)]
 pub struct BrowserConfig {
     #[serde(default = "default_browser_name")]
     pub default_browser: String,

@@ -1,10 +1,11 @@
+use schemars::JsonSchema;
 use crate::config::expander::{EnvExpander, canonical_dir};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fs;
 use std::path::PathBuf;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, JsonSchema)]
 pub struct AutomationConfig {
     #[serde(default = "default_timeout")]
     pub default_timeout_secs: u64,

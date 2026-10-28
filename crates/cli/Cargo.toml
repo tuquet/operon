@@ -53,6 +53,7 @@ flate2 = "1.0"
 tar = "0.4"
 regex = "1.11"
 chrono = { version = "0.4", default-features = false, features = ["clock", "std", "serde"] }
+schemars = { version = "1.2.3", features = ["derive"] }
 
 [dev-dependencies]
 reqwest = { version = "0.12", default-features = false, features = ["rustls-tls-native-roots", "json"] }
