@@ -19,6 +19,48 @@ async fn show_main_window(window: tauri::WebviewWindow) -> Result<(), String> {
     window.show().map_err(|e| e.to_string())
 }
 
+/// Spawns the embedded Operon Daemon API in the background if port 8765 is not already active
+fn spawn_embedded_daemon_if_needed() {
+    tauri::async_runtime::spawn(async {
+        let daemon_port: u16 = 8765;
+        let health_url = format!("http://127.0.0.1:{}/api/v1/health", daemon_port);
+
+        // Probe port 8765 first with 800ms timeout
+        let client = reqwest::Client::builder()
+            .timeout(std::time::Duration::from_millis(800))
+            .build();
+
+        let already_running = if let Ok(cli) = client {
+            match cli.get(&health_url).send().await {
+                Ok(resp) => resp.status().is_success(),
+                Err(_) => false,
+            }
+        } else {
+            false
+        };
+
+        if already_running {
+            println!("[tauri::daemon] Active Daemon detected on 127.0.0.1:{}. Attaching as client.", daemon_port);
+        } else {
+            println!("[tauri::daemon] Spawning in-process Daemon API on 127.0.0.1:{}...", daemon_port);
+            // Run server in-process (detach=false, cloud=false, claim=false)
+            if let Err(e) = operon::commands::worker::supervisor::run_server(
+                Some("127.0.0.1".into()),
+                Some(daemon_port),
+                false,
+                None,
+                None,
+                false,
+                false,
+            )
+            .await
+            {
+                eprintln!("[tauri::daemon] Embedded daemon server exited: {}", e);
+            }
+        }
+    });
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -55,6 +97,9 @@ pub fn run() {
             // Setup system tray
             let _ = tray::setup_tray(app.handle());
 
+            // Auto-start or attach to embedded Daemon API on port 8765
+            spawn_embedded_daemon_if_needed();
+
             // Build main window with strict navigation security guard
             let app_handle = app.handle().clone();
             let window = WebviewWindowBuilder::new(
@@ -62,7 +107,7 @@ pub fn run() {
                 "main",
                 WebviewUrl::App("index.html".into()),
             )
-            .title("Admin")
+            .title("Operon Workstation")
             .inner_size(1440.0, 900.0)
             .min_inner_size(1024.0, 700.0)
             .resizable(true)
@@ -94,3 +139,5 @@ pub fn run() {
         .run(tauri::generate_context!())
         .expect("error while running opn admin tauri application");
 }
+
+
