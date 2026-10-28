@@ -14,8 +14,6 @@ pub mod ports {
     pub const DEFAULT_SSH_TUNNEL_PORT: u16 = 2222;
     /// Default port for local Docker Supabase stack
     pub const DEFAULT_LOCAL_DOCKER_SUPABASE_PORT: u16 = 54321;
-    /// Default port for Inbox webhook listener daemon
-    pub const DEFAULT_INBOX_PORT: u16 = 9123;
 }
 
 pub mod protocols {
@@ -29,23 +27,19 @@ pub mod protocols {
 
 pub mod pillars {
     pub const PILLAR_GATEWAY: &str = "gateway";
-    pub const PILLAR_FAKER: &str = "faker";
     pub const PILLAR_BROWSER: &str = "browser";
     pub const PILLAR_AUTOMATION: &str = "automation";
     pub const PILLAR_WORKER: &str = "worker";
     pub const PILLAR_CLOUD: &str = "cloud";
     pub const PILLAR_SYSTEM: &str = "system";
-    pub const PILLAR_INBOX: &str = "inbox";
 
     pub const ALL_PILLARS: &[&str] = &[
         PILLAR_GATEWAY,
-        PILLAR_FAKER,
         PILLAR_BROWSER,
         PILLAR_AUTOMATION,
         PILLAR_WORKER,
         PILLAR_CLOUD,
         PILLAR_SYSTEM,
-        PILLAR_INBOX,
     ];
 }
 
@@ -84,13 +78,10 @@ pub mod paths {
 
     pub const FILE_AUTOMATION_SQLITE: &str = "automation.sqlite";
     pub const FILE_GATEWAY_JSON: &str = "gateway.json";
-    pub const FILE_FAKER_JSON: &str = "faker.json";
     pub const FILE_BROWSER_JSON: &str = "browser.json";
     pub const FILE_AUTOMATION_JSON: &str = "automation.json";
     pub const FILE_WORKER_JSON: &str = "worker.json";
     pub const FILE_SYSTEM_JSON: &str = "system.json";
-    pub const FILE_INBOX_JSON: &str = "inbox.json";
-    pub const FILE_INBOX_SQLITE: &str = "inbox.sqlite";
     pub const FILE_IDENTITY_JSON: &str = ".identity.json";
     pub const FILE_ENVIRONMENTS_JSON: &str = "environments.json";
     pub const FILE_WORKER_PID: &str = "worker.pid";

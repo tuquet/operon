@@ -1,7 +1,6 @@
 pub mod automation;
 pub mod browser;
 pub mod expander;
-pub mod inbox;
 pub mod inspector;
 pub mod registry;
 pub mod runner;
@@ -10,7 +9,6 @@ pub mod system;
 pub use automation::AutomationConfig;
 pub use browser::BrowserConfig;
 pub use expander::{EnvExpander, canonical_dir, canonical_ssot_dir};
-pub use inbox::InboxConfig;
 pub use inspector::{ConfigController, ConfigOptionDef};
 pub use registry::ConfigRegistry;
 pub use runner::RunnerConfig;

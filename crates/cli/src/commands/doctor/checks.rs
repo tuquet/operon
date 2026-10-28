@@ -258,11 +258,6 @@ pub fn check_storage_pillars() -> Table {
             "operon/gateway (Mesh)",
             "Multi-VPS mesh configuration (gateway.json), PID locks",
         ),
-        (
-            crate::constants::PILLAR_FAKER,
-            "operon/faker (Identity)",
-            "Synthetic persona schemas, CCCD template data",
-        ),
     ];
 
     for (pillar, service, desc) in pillars {

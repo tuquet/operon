@@ -34,7 +34,6 @@ pub async fn bootstrap(force_browser: bool) -> Result<(), Box<dyn std::error::Er
         root.join(crate::constants::PILLAR_GATEWAY).join("bin"),
         root.join(crate::constants::PILLAR_GATEWAY)
             .join(crate::constants::DIR_PIDS),
-        root.join(crate::constants::PILLAR_FAKER),
     ];
 
     for d in &dirs {

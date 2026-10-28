@@ -903,10 +903,20 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_extract_options_from_faker_schema() {
-        let schema_raw =
-            crate::commands::schema::get_config_schema("faker").expect("Faker schema exists");
-        let schema: Value = serde_json::from_str(schema_raw).expect("Valid JSON");
+    fn test_extract_options_from_schema() {
+        let schema = json!({
+            "properties": {
+                "default_nat": {
+                    "type": "string",
+                    "default": "US",
+                    "enum": ["US", "VN"]
+                },
+                "default_domain": {
+                    "type": "string",
+                    "default": "example.com"
+                }
+            }
+        });
         let current = json!({
             "default_nat": "US",
             "default_domain": "example.com"

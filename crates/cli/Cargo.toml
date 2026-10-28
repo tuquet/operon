@@ -16,7 +16,6 @@ name = "opn"
 path = "src/main.rs"
 
 [dependencies]
-faker = { path = "../faker" }
 browser = { path = "../browser", features = ["utoipa"] }
 worker = { path = "../worker", package = "worker" }
 axum = { version = "0.8.9", features = ["ws"] }

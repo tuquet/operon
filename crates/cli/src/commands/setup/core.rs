@@ -25,7 +25,6 @@ pub fn run(verbose: bool) -> Result<CoreResult, Box<dyn std::error::Error>> {
         root.join(crate::constants::PILLAR_GATEWAY).join("bin"),
         root.join(crate::constants::PILLAR_GATEWAY)
             .join(crate::constants::DIR_PIDS),
-        root.join(crate::constants::PILLAR_FAKER),
     ];
 
     for d in &dirs {

@@ -49,7 +49,7 @@ pub async fn handle(
                     println!("{}", schema.trim());
                 } else {
                     return Err(format!(
-                        "Unknown service '{}'. Available services: gateway, browser, automation, worker, faker, system, inbox",
+                        "Unknown service '{}'. Available services: browser, automation, worker, system",
                         srv
                     )
                     .into());
@@ -63,7 +63,6 @@ pub async fn handle(
                             "gateway",
                             "Network Gateway & Multi-VPS Mesh (gateway.schema.json)",
                         ),
-                        ("faker", "Synthetic Persona Generator (faker.schema.json)"),
                         (
                             "browser",
                             "Antidetect Chromium Runtime (browser.schema.json)",
@@ -76,10 +75,6 @@ pub async fn handle(
                         (
                             "system",
                             "Machine Identity & Cloud Fleet (system.schema.json)",
-                        ),
-                        (
-                            "inbox",
-                            "Catch-All Email & OTP Interceptor (inbox.schema.json)",
                         ),
                     ];
                     let opts: Vec<ClackOption> = services
@@ -150,12 +145,12 @@ fn run_interactive_schema() -> Result<(), Box<dyn std::error::Error>> {
         ),
         ClackOption::new(
             "Filter Commands by Microservice Pillar",
-            "Filter commands by system, automation, browser, gateway, faker, worker, cloud",
+            "Filter commands by system, automation, browser, worker, cloud",
             "Filter Commands by Microservice Pillar",
         ),
         ClackOption::new(
             "Inspect Microservice Config JSON Schema",
-            "View Draft 2020-12 JSON Schema for gateway, faker, browser, automation, worker, system, inbox",
+            "View Draft 2020-12 JSON Schema for browser, automation, worker, system",
             "Inspect Microservice Config JSON Schema",
         ),
         ClackOption::new(
@@ -357,7 +352,7 @@ fn show_config_overview() {
     card.add_kv("Standard", "JSON Schema Specification (Draft 2020-12)");
     card.add_kv(
         "Supported Services",
-        "gateway, browser, automation, worker, faker, system, inbox",
+        "browser, automation, worker, system",
     );
     card.add_line("");
     card.add_line(format!(
@@ -389,9 +384,7 @@ const GATEWAY_SCHEMA: &str = include_str!("../../schema/config/gateway.schema.js
 const BROWSER_SCHEMA: &str = include_str!("../../schema/config/browser.schema.json");
 const AUTOMATION_SCHEMA: &str = include_str!("../../schema/config/automation.schema.json");
 const WORKER_SCHEMA: &str = include_str!("../../schema/config/worker.schema.json");
-const FAKER_SCHEMA: &str = include_str!("../../schema/config/faker.schema.json");
 const SYSTEM_SCHEMA: &str = include_str!("../../schema/config/system.schema.json");
-const INBOX_SCHEMA: &str = include_str!("../../schema/config/inbox.schema.json");
 
 pub fn get_dynamic_schema(service: &str) -> Option<String> {
     crate::config::ConfigRegistry::get_schema_json(service).and_then(|v| serde_json::to_string_pretty(&v).ok())
@@ -403,9 +396,7 @@ pub fn get_config_schema(service: &str) -> Option<&'static str> {
         "browser" => Some(BROWSER_SCHEMA),
         "automation" => Some(AUTOMATION_SCHEMA),
         "worker" => Some(WORKER_SCHEMA),
-        "faker" => Some(FAKER_SCHEMA),
         "system" => Some(SYSTEM_SCHEMA),
-        "inbox" => Some(INBOX_SCHEMA),
         _ => None,
     }
 }

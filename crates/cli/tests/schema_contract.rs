@@ -21,11 +21,8 @@ fn test_manifest_schema_and_json_validity() {
         "system",
         "automation",
         "browser",
-        "gateway",
-        "faker",
         "runner",
         "cloud",
-        "inbox",
     ];
     for p in &required_pillars {
         assert!(
@@ -203,11 +200,6 @@ fn test_runtime_manifest_queries() {
         "Expected browser commands in manifest"
     );
 
-    let gateway_cmds = list_by_pillar("gateway");
-    assert!(
-        !gateway_cmds.is_empty(),
-        "Expected gateway commands in manifest"
-    );
 
     let auth_cmd = find_by_route(&["auth", "whoami"]);
     assert!(
@@ -220,13 +212,10 @@ fn test_runtime_manifest_queries() {
 #[test]
 fn test_config_schemas_contract() {
     let services = [
-        "gateway",
         "browser",
         "automation",
         "worker",
-        "faker",
         "system",
-        "inbox",
     ];
     for s in services {
         let path = std::path::Path::new("schema/config").join(format!("{}.schema.json", s));

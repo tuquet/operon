@@ -1,7 +1,7 @@
 use serde_json::{Value, json};
 
 use super::protocol::JsonRpcResponse;
-use super::tools::{faker, inbox, runner, status, tree, workflow};
+use super::tools::{runner, status, tree, workflow};
 
 pub async fn handle_tools_call(id: Option<Value>, params: Option<Value>) -> JsonRpcResponse {
     let p = match params {
@@ -23,9 +23,6 @@ pub async fn handle_tools_call(id: Option<Value>, params: Option<Value>) -> Json
         "cloud_whoami" => status::execute_cloud_whoami().await,
         "browser_status" => status::execute_browser_status().await,
         "tree" => tree::execute_tree(&arguments).await,
-        "faker_generate" => faker::execute_faker_generate(&arguments).await,
-        "inbox_otp" => inbox::execute_inbox_otp(&arguments).await,
-        "inbox_status" => inbox::execute_inbox_status().await,
         other => {
             return JsonRpcResponse::err(id, -32601, format!("Tool not found: {}", other));
         }
