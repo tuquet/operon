@@ -144,7 +144,7 @@ mod tests {
         // Valid worker binary is strictly opn / opn.exe (case-insensitive)
         assert!(is_valid_worker_name("opn"));
         assert!(is_valid_worker_name("opn.exe"));
-        assert!(is_valid_worker_name("TQ.EXE"));
+        assert!(is_valid_worker_name("OPN.EXE"));
         assert!(is_valid_worker_name("  opn.exe  "));
 
         // Obsolete legacy names & non-binaries rejected per KISS & YAGNI

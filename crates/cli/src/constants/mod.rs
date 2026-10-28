@@ -96,6 +96,7 @@ pub mod paths {
     pub const FILE_WORKER_PID: &str = "worker.pid";
     pub const FILE_WORKER_LOG: &str = "worker.log";
 
+    pub const DIR_WORKER: &str = "worker";
     pub const DIR_RUNTIMES: &str = "runtimes";
     pub const DIR_PROFILES: &str = "profiles";
     pub const DIR_EXTENSIONS: &str = "extensions";

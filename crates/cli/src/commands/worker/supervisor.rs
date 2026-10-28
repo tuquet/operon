@@ -10,7 +10,7 @@ use crate::config::AppConfig;
 use crate::infrastructure::db::AutomationDb;
 
 pub fn get_pid_file_path(data_dir: &str) -> PathBuf {
-    Path::new(data_dir).join(crate::constants::FILE_WORKER_PID)
+    Path::new(data_dir).join(crate::constants::DIR_WORKER).join(crate::constants::FILE_WORKER_PID)
 }
 
 pub fn get_log_file_path(data_dir: &str) -> PathBuf {
