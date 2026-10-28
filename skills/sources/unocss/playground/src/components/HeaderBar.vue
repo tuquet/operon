@@ -30,13 +30,13 @@ function handleReset() {
     <div flex="~ items-center">
       <div flex items-center gap-2>
         <img src="/icon-gray.svg" w-4 h-4alt="">
-        <div text-sm>
+        <div >
           UnoCSS Playground
         </div>
       </div>
       <SelectVersion />
     </div>
-    <div class="text-sm md:text-base flex flex-auto items-center justify-end flex-nowrap gap-1">
+    <div class=" md:text-base flex flex-auto items-center justify-end flex-nowrap gap-1">
       <button
         :class="copied ? 'i-ri-checkbox-circle-line text-green' : 'i-ri-share-line'"
         icon-btn

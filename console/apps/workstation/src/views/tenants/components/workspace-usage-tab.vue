@@ -45,7 +45,7 @@ const runsPercent = computed(() =>
     <!-- Billing Cycle Context Strip -->
     <div
       v-if="subscription?.current_period_end"
-      class="flex flex-col gap-1.5 rounded-lg border border-border/50 bg-muted/20 px-3.5 py-2.5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:py-2"
+      class="flex flex-col gap-1.5 rounded-lg border border-border/50 bg-muted/20 px-3.5 py-2.5 text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:py-2"
     >
       <span>{{ $t('page.tenants_view.default_plan_desc') }}</span>
       <span class="inline-flex shrink-0 items-center gap-1.5">
@@ -66,16 +66,14 @@ const runsPercent = computed(() =>
         class="rounded-xl border border-border/60 bg-card p-3.5 sm:p-5 shadow-sm space-y-2.5"
       >
         <div class="flex items-center justify-between gap-2">
-          <div
-            class="flex min-w-0 items-center gap-2 text-sm font-medium text-foreground"
-          >
+          <div class="flex min-w-0 items-center gap-2 text-foreground">
             <Users class="size-4 shrink-0 text-muted-foreground" />
             <span class="truncate">{{
               $t('page.tenants_view.quota_members_title')
             }}</span>
           </div>
           <span
-            class="shrink-0 whitespace-nowrap font-mono text-xs font-semibold"
+            class="shrink-0 whitespace-nowrap font-semibold"
             :class="
               quota.used_members > quota.max_members
                 ? 'text-destructive'
@@ -87,7 +85,7 @@ const runsPercent = computed(() =>
         </div>
 
         <Progress :model-value="membersPercent" class="h-2" />
-        <div class="text-xs text-muted-foreground">
+        <div class="text-muted-foreground">
           {{
             $t('page.tenants_view.quota_members_desc', {
               percent: membersPercent,
@@ -101,16 +99,14 @@ const runsPercent = computed(() =>
         class="rounded-xl border border-border/60 bg-card p-3.5 sm:p-5 shadow-sm space-y-2.5"
       >
         <div class="flex items-center justify-between gap-2">
-          <div
-            class="flex min-w-0 items-center gap-2 text-sm font-medium text-foreground"
-          >
+          <div class="flex min-w-0 items-center gap-2 text-foreground">
             <Cpu class="size-4 shrink-0 text-muted-foreground" />
             <span class="truncate">{{
               $t('page.tenants_view.quota_devices_title')
             }}</span>
           </div>
           <span
-            class="shrink-0 whitespace-nowrap font-mono text-xs font-semibold"
+            class="shrink-0 whitespace-nowrap font-semibold"
             :class="
               quota.used_devices > quota.max_devices
                 ? 'text-destructive'
@@ -122,7 +118,7 @@ const runsPercent = computed(() =>
         </div>
 
         <Progress :model-value="devicesPercent" class="h-2" />
-        <div class="text-xs text-muted-foreground">
+        <div class="text-muted-foreground">
           {{
             $t('page.tenants_view.quota_devices_desc', {
               percent: devicesPercent,
@@ -136,16 +132,14 @@ const runsPercent = computed(() =>
         class="rounded-xl border border-border/60 bg-card p-3.5 sm:p-5 shadow-sm space-y-2.5"
       >
         <div class="flex items-center justify-between gap-2">
-          <div
-            class="flex min-w-0 items-center gap-2 text-sm font-medium text-foreground"
-          >
+          <div class="flex min-w-0 items-center gap-2 text-foreground">
             <HardDrive class="size-4 shrink-0 text-muted-foreground" />
             <span class="truncate">{{
               $t('page.tenants_view.quota_storage_title')
             }}</span>
           </div>
           <span
-            class="shrink-0 whitespace-nowrap font-mono text-xs font-semibold"
+            class="shrink-0 whitespace-nowrap font-semibold"
             :class="
               quota.used_storage_mb > quota.max_storage_mb
                 ? 'text-destructive'
@@ -157,7 +151,7 @@ const runsPercent = computed(() =>
         </div>
 
         <Progress :model-value="storagePercent" class="h-2" />
-        <div class="text-xs text-muted-foreground">
+        <div class="text-muted-foreground">
           {{ $t('page.tenants_view.quota_storage_desc') }}
         </div>
       </div>
@@ -167,16 +161,14 @@ const runsPercent = computed(() =>
         class="rounded-xl border border-border/60 bg-card p-3.5 sm:p-5 shadow-sm space-y-2.5"
       >
         <div class="flex items-center justify-between gap-2">
-          <div
-            class="flex min-w-0 items-center gap-2 text-sm font-medium text-foreground"
-          >
+          <div class="flex min-w-0 items-center gap-2 text-foreground">
             <PlayCircle class="size-4 shrink-0 text-muted-foreground" />
             <span class="truncate">{{
               $t('page.tenants_view.quota_runs_title')
             }}</span>
           </div>
           <span
-            class="shrink-0 whitespace-nowrap font-mono text-xs font-semibold"
+            class="shrink-0 whitespace-nowrap font-semibold"
             :class="
               quota.used_monthly_runs > quota.max_monthly_runs
                 ? 'text-destructive'
@@ -188,7 +180,7 @@ const runsPercent = computed(() =>
         </div>
 
         <Progress :model-value="runsPercent" class="h-2" />
-        <div class="text-xs text-muted-foreground">
+        <div class="text-muted-foreground">
           {{ $t('page.tenants_view.quota_runs_desc') }}
         </div>
       </div>

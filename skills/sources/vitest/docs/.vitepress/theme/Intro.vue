@@ -4,7 +4,7 @@
       <div class="flex flex-col gap-3 max-w-md">
         <div class="flex gap-3 items-center">
           <img src="@assets/icons/vitest-light.svg" alt="Vitest icon" class="size-5">
-          <span class="text-grey text-xs font-medium font-mono uppercase tracking-wide">Why Vitest</span>
+          <span class="text-grey   uppercase tracking-wide">Why Vitest</span>
         </div>
         <h3 class="text-white max-w-xl text-balance">
           The Vite Native Test Runner

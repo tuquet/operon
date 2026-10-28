@@ -147,7 +147,7 @@ function selectColor() {
             </div>
           </template>
         </div>
-        <div class="my-2 text-center text-xs text-muted-foreground">
+        <div class="my-2 text-center text-muted-foreground">
           {{ typeView(theme.type) }}
         </div>
       </div>

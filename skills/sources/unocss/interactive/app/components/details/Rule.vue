@@ -75,7 +75,7 @@ function getGitHubCodeSearchLink(key: RegExp | string, repo = 'unocss/unocss') {
         <div border="~ main">
           <template v-for="r, idx of item.context.shortcuts" :key="idx">
             <div v-if="idx" divider />
-            <div row gap2 px4 py2 items-center font-mono op80>
+            <div row gap2 px4 py2 items-center  op80>
               {{ r[0] }} -> {{ r[1] }}
             </div>
           </template>
@@ -92,7 +92,7 @@ function getGitHubCodeSearchLink(key: RegExp | string, repo = 'unocss/unocss') {
             <div px4 py2>
               <div
                 v-if="idx < variantSteps.length - 1"
-                :class="s.name ? '' : 'op50'" row text-sm gap1
+                :class="s.name ? '' : 'op50'" row  gap1
                 mra mya
               >
                 <PresetLabel
@@ -104,7 +104,7 @@ function getGitHubCodeSearchLink(key: RegExp | string, repo = 'unocss/unocss') {
                 {{ s.name || '(anonymous)' }}
               </div>
             </div>
-            <div px4 py2 font-mono op60>
+            <div px4 py2  op60>
               {{ s.result }}
             </div>
           </template>
@@ -119,7 +119,7 @@ function getGitHubCodeSearchLink(key: RegExp | string, repo = 'unocss/unocss') {
             <div v-if="idx" divider />
             <div row flex-wrap gap2 px4 py2 items-center>
               <div gap1>
-                <PresetLabel text-sm op30 hover:op100 :preset="searcher.getPresetOfRule(r)" />
+                <PresetLabel  op30 hover:op100 :preset="searcher.getPresetOfRule(r)" />
                 <div v-if="typeof r[0] === 'string'" row gap2 items-center>
                   <code text-hex-AB5E3F dark:text-hex-C4704F>"{{ r[0] }}"</code>
                   <div badge-xs-teal mya>
@@ -130,10 +130,10 @@ function getGitHubCodeSearchLink(key: RegExp | string, repo = 'unocss/unocss') {
               </div>
               <div flex-auto />
               <template v-if="typeof r[0] !== 'string'">
-                <a text-sm link :href="getRegex101Link(r[0], item.class)" target="_blank">Regex101</a>
-                <a text-sm link :href="getRegexperLink(r[0])" target="_blank">Regexper</a>
+                <a  link :href="getRegex101Link(r[0], item.class)" target="_blank">Regex101</a>
+                <a  link :href="getRegexperLink(r[0])" target="_blank">Regexper</a>
               </template>
-              <a text-sm link :href="getGitHubCodeSearchLink(r[0])" target="_blank">GitHub</a>
+              <a  link :href="getGitHubCodeSearchLink(r[0])" target="_blank">GitHub</a>
             </div>
           </template>
         </div>
@@ -142,7 +142,7 @@ function getGitHubCodeSearchLink(key: RegExp | string, repo = 'unocss/unocss') {
         <div op30 mb1>
           Layers
         </div>
-        <div row border="~ main" relative of-hidden font-mono>
+        <div row border="~ main" relative of-hidden >
           <div v-for="l of item.layers" :key="l" op50 px4 py2>
             {{ l }}
           </div>

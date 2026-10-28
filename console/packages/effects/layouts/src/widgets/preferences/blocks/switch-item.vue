@@ -31,7 +31,7 @@ function handleClick() {
     class="my-1 flex w-full items-center justify-between rounded-md px-2 py-2.5 hover:bg-accent"
     @click="handleClick"
   >
-    <span class="flex items-center text-sm">
+    <span class="flex items-center">
       <slot></slot>
 
       <VbenTooltip v-if="slots.tip || tip" side="bottom">
@@ -47,7 +47,7 @@ function handleClick() {
         </slot>
       </VbenTooltip>
     </span>
-    <span v-if="$slots.shortcut" class="mr-2 ml-auto text-xs opacity-60">
+    <span v-if="$slots.shortcut" class="mr-2 ml-auto opacity-60">
       <slot name="shortcut"></slot>
     </span>
     <Switch v-model="checked" @click.stop />

@@ -64,7 +64,7 @@ function ellipsisFile(moduleId: string) {
     <h1 my-2 mx-4>
       Import Duration Breakdown <span op-70>(ordered by Total Time)</span>
     </h1>
-    <table my-2 mx-4 text-sm font-light op-90>
+    <table my-2 mx-4  font-light op-90>
       <thead>
         <tr>
           <th>

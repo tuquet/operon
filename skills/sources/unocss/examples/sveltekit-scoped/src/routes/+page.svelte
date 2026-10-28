@@ -20,7 +20,7 @@
 
   <Logos />
 
-  <p class="mt-10 font-mono">.font-mono is set to Fira Code => with nice ligatures (preset-web-fonts)</p>
+  <p class="mt-10 ">. is set to Fira Code => with nice ligatures (preset-web-fonts)</p>
 
   <Prose />
 

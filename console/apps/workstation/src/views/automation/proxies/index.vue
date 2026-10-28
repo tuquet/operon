@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+﻿<script lang="ts" setup>
 import type { ProxyServer } from '#/api';
 
 import { ref, watch } from 'vue';
@@ -210,8 +210,6 @@ watch(
   <Page
     :title="$t('page.automation.proxies')"
     :description="$t('page.automation.proxies_desc')"
-    content-class="p-3 sm:p-5"
-    header-class="border-b border-border/60 bg-card/60 px-4 py-3 sm:px-6"
   >
     <template #title>
       <div class="flex items-center gap-2">
@@ -220,7 +218,7 @@ watch(
         >
           {{ $t('page.automation.proxies') }}
         </h1>
-        <Badge variant="secondary" class="shrink-0 text-2xs">
+        <Badge variant="secondary" class="shrink-0">
           {{ allProxies.length }}
         </Badge>
       </div>
@@ -231,7 +229,7 @@ watch(
         <Button
           variant="outline"
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs"
+          class="h-8 gap-1.5 px-2.5"
           :title="$t('common.refresh')"
           @click="() => gridApi.reload()"
         >
@@ -240,7 +238,7 @@ watch(
         </Button>
         <Button
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs font-medium sm:px-3"
+          class="h-8 gap-1.5 px-2.5 sm:px-3"
           @click="() => gridApi.openCreateSheet()"
         >
           <Plus class="size-3.5 shrink-0" />
@@ -261,14 +259,14 @@ watch(
             >
               <Network class="size-4" />
             </div>
-            <div class="min-w-0 text-xs font-medium text-foreground truncate">
+            <div class="min-w-0 text-foreground truncate">
               {{ row.protocol }}://{{ row.host }}:{{ row.port }}
             </div>
           </div>
         </template>
 
         <template #location-cell="{ row }">
-          <div class="flex items-center gap-2 text-xs">
+          <div class="flex items-center gap-2">
             <span
               v-if="row.country_code"
               class="font-semibold text-foreground uppercase"
@@ -280,7 +278,7 @@ watch(
             </span>
             <Badge
               :variant="row.is_residential ? 'secondary' : 'outline'"
-              class="text-2xs font-normal shrink-0"
+              class="shrink-0"
             >
               {{
                 row.is_residential
@@ -292,7 +290,7 @@ watch(
         </template>
 
         <template #latency-cell="{ row }">
-          <div class="flex items-center gap-1.5 text-xs font-mono">
+          <div class="flex items-center gap-1.5">
             <Activity class="size-3.5 shrink-0 text-muted-foreground" />
             <span :class="getLatencyBadgeClass(row.latency_ms)">
               {{
@@ -306,7 +304,6 @@ watch(
 
         <template #error-cell="{ row }">
           <span
-            class="text-xs"
             :class="
               row.error_count > 0
                 ? 'text-destructive font-semibold'
@@ -320,7 +317,7 @@ watch(
         </template>
 
         <template #status-cell="{ row }">
-          <Badge variant="outline" class="text-xs font-normal">
+          <Badge variant="outline" class="">
             <span
               class="mr-1.5 size-1.5 rounded-full"
               :class="{
@@ -347,7 +344,7 @@ watch(
             <Button
               variant="outline"
               size="sm"
-              class="h-7 gap-1 px-2 text-xs"
+              class="h-7 gap-1 px-2"
               :title="$t('common.copy')"
               @click="
                 copyToClipboard(
@@ -369,10 +366,10 @@ watch(
             <Network
               class="size-10 stroke-[1.5] text-muted-foreground/60 mb-3"
             />
-            <p class="text-sm font-medium text-foreground">
+            <p class="text-foreground">
               {{ $t('page.fleet_view.proxies_empty') }}
             </p>
-            <p class="text-xs text-muted-foreground max-w-sm mt-1">
+            <p class="text-muted-foreground max-w-sm mt-1">
               {{ $t('page.fleet_view.proxies_empty_desc') }}
             </p>
           </div>

@@ -88,4 +88,18 @@ export async function revealWindow(): Promise<void> {
   }
 }
 
+/**
+ * Starts window dragging on mousedown in Tauri environment.
+ */
+export async function startDragging(): Promise<void> {
+  if (!isTauriEnvironment()) return;
+  try {
+    const { getCurrentWebviewWindow } =
+      await import('@tauri-apps/api/webviewWindow');
+    await getCurrentWebviewWindow().startDragging();
+  } catch (error) {
+    console.error('[Desktop] Failed to start window dragging:', error);
+  }
+}
+
 export * from './deep-link';

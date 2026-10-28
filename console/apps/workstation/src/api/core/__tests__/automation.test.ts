@@ -485,7 +485,8 @@ describe('automation core api & helpers (automation & workers schemas)', () => {
       });
       vi.stubGlobal('fetch', mockFetch);
 
-      const { startBrowserProfile, stopBrowserProfile } = await import('../automation');
+      const { startBrowserProfile, stopBrowserProfile } =
+        await import('../automation');
 
       await startBrowserProfile('test-browser-id', { headless: false });
       expect(mockFetch).toHaveBeenCalledWith(

@@ -9,7 +9,7 @@ const { compact = undefined } = defineProps<{
 const compactMode = computed(() => compact ?? isCompact.value)
 const badgeStyle = computed(() => {
   if (compactMode.value)
-    return 'w-5 h-5 text-sm'
+    return 'w-5 h-5 '
   return ''
 })
 </script>
@@ -27,7 +27,7 @@ const badgeStyle = computed(() => {
     </div>
     <div flex-1>
       <h1><slot name="title" /></h1>
-      <slot v-if="!compactMode" name="detail" text-sm op50 line-clamp-2 />
+      <slot v-if="!compactMode" name="detail"  op50 line-clamp-2 />
     </div>
     <slot flex-none name="tail" />
   </div>

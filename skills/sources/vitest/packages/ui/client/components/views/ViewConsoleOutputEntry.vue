@@ -16,7 +16,7 @@ function formatTime(t: number) {
 <template>
   <div border="b base" p-4>
     <div
-      text-xs
+     
       mb-1
       :class="type === 'stderr' ? 'text-red-600 dark:text-red-300' : 'op30'"
     >

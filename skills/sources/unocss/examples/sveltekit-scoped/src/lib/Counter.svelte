@@ -12,7 +12,7 @@
   on:click={increment}
 >
   Clicks: {count}<br />
-  <span class="text-sm"
+  <span class=""
     >orange background dynamically calculated so bg-orange-300 is in the
     safelist</span
   >

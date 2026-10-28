@@ -3,7 +3,7 @@
 --spacing: 0.25rem;
 --font-sans: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 --font-serif: ui-serif,Georgia,Cambria,"Times New Roman",Times,serif;
---font-mono: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+--: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
 --colors-black: #000;
 --colors-white: #fff;
 --colors-slate-50: oklch(98.4% 0.003 247.858);
@@ -344,8 +344,8 @@
 --colors-dark-DEFAULT: oklch(25.2% 0 0);
 --text-xs-fontSize: 0.75rem;
 --text-xs-lineHeight: 1rem;
---text-sm-fontSize: 0.875rem;
---text-sm-lineHeight: 1.25rem;
+---fontSize: 0.875rem;
+---lineHeight: 1.25rem;
 --text-base-fontSize: 1rem;
 --text-base-lineHeight: 1.5rem;
 --text-lg-fontSize: 1.125rem;
@@ -427,9 +427,9 @@
 --default-font-family: var(--font-sans);
 --default-font-featureSettings: var(--font-sans--font-feature-settings);
 --default-font-variationSettings: var(--font-sans--font-variation-settings);
---default-monoFont-family: var(--font-mono);
---default-monoFont-featureSettings: var(--font-mono--font-feature-settings);
---default-monoFont-variationSettings: var(--font-mono--font-variation-settings);
+--default-monoFont-family: var(--);
+--default-monoFont-featureSettings: var(----font-feature-settings);
+--default-monoFont-variationSettings: var(----font-variation-settings);
 --container-3xs: 16rem;
 --container-2xs: 18rem;
 --container-xs: 20rem;

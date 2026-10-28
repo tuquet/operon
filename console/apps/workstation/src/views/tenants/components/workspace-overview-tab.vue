@@ -52,7 +52,7 @@ function navigateToFleet() {
       >
         <div class="flex items-center gap-2">
           <Layers class="size-4 text-muted-foreground" />
-          <h2 class="text-sm font-semibold text-foreground">
+          <h2 class="font-semibold text-foreground">
             {{ $t('page.tenants_view.workspace_details') }}
           </h2>
         </div>
@@ -66,12 +66,10 @@ function navigateToFleet() {
           data-testid="overview-card-tenant-id"
           class="rounded-lg border border-border/50 bg-muted/20 p-3.5 space-y-1.5 min-w-0"
         >
-          <div class="text-xs text-muted-foreground">
+          <div class="text-muted-foreground">
             {{ $t('page.tenants_view.tenant_id') }}
           </div>
-          <div
-            class="flex items-center justify-between gap-2 text-xs text-foreground"
-          >
+          <div class="flex items-center justify-between gap-2 text-foreground">
             <span class="truncate">{{ tenant.id }}</span>
             <Button
               type="button"
@@ -95,16 +93,16 @@ function navigateToFleet() {
           data-testid="overview-card-service-plan"
           class="rounded-lg border border-border/50 bg-muted/20 p-3.5 space-y-1.5"
         >
-          <div class="text-xs text-muted-foreground">
+          <div class="text-muted-foreground">
             {{ $t('page.workspace.service_plan') }}
           </div>
           <div class="flex flex-wrap items-center gap-2">
-            <Badge variant="default" class="text-xs font-medium capitalize">
+            <Badge variant="default" class="capitalize">
               {{
                 subscription?.plan?.name || $t('page.tenants_view.free_starter')
               }}
             </Badge>
-            <span class="text-xs text-muted-foreground font-mono">
+            <span class="text-muted-foreground">
               ${{ subscription?.plan?.price_monthly_usd || 0 }}/{{
                 $t('page.tenants_view.per_month')
               }}
@@ -117,15 +115,15 @@ function navigateToFleet() {
           data-testid="overview-card-device-infra"
           class="rounded-lg border border-border/50 bg-muted/20 p-3.5 space-y-1.5"
         >
-          <div class="text-xs text-muted-foreground">
+          <div class="text-muted-foreground">
             {{ $t('page.tenants_view.device_infra') }}
           </div>
           <div class="flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-baseline gap-1">
-              <span class="font-semibold text-foreground text-sm font-mono">{{
+              <span class="font-semibold text-foreground">{{
                 activeDevicesCount
               }}</span>
-              <span class="text-xs text-muted-foreground">
+              <span class="text-muted-foreground">
                 / {{ totalDevicesCount }}
                 {{ $t('page.tenants_view.devices_online') }}
               </span>
@@ -133,7 +131,7 @@ function navigateToFleet() {
             <Button
               variant="ghost"
               size="sm"
-              class="h-6 px-2 text-xs gap-1 text-primary hover:text-primary"
+              class="h-6 px-2 gap-1 text-primary hover:text-primary"
               @click="navigateToFleet"
             >
               <span>{{ $t('page.tenants_view.view_devices') }}</span>

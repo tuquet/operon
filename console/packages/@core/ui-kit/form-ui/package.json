@@ -40,13 +40,13 @@
     }
   },
   "dependencies": {
-    "@tanstack/store": "catalog:",
-    "@tanstack/vue-form": "catalog:",
     "@operon-core/composables": "workspace:*",
     "@operon-core/icons": "workspace:*",
     "@operon-core/shadcn-ui": "workspace:*",
     "@operon-core/shared": "workspace:*",
     "@operon-core/typings": "workspace:*",
+    "@tanstack/store": "catalog:",
+    "@tanstack/vue-form": "catalog:",
     "@vueuse/core": "catalog:",
     "vue": "catalog:",
     "zod": "catalog:",

@@ -36,17 +36,17 @@ icon: i-logos-html-5
         </div>
         <div
           id="author"
-          class="text-[clamp(1rem,3vw,1.2rem)] opacity-0 font-normal transition-opacity duration-500"
+          class="text-[clamp(1rem,3vw,1.2rem)] opacity-0  transition-opacity duration-500"
         ></div>
         <button
           id="refresh-btn"
-          class="mt-5 bg-white/20 border border-white/30 text-white px-6 py-3 rounded-full cursor-pointer text-sm transition hover:bg-white/30 hover:-translate-y-0.5"
+          class="mt-5 bg-white/20 border border-white/30 text-white px-6 py-3 rounded-full cursor-pointer  transition hover:bg-white/30 hover:-translate-y-0.5"
           onclick="fetchQuote()"
         >
           New Quote
         </button>
       </div>
-      <div class="mt-8 text-sm opacity-60">
+      <div class="mt-8  opacity-60">
         Powered by
         <a
           class="text-white no-underline border-b border-white/30 hover:border-white transition-colors"
@@ -71,10 +71,10 @@ icon: i-logos-html-5
         "text-[clamp(1.2rem,4vw,1.8rem)] leading-relaxed mb-5 font-light transition-opacity duration-500";
       const loadingQuoteClasses = baseQuoteClasses + " opacity-70";
       const normalQuoteClasses = baseQuoteClasses + " opacity-100";
-      const errorQuoteClasses = baseQuoteClasses + " text-red-400 opacity-100 text-sm";
+      const errorQuoteClasses = baseQuoteClasses + " text-red-400 opacity-100 ";
 
       const baseAuthorClasses =
-        "text-[clamp(1rem,3vw,1.2rem)] font-normal transition-opacity duration-500";
+        "text-[clamp(1rem,3vw,1.2rem)]  transition-opacity duration-500";
       const hiddenAuthorClasses = baseAuthorClasses + " opacity-0";
       const visibleAuthorClasses = baseAuthorClasses + " opacity-80";
 

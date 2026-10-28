@@ -428,7 +428,7 @@ function bindOnClick(
           >
           <label
             font-light
-            text-sm
+            
             ws-nowrap
             overflow-hidden
             select-none
@@ -453,7 +453,7 @@ function bindOnClick(
           >
           <label
             font-light
-            text-sm
+            
             ws-nowrap
             overflow-hidden
             capitalize
@@ -468,7 +468,7 @@ function bindOnClick(
         <div
           flex="~ gap-2"
           items-center
-          text-xs
+         
           opacity-60
         >
           <span>Click on node: details • Right-click/Shift: expand graph</span>

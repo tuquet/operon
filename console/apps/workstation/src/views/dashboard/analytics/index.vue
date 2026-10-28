@@ -136,7 +136,7 @@ onMounted(() => {
         >
           {{ $t('page.analytics.title') }}
         </h1>
-        <p class="truncate text-xs text-muted-foreground sm:text-sm">
+        <p class="truncate text-muted-foreground sm:">
           {{ $t('page.analytics.description') }}
         </p>
       </div>
@@ -144,7 +144,7 @@ onMounted(() => {
       <div class="flex items-center gap-2">
         <Badge
           variant="outline"
-          class="hidden border-border/80 bg-background/50 px-2 py-0.5 text-xs text-muted-foreground sm:inline-flex"
+          class="hidden border-border/80 bg-background/50 px-2 py-0.5 text-muted-foreground sm:inline-flex"
         >
           <span class="relative mr-1.5 flex size-2">
             <span
@@ -160,7 +160,7 @@ onMounted(() => {
         <Button
           variant="outline"
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs shadow-none"
+          class="h-8 gap-1.5 px-2.5 shadow-none"
           :disabled="loading"
           @click="loadAnalytics"
         >
@@ -180,7 +180,7 @@ onMounted(() => {
         <div
           class="flex items-center justify-between gap-1 text-muted-foreground"
         >
-          <span class="truncate text-xs font-medium uppercase tracking-wider">
+          <span class="truncate uppercase tracking-wider">
             {{ $t('page.analytics.metric_workspaces') }}
           </span>
           <div
@@ -201,7 +201,7 @@ onMounted(() => {
           <Badge
             data-testid="kpi-workspaces-status"
             variant="secondary"
-            class="shrink-0 bg-primary/10 text-primary hover:bg-primary/15 text-2xs"
+            class="shrink-0 bg-primary/10 text-primary hover:bg-primary/15"
           >
             <span
               v-if="
@@ -227,7 +227,7 @@ onMounted(() => {
         <div
           class="flex items-center justify-between gap-1 text-muted-foreground"
         >
-          <span class="truncate text-xs font-medium uppercase tracking-wider">
+          <span class="truncate uppercase tracking-wider">
             {{ $t('page.analytics.metric_plugins') }}
           </span>
           <div
@@ -244,10 +244,7 @@ onMounted(() => {
             <span v-if="loading">--</span>
             <span v-else>{{ analyticsData.plugins.total }}</span>
           </div>
-          <Badge
-            variant="outline"
-            class="shrink-0 text-muted-foreground text-2xs"
-          >
+          <Badge variant="outline" class="shrink-0 text-muted-foreground">
             {{ analyticsData.plugins.coreCount }}
             {{ $t('page.analytics.core_suffix') }}
           </Badge>
@@ -262,7 +259,7 @@ onMounted(() => {
         <div
           class="flex items-center justify-between gap-1 text-muted-foreground"
         >
-          <span class="truncate text-xs font-medium uppercase tracking-wider">
+          <span class="truncate uppercase tracking-wider">
             {{ $t('page.analytics.metric_fleet') }}
           </span>
           <div
@@ -275,13 +272,13 @@ onMounted(() => {
         <div class="mt-2.5 flex items-baseline justify-between gap-2">
           <div
             data-testid="kpi-fleet-port"
-            class="truncate font-mono text-base font-bold tracking-tight text-foreground sm:text-lg"
+            class="truncate text-base font-bold tracking-tight text-foreground sm:text-lg"
           >
             :{{ analyticsData.fleet.loopbackPort }}
           </div>
           <Badge
             variant="secondary"
-            class="shrink-0 text-emerald-600 dark:text-emerald-400 text-2xs"
+            class="shrink-0 text-emerald-600 dark:text-emerald-400"
           >
             {{ analyticsData.fleet.status }}
           </Badge>
@@ -296,7 +293,7 @@ onMounted(() => {
         <div
           class="flex items-center justify-between gap-1 text-muted-foreground"
         >
-          <span class="truncate text-xs font-medium uppercase tracking-wider">
+          <span class="truncate uppercase tracking-wider">
             {{ $t('page.analytics.metric_latency') }}
           </span>
           <div
@@ -314,7 +311,7 @@ onMounted(() => {
           </div>
           <Badge
             variant="secondary"
-            class="shrink-0 text-emerald-600 dark:text-emerald-400 text-2xs"
+            class="shrink-0 text-emerald-600 dark:text-emerald-400"
           >
             {{ analyticsData.system.status }}
           </Badge>
@@ -331,11 +328,11 @@ onMounted(() => {
             <CardTitle class="text-base font-semibold text-foreground">
               {{ $t('page.analytics.growth_timeline') }}
             </CardTitle>
-            <CardDescription class="text-xs text-muted-foreground">
+            <CardDescription class="text-muted-foreground">
               {{ $t('page.analytics.weekly_updates') }}
             </CardDescription>
           </div>
-          <Badge variant="outline" class="text-xs">
+          <Badge variant="outline">
             <ArrowUpRight class="mr-1 size-3 text-emerald-500" />
             +{{ analyticsData.tenants.growth.length }} records
           </Badge>
@@ -344,7 +341,7 @@ onMounted(() => {
         <CardContent class="pt-2">
           <div
             v-if="loading"
-            class="flex h-52 items-center justify-center text-sm text-muted-foreground"
+            class="flex h-52 items-center justify-center text-muted-foreground"
           >
             <div class="flex items-center gap-2">
               <Spinner class="size-5 text-primary" />
@@ -375,15 +372,13 @@ onMounted(() => {
                 :key="point.date"
                 class="rounded-lg border border-border/50 bg-muted/20 p-3"
               >
-                <div class="text-xs text-muted-foreground">
+                <div class="text-muted-foreground">
                   {{ point.date }}
                 </div>
                 <div class="mt-1 text-lg font-bold text-foreground">
                   {{ point.count }}
                 </div>
-                <div
-                  class="mt-1 text-2xs text-emerald-600 dark:text-emerald-400 font-medium"
-                >
+                <div class="mt-1 text-emerald-600 dark:text-emerald-400">
                   Active Tenant Node
                 </div>
               </div>
@@ -391,10 +386,10 @@ onMounted(() => {
 
             <div class="rounded-lg border border-border/40 bg-muted/10 p-3.5">
               <div
-                class="flex items-center justify-between text-xs text-muted-foreground"
+                class="flex items-center justify-between text-muted-foreground"
               >
                 <span>Tenant Fleet Capacity</span>
-                <span class="font-medium text-foreground">
+                <span class="text-foreground">
                   {{ analyticsData.tenants.activeCount }} /
                   {{ analyticsData.tenants.total }} active
                 </span>
@@ -421,7 +416,7 @@ onMounted(() => {
             <CardTitle class="text-base font-semibold text-foreground">
               {{ $t('page.analytics.plans_structure') }}
             </CardTitle>
-            <CardDescription class="text-xs text-muted-foreground">
+            <CardDescription class="text-muted-foreground">
               {{ $t('page.analytics.actual') }}
             </CardDescription>
           </div>
@@ -431,7 +426,7 @@ onMounted(() => {
         <CardContent class="pt-2">
           <div
             v-if="loading"
-            class="flex h-52 items-center justify-center text-sm text-muted-foreground"
+            class="flex h-52 items-center justify-center text-muted-foreground"
           >
             <div class="flex items-center gap-2">
               <Spinner class="size-5 text-primary" />
@@ -456,8 +451,8 @@ onMounted(() => {
 
             <!-- Pro Plan -->
             <div class="space-y-1.5">
-              <div class="flex items-center justify-between text-xs">
-                <span class="font-medium text-foreground">
+              <div class="flex items-center justify-between">
+                <span class="text-foreground">
                   {{ $t('page.analytics.plan_pro') }}
                 </span>
                 <span class="text-muted-foreground">
@@ -471,8 +466,8 @@ onMounted(() => {
 
             <!-- Free Plan -->
             <div class="space-y-1.5">
-              <div class="flex items-center justify-between text-xs">
-                <span class="font-medium text-foreground">
+              <div class="flex items-center justify-between">
+                <span class="text-foreground">
                   {{ $t('page.analytics.plan_free') }}
                 </span>
                 <span class="text-muted-foreground">
@@ -486,8 +481,8 @@ onMounted(() => {
 
             <!-- Enterprise Plan -->
             <div class="space-y-1.5">
-              <div class="flex items-center justify-between text-xs">
-                <span class="font-medium text-foreground">
+              <div class="flex items-center justify-between">
+                <span class="text-foreground">
                   {{ $t('page.analytics.plan_enterprise') }}
                 </span>
                 <span class="text-muted-foreground">
@@ -512,11 +507,11 @@ onMounted(() => {
             <CardTitle class="text-base font-semibold text-foreground">
               {{ $t('page.analytics.plugins_distribution') }}
             </CardTitle>
-            <CardDescription class="text-xs text-muted-foreground">
+            <CardDescription class="text-muted-foreground">
               {{ $t('page.analytics.actual') }}
             </CardDescription>
           </div>
-          <Badge variant="outline" class="text-xs">
+          <Badge variant="outline">
             Total: {{ analyticsData.plugins.total }}
           </Badge>
         </CardHeader>
@@ -524,7 +519,7 @@ onMounted(() => {
         <CardContent class="pt-2">
           <div
             v-if="loading"
-            class="flex h-44 items-center justify-center text-sm text-muted-foreground"
+            class="flex h-44 items-center justify-center text-muted-foreground"
           >
             <div class="flex items-center gap-2">
               <Spinner class="size-5 text-primary" />
@@ -537,7 +532,7 @@ onMounted(() => {
               <div class="rounded-lg border border-border/50 bg-muted/20 p-3.5">
                 <div class="flex items-center gap-2">
                   <Cpu class="size-4 text-primary" />
-                  <span class="text-xs font-medium text-foreground">
+                  <span class="text-foreground">
                     {{ $t('page.analytics.core_kernel') }}
                   </span>
                 </div>
@@ -550,7 +545,7 @@ onMounted(() => {
               <div class="rounded-lg border border-border/50 bg-muted/20 p-3.5">
                 <div class="flex items-center gap-2">
                   <Puzzle class="size-4 text-accent-foreground" />
-                  <span class="text-xs font-medium text-foreground">
+                  <span class="text-foreground">
                     {{ $t('page.analytics.service_modules') }}
                   </span>
                 </div>
@@ -573,23 +568,23 @@ onMounted(() => {
           <CardTitle class="text-base font-semibold text-foreground">
             {{ $t('page.analytics.services_title') }}
           </CardTitle>
-          <CardDescription class="text-xs text-muted-foreground">
+          <CardDescription class="text-muted-foreground">
             System Core Invariants
           </CardDescription>
         </CardHeader>
 
         <CardContent class="pt-2">
-          <div class="divide-y divide-border/40 text-xs">
+          <div class="divide-y divide-border/40">
             <div class="flex items-center justify-between py-2.5">
               <div>
-                <div class="font-medium text-foreground">
+                <div class="text-foreground">
                   {{ $t('page.analytics.service_database') }}
                 </div>
-                <div class="text-2xs text-muted-foreground">
+                <div class="text-muted-foreground">
                   {{ $t('page.analytics.service_database_desc') }}
                 </div>
               </div>
-              <Badge variant="secondary" class="font-normal text-2xs">
+              <Badge variant="secondary" class="">
                 <span
                   class="mr-1.5 size-1.5 rounded-full bg-emerald-500"
                 ></span>
@@ -599,14 +594,14 @@ onMounted(() => {
 
             <div class="flex items-center justify-between py-2.5">
               <div>
-                <div class="font-medium text-foreground">
+                <div class="text-foreground">
                   {{ $t('page.analytics.edge_delivery') }}
                 </div>
-                <div class="text-2xs text-muted-foreground">
+                <div class="text-muted-foreground">
                   {{ analyticsData.system.edgeProvider }}
                 </div>
               </div>
-              <Badge variant="secondary" class="font-normal text-2xs">
+              <Badge variant="secondary" class="">
                 <span
                   class="mr-1.5 size-1.5 rounded-full bg-emerald-500"
                 ></span>
@@ -616,14 +611,14 @@ onMounted(() => {
 
             <div class="flex items-center justify-between py-2.5">
               <div>
-                <div class="font-medium text-foreground">
+                <div class="text-foreground">
                   {{ $t('page.analytics.service_gateway') }}
                 </div>
-                <div class="text-2xs text-muted-foreground">
+                <div class="text-muted-foreground">
                   {{ $t('page.analytics.service_gateway_desc') }}
                 </div>
               </div>
-              <Badge variant="secondary" class="font-normal text-2xs">
+              <Badge variant="secondary" class="">
                 <span
                   class="mr-1.5 size-1.5 rounded-full bg-emerald-500"
                 ></span>

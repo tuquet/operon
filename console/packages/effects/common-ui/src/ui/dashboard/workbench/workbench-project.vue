@@ -49,7 +49,7 @@ defineEmits(['click']);
               :icon="item.icon"
               class="size-8 transition-all duration-300 group-hover:scale-110"
             />
-            <span class="ml-4 text-lg font-medium">{{ item.title }}</span>
+            <span class="ml-4 text-lg">{{ item.title }}</span>
           </div>
 
           <!-- Content area supports custom slot -->

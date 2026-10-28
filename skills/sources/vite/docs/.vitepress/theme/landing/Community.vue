@@ -138,7 +138,7 @@ const testimonials: Testimonial[] = [
               <p
                 v-for="(paragraph, pIndex) in testimonial.comment"
                 :key="pIndex"
-                class="text-white/70 leading-relaxed text-sm sm:text-base"
+                class="text-white/70 leading-relaxed  sm:text-base"
               >
                 {{ paragraph }}
               </p>
@@ -156,10 +156,10 @@ const testimonials: Testimonial[] = [
 
               <!-- Author info -->
               <div class="flex flex-col">
-                <span class="text-grey text-sm font-mono">{{
+                <span class="text-grey  ">{{
                   testimonial.name
                 }}</span>
-                <span class="text-biege text-sm font-mono">{{
+                <span class="text-biege  ">{{
                   testimonial.handle
                 }}</span>
               </div>

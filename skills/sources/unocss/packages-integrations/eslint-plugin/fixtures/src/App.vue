@@ -9,7 +9,7 @@
       </a>
     </p>
     <p>
-      <em text-sm opacity-75 class="foo" hover:text-red text-4xl mx1 m2>{{ t('intro.desc') }}</em>
+      <em  opacity-75 class="foo" hover:text-red text-4xl mx1 m2>{{ t('intro.desc') }}</em>
     </p>
 
     <div class="hover:(text-red text-4xl) hover:mx1 mx1 m2">Variant group</div>

@@ -17,7 +17,7 @@ const open = ref(true)
   >
     <div
       p="y1"
-      text-sm
+      
       bg-base
       items-center
       z-5

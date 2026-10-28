@@ -37,7 +37,7 @@ const installTabs = [
           href="https://voidzero.dev"
           target="_blank"
         >
-          <span class="text-grey text-xs font-mono uppercase tracking-wide"
+          <span class="text-grey  uppercase tracking-wide"
             >By</span
           >
           <img

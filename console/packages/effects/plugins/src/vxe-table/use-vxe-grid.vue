@@ -537,12 +537,10 @@ onUnmounted(() => {
                 <path d="M10 6l2-2 2 2" />
               </svg>
             </div>
-            <div
-              class="mt-2.5 text-xs font-medium text-foreground tracking-tight"
-            >
+            <div class="mt-2.5 text-foreground tracking-tight">
               {{ $t('common.noData') }}
             </div>
-            <p class="mt-0.5 text-2xs text-muted-foreground">
+            <p class="mt-0.5 text-muted-foreground">
               {{ $t('common.noMatchingRecords') }}
             </p>
           </div>

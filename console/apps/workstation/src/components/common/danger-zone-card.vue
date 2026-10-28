@@ -39,18 +39,18 @@ const resolvedTitle = computed(() => props.title || $t('common.dangerZone'));
     <div class="space-y-0.5">
       <div class="flex items-center gap-1.5 text-destructive">
         <ShieldAlert class="size-4 shrink-0" />
-        <AlertTitle class="mb-0 text-xs font-semibold text-foreground">
+        <AlertTitle class="mb-0 font-semibold text-foreground">
           {{ resolvedTitle }}
         </AlertTitle>
       </div>
-      <AlertDescription class="text-xs text-muted-foreground">
+      <AlertDescription class="text-muted-foreground">
         {{ props.description }}
       </AlertDescription>
     </div>
     <Button
       variant="outline"
       size="sm"
-      class="flex h-8 shrink-0 items-center gap-1.5 self-start border-destructive/40 text-xs text-destructive hover:bg-destructive/10 hover:text-destructive sm:self-auto"
+      class="flex h-8 shrink-0 items-center gap-1.5 self-start border-destructive/40 text-destructive hover:bg-destructive/10 hover:text-destructive sm:self-auto"
       :disabled="props.loading"
       @click="emit('trigger')"
     >

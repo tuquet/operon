@@ -123,7 +123,7 @@ Khi tạo một trang mới hoặc component mới, hãy áp dụng cấu trúc 
         <h1 class="text-2xl font-bold tracking-tight text-foreground">
           Tên Màn Hình
         </h1>
-        <p class="text-sm text-muted-foreground">
+        <p class=" text-muted-foreground">
           Mô tả ngắn gọn chức năng của trang tại đây.
         </p>
       </div>
@@ -131,14 +131,14 @@ Khi tạo một trang mới hoặc component mới, hãy áp dụng cấu trúc 
       <div class="flex items-center gap-3">
         <!-- Nút phụ -->
         <button
-          class="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-muted transition-colors"
+          class="rounded-lg border border-border bg-card px-4 py-2   text-foreground hover:bg-muted transition-colors"
         >
           Xuất dữ liệu
         </button>
 
         <!-- Nút chính (Tự động thích ứng theme) -->
         <button
-          class="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors shadow-xs"
+          class="rounded-lg bg-primary px-4 py-2   text-primary-foreground hover:bg-primary/90 transition-colors shadow-xs"
         >
           Thêm mới
         </button>
@@ -157,7 +157,7 @@ Khi tạo một trang mới hoặc component mới, hãy áp dụng cấu trúc 
 
       <div class="p-6">
         <span
-          class="inline-flex items-center rounded-full bg-success/10 px-2.5 py-0.5 text-xs font-medium text-success border border-success/20"
+          class="inline-flex items-center rounded-full bg-success/10 px-2.5 py-0.5  text-success border border-success/20"
         >
           Đang hoạt động
         </span>

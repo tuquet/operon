@@ -71,7 +71,7 @@ function getRerunTooltip(filteredFiles: RunnerTestFile[] | undefined) {
   <Explorer border="r base" :on-item-click="clickOnTask" :nested="true" @run="onRunAll">
     <template #header="{ filteredFiles }">
       <img w-6 h-6 :src="logoUrl" alt="Vitest logo">
-      <span font-light text-sm flex-1>Vitest</span>
+      <span font-light  flex-1>Vitest</span>
       <div class="flex text-lg">
         <IconButton
           v-show="!shouldShowExpandAll"

@@ -24,7 +24,7 @@ defineProps<{ index: number }>()
         <SelectLayers />
         <label>
           <input v-model="isCSSPrettify" type="checkbox">
-          <span text-sm>Prettify</span>
+          <span >Prettify</span>
         </label>
       </div>
     </TitleBar>

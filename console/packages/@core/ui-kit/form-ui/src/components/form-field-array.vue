@@ -148,22 +148,17 @@ const normalizedRowSchemas = computed(() =>
         class="bg-muted/30 border-border hidden border-b px-2 sm:grid"
         :style="gridStyle"
       >
-        <div
-          v-if="showIndex"
-          class="text-muted-foreground px-2 py-2 text-left text-sm font-normal"
-        >
+        <div v-if="showIndex" class="text-muted-foreground px-2 py-2 text-left">
           #
         </div>
         <div
           v-for="col in schema"
           :key="col.fieldName"
-          class="text-muted-foreground px-2 py-2 text-left text-sm font-normal"
+          class="text-muted-foreground px-2 py-2 text-left"
         >
           <VbenRenderContent :content="col.label" />
         </div>
-        <div
-          class="text-muted-foreground px-2 py-2 text-left text-sm font-normal"
-        >
+        <div class="text-muted-foreground px-2 py-2 text-left">
           {{ actionText }}
         </div>
       </div>
@@ -176,7 +171,7 @@ const normalizedRowSchemas = computed(() =>
       >
         <div
           v-if="showIndex"
-          class="text-muted-foreground mb-2 text-sm sm:mb-0 sm:px-4 sm:py-3"
+          class="text-muted-foreground mb-2 sm:mb-0 sm:px-4 sm:py-3"
         >
           <span class="sm:hidden">#</span>
           {{ index + 1 }}
@@ -187,9 +182,7 @@ const normalizedRowSchemas = computed(() =>
           :key="childSchema.fieldName"
         >
           <div class="min-w-0 py-2 sm:px-2">
-            <div
-              class="text-muted-foreground mb-1 text-xs font-medium sm:hidden"
-            >
+            <div class="text-muted-foreground mb-1 sm:hidden">
               <VbenRenderContent :content="schema?.[childIndex]?.label" />
             </div>
             <FormField
@@ -213,7 +206,7 @@ const normalizedRowSchemas = computed(() =>
 
       <div
         v-if="arrayLength === 0"
-        class="text-muted-foreground py-6 text-center text-sm"
+        class="text-muted-foreground py-6 text-center"
       >
         {{ emptyText }}
       </div>

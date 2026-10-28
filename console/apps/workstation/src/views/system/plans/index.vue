@@ -169,8 +169,6 @@ const [Grid, gridApi] = useVbenVxeGrid<BillingPlan>({
   <Page
     :title="$t('page.system.plans')"
     :description="$t('page.system.plans_desc')"
-    content-class="p-3 sm:p-5"
-    header-class="border-b border-border/60 bg-card/60 px-4 py-3 sm:px-6"
   >
     <template #title>
       <div class="flex items-center gap-2">
@@ -179,7 +177,7 @@ const [Grid, gridApi] = useVbenVxeGrid<BillingPlan>({
         >
           {{ $t('page.system.plans') }}
         </h1>
-        <Badge variant="secondary" class="shrink-0 text-2xs font-normal">
+        <Badge variant="secondary" class="shrink-0">
           {{ plansCount }}
         </Badge>
       </div>
@@ -198,7 +196,7 @@ const [Grid, gridApi] = useVbenVxeGrid<BillingPlan>({
         </Button>
         <Button
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs font-medium sm:px-3"
+          class="h-8 gap-1.5 px-2.5 sm:px-3"
           @click="() => gridApi.openCreateSheet()"
         >
           <Plus class="size-3.5 shrink-0" />
@@ -221,12 +219,10 @@ const [Grid, gridApi] = useVbenVxeGrid<BillingPlan>({
               <CreditCard class="size-4" />
             </div>
             <div class="min-w-0 text-left">
-              <div class="truncate font-medium text-foreground">
+              <div class="truncate text-foreground">
                 {{ row.name }}
               </div>
-              <div
-                class="flex items-center gap-1.5 text-2xs text-muted-foreground sm:text-xs"
-              >
+              <div class="flex items-center gap-1.5 text-muted-foreground">
                 <span class="truncate">{{ row.id }}</span>
               </div>
             </div>
@@ -235,22 +231,20 @@ const [Grid, gridApi] = useVbenVxeGrid<BillingPlan>({
 
         <template #price-cell="{ row }">
           <div v-if="row.price_monthly_usd === 0">
-            <Badge variant="secondary" class="text-xs font-normal">
+            <Badge variant="secondary" class="">
               {{ $t('page.system_view.plans_free') }}
             </Badge>
           </div>
-          <div v-else class="font-semibold text-foreground text-sm">
+          <div v-else class="font-semibold text-foreground">
             ${{ row.price_monthly_usd }}
-            <span class="text-xs font-normal text-muted-foreground">{{
+            <span class="text-muted-foreground">{{
               $t('page.system_view.per_month_suffix')
             }}</span>
           </div>
         </template>
 
         <template #members-cell="{ row }">
-          <div
-            class="inline-flex items-center gap-1.5 text-xs text-foreground font-medium"
-          >
+          <div class="inline-flex items-center gap-1.5 text-foreground">
             <Users class="size-3.5 text-muted-foreground shrink-0" />
             <span>{{
               $t('page.system_view.plans_members_unit', [row.max_members])
@@ -259,18 +253,14 @@ const [Grid, gridApi] = useVbenVxeGrid<BillingPlan>({
         </template>
 
         <template #storage-cell="{ row }">
-          <div
-            class="inline-flex items-center gap-1.5 text-xs text-foreground font-medium"
-          >
+          <div class="inline-flex items-center gap-1.5 text-foreground">
             <HardDrive class="size-3.5 text-muted-foreground shrink-0" />
             <span>{{ formatStorage(row.max_storage_mb) }}</span>
           </div>
         </template>
 
         <template #runs-cell="{ row }">
-          <div
-            class="inline-flex items-center gap-1.5 text-xs text-foreground font-medium"
-          >
+          <div class="inline-flex items-center gap-1.5 text-foreground">
             <Cpu class="size-3.5 text-muted-foreground shrink-0" />
             <span>{{
               $t('page.system_view.plans_runs_unit', [
@@ -281,7 +271,7 @@ const [Grid, gridApi] = useVbenVxeGrid<BillingPlan>({
         </template>
 
         <template #status-cell="{ row }">
-          <Badge variant="outline" class="text-xs font-normal">
+          <Badge variant="outline" class="">
             <span
               class="mr-1.5 size-1.5 rounded-full"
               :class="row.is_active ? 'bg-success' : 'bg-muted-foreground'"

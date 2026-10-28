@@ -27,7 +27,7 @@ function openEditor(id: string) {
       :class="item.variants?.includes('dark') ? 'op-20! dark:op-80!' : ''"
     >
       <span
-        font-mono text-sm cursor-pointer
+          cursor-pointer
         border="b transparent hover:current"
         :class="item.category === 'icons' ? 'border-b-0' : ''"
       >
@@ -36,44 +36,44 @@ function openEditor(id: string) {
           {{ name }}
         </span>
       </span>
-      <sup text-xs ml-0.5>{{ item.count }}</sup>
+      <sup ml-0.5>{{ item.count }}</sup>
     </span>
     <template #popper>
       <div space-x-4 px4 py3>
         <Copy v-slot="{ copy, copied }">
           <button
-            :class="copied ? 'text-green' : 'text-dark:50 hover:text-dark dark:text-white:50 dark:hover:text-white'" text-sm
+            :class="copied ? 'text-green' : 'text-dark:50 hover:text-dark dark:text-white:50 dark:hover:text-white'" 
             @click="copy(item.name)"
           >
             <div :class="copied ? 'i-carbon-checkmark-outline' : 'i-carbon-copy'" />
             {{ copied ? 'Copied' : 'Copy' }}
           </button>
         </Copy>
-        <a v-if="item" :href="`https://unocss.dev/interactive/?s=${item.name}`" target="_blank" text-sm text-dark:50 hover:text-dark dark:text-white:50 dark:hover:text-white>
+        <a v-if="item" :href="`https://unocss.dev/interactive/?s=${item.name}`" target="_blank"  text-dark:50 hover:text-dark dark:text-white:50 dark:hover:text-white>
           <div i-carbon-notebook />
           Docs
         </a>
       </div>
-      <div v-if="item.alias" border="t gray-400/20" of-auto px4 py3 text-sm>
+      <div v-if="item.alias" border="t gray-400/20" of-auto px4 py3 >
         <div op75 mb2>
           Alias
         </div>
         <div flex="~ gap-2 wrap">
           <span
             v-for="([aName, aCount]) of Object.entries(item.alias)" :key="aName"
-            font-mono op50
+             op50
           >
             <span>{{ aName }}</span>
-            <sup text-xs ml-0.5>{{ aCount }}</sup>
+            <sup ml-0.5>{{ aCount }}</sup>
           </span>
         </div>
       </div>
-      <div border="t gray-400/20" max-h-60 of-auto px4 py3 text-sm>
+      <div border="t gray-400/20" max-h-60 of-auto px4 py3 >
         <div>
           <span op50>It has been referenced </span><strong>{{ item.count }}</strong><span op50> times by:</span>
         </div>
         <div flex="~ col gap-2" items-start pt3>
-          <a v-for="id in item.modules" :key="id" text-sm cursor-pointer op80 hover:op100 @click="openEditor(id)">
+          <a v-for="id in item.modules" :key="id"  cursor-pointer op80 hover:op100 @click="openEditor(id)">
             <ModuleId :id="id" mr-1 />
             <div i-carbon-launch />
           </a>

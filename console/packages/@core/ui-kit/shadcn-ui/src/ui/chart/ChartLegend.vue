@@ -9,7 +9,7 @@ import { VisBulletLegend } from '@unovis/vue';
 import { buttonVariants } from '../button';
 
 const props = withDefaults(
-  defineProps<{ items: BulletLegendItemInterface[] }>(),
+  defineProps<{ items?: BulletLegendItemInterface[] }>(),
   {
     items: () => [],
   },

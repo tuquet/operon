@@ -1,6 +1,6 @@
 :root {
   --font-sans: "Geist", sans-serif !important;
-  --font-mono: "Geist Mono", monospace !important;
+  --: "Geist Mono", monospace !important;
 }
 
 h1[data-slot="title"] {

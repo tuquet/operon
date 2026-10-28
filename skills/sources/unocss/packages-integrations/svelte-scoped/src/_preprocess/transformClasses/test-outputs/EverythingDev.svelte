@@ -7,8 +7,8 @@
 <div
   class="_text-center_7dkb0w _sm:text-left_7dkb0w _rtl:sm:text-right_7dkb0w _space-x-1_7dkb0w _rtl:space-x-reverse_7dkb0w foo"
 >
-  <div class="_text-sm_7dkb0w _hover:text-red_7dkb0w" />
-  <Button class="_hover:text-red_7dkb0w _text-sm_7dkb0w" />
+  <div class="__7dkb0w _hover:text-red_7dkb0w" />
+  <Button class="_hover:text-red_7dkb0w __7dkb0w" />
 </div>
 
 <style>
@@ -68,7 +68,7 @@
   :global(._text-center_7dkb0w) {
     text-align: center;
   }
-  :global(._text-sm_7dkb0w) {
+  :global(.__7dkb0w) {
     font-size: 0.875rem;
     line-height: 1.25rem;
   }

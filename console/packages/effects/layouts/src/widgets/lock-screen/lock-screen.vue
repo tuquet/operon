@@ -105,9 +105,7 @@ useScrollLock();
             <div
               class="relative flex-center h-35 w-35 rounded-xl bg-accent text-[36px] sm:h-40 sm:w-40 sm:text-[42px] md:h-50 md:w-50 md:text-[72px]"
             >
-              <span
-                class="absolute top-3 left-3 text-xs font-semibold sm:text-sm md:text-xl"
-              >
+              <span class="absolute top-3 left-3 font-semibold sm: md:text-xl">
                 {{ meridiem }}
               </span>
               {{ hour }}

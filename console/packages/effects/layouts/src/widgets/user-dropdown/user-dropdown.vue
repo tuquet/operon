@@ -430,7 +430,7 @@ if (lockKey) {
           <div class="ml-2 w-full">
             <div
               v-if="tagText || text || $slots.tagText"
-              class="mb-1 flex items-center text-sm font-medium text-foreground"
+              class="mb-1 flex items-center text-foreground"
             >
               {{ text }}
               <slot name="tagText">
@@ -443,7 +443,7 @@ if (lockKey) {
                 </Badge>
               </slot>
             </div>
-            <div class="text-xs font-normal text-muted-foreground">
+            <div class="text-muted-foreground">
               {{ description }}
             </div>
           </div>

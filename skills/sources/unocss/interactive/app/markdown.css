@@ -93,7 +93,7 @@
   kbd,
   pre,
   samp {
-    --at-apply: font-mono;
+    --at-apply: ;
     font-size: 1em;
   }
 
@@ -298,14 +298,14 @@
 
   tt,
   code {
-    --at-apply: font-mono;
+    --at-apply: ;
     font-size: 12px;
   }
 
   pre {
     margin-top: 0;
     margin-bottom: 0;
-    --at-apply: font-mono;
+    --at-apply: ;
     font-size: 14px;
     word-wrap: normal;
   }

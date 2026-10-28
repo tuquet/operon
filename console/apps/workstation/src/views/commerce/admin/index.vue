@@ -1103,7 +1103,7 @@ async function submitWarrantyClaim() {
         >
           {{ $t('page.commerce.admin') }}
         </h1>
-        <p class="hidden text-xs text-muted-foreground sm:block">
+        <p class="hidden text-muted-foreground sm:block">
           {{ $t('page.commerce.admin_desc') }}
         </p>
       </div>
@@ -1174,7 +1174,7 @@ async function submitWarrantyClaim() {
         >
           <TabsTrigger
             value="products"
-            class="h-7 shrink-0 gap-1.5 px-3 whitespace-nowrap text-xs"
+            class="h-7 shrink-0 gap-1.5 px-3 whitespace-nowrap"
           >
             <Layers class="size-3.5" />
             {{
@@ -1186,7 +1186,7 @@ async function submitWarrantyClaim() {
 
           <TabsTrigger
             value="orders"
-            class="h-7 shrink-0 gap-1.5 px-3 whitespace-nowrap text-xs"
+            class="h-7 shrink-0 gap-1.5 px-3 whitespace-nowrap"
           >
             <PackageCheck class="size-3.5" />
             {{
@@ -1198,7 +1198,7 @@ async function submitWarrantyClaim() {
 
           <TabsTrigger
             value="manual_review"
-            class="h-7 shrink-0 gap-1.5 px-3 whitespace-nowrap text-xs"
+            class="h-7 shrink-0 gap-1.5 px-3 whitespace-nowrap"
           >
             <AlertTriangle class="size-3.5" />
             {{
@@ -1210,7 +1210,7 @@ async function submitWarrantyClaim() {
 
           <TabsTrigger
             value="gateways"
-            class="h-7 shrink-0 gap-1.5 px-3 whitespace-nowrap text-xs"
+            class="h-7 shrink-0 gap-1.5 px-3 whitespace-nowrap"
           >
             <SlidersHorizontal class="size-3.5" />
             {{
@@ -1222,7 +1222,7 @@ async function submitWarrantyClaim() {
 
           <TabsTrigger
             value="bank_pool"
-            class="h-7 shrink-0 gap-1.5 px-3 whitespace-nowrap text-xs"
+            class="h-7 shrink-0 gap-1.5 px-3 whitespace-nowrap"
           >
             <Landmark class="size-3.5" />
             {{
@@ -1234,7 +1234,7 @@ async function submitWarrantyClaim() {
 
           <TabsTrigger
             value="stock_items"
-            class="h-7 shrink-0 gap-1.5 px-3 whitespace-nowrap text-xs"
+            class="h-7 shrink-0 gap-1.5 px-3 whitespace-nowrap"
           >
             <Boxes class="size-3.5" />
             {{
@@ -1255,8 +1255,8 @@ async function submitWarrantyClaim() {
       <ProductsGrid>
         <template #name-cell="{ row }">
           <div class="flex flex-col py-1 text-left">
-            <span class="font-medium text-foreground">{{ row.name }}</span>
-            <span class="text-xs text-muted-foreground"> /{{ row.slug }} </span>
+            <span class="text-foreground">{{ row.name }}</span>
+            <span class="text-muted-foreground"> /{{ row.slug }} </span>
           </div>
         </template>
 
@@ -1304,7 +1304,7 @@ async function submitWarrantyClaim() {
               "
               size="sm"
               variant="outline"
-              class="h-7 px-2 text-xs"
+              class="h-7 px-2"
               @click="openBulkStockModal(row.variants?.[0]?.id)"
             >
               {{ $t('page.commerce_view.import_stock_btn') }}
@@ -1312,7 +1312,7 @@ async function submitWarrantyClaim() {
             <Button
               size="sm"
               variant="outline"
-              class="h-7 px-2 text-xs"
+              class="h-7 px-2"
               @click="openCreateProductModal(row)"
             >
               {{ $t('common.edit') }}
@@ -1329,17 +1329,17 @@ async function submitWarrantyClaim() {
     >
       <OrdersGrid>
         <template #code-cell="{ row }">
-          <span class="text-xs font-semibold text-foreground">
+          <span class="font-semibold text-foreground">
             {{ row.order_code }}
           </span>
         </template>
 
         <template #buyer-cell="{ row }">
           <div class="flex flex-col py-1 text-left">
-            <span class="text-xs font-medium text-foreground">
+            <span class="text-foreground">
               {{ row.buyer_email || $t('page.commerce_view.tenant_member') }}
             </span>
-            <span class="text-2xs text-muted-foreground">
+            <span class="text-muted-foreground">
               {{
                 row.buyer_tenant_id
                   ? `Tenant: ${row.buyer_tenant_id.slice(0, 8)}`
@@ -1350,7 +1350,7 @@ async function submitWarrantyClaim() {
         </template>
 
         <template #total-cell="{ row }">
-          <span class="text-xs font-bold text-foreground">
+          <span class="font-bold text-foreground">
             {{ row.total_credits.toLocaleString('en-US') }} Xu
           </span>
         </template>
@@ -1362,7 +1362,7 @@ async function submitWarrantyClaim() {
         </template>
 
         <template #date-cell="{ row }">
-          <span class="text-xs text-muted-foreground">
+          <span class="text-muted-foreground">
             {{ formatDate(row.created_at) }}
           </span>
         </template>
@@ -1373,7 +1373,7 @@ async function submitWarrantyClaim() {
               v-if="row.status === 'completed'"
               size="sm"
               variant="outline"
-              class="h-7 gap-1 px-2 text-xs text-warning hover:bg-warning/10"
+              class="h-7 gap-1 px-2 text-warning hover:bg-warning/10"
               @click="openWarrantyClaimModal(row)"
             >
               <ShieldCheck class="size-3" />
@@ -1382,7 +1382,7 @@ async function submitWarrantyClaim() {
             <Button
               size="sm"
               variant="outline"
-              class="h-7 gap-1 px-2 text-xs"
+              class="h-7 gap-1 px-2"
               @click="handleManualFulfillOrder(row)"
             >
               <Play class="size-3" />
@@ -1406,19 +1406,19 @@ async function submitWarrantyClaim() {
         </template>
 
         <template #credits-cell="{ row }">
-          <span class="text-xs font-bold text-foreground">
+          <span class="font-bold text-foreground">
             {{ row.amount_credits.toLocaleString('en-US') }} Xu
           </span>
         </template>
 
         <template #pay-cell="{ row }">
-          <span class="text-xs text-foreground">
+          <span class="text-foreground">
             {{ row.pay_amount.toLocaleString('en-US') }} {{ row.pay_currency }}
           </span>
         </template>
 
         <template #date-cell="{ row }">
-          <span class="text-xs text-muted-foreground">
+          <span class="text-muted-foreground">
             {{ formatDate(row.created_at) }}
           </span>
         </template>
@@ -1427,7 +1427,7 @@ async function submitWarrantyClaim() {
           <Button
             size="sm"
             variant="default"
-            class="h-7 gap-1 px-2.5 text-xs"
+            class="h-7 gap-1 px-2.5"
             @click="handleForceApproveIntent(row)"
           >
             <CheckCircle2 class="size-3.5" />
@@ -1445,15 +1445,13 @@ async function submitWarrantyClaim() {
       <GatewaysGrid>
         <template #name-cell="{ row }">
           <div class="flex flex-col py-1 text-left">
-            <span class="font-medium text-foreground">{{ row.name }}</span>
-            <span class="text-2xs text-muted-foreground">
-              ID: {{ row.id }}
-            </span>
+            <span class="text-foreground">{{ row.name }}</span>
+            <span class="text-muted-foreground"> ID: {{ row.id }} </span>
           </div>
         </template>
 
         <template #rate-cell="{ row }">
-          <span class="text-xs font-semibold text-foreground">
+          <span class="font-semibold text-foreground">
             1 Xu = {{ row.rate_per_credit.toLocaleString('en-US') }}
             {{ row.currency }}
           </span>
@@ -1479,23 +1477,23 @@ async function submitWarrantyClaim() {
       <BankPoolGrid>
         <template #bank-cell="{ row }">
           <div class="flex flex-col py-1 text-left">
-            <span class="font-medium text-foreground">{{ row.bank_name }}</span>
-            <span class="text-2xs text-muted-foreground">
+            <span class="text-foreground">{{ row.bank_name }}</span>
+            <span class="text-muted-foreground">
               BIN: {{ row.bank_bin }} · {{ row.account_name }}
             </span>
           </div>
         </template>
 
         <template #account-cell="{ row }">
-          <span class="font-mono text-xs font-semibold text-foreground">
+          <span class="font-semibold text-foreground">
             {{ row.account_no }}
           </span>
         </template>
 
         <template #quota-cell="{ row }">
           <div class="flex flex-col gap-1 py-1">
-            <div class="flex items-center justify-between text-2xs">
-              <span class="font-medium text-foreground">
+            <div class="flex items-center justify-between">
+              <span class="text-foreground">
                 {{ row.current_daily_total.toLocaleString('en-US') }}
                 {{ $t('term.currencyVnd') }}
               </span>
@@ -1543,7 +1541,7 @@ async function submitWarrantyClaim() {
               v-if="row.status === 'active'"
               size="sm"
               variant="outline"
-              class="h-7 px-2 text-2xs text-warning hover:bg-warning/10"
+              class="h-7 px-2 text-warning hover:bg-warning/10"
               @click="handleToggleAccountStatus(row, 'cooling')"
             >
               {{ $t('page.commerce_view.pool_action_cool') }}
@@ -1552,7 +1550,7 @@ async function submitWarrantyClaim() {
               v-else
               size="sm"
               variant="outline"
-              class="h-7 px-2 text-2xs text-primary hover:bg-primary/10"
+              class="h-7 px-2 text-primary hover:bg-primary/10"
               @click="handleToggleAccountStatus(row, 'active')"
             >
               {{ $t('page.commerce_view.pool_action_activate') }}
@@ -1560,7 +1558,7 @@ async function submitWarrantyClaim() {
             <Button
               size="sm"
               variant="ghost"
-              class="h-7 px-2 text-2xs"
+              class="h-7 px-2"
               @click="() => bankPoolGridApi.openDetailSheet(row)"
             >
               {{ $t('common.edit') }}
@@ -1577,7 +1575,7 @@ async function submitWarrantyClaim() {
     >
       <StockItemsGrid>
         <template #payload-cell="{ row }">
-          <span class="font-mono text-xs text-foreground">
+          <span class="text-foreground">
             {{ row.secret_payload }}
           </span>
         </template>
@@ -1611,7 +1609,7 @@ async function submitWarrantyClaim() {
         </template>
 
         <template #date-cell="{ row }">
-          <span class="text-xs text-muted-foreground">
+          <span class="text-muted-foreground">
             {{ formatDate(row.created_at) }}
           </span>
         </template>
@@ -1625,7 +1623,7 @@ async function submitWarrantyClaim() {
               "
               size="sm"
               variant="outline"
-              class="h-7 px-2 text-2xs text-primary hover:bg-primary/10"
+              class="h-7 px-2 text-primary hover:bg-primary/10"
               @click="handleInspectStockItem(row, true)"
             >
               {{ $t('page.commerce_view.action_mark_healthy') }}
@@ -1634,7 +1632,7 @@ async function submitWarrantyClaim() {
               v-else
               size="sm"
               variant="outline"
-              class="h-7 px-2 text-2xs text-destructive hover:bg-destructive/10"
+              class="h-7 px-2 text-destructive hover:bg-destructive/10"
               @click="handleInspectStockItem(row, false)"
             >
               {{ $t('page.commerce_view.action_mark_defective') }}
@@ -1651,42 +1649,42 @@ async function submitWarrantyClaim() {
           <DialogTitle class="text-base font-semibold">
             {{ $t('page.commerce_view.upsert_product_modal_title') }}
           </DialogTitle>
-          <DialogDescription class="text-xs text-muted-foreground">
+          <DialogDescription class="text-muted-foreground">
             {{ $t('page.commerce_view.upsert_product_modal_desc') }}
           </DialogDescription>
         </DialogHeader>
 
         <div class="grid grid-cols-1 gap-3 py-2 sm:grid-cols-2">
           <div class="space-y-1 sm:col-span-2">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.commerce_view.product_name_label') }}
             </Label>
             <Input
               v-model="productForm.name"
               type="text"
               :placeholder="$t('page.commerce_view.product_name_placeholder')"
-              class="h-8 text-xs"
+              class="h-8"
             />
           </div>
 
           <div class="space-y-1">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.commerce_view.product_slug_label') }}
             </Label>
             <Input
               v-model="productForm.slug"
               type="text"
               placeholder="via-co-2fa"
-              class="h-8 text-xs"
+              class="h-8"
             />
           </div>
 
           <div class="space-y-1">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.commerce_view.product_type_label') }}
             </Label>
             <Select v-model="productForm.product_type">
-              <SelectTrigger class="h-8 w-full text-xs">
+              <SelectTrigger class="h-8 w-full">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -1707,11 +1705,11 @@ async function submitWarrantyClaim() {
           </div>
 
           <div class="space-y-1">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.commerce_view.visibility_mode_label') }}
             </Label>
             <Select v-model="productForm.visibility">
-              <SelectTrigger class="h-8 w-full text-xs">
+              <SelectTrigger class="h-8 w-full">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -1729,11 +1727,11 @@ async function submitWarrantyClaim() {
           </div>
 
           <div class="space-y-1">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.commerce_view.stock_mode_label') }}
             </Label>
             <Select v-model="productForm.stock_mode">
-              <SelectTrigger class="h-8 w-full text-xs">
+              <SelectTrigger class="h-8 w-full">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -1751,38 +1749,38 @@ async function submitWarrantyClaim() {
           </div>
 
           <div class="space-y-1">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.commerce_view.sku_code_label') }}
             </Label>
             <Input
               v-model="productForm.sku"
               type="text"
               placeholder="VIA-2FA-01"
-              class="h-8 text-xs"
+              class="h-8"
             />
           </div>
 
           <div class="space-y-1">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.commerce_view.unit_price_xu_label') }}
             </Label>
             <Input
               v-model.number="productForm.price_credits"
               type="number"
               min="0"
-              class="h-8 text-xs"
+              class="h-8"
             />
           </div>
 
           <div class="space-y-1 sm:col-span-2">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.commerce_view.short_desc_label') }}
             </Label>
             <Input
               v-model="productForm.short_description"
               type="text"
               :placeholder="$t('page.commerce_view.short_desc_placeholder')"
-              class="h-8 text-xs"
+              class="h-8"
             />
           </div>
         </div>
@@ -1809,18 +1807,18 @@ async function submitWarrantyClaim() {
           <DialogTitle class="text-base font-semibold">
             {{ $t('page.commerce_view.bulk_stock_modal_title') }}
           </DialogTitle>
-          <DialogDescription class="text-xs text-muted-foreground">
+          <DialogDescription class="text-muted-foreground">
             {{ $t('page.commerce_view.bulk_stock_modal_desc') }}
           </DialogDescription>
         </DialogHeader>
 
         <div class="space-y-3 py-2">
           <div class="space-y-1">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.commerce_view.select_serialized_sku_label') }}
             </Label>
             <Select v-model="selectedStockVariantId">
-              <SelectTrigger class="h-8 w-full text-xs">
+              <SelectTrigger class="h-8 w-full">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -1840,21 +1838,21 @@ async function submitWarrantyClaim() {
           </div>
 
           <div class="space-y-1">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.commerce_view.batch_code_label') }}
             </Label>
-            <Input v-model="stockBatchCode" type="text" class="h-8 text-xs" />
+            <Input v-model="stockBatchCode" type="text" class="h-8" />
           </div>
 
           <div class="space-y-1">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.commerce_view.stock_lines_label') }}
             </Label>
             <Textarea
               v-model="stockLinesRaw"
               :rows="7"
               placeholder="1000881122|matkhau123|JBSWY3DPEHPK3PXP&#10;1000881123|matkhau456|KRSXG5CTMVRXEZLU"
-              class="w-full rounded-lg border border-border bg-background p-3 text-xs text-foreground focus:border-primary focus:outline-none"
+              class="w-full rounded-lg border border-border bg-background p-3 text-foreground focus:border-primary focus:outline-none"
             />
           </div>
         </div>
@@ -1881,15 +1879,13 @@ async function submitWarrantyClaim() {
           <DialogTitle class="text-base font-semibold">
             {{ $t('page.commerce_view.warranty_claim_title') }}
           </DialogTitle>
-          <DialogDescription class="text-xs text-muted-foreground">
+          <DialogDescription class="text-muted-foreground">
             {{ $t('page.commerce_view.warranty_claim_desc') }}
           </DialogDescription>
         </DialogHeader>
 
         <div class="space-y-3 py-2">
-          <div
-            class="rounded-lg border border-border/60 bg-muted/30 p-2.5 text-xs"
-          >
+          <div class="rounded-lg border border-border/60 bg-muted/30 p-2.5">
             <div class="flex justify-between py-0.5">
               <span class="text-muted-foreground"
                 >{{ $t('common.orderCode') }}:</span
@@ -1910,14 +1906,10 @@ async function submitWarrantyClaim() {
           </div>
 
           <div class="space-y-1">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.commerce_view.warranty_reason_label') }}
             </Label>
-            <Input
-              v-model="warrantyClaimReason"
-              type="text"
-              class="h-8 text-xs"
-            />
+            <Input v-model="warrantyClaimReason" type="text" class="h-8" />
           </div>
         </div>
 

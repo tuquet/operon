@@ -128,7 +128,7 @@ icon: i-lucide-radio
       <div id="messages" class="flex-grow flex flex-col justify-end px-4 py-8">
         <div class="flex items-center mb-4" v-for="message in store.messages">
           <div class="flex flex-col">
-            <p class="text-gray-500 mb-1 text-xs ml-10">{{ message.user }}</p>
+            <p class="text-gray-500 mb-1 ml-10">{{ message.user }}</p>
             <div class="flex items-center">
               <img
                 :src="'https://www.gravatar.com/avatar/' + encodeURIComponent(message.user + rand) + '?s=512&d=monsterid'"
@@ -144,7 +144,7 @@ icon: i-lucide-radio
                 <p v-else class="text-white">{{ message.text }}</p>
               </div>
             </div>
-            <p class="text-gray-500 mt-1 text-xs ml-10">{{ message.date }}</p>
+            <p class="text-gray-500 mt-1 ml-10">{{ message.date }}</p>
           </div>
         </div>
       </div>

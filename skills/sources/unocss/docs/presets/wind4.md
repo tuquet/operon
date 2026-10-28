@@ -100,9 +100,9 @@ export const defaults: Theme['default'] = {
     variationSettings: 'var(--font-sans--font-variation-settings)',
   },
   monoFont: {
-    family: 'var(--font-mono)',
-    featureSettings: 'var(--font-mono--font-feature-settings)',
-    variationSettings: 'var(--font-mono--font-variation-settings)',
+    family: 'var(--)',
+    featureSettings: 'var(----font-feature-settings)',
+    variationSettings: 'var(----font-variation-settings)',
   },
 }
 ```
@@ -339,7 +339,7 @@ You can also customize the output you want in the [Preflights Theme Process](#pr
   --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
     'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   --colors-black: #000;
   --colors-white: #fff;
   /* ... */

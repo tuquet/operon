@@ -11,7 +11,7 @@ export default component$(() => {
         <h1 class="text-xl font-500 animate-bounce-alt animate-duration-2s">Hello Vite + Qwik!</h1>
         <p>
           <button
-            class="bg-blue-400 hover:bg-blue-500 text-sm text-white font-mono font-light py-2 px-4 rounded border-2 border-blue-200"
+            class="bg-blue-400 hover:bg-blue-500  text-white  font-light py-2 px-4 rounded border-2 border-blue-200"
             type="button"
             onClick$={() => state.count++}
           >
@@ -23,9 +23,9 @@ export default component$(() => {
           <button
             bg-blue-400
             hover:bg-blue-500
-            text-sm
+            
             text-white
-            font-mono
+            
             font-light
             py-2
             px-4

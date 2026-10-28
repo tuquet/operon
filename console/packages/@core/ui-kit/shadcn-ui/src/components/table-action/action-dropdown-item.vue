@@ -85,7 +85,7 @@ function onCancel() {
       @focus-outside="preventDefault"
       @open-auto-focus="preventDefault"
     >
-      <div class="text-foreground mb-3 text-sm">
+      <div class="text-foreground mb-3">
         {{ action.popConfirm.title ?? $t('confirmTitle') }}
       </div>
       <div class="flex justify-end gap-2">

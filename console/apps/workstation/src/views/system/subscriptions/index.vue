@@ -186,8 +186,6 @@ const [Grid, gridApi] = useVbenVxeGrid<PlatformSubscription>({
   <Page
     :title="$t('page.system.subscriptions')"
     :description="$t('page.system.subscriptions_desc')"
-    content-class="p-3 sm:p-5"
-    header-class="border-b border-border/60 bg-card/60 px-4 py-3 sm:px-6"
   >
     <template #title>
       <div class="flex items-center gap-2">
@@ -196,7 +194,7 @@ const [Grid, gridApi] = useVbenVxeGrid<PlatformSubscription>({
         >
           {{ $t('page.system.subscriptions') }}
         </h1>
-        <Badge variant="secondary" class="shrink-0 text-2xs font-normal">
+        <Badge variant="secondary" class="shrink-0">
           {{ allSubscriptions.length }}
         </Badge>
       </div>
@@ -215,7 +213,7 @@ const [Grid, gridApi] = useVbenVxeGrid<PlatformSubscription>({
         </Button>
         <Button
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs font-medium sm:px-3"
+          class="h-8 gap-1.5 px-2.5 sm:px-3"
           @click="() => gridApi.openCreateSheet()"
         >
           <Plus class="size-3.5 shrink-0" />
@@ -231,12 +229,10 @@ const [Grid, gridApi] = useVbenVxeGrid<PlatformSubscription>({
       <Grid class="subscriptions-vxe-grid">
         <template #workspace-cell="{ row }">
           <div class="flex min-w-0 flex-col py-1 text-left">
-            <span class="truncate font-medium text-foreground">
+            <span class="truncate text-foreground">
               {{ row.tenant_name }}
             </span>
-            <div
-              class="flex items-center gap-1.5 text-2xs text-muted-foreground sm:text-xs"
-            >
+            <div class="flex items-center gap-1.5 text-muted-foreground">
               <span class="truncate">
                 /{{ row.tenant_slug || row.tenant_id.slice(0, 8) }}
               </span>
@@ -251,7 +247,7 @@ const [Grid, gridApi] = useVbenVxeGrid<PlatformSubscription>({
         </template>
 
         <template #price-cell="{ row }">
-          <span class="font-medium text-foreground">
+          <span class="text-foreground">
             ${{ row.price_monthly_usd
             }}{{ $t('page.system_view.per_month_suffix') }}
           </span>
@@ -264,10 +260,7 @@ const [Grid, gridApi] = useVbenVxeGrid<PlatformSubscription>({
         </template>
 
         <template #renewal-cell="{ row }">
-          <Badge
-            :variant="row.cancel_at_period_end ? 'outline' : 'secondary'"
-            class="text-xs"
-          >
+          <Badge :variant="row.cancel_at_period_end ? 'outline' : 'secondary'">
             {{
               row.cancel_at_period_end
                 ? $t('page.system_view.subs_cancel_period_end')

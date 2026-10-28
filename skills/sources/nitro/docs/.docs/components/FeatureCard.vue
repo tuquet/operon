@@ -23,7 +23,7 @@ onMounted(() => {
   >
     <NuxtLink :to="link" class="block h-full" :class="link ? 'cursor-pointer' : 'cursor-default'">
       <div class="relative overflow-hidden rounded-xl border border-default bg-white/60 dark:bg-neutral-900/60 backdrop-blur-sm p-8 h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-        <div v-if="headline" class="text-xs font-mono uppercase tracking-widest text-primary mb-4 flex items-center gap-2">
+        <div v-if="headline" class=" uppercase tracking-widest text-primary mb-4 flex items-center gap-2">
           <span class="inline-block w-1 h-1 rounded-full bg-primary" />
           {{ headline }}
         </div>
@@ -32,7 +32,7 @@ onMounted(() => {
           <slot name="title" />
         </h3>
 
-        <p class="text-neutral-500 dark:text-neutral-400 text-sm leading-relaxed mb-6">
+        <p class="text-neutral-500 dark:text-neutral-400  leading-relaxed mb-6">
           <slot name="description" />
         </p>
 
@@ -40,7 +40,7 @@ onMounted(() => {
 
         <span
           v-if="link"
-          class="inline-flex items-center gap-1 text-sm text-primary mt-auto"
+          class="inline-flex items-center gap-1  text-primary mt-auto"
         >
           {{ linkLabel || 'Learn more' }}
           <UIcon name="i-lucide-arrow-right" class="size-4" />

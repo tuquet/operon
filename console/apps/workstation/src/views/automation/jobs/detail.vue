@@ -226,11 +226,7 @@ onUnmounted(() => {
             >
               {{ run?.name || $t('page.automation.jobDetail') }}
             </h1>
-            <Badge
-              v-if="run"
-              variant="outline"
-              class="shrink-0 text-xs font-normal"
-            >
+            <Badge v-if="run" variant="outline" class="shrink-0">
               <span
                 class="mr-1.5 size-1.5 rounded-full"
                 :class="getRunStatusDotClass(run.status)"
@@ -238,7 +234,7 @@ onUnmounted(() => {
               {{ getRunStatusLabel(run.status) }}
             </Badge>
           </div>
-          <div class="truncate text-2xs text-muted-foreground sm:text-xs">
+          <div class="truncate text-muted-foreground">
             {{ $t('page.automation_view.run_id_label') }}: {{ runId }}
           </div>
         </div>
@@ -249,7 +245,7 @@ onUnmounted(() => {
         <Badge
           v-if="isActive"
           variant="outline"
-          class="hidden items-center gap-1.5 rounded-full border-border/60 bg-muted/30 px-2.5 py-1 text-xs font-normal text-muted-foreground sm:inline-flex"
+          class="hidden items-center gap-1.5 rounded-full border-border/60 bg-muted/30 px-2.5 py-1 text-muted-foreground sm:inline-flex"
         >
           <span class="size-2 animate-pulse rounded-full bg-success"></span>
           <span>{{ $t('page.automation_view.live_polling_3s') }}</span>
@@ -261,7 +257,7 @@ onUnmounted(() => {
               variant="destructive"
               size="sm"
               :disabled="canceling"
-              class="h-8 gap-1.5 px-2.5 text-xs font-medium"
+              class="h-8 gap-1.5 px-2.5"
             >
               <XCircle class="size-3.5 shrink-0" />
               <span class="hidden sm:inline">
@@ -313,12 +309,12 @@ onUnmounted(() => {
         <div
           class="space-y-1.5 rounded-lg border border-border/50 bg-muted/20 p-3"
         >
-          <div class="text-xs text-muted-foreground">
+          <div class="text-muted-foreground">
             {{ $t('term.workflow') }}
           </div>
-          <div class="flex items-center gap-2 text-sm">
+          <div class="flex items-center gap-2">
             <GitBranch class="size-4 shrink-0 text-muted-foreground" />
-            <span class="truncate font-medium text-foreground">
+            <span class="truncate text-foreground">
               {{
                 run.workflow
                   ? run.workflow.name
@@ -332,12 +328,12 @@ onUnmounted(() => {
         <div
           class="space-y-1.5 rounded-lg border border-border/50 bg-muted/20 p-3"
         >
-          <div class="text-xs text-muted-foreground">
+          <div class="text-muted-foreground">
             {{ $t('page.jobs_view.col_runner') }}
           </div>
-          <div class="flex items-center gap-2 text-sm">
+          <div class="flex items-center gap-2">
             <Laptop class="size-4 shrink-0 text-muted-foreground" />
-            <span class="truncate font-medium text-foreground">
+            <span class="truncate text-foreground">
               {{
                 run.worker
                   ? run.worker.name
@@ -351,15 +347,15 @@ onUnmounted(() => {
         <div
           class="space-y-1.5 rounded-lg border border-border/50 bg-muted/20 p-3"
         >
-          <div class="text-xs text-muted-foreground">
+          <div class="text-muted-foreground">
             {{ $t('page.jobs_view.duration') }}
           </div>
-          <div class="flex flex-wrap items-center gap-1.5 text-sm">
+          <div class="flex flex-wrap items-center gap-1.5">
             <Clock class="size-4 shrink-0 text-muted-foreground" />
             <span class="font-semibold text-foreground">
               {{ formatDuration(run.started_at, run.ended_at) }}
             </span>
-            <span class="font-sans text-2xs text-muted-foreground">
+            <span class="font-sans text-muted-foreground">
               &bull; {{ formatDate(run.started_at) }}
             </span>
           </div>
@@ -369,11 +365,11 @@ onUnmounted(() => {
         <div
           class="space-y-1.5 rounded-lg border border-border/50 bg-muted/20 p-3"
         >
-          <div class="flex items-center justify-between text-xs">
+          <div class="flex items-center justify-between">
             <span class="text-muted-foreground">
               {{ $t('page.automation_view.task_progress') }}
             </span>
-            <span class="font-medium text-foreground">
+            <span class="text-foreground">
               {{
                 $t('page.automation_view.tasks_progress_count', [
                   run.completed_tasks,
@@ -394,7 +390,7 @@ onUnmounted(() => {
         class="border-destructive/30 bg-destructive/10 p-3"
       >
         <AlertCircle class="size-4" />
-        <AlertDescription class="text-xs leading-relaxed break-all">
+        <AlertDescription class="leading-relaxed break-all">
           {{ run.error_message }}
         </AlertDescription>
       </Alert>
@@ -409,15 +405,15 @@ onUnmounted(() => {
       >
         <div class="flex items-center gap-2">
           <Terminal class="size-4 text-muted-foreground" />
-          <span class="text-sm font-semibold text-foreground">
+          <span class="font-semibold text-foreground">
             {{ $t('page.automation_view.execution_logs') }}
           </span>
-          <Badge variant="outline" class="text-2xs font-normal sm:text-xs">
+          <Badge variant="outline" class=" ">
             {{ $t('page.automation_view.logs_line_count', [logs.length]) }}
           </Badge>
         </div>
 
-        <div class="text-2xs text-muted-foreground sm:text-xs">
+        <div class="text-muted-foreground">
           {{
             isActive
               ? $t('page.automation_view.logs_live_updating')
@@ -429,7 +425,7 @@ onUnmounted(() => {
       <!-- Terminal Output Window -->
       <div
         ref="consoleRef"
-        class="max-h-[460px] min-h-[260px] space-y-1.5 overflow-y-auto rounded-lg border border-neutral-800 bg-neutral-950 p-3 text-xs text-neutral-300 sm:p-4"
+        class="max-h-[460px] min-h-[260px] space-y-1.5 overflow-y-auto rounded-lg border border-neutral-800 bg-neutral-950 p-3 text-neutral-300 sm:p-4"
       >
         <div
           v-for="log in logs"
@@ -437,13 +433,11 @@ onUnmounted(() => {
           class="flex flex-col gap-1 rounded px-1 py-1 transition-colors hover:bg-neutral-900/50 sm:flex-row sm:items-start sm:gap-2 sm:py-0.5"
         >
           <div class="flex flex-wrap items-center gap-1.5 sm:shrink-0">
-            <span
-              class="shrink-0 text-2xs text-neutral-500 select-none sm:text-xs"
-            >
+            <span class="shrink-0 text-neutral-500 select-none">
               {{ formatDate(log.logged_at) }}
             </span>
             <span
-              class="shrink-0 rounded px-1 py-0.5 text-2xs font-semibold uppercase"
+              class="shrink-0 rounded px-1 py-0.5 font-semibold uppercase"
               :class="{
                 'bg-success/20 text-success': log.level === 'info',
                 'bg-warning/20 text-warning': log.level === 'warn',
@@ -476,7 +470,7 @@ onUnmounted(() => {
             <EmptyMedia variant="icon" class="bg-neutral-900 text-neutral-500">
               <PlayCircle class="size-5" />
             </EmptyMedia>
-            <EmptyDescription class="text-xs text-neutral-500">
+            <EmptyDescription class="text-neutral-500">
               {{ $t('page.automation_view.logs_empty') }}
             </EmptyDescription>
           </EmptyHeader>

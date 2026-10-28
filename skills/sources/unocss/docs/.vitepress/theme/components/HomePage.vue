@@ -6,7 +6,7 @@
     <div class="content-container">
       <main class="main">
         <div class="vp-doc" flex flex-col items-center mt-10>
-          <h2 id="sponsored-by" op70 font-normal pt-5 pb-2>
+          <h2 id="sponsored-by" op70  pt-5 pb-2>
             Sponsored by
           </h2>
           <div grid="~ cols-1" w-full text-center mt-10>

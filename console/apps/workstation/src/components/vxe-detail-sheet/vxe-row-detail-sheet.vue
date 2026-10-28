@@ -518,13 +518,13 @@ async function handleSave() {
               </PopoverTrigger>
               <PopoverContent
                 align="start"
-                class="z-[1080] w-72 space-y-2 p-3 text-xs"
+                class="z-[1080] w-72 space-y-2 p-3"
                 :style="{ zIndex: 1080 }"
               >
                 <div class="flex items-center justify-between gap-2">
                   <span class="text-muted-foreground">Schema / Table</span>
                   <span
-                    class="inline-flex items-center gap-1 rounded border border-border/70 bg-muted/40 px-1.5 py-0.5 text-2xs text-foreground"
+                    class="inline-flex items-center gap-1 rounded border border-border/70 bg-muted/40 px-1.5 py-0.5 text-foreground"
                   >
                     <Database class="size-3 shrink-0 text-primary" />
                     {{ dynamicSchema.rls.resource }}
@@ -536,7 +536,7 @@ async function handleSave() {
                   <Badge
                     v-if="isRlsWritable"
                     variant="outline"
-                    class="gap-1 border-success/30 bg-success/15 px-1.5 py-0.5 text-2xs font-medium text-success"
+                    class="gap-1 border-success/30 bg-success/15 px-1.5 py-0.5 text-success"
                   >
                     <ShieldCheck class="size-3 shrink-0" />
                     {{ $t('common.rlsWritable') }}
@@ -544,7 +544,7 @@ async function handleSave() {
                   <Badge
                     v-else
                     variant="outline"
-                    class="gap-1 border-warning/30 bg-warning/15 px-1.5 py-0.5 text-2xs font-medium text-warning"
+                    class="gap-1 border-warning/30 bg-warning/15 px-1.5 py-0.5 text-warning"
                   >
                     <Lock class="size-3 shrink-0" />
                     {{ $t('common.rlsReadOnly') }}
@@ -577,7 +577,7 @@ async function handleSave() {
           </div>
         </div>
 
-        <SheetDescription class="text-xs text-muted-foreground">
+        <SheetDescription class="text-muted-foreground">
           {{
             isCreateMode
               ? $t('common.createSheetDescription')
@@ -629,7 +629,7 @@ async function handleSave() {
                 >
                   <SelectTrigger
                     :data-testid="`vxe-field-${field.field}`"
-                    class="h-9 w-full bg-background text-sm"
+                    class="h-9 w-full bg-background"
                   >
                     <SelectValue />
                   </SelectTrigger>
@@ -651,7 +651,7 @@ async function handleSave() {
                   v-else-if="field.type === 'boolean'"
                   class="flex h-9 items-center justify-between rounded-md border border-input bg-background px-3"
                 >
-                  <span class="text-sm text-foreground">
+                  <span class="text-foreground">
                     {{
                       formData[field.field]
                         ? $t('common.enabled')
@@ -673,7 +673,6 @@ async function handleSave() {
                   v-model="formData[field.field]"
                   :data-testid="`vxe-field-${field.field}`"
                   rows="4"
-                  class="text-xs"
                 />
 
                 <!-- Multiline Textarea -->
@@ -682,7 +681,7 @@ async function handleSave() {
                   v-model="formData[field.field]"
                   :data-testid="`vxe-field-${field.field}`"
                   rows="3"
-                  class="text-sm"
+                  class=""
                 />
 
                 <!-- Number Input -->
@@ -693,7 +692,7 @@ async function handleSave() {
                   :max="field.max"
                   :min="field.min"
                   type="number"
-                  class="h-9 text-sm"
+                  class="h-9"
                 />
 
                 <!-- Default Text Input -->
@@ -704,7 +703,7 @@ async function handleSave() {
                   :placeholder="
                     field.placeholderKey ? $t(field.placeholderKey) : undefined
                   "
-                  class="h-9 text-sm"
+                  class="h-9"
                   @input="handleTextInput(field.field)"
                 />
               </template>
@@ -714,7 +713,7 @@ async function handleSave() {
                 <!-- Read-Only JSON Preview -->
                 <div v-if="field.type === 'json'" class="relative">
                   <pre
-                    class="max-h-44 overflow-auto rounded-md border border-border/60 bg-muted/30 p-2.5 text-xs text-foreground"
+                    class="max-h-44 overflow-auto rounded-md border border-border/60 bg-muted/30 p-2.5 text-foreground"
                     >{{ formatJsonPreview(field.field) }}</pre>
                   <Button
                     type="button"
@@ -744,7 +743,7 @@ async function handleSave() {
                 >
                   <Badge
                     variant="outline"
-                    class="inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-xs font-medium"
+                    class="inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5"
                     :class="field.statusMeta.badgeClass"
                   >
                     <span
@@ -768,7 +767,7 @@ async function handleSave() {
                     isCopyableIdentifier(field) &&
                     props.row[field.field]
                   "
-                  class="flex h-9 items-center justify-between gap-2 rounded-md border border-border/60 bg-muted/30 px-3 text-xs text-muted-foreground"
+                  class="flex h-9 items-center justify-between gap-2 rounded-md border border-border/60 bg-muted/30 px-3 text-muted-foreground"
                 >
                   <span class="truncate">{{ props.row[field.field] }}</span>
                   <Button
@@ -795,7 +794,7 @@ async function handleSave() {
                 <!-- Read-Only Multiline Text -->
                 <div
                   v-else-if="field.type === 'textarea'"
-                  class="min-h-9 rounded-md border border-border/60 bg-muted/30 px-3 py-2 text-sm text-muted-foreground"
+                  class="min-h-9 rounded-md border border-border/60 bg-muted/30 px-3 py-2 text-muted-foreground"
                 >
                   {{ formatReadonlyValue(field) }}
                 </div>
@@ -803,11 +802,7 @@ async function handleSave() {
                 <!-- Default Read-Only Scalar -->
                 <div
                   v-else
-                  class="flex h-9 items-center truncate rounded-md border border-border/60 bg-muted/30 px-3 text-sm text-muted-foreground"
-                  :class="{
-                    'text-xs':
-                      field.type === 'datetime' || field.type === 'number',
-                  }"
+                  class="flex h-9 items-center truncate rounded-md border border-border/60 bg-muted/30 px-3 text-muted-foreground"
                 >
                   {{ formatReadonlyValue(field) }}
                 </div>
@@ -827,16 +822,16 @@ async function handleSave() {
               <Button
                 type="button"
                 variant="outline"
-                class="flex h-10 w-full items-center justify-between gap-2 rounded-md border-border/70 bg-muted/25 px-3 text-left font-normal transition-colors hover:border-primary/50 hover:bg-muted/60"
+                class="flex h-10 w-full items-center justify-between gap-2 rounded-md border-border/70 bg-muted/25 px-3 text-left transition-colors hover:border-primary/50 hover:bg-muted/60"
                 :data-testid="`vxe-relation-trigger-${rel.field}`"
                 @click="openRelationalTable(rel)"
               >
                 <div class="flex min-w-0 items-center gap-2">
                   <Table2 class="size-3.5 shrink-0 text-primary" />
-                  <span class="truncate text-sm font-normal text-foreground">
+                  <span class="truncate text-foreground">
                     {{ rel.title }}
                   </span>
-                  <Badge variant="secondary" class="shrink-0 text-2xs">
+                  <Badge variant="secondary" class="shrink-0">
                     {{
                       $t('common.relationalRecordsCount', {
                         count: rel.rows.length,
@@ -846,7 +841,7 @@ async function handleSave() {
                 </div>
 
                 <span
-                  class="inline-flex shrink-0 items-center gap-1 text-xs font-medium text-primary"
+                  class="inline-flex shrink-0 items-center gap-1 text-primary"
                 >
                   <span>{{ $t('common.viewRelationalTable') }}</span>
                   <ArrowUpRight class="size-3.5" />
@@ -871,7 +866,7 @@ async function handleSave() {
           "
           class="flex w-full flex-wrap items-center justify-between gap-2 border-b border-border/50 pb-2.5"
         >
-          <span class="text-2xs font-medium text-muted-foreground">
+          <span class="text-muted-foreground">
             {{ $t('common.detailSheetActionsSection') }}
           </span>
           <div class="flex flex-wrap items-center gap-1.5 [&_.hidden]:inline">
@@ -883,7 +878,7 @@ async function handleSave() {
               :variant="act.variant || 'outline'"
               :disabled="act.disabled?.(props.row)"
               size="sm"
-              class="h-7 gap-1 px-2.5 text-xs"
+              class="h-7 gap-1 px-2.5"
               @click="(act.handler ?? act.onClick)?.(props.row)"
             >
               <component :is="act.icon" v-if="act.icon" class="size-3.5" />
@@ -897,7 +892,7 @@ async function handleSave() {
           <Button
             variant="outline"
             size="sm"
-            class="h-9 px-4 text-xs font-normal"
+            class="h-9 px-4"
             @click="emit('update:open', false)"
           >
             {{ $t('common.close') }}
@@ -909,7 +904,7 @@ async function handleSave() {
               dynamicSchema.rls.canInsert.allowed
             "
             size="sm"
-            class="h-9 gap-1.5 px-4 text-xs font-medium shadow-xs"
+            class="h-9 gap-1.5 px-4 shadow-xs"
             :disabled="saving"
             data-testid="vxe-detail-sheet-create"
             @click="handleCreate"
@@ -925,7 +920,7 @@ async function handleSave() {
               dynamicSchema.rls.canUpdate.allowed
             "
             size="sm"
-            class="h-9 gap-1.5 px-4 text-xs font-medium shadow-xs"
+            class="h-9 gap-1.5 px-4 shadow-xs"
             :disabled="saving"
             data-testid="vxe-detail-sheet-save"
             @click="handleSave"

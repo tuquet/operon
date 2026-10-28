@@ -51,7 +51,7 @@ onUnmounted(() => {
 
 <template>
   <header
-    class="flex h-9 w-full select-none items-center justify-between border-b border-border/60 bg-background/95 px-3 text-xs text-foreground backdrop-blur z-50 shrink-0"
+    class="flex h-9 w-full select-none items-center justify-between border-b border-border/60 bg-background/95 px-3 text-foreground backdrop-blur z-50 shrink-0"
     data-tauri-drag-region
     @dblclick="handleToggleMaximize"
   >
@@ -78,7 +78,7 @@ onUnmounted(() => {
         <circle cx="254" cy="164" r="6" fill="#FFFFFF" />
       </svg>
       <span
-        class="font-semibold text-xs tracking-tight text-foreground"
+        class="font-semibold tracking-tight text-foreground"
         data-tauri-drag-region
       >
         Admin
@@ -87,7 +87,7 @@ onUnmounted(() => {
       <template v-if="currentTitle">
         <ChevronRight class="size-3 text-muted-foreground/60 shrink-0" />
         <span
-          class="font-medium text-xs text-muted-foreground truncate max-w-[240px]"
+          class="text-muted-foreground truncate max-w-[240px]"
           data-tauri-drag-region
         >
           {{ currentTitle }}

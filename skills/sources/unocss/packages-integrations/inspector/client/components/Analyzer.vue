@@ -54,7 +54,7 @@ const mergedSelectors = computed(() => {
     .sort((a, b) => b.count - a.count)
 
   // Use name without bracket if possible
-  // `[text-sm] text-sm` -> `text-sm`
+  // `[] ` -> ``
   sorted.forEach((item) => {
     if (item.alias) {
       item.name = Object.keys(item.alias)
@@ -95,7 +95,7 @@ const grouped = computed(() => mergedSelectors
       <span>Merge Alias</span>
     </label>
     <div v-if="selectors.length > 10">
-      <div mb-4 op50 uppercase text-sm>
+      <div mb-4 op50 uppercase >
         Top 10 Utilities
       </div>
       <div p-4 bg-active>
@@ -110,15 +110,15 @@ const grouped = computed(() => mergedSelectors
     </div>
 
     <div v-if="matchedColors.length">
-      <div uppercase text-sm mb-4 op50>
+      <div uppercase  mb-4 op50>
         Color Palette
-        <sup op50 text-sm>{{ matchedColors.length }}</sup>
+        <sup op50 >{{ matchedColors.length }}</sup>
       </div>
       <div flex flex-wrap gap-2>
         <span v-for="(item, i) in matchedColors" :key="i">
           <div p-2 w-25 inline-block of-hidden bg-active>
             <AnalyzerItem :item="item" />
-            <div font-mono text-sm op50 ws-nowrap text-ellipsis of-hidden>{{ item.color }}</div>
+            <div   op50 ws-nowrap text-ellipsis of-hidden>{{ item.color }}</div>
             <div h-10 mt-1 :style="{ background: item.color }" />
           </div>
         </span>
@@ -126,9 +126,9 @@ const grouped = computed(() => mergedSelectors
     </div>
 
     <div v-if="icons.length">
-      <div uppercase text-sm mb-4 op50>
+      <div uppercase  mb-4 op50>
         Icon Set
-        <sup op50 text-sm>{{ icons.length }}</sup>
+        <sup op50 >{{ icons.length }}</sup>
       </div>
       <div flex flex-wrap gap-2>
         <span v-for="(item, i) in icons" :key="i">
@@ -138,13 +138,13 @@ const grouped = computed(() => mergedSelectors
     </div>
 
     <div>
-      <div mb4 op50 uppercase text-sm flex="~ gap-4 items-center">
+      <div mb4 op50 uppercase  flex="~ gap-4 items-center">
         Utilities Usage
       </div>
 
       <FlowLayout v-if="grouped.length" :cols="2" :gap="16">
         <div v-for="(group, key) in grouped" :key="key" p-4 bg-active>
-          <div text-sm pb-4>
+          <div  pb-4>
             <span capitalize>{{ group.name }}</span><sup op50 ml-1>{{ group.count }}</sup>
           </div>
           <div flex flex-wrap gap-x-2 gap-y-2>

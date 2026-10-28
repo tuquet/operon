@@ -116,7 +116,7 @@ function handleOk() {
           >
             <template #default>
               <Select v-model="selectedRoleId">
-                <SelectTrigger class="h-10 w-full text-sm">
+                <SelectTrigger class="h-10 w-full">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

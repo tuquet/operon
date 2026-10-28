@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { onMounted } from 'vue';
 
-import { Toaster } from '@operon-core/shadcn-ui';
 import { usePreferences } from '@operon/preferences';
+
+import { Toaster } from '@operon-core/shadcn-ui';
 
 import {
   initDesktopAuthHandling,
@@ -24,5 +25,9 @@ onMounted(async () => {
 
 <template>
   <RouterView />
-  <Toaster position="top-right" :theme="isDark ? 'dark' : 'light'" rich-colors />
+  <Toaster
+    position="top-right"
+    :theme="isDark ? 'dark' : 'light'"
+    rich-colors
+  />
 </template>

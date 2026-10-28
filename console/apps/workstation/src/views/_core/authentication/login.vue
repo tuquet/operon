@@ -133,14 +133,14 @@ function handleGitHubLogin() {
         <div class="mt-4 w-full">
           <div class="relative my-3 flex items-center justify-between">
             <span class="w-[28%] border-b border-input"></span>
-            <span class="text-center text-xs text-muted-foreground">
+            <span class="text-center text-muted-foreground">
               {{ $t('authentication.orLoginWith') }}
             </span>
             <span class="w-[28%] border-b border-input"></span>
           </div>
           <Button
             variant="outline"
-            class="w-full h-10 flex items-center justify-center gap-2 font-medium"
+            class="w-full h-10 flex items-center justify-center gap-2"
             @click="handleGitHubLogin"
           >
             <SvgGithubIcon class="size-5" />

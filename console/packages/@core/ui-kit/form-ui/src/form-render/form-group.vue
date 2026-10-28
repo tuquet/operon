@@ -91,10 +91,7 @@ function toggleCollapsed() {
             <span
               class="bg-primary h-3.5 w-[3px] flex-none rounded-full"
             ></span>
-            <span
-              v-if="props.schema.title"
-              class="form-group-title text-sm font-medium leading-6"
-            >
+            <span v-if="props.schema.title" class="form-group-title leading-6">
               <VbenRenderContent :content="props.schema.title" />
             </span>
             <ChevronsDown

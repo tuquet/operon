@@ -99,7 +99,7 @@ Or if you want to exclude a specific layer, you can use the `@unocss !<layer>` d
 
 ```css
 .custom-div {
-  @apply text-center my-0 font-medium;
+  @apply text-center my-0 ;
 }
 ```
 

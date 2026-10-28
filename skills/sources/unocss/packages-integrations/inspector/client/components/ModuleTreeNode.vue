@@ -16,7 +16,7 @@ const route = useRoute()
     <summary
       cursor-default
       select-none
-      text-sm
+      
       truncate
       p="y1"
     >
@@ -33,7 +33,7 @@ const route = useRoute()
     >
       <RouterLink
         block
-        text-sm
+        
         p="x2 y1"
         ml1
         rounded

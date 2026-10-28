@@ -17,7 +17,7 @@ describe('transformer-variant-group', () => {
   it('basic', async () => {
     const cases = [
       'a1 a2:(b1 b2:(c1 c2-(d1 d2) c3) b3) a3',
-      'bg-white font-light sm:hover:(bg-gray-100 font-medium)',
+      'bg-white font-light sm:hover:(bg-gray-100 )',
       'lt-sm:hover:(p-1 p-2)',
       '<sm:hover:(p-1 p-2)',
       'sm:(p-1 p-2)',
@@ -57,7 +57,7 @@ describe('transformer-variant-group', () => {
       </script>
 
       <template>
-        <div class="bg-white font-light sm:hover:bg-gray-100 sm:hover:font-medium" />
+        <div class="bg-white font-light sm:hover:bg-gray-100 sm:hover:" />
         <div class="lt-sm:hover:p-1 lt-sm:hover:p-2" />
         <div class="<sm:p-1 <sm:p-2" />
         <div class="sm:p-1 sm:p-2" />

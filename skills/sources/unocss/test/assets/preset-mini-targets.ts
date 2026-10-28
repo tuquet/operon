@@ -244,8 +244,8 @@ export const presetMiniTargets: string[] = [
   'text-[color:--variable]',
   'text-[color:var(--color)]',
   'text-[color:var(--color-x)]:[trick]',
-  'text-sm/3',
-  'text-sm/[10px]',
+  '/3',
+  '/[10px]',
   'text-[11px]/4',
   'text-[12px]/[13px]',
   'text-[length:var(--size)]:$leading',
@@ -920,7 +920,7 @@ export const presetMiniTargets: string[] = [
   'transition-normal',
 
   // typography
-  'font-mono',
+  '',
   'font-[system-ui]',
   'font-550',
   'font-$font-name',
@@ -1126,7 +1126,7 @@ export const presetMiniTargets: string[] = [
   // variant dark/light
   'dark:not-odd:text-red',
   'dark:text-xl',
-  'light:text-sm',
+  'light:',
 
   // variants layer
   'uno-layer-1:translate-0',
@@ -1280,7 +1280,7 @@ export const presetMiniTargets: string[] = [
 
   // variants - tagged-data
   'group-data-[state=open]:font-bold',
-  'group-data-[state=open]/named:font-medium',
+  'group-data-[state=open]/named:',
   'peer-data-[state=closed]:border-3',
   'has-data-[state=closed]:border-4',
 

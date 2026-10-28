@@ -64,14 +64,14 @@ function save() {
       <div>
         Custom Config
       </div>
-      <div op50 text-sm>
+      <div op50 >
         Paste or edit your custom config below. Config will be saved in localStorage and used for generating the search result. AMA (auto module acquire) is enabled, you can use any browser compatible packages from npm directly.
       </div>
     </div>
   </div>
   <div text-left of-hidden grid="~ rows-[1fr_max-content]" pb5>
     <Suspense>
-      <CodeMirror v-model="raw" mode="ts" h-auto font-mono border="~ main" pl2 w-full of-auto />
+      <CodeMirror v-model="raw" mode="ts" h-auto  border="~ main" pl2 w-full of-auto />
       <template #fallback>
         <div border="~ main" pl2 w-full flex text-center justify-center italtic op50>
           loading...
@@ -105,10 +105,10 @@ function save() {
         <div>{{ config?.presets?.length }} presets loaded</div>
       </div>
       <div row gap-2 justify-center p3 border="b l r main" flex-none items-center>
-        <button v-if="!isDefault" text-sm btn saturate-0 @click="resetToDefault()">
+        <button v-if="!isDefault"  btn saturate-0 @click="resetToDefault()">
           Reset to default
         </button>
-        <div v-else op50 text-sm>
+        <div v-else op50 >
           (using default config)
         </div>
         <div flex-auto />

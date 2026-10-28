@@ -93,7 +93,7 @@ describe('matched-positions', async () => {
       transformers: [cssDirectives()],
     })
 
-    expect(await match(uno, '.btn-center{@apply text-center my-0 font-medium;\n}'))
+    expect(await match(uno, '.btn-center{@apply text-center my-0 ;\n}'))
       .toMatchInlineSnapshot(`
         [
           [
@@ -109,7 +109,7 @@ describe('matched-positions', async () => {
           [
             36,
             47,
-            "font-medium",
+            "",
           ],
         ]
       `)

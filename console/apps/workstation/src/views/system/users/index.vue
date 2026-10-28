@@ -212,8 +212,6 @@ async function handleRefresh() {
   <Page
     :title="$t('page.system.users')"
     :description="$t('page.system.users_desc')"
-    content-class="p-3 sm:p-5"
-    header-class="border-b border-border/60 bg-card/60 px-4 py-3 sm:px-6"
   >
     <template #title>
       <div class="flex items-center gap-2">
@@ -222,7 +220,7 @@ async function handleRefresh() {
         >
           {{ $t('page.system.users') }}
         </h1>
-        <Badge variant="secondary" class="shrink-0 text-2xs font-normal">
+        <Badge variant="secondary" class="shrink-0">
           {{ allUsers.length }}
         </Badge>
       </div>
@@ -261,18 +259,16 @@ async function handleRefresh() {
                 :alt="row.full_name || ''"
               />
               <AvatarFallback
-                class="rounded-lg bg-muted text-xs font-semibold text-foreground"
+                class="rounded-lg bg-muted font-semibold text-foreground"
               >
                 {{ getInitials(row.full_name) }}
               </AvatarFallback>
             </Avatar>
             <div class="flex min-w-0 flex-col text-left leading-snug">
-              <span class="truncate text-xs font-semibold text-foreground">
+              <span class="truncate font-semibold text-foreground">
                 {{ row.full_name || $t('page.system_view.users_anonymous') }}
               </span>
-              <div
-                class="flex items-center gap-1.5 text-2xs text-muted-foreground sm:text-xs"
-              >
+              <div class="flex items-center gap-1.5 text-muted-foreground">
                 <span class="truncate">
                   {{ row.email || $t('page.system_view.users_no_email') }}
                 </span>
@@ -287,7 +283,7 @@ async function handleRefresh() {
             :role="row.primary_role"
             :uppercase="true"
           />
-          <span v-else class="text-xs text-muted-foreground">{{
+          <span v-else class="text-muted-foreground">{{
             $t('page.system_view.users_unassigned_role')
           }}</span>
         </template>
@@ -296,7 +292,7 @@ async function handleRefresh() {
           <div class="flex items-center gap-2 min-w-0">
             <Badge
               :variant="row.tenant_count > 0 ? 'outline' : 'secondary'"
-              class="shrink-0 gap-1 font-normal text-xs"
+              class="shrink-0 gap-1"
             >
               <Building2 class="size-3 text-muted-foreground shrink-0" />
               <span>{{
@@ -305,7 +301,7 @@ async function handleRefresh() {
             </Badge>
             <span
               v-if="row.workspaces?.[0]?.tenant_name"
-              class="truncate text-xs text-muted-foreground"
+              class="truncate text-muted-foreground"
               :title="row.workspaces[0].tenant_name"
             >
               {{ row.workspaces[0].tenant_name }}
@@ -318,10 +314,10 @@ async function handleRefresh() {
             class="flex flex-col items-center justify-center p-8 text-center text-muted-foreground"
           >
             <Users class="size-10 stroke-[1.5] text-muted-foreground/60 mb-3" />
-            <p class="text-sm font-medium text-foreground">
+            <p class="text-foreground">
               {{ $t('page.system_view.users_empty_title') }}
             </p>
-            <p class="text-xs text-muted-foreground max-w-sm mt-1">
+            <p class="text-muted-foreground max-w-sm mt-1">
               {{ $t('page.system_view.users_empty_desc') }}
             </p>
           </div>

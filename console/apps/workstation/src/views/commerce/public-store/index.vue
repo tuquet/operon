@@ -456,7 +456,7 @@ onBeforeUnmount(() => {
             <span class="text-base font-bold tracking-tight text-foreground">
               {{ $t('page.commerce_view.public_store_brand') }}
             </span>
-            <p class="text-2xs text-muted-foreground">
+            <p class="text-muted-foreground">
               {{ $t('page.commerce_view.public_store_tagline') }}
             </p>
           </div>
@@ -465,17 +465,17 @@ onBeforeUnmount(() => {
         <div class="flex flex-wrap items-center gap-2">
           <Tabs v-model="activeMode">
             <TabsList class="h-8">
-              <TabsTrigger value="catalog" class="h-7 gap-1.5 px-3 text-xs">
+              <TabsTrigger value="catalog" class="h-7 gap-1.5 px-3">
                 <ShoppingBag class="size-3.5" />
                 {{ $t('page.commerce_view.product_catalog_tab') }}
               </TabsTrigger>
-              <TabsTrigger value="lookup" class="h-7 gap-1.5 px-3 text-xs">
+              <TabsTrigger value="lookup" class="h-7 gap-1.5 px-3">
                 <PackageSearch class="size-3.5" />
                 {{ $t('page.commerce_view.order_lookup_tab') }}
                 <Badge
                   v-if="savedOrders.length > 0"
                   variant="secondary"
-                  class="ml-0.5 text-2xs"
+                  class="ml-0.5"
                 >
                   {{ savedOrders.length }}
                 </Badge>
@@ -486,7 +486,7 @@ onBeforeUnmount(() => {
           <Button
             size="sm"
             variant="outline"
-            class="gap-1.5 text-xs"
+            class="gap-1.5"
             @click="router.push('/commerce/store')"
           >
             {{ $t('page.commerce_view.workspace_portal_btn') }}
@@ -506,7 +506,7 @@ onBeforeUnmount(() => {
             <Badge variant="default" class="text-2xs">
               {{ $t('page.commerce_view.instant_auto_fulfillment_badge') }}
             </Badge>
-            <span class="text-xs text-muted-foreground">
+            <span class="text-muted-foreground">
               {{ $t('page.commerce_view.no_account_needed_hint') }}
             </span>
           </div>
@@ -515,17 +515,17 @@ onBeforeUnmount(() => {
           >
             {{ $t('page.commerce_view.public_store_hero_title') }}
           </h1>
-          <p class="max-w-2xl text-xs text-muted-foreground">
+          <p class="max-w-2xl text-muted-foreground">
             {{ $t('page.commerce_view.public_store_hero_desc') }}
           </p>
         </div>
 
-        <div class="flex flex-wrap gap-2.5 text-xs">
+        <div class="flex flex-wrap gap-2.5">
           <div
             class="flex items-center gap-1.5 rounded-lg border border-border/60 bg-background px-3 py-2"
           >
             <Zap class="size-4 text-primary" />
-            <span class="font-medium">
+            <span class="">
               {{ $t('page.commerce_view.auto_delivery_3s') }}
             </span>
           </div>
@@ -533,7 +533,7 @@ onBeforeUnmount(() => {
             class="flex items-center gap-1.5 rounded-lg border border-border/60 bg-background px-3 py-2"
           >
             <ShieldCheck class="size-4 text-success" />
-            <span class="font-medium">
+            <span class="">
               {{ $t('page.commerce_view.claim_token_security') }}
             </span>
           </div>
@@ -560,7 +560,7 @@ onBeforeUnmount(() => {
           >
             <ToggleGroupItem
               value="all"
-              class="h-8 rounded-md border border-border/60 px-3 text-xs data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+              class="h-8 rounded-md border border-border/60 px-3 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
             >
               {{ $t('page.commerce_view.all_categories') }}
             </ToggleGroupItem>
@@ -568,7 +568,7 @@ onBeforeUnmount(() => {
               v-for="cat in categories"
               :key="cat.id"
               :value="cat.id"
-              class="h-8 rounded-md border border-border/60 px-3 text-xs data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+              class="h-8 rounded-md border border-border/60 px-3 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
             >
               {{ cat.name }}
             </ToggleGroupItem>
@@ -576,7 +576,7 @@ onBeforeUnmount(() => {
 
           <div class="flex flex-wrap items-center gap-2">
             <Select v-model="selectedProductType">
-              <SelectTrigger class="h-8 w-44 text-xs">
+              <SelectTrigger class="h-8 w-44">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -602,14 +602,13 @@ onBeforeUnmount(() => {
                 :placeholder="
                   $t('page.commerce_view.search_product_sku_placeholder')
                 "
-                class="text-xs"
               />
             </InputGroup>
 
             <Button
               variant="outline"
               size="sm"
-              class="h-8 gap-1.5 text-xs"
+              class="h-8 gap-1.5"
               @click="loadPublicCatalog"
             >
               <RefreshCw
@@ -633,7 +632,7 @@ onBeforeUnmount(() => {
             <EmptyTitle class="text-base font-semibold">
               {{ $t('page.commerce_view.empty_public_products_title') }}
             </EmptyTitle>
-            <EmptyDescription class="text-xs">
+            <EmptyDescription>
               {{ $t('page.commerce_view.empty_public_products_desc') }}
             </EmptyDescription>
           </EmptyHeader>
@@ -652,7 +651,7 @@ onBeforeUnmount(() => {
                 </Badge>
                 <span
                   v-if="getSelectedVariant(product)"
-                  class="text-2xs text-muted-foreground"
+                  class="text-muted-foreground"
                 >
                   {{ getSelectedVariant(product)?.sku }}
                 </span>
@@ -662,7 +661,7 @@ onBeforeUnmount(() => {
                 <h3 class="text-base font-semibold text-foreground">
                   {{ product.name }}
                 </h3>
-                <p class="mt-1 line-clamp-2 text-xs text-muted-foreground">
+                <p class="mt-1 line-clamp-2 text-muted-foreground">
                   {{
                     product.short_description ||
                     product.description ||
@@ -677,7 +676,7 @@ onBeforeUnmount(() => {
                 class="space-y-1.5 pt-1"
               >
                 <span
-                  class="text-2xs font-semibold tracking-wider text-muted-foreground uppercase"
+                  class="font-semibold tracking-wider text-muted-foreground uppercase"
                 >
                   {{ $t('page.commerce_view.sku_category_label') }}
                 </span>
@@ -688,7 +687,7 @@ onBeforeUnmount(() => {
                     type="button"
                     variant="outline"
                     size="sm"
-                    class="h-auto rounded-lg px-2.5 py-1 text-xs transition-colors"
+                    class="h-auto rounded-lg px-2.5 py-1 transition-colors"
                     :class="
                       getSelectedVariant(product)?.id === variant.id
                         ? 'border-primary bg-primary/10 font-semibold text-primary'
@@ -714,12 +713,12 @@ onBeforeUnmount(() => {
                   }}
                   Xu
                 </p>
-                <p class="text-xs">
+                <p>
                   <span
                     v-if="
                       getSelectedVariant(product)?.stock_mode === 'unlimited'
                     "
-                    class="font-medium text-success"
+                    class="text-success"
                   >
                     ● {{ $t('page.commerce_view.in_stock_unlimited') }}
                   </span>
@@ -727,7 +726,7 @@ onBeforeUnmount(() => {
                     v-else-if="
                       (getSelectedVariant(product)?.available_stock ?? 0) > 0
                     "
-                    class="font-medium text-success"
+                    class="text-success"
                   >
                     ●
                     {{
@@ -736,7 +735,7 @@ onBeforeUnmount(() => {
                       })
                     }}
                   </span>
-                  <span v-else class="font-medium text-destructive">
+                  <span v-else class="text-destructive">
                     ● {{ $t('page.commerce_view.out_of_stock') }}
                   </span>
                 </p>
@@ -775,33 +774,33 @@ onBeforeUnmount(() => {
               <h2 class="text-base font-semibold text-foreground">
                 {{ $t('page.commerce_view.guest_lookup_title') }}
               </h2>
-              <p class="mt-0.5 text-xs text-muted-foreground">
+              <p class="mt-0.5 text-muted-foreground">
                 {{ $t('page.commerce_view.guest_lookup_desc') }}
               </p>
             </div>
 
             <div class="space-y-3">
               <div class="space-y-1">
-                <Label class="text-xs font-medium text-foreground">
+                <Label class="text-foreground">
                   {{ $t('page.commerce_view.order_code_field_label') }}
                 </Label>
                 <Input
                   v-model="lookupOrderCode"
                   type="text"
                   placeholder="ORD-261014-XXXXXX"
-                  class="h-9 w-full px-3 text-xs"
+                  class="h-9 w-full px-3"
                 />
               </div>
 
               <div class="space-y-1">
-                <Label class="text-xs font-medium text-foreground">
+                <Label class="text-foreground">
                   {{ $t('page.commerce_view.claim_token_field_label') }}
                 </Label>
                 <Input
                   v-model="lookupClaimToken"
                   type="text"
                   placeholder="CLM_..."
-                  class="h-9 w-full px-3 text-xs"
+                  class="h-9 w-full px-3"
                 />
               </div>
 
@@ -824,7 +823,7 @@ onBeforeUnmount(() => {
           >
             <div class="flex items-center gap-2">
               <History class="size-4 text-primary" />
-              <h3 class="text-sm font-semibold text-foreground">
+              <h3 class="font-semibold text-foreground">
                 {{ $t('page.commerce_view.recent_browser_orders') }}
               </h3>
             </div>
@@ -835,16 +834,16 @@ onBeforeUnmount(() => {
                 :key="saved.order_code"
                 type="button"
                 variant="outline"
-                class="flex h-auto w-full items-center justify-between rounded-lg border-border/60 bg-background p-3 text-left font-normal transition-colors hover:border-primary/50"
+                class="flex h-auto w-full items-center justify-between rounded-lg border-border/60 bg-background p-3 text-left transition-colors hover:border-primary/50"
                 @click="
                   handleLookupGuestOrder(saved.order_code, saved.claim_token)
                 "
               >
                 <div>
-                  <p class="text-xs font-bold text-foreground">
+                  <p class="font-bold text-foreground">
                     {{ saved.order_code }}
                   </p>
-                  <p class="text-2xs text-muted-foreground">
+                  <p class="text-muted-foreground">
                     {{ formatDate(saved.created_at) }}
                   </p>
                 </div>
@@ -863,10 +862,10 @@ onBeforeUnmount(() => {
               <EmptyMedia variant="icon">
                 <Lock class="size-5 text-muted-foreground" />
               </EmptyMedia>
-              <EmptyTitle class="text-sm font-semibold">
+              <EmptyTitle class="font-semibold">
                 {{ $t('page.commerce_view.no_order_selected_title') }}
               </EmptyTitle>
-              <EmptyDescription class="text-xs">
+              <EmptyDescription>
                 {{ $t('page.commerce_view.no_order_selected_desc') }}
               </EmptyDescription>
             </EmptyHeader>
@@ -894,7 +893,7 @@ onBeforeUnmount(() => {
                     {{ lookedUpOrder.status }}
                   </Badge>
                 </div>
-                <p class="mt-1 text-xs text-muted-foreground">
+                <p class="mt-1 text-muted-foreground">
                   {{ $t('page.commerce_view.total_value_label') }}
                   <span class="font-semibold text-foreground">
                     {{ lookedUpOrder.total_credits.toLocaleString('en-US') }} Xu
@@ -923,7 +922,7 @@ onBeforeUnmount(() => {
 
             <Empty v-if="lookedUpDeliveries.length === 0" class="py-10">
               <EmptyHeader>
-                <EmptyDescription class="text-xs">
+                <EmptyDescription>
                   {{
                     $t('page.commerce_view.order_status_no_deliveries_prefix')
                   }}
@@ -941,7 +940,7 @@ onBeforeUnmount(() => {
               <div v-if="serialLinesText" class="space-y-2">
                 <div class="flex items-center justify-between">
                   <span
-                    class="flex items-center gap-1.5 text-xs font-semibold text-foreground"
+                    class="flex items-center gap-1.5 font-semibold text-foreground"
                   >
                     <KeyRound class="size-3.5 text-primary" />
                     {{
@@ -956,7 +955,7 @@ onBeforeUnmount(() => {
                     <Button
                       size="sm"
                       variant="outline"
-                      class="h-7 gap-1 text-xs"
+                      class="h-7 gap-1"
                       @click="
                         copyText(
                           serialLinesText,
@@ -970,7 +969,7 @@ onBeforeUnmount(() => {
                     <Button
                       size="sm"
                       variant="default"
-                      class="h-7 gap-1 text-xs"
+                      class="h-7 gap-1"
                       @click="downloadSerialTxt"
                     >
                       <Download class="size-3" />
@@ -982,7 +981,7 @@ onBeforeUnmount(() => {
                   readonly
                   :model-value="serialLinesText"
                   :rows="8"
-                  class="w-full rounded-lg bg-muted/40 p-3 text-xs"
+                  class="w-full rounded-lg bg-muted/40 p-3"
                 />
               </div>
 
@@ -991,7 +990,7 @@ onBeforeUnmount(() => {
                   (d) => d.delivery_type !== 'serial_stock',
                 )"
                 :key="item.id"
-                class="rounded-lg border border-border/60 bg-muted/20 p-3.5 text-xs"
+                class="rounded-lg border border-border/60 bg-muted/20 p-3.5"
               >
                 <div class="flex items-center justify-between">
                   <span class="font-semibold text-foreground">
@@ -1006,7 +1005,7 @@ onBeforeUnmount(() => {
                   </Badge>
                 </div>
                 <pre
-                  class="mt-2 overflow-x-auto rounded bg-background p-2 text-2xs text-muted-foreground"
+                  class="mt-2 overflow-x-auto rounded bg-background p-2 text-muted-foreground"
                   >{{ JSON.stringify(item.delivered_payload, null, 2) }}</pre>
                 <div
                   v-if="item.delivered_payload?.download_url"
@@ -1016,7 +1015,7 @@ onBeforeUnmount(() => {
                     :href="item.delivered_payload.download_url"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
+                    class="inline-flex items-center gap-1 font-semibold text-primary hover:underline"
                   >
                     <ExternalLink class="size-3" />
                     {{ $t('page.commerce_view.download_file') }}

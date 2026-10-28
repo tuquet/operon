@@ -279,7 +279,7 @@ onKeyStroke('Escape', () => {
           </VueTooltip>
         </div>
       </div>
-      <p op50 font-mono text-sm>
+      <p op50  >
         {{ id }}
       </p>
       <IconButton

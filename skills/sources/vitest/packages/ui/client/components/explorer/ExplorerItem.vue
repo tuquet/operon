@@ -218,9 +218,9 @@ const tagsBgGradient = computed(() => {
     <StatusIcon :state="state" :mode="task.mode" :failed-snapshot="failedSnapshot" w-4 />
     <div flex items-baseline gap-2 overflow-hidden>
       <div v-if="type === 'file' && typecheck" v-tooltip.bottom="'This is a typecheck test. It won\'t report results of the runtime tests'" class="i-logos:typescript-icon" flex-shrink-0 />
-      <span v-if="type === 'file' && label" class="rounded-sm px-1 text-xs font-light bg-cyan-500/20 text-cyan-700 dark:text-cyan-300" flex-shrink-0>{{ label }}</span>
-      <span text-sm truncate font-light>
-        <span v-if="type === 'file' && projectName" class="rounded-full py-0.5 px-2 mr-1 text-xs" :style="{ backgroundColor: projectNameColor, color: projectNameTextColor }">
+      <span v-if="type === 'file' && label" class="rounded-sm px-1 font-light bg-cyan-500/20 text-cyan-700 dark:text-cyan-300" flex-shrink-0>{{ label }}</span>
+      <span  truncate font-light>
+        <span v-if="type === 'file' && projectName" class="rounded-full py-0.5 px-2 mr-1" :style="{ backgroundColor: projectNameColor, color: projectNameTextColor }">
           {{ projectName }}
         </span>
         <span :class="state === 'fail' ? 'text-red-700 dark:text-red-500' : undefined" v-html="highlighted" />
@@ -237,7 +237,7 @@ const tagsBgGradient = computed(() => {
     <div gap-1 justify-end items-center flex-grow-1 pl-1 class="test-actions">
       <!-- <div
         v-if="tagsBorderGradient"
-        text-xs
+       
         rounded-full
         flex
         justify-center

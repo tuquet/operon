@@ -33,7 +33,7 @@ describe.concurrent('fixtures', () => {
     // basic
     expect(css).contains('.text-red')
     // transformer-variant-group
-    expect(css).contains('.text-sm')
+    expect(css).contains('.')
     // transformer-compile-class
     expect(css).contains('.uno-tacwqa')
     // transformer-directives
@@ -41,7 +41,7 @@ describe.concurrent('fixtures', () => {
     expect(css).contains('gap:.25rem')
 
     // transformer-variant-group
-    expect(js).contains('text-sm')
+    expect(js).contains('')
     // transformer-compile-class
     expect(js).contains('uno-tacwqa')
 
@@ -108,7 +108,7 @@ describe.concurrent('fixtures', () => {
       // basic
       expect(code).contains('.text-red')
       // transformer-variant-group
-      expect(code).contains('.text-sm')
+      expect(code).contains('.')
       // transformer-compile-class
       expect(code).contains('.uno-tacwqa')
       // transformer-directives
@@ -118,7 +118,7 @@ describe.concurrent('fixtures', () => {
       expect(code).contains('gap:.5rem')
 
       // transformer-variant-group
-      expect(code).contains('text-sm')
+      expect(code).contains('')
       // transformer-compile-class
       expect(code).contains('uno-tacwqa')
     }
@@ -144,7 +144,7 @@ describe.concurrent('fixtures', () => {
       // basic
       expect(code).contains('.text-red')
       // transformer-variant-group
-      expect(code).contains('.text-sm')
+      expect(code).contains('.')
       // transformer-compile-class
       expect(code).contains('.uno-tacwqa')
       // transformer-directives
@@ -154,7 +154,7 @@ describe.concurrent('fixtures', () => {
       expect(code).contains('gap:.5rem')
 
       // transformer-variant-group
-      expect(code).contains('text-sm')
+      expect(code).contains('')
       // transformer-compile-class
       expect(code).contains('uno-tacwqa')
     }

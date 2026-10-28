@@ -52,14 +52,10 @@ const { formatDate } = useDateFormat();
   <div class="space-y-4 pt-1">
     <!-- Action bar inside tab -->
     <div class="flex flex-wrap items-center justify-between gap-2">
-      <h3 class="text-sm font-semibold text-foreground sm:text-base">
+      <h3 class="font-semibold text-foreground sm:text-base">
         {{ $t('page.tenants_view.members_list_title') }}
       </h3>
-      <Button
-        size="sm"
-        class="h-8 shrink-0 gap-1.5 font-medium"
-        @click="emit('invite')"
-      >
+      <Button size="sm" class="h-8 shrink-0 gap-1.5" @click="emit('invite')">
         <UserPlus class="size-3.5" />
         <span>{{ $t('common.add') }}</span>
       </Button>
@@ -103,13 +99,13 @@ const { formatDate } = useDateFormat();
                     :src="record.avatar_url"
                   />
                   <AvatarFallback
-                    class="bg-primary/10 text-xs font-semibold text-primary uppercase"
+                    class="bg-primary/10 font-semibold text-primary uppercase"
                   >
                     {{ (record.full_name || record.email || 'U').slice(0, 2) }}
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <div class="font-medium text-foreground">
+                  <div class="text-foreground">
                     {{
                       record.full_name ||
                       $t('page.tenants_view.default_member_name')
@@ -117,7 +113,7 @@ const { formatDate } = useDateFormat();
                   </div>
                   <div
                     v-if="record.role?.name === 'owner'"
-                    class="text-xs font-medium text-primary"
+                    class="text-primary"
                   >
                     {{ $t('page.tenants_view.role_owner') }}
                   </div>
@@ -127,7 +123,7 @@ const { formatDate } = useDateFormat();
 
             <!-- Email Column -->
             <TableCell class="whitespace-nowrap">
-              <span class="text-xs text-muted-foreground">
+              <span class="text-muted-foreground">
                 {{ record.email }}
               </span>
             </TableCell>
@@ -139,7 +135,7 @@ const { formatDate } = useDateFormat();
 
             <!-- Status Column -->
             <TableCell class="whitespace-nowrap">
-              <Badge variant="outline" class="text-xs font-normal">
+              <Badge variant="outline" class="">
                 <span
                   class="mr-1.5 size-1.5 rounded-full"
                   :class="
@@ -162,7 +158,7 @@ const { formatDate } = useDateFormat();
 
             <!-- Joined At Column -->
             <TableCell class="whitespace-nowrap">
-              <span class="text-xs text-muted-foreground">
+              <span class="text-muted-foreground">
                 {{ formatDate(record.joined_at) }}
               </span>
             </TableCell>
@@ -173,7 +169,7 @@ const { formatDate } = useDateFormat();
                 <Button
                   variant="ghost"
                   size="sm"
-                  class="flex h-auto items-center gap-1 p-0 text-xs text-foreground hover:text-primary"
+                  class="flex h-auto items-center gap-1 p-0 text-foreground hover:text-primary"
                   @click="emit('edit', record)"
                 >
                   <Edit3 class="size-3.5" />
@@ -186,7 +182,7 @@ const { formatDate } = useDateFormat();
                       <Button
                         variant="ghost"
                         size="sm"
-                        class="h-auto p-0 text-xs text-destructive hover:text-destructive"
+                        class="h-auto p-0 text-destructive hover:text-destructive"
                       >
                         {{ $t('common.delete') }}
                       </Button>
@@ -224,7 +220,7 @@ const { formatDate } = useDateFormat();
           <TableRow v-if="props.members.length === 0 && !props.loading">
             <TableCell
               colspan="6"
-              class="h-24 text-center text-sm text-muted-foreground"
+              class="h-24 text-center text-muted-foreground"
             >
               {{ $t('page.tenants_view.members_empty') }}
             </TableCell>

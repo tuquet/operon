@@ -55,11 +55,11 @@ const VersionRender = defineComponent({
         ? isRelease
           ? [
               h('span', latestVersion),
-              h('span', { class: 'op75 text-xs' }, '(latest)'),
+              h('span', { class: 'op75' }, '(latest)'),
             ]
           : [
               h('span', `${latestVersion}*`),
-              h('span', { class: 'op75 font-mono text-xs' }, `(${latestVersionSha.slice(0, 7)})`),
+              h('span', { class: 'op75 ' }, `(${latestVersionSha.slice(0, 7)})`),
             ]
         : `v${props.version}`,
     )
@@ -75,7 +75,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="selectedVersion" ref="el" class="ml-2 mr-3 relative text-sm" @click.stop>
+  <div v-if="selectedVersion" ref="el" class="ml-2 mr-3 relative " @click.stop>
     <button flex="~ gap-0.5 items-center" rounded hover="bg-hover" pl2 pr1 @click="toggle">
       <VersionRender :version="selectedVersion" c-primary />
       <div i-ri-arrow-down-s-line flex-none />
@@ -85,7 +85,7 @@ onMounted(async () => {
       v-if="expanded"
       class="top-20px bg-main max-h-450px of-y-auto absolute left--5px z-100 py1"
       flex="~ col"
-      border="~ main rounded" shadow font-mono
+      border="~ main rounded" shadow 
     >
       <div
         v-for="ver of versions" :key="ver"

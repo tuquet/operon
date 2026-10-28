@@ -203,8 +203,6 @@ watch(
   <Page
     :title="$t('page.automation.jobs')"
     :description="$t('page.automation.jobs_desc')"
-    content-class="p-3 sm:p-5"
-    header-class="border-b border-border/60 bg-card/60 px-4 py-3 sm:px-6"
   >
     <template #title>
       <div class="flex items-center gap-2">
@@ -213,7 +211,7 @@ watch(
         >
           {{ $t('page.automation.jobs') }}
         </h1>
-        <Badge variant="secondary" class="shrink-0 text-2xs">
+        <Badge variant="secondary" class="shrink-0">
           {{ allRuns.length }}
         </Badge>
       </div>
@@ -224,7 +222,7 @@ watch(
         <Button
           variant="outline"
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs"
+          class="h-8 gap-1.5 px-2.5"
           :title="$t('common.refresh')"
           @click="() => gridApi.reload()"
         >
@@ -247,10 +245,10 @@ watch(
               <PlayCircle class="size-4" />
             </div>
             <div class="min-w-0 flex-1">
-              <div class="truncate font-medium text-foreground">
+              <div class="truncate text-foreground">
                 {{ row.name }}
               </div>
-              <div class="truncate text-xs text-muted-foreground">
+              <div class="truncate text-muted-foreground">
                 {{
                   row.workflow
                     ? row.workflow.name
@@ -264,19 +262,19 @@ watch(
         <template #device-cell="{ row }">
           <div
             v-if="row.device"
-            class="inline-flex items-center gap-1.5 text-xs font-medium text-foreground"
+            class="inline-flex items-center gap-1.5 text-foreground"
           >
             <Laptop class="size-3.5 shrink-0 text-muted-foreground" />
             <span>{{ row.device.name }}</span>
           </div>
-          <span v-else class="text-xs text-muted-foreground">
+          <span v-else class="text-muted-foreground">
             {{ $t('page.jobs_view.auto_dispatch') }}
           </span>
         </template>
 
         <template #progress-cell="{ row }">
           <div class="w-full max-w-[170px] space-y-1">
-            <div class="flex items-center justify-between text-xs">
+            <div class="flex items-center justify-between">
               <span class="text-foreground">
                 {{ row.completed_tasks }} / {{ row.total_tasks }}
               </span>
@@ -302,7 +300,7 @@ watch(
         </template>
 
         <template #status-cell="{ row }">
-          <Badge variant="outline" class="text-xs font-normal">
+          <Badge variant="outline" class="">
             <span
               class="mr-1.5 size-1.5 rounded-full"
               :class="getRunStatusDotClass(row.status)"
@@ -315,7 +313,7 @@ watch(
           <Button
             variant="outline"
             size="sm"
-            class="inline-flex h-7 items-center gap-1 px-2.5 text-xs"
+            class="inline-flex h-7 items-center gap-1 px-2.5"
             :title="$t('common.detail')"
             @click="handleViewDetail(row.id)"
           >
@@ -331,10 +329,10 @@ watch(
             <PlayCircle
               class="mb-3 size-10 stroke-[1.5] text-muted-foreground/60"
             />
-            <p class="text-sm font-medium text-foreground">
+            <p class="text-foreground">
               {{ $t('page.jobs_view.empty_title') }}
             </p>
-            <p class="mt-1 max-w-md text-xs text-muted-foreground">
+            <p class="mt-1 max-w-md text-muted-foreground">
               {{ $t('page.jobs_view.empty_desc') }}
             </p>
           </div>

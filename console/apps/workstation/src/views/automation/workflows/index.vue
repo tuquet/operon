@@ -168,8 +168,6 @@ function refresh() {
   <Page
     :title="$t('page.automation.workflows')"
     :description="$t('page.automation.workflows_desc')"
-    content-class="p-3 sm:p-5"
-    header-class="border-b border-border/60 bg-card/60 px-4 py-3 sm:px-6"
   >
     <template #title>
       <div class="flex items-center gap-2">
@@ -178,7 +176,7 @@ function refresh() {
         >
           {{ $t('page.automation.workflows') }}
         </h1>
-        <Badge variant="secondary" class="shrink-0 text-2xs">
+        <Badge variant="secondary" class="shrink-0">
           {{ allWorkflows.length }}
         </Badge>
       </div>
@@ -189,7 +187,7 @@ function refresh() {
         <Button
           variant="outline"
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs"
+          class="h-8 gap-1.5 px-2.5"
           :title="$t('common.refresh')"
           @click="refresh"
         >
@@ -198,7 +196,7 @@ function refresh() {
         </Button>
         <Button
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs font-medium sm:px-3"
+          class="h-8 gap-1.5 px-2.5 sm:px-3"
           @click="() => gridApi.openCreateSheet()"
         >
           <Plus class="size-3.5 shrink-0" />
@@ -221,10 +219,10 @@ function refresh() {
               <GitBranch class="size-4" />
             </div>
             <div class="min-w-0 flex-1 text-left">
-              <div class="truncate font-medium text-foreground">
+              <div class="truncate text-foreground">
                 {{ row.name }}
               </div>
-              <div class="line-clamp-1 max-w-md text-xs text-muted-foreground">
+              <div class="line-clamp-1 max-w-md text-muted-foreground">
                 {{
                   row.description || $t('page.workflows_view.no_description')
                 }}
@@ -234,11 +232,11 @@ function refresh() {
         </template>
 
         <template #version-cell="{ row }">
-          <Badge variant="outline" class="text-xs"> v{{ row.version }} </Badge>
+          <Badge variant="outline"> v{{ row.version }} </Badge>
         </template>
 
         <template #status-cell="{ row }">
-          <Badge variant="outline" class="text-xs font-normal">
+          <Badge variant="outline" class="">
             <span
               class="mr-1.5 size-1.5 rounded-full"
               :class="getStatusDotClass(row.status)"
@@ -254,10 +252,10 @@ function refresh() {
             <GitBranch
               class="mb-3 size-10 stroke-[1.5] text-muted-foreground/60"
             />
-            <p class="text-sm font-medium text-foreground">
+            <p class="text-foreground">
               {{ $t('page.workflows_view.empty_title') }}
             </p>
-            <p class="mt-1 max-w-md text-xs text-muted-foreground">
+            <p class="mt-1 max-w-md text-muted-foreground">
               {{ $t('page.workflows_view.empty_desc') }}
             </p>
           </div>

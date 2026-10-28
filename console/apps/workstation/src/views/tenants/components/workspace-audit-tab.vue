@@ -70,10 +70,10 @@ onMounted(() => {
           <ShieldCheck class="size-4.5" />
         </div>
         <div class="min-w-0">
-          <h3 class="truncate text-sm font-semibold text-foreground">
+          <h3 class="truncate font-semibold text-foreground">
             {{ $t('page.tenants_view.audit_title') }}
           </h3>
-          <p class="line-clamp-1 text-xs text-muted-foreground">
+          <p class="line-clamp-1 text-muted-foreground">
             {{ $t('page.tenants_view.audit_desc') }}
           </p>
         </div>
@@ -82,7 +82,7 @@ onMounted(() => {
       <Button
         variant="outline"
         size="sm"
-        class="h-8 shrink-0 text-xs flex items-center gap-1.5"
+        class="h-8 shrink-0 flex items-center gap-1.5"
         :disabled="loading"
         @click="loadAuditLogs"
       >
@@ -114,7 +114,7 @@ onMounted(() => {
         </TableHeader>
         <TableBody>
           <TableRow v-for="log in logs" :key="log.id">
-            <TableCell class="text-xs whitespace-nowrap text-muted-foreground">
+            <TableCell class="whitespace-nowrap text-muted-foreground">
               {{ formatDate(log.created_at) }}
             </TableCell>
             <TableCell class="whitespace-nowrap">
@@ -125,7 +125,7 @@ onMounted(() => {
                   <User class="size-3" />
                 </div>
                 <div>
-                  <div class="text-xs font-medium text-foreground">
+                  <div class="text-foreground">
                     {{
                       log.actor_name ||
                       log.actor_email ||
@@ -134,7 +134,7 @@ onMounted(() => {
                   </div>
                   <div
                     v-if="log.actor_name && log.actor_email"
-                    class="text-2xs text-muted-foreground"
+                    class="text-muted-foreground"
                   >
                     {{ log.actor_email }}
                   </div>
@@ -142,12 +142,12 @@ onMounted(() => {
               </div>
             </TableCell>
             <TableCell class="whitespace-nowrap">
-              <Badge variant="outline" class="text-xs font-normal">
+              <Badge variant="outline" class="">
                 {{ log.action }}
               </Badge>
             </TableCell>
             <TableCell class="whitespace-nowrap">
-              <div class="flex items-center gap-2 text-xs">
+              <div class="flex items-center gap-2">
                 <span class="text-muted-foreground"
                   >{{ log.entity_type }}:</span
                 >
@@ -159,7 +159,7 @@ onMounted(() => {
           <TableRow v-if="logs.length === 0 && !loading">
             <TableCell
               colspan="4"
-              class="h-32 text-center text-sm text-muted-foreground"
+              class="h-32 text-center text-muted-foreground"
             >
               <div class="flex flex-col items-center justify-center gap-2">
                 <History class="size-8 text-muted-foreground/60" />

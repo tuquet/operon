@@ -182,7 +182,7 @@ defineExpose({
       <Button
         v-if="effectiveAccess?.isSuperadmin"
         size="sm"
-        class="h-8 gap-1 text-xs"
+        class="h-8 gap-1"
         @click="rolesGridApi.openCreateSheet({ is_system: false })"
       >
         <Plus class="size-3.5" />
@@ -200,16 +200,13 @@ defineExpose({
     </template>
 
     <template #role-desc-cell="{ row }">
-      <span class="text-xs text-muted-foreground">
+      <span class="text-muted-foreground">
         {{ row.description || $t('page.system_view.roles_default_desc') }}
       </span>
     </template>
 
     <template #role-type-cell="{ row }">
-      <Badge
-        :variant="row.is_system ? 'default' : 'outline'"
-        class="gap-1 text-xs font-normal"
-      >
+      <Badge :variant="row.is_system ? 'default' : 'outline'" class="gap-1">
         <Lock v-if="row.is_system" class="size-3 shrink-0" />
         <span>{{
           row.is_system
@@ -221,7 +218,7 @@ defineExpose({
 
     <template #role-perms-cell="{ row }">
       <div class="flex items-center gap-1.5 min-w-0">
-        <Badge variant="outline" class="shrink-0 text-xs font-semibold">
+        <Badge variant="outline" class="shrink-0 font-semibold">
           {{
             $t('page.system_view.roles_perms_count', [row.permissions.length])
           }}
@@ -238,7 +235,7 @@ defineExpose({
         <Badge
           v-if="row.permissions.length > 2"
           variant="secondary"
-          class="inline-flex shrink-0 text-2xs font-normal"
+          class="inline-flex shrink-0"
         >
           {{
             $t('page.system_view.roles_more_perms', [
@@ -256,10 +253,10 @@ defineExpose({
         <ShieldCheck
           class="size-10 stroke-[1.5] text-muted-foreground/60 mb-3"
         />
-        <p class="text-sm font-medium text-foreground">
+        <p class="text-foreground">
           {{ $t('page.system_view.roles_empty_title') }}
         </p>
-        <p class="text-xs text-muted-foreground max-w-sm mt-1">
+        <p class="text-muted-foreground max-w-sm mt-1">
           {{ $t('page.system_view.roles_empty_desc') }}
         </p>
       </div>

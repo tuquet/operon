@@ -17,7 +17,7 @@ const { error, formMessageId } = useFormField();
     v-if="error"
     :id="formMessageId"
     data-slot="form-message"
-    :class="cn('text-destructive text-sm', props.class)"
+    :class="cn('text-destructive ', props.class)"
   >
     {{ error }}
   </p>

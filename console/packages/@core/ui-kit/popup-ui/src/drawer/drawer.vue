@@ -259,7 +259,7 @@ const getForceMount = computed(() => {
               </VbenHelpTooltip>
             </slot>
           </SheetTitle>
-          <SheetDescription v-if="description" class="mt-1 text-xs">
+          <SheetDescription v-if="description" class="mt-1">
             <slot name="description">
               {{ description }}
             </slot>

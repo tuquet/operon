@@ -84,7 +84,7 @@ watch(isResponsive, (responsive) => {
       :style="`width:${frameWidth}px;height:${frameHeight}px`"
     >
       <div class="responsive-border -mt-4 h-4 w-full">
-        <div class="text-xs font-medium text-gray-600 dark:text-gray-400">
+        <div class=" text-gray-600 dark:text-gray-400">
           {{ width.toFixed(0) }}x{{ height.toFixed(0) }} ({{ (100 * scale).toFixed(0) }}%)
         </div>
       </div>

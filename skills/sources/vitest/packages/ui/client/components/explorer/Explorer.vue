@@ -80,7 +80,7 @@ const {
         items-center
       >
         <div class="i-carbon:workspace" flex-shrink-0 />
-        <label for="project-select" text-sm>
+        <label for="project-select" >
           Projects
         </label>
         <div class="relative flex-1">
@@ -96,7 +96,7 @@ const {
             pl-2
             pr-8
             py-1
-            text-sm
+            
             cursor-pointer
             hover:bg-active
             class="outline-none"
@@ -132,7 +132,7 @@ const {
         items-center
       >
         <div class="i-carbon:arrows-vertical" flex-shrink-0 />
-        <label for="project-sort" text-sm>
+        <label for="project-sort" >
           Sort by
         </label>
         <div class="relative flex-1">
@@ -148,7 +148,7 @@ const {
             pl-2
             pr-8
             py-1
-            text-sm
+            
             cursor-pointer
             hover:bg-active
             class="outline-none"
@@ -218,7 +218,7 @@ const {
       >
         <div min-w-full flex="~ gap-2 items-center">
           <div aria-hidden="true" class="i-carbon:filter" flex-shrink-0 />
-          <div flex-grow-1 text-sm>
+          <div flex-grow-1 >
             Filter
           </div>
           <IconButton
@@ -268,7 +268,7 @@ const {
             <button
               type="button"
               font-light
-              text-sm
+              
               border="~ gray-400/50 rounded"
               p="x2 y0.5"
               m="t2"
@@ -282,7 +282,7 @@ const {
             <button
               type="button"
               font-light
-              text-sm
+              
               border="~ gray-400/50 rounded"
               p="x2 y0.5"
               m="t2"
@@ -297,7 +297,7 @@ const {
               type="button"
               font-light
               op="50 hover:100"
-              text-sm
+              
               border="~ gray-400/50 rounded"
               p="x2 y0.5"
               m="t2"

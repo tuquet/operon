@@ -7,7 +7,7 @@ const style = useScrollStyle(status, 'repl-scrolls')
 
 const input = useLocalStorage(
   'unocss:inspector:repl',
-  '<div class="text-sm hover:text-red">\nHello World\n</div>',
+  '<div class=" hover:text-red">\nHello World\n</div>',
 )
 
 const isSafelistIncluded = useStorage('unocss-inspector-safelist', false)

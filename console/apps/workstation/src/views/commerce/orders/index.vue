@@ -329,8 +329,6 @@ onMounted(() => {
   <Page
     :title="$t('page.commerce.orders')"
     :description="$t('page.commerce.orders_desc')"
-    content-class="p-3 sm:p-5"
-    header-class="border-b border-border/60 bg-card/60 px-4 py-3 sm:px-6"
   >
     <template #title>
       <div class="flex items-center gap-2">
@@ -339,7 +337,7 @@ onMounted(() => {
         >
           {{ $t('page.commerce.orders') }}
         </h1>
-        <Badge variant="secondary" class="shrink-0 text-2xs font-normal">
+        <Badge variant="secondary" class="shrink-0">
           {{ allOrders.length }}
         </Badge>
       </div>
@@ -353,7 +351,7 @@ onMounted(() => {
             @update:model-value="handleTenantChange"
           >
             <SelectTrigger
-              class="h-8 max-w-[140px] gap-1.5 bg-card px-2.5 text-xs font-medium sm:max-w-[190px]"
+              class="h-8 max-w-[140px] gap-1.5 bg-card px-2.5 sm:max-w-[190px]"
             >
               <Building2 class="size-3.5 shrink-0 text-muted-foreground" />
               <SelectValue />
@@ -373,7 +371,7 @@ onMounted(() => {
         <Button
           variant="default"
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs sm:px-3"
+          class="h-8 gap-1.5 px-2.5 sm:px-3"
           @click="router.push('/commerce/store')"
         >
           <ShoppingBag class="size-3.5" />
@@ -401,7 +399,7 @@ onMounted(() => {
       <Grid>
         <template #code-cell="{ row }">
           <div class="flex items-center gap-2 py-1">
-            <span class="text-xs font-semibold text-foreground">
+            <span class="font-semibold text-foreground">
               {{ row.order_code }}
             </span>
             <Button
@@ -422,13 +420,13 @@ onMounted(() => {
         </template>
 
         <template #method-cell="{ row }">
-          <span class="text-xs text-foreground">
+          <span class="text-foreground">
             {{ getPaymentMethodLabel(row.payment_method) }}
           </span>
         </template>
 
         <template #total-cell="{ row }">
-          <span class="text-sm font-semibold text-foreground">
+          <span class="font-semibold text-foreground">
             {{ row.total_credits.toLocaleString('en-US') }} Xu
           </span>
         </template>
@@ -440,7 +438,7 @@ onMounted(() => {
         </template>
 
         <template #date-cell="{ row }">
-          <span class="text-xs text-muted-foreground">
+          <span class="text-muted-foreground">
             {{ formatDate(row.created_at) }}
           </span>
         </template>
@@ -449,7 +447,7 @@ onMounted(() => {
           <Button
             size="sm"
             variant="outline"
-            class="h-7 gap-1 px-2.5 text-xs"
+            class="h-7 gap-1 px-2.5"
             @click="openDeliveriesModal(row)"
           >
             <Eye class="size-3.5" />

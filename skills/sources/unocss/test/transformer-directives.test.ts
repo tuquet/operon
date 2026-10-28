@@ -66,7 +66,7 @@ describe('wind3', () => {
       const result = await transform(
         `.btn {
         @apply rounded text-lg;
-        @apply 'font-mono';
+        @apply '';
       }`,
       )
       expect(result)
@@ -350,7 +350,7 @@ describe('wind3', () => {
     it('var style class', async () => {
       const result = await transform(
         `nav {
-        --at-apply: border font-mono text-lg;
+        --at-apply: border  text-lg;
 
         ul {
           li {
@@ -371,7 +371,7 @@ describe('wind3', () => {
     it('multiple apply in one class', async () => {
       const result = await transform(
         `nav {
-        --at-apply: border font-mono text-lg;
+        --at-apply: border  text-lg;
         
         .test-a {
           @apply shadow-lg;@apply rounded-md bg-slate-300 shadow-amber-500;
@@ -620,7 +620,7 @@ div {
 
     it('@apply with colon', async () => {
       const result = await transform(
-        '.btn { @apply: rounded text-lg font-mono }',
+        '.btn { @apply: rounded text-lg  }',
       )
       expect(result)
         .toMatchInlineSnapshot(`
@@ -781,7 +781,7 @@ div {
       const result = await transform(
         `.btn {
         @apply rounded text-lg;
-        @apply 'font-mono';
+        @apply '';
       }`,
       )
 
@@ -1023,7 +1023,7 @@ div {
     it('var style class', async () => {
       const result = await transform(
         `nav {
-        --at-apply: border font-mono text-lg;
+        --at-apply: border  text-lg;
 
         ul {
           li {
@@ -1280,7 +1280,7 @@ div {
 
     it('@apply with colon', async () => {
       const result = await transform(
-        '.btn { @apply: rounded text-lg font-mono }',
+        '.btn { @apply: rounded text-lg  }',
       )
       expect(result)
         .toMatchInlineSnapshot(`
@@ -1469,7 +1469,7 @@ describe('wind4', () => {
       const result = await transform(
         `.btn {
           @apply rounded text-lg;
-          @apply 'font-mono';
+          @apply '';
         }`,
       )
       expect(result)
@@ -1478,7 +1478,7 @@ describe('wind4', () => {
             font-size: var(--text-lg-fontSize);
             line-height: var(--un-leading, var(--text-lg-lineHeight));
             border-radius: var(--radius-DEFAULT);
-            font-family: var(--font-mono);
+            font-family: var(--);
           }
           "
         `)

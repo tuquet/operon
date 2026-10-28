@@ -200,7 +200,7 @@ onMounted(() => {
       <div class="flex shrink-0 flex-wrap items-center gap-1.5 sm:gap-2">
         <Badge
           variant="outline"
-          class="hidden h-8 items-center gap-1.5 px-2.5 text-xs font-normal sm:inline-flex"
+          class="hidden h-8 items-center gap-1.5 px-2.5 sm:inline-flex"
         >
           <Terminal class="size-3.5 text-muted-foreground" />
           <span>:{{ overview.fleet.loopback_port }}</span>
@@ -221,7 +221,7 @@ onMounted(() => {
         <Button
           variant="outline"
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs"
+          class="h-8 gap-1.5 px-2.5"
           :disabled="loading"
           :title="$t('common.refresh')"
           @click="loadOverview"
@@ -231,7 +231,7 @@ onMounted(() => {
         </Button>
         <Button
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs font-medium"
+          class="h-8 gap-1.5 px-2.5"
           @click="isConnectModalVisible = true"
         >
           <Plus class="size-3.5" />
@@ -250,7 +250,7 @@ onMounted(() => {
           :key="mod.key"
           type="button"
           variant="outline"
-          class="group flex h-auto flex-col items-stretch justify-between rounded-xl border border-border/60 bg-card p-3 text-left font-normal shadow-xs transition-all hover:border-primary/40 hover:bg-muted/20 sm:p-4"
+          class="group flex h-auto flex-col items-stretch justify-between rounded-xl border border-border/60 bg-card p-3 text-left shadow-xs transition-all hover:border-primary/40 hover:bg-muted/20 sm:p-4"
           :aria-label="`${mod.title}: ${mod.total}`"
           @click="navigateTo(mod.path)"
         >
@@ -266,18 +266,14 @@ onMounted(() => {
           </div>
           <div class="mt-2.5">
             <div class="flex items-baseline justify-between gap-1.5">
-              <span
-                class="truncate text-xs font-medium text-foreground sm:text-sm"
-              >
+              <span class="truncate text-foreground sm:">
                 {{ mod.title }}
               </span>
               <span class="text-base font-bold text-foreground sm:text-lg">
                 {{ mod.total }}
               </span>
             </div>
-            <p
-              class="mt-0.5 truncate text-2xs text-muted-foreground sm:text-xs"
-            >
+            <p class="mt-0.5 truncate text-muted-foreground">
               {{ mod.subtext }}
             </p>
           </div>
@@ -294,14 +290,14 @@ onMounted(() => {
         <div class="mb-3 flex items-center justify-between gap-2">
           <div class="flex items-center gap-2">
             <PlayCircle class="size-4 text-muted-foreground" />
-            <h3 class="text-sm font-semibold text-foreground">
+            <h3 class="font-semibold text-foreground">
               {{ $t('page.automation_view.overview_recent_runs') }}
             </h3>
           </div>
           <Button
             variant="ghost"
             size="sm"
-            class="h-7 gap-1 px-2 text-xs text-muted-foreground hover:text-foreground"
+            class="h-7 gap-1 px-2 text-muted-foreground hover:text-foreground"
             @click="navigateTo('/automation/jobs')"
           >
             <span>{{ $t('page.automation_view.overview_view_all') }}</span>
@@ -320,12 +316,10 @@ onMounted(() => {
           >
             <div class="min-w-0 flex-1">
               <div class="flex items-center gap-2">
-                <span
-                  class="truncate text-xs font-medium text-foreground sm:text-sm"
-                >
+                <span class="truncate text-foreground sm:">
                   {{ run.name }}
                 </span>
-                <Badge variant="outline" class="shrink-0 text-2xs font-normal">
+                <Badge variant="outline" class="shrink-0">
                   <span
                     class="mr-1 size-1.5 rounded-full"
                     :class="{
@@ -341,9 +335,7 @@ onMounted(() => {
                   {{ getRunStatusLabel(run.status) }}
                 </Badge>
               </div>
-              <div
-                class="mt-1 flex items-center gap-2 text-2xs text-muted-foreground"
-              >
+              <div class="mt-1 flex items-center gap-2 text-muted-foreground">
                 <span class="truncate">
                   {{
                     run.workflow?.name ||
@@ -351,7 +343,7 @@ onMounted(() => {
                   }}
                 </span>
                 <span>&bull;</span>
-                <span class="font-mono">
+                <span class="">
                   {{
                     calculateProgressPercentage(
                       run.completed_tasks,
@@ -365,7 +357,7 @@ onMounted(() => {
             <Button
               variant="ghost"
               size="sm"
-              class="h-7 shrink-0 gap-1 px-2 text-xs"
+              class="h-7 shrink-0 gap-1 px-2"
               @click="router.push(`/automation/jobs/${run.id}`)"
             >
               <FileText class="size-3.5" />
@@ -377,7 +369,7 @@ onMounted(() => {
         </div>
         <Empty v-else class="border-none py-6">
           <EmptyHeader>
-            <EmptyDescription class="text-xs">
+            <EmptyDescription>
               {{ $t('page.jobs_view.empty_title') }}
             </EmptyDescription>
           </EmptyHeader>
@@ -391,14 +383,14 @@ onMounted(() => {
         <div class="mb-3 flex items-center justify-between gap-2">
           <div class="flex items-center gap-2">
             <Laptop class="size-4 text-muted-foreground" />
-            <h3 class="text-sm font-semibold text-foreground">
+            <h3 class="font-semibold text-foreground">
               {{ $t('page.automation_view.overview_recent_devices') }}
             </h3>
           </div>
           <Button
             variant="ghost"
             size="sm"
-            class="h-7 gap-1 px-2 text-xs text-muted-foreground hover:text-foreground"
+            class="h-7 gap-1 px-2 text-muted-foreground hover:text-foreground"
             @click="navigateTo('/automation/devices')"
           >
             <span>{{ $t('page.automation_view.overview_view_all') }}</span>
@@ -417,18 +409,14 @@ onMounted(() => {
           >
             <div class="min-w-0 flex-1">
               <div class="flex items-center gap-2">
-                <span
-                  class="truncate text-xs font-medium text-foreground sm:text-sm"
-                >
+                <span class="truncate text-foreground sm:">
                   {{ device.name }}
                 </span>
-                <Badge variant="outline" class="shrink-0 text-2xs capitalize">
+                <Badge variant="outline" class="shrink-0 capitalize">
                   {{ device.os_info }}
                 </Badge>
               </div>
-              <div
-                class="mt-1 flex items-center gap-2 text-2xs text-muted-foreground"
-              >
+              <div class="mt-1 flex items-center gap-2 text-muted-foreground">
                 <span class="inline-flex items-center gap-1">
                   <Cpu class="size-3" />
                   {{
@@ -448,7 +436,7 @@ onMounted(() => {
               </div>
             </div>
 
-            <Badge variant="outline" class="shrink-0 text-2xs font-normal">
+            <Badge variant="outline" class="shrink-0">
               <span
                 class="mr-1 size-1.5 rounded-full"
                 :class="{
@@ -465,7 +453,7 @@ onMounted(() => {
         </div>
         <Empty v-else class="border-none py-6">
           <EmptyHeader>
-            <EmptyDescription class="text-xs">
+            <EmptyDescription>
               {{ $t('page.fleet_view.devices_empty') }}
             </EmptyDescription>
           </EmptyHeader>

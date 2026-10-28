@@ -10,7 +10,7 @@ const { item, compact = undefined, index } = defineProps<{
 const compactMode = computed(() => compact ?? isCompact.value)
 const badgeStyle = computed(() => {
   if (compactMode.value)
-    return 'w-5 h-5 text-sm'
+    return 'w-5 h-5 '
   return ''
 })
 
@@ -37,7 +37,7 @@ const classes = computed(() => ([
       </div>
       <div flex-1>
         <h1>{{ item.type === 'caniuse' ? 'Can I Use' : 'MDN' }}: {{ item.title }}</h1>
-        <div v-if="!compactMode" text-sm op50 line-clamp-2>
+        <div v-if="!compactMode"  op50 line-clamp-2>
           {{ item.summary }}
         </div>
       </div>
@@ -81,7 +81,7 @@ const classes = computed(() => ([
       </div>
       <div>
         <code>{{ item.css?.startsWith('.') ? '.' : '' }}{{ item.class }}</code>
-        <code v-if="item.body && !compactMode" w-full text-xs op50 line-clamp-1>{ {{ item.body }} }</code>
+        <code v-if="item.body && !compactMode" w-full op50 line-clamp-1>{ {{ item.body }} }</code>
       </div>
     </template>
   </div>

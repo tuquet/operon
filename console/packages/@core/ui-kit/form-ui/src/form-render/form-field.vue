@@ -535,7 +535,7 @@ onUnmounted(() => {
           ref="labelRef"
           :class="
             cn(
-              'flex text-sm font-medium leading-5 text-foreground',
+              'flex   leading-5 text-foreground',
               {
                 'flex-shrink-0 justify-end pr-3': !isVertical,
                 'mb-1.5 flex-row': isVertical,
@@ -631,7 +631,7 @@ onUnmounted(() => {
             </template>
           </VbenCollapsible>
 
-          <FormDescription v-if="description" class="text-xs">
+          <FormDescription v-if="description">
             <VbenRenderContent :content="description" />
           </FormDescription>
 

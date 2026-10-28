@@ -29,7 +29,7 @@ const options: WebFontsOptions = {
 }
 const classes = new Set([
   'font-sans',
-  'font-mono',
+  '',
   'font-lobster',
   'font-lato',
 ])

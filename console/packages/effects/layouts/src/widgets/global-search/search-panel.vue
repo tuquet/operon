@@ -245,11 +245,9 @@ useEventListener('mousemove', () => {
         class="text-center text-muted-foreground"
       >
         <SearchX class="mx-auto mt-4 size-12" />
-        <p class="mt-6 mb-10 text-xs">
+        <p class="mt-6 mb-10">
           {{ $t('ui.widgets.search.noResults') }}
-          <span class="text-sm font-medium text-foreground">
-            "{{ keyword }}"
-          </span>
+          <span class="text-foreground"> "{{ keyword }}" </span>
         </p>
       </div>
       <!-- Search history & no search results -->
@@ -257,7 +255,7 @@ useEventListener('mousemove', () => {
         v-if="!keyword && searchResults.length === 0"
         class="text-center text-muted-foreground"
       >
-        <p class="my-10 text-xs">
+        <p class="my-10">
           {{ $t('ui.widgets.search.noRecent') }}
         </p>
       </div>
@@ -265,7 +263,7 @@ useEventListener('mousemove', () => {
       <ul v-show="searchResults.length > 0" class="w-full">
         <li
           v-if="searchHistory.length > 0 && !keyword"
-          class="mb-2 text-xs text-muted-foreground"
+          class="mb-2 text-muted-foreground"
         >
           {{ $t('ui.widgets.search.recent') }}
         </li>

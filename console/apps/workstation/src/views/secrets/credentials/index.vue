@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+﻿<script lang="ts" setup>
 import type { CredentialRow, CredentialStatus } from '#/api';
 
 import { computed, onMounted, ref } from 'vue';
@@ -109,8 +109,6 @@ onMounted(load);
   <Page
     :title="$t('page.secrets.title')"
     :description="$t('page.secrets.credentials_desc')"
-    content-class="p-3 sm:p-5"
-    header-class="border-b border-border/60 bg-card/60 px-4 py-3 sm:px-6"
   >
     <template #extra>
       <div class="flex flex-wrap gap-2">
@@ -160,24 +158,20 @@ onMounted(load);
     <Card v-if="showAdd" class="mb-4">
       <CardContent class="flex flex-wrap items-end gap-3 p-4">
         <div class="space-y-1.5">
-          <Label class="text-xs font-medium">{{
-            $t('page.secrets.name')
-          }}</Label>
+          <Label class="">{{ $t('page.secrets.name') }}</Label>
           <Input
             v-model="newName"
             placeholder="hrms_password"
-            class="h-9 w-64 text-sm"
+            class="h-9 w-64"
           />
         </div>
         <div class="space-y-1.5">
-          <Label class="text-xs font-medium">{{
-            $t('page.secrets.value')
-          }}</Label>
+          <Label class="">{{ $t('page.secrets.value') }}</Label>
           <Input
             v-model="newValue"
             type="password"
             placeholder="••••••••"
-            class="h-9 w-64 text-sm"
+            class="h-9 w-64"
           />
         </div>
         <Button :disabled="busy || !newName.trim()" @click="onAdd">
@@ -192,29 +186,26 @@ onMounted(load);
     <!-- Store status -->
     <div v-if="data" class="mb-4 grid grid-cols-1 gap-3 md:grid-cols-3">
       <div class="rounded-lg border p-3">
-        <div class="text-muted-foreground text-xs">
+        <div class="text-muted-foreground">
           {{ $t('page.secrets.store_path') }}
         </div>
-        <div class="mt-1 truncate font-mono text-xs" :title="data.store_path">
+        <div class="mt-1 truncate" :title="data.store_path">
           {{ data.store_path }}
         </div>
       </div>
       <div class="rounded-lg border p-3">
-        <div class="text-muted-foreground text-xs">
+        <div class="text-muted-foreground">
           {{ $t('page.secrets.device_key') }}
         </div>
-        <div
-          class="mt-1 truncate font-mono text-xs"
-          :title="data.device_public_key ?? ''"
-        >
+        <div class="mt-1 truncate" :title="data.device_public_key ?? ''">
           {{ data.device_public_key ?? '—' }}
         </div>
       </div>
       <div class="rounded-lg border p-3">
-        <div class="text-muted-foreground text-xs">
+        <div class="text-muted-foreground">
           {{ $t('page.secrets.cloud') }}
         </div>
-        <div class="mt-1 text-sm">
+        <div class="mt-1">
           <span v-if="data.enrolled" class="text-green-600">
             ● {{ $t('page.secrets.enrolled') }}
           </span>
@@ -231,7 +222,7 @@ onMounted(load);
     <!-- credentials table -->
     <div v-if="data" class="rounded-lg border">
       <div class="flex items-center justify-between border-b px-4 py-2">
-        <span class="text-sm font-medium">
+        <span class=" ">
           {{ $t('page.secrets.local') }} ({{ data.local.length }})
         </span>
       </div>
@@ -252,12 +243,16 @@ onMounted(load);
         </TableHeader>
         <TableBody>
           <TableRow v-for="row in data.local" :key="row.name">
-            <TableCell class="font-mono text-xs">{{ row.name }}</TableCell>
-            <TableCell class="font-mono text-xs">••••••••</TableCell>
+            <TableCell>
+              <Badge variant="outline" class="">
+                {{ row.name }}
+              </Badge>
+            </TableCell>
+            <TableCell class="">••••••••</TableCell>
             <TableCell>
               <span
                 v-if="cloudNames.has(row.name)"
-                class="text-emerald-600 dark:text-emerald-400 font-medium"
+                class="text-emerald-600 dark:text-emerald-400"
                 >✓</span
               >
               <span v-else class="text-muted-foreground">—</span>
@@ -269,7 +264,7 @@ onMounted(load);
                 :variant="pendingDelete === row.name ? 'destructive' : 'ghost'"
                 @click="onDelete(row)"
               >
-                <span v-if="pendingDelete === row.name" class="text-xs">
+                <span v-if="pendingDelete === row.name">
                   {{ $t('common.confirm') }}
                 </span>
                 <Trash2 v-else class="size-4 text-red-500" />
@@ -288,10 +283,7 @@ onMounted(load);
       </Table>
     </div>
 
-    <div
-      v-else-if="loading"
-      class="text-muted-foreground p-6 text-center text-sm"
-    >
+    <div v-else-if="loading" class="text-muted-foreground p-6 text-center">
       {{ $t('common.loading') }}
     </div>
   </Page>

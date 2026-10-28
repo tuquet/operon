@@ -162,8 +162,6 @@ function refresh() {
   <Page
     :title="$t('page.system.auditLogs')"
     :description="$t('page.system.auditLogs_desc')"
-    content-class="p-3 sm:p-5"
-    header-class="border-b border-border/60 bg-card/60 px-4 py-3 sm:px-6"
   >
     <template #title>
       <div class="flex items-center gap-2">
@@ -172,7 +170,7 @@ function refresh() {
         >
           {{ $t('page.system.auditLogs') }}
         </h1>
-        <Badge variant="secondary" class="shrink-0 text-2xs font-normal">
+        <Badge variant="secondary" class="shrink-0">
           {{ totalLogs }}
         </Badge>
       </div>
@@ -199,14 +197,14 @@ function refresh() {
       <Grid class="audit-logs-vxe-grid">
         <template #action-cell="{ row }">
           <div class="flex min-w-0 flex-col items-start gap-0.5 py-0.5">
-            <Badge :variant="getActionBadgeVariant(row.action)" class="text-xs">
+            <Badge :variant="getActionBadgeVariant(row.action)">
               {{ row.action }}
             </Badge>
           </div>
         </template>
 
         <template #entity-cell="{ row }">
-          <div class="flex items-center gap-1.5 text-xs font-mono">
+          <div class="flex items-center gap-1.5">
             <span class="text-foreground">{{ row.entity_type }}</span>
             <span class="text-muted-foreground/70"
               >#{{ row.entity_id.slice(0, 8) }}</span
@@ -215,15 +213,13 @@ function refresh() {
         </template>
 
         <template #tenant-cell="{ row }">
-          <Badge variant="outline">
-            {{ row.tenant_id.slice(0, 8) }}...
-          </Badge>
+          <Badge variant="outline"> {{ row.tenant_id.slice(0, 8) }}... </Badge>
         </template>
 
         <template #actor-cell="{ row }">
-          <div class="flex items-center gap-1 text-xs text-muted-foreground">
+          <div class="flex items-center gap-1 text-muted-foreground">
             <User class="size-3 text-muted-foreground/70" />
-            <span class="font-mono">
+            <span class="">
               {{
                 row.actor_id
                   ? row.actor_id.slice(0, 8)
@@ -234,7 +230,7 @@ function refresh() {
         </template>
 
         <template #ip-cell="{ row }">
-          <span class="text-xs text-muted-foreground">
+          <span class="text-muted-foreground">
             {{ row.ip_address || '—' }}
           </span>
         </template>

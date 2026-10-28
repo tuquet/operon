@@ -194,8 +194,6 @@ function refresh() {
   <Page
     :title="$t('page.system.plugins')"
     :description="$t('page.system.plugins_desc')"
-    content-class="p-3 sm:p-5"
-    header-class="border-b border-border/60 bg-card/60 px-4 py-3 sm:px-6"
   >
     <template #title>
       <div class="flex items-center gap-2">
@@ -204,7 +202,7 @@ function refresh() {
         >
           {{ $t('page.system.plugins') }}
         </h1>
-        <Badge variant="secondary" class="shrink-0 text-2xs font-normal">
+        <Badge variant="secondary" class="shrink-0">
           {{ allPlugins.length }}
         </Badge>
       </div>
@@ -223,7 +221,7 @@ function refresh() {
         </Button>
         <Button
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs font-medium sm:px-3"
+          class="h-8 gap-1.5 px-2.5 sm:px-3"
           @click="() => gridApi.openCreateSheet()"
         >
           <Plus class="size-3.5 shrink-0" />
@@ -246,12 +244,10 @@ function refresh() {
               <component :is="getPluginIcon(row.id)" class="size-4" />
             </div>
             <div class="min-w-0 text-left">
-              <div class="truncate font-medium text-foreground">
+              <div class="truncate text-foreground">
                 {{ row.name }}
               </div>
-              <div
-                class="flex items-center gap-1.5 text-2xs text-muted-foreground sm:text-xs"
-              >
+              <div class="flex items-center gap-1.5 text-muted-foreground">
                 <span class="truncate">{{ row.id }}</span>
               </div>
             </div>
@@ -259,10 +255,7 @@ function refresh() {
         </template>
 
         <template #type-cell="{ row }">
-          <Badge
-            :variant="row.is_core ? 'default' : 'secondary'"
-            class="text-xs font-normal"
-          >
+          <Badge :variant="row.is_core ? 'default' : 'secondary'" class="">
             {{
               row.is_core
                 ? $t('page.system_view.plugins_type_core')
@@ -272,10 +265,8 @@ function refresh() {
         </template>
 
         <template #version-cell="{ row }">
-          <div class="flex items-center gap-2 text-xs font-mono">
-            <Badge variant="outline" class="text-xs">
-              v{{ row.version }}
-            </Badge>
+          <div class="flex items-center gap-2">
+            <Badge variant="outline"> v{{ row.version }} </Badge>
             <span v-if="row.schema_name" class="text-muted-foreground">
               {{
                 $t('page.system_view.plugins_schema_prefix', [row.schema_name])
@@ -285,7 +276,7 @@ function refresh() {
         </template>
 
         <template #status-cell="{ row }">
-          <Badge variant="outline" class="text-xs font-normal">
+          <Badge variant="outline" class="">
             <span
               class="mr-1.5 size-1.5 rounded-full"
               :class="{

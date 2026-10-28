@@ -15,8 +15,8 @@ defineProps<{
     >
       <div v-if="item.icon.startsWith('i')" :class="item.icon" w-10 h-10 mb2 />
       <img v-else :src="item.icon" w-10 h-10 mb2>
-      <span text-sm>{{ item.name }}</span>
-      <span text-xs op50>{{ item.secondary }}</span>
+      <span >{{ item.name }}</span>
+      <span op50>{{ item.secondary }}</span>
     </a>
   </div>
 </template>

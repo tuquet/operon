@@ -102,7 +102,7 @@ describe('transform', async () => {
   })
 
   it('wraps parent and child dependent classes like rtl: and space-x-1 with :global() wrapper', async () => {
-    const code = '<div class="mb-1 text-sm rtl:right-0 space-x-1" />'
+    const code = '<div class="mb-1  rtl:right-0 space-x-1" />'
     expect(await transform(code)).toMatchInlineSnapshot(`
       "<div class="uno-tlm2ul" />
 
@@ -125,7 +125,7 @@ describe('transform', async () => {
     `)
     expect(await transform(code, { combine: false })).toMatchInlineSnapshot(`
       "<div
-        class="_mb-1_7dkb0w _text-sm_7dkb0w _rtl:right-0_7dkb0w _space-x-1_7dkb0w"
+        class="_mb-1_7dkb0w __7dkb0w _rtl:right-0_7dkb0w _space-x-1_7dkb0w"
       />
 
       <style>
@@ -140,7 +140,7 @@ describe('transform', async () => {
           margin-left: calc(0.25rem * calc(1 - var(--un-space-x-reverse)));
           margin-right: calc(0.25rem * var(--un-space-x-reverse));
         }
-        :global(._text-sm_7dkb0w) {
+        :global(.__7dkb0w) {
           font-size: 0.875rem;
           line-height: 1.25rem;
         }
@@ -379,8 +379,8 @@ describe('transform', async () => {
 <div class:text-orange-400={foo} class="shortcut" />
 
 <div class="text-center sm:text-left rtl:sm:text-right space-x-1 rtl:space-x-reverse foo">
-  <div class="text-sm hover:text-red" />
-  <Button class="hover:text-red text-sm" />
+  <div class=" hover:text-red" />
+  <Button class="hover:text-red " />
 </div>
     `.trim()
     await expect(await transform(code)).toMatchFileSnapshot('./test-outputs/EverythingProd.svelte')

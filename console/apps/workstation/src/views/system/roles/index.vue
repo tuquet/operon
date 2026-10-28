@@ -120,8 +120,6 @@ onMounted(() => {
   <Page
     :title="$t('page.system.roles')"
     :description="$t('page.system_view.roles_page_desc')"
-    content-class="p-3 sm:p-5"
-    header-class="border-b border-border/60 bg-card/60 px-4 py-3 sm:px-6"
   >
     <template #title>
       <div class="flex items-center gap-2">
@@ -130,7 +128,7 @@ onMounted(() => {
         >
           {{ $t('page.system.roles') }}
         </h1>
-        <Badge variant="secondary" class="shrink-0 text-2xs font-normal">
+        <Badge variant="secondary" class="shrink-0">
           {{ activeTab === 'roles' ? allRoles.length : allPermissions.length }}
         </Badge>
       </div>
@@ -140,13 +138,13 @@ onMounted(() => {
       <div class="flex shrink-0 items-center gap-2">
         <Tabs v-model="activeTab" class="w-auto">
           <TabsList class="h-8 p-0.5">
-            <TabsTrigger value="roles" class="h-7 px-3 text-xs">
+            <TabsTrigger value="roles" class="h-7 px-3">
               {{ $t('term.roles') }}
               <Badge variant="secondary" class="ml-1.5 px-1 py-0 text-3xs">
                 {{ allRoles.length }}
               </Badge>
             </TabsTrigger>
-            <TabsTrigger value="permissions" class="h-7 px-3 text-xs">
+            <TabsTrigger value="permissions" class="h-7 px-3">
               {{ $t('term.permissions') }}
               <Badge variant="secondary" class="ml-1.5 px-1 py-0 text-3xs">
                 {{ allPermissions.length }}

@@ -96,7 +96,7 @@ async function handleSubmit() {
             class="size-20"
             dot-class="bottom-0 right-1 border-2 size-4 bg-success"
           />
-          <div class="my-6 flex items-center font-medium text-foreground">
+          <div class="my-6 flex items-center text-foreground">
             {{ text }}
           </div>
         </div>

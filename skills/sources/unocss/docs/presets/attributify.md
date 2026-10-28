@@ -58,7 +58,7 @@ Imagine you have this button using Tailwind CSS's utilities. When the list gets 
 
 ```html
 <button
-  class="bg-blue-400 hover:bg-blue-500 text-sm text-white font-mono font-light py-2 px-4 rounded border-2 border-blue-200 dark:bg-blue-500 dark:hover:bg-blue-600"
+  class="bg-blue-400 hover:bg-blue-500  text-white  font-light py-2 px-4 rounded border-2 border-blue-200 dark:bg-blue-500 dark:hover:bg-blue-600"
 >
   Button
 </button>
@@ -78,7 +78,7 @@ With attributify mode, you can separate utilities into attributes:
 </button>
 ```
 
-For example, `text-sm text-white` could be grouped into `text="sm white"` without duplicating the same prefix.
+For example, ` text-white` could be grouped into `text="sm white"` without duplicating the same prefix.
 
 ## Prefix self-referencing
 

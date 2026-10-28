@@ -66,7 +66,7 @@ function getProductTypeBadge(type: CommerceProductType) {
         >
           {{ getProductTypeBadge(product.product_type).label }}
         </Badge>
-        <span v-if="currentVariant" class="text-2xs text-muted-foreground">
+        <span v-if="currentVariant" class="text-muted-foreground">
           SKU: {{ currentVariant.sku }}
         </span>
       </div>
@@ -76,7 +76,7 @@ function getProductTypeBadge(type: CommerceProductType) {
         <h3 class="text-base font-semibold text-foreground">
           {{ product.name }}
         </h3>
-        <p class="mt-1 line-clamp-2 text-xs text-muted-foreground">
+        <p class="mt-1 line-clamp-2 text-muted-foreground">
           {{
             product.short_description ||
             product.description ||
@@ -91,7 +91,7 @@ function getProductTypeBadge(type: CommerceProductType) {
         class="space-y-1.5 pt-1"
       >
         <span
-          class="text-2xs font-semibold tracking-wider text-muted-foreground uppercase"
+          class="font-semibold tracking-wider text-muted-foreground uppercase"
         >
           {{ $t('page.commerce_view.select_sku_label') }}
         </span>
@@ -102,7 +102,7 @@ function getProductTypeBadge(type: CommerceProductType) {
             type="button"
             variant="outline"
             size="sm"
-            class="h-auto rounded-lg px-2.5 py-1 text-left text-xs transition-colors"
+            class="h-auto rounded-lg px-2.5 py-1 text-left transition-colors"
             :class="
               currentVariant?.id === variant.id
                 ? 'border-primary bg-primary/10 font-semibold text-primary'
@@ -132,22 +132,22 @@ function getProductTypeBadge(type: CommerceProductType) {
               (currentVariant?.compare_at_credits ?? 0) >
                 (currentVariant?.price_credits ?? 0)
             "
-            class="text-xs text-muted-foreground line-through"
+            class="text-muted-foreground line-through"
           >
             {{ currentVariant?.compare_at_credits?.toLocaleString('en-US') }}
             Xu
           </span>
         </div>
-        <div class="flex items-center gap-1.5 text-xs">
+        <div class="flex items-center gap-1.5">
           <span
             v-if="currentVariant?.stock_mode === 'unlimited'"
-            class="font-medium text-success"
+            class="text-success"
           >
             ● {{ $t('page.commerce_view.in_stock_unlimited') }}
           </span>
           <span
             v-else-if="(currentVariant?.available_stock ?? 0) > 0"
-            class="font-medium text-success"
+            class="text-success"
           >
             ●
             {{
@@ -156,7 +156,7 @@ function getProductTypeBadge(type: CommerceProductType) {
               })
             }}
           </span>
-          <span v-else class="font-medium text-destructive">
+          <span v-else class="text-destructive">
             ● {{ $t('page.commerce_view.out_of_stock') }}
           </span>
         </div>

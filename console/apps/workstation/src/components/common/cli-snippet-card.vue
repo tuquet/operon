@@ -30,13 +30,13 @@ const { copyToClipboard, isCopied } = useClipboard();
     <div class="flex items-center gap-2 mb-2">
       <Terminal class="size-4 text-primary" />
       <Label
-        class="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+        class="font-semibold uppercase tracking-wider text-muted-foreground"
       >
         {{ resolvedLabel }}
       </Label>
     </div>
     <div
-      class="rounded bg-muted/50 p-3 text-xs text-foreground flex items-center justify-between gap-2 overflow-x-auto border border-border/40"
+      class="rounded bg-muted/50 p-3 text-foreground flex items-center justify-between gap-2 overflow-x-auto border border-border/40"
     >
       <code class="break-all">{{ props.command }}</code>
       <Button

@@ -28,7 +28,7 @@ function getTaskName(id?: string) {
 
 <template>
   <div v-if="formattedLogs?.length" h-full class="scrolls" flex flex-col data-testid="logs">
-    <div v-for="{ taskId, type, time, content } of formattedLogs" :key="taskId" font-mono>
+    <div v-for="{ taskId, type, time, content } of formattedLogs" :key="taskId" >
       <ViewConsoleOutputEntry
         :task-name="getTaskName(taskId)"
         :type="type"

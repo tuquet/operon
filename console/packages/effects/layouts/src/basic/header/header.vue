@@ -229,12 +229,12 @@ const rightSlots = computed(() => {
       list.push({ index, name: key });
     }
   });
-  // Append user dropdown, capping index at 1000
+  // Append user dropdown and desktop window controls
   const userDropdownIndex = Math.min(1000, nextIndex(list));
-  list.push({ index: userDropdownIndex, name: 'user-dropdown' });
-
-  // Append desktop window controls after user dropdown
-  list.push({ index: 1010, name: 'window-controls' });
+  list.push(
+    { index: userDropdownIndex, name: 'user-dropdown' },
+    { index: 1010, name: 'window-controls' },
+  );
 
   // Sort by index to maintain slot order
   return list.toSorted((a, b) => a.index - b.index);
@@ -321,6 +321,7 @@ function clearPreferencesAndLogout() {
   >
     <slot name="menu"></slot>
   </div>
+  <div class="flex-1 h-full min-w-8" data-tauri-drag-region></div>
   <div class="flex h-full min-w-0 shrink-0 items-center">
     <template v-for="slot in rightSlots" :key="slot.name">
       <slot :name="slot.name">

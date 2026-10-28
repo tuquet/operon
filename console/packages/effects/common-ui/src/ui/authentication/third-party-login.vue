@@ -25,7 +25,7 @@ const {
   <div class="w-full sm:mx-auto md:max-w-md">
     <div class="mt-4 flex items-center justify-between">
       <span class="w-[35%] border-b border-input dark:border-gray-600"></span>
-      <span class="text-center text-xs text-muted-foreground uppercase">
+      <span class="text-center text-muted-foreground uppercase">
         {{ $t('authentication.thirdPartyLogin') }}
       </span>
       <span class="w-[35%] border-b border-input dark:border-gray-600"></span>

@@ -9,7 +9,7 @@ describe('shortcuts', async () => {
     shortcuts: [
       {
         sh1: 'px-2 py-3 sh3',
-        sh2: 'hover:text-lg text-sm text-lg',
+        sh2: 'hover:text-lg  text-lg',
         sh3: 'sm:m-2 m-3',
       },
       {

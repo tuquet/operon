@@ -138,7 +138,7 @@ exports[`transformer-variant-group > basic > "at-lg:(p-1 p-2)" 1`] = `
 }
 `;
 
-exports[`transformer-variant-group > basic > "bg-white font-light sm:hover:(bg-gray-100 font-medium)" 1`] = `
+exports[`transformer-variant-group > basic > "bg-white font-light sm:hover:(bg-gray-100 )" 1`] = `
 {
   "annotations": [
     {
@@ -147,12 +147,12 @@ exports[`transformer-variant-group > basic > "bg-white font-light sm:hover:(bg-g
       "offset": 30,
     },
     {
-      "className": "sm:hover:font-medium",
+      "className": "sm:hover:",
       "length": 11,
       "offset": 42,
     },
   ],
-  "transformed": "bg-white font-light sm:hover:bg-gray-100 sm:hover:font-medium",
+  "transformed": "bg-white font-light sm:hover:bg-gray-100 sm:hover:",
 }
 `;
 

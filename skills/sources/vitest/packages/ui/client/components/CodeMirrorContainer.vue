@@ -71,7 +71,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div relative font-mono text-sm class="codemirror-scrolls" :class="saving ? 'codemirror-busy' : undefined">
+  <div relative   class="codemirror-scrolls" :class="saving ? 'codemirror-busy' : undefined">
     <textarea ref="el" />
   </div>
 </template>

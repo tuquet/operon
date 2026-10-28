@@ -1,5 +1,5 @@
 // @vitest-environment happy-dom
-/* eslint-disable vue/one-component-per-file, vue/multi-word-component-names, vue/no-reserved-component-names, vue/require-prop-types */
+/* eslint-disable vue/multi-word-component-names, vue/no-reserved-component-names */
 import { createApp, defineComponent, h, nextTick } from 'vue';
 
 import { createPinia, setActivePinia } from 'pinia';

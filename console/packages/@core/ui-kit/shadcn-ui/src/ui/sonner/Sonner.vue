@@ -16,10 +16,8 @@ const props = defineProps<ToasterProps>();
         toast:
           'group toast !bg-card !text-card-foreground !border-border !border !shadow-xl',
         description: '!text-muted-foreground',
-        actionButton:
-          '!bg-primary !text-primary-foreground',
-        cancelButton:
-          '!bg-muted !text-muted-foreground',
+        actionButton: '!bg-primary !text-primary-foreground',
+        cancelButton: '!bg-muted !text-muted-foreground',
       },
     }"
     :style="{
@@ -45,22 +43,26 @@ const props = defineProps<ToasterProps>();
 <style>
 /* Enforce solid opaque background, crisp border and shadow on all Sonner toasts */
 [data-sonner-toaster] [data-sonner-toast] {
-  background-color: hsl(var(--card)) !important;
   color: hsl(var(--card-foreground)) !important;
+  background-color: hsl(var(--card)) !important;
   border: 1px solid hsl(var(--border)) !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.2) !important;
+  box-shadow:
+    0 10px 25px -5px rgb(0 0 0 / 25%),
+    0 8px 10px -6px rgb(0 0 0 / 20%) !important;
   opacity: 1 !important;
 }
 
-[data-sonner-toaster] [data-sonner-toast][data-rich-colors='true'][data-type='success'] {
+[data-sonner-toaster]
+  [data-sonner-toast][data-rich-colors='true'][data-type='success'] {
+  color: hsl(var(--card-foreground)) !important;
   background-color: hsl(var(--card)) !important;
   border-color: hsl(var(--border)) !important;
-  color: hsl(var(--card-foreground)) !important;
 }
 
-[data-sonner-toaster] [data-sonner-toast][data-rich-colors='true'][data-type='error'] {
+[data-sonner-toaster]
+  [data-sonner-toast][data-rich-colors='true'][data-type='error'] {
+  color: hsl(var(--card-foreground)) !important;
   background-color: hsl(var(--card)) !important;
   border-color: hsl(var(--destructive)) !important;
-  color: hsl(var(--card-foreground)) !important;
 }
 </style>

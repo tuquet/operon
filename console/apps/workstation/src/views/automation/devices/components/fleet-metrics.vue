@@ -22,9 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
       class="rounded-xl border border-border/60 bg-card p-3 shadow-xs sm:p-4"
     >
       <div class="flex items-center justify-between gap-1.5">
-        <span
-          class="truncate text-xs font-medium text-muted-foreground sm:text-sm"
-        >
+        <span class="truncate text-muted-foreground sm:">
           {{ $t('page.fleet_view.metric_total_nodes') }}
         </span>
         <span
@@ -39,13 +37,11 @@ const props = withDefaults(defineProps<Props>(), {
         >
           {{ props.metrics.total_nodes }}
         </span>
-        <span
-          class="truncate text-2xs font-medium text-muted-foreground sm:text-xs"
-        >
+        <span class="truncate text-muted-foreground">
           {{ $t('page.fleet_view.metric_devices_unit') }}
         </span>
       </div>
-      <div class="mt-1 hidden text-xs text-muted-foreground sm:mt-2 sm:block">
+      <div class="mt-1 hidden text-muted-foreground sm:mt-2 sm:block">
         {{ $t('page.fleet_view.metric_registered_desc') }}
       </div>
     </div>
@@ -55,9 +51,7 @@ const props = withDefaults(defineProps<Props>(), {
       class="rounded-xl border border-border/60 bg-card p-3 shadow-xs sm:p-4"
     >
       <div class="flex items-center justify-between gap-1.5">
-        <span
-          class="truncate text-xs font-medium text-muted-foreground sm:text-sm"
-        >
+        <span class="truncate text-muted-foreground sm:">
           {{ $t('page.fleet_view.metric_online_nodes') }}
         </span>
         <span
@@ -72,14 +66,12 @@ const props = withDefaults(defineProps<Props>(), {
         >
           {{ props.metrics.online_nodes }}
         </span>
-        <span
-          class="truncate text-2xs font-medium text-muted-foreground sm:text-xs"
-        >
+        <span class="truncate text-muted-foreground">
           {{ $t('page.fleet_view.metric_ready_unit') }}
         </span>
       </div>
       <div
-        class="mt-1 hidden items-center gap-1.5 text-xs text-muted-foreground sm:mt-2 sm:flex"
+        class="mt-1 hidden items-center gap-1.5 text-muted-foreground sm:mt-2 sm:flex"
       >
         <span
           class="size-2 shrink-0 animate-pulse rounded-full bg-success"
@@ -95,9 +87,7 @@ const props = withDefaults(defineProps<Props>(), {
       class="rounded-xl border border-border/60 bg-card p-3 shadow-xs sm:p-4"
     >
       <div class="flex items-center justify-between gap-1.5">
-        <span
-          class="truncate text-xs font-medium text-muted-foreground sm:text-sm"
-        >
+        <span class="truncate text-muted-foreground sm:">
           {{ $t('page.fleet_view.metric_active_jobs') }}
         </span>
         <span
@@ -112,13 +102,11 @@ const props = withDefaults(defineProps<Props>(), {
         >
           {{ props.metrics.active_jobs }}
         </span>
-        <span
-          class="truncate text-2xs font-medium text-muted-foreground sm:text-xs"
-        >
+        <span class="truncate text-muted-foreground">
           {{ $t('page.fleet_view.metric_jobs_unit') }}
         </span>
       </div>
-      <div class="mt-1 hidden text-xs text-muted-foreground sm:mt-2 sm:block">
+      <div class="mt-1 hidden text-muted-foreground sm:mt-2 sm:block">
         {{ $t('page.fleet_view.metric_active_jobs_desc') }}
       </div>
     </div>
@@ -128,9 +116,7 @@ const props = withDefaults(defineProps<Props>(), {
       class="rounded-xl border border-border/60 bg-card p-3 shadow-xs sm:p-4"
     >
       <div class="flex items-center justify-between gap-1.5">
-        <span
-          class="truncate text-xs font-medium text-muted-foreground sm:text-sm"
-        >
+        <span class="truncate text-muted-foreground sm:">
           {{ $t('page.fleet_view.metric_loopback_port') }}
         </span>
         <span
@@ -147,18 +133,18 @@ const props = withDefaults(defineProps<Props>(), {
         </span>
         <span
           v-if="props.metrics.loopback_online"
-          class="inline-flex items-center gap-1 text-2xs text-foreground sm:text-xs"
+          class="inline-flex items-center gap-1 text-foreground"
         >
           <span
             class="size-1.5 shrink-0 animate-pulse rounded-full bg-success sm:size-2"
           ></span>
           {{ $t('page.fleet_view.online') }}
         </span>
-        <span v-else class="text-2xs text-muted-foreground sm:text-xs">
+        <span v-else class="text-muted-foreground">
           {{ $t('page.fleet_view.standby') }}
         </span>
       </div>
-      <div class="mt-1 hidden text-xs text-muted-foreground sm:mt-2 sm:block">
+      <div class="mt-1 hidden text-muted-foreground sm:mt-2 sm:block">
         {{ $t('page.fleet_view.process_supervisor') }}
       </div>
     </div>

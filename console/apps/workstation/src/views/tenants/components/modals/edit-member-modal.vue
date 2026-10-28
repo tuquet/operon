@@ -106,7 +106,7 @@ function handleOk() {
               <Input
                 :model-value="props.member?.email"
                 disabled
-                class="bg-muted/40 text-xs h-10"
+                class="bg-muted/40 h-10"
               />
             </template>
           </VxeFormItem>
@@ -119,7 +119,7 @@ function handleOk() {
               <Input
                 :model-value="props.member?.full_name || props.member?.email"
                 disabled
-                class="bg-muted/40 text-xs h-10"
+                class="bg-muted/40 h-10"
               />
             </template>
           </VxeFormItem>
@@ -133,7 +133,7 @@ function handleOk() {
                 v-model="selectedRoleId"
                 :disabled="props.member?.role?.name === 'owner'"
               >
-                <SelectTrigger class="h-10 w-full text-sm">
+                <SelectTrigger class="h-10 w-full">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -161,7 +161,7 @@ function handleOk() {
                 v-model="status"
                 :disabled="props.member?.role?.name === 'owner'"
               >
-                <SelectTrigger class="h-10 w-full text-sm">
+                <SelectTrigger class="h-10 w-full">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

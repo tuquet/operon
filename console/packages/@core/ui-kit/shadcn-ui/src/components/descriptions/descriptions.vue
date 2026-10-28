@@ -54,7 +54,7 @@ const hasHeader = computed(
 
 const tableClass = computed(() =>
   cn(
-    'w-full table-auto border-collapse text-sm',
+    'w-full table-auto border-collapse ',
     // In non-bordered mode, remove bottom spacing of the last row
     !props.bordered && '[&>tbody>tr:last-child>td]:pb-0',
   ),

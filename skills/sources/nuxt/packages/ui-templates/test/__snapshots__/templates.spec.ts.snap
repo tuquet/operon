@@ -52,7 +52,7 @@ exports[`template > produces correct output for error-404 template 1`] = `
   font-size: 1.5rem;
   line-height: 2rem;
 }
-.text-sm {
+. {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
@@ -68,7 +68,7 @@ exports[`template > produces correct output for error-404 template 1`] = `
   --un-text-opacity: 1;
   color: rgb(0 220 130 / var(--un-text-opacity));
 }
-.font-medium {
+. {
   font-weight: 500;
 }
 .font-semibold {
@@ -559,7 +559,7 @@ exports[`template > produces correct output for loading template 1`] = `
 .leading-none {
   line-height: 1;
 }
-.font-mono {
+. {
   font-family:
     ui-monospace,
     SFMono-Regular,
@@ -902,7 +902,7 @@ exports[`template > produces correct output for welcome template 1`] = `
   font-size: 1rem;
   line-height: 1.5rem;
 }
-.text-sm {
+. {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
@@ -943,7 +943,7 @@ exports[`template > produces correct output for welcome template 1`] = `
 .leading-none {
   line-height: 1;
 }
-.font-mono {
+. {
   font-family:
     ui-monospace,
     SFMono-Regular,

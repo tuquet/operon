@@ -90,8 +90,8 @@ export const defaults = {
     variationSettings: 'var(--font-sans--font-variation-settings)',
   },
   monoFont: {
-    family: 'var(--font-mono)',
-    featureSettings: 'var(--font-mono--font-feature-settings)',
-    variationSettings: 'var(--font-mono--font-variation-settings)',
+    family: 'var(--)',
+    featureSettings: 'var(----font-feature-settings)',
+    variationSettings: 'var(----font-variation-settings)',
   },
 } satisfies Theme['default']

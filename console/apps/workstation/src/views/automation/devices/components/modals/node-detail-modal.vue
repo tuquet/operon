@@ -74,13 +74,13 @@ const { formatDate } = useDateFormat();
               <div class="font-semibold text-foreground text-base">
                 {{ props.node.name }}
               </div>
-              <div class="text-xs text-muted-foreground">
+              <div class="text-muted-foreground">
                 {{ props.node.hostname }}
               </div>
             </div>
           </div>
 
-          <Badge variant="outline" class="text-xs font-normal">
+          <Badge variant="outline" class="">
             <span
               class="mr-1.5 size-1.5 rounded-full"
               :class="{
@@ -118,7 +118,7 @@ const { formatDate } = useDateFormat();
             <VxeFormItem :title="$t('page.automation_view.col_cpu')" span="12">
               <template #default>
                 <div
-                  class="flex items-center gap-1.5 font-semibold text-foreground text-sm"
+                  class="flex items-center gap-1.5 font-semibold text-foreground"
                 >
                   <Cpu class="size-3.5 text-muted-foreground shrink-0" />
                   <span>
@@ -135,7 +135,7 @@ const { formatDate } = useDateFormat();
             <VxeFormItem :title="$t('page.automation_view.col_ram')" span="12">
               <template #default>
                 <div
-                  class="flex items-center gap-1.5 font-semibold text-foreground text-sm"
+                  class="flex items-center gap-1.5 font-semibold text-foreground"
                 >
                   <HardDrive class="size-3.5 text-muted-foreground shrink-0" />
                   <span>{{ props.node.ram_gb }} GB</span>
@@ -146,7 +146,7 @@ const { formatDate } = useDateFormat();
             <VxeFormItem :title="$t('page.automation_view.col_os')" span="12">
               <template #default>
                 <div
-                  class="flex items-center gap-1.5 font-medium text-foreground capitalize text-xs"
+                  class="flex items-center gap-1.5 text-foreground capitalize"
                 >
                   <Globe class="size-3.5 text-muted-foreground shrink-0" />
                   <span>{{ props.node.os_info }}</span>
@@ -160,7 +160,7 @@ const { formatDate } = useDateFormat();
             >
               <template #default>
                 <div
-                  class="flex items-center gap-1.5 font-medium text-foreground capitalize text-xs"
+                  class="flex items-center gap-1.5 text-foreground capitalize"
                 >
                   <CheckCircle2
                     class="size-3.5 text-muted-foreground shrink-0"
@@ -176,7 +176,7 @@ const { formatDate } = useDateFormat();
               span="24"
             >
               <template #default>
-                <div class="flex items-center gap-2 text-xs text-foreground">
+                <div class="flex items-center gap-2 text-foreground">
                   <span class="truncate">{{ props.node.id }}</span>
                   <Button
                     type="button"
@@ -204,15 +204,13 @@ const { formatDate } = useDateFormat();
 
             <VxeFormItem :title="$t('page.fleet_view.col_ip')" span="12">
               <template #default>
-                <span class="text-xs text-foreground">{{
-                  props.node.ip_address
-                }}</span>
+                <span class="text-foreground">{{ props.node.ip_address }}</span>
               </template>
             </VxeFormItem>
 
             <VxeFormItem :title="$t('page.fleet_view.col_version')" span="12">
               <template #default>
-                <Badge variant="outline" class="text-xs">
+                <Badge variant="outline">
                   {{ props.node.version || 'v0.8.4' }}
                 </Badge>
               </template>
@@ -220,7 +218,7 @@ const { formatDate } = useDateFormat();
 
             <VxeFormItem :title="$t('page.fleet_view.col_jobs')" span="12">
               <template #default>
-                <span class="font-semibold text-foreground text-xs">
+                <span class="font-semibold text-foreground">
                   {{
                     $t('page.automation_view.active_jobs_unit', [
                       props.node.active_jobs,
@@ -232,7 +230,7 @@ const { formatDate } = useDateFormat();
 
             <VxeFormItem :title="$t('page.fleet_view.col_last_seen')" span="12">
               <template #default>
-                <span class="text-xs text-foreground">{{
+                <span class="text-foreground">{{
                   formatDate(props.node.last_heartbeat_at)
                 }}</span>
               </template>
@@ -243,7 +241,7 @@ const { formatDate } = useDateFormat();
               span="24"
             >
               <template #default>
-                <span class="text-xs text-foreground">{{
+                <span class="text-foreground">{{
                   formatDate(props.node.registered_at)
                 }}</span>
               </template>

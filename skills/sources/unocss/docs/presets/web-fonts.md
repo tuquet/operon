@@ -198,7 +198,7 @@ The following CSS will be generated automatically:
 .font-lobster {
   font-family: "Lobster";
 }
-.font-mono {
+. {
   font-family: "Fira Code", "Fira Mono", ui-monospace, SFMono-Regular, Menlo,
     Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }

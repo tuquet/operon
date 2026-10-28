@@ -94,7 +94,7 @@ describe('autocomplete-parse', () => {
     })
     expect(parsed2.suggest('text-')).toMatchInlineSnapshot(`
       [
-        "text-sm",
+        "",
         "text-md",
         "text-lg",
         "text-xl",

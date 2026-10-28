@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+﻿<script lang="ts" setup>
 import type { Device } from '#/api';
 
 import { ref, watch } from 'vue';
@@ -246,8 +246,6 @@ watch(
   <Page
     :title="$t('page.automation.devices')"
     :description="$t('page.automation.devices_desc')"
-    content-class="p-3 sm:p-5"
-    header-class="border-b border-border/60 bg-card/60 px-4 py-3 sm:px-6"
   >
     <template #title>
       <div class="flex items-center gap-2">
@@ -256,7 +254,7 @@ watch(
         >
           {{ $t('page.automation.devices') }}
         </h1>
-        <Badge variant="secondary" class="shrink-0 text-2xs">
+        <Badge variant="secondary" class="shrink-0">
           {{ nodes.length }}
         </Badge>
       </div>
@@ -267,7 +265,7 @@ watch(
         <Button
           variant="outline"
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs"
+          class="h-8 gap-1.5 px-2.5"
           :title="$t('common.refresh')"
           @click="() => gridApi.reload()"
         >
@@ -276,7 +274,7 @@ watch(
         </Button>
         <Button
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs font-medium"
+          class="h-8 gap-1.5 px-2.5"
           @click="isConnectModalVisible = true"
         >
           <Plus class="size-3.5" />
@@ -298,10 +296,10 @@ watch(
               <Laptop class="size-4" />
             </div>
             <div class="min-w-0">
-              <div class="font-medium text-foreground truncate">
+              <div class="text-foreground truncate">
                 {{ row.name }}
               </div>
-              <div class="text-2xs text-muted-foreground truncate">
+              <div class="text-muted-foreground truncate">
                 {{ row.hostname }} &bull; {{ row.ip_address }}
               </div>
             </div>
@@ -309,23 +307,20 @@ watch(
         </template>
 
         <template #os-cell="{ row }">
-          <Badge
-            :variant="getOsBadgeVariant(row.os_info)"
-            class="text-xs font-medium capitalize"
-          >
+          <Badge :variant="getOsBadgeVariant(row.os_info)" class="capitalize">
             {{ row.os_info }}
           </Badge>
         </template>
 
         <template #hardware-cell="{ row }">
-          <div class="flex items-center gap-2.5 text-xs text-foreground">
-            <span class="inline-flex items-center gap-1 font-mono">
+          <div class="flex items-center gap-2.5 text-foreground">
+            <span class="inline-flex items-center gap-1">
               <Cpu class="size-3.5 shrink-0 text-muted-foreground" />
               <span class="leading-none">
                 {{ $t('page.automation_view.cpu_cores_unit', [row.cpu_cores]) }}
               </span>
             </span>
-            <span class="inline-flex items-center gap-1 font-mono">
+            <span class="inline-flex items-center gap-1">
               <HardDrive class="size-3.5 shrink-0 text-muted-foreground" />
               <span class="leading-none">{{ row.ram_gb }} GB</span>
             </span>
@@ -333,13 +328,13 @@ watch(
         </template>
 
         <template #driver-cell="{ row }">
-          <Badge variant="secondary" class="text-xs font-medium capitalize">
+          <Badge variant="secondary" class="capitalize">
             {{ row.driver_type }}
           </Badge>
         </template>
 
         <template #status-cell="{ row }">
-          <Badge variant="outline" class="text-xs font-normal">
+          <Badge variant="outline" class="">
             <span
               class="mr-1.5 size-1.5 rounded-full"
               :class="{
@@ -366,7 +361,7 @@ watch(
 
         <template #jobs-cell="{ row }">
           <span
-            class="text-xs font-semibold"
+            class="font-semibold"
             :class="
               row.active_jobs > 0 ? 'text-primary' : 'text-muted-foreground'
             "
@@ -379,7 +374,7 @@ watch(
           <div class="flex items-center justify-end gap-1.5">
             <AlertDialog>
               <AlertDialogTrigger as-child>
-                <Button variant="destructive" size="sm" class="h-7 text-xs">
+                <Button variant="destructive" size="sm" class="h-7">
                   {{ $t('page.automation_view.revoke_btn') }}
                 </Button>
               </AlertDialogTrigger>
@@ -416,10 +411,10 @@ watch(
             <Laptop
               class="size-10 stroke-[1.5] text-muted-foreground/60 mb-3"
             />
-            <p class="text-sm font-medium text-foreground">
+            <p class="text-foreground">
               {{ $t('page.fleet_view.empty_all') }}
             </p>
-            <p class="text-xs text-muted-foreground max-w-sm mt-1">
+            <p class="text-muted-foreground max-w-sm mt-1">
               {{ $t('page.fleet_view.empty_desc') }}
             </p>
           </div>

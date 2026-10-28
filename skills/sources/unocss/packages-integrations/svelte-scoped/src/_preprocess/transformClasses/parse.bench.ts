@@ -150,7 +150,7 @@ describe('parse classes in a slideover Svelte component with some logic as well 
   >
     {#if $$slots.title}
       <div class="flex items-start justify-between border-b border-gray-300">
-        <h3 class="text-lg font-medium text-gray-900 p-3" id="slideover-headline">
+        <h3 class="text-lg  text-gray-900 p-3" id="slideover-headline">
           <slot name="title" />
         </h3>
         <button

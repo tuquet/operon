@@ -42,7 +42,7 @@ describe('transformer-compile-class', () => {
 <div class=":uno: foo bar">
 
 <div class=":uno: text-center sm:text-left foo">
-  <div class=":uno: text-sm font-bold hover:text-red"/>
+  <div class=":uno:  font-bold hover:text-red"/>
 </div>
     `.trim())
     expect(result.code.trim()).toMatchInlineSnapshot(`

@@ -61,7 +61,7 @@ describe('getUtils', async () => {
   it('expands variant groups and warns on incorrect class', async () => {
     // const warnOnceMock = (warnOnce as Mock).mockImplementation(message => console.warn(`${message}HI`))
 
-    const body = 'hover:(mr-1 font-medium foo fee)'
+    const body = 'hover:(mr-1  foo fee)'
     const result = await getUtils(body, uno)
     expect(result).toMatchInlineSnapshot(`
       [

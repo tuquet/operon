@@ -17,11 +17,11 @@ const attemptLabel = computed(() => trace.value ? getTraceAttemptLabel(trace.val
   <div data-testid="trace-view" h-full min-h-0 flex="~ col">
     <div p="3" h-10 flex="~ gap-2" items-center bg-header border="b base">
       <div class="i-carbon:data-vis-4" />
-      <span pl-1 font-bold text-sm flex-auto ws-nowrap overflow-hidden truncate>Trace Viewer</span>
+      <span pl-1 font-bold  flex-auto ws-nowrap overflow-hidden truncate>Trace Viewer</span>
       <!-- TODO: pane should own attempt selector here? -->
       <span
         v-if="attemptLabel"
-        class="text-xs opacity-70"
+        class="opacity-70"
       >
         {{ attemptLabel }}
       </span>
@@ -37,7 +37,7 @@ const attemptLabel = computed(() => trace.value ? getTraceAttemptLabel(trace.val
       :trace="trace"
       :selection="selection"
     />
-    <div v-else class="text-sm opacity-50 p-4">
+    <div v-else class=" opacity-50 p-4">
       No trace found
     </div>
   </div>

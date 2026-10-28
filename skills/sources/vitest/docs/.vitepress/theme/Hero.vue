@@ -3,7 +3,7 @@
     <div class="flex flex-col p-10 justify-center items-center md:items-start">
       <div class="flex flex-col gap-5 max-w-[30rem] text-center md:text-left items-center md:items-start">
         <a class="flex items-center gap-2" href="https://voidzero.dev" target="_blank">
-          <span class="text-grey text-xs font-mono uppercase tracking-wide">By</span>
+          <span class="text-grey  uppercase tracking-wide">By</span>
           <img src="@assets/logos/voidzero-light.svg" alt="VoidZero" class="h-2.5">
         </a>
         <h1 class="text-white text-pretty">

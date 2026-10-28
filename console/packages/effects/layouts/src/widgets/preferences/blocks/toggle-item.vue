@@ -23,7 +23,7 @@ const modelValue = defineModel<string | undefined>({ default: undefined });
     class="flex w-full items-center justify-between rounded-md p-2 hover:bg-accent"
     disabled
   >
-    <span class="text-sm">
+    <span class="">
       <slot></slot>
     </span>
     <ToggleGroup

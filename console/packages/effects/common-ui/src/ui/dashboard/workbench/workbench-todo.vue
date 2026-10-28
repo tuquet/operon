@@ -41,18 +41,18 @@ withDefaults(defineProps<Props>(), {
           <div class="flex min-w-0 items-center gap-x-4">
             <VbenCheckbox v-model="item.completed" name="completed" />
             <div class="min-w-0 flex-auto">
-              <p class="text-sm/6 font-semibold text-foreground">
+              <p class="/6 font-semibold text-foreground">
                 {{ item.title }}
               </p>
               <!-- eslint-disable vue/no-v-html -->
               <p
-                class="mt-1 truncate text-xs/5 text-foreground/80 *:text-primary"
+                class="mt-1 truncate/5 text-foreground/80 *:text-primary"
                 v-html="item.content"
               ></p>
             </div>
           </div>
           <div class="hidden h-full shrink-0 sm:flex sm:flex-col sm:items-end">
-            <span class="mt-6 text-xs/6 text-foreground/80">
+            <span class="mt-6/6 text-foreground/80">
               {{ item.date }}
             </span>
           </div>

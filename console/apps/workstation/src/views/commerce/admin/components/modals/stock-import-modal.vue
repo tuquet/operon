@@ -49,18 +49,18 @@ const stockLinesRaw = defineModel<string>('stockLinesRaw', { required: true });
         <DialogTitle class="text-base font-semibold">
           {{ $t('page.commerce_view.bulk_stock_modal_title') }}
         </DialogTitle>
-        <DialogDescription class="text-xs text-muted-foreground">
+        <DialogDescription class="text-muted-foreground">
           {{ $t('page.commerce_view.bulk_stock_modal_desc') }}
         </DialogDescription>
       </DialogHeader>
 
       <div class="space-y-3 py-2">
         <div class="space-y-1">
-          <Label class="text-xs font-medium text-foreground">
+          <Label class="text-foreground">
             {{ $t('page.commerce_view.select_serialized_sku_label') }}
           </Label>
           <Select v-model="selectedVariantId">
-            <SelectTrigger class="h-8 w-full text-xs">
+            <SelectTrigger class="h-8 w-full">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -80,21 +80,21 @@ const stockLinesRaw = defineModel<string>('stockLinesRaw', { required: true });
         </div>
 
         <div class="space-y-1">
-          <Label class="text-xs font-medium text-foreground">
+          <Label class="text-foreground">
             {{ $t('page.commerce_view.batch_code_label') }}
           </Label>
-          <Input v-model="batchCode" type="text" class="h-8 text-xs" />
+          <Input v-model="batchCode" type="text" class="h-8" />
         </div>
 
         <div class="space-y-1">
-          <Label class="text-xs font-medium text-foreground">
+          <Label class="text-foreground">
             {{ $t('page.commerce_view.stock_lines_label') }}
           </Label>
           <Textarea
             v-model="stockLinesRaw"
             :rows="7"
             placeholder="1000881122|matkhau123|JBSWY3DPEHPK3PXP&#10;1000881123|matkhau456|KRSXG5CTMVRXEZLU"
-            class="w-full rounded-lg border border-border bg-background p-3 text-xs text-foreground focus:border-primary focus:outline-none"
+            class="w-full rounded-lg border border-border bg-background p-3 text-foreground focus:border-primary focus:outline-none"
           />
         </div>
       </div>

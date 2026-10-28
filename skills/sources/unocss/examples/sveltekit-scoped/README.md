@@ -21,8 +21,8 @@ npm run dev
 
 <div class="bg-red-100 text-lg">Hello</div>
 
-<div class:text-sm={bar}>World</div>
-<div class:text-sm>World</div>
+<div class:={bar}>World</div>
+<div class:>World</div>
 
 <div class="fixed flex top:0 ltr:left-0 rtl:right-0 space-x-1 foo">
   <div class="px-2 py-1">Logo</div>
@@ -47,7 +47,7 @@ will be transformed into this:
 <div class="uno-1hashz">Hello</div>
 
 <div class:uno-2hashz={bar}>World</div>
-<div class:uno-2hashz={text-sm}>World</div>
+<div class:uno-2hashz={}>World</div>
 
 <div class="uno-3hashz foo">
   <div class="uno-4hashz">Logo</div>

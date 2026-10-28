@@ -181,11 +181,7 @@ setupVbenVxeTable({
           // fallback to raw string
         }
 
-        return h(
-          'span',
-          { class: 'font-mono text-xs text-muted-foreground' },
-          text,
-        );
+        return h('span', { class: ' text-muted-foreground' }, text);
       },
     });
 
@@ -201,13 +197,13 @@ setupVbenVxeTable({
 
         return h('div', { class: 'inline-flex items-center gap-1.5' }, [
           h(
-            'code',
+            Badge,
             {
-              class:
-                'rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground',
+              variant: 'secondary',
+              class: '  text-muted-foreground px-1.5 py-0',
               title: id,
             },
-            shortId,
+            () => shortId,
           ),
           h(
             Button,
@@ -283,7 +279,7 @@ setupVbenVxeTable({
 
         return h(
           Badge,
-          { class: 'text-xs font-normal', variant: 'outline' },
+          { class: '', variant: 'outline' },
           {
             default: () => [
               h('span', {

@@ -10,13 +10,13 @@ import { moduleTree } from '../composables/fetch'
         pt="4"
         flex="~ col gap-3"
       >
-        <RouterLink block to="/" text-sm m="l-3.7">
+        <RouterLink block to="/"  m="l-3.7">
           <div i-carbon-dashboard />
           <span>
             Overview
           </span>
         </RouterLink>
-        <RouterLink block to="/repl" text-sm m="l-3.7">
+        <RouterLink block to="/repl"  m="l-3.7">
           <div i-carbon-terminal />
           <span>
             REPL

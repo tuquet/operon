@@ -162,7 +162,7 @@ const [Grid, gridApi] = useVbenVxeGrid<Tenant>({
         >
           {{ $t('page.workspace.title') }}
         </h1>
-        <Badge variant="secondary" class="shrink-0 text-2xs font-normal">
+        <Badge variant="secondary" class="shrink-0">
           {{ tenants.length }}
         </Badge>
       </div>
@@ -181,7 +181,7 @@ const [Grid, gridApi] = useVbenVxeGrid<Tenant>({
         </Button>
         <Button
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs font-medium sm:px-3"
+          class="h-8 gap-1.5 px-2.5 sm:px-3"
           @click="() => gridApi.openCreateSheet()"
         >
           <Plus class="size-3.5" />
@@ -202,14 +202,14 @@ const [Grid, gridApi] = useVbenVxeGrid<Tenant>({
         </div>
         <div class="min-w-0">
           <div class="flex items-center gap-1.5">
-            <span class="truncate text-sm font-semibold text-foreground">
+            <span class="truncate font-semibold text-foreground">
               {{ activeTenant?.name || $t('page.workspace.not_selected') }}
             </span>
-            <Badge variant="outline" class="hidden text-2xs sm:inline-flex">
+            <Badge variant="outline" class="hidden sm:inline-flex">
               /{{ activeTenant?.slug || 'none' }}
             </Badge>
           </div>
-          <p class="truncate text-2xs text-muted-foreground">
+          <p class="truncate text-muted-foreground">
             ID: {{ activeTenant?.id || '—' }}
           </p>
         </div>
@@ -218,7 +218,7 @@ const [Grid, gridApi] = useVbenVxeGrid<Tenant>({
       <Button
         size="sm"
         variant="outline"
-        class="h-7 shrink-0 gap-1.5 px-2.5 text-xs"
+        class="h-7 shrink-0 gap-1.5 px-2.5"
         @click="connectCli(activeTenant || undefined)"
       >
         <Terminal class="size-3.5" />
@@ -236,13 +236,13 @@ const [Grid, gridApi] = useVbenVxeGrid<Tenant>({
       <Grid class="tenants-vxe-grid">
         <template #name-cell="{ row }">
           <div class="flex items-center gap-2 whitespace-nowrap">
-            <span class="font-medium text-foreground">
+            <span class="text-foreground">
               {{ row.name }}
             </span>
             <Badge
               v-if="row.id === activeTenantId"
               variant="secondary"
-              class="shrink-0 px-1.5 py-0 text-2xs font-normal"
+              class="shrink-0 px-1.5 py-0"
             >
               {{ $t('page.workspace.action_selected') }}
             </Badge>
@@ -256,13 +256,13 @@ const [Grid, gridApi] = useVbenVxeGrid<Tenant>({
         </template>
 
         <template #plan-cell="{ row }">
-          <Badge variant="outline" class="text-xs font-medium">
+          <Badge variant="outline" class="">
             {{ getTenantPlanBadge(row.metadata?.plan).label }}
           </Badge>
         </template>
 
         <template #status-cell="{ row }">
-          <Badge variant="outline" class="text-xs font-normal">
+          <Badge variant="outline" class="">
             <span
               class="mr-1.5 size-1.5 rounded-full"
               :class="
@@ -282,7 +282,7 @@ const [Grid, gridApi] = useVbenVxeGrid<Tenant>({
             <Button
               size="sm"
               :variant="row.id === activeTenantId ? 'secondary' : 'default'"
-              class="h-7 shrink-0 px-2.5 text-xs gap-1"
+              class="h-7 shrink-0 px-2.5 gap-1"
               @click.stop="selectTenant(row)"
             >
               <Check v-if="row.id === activeTenantId" class="size-3 shrink-0" />
@@ -297,7 +297,7 @@ const [Grid, gridApi] = useVbenVxeGrid<Tenant>({
             <Button
               variant="outline"
               size="sm"
-              class="h-7 shrink-0 px-2.5 text-xs gap-1"
+              class="h-7 shrink-0 px-2.5 gap-1"
               @click.stop="connectCli(row)"
             >
               <Eye class="size-3 shrink-0" />
@@ -306,7 +306,7 @@ const [Grid, gridApi] = useVbenVxeGrid<Tenant>({
             <Button
               variant="outline"
               size="sm"
-              class="h-7 shrink-0 px-2 text-xs gap-1"
+              class="h-7 shrink-0 px-2 gap-1"
               :title="$t('page.workspace.action_connect')"
               @click.stop="connectCli(row)"
             >

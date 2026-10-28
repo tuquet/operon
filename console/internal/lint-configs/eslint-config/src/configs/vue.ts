@@ -147,5 +147,14 @@ export async function vue(): Promise<Linter.Config[]> {
         ],
       },
     },
+    {
+      files: ['**/__tests__/**/*.ts', '**/*.test.ts', '**/*.spec.ts'],
+      rules: {
+        'vue/no-required-prop-with-default': 'off',
+        'vue/one-component-per-file': 'off',
+        'vue/require-default-prop': 'off',
+        'vue/require-prop-types': 'off',
+      },
+    },
   ];
 }

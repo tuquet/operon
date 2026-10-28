@@ -6,7 +6,7 @@ const _c = a-(b -a -b)
 </script>
 
 <template>
-  <div class="bg-white font-light sm:hover:(bg-gray-100 font-medium)" />
+  <div class="bg-white font-light sm:hover:(bg-gray-100 )" />
   <div class="lt-sm:hover:(p-1 p-2)" />
   <div class="<sm:(p-1 p-2)" />
   <div class="sm:(p-1 p-2)" />

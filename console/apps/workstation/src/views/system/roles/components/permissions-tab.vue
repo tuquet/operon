@@ -172,14 +172,14 @@ defineExpose({
     </template>
 
     <template #perm-module-cell="{ row }">
-      <div class="flex items-center gap-1 text-xs">
+      <div class="flex items-center gap-1">
         <Folder class="size-3.5 text-muted-foreground" />
         <span class="capitalize text-foreground">{{ row.module }}</span>
       </div>
     </template>
 
     <template #perm-desc-cell="{ row }">
-      <span class="text-xs text-muted-foreground">
+      <span class="text-muted-foreground">
         {{ row.description }}
       </span>
     </template>
@@ -193,7 +193,7 @@ defineExpose({
             :role="role"
           />
         </template>
-        <span v-else class="text-xs italic text-muted-foreground">
+        <span v-else class="italic text-muted-foreground">
           {{ $t('page.system_view.roles_unassigned') }}
         </span>
       </div>
@@ -204,10 +204,10 @@ defineExpose({
         class="flex flex-col items-center justify-center p-8 text-center text-muted-foreground"
       >
         <KeyRound class="size-10 stroke-[1.5] text-muted-foreground/60 mb-3" />
-        <p class="text-sm font-medium text-foreground">
+        <p class="text-foreground">
           {{ $t('page.system_view.roles_empty_title') }}
         </p>
-        <p class="text-xs text-muted-foreground max-w-sm mt-1">
+        <p class="text-muted-foreground max-w-sm mt-1">
           {{ $t('page.system_view.roles_empty_desc') }}
         </p>
       </div>

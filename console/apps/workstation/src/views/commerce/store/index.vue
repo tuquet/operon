@@ -402,11 +402,11 @@ onBeforeUnmount(() => {
           >
             {{ $t('page.commerce.store') }}
           </h1>
-          <Badge variant="secondary" class="shrink-0 text-xs font-normal">
+          <Badge variant="secondary" class="shrink-0">
             {{ filteredProducts.length }}
           </Badge>
         </div>
-        <p class="hidden text-xs text-muted-foreground sm:block">
+        <p class="hidden text-muted-foreground sm:block">
           {{ $t('page.commerce.store_desc') }}
         </p>
       </div>
@@ -422,7 +422,7 @@ onBeforeUnmount(() => {
             @update:model-value="handleTenantChange"
           >
             <SelectTrigger
-              class="h-6 max-w-[150px] border-0 bg-transparent px-1 py-0 text-xs font-medium text-foreground shadow-none focus:ring-0"
+              class="h-6 max-w-[150px] border-0 bg-transparent px-1 py-0 text-foreground shadow-none focus:ring-0"
             >
               <SelectValue />
             </SelectTrigger>
@@ -443,16 +443,16 @@ onBeforeUnmount(() => {
           class="flex items-center gap-1.5 rounded-lg border border-primary/30 bg-primary/5 px-2.5 py-1"
         >
           <Coins class="size-3.5 text-primary" />
-          <span class="hidden sm:inline text-xs text-muted-foreground">
+          <span class="hidden sm:inline text-muted-foreground">
             {{ $t('page.commerce_view.balance_label') }}:
           </span>
-          <span class="text-xs sm:text-sm font-bold text-foreground">
+          <span class="sm: font-bold text-foreground">
             {{ walletBalance.toLocaleString('en-US') }} Xu
           </span>
           <Button
             size="sm"
             variant="default"
-            class="h-6 px-2 text-2xs"
+            class="h-6 px-2"
             @click="router.push('/commerce/wallet')"
           >
             + {{ $t('page.commerce_view.topup_xu') }}
@@ -462,7 +462,7 @@ onBeforeUnmount(() => {
         <Button
           variant="outline"
           size="sm"
-          class="hidden md:inline-flex h-8 gap-1.5 text-xs"
+          class="hidden md:inline-flex h-8 gap-1.5"
           @click="router.push('/commerce/orders')"
         >
           <PackageCheck class="size-3.5 text-muted-foreground" />
@@ -472,7 +472,7 @@ onBeforeUnmount(() => {
         <Button
           variant="outline"
           size="sm"
-          class="hidden lg:inline-flex h-8 gap-1.5 text-xs"
+          class="hidden lg:inline-flex h-8 gap-1.5"
           @click="router.push('/store')"
         >
           <ExternalLink class="size-3.5 text-muted-foreground" />
@@ -512,7 +512,7 @@ onBeforeUnmount(() => {
       >
         <ToggleGroupItem
           value="all"
-          class="h-8 shrink-0 rounded-md border border-border/60 px-3 text-xs data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+          class="h-8 shrink-0 rounded-md border border-border/60 px-3 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
         >
           {{ $t('page.commerce_view.all_categories') }}
         </ToggleGroupItem>
@@ -520,7 +520,7 @@ onBeforeUnmount(() => {
           v-for="cat in categories"
           :key="cat.id"
           :value="cat.id"
-          class="h-8 shrink-0 rounded-md border border-border/60 px-3 text-xs data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+          class="h-8 shrink-0 rounded-md border border-border/60 px-3 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
         >
           {{ cat.name }}
         </ToggleGroupItem>
@@ -528,7 +528,7 @@ onBeforeUnmount(() => {
 
       <div class="grid grid-cols-2 gap-2 sm:flex sm:items-center">
         <Select v-model="selectedProductType">
-          <SelectTrigger class="h-8 w-full text-xs sm:w-44">
+          <SelectTrigger class="h-8 w-full sm:w-44">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -560,7 +560,6 @@ onBeforeUnmount(() => {
             :placeholder="
               $t('page.commerce_view.search_product_sku_placeholder')
             "
-            class="text-xs"
           />
         </InputGroup>
       </div>
@@ -578,7 +577,7 @@ onBeforeUnmount(() => {
         <EmptyTitle class="text-base font-semibold">
           {{ $t('page.commerce_view.empty_products_title') }}
         </EmptyTitle>
-        <EmptyDescription class="text-xs">
+        <EmptyDescription>
           {{ $t('page.commerce_view.empty_products_desc') }}
         </EmptyDescription>
       </EmptyHeader>
@@ -613,7 +612,7 @@ onBeforeUnmount(() => {
                   })
             }}
           </DialogTitle>
-          <DialogDescription class="text-xs text-muted-foreground">
+          <DialogDescription class="text-muted-foreground">
             {{
               pendingIntent
                 ? $t('page.commerce_view.pay_order_desc')
@@ -628,18 +627,16 @@ onBeforeUnmount(() => {
             class="flex items-center justify-between rounded-lg border border-border/60 bg-muted/30 p-3"
           >
             <div>
-              <p class="text-sm font-semibold text-foreground">
+              <p class="font-semibold text-foreground">
                 {{ activeVariant.name }}
               </p>
-              <p class="text-xs text-muted-foreground">
-                SKU: {{ activeVariant.sku }}
-              </p>
+              <p class="text-muted-foreground">SKU: {{ activeVariant.sku }}</p>
             </div>
             <div class="text-right">
               <p class="text-base font-bold text-primary">
                 {{ activeVariant.price_credits.toLocaleString('en-US') }} Xu
               </p>
-              <p class="text-2xs text-muted-foreground">
+              <p class="text-muted-foreground">
                 {{ $t('page.commerce_view.unit_price_label') }}
               </p>
             </div>
@@ -647,7 +644,7 @@ onBeforeUnmount(() => {
 
           <!-- Quantity Input -->
           <div class="flex items-center justify-between">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.commerce_view.quantity_to_buy') }}
             </Label>
             <Input
@@ -655,14 +652,14 @@ onBeforeUnmount(() => {
               type="number"
               :min="activeVariant.min_qty || 1"
               :max="activeVariant.max_qty || 100"
-              class="h-8 w-24 px-2.5 text-right text-sm"
+              class="h-8 w-24 px-2.5 text-right"
             />
           </div>
 
           <!-- Payment Method Selection -->
           <div class="space-y-2">
             <Label
-              class="text-2xs font-semibold tracking-wider text-muted-foreground uppercase"
+              class="font-semibold tracking-wider text-muted-foreground uppercase"
             >
               {{ $t('page.commerce_view.payment_method_label') }}
             </Label>
@@ -671,7 +668,7 @@ onBeforeUnmount(() => {
             <Button
               type="button"
               variant="outline"
-              class="flex h-auto w-full items-center justify-between rounded-lg p-3 text-left font-normal transition-colors"
+              class="flex h-auto w-full items-center justify-between rounded-lg p-3 text-left transition-colors"
               :class="
                 selectedGatewayId === 'internal_wallet'
                   ? 'border-primary bg-primary/10'
@@ -682,10 +679,10 @@ onBeforeUnmount(() => {
               <div class="flex items-center gap-2.5">
                 <Wallet class="size-4 text-primary" />
                 <div>
-                  <p class="text-sm font-semibold text-foreground">
+                  <p class="font-semibold text-foreground">
                     {{ $t('page.commerce_view.prepaid_wallet_instant') }}
                   </p>
-                  <p class="text-xs text-muted-foreground">
+                  <p class="text-muted-foreground">
                     {{ $t('page.commerce_view.current_balance_label') }}:
                     <span class="font-semibold text-foreground">
                       {{ walletBalance.toLocaleString('en-US') }} Xu
@@ -711,7 +708,7 @@ onBeforeUnmount(() => {
               :key="gw.id"
               type="button"
               variant="outline"
-              class="flex h-auto w-full items-center justify-between rounded-lg p-3 text-left font-normal transition-colors"
+              class="flex h-auto w-full items-center justify-between rounded-lg p-3 text-left transition-colors"
               :class="
                 selectedGatewayId === gw.id
                   ? 'border-primary bg-primary/10'
@@ -722,10 +719,10 @@ onBeforeUnmount(() => {
               <div class="flex items-center gap-2.5">
                 <CreditCard class="size-4 text-primary" />
                 <div>
-                  <p class="text-sm font-semibold text-foreground">
+                  <p class="font-semibold text-foreground">
                     {{ gw.name }}
                   </p>
-                  <p class="text-xs text-muted-foreground">
+                  <p class="text-muted-foreground">
                     {{ $t('page.commerce_view.exchange_rate_label') }}: 1 Xu =
                     {{ gw.rate_per_credit.toLocaleString('en-US') }}
                     {{ gw.currency }}
@@ -742,14 +739,14 @@ onBeforeUnmount(() => {
           <div
             class="flex items-center justify-between rounded-lg border border-border/60 bg-muted/20 p-3"
           >
-            <span class="text-xs font-medium text-muted-foreground">
+            <span class="text-muted-foreground">
               {{ $t('page.commerce_view.total_payment') }}
             </span>
             <div class="text-right">
               <p class="text-lg font-bold text-foreground">
                 {{ totalCheckoutCredits.toLocaleString('en-US') }} Xu
               </p>
-              <p v-if="currentGateway" class="text-xs text-muted-foreground">
+              <p v-if="currentGateway" class="text-muted-foreground">
                 ≈ {{ estimatedFiatAmount.toLocaleString('en-US') }}
                 {{ currentGateway.currency }}
               </p>
@@ -791,19 +788,19 @@ onBeforeUnmount(() => {
               :alt="$t('page.commerce_view.payment_qr_alt')"
               class="h-52 w-52 object-contain"
             />
-            <span class="mt-2 text-2xs font-medium text-muted-foreground">
+            <span class="mt-2 text-muted-foreground">
               {{ $t('page.commerce_view.scan_vietqr_hint') }}
             </span>
           </div>
 
           <div
-            class="space-y-2 rounded-lg border border-border/60 bg-muted/30 p-3.5 text-xs"
+            class="space-y-2 rounded-lg border border-border/60 bg-muted/30 p-3.5"
           >
             <div class="flex items-center justify-between">
               <span class="text-muted-foreground">
                 {{ $t('page.commerce_view.transfer_amount_label') }}:
               </span>
-              <span class="text-sm font-bold text-foreground">
+              <span class="font-bold text-foreground">
                 {{ pendingIntent.pay_amount.toLocaleString('en-US') }}
                 {{ pendingIntent.pay_currency }}
               </span>
@@ -816,7 +813,7 @@ onBeforeUnmount(() => {
               <span class="text-muted-foreground">
                 {{ $t('page.commerce_view.bank_or_wallet_label') }}:
               </span>
-              <span class="font-medium text-foreground">
+              <span class="text-foreground">
                 {{ pendingIntent.checkout_payload.bank_name }} —
                 {{ pendingIntent.checkout_payload.account_no }}
               </span>
@@ -833,7 +830,7 @@ onBeforeUnmount(() => {
                 <Button
                   size="sm"
                   variant="outline"
-                  class="h-6 px-2 text-2xs"
+                  class="h-6 px-2"
                   @click="
                     copyText(
                       pendingIntent.transfer_code,

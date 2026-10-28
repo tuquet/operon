@@ -61,7 +61,7 @@ function onCancel() {
       </VbenButton>
     </PopoverTrigger>
     <PopoverContent class="z-popup w-60" side="top">
-      <div class="text-foreground mb-3 text-sm">
+      <div class="text-foreground mb-3">
         {{ action.popConfirm.title ?? 'Are you sure?' }}
       </div>
       <div class="flex justify-end gap-2">

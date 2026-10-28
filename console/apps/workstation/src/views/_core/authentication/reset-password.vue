@@ -59,14 +59,14 @@ async function handleSubmit() {
       <h2 class="text-xl font-bold">
         {{ $t('authentication.resetPasswordTitle') }}
       </h2>
-      <p class="text-xs text-muted-foreground mt-1">
+      <p class="text-muted-foreground mt-1">
         {{ $t('authentication.resetPasswordSubtitle') }}
       </p>
     </div>
 
     <form class="space-y-5" @submit.prevent="handleSubmit">
       <div class="space-y-2">
-        <Label class="text-sm font-medium leading-none">
+        <Label class="leading-none">
           {{ $t('authentication.newPassword') }}
           <span class="text-destructive ml-0.5">*</span>
         </Label>
@@ -80,7 +80,7 @@ async function handleSubmit() {
       </div>
 
       <div class="space-y-2">
-        <Label class="text-sm font-medium leading-none">
+        <Label class="leading-none">
           {{ $t('authentication.confirmPassword') }}
           <span class="text-destructive ml-0.5">*</span>
         </Label>

@@ -12,11 +12,11 @@ const ignores = ['inherit', 'current', 'transparent', 'DEFAULT']
 <template>
   <template v-for="i of Object.entries(item)" :key="i[0]">
     <div v-if="!ignores.includes(i[0]) && i[0].length > 1">
-      <div :style="{ opacity: 0.7 / level + 0.3 }" :class="level < 2 ? 'mt4 font-bold' : 'text-sm'">
+      <div :style="{ opacity: 0.7 / level + 0.3 }" :class="level < 2 ? 'mt4 font-bold' : ''">
         {{ kebabCase(i[0]) }}
       </div>
       <template v-if="typeof i[1] === 'string'">
-        <div font-mono text-sm op30>
+        <div   op30>
           {{ i[1] }}
         </div>
         <div w-17 h-9 mt1 border="~ main" shadow :style="{ background: i[1] }" />

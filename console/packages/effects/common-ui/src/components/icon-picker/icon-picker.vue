@@ -270,7 +270,7 @@ defineExpose({ toggleOpenState, open, close });
               >
                 <Button
                   :variant="item.value === currentPage ? 'default' : 'outline'"
-                  class="size-5 p-0 text-sm"
+                  class="size-5 p-0"
                 >
                   {{ item.value }}
                 </Button>
@@ -292,7 +292,7 @@ defineExpose({ toggleOpenState, open, close });
     <template v-else>
       <div class="flex-col-center min-h-37.5 w-full text-muted-foreground">
         <EmptyIcon class="size-10" />
-        <div class="mt-1 text-sm">{{ $t('common.noData') }}</div>
+        <div class="mt-1">{{ $t('common.noData') }}</div>
       </div>
     </template>
   </VbenPopover>

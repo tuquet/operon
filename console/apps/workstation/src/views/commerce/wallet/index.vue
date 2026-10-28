@@ -424,7 +424,7 @@ onBeforeUnmount(() => {
         >
           {{ $t('page.commerce.wallet') }}
         </h1>
-        <Badge variant="secondary" class="shrink-0 text-2xs font-normal">
+        <Badge variant="secondary" class="shrink-0">
           {{ allTransactions.length }}
         </Badge>
       </div>
@@ -438,7 +438,7 @@ onBeforeUnmount(() => {
             @update:model-value="handleTenantChange"
           >
             <SelectTrigger
-              class="h-8 max-w-[130px] gap-1.5 bg-card px-2.5 text-xs font-medium sm:max-w-[190px]"
+              class="h-8 max-w-[130px] gap-1.5 bg-card px-2.5 sm:max-w-[190px]"
             >
               <Building2 class="size-3.5 shrink-0 text-muted-foreground" />
               <SelectValue />
@@ -457,7 +457,7 @@ onBeforeUnmount(() => {
 
         <Button
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs sm:px-3"
+          class="h-8 gap-1.5 px-2.5 sm:px-3"
           @click="openTopupModal"
         >
           <Plus class="size-3.5" />
@@ -487,7 +487,7 @@ onBeforeUnmount(() => {
           <Wallet class="size-4" />
         </div>
         <div>
-          <span class="text-xs text-muted-foreground">
+          <span class="text-muted-foreground">
             {{ $t('page.commerce_view.available_balance_kpi') }}
           </span>
           <p class="text-base sm:text-lg font-bold text-foreground">
@@ -499,7 +499,7 @@ onBeforeUnmount(() => {
       <Button
         variant="outline"
         size="sm"
-        class="h-7 gap-1.5 px-2.5 text-xs"
+        class="h-7 gap-1.5 px-2.5"
         @click="router.push('/commerce/store')"
       >
         <ShoppingBag class="size-3.5 text-muted-foreground" />
@@ -519,7 +519,7 @@ onBeforeUnmount(() => {
         </template>
 
         <template #desc-cell="{ row }">
-          <span class="text-xs text-foreground">
+          <span class="text-foreground">
             {{
               row.description || $t('page.commerce_view.default_wallet_tx_desc')
             }}
@@ -528,7 +528,7 @@ onBeforeUnmount(() => {
 
         <template #amount-cell="{ row }">
           <span
-            class="text-sm font-bold"
+            class="font-bold"
             :class="
               row.amount_credits >= 0 ? 'text-success' : 'text-destructive'
             "
@@ -539,19 +539,19 @@ onBeforeUnmount(() => {
         </template>
 
         <template #balance-cell="{ row }">
-          <span class="text-xs font-semibold text-foreground">
+          <span class="font-semibold text-foreground">
             {{ row.balance_after_credits.toLocaleString('en-US') }} Xu
           </span>
         </template>
 
         <template #ref-cell="{ row }">
-          <span class="text-xs text-muted-foreground">
+          <span class="text-muted-foreground">
             {{ row.reference_id ? row.reference_id.slice(0, 12) : '—' }}
           </span>
         </template>
 
         <template #date-cell="{ row }">
-          <span class="text-xs text-muted-foreground">
+          <span class="text-muted-foreground">
             {{ formatDate(row.created_at) }}
           </span>
         </template>
@@ -572,7 +572,7 @@ onBeforeUnmount(() => {
                 : $t('page.commerce_view.wallet_topup_title')
             }}
           </DialogTitle>
-          <DialogDescription class="text-xs text-muted-foreground">
+          <DialogDescription class="text-muted-foreground">
             {{
               activeIntent
                 ? $t('page.commerce_view.topup_transfer_desc')
@@ -585,7 +585,7 @@ onBeforeUnmount(() => {
         <div v-if="!activeIntent" class="space-y-4 py-2">
           <div class="space-y-2">
             <Label
-              class="text-2xs font-semibold tracking-wider text-muted-foreground uppercase"
+              class="font-semibold tracking-wider text-muted-foreground uppercase"
             >
               {{ $t('page.commerce_view.quick_select_xu_pack') }}
             </Label>
@@ -595,7 +595,7 @@ onBeforeUnmount(() => {
                 :key="preset"
                 type="button"
                 variant="outline"
-                class="h-auto rounded-lg border py-2 text-center text-xs font-semibold transition-colors"
+                class="h-auto rounded-lg border py-2 text-center font-semibold transition-colors"
                 :class="
                   topupCredits === preset
                     ? 'border-primary bg-primary/10 text-primary hover:bg-primary/15'
@@ -609,7 +609,7 @@ onBeforeUnmount(() => {
           </div>
 
           <div class="flex items-center justify-between">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.commerce_view.custom_xu_amount_label') }}
             </Label>
             <Input
@@ -617,13 +617,13 @@ onBeforeUnmount(() => {
               type="number"
               min="10"
               step="10"
-              class="h-8 w-32 text-right text-sm"
+              class="h-8 w-32 text-right"
             />
           </div>
 
           <div class="space-y-2">
             <Label
-              class="text-2xs font-semibold tracking-wider text-muted-foreground uppercase"
+              class="font-semibold tracking-wider text-muted-foreground uppercase"
             >
               {{ $t('page.commerce_view.payment_gateway_label') }}
             </Label>
@@ -632,7 +632,7 @@ onBeforeUnmount(() => {
               :key="gw.id"
               type="button"
               variant="outline"
-              class="flex h-auto w-full items-center justify-between rounded-lg border p-3 text-left font-normal transition-colors"
+              class="flex h-auto w-full items-center justify-between rounded-lg border p-3 text-left transition-colors"
               :class="
                 selectedGateway?.id === gw.id
                   ? 'border-primary bg-primary/10 hover:bg-primary/15'
@@ -643,10 +643,10 @@ onBeforeUnmount(() => {
               <div class="flex items-center gap-2.5">
                 <CreditCard class="size-4 text-primary" />
                 <div>
-                  <p class="text-sm font-semibold text-foreground">
+                  <p class="font-semibold text-foreground">
                     {{ gw.name }}
                   </p>
-                  <p class="text-xs text-muted-foreground">
+                  <p class="text-muted-foreground">
                     1 Xu = {{ gw.rate_per_credit.toLocaleString('en-US') }}
                     {{ gw.currency }}
                   </p>
@@ -661,7 +661,7 @@ onBeforeUnmount(() => {
           <div
             class="flex items-center justify-between rounded-lg border border-border/60 bg-muted/20 p-3"
           >
-            <span class="text-xs font-medium text-muted-foreground">
+            <span class="text-muted-foreground">
               {{ $t('page.commerce_view.estimated_pay_amount') }}
             </span>
             <div class="text-right">
@@ -669,7 +669,7 @@ onBeforeUnmount(() => {
                 {{ estimatedPayAmount.toLocaleString('en-US') }}
                 {{ selectedGateway?.currency || 'VND' }}
               </p>
-              <p class="text-xs text-primary">
+              <p class="text-primary">
                 {{
                   $t('page.commerce_view.receive_immediately_xu', {
                     amount: topupCredits.toLocaleString('en-US'),
@@ -706,19 +706,19 @@ onBeforeUnmount(() => {
               :alt="$t('page.commerce_view.payment_qr_alt')"
               class="h-52 w-52 object-contain"
             />
-            <span class="mt-2 text-2xs font-medium text-muted-foreground">
+            <span class="mt-2 text-muted-foreground">
               {{ $t('page.commerce_view.scan_qr_bank_wallet_hint') }}
             </span>
           </div>
 
           <div
-            class="space-y-2 rounded-lg border border-border/60 bg-muted/30 p-3.5 text-xs"
+            class="space-y-2 rounded-lg border border-border/60 bg-muted/30 p-3.5"
           >
             <div class="flex items-center justify-between">
               <span class="text-muted-foreground">
                 {{ $t('page.commerce_view.xu_to_receive_label') }}
               </span>
-              <span class="text-sm font-bold text-primary">
+              <span class="font-bold text-primary">
                 +{{ activeIntent.amount_credits.toLocaleString('en-US') }} Xu
               </span>
             </div>
@@ -727,7 +727,7 @@ onBeforeUnmount(() => {
               <span class="text-muted-foreground">
                 {{ $t('page.commerce_view.transfer_amount_label') }}
               </span>
-              <span class="text-sm font-bold text-foreground">
+              <span class="font-bold text-foreground">
                 {{ activeIntent.pay_amount.toLocaleString('en-US') }}
                 {{ activeIntent.pay_currency }}
               </span>
@@ -744,7 +744,7 @@ onBeforeUnmount(() => {
                 <Button
                   size="sm"
                   variant="outline"
-                  class="h-6 px-2 text-2xs"
+                  class="h-6 px-2"
                   @click="
                     copyText(
                       activeIntent.transfer_code,

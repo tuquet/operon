@@ -72,7 +72,7 @@ const selectedGatewayId = defineModel<string>('selectedGatewayId', {
                 })
           }}
         </DialogTitle>
-        <DialogDescription class="text-xs text-muted-foreground">
+        <DialogDescription class="text-muted-foreground">
           {{
             createdIntent
               ? $t('page.commerce_view.guest_pay_order_desc')
@@ -87,12 +87,10 @@ const selectedGatewayId = defineModel<string>('selectedGatewayId', {
           class="flex items-center justify-between rounded-lg border border-border/60 bg-muted/30 p-3"
         >
           <div>
-            <p class="text-sm font-semibold text-foreground">
+            <p class="font-semibold text-foreground">
               {{ activeVariant.name }}
             </p>
-            <p class="text-xs text-muted-foreground">
-              SKU: {{ activeVariant.sku }}
-            </p>
+            <p class="text-muted-foreground">SKU: {{ activeVariant.sku }}</p>
           </div>
           <p class="text-base font-bold text-primary">
             {{ activeVariant.price_credits.toLocaleString('en-US') }} Xu
@@ -101,7 +99,7 @@ const selectedGatewayId = defineModel<string>('selectedGatewayId', {
 
         <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <div class="space-y-1">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.commerce_view.quantity_label') }}
             </Label>
             <Input
@@ -109,26 +107,26 @@ const selectedGatewayId = defineModel<string>('selectedGatewayId', {
               type="number"
               :min="activeVariant.min_qty || 1"
               :max="activeVariant.max_qty || 100"
-              class="h-8 w-full px-2.5 text-xs"
+              class="h-8 w-full px-2.5"
             />
           </div>
 
           <div class="space-y-1">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.commerce_view.buyer_email_optional_label') }}
             </Label>
             <Input
               v-model="buyerEmail"
               type="email"
               placeholder="guest@example.com"
-              class="h-8 w-full px-2.5 text-xs"
+              class="h-8 w-full px-2.5"
             />
           </div>
         </div>
 
         <div class="space-y-2">
           <Label
-            class="text-2xs font-semibold tracking-wider text-muted-foreground uppercase"
+            class="font-semibold tracking-wider text-muted-foreground uppercase"
           >
             {{ $t('page.commerce_view.select_payment_channel_label') }}
           </Label>
@@ -137,7 +135,7 @@ const selectedGatewayId = defineModel<string>('selectedGatewayId', {
             :key="gw.id"
             type="button"
             variant="outline"
-            class="flex h-auto w-full items-center justify-between rounded-lg p-3 text-left font-normal transition-colors"
+            class="flex h-auto w-full items-center justify-between rounded-lg p-3 text-left transition-colors"
             :class="
               currentGateway?.id === gw.id
                 ? 'border-primary bg-primary/10'
@@ -148,10 +146,10 @@ const selectedGatewayId = defineModel<string>('selectedGatewayId', {
             <div class="flex items-center gap-2.5">
               <CreditCard class="size-4 text-primary" />
               <div>
-                <p class="text-sm font-semibold text-foreground">
+                <p class="font-semibold text-foreground">
                   {{ gw.name }}
                 </p>
-                <p class="text-xs text-muted-foreground">
+                <p class="text-muted-foreground">
                   1 Xu = {{ gw.rate_per_credit.toLocaleString('en-US') }}
                   {{ gw.currency }}
                 </p>
@@ -166,7 +164,7 @@ const selectedGatewayId = defineModel<string>('selectedGatewayId', {
         <div
           class="flex items-center justify-between rounded-lg border border-border/60 bg-muted/20 p-3"
         >
-          <span class="text-xs font-medium text-muted-foreground">
+          <span class="text-muted-foreground">
             {{ $t('page.commerce_view.total_payment') }}
           </span>
           <div class="text-right">
@@ -174,7 +172,7 @@ const selectedGatewayId = defineModel<string>('selectedGatewayId', {
               {{ estimatedFiatAmount.toLocaleString('en-US') }}
               {{ currentGateway?.currency || 'VND' }}
             </p>
-            <p class="text-xs text-muted-foreground">
+            <p class="text-muted-foreground">
               ({{ totalCheckoutCredits.toLocaleString('en-US') }} Xu)
             </p>
           </div>
@@ -199,7 +197,7 @@ const selectedGatewayId = defineModel<string>('selectedGatewayId', {
       <!-- Step 2: Claim Token Banner + QR Code + Auto-Polling -->
       <div v-else-if="createdIntent && createdOrder" class="space-y-4 py-2">
         <div
-          class="rounded-lg border border-primary/40 bg-primary/5 p-3 text-xs space-y-1.5"
+          class="rounded-lg border border-primary/40 bg-primary/5 p-3 space-y-1.5"
         >
           <div class="flex items-center justify-between">
             <span class="font-semibold text-foreground">
@@ -208,7 +206,7 @@ const selectedGatewayId = defineModel<string>('selectedGatewayId', {
             <Button
               size="sm"
               variant="outline"
-              class="h-6 gap-1 px-2 text-2xs"
+              class="h-6 gap-1 px-2"
               @click="
                 copyText(
                   createdClaimToken,
@@ -234,19 +232,19 @@ const selectedGatewayId = defineModel<string>('selectedGatewayId', {
             :alt="$t('page.commerce_view.payment_qr_alt')"
             class="h-52 w-52 object-contain"
           />
-          <span class="mt-2 text-2xs font-medium text-muted-foreground">
+          <span class="mt-2 text-muted-foreground">
             {{ $t('page.commerce_view.scan_qr_exact_amount_hint') }}
           </span>
         </div>
 
         <div
-          class="space-y-2 rounded-lg border border-border/60 bg-muted/30 p-3.5 text-xs"
+          class="space-y-2 rounded-lg border border-border/60 bg-muted/30 p-3.5"
         >
           <div class="flex items-center justify-between">
             <span class="text-muted-foreground">
               {{ $t('page.commerce_view.transfer_amount_label') }}
             </span>
-            <span class="text-sm font-bold text-foreground">
+            <span class="font-bold text-foreground">
               {{ createdIntent.pay_amount.toLocaleString('en-US') }}
               {{ createdIntent.pay_currency }}
             </span>
@@ -263,7 +261,7 @@ const selectedGatewayId = defineModel<string>('selectedGatewayId', {
               <Button
                 size="sm"
                 variant="outline"
-                class="h-6 px-2 text-2xs"
+                class="h-6 px-2"
                 @click="
                   copyText(
                     createdIntent.transfer_code,

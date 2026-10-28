@@ -69,7 +69,7 @@ const scale = computed(() =>
         @click="showNavigationPanel()"
       />
       <div class="i-carbon-content-delivery-network" />
-      <span pl-1 font-bold text-sm flex-auto ws-nowrap overflow-hidden truncate>Browser UI</span>
+      <span pl-1 font-bold  flex-auto ws-nowrap overflow-hidden truncate>Browser UI</span>
       <IconButton
         v-show="detailsPosition === 'right' && !detailsPanelVisible"
         v-tooltip.bottom="'Show Details Panel'"
@@ -101,7 +101,7 @@ const scale = computed(() =>
         :active="isViewport('tablet')"
         @click="changeViewport('tablet')"
       />
-      <span class="pointer-events-none" text-sm>
+      <span class="pointer-events-none" >
         {{ viewport[0] }}x{{ viewport[1] }}px
         <span v-if="scale < 100">({{ scale }}%)</span>
       </span>

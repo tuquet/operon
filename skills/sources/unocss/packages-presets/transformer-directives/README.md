@@ -29,7 +29,7 @@ export default defineConfig({
 
 ```css
 .custom-div {
-  @apply text-center my-0 font-medium;
+  @apply text-center my-0 ;
 }
 ```
 
@@ -50,7 +50,7 @@ To be compatible with vanilla CSS, you can use CSS custom properties to replace 
 
 ```css
 .custom-div {
-  --at-apply: text-center my-0 font-medium;
+  --at-apply: text-center my-0 ;
 }
 ```
 

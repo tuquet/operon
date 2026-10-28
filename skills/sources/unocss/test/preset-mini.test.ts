@@ -54,7 +54,7 @@ describe('preset-mini', () => {
       'dark:text-lg',
       'dark:hover:rounded',
       'light:bg-black',
-      'light:text-sm',
+      'light:',
       'light:disabled:w-full',
     ].join(' '), {
       preflights: false,
@@ -211,7 +211,7 @@ describe('preset-mini', () => {
     })
 
     const { css } = await uno.generate([
-      'text-small',
+      'all',
       'text-medium',
       'text-xs',
       'text-lg',
@@ -313,7 +313,7 @@ describe('preset-mini', () => {
 
     const { css } = await uno.generate([
       'md:text-xl',
-      '<lg:text-sm',
+      '<lg:',
       '~md:text-base',
       '<xl:text-3xl',
     ], { preflights: false })
@@ -324,7 +324,7 @@ describe('preset-mini', () => {
       .\\<xl\\:text-3xl{font-size:1.875rem;line-height:2.25rem;}
       }
       @media (max-width: calc(64rem - 0.1px)){
-      .\\<lg\\:text-sm{font-size:0.875rem;line-height:1.25rem;}
+      .\\<lg\\:{font-size:0.875rem;line-height:1.25rem;}
       }
       @media (min-width: 48rem){
       .md\\:text-xl{font-size:1.25rem;line-height:1.75rem;}
@@ -372,13 +372,13 @@ describe('preset-mini', () => {
       },
     })
 
-    expect((await uno.generate('text-sm text-normal text-ls text-obj', { preflights: false })).css)
+    expect((await uno.generate(' text-normal text-ls text-obj', { preflights: false })).css)
       .toMatchInlineSnapshot(`
         "/* layer: default */
         .text-ls{font-size:8rem;line-height:1;letter-spacing:2.25rem;}
         .text-normal{font-size:24px;line-height:1;}
         .text-obj{font-size:8rem;line-height:2.25rem;letter-spacing:-0.02em;font-weight:700;}
-        .text-sm{font-size:0.875rem;line-height:1.25rem;}"
+        .{font-size:0.875rem;line-height:1.25rem;}"
       `)
   })
 
@@ -493,14 +493,14 @@ describe('preset-mini', () => {
     })
 
     const { css } = await uno.generate([
-      '@tablet:text-sm',
+      '@tablet:',
       '@desktop/name:text-lg',
     ], { preflights: false })
 
     expect(css).toMatchInlineSnapshot(`
       "/* layer: default */
       @container (min-width: 352px){
-      .\\@tablet\\:text-sm{font-size:0.875rem;line-height:1.25rem;}
+      .\\@tablet\\:{font-size:0.875rem;line-height:1.25rem;}
       }
       @container name (min-width: 768px){
       .\\@desktop\\/name\\:text-lg{font-size:1.125rem;line-height:1.75rem;}

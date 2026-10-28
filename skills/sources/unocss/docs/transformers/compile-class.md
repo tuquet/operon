@@ -61,7 +61,7 @@ For example:
 
 ```html
 <div class=":uno: text-center sm:text-left">
-  <div class=":uno: text-sm font-bold hover:text-red" />
+  <div class=":uno:  font-bold hover:text-red" />
 </div>
 ```
 

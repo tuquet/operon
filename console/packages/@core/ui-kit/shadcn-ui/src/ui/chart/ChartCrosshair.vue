@@ -26,7 +26,9 @@ const props = withDefaults(
 // Fallback Y accessor for Unovis Crosshair to eliminate 'Y accessors have not been configured' warning
 const computedY = computed(() => {
   if (props.y) return props.y;
-  return props.items.map((item) => (d: any) => (d && item.name in d ? (d[item.name] ?? 0) : 0));
+  return props.items.map(
+    (item) => (d: any) => (d && item.name in d ? (d[item.name] ?? 0) : 0),
+  );
 });
 
 // Use weakmap to store reference to each datapoint for Tooltip

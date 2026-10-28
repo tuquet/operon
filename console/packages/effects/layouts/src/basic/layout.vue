@@ -442,7 +442,7 @@ const headerSlots = computed(() => {
       <slot :title="extraDomainTitle" name="side-extra-title">
         <div class="flex h-full items-center px-3">
           <span
-            class="text-sm font-semibold tracking-tight text-foreground truncate select-none"
+            class="font-semibold tracking-tight text-foreground truncate select-none"
           >
             {{ extraDomainTitle }}
           </span>
@@ -475,7 +475,7 @@ const headerSlots = computed(() => {
             v-if="preferences.copyright.enable"
             v-bind="preferences.copyright"
           />
-          <div v-else class="text-xs text-muted-foreground">
+          <div v-else class="text-muted-foreground">
             Copyright © {{ preferences.copyright.date || '2026' }}
             <a
               v-if="preferences.copyright.companyName"

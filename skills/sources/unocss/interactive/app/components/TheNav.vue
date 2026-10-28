@@ -17,7 +17,7 @@ const info = searcher.value.getInfo()
         </span>
       </h1>
     </RouterLink>
-    <div text-xs op-30 ml-2 self-end leading-12px>
+    <div op-30 ml-2 self-end leading-12px>
       v{{ info.version }}
     </div>
     <div flex-auto />

@@ -74,7 +74,7 @@ defineExpose({ open });
             :key="`container${item.value}`"
           >
             <RadioGroupItem :id="item.value" :value="item.value" />
-            <Label :for="item.value" class="cursor-pointer font-normal">{{
+            <Label :for="item.value" class="cursor-pointer">{{
               item.label
             }}</Label>
           </div>

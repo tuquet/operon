@@ -39,7 +39,7 @@ const traces = computed(() => {
       >
         <span class="i-carbon:play-outline block" />
         Open trace viewer
-        <span v-if="label" class="text-xs opacity-70">
+        <span v-if="label" class="opacity-70">
           {{ label }}
         </span>
       </button>

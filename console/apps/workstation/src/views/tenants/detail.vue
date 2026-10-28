@@ -275,7 +275,7 @@ onMounted(() => {
       <Button
         variant="ghost"
         size="sm"
-        class="flex items-center gap-1.5 px-0 h-7 text-xs text-muted-foreground hover:text-foreground"
+        class="flex items-center gap-1.5 px-0 h-7 text-muted-foreground hover:text-foreground"
         @click="router.push('/tenants')"
       >
         <ArrowLeft class="size-3.5" />
@@ -306,7 +306,7 @@ onMounted(() => {
         >
           <TabsTrigger
             value="overview"
-            class="whitespace-nowrap px-2 py-1.5 text-xs sm:px-3 sm:text-sm [&>span]:inline-flex [&>span]:items-center [&>span]:gap-1.5"
+            class="whitespace-nowrap px-2 py-1.5 sm:px-3 sm: [&>span]:inline-flex [&>span]:items-center [&>span]:gap-1.5"
           >
             <LayoutDashboard class="hidden size-4 shrink-0 sm:block" />
             <span class="truncate">{{
@@ -315,7 +315,7 @@ onMounted(() => {
           </TabsTrigger>
           <TabsTrigger
             value="members"
-            class="whitespace-nowrap px-2 py-1.5 text-xs sm:px-3 sm:text-sm [&>span]:inline-flex [&>span]:items-center [&>span]:gap-1.5"
+            class="whitespace-nowrap px-2 py-1.5 sm:px-3 sm: [&>span]:inline-flex [&>span]:items-center [&>span]:gap-1.5"
           >
             <Users class="hidden size-4 shrink-0 sm:block" />
             <span class="truncate"
@@ -324,7 +324,7 @@ onMounted(() => {
           </TabsTrigger>
           <TabsTrigger
             value="usage"
-            class="whitespace-nowrap px-2 py-1.5 text-xs sm:px-3 sm:text-sm [&>span]:inline-flex [&>span]:items-center [&>span]:gap-1.5"
+            class="whitespace-nowrap px-2 py-1.5 sm:px-3 sm: [&>span]:inline-flex [&>span]:items-center [&>span]:gap-1.5"
           >
             <Gauge class="hidden size-4 shrink-0 sm:block" />
             <span class="truncate">{{
@@ -333,7 +333,7 @@ onMounted(() => {
           </TabsTrigger>
           <TabsTrigger
             value="audit"
-            class="whitespace-nowrap px-2 py-1.5 text-xs sm:px-3 sm:text-sm [&>span]:inline-flex [&>span]:items-center [&>span]:gap-1.5"
+            class="whitespace-nowrap px-2 py-1.5 sm:px-3 sm: [&>span]:inline-flex [&>span]:items-center [&>span]:gap-1.5"
           >
             <History class="hidden size-4 shrink-0 sm:block" />
             <span class="truncate">{{

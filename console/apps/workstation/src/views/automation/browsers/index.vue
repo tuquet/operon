@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+﻿<script lang="ts" setup>
 import type { BrowserProfile } from '#/api';
 
 import { ref, watch } from 'vue';
@@ -267,8 +267,6 @@ watch(
   <Page
     :title="$t('page.automation.browsers')"
     :description="$t('page.automation.browsers_desc')"
-    content-class="p-3 sm:p-5"
-    header-class="border-b border-border/60 bg-card/60 px-4 py-3 sm:px-6"
   >
     <template #title>
       <div class="flex items-center gap-2">
@@ -277,7 +275,7 @@ watch(
         >
           {{ $t('page.automation.browsers') }}
         </h1>
-        <Badge variant="secondary" class="shrink-0 text-2xs">
+        <Badge variant="secondary" class="shrink-0">
           {{ allBrowsers.length }}
         </Badge>
       </div>
@@ -288,7 +286,7 @@ watch(
         <Button
           variant="outline"
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs"
+          class="h-8 gap-1.5 px-2.5"
           :title="$t('common.refresh')"
           @click="() => gridApi.reload()"
         >
@@ -297,7 +295,7 @@ watch(
         </Button>
         <Button
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs font-medium sm:px-3"
+          class="h-8 gap-1.5 px-2.5 sm:px-3"
           @click="() => gridApi.openCreateSheet()"
         >
           <Plus class="size-3.5 shrink-0" />
@@ -319,16 +317,16 @@ watch(
               <Globe class="size-4" />
             </div>
             <div class="min-w-0">
-              <div class="font-medium text-foreground truncate">
+              <div class="text-foreground truncate">
                 {{ row.name }}
               </div>
-              <div
-                class="flex items-center gap-1.5 text-2xs text-muted-foreground"
-              >
-                <Badge variant="outline" class="text-2xs capitalize py-0 px-1">
+              <div class="flex items-center gap-1.5 text-muted-foreground">
+                <Badge variant="outline" class="capitalize py-0 px-1">
                   {{ row.os_platform }}
                 </Badge>
-                <span class="font-mono">{{ row.engine_version }}</span>
+                <Badge variant="secondary" class="py-0 px-1">
+                  {{ row.engine_version }}
+                </Badge>
               </div>
             </div>
           </div>
@@ -337,14 +335,14 @@ watch(
         <template #lock-cell="{ row }">
           <div
             v-if="row.locked_by_device"
-            class="inline-flex items-center gap-1.5 text-xs text-primary font-medium truncate"
+            class="inline-flex items-center gap-1.5 text-primary truncate"
           >
             <Lock class="size-3 text-primary shrink-0" />
             <span class="truncate">{{ row.locked_by_device.name }}</span>
           </div>
           <div
             v-else
-            class="inline-flex items-center gap-1.5 text-xs text-muted-foreground"
+            class="inline-flex items-center gap-1.5 text-muted-foreground"
           >
             <Unlock class="size-3 shrink-0" />
             <span>{{ $t('page.automation_view.browser_unlocked') }}</span>
@@ -354,7 +352,7 @@ watch(
         <template #proxy-cell="{ row }">
           <div
             v-if="row.proxy"
-            class="inline-flex items-center gap-1.5 text-xs text-foreground truncate"
+            class="inline-flex items-center gap-1.5 text-foreground truncate"
           >
             <Shield class="size-3 text-success shrink-0" />
             <span class="truncate"
@@ -363,15 +361,13 @@ watch(
               }}</span
             >
           </div>
-          <span v-else class="text-xs text-muted-foreground">
+          <span v-else class="text-muted-foreground">
             {{ $t('page.automation_view.proxy_direct') }}
           </span>
         </template>
 
         <template #storage-cell="{ row }">
-          <div
-            class="flex items-center gap-2 text-xs text-foreground font-mono"
-          >
+          <div class="flex items-center gap-2 text-foreground">
             <span>{{ formatBytes(row.storage_size_bytes) }}</span>
             <span class="text-muted-foreground">&bull;</span>
             <span class="text-muted-foreground">
@@ -385,7 +381,7 @@ watch(
         </template>
 
         <template #status-cell="{ row }">
-          <Badge variant="outline" class="text-xs font-normal">
+          <Badge variant="outline" class="">
             <span
               class="mr-1.5 size-1.5 rounded-full"
               :class="{
@@ -412,7 +408,7 @@ watch(
             <Button
               :variant="row.status === 'running' ? 'destructive' : 'default'"
               size="sm"
-              class="h-7 gap-1 px-2 text-xs font-medium"
+              class="h-7 gap-1 px-2"
               :class="{
                 'bg-success hover:bg-success/90 text-success-foreground':
                   row.status !== 'running',
@@ -438,7 +434,7 @@ watch(
               "
               variant="ghost"
               size="sm"
-              class="h-7 gap-1 px-1.5 text-xs text-warning hover:text-warning"
+              class="h-7 gap-1 px-1.5 text-warning hover:text-warning"
               :disabled="isUnbinding[row.id]"
               :title="$t('page.automation_view.browser_unlocked')"
               :aria-label="$t('page.automation_view.browser_unlocked')"
@@ -452,7 +448,7 @@ watch(
             <Button
               variant="outline"
               size="sm"
-              class="h-7 gap-1 px-2 text-xs"
+              class="h-7 gap-1 px-2"
               :title="$t('common.edit')"
               :aria-label="$t('common.edit')"
               @click="() => gridApi.openDetailSheet(row)"
@@ -463,7 +459,7 @@ watch(
             <Button
               variant="outline"
               size="sm"
-              class="h-7 gap-1 px-2 text-xs"
+              class="h-7 gap-1 px-2"
               :title="$t('common.copy')"
               :aria-label="$t('common.copy')"
               @click="copyToClipboard(row.id, 'Browser ID')"
@@ -479,10 +475,10 @@ watch(
             class="flex flex-col items-center justify-center p-8 text-center text-muted-foreground"
           >
             <Globe class="size-10 stroke-[1.5] text-muted-foreground/60 mb-3" />
-            <p class="text-sm font-medium text-foreground">
+            <p class="text-foreground">
               {{ $t('page.fleet_view.browsers_empty') }}
             </p>
-            <p class="text-xs text-muted-foreground max-w-sm mt-1">
+            <p class="text-muted-foreground max-w-sm mt-1">
               {{ $t('page.fleet_view.browsers_empty_desc') }}
             </p>
           </div>

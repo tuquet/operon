@@ -51,7 +51,7 @@ onMounted(() => {
               </h3>
             </div>
 
-            <p class="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed mb-4">
+            <p class=" text-neutral-500 dark:text-neutral-400 leading-relaxed mb-4">
               {{ feature.description }}
             </p>
 

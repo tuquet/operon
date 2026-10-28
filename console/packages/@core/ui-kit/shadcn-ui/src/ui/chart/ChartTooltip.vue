@@ -12,11 +12,9 @@ defineProps<{
 </script>
 
 <template>
-  <Card
-    class="border-border/60 bg-popover/95 text-sm shadow-md backdrop-blur-xs"
-  >
+  <Card class="border-border/60 bg-popover/95 shadow-md backdrop-blur-xs">
     <CardHeader v-if="title" class="border-border/40 border-b p-2.5">
-      <CardTitle class="text-xs font-medium text-muted-foreground">
+      <CardTitle class="text-muted-foreground">
         {{ title }}
       </CardTitle>
     </CardHeader>
@@ -24,7 +22,7 @@ defineProps<{
       <div
         v-for="(item, key) in data"
         :key="key"
-        class="flex items-center justify-between gap-3 text-xs"
+        class="flex items-center justify-between gap-3"
       >
         <div class="flex items-center gap-1.5">
           <span

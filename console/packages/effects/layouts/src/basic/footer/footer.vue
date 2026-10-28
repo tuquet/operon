@@ -5,7 +5,7 @@ defineOptions({
 </script>
 
 <template>
-  <div class="relative flex-center size-full text-xs text-muted-foreground">
+  <div class="relative flex-center size-full text-muted-foreground">
     <slot></slot>
   </div>
 </template>

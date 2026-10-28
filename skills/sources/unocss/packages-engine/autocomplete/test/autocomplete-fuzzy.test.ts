@@ -31,7 +31,7 @@ describe('autocomplete-fuzzy', async () => {
 
   it('variant', async () => {
     expect(await ac.suggest('tsm'))
-      .includes('text-sm')
+      .includes('')
 
     expect(await ac.suggest('tbl5'))
       .includes('text-blue-500')

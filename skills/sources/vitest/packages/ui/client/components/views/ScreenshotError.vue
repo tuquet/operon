@@ -18,10 +18,10 @@ onKeyStroke('Escape', () => {
   <div w-350 max-w-screen h-full flex flex-col>
     <div p-4 relative border="base b">
       <p>Screenshot error</p>
-      <p op50 font-mono text-sm>
+      <p op50  >
         {{ file }}
       </p>
-      <p op50 font-mono text-sm>
+      <p op50  >
         {{ name }}
       </p>
       <IconButton

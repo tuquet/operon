@@ -111,9 +111,9 @@ defineExpose({
         {{ submitButtonText || $t('authentication.signUp') }}
       </slot>
     </VbenButton>
-    <div class="mt-4 text-center text-sm">
+    <div class="mt-4 text-center">
       {{ $t('authentication.alreadyHaveAccount') }}
-      <span class="vben-link text-sm font-normal" @click="goToLogin()">
+      <span class="vben-link" @click="goToLogin()">
         {{ $t('authentication.goToLogin') }}
       </span>
     </div>

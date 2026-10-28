@@ -6,7 +6,7 @@
       <slot></slot>
     </h2>
 
-    <p class="lg:text-md text-sm text-muted-foreground">
+    <p class="lg:text-md text-muted-foreground">
       <slot name="desc"></slot>
     </p>
   </div>

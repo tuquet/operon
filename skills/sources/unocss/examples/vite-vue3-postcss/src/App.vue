@@ -5,7 +5,7 @@
       <div class="i-logos-unocss text-3xl" />
       <div class="i-logos-postcss text-3xl" />
     </div>
-    <div text-gray2 text-2xl font-medium>
+    <div text-gray2 text-2xl >
       UnoCSS + Vue + PostCSS
     </div>
     <div class="bg-[url(../src/uno.svg)] bg-[url(/uno.svg)]" h-220px w-220px />

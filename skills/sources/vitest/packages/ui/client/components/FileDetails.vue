@@ -111,16 +111,16 @@ const tags = computed(() => {
       <div p="2" h-10 flex="~ gap-2" items-center bg-header border="b base">
         <StatusIcon :state="current.result?.state" :mode="current.mode" :failed-snapshot="failedSnapshot" />
         <div v-if="isTypecheck" v-tooltip.bottom="'This is a typecheck test. It won\'t report results of the runtime tests'" class="i-logos:typescript-icon" flex-shrink-0 />
-        <span v-if="label" class="rounded-sm px-1 text-xs font-light bg-cyan-500/20 text-cyan-700 dark:text-cyan-300" flex-shrink-0>{{ label }}</span>
+        <span v-if="label" class="rounded-sm px-1 font-light bg-cyan-500/20 text-cyan-700 dark:text-cyan-300" flex-shrink-0>{{ label }}</span>
         <span
           v-if="current?.file.projectName"
-          class="rounded-full py-0.5 px-2 text-xs font-light"
+          class="rounded-full py-0.5 px-2 font-light"
           :style="{ backgroundColor: projectNameColor, color: projectNameTextColor }"
           cursor-default
         >
           {{ current.file.projectName }}
         </span>
-        <div flex-1 font-light overflow-hidden text-sm flex>
+        <div flex-1 font-light overflow-hidden  flex>
           <span op-50 truncate>
             {{ testTitle }}
           </span>
@@ -129,7 +129,7 @@ const tags = computed(() => {
             v-for="tag of tags"
             :key="tag.name"
             v-tooltip.bottom="tag.description"
-            class="rounded-full ml-2 px-2 text-xs font-light"
+            class="rounded-full ml-2 px-2 font-light"
             :style="{ backgroundColor: tag.bg, color: tag.text, border: `1px solid ${tag.border}` }"
             :title="tag.description"
             cursor-default
@@ -151,7 +151,7 @@ const tags = computed(() => {
           <DetailsHeaderButtons v-if="browserState" />
         </div>
       </div>
-      <div flex="~" items-center bg-header border="b-2 base" text-sm h-41px>
+      <div flex="~" items-center bg-header border="b-2 base"  h-41px>
         <button
           tab-button
           class="flex items-center gap-2"

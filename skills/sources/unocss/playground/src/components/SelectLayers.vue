@@ -35,7 +35,7 @@ function toggleLayer(layer: string) {
   <div h-full py-0.5>
     <Menu>
       <div w-30 h-full of-hidden border="~ main" rd-sm flex items-center px-1>
-        <div text-sm flex-1 line-clamp-1>
+        <div  flex-1 line-clamp-1>
           <span v-if="selectedLayers.length > 0" break-all>
             {{ selectedLayers.join(',') }}
           </span>
@@ -54,7 +54,7 @@ function toggleLayer(layer: string) {
             <div text-13px flex-1 line-clamp-1>
               {{ layer }}
             </div>
-            <i v-if="selectedLayers.includes(layer)" text-sm i-ri-check-fill />
+            <i v-if="selectedLayers.includes(layer)"  i-ri-check-fill />
           </li>
         </ul>
       </template>

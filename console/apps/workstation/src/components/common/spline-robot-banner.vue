@@ -184,7 +184,7 @@ onBeforeUnmount(() => {
     <Transition name="fade">
       <div
         v-if="isLoading"
-        class="pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 text-xs tracking-wider text-muted-foreground"
+        class="pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 tracking-wider text-muted-foreground"
       >
         <div
           class="size-7 animate-spin rounded-full border border-foreground/20 border-t-foreground/80"
@@ -196,7 +196,7 @@ onBeforeUnmount(() => {
     <!-- Fallback message if offline -->
     <div
       v-if="hasError"
-      class="z-20 flex flex-col items-center gap-2 px-6 text-center text-xs text-muted-foreground"
+      class="z-20 flex flex-col items-center gap-2 px-6 text-center text-muted-foreground"
     >
       <span>{{ $t('authentication.bannerOfflineScene') }}</span>
     </div>

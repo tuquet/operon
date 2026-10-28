@@ -72,7 +72,7 @@ function getStatusLabel(status: string): string {
             </div>
           </div>
 
-          <Badge variant="outline" class="shrink-0 text-xs font-normal">
+          <Badge variant="outline" class="shrink-0">
             <span
               class="mr-1.5 size-1.5 rounded-full"
               :class="getStatusDotClass(props.workflow.status)"
@@ -85,10 +85,10 @@ function getStatusLabel(status: string): string {
         <div
           class="space-y-1.5 rounded-xl border border-border/60 bg-muted/20 p-3.5"
         >
-          <div class="text-xs text-muted-foreground">
+          <div class="text-muted-foreground">
             {{ $t('page.workflows_view.description_label') }}
           </div>
-          <div class="text-sm leading-relaxed text-foreground break-words">
+          <div class="leading-relaxed text-foreground break-words">
             {{
               props.workflow.description ||
               $t('page.workflows_view.no_description')
@@ -102,11 +102,11 @@ function getStatusLabel(status: string): string {
           <div
             class="space-y-1 rounded-lg border border-border/50 bg-muted/20 p-3 sm:col-span-2"
           >
-            <div class="text-xs text-muted-foreground">
+            <div class="text-muted-foreground">
               {{ $t('page.workflows_view.workflow_id') }}
             </div>
             <div
-              class="flex items-center justify-between gap-2 text-xs text-foreground"
+              class="flex items-center justify-between gap-2 text-foreground"
             >
               <span class="break-all">{{ props.workflow.id }}</span>
               <Button
@@ -136,11 +136,11 @@ function getStatusLabel(status: string): string {
           <div
             class="space-y-1 rounded-lg border border-border/50 bg-muted/20 p-3 sm:col-span-2"
           >
-            <div class="text-xs text-muted-foreground">
+            <div class="text-muted-foreground">
               {{ $t('page.workflows_view.workspace_id') }}
             </div>
             <div
-              class="flex items-center justify-between gap-2 text-xs text-foreground"
+              class="flex items-center justify-between gap-2 text-foreground"
             >
               <span class="break-all">{{ props.workflow.tenant_id }}</span>
               <Button
@@ -169,10 +169,10 @@ function getStatusLabel(status: string): string {
           <div
             class="space-y-1 rounded-lg border border-border/50 bg-muted/20 p-3"
           >
-            <div class="text-xs text-muted-foreground">
+            <div class="text-muted-foreground">
               {{ $t('page.workflows_view.col_created_at') }}
             </div>
-            <div class="text-xs font-medium text-foreground">
+            <div class="text-foreground">
               {{ formatDate(props.workflow.created_at) }}
             </div>
           </div>
@@ -181,10 +181,10 @@ function getStatusLabel(status: string): string {
           <div
             class="space-y-1 rounded-lg border border-border/50 bg-muted/20 p-3"
           >
-            <div class="text-xs text-muted-foreground">
+            <div class="text-muted-foreground">
               {{ $t('page.workflows_view.col_updated_at') }}
             </div>
-            <div class="text-xs font-medium text-foreground">
+            <div class="text-foreground">
               {{ formatDate(props.workflow.updated_at) }}
             </div>
           </div>

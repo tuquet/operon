@@ -204,7 +204,7 @@ onMounted(async () => {
   >
     <div v-if="loading" class="space-y-4">
       <Spinner class="mx-auto size-8 text-primary" />
-      <p class="text-muted-foreground text-sm">
+      <p class="text-muted-foreground">
         {{ $t('authentication.githubVerifying') }}
       </p>
     </div>
@@ -222,16 +222,14 @@ onMounted(async () => {
           <h2 class="text-xl font-bold tracking-tight text-foreground">
             {{ $t('authentication.desktopAuthorizedTitle') }}
           </h2>
-          <p
-            class="text-xs text-muted-foreground leading-relaxed max-w-xs mx-auto"
-          >
+          <p class="text-muted-foreground leading-relaxed max-w-xs mx-auto">
             {{ $t('authentication.desktopAuthorizedDesc') }}
           </p>
         </div>
 
         <div class="space-y-3 pt-2">
           <Button
-            class="w-full h-10 font-medium flex items-center justify-center gap-2"
+            class="w-full h-10 flex items-center justify-center gap-2"
             @click="handleOpenDesktop"
           >
             <ExternalLink class="size-4" />
@@ -240,7 +238,7 @@ onMounted(async () => {
 
           <Button
             variant="outline"
-            class="w-full h-10 font-medium flex items-center justify-center gap-2"
+            class="w-full h-10 flex items-center justify-center gap-2"
             @click="handleCopyToken"
           >
             <Copy class="size-4" />
@@ -256,7 +254,7 @@ onMounted(async () => {
           <Button
             variant="ghost"
             size="sm"
-            class="text-xs text-muted-foreground hover:text-foreground"
+            class="text-muted-foreground hover:text-foreground"
             @click="handleContinueOnWeb"
           >
             {{ $t('authentication.continueOnWeb') }} &rarr;
@@ -271,7 +269,7 @@ onMounted(async () => {
       <h3 class="text-lg font-semibold text-destructive">
         {{ $t('authentication.githubAuthFailed') }}
       </h3>
-      <p class="text-muted-foreground text-xs">
+      <p class="text-muted-foreground">
         {{ errorMessage }}
       </p>
       <div class="pt-2">

@@ -56,12 +56,10 @@ function handleOpenAuthBridge() {
         >
           <div class="flex items-center gap-2">
             <Terminal class="size-4 text-primary shrink-0" />
-            <span class="text-sm font-medium text-foreground">
+            <span class="text-foreground">
               {{ $t('page.fleet_view.metric_loopback_port') }}
             </span>
-            <Badge variant="outline" class="text-xs">
-              :{{ props.loopbackPort }}
-            </Badge>
+            <Badge variant="outline"> :{{ props.loopbackPort }} </Badge>
           </div>
           <div class="flex items-center gap-2">
             <Badge
@@ -81,7 +79,7 @@ function handleOpenAuthBridge() {
             <Button
               variant="outline"
               size="sm"
-              class="flex items-center gap-1 h-7 px-2 text-xs"
+              class="flex items-center gap-1 h-7 px-2"
               :disabled="props.probing"
               @click="emit('reprobe')"
             >
@@ -98,15 +96,15 @@ function handleOpenAuthBridge() {
         <div class="space-y-2">
           <div class="flex items-center gap-2">
             <span
-              class="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary"
+              class="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/10 font-bold text-primary"
             >
               1
             </span>
-            <span class="text-sm font-semibold text-foreground">
+            <span class="font-semibold text-foreground">
               {{ $t('page.automation_view.connect_step1_title') }}
             </span>
           </div>
-          <p class="text-xs text-muted-foreground ml-7">
+          <p class="text-muted-foreground ml-7">
             {{ $t('page.automation_view.connect_step1_desc') }}
           </p>
           <div class="ml-7">
@@ -122,15 +120,15 @@ function handleOpenAuthBridge() {
         <div class="space-y-2">
           <div class="flex items-center gap-2">
             <span
-              class="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary"
+              class="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/10 font-bold text-primary"
             >
               2
             </span>
-            <span class="text-sm font-semibold text-foreground">
+            <span class="font-semibold text-foreground">
               {{ $t('page.automation_view.connect_step2_title') }}
             </span>
           </div>
-          <p class="text-xs text-muted-foreground ml-7">
+          <p class="text-muted-foreground ml-7">
             {{ $t('page.automation_view.connect_step2_desc') }}
           </p>
           <div class="ml-7">
@@ -146,7 +144,7 @@ function handleOpenAuthBridge() {
 
         <!-- Footer Note -->
         <Alert class="rounded-lg border-border bg-muted/50 p-3">
-          <AlertDescription class="text-xs text-muted-foreground">
+          <AlertDescription class="text-muted-foreground">
             <strong class="text-foreground"
               >{{ $t('page.automation_view.tip_label') }}:</strong
             >

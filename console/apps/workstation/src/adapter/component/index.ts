@@ -258,7 +258,7 @@ export interface ComponentPropsMap {
   Upload: Record<string, any>;
 }
 
-const INPUT_DEFAULT_CLASS = 'h-9 bg-background/90 text-xs shadow-2xs';
+const INPUT_DEFAULT_CLASS = 'h-9 bg-background/90 shadow-2xs';
 
 async function initComponentAdapter() {
   const components: Partial<Record<ComponentType, Component>> = {
@@ -349,7 +349,7 @@ async function initComponentAdapter() {
             SelectTrigger,
             {
               class:
-                'h-9 w-full bg-background/90 text-xs shadow-2xs transition-colors hover:bg-accent/40',
+                'h-9 w-full bg-background/90 shadow-2xs transition-colors hover:bg-accent/40',
             },
             () => h(SelectValue, { placeholder }),
           ),
@@ -363,7 +363,7 @@ async function initComponentAdapter() {
                 h(
                   SelectItem,
                   {
-                    class: 'text-xs cursor-pointer',
+                    class: 'cursor-pointer',
                     disabled: opt.disabled,
                     key: String(opt.value),
                     value: String(opt.value),
@@ -381,7 +381,7 @@ async function initComponentAdapter() {
     Textarea: withDefaultPlaceholder(
       Textarea,
       'input',
-      'bg-background/90 text-xs shadow-2xs',
+      'bg-background/90 shadow-2xs',
     ),
     TimePicker: FallbackComponent,
     TreeSelect: FallbackComponent,

@@ -28,7 +28,7 @@ onMounted(() => {
   <section class="relative py-20 md:py-28">
     <UContainer>
       <div class="text-center mb-14">
-        <p class="text-xs font-mono uppercase tracking-widest text-primary mb-3 flex items-center justify-center gap-2">
+        <p class=" uppercase tracking-widest text-primary mb-3 flex items-center justify-center gap-2">
           <span class="inline-block w-1 h-1 rounded-full bg-primary" />
           {{ headline || 'Performance' }}
         </p>
@@ -52,15 +52,15 @@ onMounted(() => {
             </div>
 
             <div class="flex items-baseline gap-1.5 mb-1">
-              <span class="text-2xl font-bold text-neutral-900 dark:text-white font-mono">{{ metric.value }}</span>
-              <span class="text-sm text-neutral-400 font-mono">{{ metric.unit }}</span>
+              <span class="text-2xl font-bold text-neutral-900 dark:text-white ">{{ metric.value }}</span>
+              <span class=" text-neutral-400 ">{{ metric.unit }}</span>
             </div>
 
-            <p class="text-sm font-medium text-neutral-600 dark:text-neutral-300 mb-3">
+            <p class="  text-neutral-600 dark:text-neutral-300 mb-3">
               {{ metric.label }}
             </p>
 
-            <p class="text-xs text-neutral-400 dark:text-neutral-500 mb-3 leading-relaxed">
+            <p class="text-neutral-400 dark:text-neutral-500 mb-3 leading-relaxed">
               {{ metric.description }}
             </p>
 

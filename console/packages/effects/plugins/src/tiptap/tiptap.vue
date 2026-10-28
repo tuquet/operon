@@ -197,7 +197,7 @@ onBeforeUnmount(() => {
                 variant="ghost"
               >
                 <template v-if="action.triggerText">
-                  <span class="text-xs font-semibold tracking-wide">
+                  <span class="font-semibold tracking-wide">
                     {{
                       typeof action.triggerText === 'function'
                         ? action.triggerText(editor)
@@ -258,7 +258,7 @@ onBeforeUnmount(() => {
                 variant="ghost"
                 @click="handleMenuItemClick(action, item)"
               >
-                <span class="w-7 text-xs font-semibold tracking-wide">
+                <span class="w-7 font-semibold tracking-wide">
                   {{ item.shortLabel }}
                 </span>
                 <span class="flex-1">{{ item.label }}</span>

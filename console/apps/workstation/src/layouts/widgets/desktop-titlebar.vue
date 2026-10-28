@@ -39,7 +39,7 @@ onUnmounted(() => {
 
 <template>
   <header
-    class="flex h-9 w-full select-none items-center justify-between border-b border-border/60 bg-background/95 px-3 text-xs text-foreground backdrop-blur z-50 shrink-0"
+    class="flex h-9 w-full select-none items-center justify-between border-b border-border/60 bg-background/95 px-3 text-foreground backdrop-blur z-50 shrink-0"
     data-tauri-drag-region
     @dblclick="handleToggleMaximize"
   >
@@ -66,13 +66,13 @@ onUnmounted(() => {
         <circle cx="254" cy="164" r="6" fill="#FFFFFF" />
       </svg>
       <span
-        class="font-semibold text-xs tracking-tight text-foreground"
+        class="font-semibold tracking-tight text-foreground"
         data-tauri-drag-region
       >
         Admin
       </span>
       <span
-        class="rounded-sm bg-muted px-1.5 py-0.5 text-2xs text-muted-foreground font-medium"
+        class="rounded-sm bg-muted px-1.5 py-0.5 text-muted-foreground"
         data-tauri-drag-region
       >
         Desktop

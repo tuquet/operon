@@ -774,8 +774,8 @@ unocss .scope-\[unocss\]\:block{display:block;}
 .group:where(:placeholder-shown) .group-where-placeholder-shown\:text-4xl{font-size:2.25rem;line-height:2.5rem;}
 .text-base{font-size:1rem;line-height:1.5rem;}
 .text-lg{font-size:1.125rem;line-height:1.75rem;}
-.text-sm\/\[10px\]{font-size:0.875rem;line-height:10px;}
-.text-sm\/3{font-size:0.875rem;line-height:0.75rem;}
+.\/\[10px\]{font-size:0.875rem;line-height:10px;}
+.\/3{font-size:0.875rem;line-height:0.75rem;}
 .peer:is(:placeholder-shown)~.peer-is-placeholder-shown\:text-3xl,
 .peer:not(:placeholder-shown)~.peer-not-placeholder-shown\:text-3xl{font-size:1.875rem;line-height:2.25rem;}
 .peer:not(:placeholder-shown)~.peer-not-placeholder-shown\:text-2xl{font-size:1.5rem;line-height:2rem;}
@@ -893,7 +893,7 @@ unocss .scope-\[unocss\]\:block{display:block;}
 .group\/named[aria-level="1"] .group-aria-\[level\=\"1\"\]\/named\:font-21,
 .parent\/named[aria-level="3"]>.parent-aria-\[level\=\"3\"\]\/named\:font-21,
 .peer\/named[aria-level="2"]~.peer-aria-\[level\=\"2\"\]\/named\:font-21{font-weight:21;}
-.group\/named[data-state=open] .group-data-\[state\=open\]\/named\:font-medium{font-weight:500;}
+.group\/named[data-state=open] .group-data-\[state\=open\]\/named\:{font-weight:500;}
 .has-aria-\[hidden\=false\]\:font-20:has([aria-hidden=false]){font-weight:20;}
 .group:hover .group-hover\:font-10{font-weight:10;}
 .group\/label:hover .group-hover\/label\:font-15{font-weight:15;}
@@ -927,7 +927,7 @@ unocss .scope-\[unocss\]\:block{display:block;}
 .font-\[system-ui\]{font-family:system-ui;}
 .font-\$font-name{font-family:var(--font-name);}
 .font-inherit{font-family:inherit;}
-.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
+.{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
 .case-upper{text-transform:uppercase;}
 .case-normal{text-transform:none;}
 .case-inherit{text-transform:inherit;}
@@ -1153,7 +1153,7 @@ unocss .scope-\[unocss\]\:block{display:block;}
 .dark\:not-odd\:text-red:not(:nth-child(odd)){--un-text-opacity:1;color:rgb(248 113 113 / var(--un-text-opacity));}
 }
 @media (prefers-color-scheme: light){
-.light\:text-sm{font-size:0.875rem;line-height:1.25rem;}
+.light\:{font-size:0.875rem;line-height:1.25rem;}
 }
 @media print{
 .print\:block{display:block;}

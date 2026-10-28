@@ -50,42 +50,42 @@ const form = props.productForm;
         <DialogTitle class="text-base font-semibold">
           {{ $t('page.commerce_view.upsert_product_modal_title') }}
         </DialogTitle>
-        <DialogDescription class="text-xs text-muted-foreground">
+        <DialogDescription class="text-muted-foreground">
           {{ $t('page.commerce_view.upsert_product_modal_desc') }}
         </DialogDescription>
       </DialogHeader>
 
       <div class="grid grid-cols-1 gap-3 py-2 sm:grid-cols-2">
         <div class="space-y-1 sm:col-span-2">
-          <Label class="text-xs font-medium text-foreground">
+          <Label class="text-foreground">
             {{ $t('page.commerce_view.product_name_label') }}
           </Label>
           <Input
             v-model="form.name"
             type="text"
             :placeholder="$t('page.commerce_view.product_name_placeholder')"
-            class="h-8 text-xs"
+            class="h-8"
           />
         </div>
 
         <div class="space-y-1">
-          <Label class="text-xs font-medium text-foreground">
+          <Label class="text-foreground">
             {{ $t('page.commerce_view.product_slug_label') }}
           </Label>
           <Input
             v-model="form.slug"
             type="text"
             placeholder="via-co-2fa"
-            class="h-8 text-xs"
+            class="h-8"
           />
         </div>
 
         <div class="space-y-1">
-          <Label class="text-xs font-medium text-foreground">
+          <Label class="text-foreground">
             {{ $t('page.commerce_view.product_type_label') }}
           </Label>
           <Select v-model="form.product_type">
-            <SelectTrigger class="h-8 w-full text-xs">
+            <SelectTrigger class="h-8 w-full">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -106,11 +106,11 @@ const form = props.productForm;
         </div>
 
         <div class="space-y-1">
-          <Label class="text-xs font-medium text-foreground">
+          <Label class="text-foreground">
             {{ $t('page.commerce_view.visibility_mode_label') }}
           </Label>
           <Select v-model="form.visibility">
-            <SelectTrigger class="h-8 w-full text-xs">
+            <SelectTrigger class="h-8 w-full">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -128,11 +128,11 @@ const form = props.productForm;
         </div>
 
         <div class="space-y-1">
-          <Label class="text-xs font-medium text-foreground">
+          <Label class="text-foreground">
             {{ $t('page.commerce_view.stock_mode_label') }}
           </Label>
           <Select v-model="form.stock_mode">
-            <SelectTrigger class="h-8 w-full text-xs">
+            <SelectTrigger class="h-8 w-full">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -150,38 +150,38 @@ const form = props.productForm;
         </div>
 
         <div class="space-y-1">
-          <Label class="text-xs font-medium text-foreground">
+          <Label class="text-foreground">
             {{ $t('page.commerce_view.sku_code_label') }}
           </Label>
           <Input
             v-model="form.sku"
             type="text"
             placeholder="VIA-2FA-01"
-            class="h-8 text-xs"
+            class="h-8"
           />
         </div>
 
         <div class="space-y-1">
-          <Label class="text-xs font-medium text-foreground">
+          <Label class="text-foreground">
             {{ $t('page.commerce_view.unit_price_xu_label') }}
           </Label>
           <Input
             v-model.number="form.price_credits"
             type="number"
             min="0"
-            class="h-8 text-xs"
+            class="h-8"
           />
         </div>
 
         <div class="space-y-1 sm:col-span-2">
-          <Label class="text-xs font-medium text-foreground">
+          <Label class="text-foreground">
             {{ $t('page.commerce_view.short_desc_label') }}
           </Label>
           <Input
             v-model="form.short_description"
             type="text"
             :placeholder="$t('page.commerce_view.short_desc_placeholder')"
-            class="h-8 text-xs"
+            class="h-8"
           />
         </div>
       </div>

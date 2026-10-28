@@ -121,14 +121,14 @@ defineExpose({
             ref="searchInputRef"
             v-model="keyword"
             :placeholder="$t('ui.widgets.search.searchNavigate')"
-            class="h-8 w-[80%] border-none bg-transparent px-2.5 py-1 text-sm font-normal shadow-none outline-hidden focus-visible:ring-0 focus-visible:ring-transparent"
+            class="h-8 w-[80%] border-none bg-transparent px-2.5 py-1 shadow-none outline-hidden focus-visible:ring-0 focus-visible:ring-transparent"
           />
         </div>
       </template>
 
       <SearchPanel :keyword="keyword" :menus="menus" @close="handleClose" />
       <template #footer>
-        <div class="flex w-full justify-start text-xs">
+        <div class="flex w-full justify-start">
           <div class="mr-2 flex items-center">
             <CornerDownLeft class="mr-1 size-3" />
             {{ $t('ui.widgets.search.select') }}
@@ -154,13 +154,13 @@ defineExpose({
         class="size-4 text-muted-foreground group-hover:text-foreground group-hover:opacity-100"
       />
       <span
-        class="hidden text-xs text-muted-foreground duration-300 group-hover:text-foreground md:block"
+        class="hidden text-muted-foreground duration-300 group-hover:text-foreground md:block"
       >
         {{ $t('ui.widgets.search.title') }}
       </span>
       <Kbd
         v-if="enableShortcutKey"
-        class="hidden rounded-sm rounded-r-xl bg-background px-1.5 py-1 text-xs leading-none text-muted-foreground group-hover:text-foreground md:inline-flex"
+        class="hidden rounded-sm rounded-r-xl bg-background px-1.5 py-1 leading-none text-muted-foreground group-hover:text-foreground md:inline-flex"
       >
         {{ isWindowsOs() ? 'Ctrl' : '⌘' }} K
       </Kbd>

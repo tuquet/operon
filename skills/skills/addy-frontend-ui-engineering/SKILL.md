@@ -239,8 +239,8 @@ function TaskList({ tasks }: { tasks: Task[] }) {
     return (
       <div role="status" className="text-center py-12">
         <TasksEmptyIcon className="mx-auto h-12 w-12 text-muted" />
-        <h3 className="mt-2 text-sm font-medium">No tasks</h3>
-        <p className="mt-1 text-sm text-muted">Get started by creating a new task.</p>
+        <h3 className="mt-2  ">No tasks</h3>
+        <p className="mt-1  text-muted">Get started by creating a new task.</p>
         <Button className="mt-4" onClick={onCreateTask}>Create Task</Button>
       </div>
     );

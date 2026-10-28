@@ -68,7 +68,7 @@ input {
 
 .btn {
   @apply py-2 px-4 bg-dark-100 rounded
-    text-center font-medium uppercase text-white
+    text-center  uppercase text-white
     focus:outline-none focus:ring
     disabled:opacity-60 disabled:cursor-not-allowed;
 }

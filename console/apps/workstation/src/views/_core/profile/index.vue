@@ -179,13 +179,13 @@ onMounted(async () => {
         <ArrowLeft class="size-4" />
       </Button>
       <Breadcrumb>
-        <BreadcrumbList class="text-xs">
+        <BreadcrumbList>
           <BreadcrumbItem>
             <span>{{ $t('profile.settingsBreadcrumb') }}</span>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage class="font-medium">
+            <BreadcrumbPage class="">
               {{ $t('profile.personalProfile') }}
             </BreadcrumbPage>
           </BreadcrumbItem>
@@ -216,27 +216,25 @@ onMounted(async () => {
             </h1>
             <Badge
               variant="outline"
-              class="bg-primary/10 text-primary border-primary/30 text-xs font-medium"
+              class="bg-primary/10 text-primary border-primary/30"
             >
               {{ $t('profile.superAdminBadge') }}
             </Badge>
             <Badge
               variant="outline"
-              class="bg-success/10 text-success border-success/30 text-xs"
+              class="bg-success/10 text-success border-success/30"
             >
               {{ $t('common.active') }}
             </Badge>
           </div>
 
-          <div
-            class="flex flex-wrap items-center gap-3 text-xs text-muted-foreground"
-          >
+          <div class="flex flex-wrap items-center gap-3 text-muted-foreground">
             <span class="flex items-center gap-1">
               <Mail class="size-3.5" />
               <span>{{ email }}</span>
             </span>
             <span class="hidden sm:inline">•</span>
-            <span class="flex items-center gap-1 font-mono">
+            <span class="flex items-center gap-1">
               UID: {{ userId.slice(0, 12) }}...
               <Button
                 type="button"
@@ -289,7 +287,7 @@ onMounted(async () => {
               <h3 class="text-base font-semibold text-foreground">
                 {{ $t('profile.personalProfile') }}
               </h3>
-              <p class="text-xs text-muted-foreground">
+              <p class="text-muted-foreground">
                 {{ $t('profile.personalProfileDesc') }}
               </p>
             </div>
@@ -323,7 +321,7 @@ onMounted(async () => {
                       </InputGroupAddon>
                       <InputGroupInput :model-value="email" disabled />
                     </InputGroup>
-                    <p class="text-xs text-muted-foreground">
+                    <p class="text-muted-foreground">
                       {{ $t('profile.loginEmailHint') }}
                     </p>
                   </div>
@@ -377,7 +375,7 @@ onMounted(async () => {
               <h3 class="text-base font-semibold text-foreground">
                 {{ $t('profile.changePasswordTitle') }}
               </h3>
-              <p class="text-xs text-muted-foreground">
+              <p class="text-muted-foreground">
                 {{ $t('profile.changePasswordDesc') }}
               </p>
             </div>
@@ -441,7 +439,7 @@ onMounted(async () => {
 
             <!-- Security Overview Cards -->
             <div class="border-t border-border/40 pt-5 space-y-4">
-              <h4 class="text-sm font-semibold text-foreground">
+              <h4 class="font-semibold text-foreground">
                 {{ $t('profile.securityStatusTitle') }}
               </h4>
 
@@ -455,10 +453,10 @@ onMounted(async () => {
                     <ShieldCheck class="size-5" />
                   </div>
                   <div>
-                    <div class="text-sm font-medium text-foreground">
+                    <div class="text-foreground">
                       {{ $t('profile.mfaTitle') }}
                     </div>
-                    <div class="text-xs text-muted-foreground">
+                    <div class="text-muted-foreground">
                       {{ $t('profile.mfaDesc') }}
                     </div>
                   </div>
@@ -481,10 +479,10 @@ onMounted(async () => {
                     <CheckCircle2 class="size-5" />
                   </div>
                   <div>
-                    <div class="text-sm font-medium text-foreground">
+                    <div class="text-foreground">
                       {{ $t('profile.sessionTitle') }}
                     </div>
-                    <div class="text-xs text-muted-foreground">
+                    <div class="text-muted-foreground">
                       {{ $t('profile.sessionDesc') }}
                     </div>
                   </div>
@@ -507,7 +505,7 @@ onMounted(async () => {
               <h3 class="text-base font-semibold text-foreground">
                 {{ $t('profile.activeWorkspaceTitle') }}
               </h3>
-              <p class="text-xs text-muted-foreground">
+              <p class="text-muted-foreground">
                 {{ $t('profile.activeWorkspaceDesc') }}
               </p>
             </div>
@@ -524,12 +522,12 @@ onMounted(async () => {
                 </div>
                 <Badge
                   variant="outline"
-                  class="bg-primary/10 text-primary border-primary/30 text-xs"
+                  class="bg-primary/10 text-primary border-primary/30"
                 >
                   {{ $t('common.active') }}
                 </Badge>
               </div>
-              <div class="text-xs text-muted-foreground font-mono">
+              <div class="text-muted-foreground">
                 ID: {{ activeTenantId || $t('profile.noWorkspaceSelected') }}
               </div>
               <div class="pt-2">

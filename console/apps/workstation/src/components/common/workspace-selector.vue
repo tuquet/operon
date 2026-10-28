@@ -136,7 +136,7 @@ async function handleCreateWorkspace() {
           :title="activeWorkspace?.name || $t('page.workspace.not_selected')"
         >
           <div
-            class="flex size-8 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 text-xs font-bold text-primary shadow-2xs transition-transform hover:scale-105"
+            class="flex size-8 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 font-bold text-primary shadow-2xs transition-transform hover:scale-105"
           >
             <Building2
               v-if="!activeWorkspace?.name"
@@ -154,12 +154,12 @@ async function handleCreateWorkspace() {
           type="button"
           variant="ghost"
           data-testid="workspace-selector-trigger"
-          class="group flex size-full h-auto items-center justify-between gap-2.5 rounded-none px-3 py-2 text-left font-normal transition-colors hover:bg-accent/40 focus-visible:outline-none"
+          class="group flex size-full h-auto items-center justify-between gap-2.5 rounded-none px-3 py-2 text-left transition-colors hover:bg-accent/40 focus-visible:outline-none"
         >
           <!-- Workspace Avatar / Initial icon -->
           <div class="flex items-center gap-2.5 min-w-0">
             <div
-              class="flex size-7.5 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 text-xs font-bold text-primary shadow-2xs"
+              class="flex size-7.5 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 font-bold text-primary shadow-2xs"
             >
               <Building2
                 v-if="!activeWorkspace?.name"
@@ -172,17 +172,17 @@ async function handleCreateWorkspace() {
 
             <!-- Workspace Name and Plan label -->
             <div class="flex flex-col min-w-0 leading-tight">
-              <span class="truncate font-semibold text-xs text-foreground">
+              <span class="truncate font-semibold text-foreground">
                 {{ activeWorkspace?.name || $t('page.workspace.not_selected') }}
               </span>
               <div class="flex items-center gap-1.5 mt-0.5">
-                <span class="truncate text-2xs text-muted-foreground">
+                <span class="truncate text-muted-foreground">
                   {{ activeWorkspace?.slug || 'workspace' }}
                 </span>
                 <Badge
                   v-if="activeWorkspace?.metadata?.plan"
                   variant="secondary"
-                  class="rounded-xs px-1 py-0 text-2xs font-medium text-muted-foreground capitalize"
+                  class="rounded-xs px-1 py-0 text-muted-foreground capitalize"
                 >
                   {{ activeWorkspace.metadata.plan }}
                 </Badge>
@@ -210,14 +210,14 @@ async function handleCreateWorkspace() {
             type="text"
             data-testid="workspace-search-input"
             :placeholder="$t('page.workspace.selector_search')"
-            class="h-6 w-full border-0 bg-transparent px-2.5 py-1 text-xs shadow-none focus-visible:ring-0 placeholder:text-muted-foreground text-foreground"
+            class="h-6 w-full border-0 bg-transparent px-2.5 py-1 shadow-none focus-visible:ring-0 placeholder:text-muted-foreground text-foreground"
           />
         </div>
 
         <!-- Workspaces List -->
         <div class="max-h-60 overflow-y-auto p-1.5 space-y-0.5">
           <div
-            class="px-2 py-1 text-2xs font-semibold uppercase tracking-wider text-muted-foreground"
+            class="px-2 py-1 font-semibold uppercase tracking-wider text-muted-foreground"
           >
             {{ $t('page.workspace.tenants_label') }}
           </div>
@@ -227,33 +227,30 @@ async function handleCreateWorkspace() {
             :key="ws.id"
             type="button"
             variant="ghost"
-            class="flex h-auto w-full items-center justify-between rounded-sm px-2 py-1.5 text-left text-xs font-normal transition-colors"
+            class="flex h-auto w-full items-center justify-between rounded-sm px-2 py-1.5 text-left transition-colors"
             :class="
               ws.id === activeWorkspace?.id
-                ? 'bg-accent font-medium text-accent-foreground'
+                ? 'bg-accent  text-accent-foreground'
                 : 'hover:bg-muted/70 text-foreground'
             "
             @click="handleSelectWorkspace(ws)"
           >
             <div class="flex items-center gap-2 min-w-0">
               <div
-                class="flex size-6 shrink-0 items-center justify-center rounded-sm border border-border/60 bg-muted/60 text-2xs font-semibold text-foreground"
+                class="flex size-6 shrink-0 items-center justify-center rounded-sm border border-border/60 bg-muted/60 font-semibold text-foreground"
               >
                 {{ ws.name.charAt(0).toUpperCase() }}
               </div>
               <div class="flex flex-col min-w-0 leading-tight">
-                <span class="truncate font-medium">{{ ws.name }}</span>
-                <span class="truncate text-2xs text-muted-foreground">
+                <span class="truncate">{{ ws.name }}</span>
+                <span class="truncate text-muted-foreground">
                   {{ ws.slug }}
                 </span>
               </div>
             </div>
 
             <div class="flex items-center gap-1.5 shrink-0 ml-2">
-              <Badge
-                variant="outline"
-                class="text-2xs px-1 py-0 font-normal capitalize"
-              >
+              <Badge variant="outline" class="px-1 py-0 capitalize">
                 {{ ws.metadata?.plan || 'Pro' }}
               </Badge>
               <Check
@@ -268,7 +265,7 @@ async function handleCreateWorkspace() {
             class="border-none py-5"
           >
             <EmptyHeader>
-              <EmptyDescription class="text-xs">
+              <EmptyDescription>
                 {{ $t('page.workspace.no_workspaces_found') }}
               </EmptyDescription>
             </EmptyHeader>
@@ -280,7 +277,7 @@ async function handleCreateWorkspace() {
           <Button
             type="button"
             variant="ghost"
-            class="flex h-auto w-full items-center justify-start gap-2 rounded-sm px-2 py-1.5 text-left text-xs font-normal text-foreground transition-colors hover:bg-muted/70"
+            class="flex h-auto w-full items-center justify-start gap-2 rounded-sm px-2 py-1.5 text-left text-foreground transition-colors hover:bg-muted/70"
             @click="handleManageWorkspaces"
           >
             <Settings class="size-3.5 text-muted-foreground" />
@@ -289,7 +286,7 @@ async function handleCreateWorkspace() {
           <Button
             type="button"
             variant="ghost"
-            class="flex h-auto w-full items-center justify-start gap-2 rounded-sm px-2 py-1.5 text-left text-xs font-medium text-primary transition-colors hover:bg-primary/10 hover:text-primary"
+            class="flex h-auto w-full items-center justify-start gap-2 rounded-sm px-2 py-1.5 text-left text-primary transition-colors hover:bg-primary/10 hover:text-primary"
             @click="openCreateModal"
           >
             <Plus class="size-3.5" />
@@ -308,30 +305,30 @@ async function handleCreateWorkspace() {
 
         <div class="grid gap-3.5 py-3">
           <div class="grid gap-1.5">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.workspace.col_name') }}
             </Label>
             <Input
               :value="newWorkspaceName"
               placeholder="e.g. Acme Corp"
-              class="h-9 text-xs"
+              class="h-9"
               @input="handleNameInput"
             />
           </div>
 
           <div class="grid gap-1.5">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.workspace.col_slug') }}
             </Label>
             <Input
               v-model="newWorkspaceSlug"
               placeholder="e.g. acme-corp"
-              class="h-9 text-xs font-mono"
+              class="h-9"
             />
           </div>
 
           <div class="grid gap-1.5">
-            <Label class="text-xs font-medium text-foreground">
+            <Label class="text-foreground">
               {{ $t('page.workspace.col_plan') }}
             </Label>
             <div class="grid grid-cols-3 gap-2">
@@ -344,7 +341,7 @@ async function handleCreateWorkspace() {
                 :key="plan"
                 type="button"
                 variant="outline"
-                class="h-auto rounded-md border p-2 text-center text-xs font-medium transition-colors capitalize"
+                class="h-auto rounded-md border p-2 text-center transition-colors capitalize"
                 :class="
                   newWorkspacePlan === plan
                     ? 'border-primary bg-primary/10 text-primary hover:bg-primary/15'

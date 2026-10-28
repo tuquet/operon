@@ -51,7 +51,7 @@ onUnmounted(() => {
       class="flex flex-col md:col-span-2 p-10 gap-5 justify-center text-center md:text-left"
     >
       <h2
-        class="text-white text-[10vw] md:text-[min(8vw,7rem)] xxl:text-8xl font-semibold font-mono tracking-tight"
+        class="text-white text-[10vw] md:text-[min(8vw,7rem)] xxl:text-8xl font-semibold  tracking-tight"
       >
         {{ formattedCountdown }}
       </h2>

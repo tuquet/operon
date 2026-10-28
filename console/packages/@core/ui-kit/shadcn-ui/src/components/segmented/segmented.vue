@@ -54,7 +54,7 @@ function activeClass(tab: string): string[] {
         <TabsTrigger
           :value="tab.value"
           :class="activeClass(tab.value)"
-          class="hover:text-primary z-20 size-full inline-flex items-center justify-center rounded-md text-sm font-medium whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 py-1.5"
+          class="hover:text-primary z-20 size-full inline-flex items-center justify-center rounded-md whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 py-1.5"
         >
           <VbenTooltip :delay-duration="150" side="bottom">
             <template #trigger>

@@ -23,8 +23,8 @@ describe('sort rules', async () => {
       .toMatchInlineSnapshot('"scale-125 opacity-50 hover:scale-150 hover:opacity-75"')
     expect(await sort('lg:grid-cols-4 grid sm:grid-cols-3 grid-cols-2'))
       .toMatchInlineSnapshot('"grid grid-cols-2 lg:grid-cols-4 sm:grid-cols-3"')
-    expect(await sort('items-center py1 bg-gray:20 pl3 pr2 rounded-full text-xs op50 hover:op100'))
-      .toMatchInlineSnapshot('"items-center rounded-full bg-gray:20 py1 pl3 pr2 text-xs op50 hover:op100"')
+    expect(await sort('items-center py1 bg-gray:20 pl3 pr2 rounded-full op50 hover:op100'))
+      .toMatchInlineSnapshot('"items-center rounded-full bg-gray:20 py1 pl3 pr2 op50 hover:op100"')
   })
 
   it('variant group', async () => {

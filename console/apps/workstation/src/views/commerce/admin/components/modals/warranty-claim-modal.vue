@@ -58,15 +58,13 @@ function handleSubmit() {
         <DialogTitle class="text-base font-semibold">
           {{ $t('page.commerce_view.warranty_claim_title') }}
         </DialogTitle>
-        <DialogDescription class="text-xs text-muted-foreground">
+        <DialogDescription class="text-muted-foreground">
           {{ $t('page.commerce_view.warranty_claim_desc') }}
         </DialogDescription>
       </DialogHeader>
 
       <div class="space-y-3 py-2">
-        <div
-          class="rounded-lg border border-border/60 bg-muted/30 p-2.5 text-xs"
-        >
+        <div class="rounded-lg border border-border/60 bg-muted/30 p-2.5">
           <div class="flex justify-between py-0.5">
             <span class="text-muted-foreground"
               >{{ $t('common.orderCode') }}:</span
@@ -86,10 +84,10 @@ function handleSubmit() {
         </div>
 
         <div class="space-y-1">
-          <Label class="text-xs font-medium text-foreground">
+          <Label class="text-foreground">
             {{ $t('page.commerce_view.warranty_reason_label') }}
           </Label>
-          <Input v-model="claimReason" type="text" class="h-8 text-xs" />
+          <Input v-model="claimReason" type="text" class="h-8" />
         </div>
       </div>
 

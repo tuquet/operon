@@ -64,7 +64,6 @@
     "@changesets/changelog-github": "catalog:",
     "@changesets/cli": "catalog:",
     "@eslint-community/eslint-plugin-eslint-comments": "catalog:",
-    "@tsdown/css": "catalog:",
     "@operon/commitlint-config": "workspace:*",
     "@operon/eslint-config": "workspace:*",
     "@operon/oxfmt-config": "workspace:*",
@@ -75,6 +74,7 @@
     "@operon/turbo-run": "workspace:*",
     "@operon/vite-config": "workspace:*",
     "@operon/vsh": "workspace:*",
+    "@tsdown/css": "catalog:",
     "@types/node": "catalog:",
     "@vitejs/plugin-vue": "catalog:",
     "@vitejs/plugin-vue-jsx": "catalog:",
@@ -105,4 +105,3 @@
   },
   "packageManager": "pnpm@11.16.0"
 }
-

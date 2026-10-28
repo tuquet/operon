@@ -9,10 +9,6 @@ description: Creates specs before coding. Use when starting a new project, featu
 
 Write a structured specification before writing any code. The spec is the shared source of truth between you and the human engineer — it defines what we're building, why, and how we'll know it's done. Code without a spec is guessing.
 
-> [!CAUTION]
-> **Documentation & Spec Authority Invariant (Anti-Hallucination):**
-> If a requested feature, parameter, flag, schema, or endpoint does not exist in official documentation (`docs/`) or approved SPECs, agents **MUST NEVER hallucinate or write speculative code**. You are **CONTRACTUALLY REQUIRED to report the discrepancy as a P0 / CRITICAL ISSUE ALERT** and seek explicit confirmation before writing any code.
-
 ## When to Use
 
 - Starting a new project or feature

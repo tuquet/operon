@@ -126,7 +126,7 @@ defineExpose({
 
       <span
         v-if="showForgetPassword"
-        class="vben-link text-sm font-normal"
+        class="vben-link"
         @click="handleGo(forgetPasswordPath)"
       >
         {{ $t('authentication.forgetPassword') }}
@@ -172,12 +172,9 @@ defineExpose({
     </slot>
 
     <slot name="to-register">
-      <div v-if="showRegister" class="mt-3 text-center text-sm">
+      <div v-if="showRegister" class="mt-3 text-center">
         {{ $t('authentication.accountTip') }}
-        <span
-          class="vben-link text-sm font-normal"
-          @click="handleGo(registerPath)"
-        >
+        <span class="vben-link" @click="handleGo(registerPath)">
           {{ $t('authentication.createAccount') }}
         </span>
       </div>

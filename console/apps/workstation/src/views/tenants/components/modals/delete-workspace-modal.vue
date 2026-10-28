@@ -67,13 +67,13 @@ function handleOk() {
           variant="destructive"
           class="border-destructive/30 bg-destructive/10 p-3"
         >
-          <AlertDescription class="text-xs">
+          <AlertDescription>
             {{ $t('page.tenants_view.delete_modal_warning') }}
           </AlertDescription>
         </Alert>
 
         <div>
-          <Label class="mb-2 block text-sm font-medium text-foreground">
+          <Label class="mb-2 block text-foreground">
             {{ $t('page.tenants_view.delete_confirm_prompt') }}
             <strong class="text-destructive">{{ props.slug }}</strong>
           </Label>

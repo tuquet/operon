@@ -196,7 +196,7 @@ onMounted(() => {
           <h3 class="text-xl font-bold">
             {{ $t('authentication.desktopAuthorizedTitle') }}
           </h3>
-          <p class="text-xs text-muted-foreground max-w-sm mx-auto">
+          <p class="text-muted-foreground max-w-sm mx-auto">
             {{ $t('authentication.desktopAuthorizedDesc') }}
           </p>
           <div class="space-y-3 pt-2">
@@ -230,20 +230,16 @@ onMounted(() => {
           <h3 class="text-xl font-bold">
             {{ $t('authentication.desktopConnectTitle') }}
           </h3>
-          <p class="text-xs text-muted-foreground">
+          <p class="text-muted-foreground">
             {{ $t('authentication.desktopConnectDesc') }}
           </p>
 
           <div class="rounded-lg bg-muted p-4 text-left">
-            <span
-              class="text-xs font-semibold text-muted-foreground block mb-1"
-            >
+            <span class="font-semibold text-muted-foreground block mb-1">
               {{ $t('authentication.desktopRequestingDevice') }}
             </span>
             <div class="flex items-center justify-between">
-              <span class="text-sm font-medium text-foreground">{{
-                machineName
-              }}</span>
+              <span class="text-foreground">{{ machineName }}</span>
               <Badge
                 variant="outline"
                 class="bg-primary/10 text-primary border-primary/30"
@@ -269,7 +265,7 @@ onMounted(() => {
           <h3 class="text-xl font-bold">
             {{ $t('authentication.desktopConsentTitle') }}
           </h3>
-          <p class="text-xs text-muted-foreground mt-1">
+          <p class="text-muted-foreground mt-1">
             {{ $t('authentication.desktopConsentDesc') }}
           </p>
         </div>
@@ -278,7 +274,7 @@ onMounted(() => {
           class="space-y-4 rounded-xl border border-border/60 bg-muted/40 p-4"
         >
           <div class="flex items-center justify-between">
-            <span class="text-xs text-muted-foreground">{{
+            <span class="text-muted-foreground">{{
               $t('authentication.desktopAccountLabel')
             }}</span>
             <div class="flex items-center space-x-2">
@@ -286,16 +282,12 @@ onMounted(() => {
                 <AvatarImage :src="userAvatar" />
                 <AvatarFallback>{{ userName.slice(0, 1) }}</AvatarFallback>
               </Avatar>
-              <span class="font-medium text-sm text-foreground">{{
-                userName
-              }}</span>
+              <span class="text-foreground">{{ userName }}</span>
             </div>
           </div>
 
           <div class="flex items-center justify-between">
-            <span class="text-xs text-muted-foreground">{{
-              $t('term.device')
-            }}</span>
+            <span class="text-muted-foreground">{{ $t('term.device') }}</span>
             <Badge
               variant="outline"
               class="bg-accent text-accent-foreground border-border"
@@ -305,11 +297,11 @@ onMounted(() => {
           </div>
 
           <div>
-            <span class="text-xs text-muted-foreground block mb-2">{{
+            <span class="text-muted-foreground block mb-2">{{
               $t('term.workspace')
             }}</span>
             <Select v-model="selectedTenant">
-              <SelectTrigger class="h-10 w-full bg-background text-sm">
+              <SelectTrigger class="h-10 w-full bg-background">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -326,12 +318,12 @@ onMounted(() => {
         </div>
 
         <Alert
-          class="mt-4 rounded-lg border-warning/20 bg-warning/10 p-3 text-xs text-warning"
+          class="mt-4 rounded-lg border-warning/20 bg-warning/10 p-3 text-warning"
         >
-          <AlertTitle class="mb-0.5 text-xs font-semibold">
+          <AlertTitle class="mb-0.5 font-semibold">
             {{ $t('authentication.desktopSecurityNoteTitle') }}
           </AlertTitle>
-          <AlertDescription class="text-xs text-warning">
+          <AlertDescription class="text-warning">
             {{ $t('authentication.desktopSecurityNoteDesc') }}
           </AlertDescription>
         </Alert>
@@ -341,7 +333,7 @@ onMounted(() => {
           variant="destructive"
           class="mt-3 border-destructive/30 bg-destructive/10 p-3"
         >
-          <AlertDescription class="text-xs font-medium">
+          <AlertDescription class="">
             {{ errorMessage }}
           </AlertDescription>
         </Alert>

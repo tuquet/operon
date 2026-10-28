@@ -54,10 +54,10 @@ const planName = computed(() => {
       <!-- Left: Avatar & Basic Information -->
       <div class="flex min-w-0 items-start gap-3 sm:items-center sm:gap-3.5">
         <Avatar
-          class="size-11 shrink-0 rounded-xl border border-primary/20 bg-primary/10 text-sm font-semibold text-primary sm:size-13 sm:text-base"
+          class="size-11 shrink-0 rounded-xl border border-primary/20 bg-primary/10 font-semibold text-primary sm:size-13 sm:text-base"
         >
           <AvatarFallback
-            class="bg-transparent text-sm font-semibold text-primary sm:text-base"
+            class="bg-transparent font-semibold text-primary sm:text-base"
           >
             {{ tenantInitials }}
           </AvatarFallback>
@@ -70,13 +70,10 @@ const planName = computed(() => {
             >
               {{ props.tenant.name }}
             </h1>
-            <Badge
-              variant="secondary"
-              class="px-2 py-0.5 text-2xs font-medium capitalize"
-            >
+            <Badge variant="secondary" class="px-2 py-0.5 capitalize">
               {{ planName }}
             </Badge>
-            <Badge variant="outline" class="px-2 py-0.5 text-2xs font-normal">
+            <Badge variant="outline" class="px-2 py-0.5">
               <span
                 class="mr-1.5 size-1.5 rounded-full"
                 :class="
@@ -95,7 +92,7 @@ const planName = computed(() => {
               v-if="props.isCurrentActive"
               variant="secondary"
               data-testid="hero-current-workspace-badge"
-              class="inline-flex items-center gap-1 border border-primary/20 bg-primary/10 px-2 py-0.5 text-2xs font-medium text-primary"
+              class="inline-flex items-center gap-1 border border-primary/20 bg-primary/10 px-2 py-0.5 text-primary"
             >
               <CheckCircle2 class="size-3 shrink-0 text-primary" />
               <span>{{ $t('page.workspace.current_workspace') }}</span>
@@ -103,13 +100,11 @@ const planName = computed(() => {
           </div>
 
           <div
-            class="flex flex-wrap items-center gap-x-2 gap-y-1 text-2xs text-muted-foreground sm:text-xs"
+            class="flex flex-wrap items-center gap-x-2 gap-y-1 text-muted-foreground"
           >
-            <Badge variant="secondary">
-              /{{ props.tenant.slug }}
-            </Badge>
+            <Badge variant="secondary"> /{{ props.tenant.slug }} </Badge>
             <span class="text-muted-foreground/40">·</span>
-            <span class="font-mono">
+            <span class="">
               {{ props.tenant.id.slice(0, 8) }}
             </span>
             <span class="text-muted-foreground/40">·</span>
@@ -129,7 +124,7 @@ const planName = computed(() => {
           v-if="!props.isCurrentActive"
           variant="outline"
           size="sm"
-          class="h-8 flex-1 justify-center gap-1.5 text-xs font-medium md:flex-initial"
+          class="h-8 flex-1 justify-center gap-1.5 md:flex-initial"
           @click="emit('setActive')"
         >
           <CheckCircle2 class="size-3.5 shrink-0" />
@@ -141,7 +136,7 @@ const planName = computed(() => {
         <Button
           variant="outline"
           size="sm"
-          class="h-8 flex-1 justify-center gap-1.5 text-xs font-medium md:flex-initial"
+          class="h-8 flex-1 justify-center gap-1.5 md:flex-initial"
           @click="emit('connectCli')"
         >
           <Terminal class="size-3.5 shrink-0" />
@@ -151,7 +146,7 @@ const planName = computed(() => {
         <Button
           variant="outline"
           size="sm"
-          class="h-8 flex-1 justify-center gap-1.5 text-xs font-medium md:flex-initial"
+          class="h-8 flex-1 justify-center gap-1.5 md:flex-initial"
           @click="emit('openSettings')"
         >
           <Settings class="size-3.5 shrink-0" />

@@ -150,7 +150,7 @@ export function useTiptapToolbar(options: UseTiptapToolbarOptions) {
 
   function getMenuItemClass(item: ToolbarMenuItem) {
     return cn(
-      'flex items-center gap-2 rounded-lg p-2 text-left text-sm transition-colors',
+      'flex items-center gap-2 rounded-lg p-2 text-left transition-colors',
       'disabled:cursor-not-allowed disabled:opacity-45',
       isMenuItemActive(item)
         ? 'bg-accent text-foreground'

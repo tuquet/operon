@@ -36,7 +36,7 @@ const computedInputHTML = computed({
         >
           <label>
             <input v-model="options.transformHtml" type="checkbox">
-            <span text-sm>Transform</span>
+            <span >Transform</span>
           </label>
           <div w-1px h-full bg-gray:20 />
           <button

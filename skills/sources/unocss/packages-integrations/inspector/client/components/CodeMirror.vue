@@ -61,8 +61,8 @@ onMounted(async () => {
   <div
     ref="el"
     relative
-    font-mono
-    text-sm
+    
+    
     data-enable-grammarly="false"
     h-full
   />

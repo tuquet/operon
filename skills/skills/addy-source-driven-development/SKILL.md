@@ -24,11 +24,6 @@ Every framework-specific code decision must be backed by official documentation.
 - Pure logic that works the same across all versions (loops, conditionals, data structures)
 - The user explicitly wants speed over verification ("just do it quickly")
 
-> [!CAUTION]
-> **Operon Spec & Documentation Authority Invariant (P0 Escalation):**
-> Trong hệ sinh thái Operon, tài liệu (`docs/`) và đặc tả kỹ thuật (`spec/`) là thẩm quyền tối cao. Nếu một tham số, cờ lệnh, API endpoint, hoặc cơ chế hoạt động KHÔNG được định nghĩa hoặc nhắc đến trong `docs/`, cấm tuyệt đối việc suy đoán, giả định ngầm hoặc tự ý code theo trí nhớ. Mọi sai khác hoặc thiếu sót tài liệu PHẢI được dừng lại ngay lập tức và báo cáo ở mức độ nghiêm trọng cao nhất (**P0 / Critical Issue Escalation**) để đối soát và chuẩn hóa tài liệu trước khi viết code.
-
-
 ## The Process
 
 ```

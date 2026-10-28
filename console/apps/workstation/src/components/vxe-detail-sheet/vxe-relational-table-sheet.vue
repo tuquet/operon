@@ -133,7 +133,7 @@ function getRowCopyValue(row: Record<string, any>, index: number): string {
             {{ props.relation.title }}
           </SheetTitle>
 
-          <Badge variant="secondary" class="shrink-0 text-2xs">
+          <Badge variant="secondary" class="shrink-0">
             {{ filteredRows.length }} / {{ props.relation.rows.length }}
           </Badge>
 
@@ -152,13 +152,13 @@ function getRowCopyValue(row: Record<string, any>, index: number): string {
             </PopoverTrigger>
             <PopoverContent
               align="start"
-              class="z-[1080] w-72 space-y-1.5 p-3 text-xs"
+              class="z-[1080] w-72 space-y-1.5 p-3"
               :style="{ zIndex: 1080 }"
             >
               <div class="flex flex-wrap items-center gap-1.5">
                 <span
                   v-if="props.parentResource"
-                  class="inline-flex items-center gap-1 rounded border border-border/70 bg-muted/40 px-1.5 py-0.5 text-2xs text-muted-foreground"
+                  class="inline-flex items-center gap-1 rounded border border-border/70 bg-muted/40 px-1.5 py-0.5 text-muted-foreground"
                 >
                   <Database class="size-3 shrink-0" />
                   {{ props.parentResource }}
@@ -168,7 +168,7 @@ function getRowCopyValue(row: Record<string, any>, index: number): string {
                   class="size-3 shrink-0 text-muted-foreground"
                 />
                 <span
-                  class="inline-flex items-center gap-1 rounded border border-primary/30 bg-primary/10 px-1.5 py-0.5 text-2xs font-medium text-primary"
+                  class="inline-flex items-center gap-1 rounded border border-primary/30 bg-primary/10 px-1.5 py-0.5 text-primary"
                 >
                   <Table2 class="size-3 shrink-0" />
                   {{ props.relation.targetResource }}
@@ -178,7 +178,7 @@ function getRowCopyValue(row: Record<string, any>, index: number): string {
           </Popover>
         </div>
 
-        <SheetDescription class="truncate text-xs text-muted-foreground">
+        <SheetDescription class="truncate text-muted-foreground">
           {{
             $t('common.relationalTableDescription', {
               title: props.parentTitle || props.relation.title,
@@ -198,7 +198,7 @@ function getRowCopyValue(row: Record<string, any>, index: number): string {
           </InputGroupAddon>
           <InputGroupInput
             v-model="searchQuery"
-            class="h-8 text-xs"
+            class="h-8"
             data-testid="vxe-relational-sheet-search"
             :placeholder="$t('common.searchRelationalRecords')"
           />
@@ -220,19 +220,19 @@ function getRowCopyValue(row: Record<string, any>, index: number): string {
             >
               <TableRow>
                 <TableHead
-                  class="w-10 px-3 py-2 text-center text-xs font-semibold tracking-wider whitespace-nowrap text-muted-foreground uppercase"
+                  class="w-10 px-3 py-2 text-center font-semibold tracking-wider whitespace-nowrap text-muted-foreground uppercase"
                 >
                   #
                 </TableHead>
                 <TableHead
                   v-for="col in props.relation.columns"
                   :key="col.field"
-                  class="px-3 py-2 text-xs font-semibold tracking-wider whitespace-nowrap text-muted-foreground uppercase"
+                  class="px-3 py-2 font-semibold tracking-wider whitespace-nowrap text-muted-foreground uppercase"
                 >
                   {{ col.title }}
                 </TableHead>
                 <TableHead
-                  class="w-12 px-3 py-2 text-right text-xs font-semibold tracking-wider whitespace-nowrap text-muted-foreground uppercase"
+                  class="w-12 px-3 py-2 text-right font-semibold tracking-wider whitespace-nowrap text-muted-foreground uppercase"
                 >
                   {{ $t('common.copy') }}
                 </TableHead>
@@ -249,7 +249,7 @@ function getRowCopyValue(row: Record<string, any>, index: number): string {
                 class="transition-colors hover:bg-muted/30"
               >
                 <TableCell
-                  class="px-3 py-2 text-center text-xs whitespace-nowrap text-muted-foreground"
+                  class="px-3 py-2 text-center whitespace-nowrap text-muted-foreground"
                 >
                   {{ idx + 1 }}
                 </TableCell>
@@ -259,11 +259,7 @@ function getRowCopyValue(row: Record<string, any>, index: number): string {
                   :key="col.field"
                   class="px-3 py-2 align-middle whitespace-nowrap"
                 >
-                  <Badge
-                    v-if="col.type === 'badge'"
-                    variant="outline"
-                    class="text-2xs font-medium"
-                  >
+                  <Badge v-if="col.type === 'badge'" variant="outline" class="">
                     {{ formatCellValue(relRow, col) }}
                   </Badge>
 
@@ -273,12 +269,12 @@ function getRowCopyValue(row: Record<string, any>, index: number): string {
                       col.type === 'number' ||
                       col.type === 'datetime'
                     "
-                    class="text-xs text-foreground"
+                    class="text-foreground"
                   >
                     {{ formatCellValue(relRow, col) }}
                   </span>
 
-                  <span v-else class="text-sm font-normal text-foreground">
+                  <span v-else class="text-foreground">
                     {{ formatCellValue(relRow, col) }}
                   </span>
                 </TableCell>
@@ -313,7 +309,7 @@ function getRowCopyValue(row: Record<string, any>, index: number): string {
               <TableRow>
                 <TableCell
                   :colspan="props.relation.columns.length + 2"
-                  class="px-4 py-8 text-center text-xs text-muted-foreground"
+                  class="px-4 py-8 text-center text-muted-foreground"
                 >
                   {{ $t('common.noMatchingRecords') }}
                 </TableCell>
@@ -330,7 +326,7 @@ function getRowCopyValue(row: Record<string, any>, index: number): string {
         <Button
           variant="outline"
           size="sm"
-          class="h-9 px-3.5 text-xs"
+          class="h-9 px-3.5"
           data-testid="vxe-relational-sheet-close"
           @click="emit('update:open', false)"
         >

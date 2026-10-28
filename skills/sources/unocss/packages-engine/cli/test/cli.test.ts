@@ -84,7 +84,7 @@ describe('cli', () => {
 
   it('supports directives transformer', async () => {
     const { output, transform } = await runCli({
-      'views/index.css': '.btn-center{@apply text-center my-0 font-medium;}',
+      'views/index.css': '.btn-center{@apply text-center my-0 ;}',
       'unocss.config.js': `
   import { defineConfig, presetWind3, transformerDirectives } from 'unocss'
   export default defineConfig({

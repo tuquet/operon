@@ -19,7 +19,7 @@ defineProps<{
       <div v-for="icon of item.icons" :key="icon" :class="icon" w-5 h-5 />
     </div>
     <div flex="~ col" w-50 text-left>
-      <span text-sm font-500 text-truncate>{{ item.name }}</span>
+      <span  font-500 text-truncate>{{ item.name }}</span>
       <div py1 text-lg flex="~ gap-3">
         <a
           class="text-inherit! op50 hover:op100"
@@ -27,7 +27,7 @@ defineProps<{
           :href="`https://github.com/unocss/unocss/tree/main/examples/${item.name}`" target="_blank"
         >
           <div i-carbon-logo-github />
-          <span text-xs>Source</span>
+          <span>Source</span>
         </a>
         <a
           v-if="item.stackblitz || item.codesandbox"
@@ -39,7 +39,7 @@ defineProps<{
           target="_blank"
         >
           <div i-carbon-executable-program />
-          <span text-xs>Play online</span>
+          <span>Play online</span>
         </a>
       </div>
     </div>

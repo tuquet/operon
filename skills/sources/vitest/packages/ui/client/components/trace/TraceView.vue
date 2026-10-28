@@ -149,7 +149,7 @@ function isTraceStepInProgress(step: NormalizedBrowserTraceEntry) {
           type="button"
           data-testid="trace-step"
           :data-test-range="step.range?.phase"
-          class="relative w-full text-left px-2 py-1 rounded text-sm"
+          class="relative w-full text-left px-2 py-1 rounded "
           :class="getStepButtonClass(step, index)"
           :style="{ paddingInlineStart: `${0.5 + step.depth}rem` }"
           :aria-current="selection.selectedStepIndex === index ? 'step' : undefined"
@@ -177,12 +177,12 @@ function isTraceStepInProgress(step: NormalizedBrowserTraceEntry) {
               <div truncate data-testid="trace-step-name">
                 {{ formatStepName(step) }}
               </div>
-              <div class="text-xs opacity-60 truncate">
+              <div class="opacity-60 truncate">
                 {{ formatTraceTiming(step) }}
               </div>
               <div
                 v-if="step.element"
-                class="font-mono text-xs opacity-70 truncate"
+                class=" opacity-70 truncate"
               >
                 {{ step.element.locator }}
               </div>
@@ -200,7 +200,7 @@ function isTraceStepInProgress(step: NormalizedBrowserTraceEntry) {
           :sandbox="iframeSandbox"
           style="background: white; border: none; color-scheme: normal; flex: none"
         />
-        <div v-else class="text-sm opacity-50 p-4">
+        <div v-else class=" opacity-50 p-4">
           No trace step found
         </div>
       </div>

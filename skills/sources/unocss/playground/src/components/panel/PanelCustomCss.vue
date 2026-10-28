@@ -43,7 +43,7 @@ const WarnContent = computed(() => {
         >
           <label>
             <input v-model="options.transformCustomCSS" type="checkbox">
-            <span text-sm>Transform</span>
+            <span >Transform</span>
           </label>
           <div w-1px h-full my--1 bg-gray:20 />
           <button

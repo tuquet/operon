@@ -171,7 +171,7 @@ onMounted(() => {
         <Button
           variant="outline"
           size="sm"
-          class="h-8 gap-1.5 px-2.5 text-xs"
+          class="h-8 gap-1.5 px-2.5"
           :disabled="loading"
           :title="$t('common.refresh')"
           @click="loadOverview"
@@ -192,7 +192,7 @@ onMounted(() => {
           :key="mod.key"
           type="button"
           variant="outline"
-          class="group flex h-auto flex-col items-stretch justify-between rounded-xl border border-border/60 bg-card p-3 text-left font-normal shadow-xs transition-all hover:border-primary/40 hover:bg-muted/20 sm:p-4"
+          class="group flex h-auto flex-col items-stretch justify-between rounded-xl border border-border/60 bg-card p-3 text-left shadow-xs transition-all hover:border-primary/40 hover:bg-muted/20 sm:p-4"
           @click="router.push(mod.path)"
         >
           <div class="flex items-center justify-between gap-2">
@@ -207,18 +207,14 @@ onMounted(() => {
           </div>
           <div class="mt-2.5">
             <div class="flex items-baseline justify-between gap-1.5">
-              <span
-                class="truncate text-xs font-medium text-foreground sm:text-sm"
-              >
+              <span class="truncate text-foreground sm:">
                 {{ mod.title }}
               </span>
               <span class="text-base font-bold text-foreground sm:text-lg">
                 {{ mod.total }}
               </span>
             </div>
-            <p
-              class="mt-0.5 truncate text-2xs text-muted-foreground sm:text-xs"
-            >
+            <p class="mt-0.5 truncate text-muted-foreground">
               {{ mod.subtext }}
             </p>
           </div>
@@ -235,14 +231,14 @@ onMounted(() => {
         <div class="mb-3 flex items-center justify-between gap-2">
           <div class="flex items-center gap-2">
             <ShieldCheck class="size-4 text-muted-foreground" />
-            <h3 class="text-sm font-semibold text-foreground">
+            <h3 class="font-semibold text-foreground">
               {{ $t('page.system_view.overview_recent_audit') }}
             </h3>
           </div>
           <Button
             variant="ghost"
             size="sm"
-            class="h-7 gap-1 px-2 text-xs text-muted-foreground hover:text-foreground"
+            class="h-7 gap-1 px-2 text-muted-foreground hover:text-foreground"
             @click="router.push('/system/audit-logs')"
           >
             <span>{{ $t('page.system_view.overview_view_all') }}</span>
@@ -262,42 +258,37 @@ onMounted(() => {
           >
             <div class="min-w-0 flex-1">
               <div class="flex items-center gap-2">
-                <Badge
-                  variant="secondary"
-                  class="shrink-0 text-2xs font-medium"
-                >
+                <Badge variant="secondary" class="shrink-0">
                   {{ log.action }}
                 </Badge>
                 <span
                   v-if="log.entity_type"
-                  class="truncate text-2xs text-muted-foreground"
+                  class="truncate text-muted-foreground"
                 >
                   {{ log.entity_type }}
                 </span>
               </div>
-              <div
-                class="mt-1 flex items-center gap-2 text-2xs text-muted-foreground"
-              >
-                <span class="truncate font-medium text-foreground">
+              <div class="mt-1 flex items-center gap-2 text-muted-foreground">
+                <span class="truncate text-foreground">
                   {{
                     log.actor_id || $t('page.system_view.audit_actor_system')
                   }}
                 </span>
                 <span v-if="log.ip_address">&bull;</span>
-                <span v-if="log.ip_address" class="font-mono">
+                <span v-if="log.ip_address" class="">
                   {{ log.ip_address }}
                 </span>
               </div>
             </div>
 
-            <span class="shrink-0 text-2xs text-muted-foreground">
+            <span class="shrink-0 text-muted-foreground">
               {{ formatDate(log.created_at) }}
             </span>
           </div>
         </div>
         <Empty v-else class="border-none py-6">
           <EmptyHeader>
-            <EmptyDescription class="text-xs">
+            <EmptyDescription>
               {{ $t('page.system_view.overview_audit_empty') }}
             </EmptyDescription>
           </EmptyHeader>
@@ -311,14 +302,14 @@ onMounted(() => {
         <div class="mb-3 flex items-center justify-between gap-2">
           <div class="flex items-center gap-2">
             <CreditCard class="size-4 text-muted-foreground" />
-            <h3 class="text-sm font-semibold text-foreground">
+            <h3 class="font-semibold text-foreground">
               {{ $t('page.system_view.overview_recent_subs') }}
             </h3>
           </div>
           <Button
             variant="ghost"
             size="sm"
-            class="h-7 gap-1 px-2 text-xs text-muted-foreground hover:text-foreground"
+            class="h-7 gap-1 px-2 text-muted-foreground hover:text-foreground"
             @click="router.push('/system/subscriptions')"
           >
             <span>{{ $t('page.system_view.overview_view_all') }}</span>
@@ -338,22 +329,18 @@ onMounted(() => {
           >
             <div class="min-w-0 flex-1">
               <div class="flex items-center gap-2">
-                <span
-                  class="truncate text-xs font-medium text-foreground sm:text-sm"
-                >
+                <span class="truncate text-foreground sm:">
                   {{ sub.tenant_name }}
                 </span>
                 <Badge
                   variant="outline"
-                  class="shrink-0 text-2xs font-medium"
+                  class="shrink-0"
                   :class="getPlanMeta(sub.plan_id).badgeClass"
                 >
                   {{ sub.plan_name }}
                 </Badge>
               </div>
-              <div
-                class="mt-1 flex items-center gap-2 text-2xs text-muted-foreground"
-              >
+              <div class="mt-1 flex items-center gap-2 text-muted-foreground">
                 <span class="truncate">@{{ sub.tenant_slug }}</span>
                 <span>&bull;</span>
                 <span class="font-semibold text-foreground">
@@ -365,7 +352,7 @@ onMounted(() => {
 
             <Badge
               variant="outline"
-              class="shrink-0 text-2xs font-normal"
+              class="shrink-0"
               :class="getSubscriptionStatusMeta(sub.status).badgeClass"
             >
               <span
@@ -382,7 +369,7 @@ onMounted(() => {
         </div>
         <Empty v-else class="border-none py-6">
           <EmptyHeader>
-            <EmptyDescription class="text-xs">
+            <EmptyDescription>
               {{ $t('page.system_view.overview_subs_empty') }}
             </EmptyDescription>
           </EmptyHeader>

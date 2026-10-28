@@ -110,7 +110,7 @@ function setPosition(key: string, value: string | undefined) {
       </div>
     </div>
     <div v-if="hiddenList.length > 0" class="pt-2">
-      <div class="text-muted-foreground mb-1 text-xs font-medium">
+      <div class="text-muted-foreground mb-1">
         {{ $t('preferences.widget.hidden') }}
       </div>
       <div
