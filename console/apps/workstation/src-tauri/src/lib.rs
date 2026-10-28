@@ -63,7 +63,7 @@ fn spawn_embedded_daemon_if_needed() {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    tauri::Builder::default()
+    let app = tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_notification::init())
@@ -136,8 +136,15 @@ pub fn run() {
             });
             Ok(())
         })
-        .run(tauri::generate_context!())
-        .expect("error while running opn admin tauri application");
+        .build(tauri::generate_context!())
+        .expect("error while building opn admin tauri application");
+
+    app.run(|_app_handle, event| {
+        if let tauri::RunEvent::ExitRequested { .. } = event {
+            println!("[tauri::shutdown] Desktop app exiting. Reaping child browser and daemon resources...");
+            tauri::async_runtime::block_on(async {
+                let _ = operon::commands::worker::supervisor::stop_daemon(true).await;
+            });
+        }
+    });
 }
-
-
