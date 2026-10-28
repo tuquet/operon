@@ -151,6 +151,38 @@
       }
     },
     {
+      "label": "[tauri] dev (desktop workstation)",
+      "detail": "Khởi động môi trường desktop development (Vite Hot-Reload + Rust Tauri v2 core).",
+      "type": "shell",
+      "command": "pnpm run tauri:dev",
+      "problemMatcher": ["$rustc"],
+      "options": {
+        "cwd": "${workspaceFolder}/console"
+      },
+      "isBackground": true,
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "[tauri] check (src-tauri)",
+      "detail": "Kiểm tra cú pháp và loại trừ lỗi biên dịch Rust cho crate src-tauri.",
+      "type": "shell",
+      "command": "cargo check",
+      "problemMatcher": ["$rustc"],
+      "options": {
+        "cwd": "${workspaceFolder}/console/apps/workstation/src-tauri"
+      },
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
       "label": "[web] docs dev",
       "detail": "Khởi động VitePress dev server cho cổng tài liệu docs.",
       "type": "shell",
@@ -191,10 +223,10 @@
       }
     },
     {
-      "label": "[infra] gateway start --http",
-      "detail": "Khởi động Gateway tunnel (SOCKS5 port 1080 & HTTP forwarder port 8118).",
+      "label": "[infra] tunnel on (socks5 + http)",
+      "detail": "Khởi động background tunnel (SOCKS5 1080 qua my-vps-cf và HTTP forwarder 8118).",
       "type": "shell",
-      "command": "opn gateway start --http",
+      "command": "tunnel on",
       "problemMatcher": [],
       "presentation": {
         "echo": true,
@@ -203,10 +235,22 @@
       }
     },
     {
-      "label": "[infra] gateway status",
-      "detail": "Kiểm tra trạng thái các port Gateway tunnel đang chạy.",
+      "label": "[infra] tunnel off",
+      "detail": "Dừng toàn bộ background tunnel (1080 và 8118).",
       "type": "shell",
-      "command": "opn gateway status",
+      "command": "tunnel off",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "[infra] tunnel status",
+      "detail": "Kiểm tra trạng thái cổng 1080/8118 và IP egress ngoại mạng.",
+      "type": "shell",
+      "command": "tunnel status",
       "problemMatcher": [],
       "presentation": {
         "echo": true,
