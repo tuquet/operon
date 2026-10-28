@@ -26,7 +26,7 @@
     "jobDetail": "Chi tiết Job thực thi",
     "devices": "Thiết bị",
     "devices_desc": "Quản lý thiết bị worker và trạng thái kết nối daemon",
-    "browsers": "Browser profiles",
+    "browsers": "Browser",
     "browsers_desc": "Quản lý profile và vân tay trình duyệt anti-detect",
     "proxies": "Proxy pool",
     "proxies_desc": "Quản lý proxy xoay vòng và định tuyến mạng"
@@ -176,7 +176,7 @@
     "devices_empty": "Chưa có thiết bị nào",
     "empty_filtered": "Không có thiết bị phù hợp",
     "empty_desc": "Kết nối thiết bị chạy daemon để thực thi tác vụ.",
-    "browsers_title": "Browser profiles",
+    "browsers_title": "Browser",
     "browsers_empty": "Chưa có browser profile nào",
     "browsers_empty_desc": "Profile trình duyệt được đồng bộ tự động từ Worker daemon.",
     "proxies_title": "Proxy pool",

@@ -1,4 +1,4 @@
-﻿<script lang="ts" setup>
+<script lang="ts" setup>
 import type { CredentialRow, CredentialStatus } from '#/api';
 
 import { computed, onMounted, ref } from 'vue';
@@ -146,11 +146,8 @@ onMounted(load);
       <AlertCircle class="size-4" />
       <AlertDescription>{{ errorMsg }}</AlertDescription>
     </Alert>
-    <Alert
-      v-if="message"
-      class="mb-3 border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-    >
-      <CheckCircle2 class="size-4 text-emerald-600 dark:text-emerald-400" />
+    <Alert v-if="message" class="mb-3 border-success/30 text-success">
+      <CheckCircle2 class="size-4 text-success" />
       <AlertDescription>{{ message }}</AlertDescription>
     </Alert>
 
@@ -158,7 +155,7 @@ onMounted(load);
     <Card v-if="showAdd" class="mb-4">
       <CardContent class="flex flex-wrap items-end gap-3 p-4">
         <div class="space-y-1.5">
-          <Label class="">{{ $t('page.secrets.name') }}</Label>
+          <Label>{{ $t('page.secrets.name') }}</Label>
           <Input
             v-model="newName"
             placeholder="hrms_password"
@@ -166,7 +163,7 @@ onMounted(load);
           />
         </div>
         <div class="space-y-1.5">
-          <Label class="">{{ $t('page.secrets.value') }}</Label>
+          <Label>{{ $t('page.secrets.value') }}</Label>
           <Input
             v-model="newValue"
             type="password"
@@ -244,11 +241,11 @@ onMounted(load);
         <TableBody>
           <TableRow v-for="row in data.local" :key="row.name">
             <TableCell>
-              <Badge variant="outline" class="">
+              <Badge variant="outline">
                 {{ row.name }}
               </Badge>
             </TableCell>
-            <TableCell class="">••••••••</TableCell>
+            <TableCell>••••••••</TableCell>
             <TableCell>
               <span
                 v-if="cloudNames.has(row.name)"

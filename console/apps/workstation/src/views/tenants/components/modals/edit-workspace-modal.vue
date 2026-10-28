@@ -68,12 +68,7 @@ function handleOk() {
       </DialogHeader>
 
       <div class="py-2">
-        <VxeForm
-          :data="{ name, slug }"
-          custom-layout
-          size="small"
-          class="w-full space-y-3"
-        >
+        <VxeForm :data="{ name, slug }" custom-layout class="w-full space-y-3">
           <VxeFormItem :title="$t('page.workspace.col_name')" span="24">
             <template #default>
               <Input

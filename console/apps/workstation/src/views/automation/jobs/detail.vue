@@ -384,11 +384,7 @@ onUnmounted(() => {
       </div>
 
       <!-- Error Message Banner -->
-      <Alert
-        v-if="run.error_message"
-        variant="destructive"
-        class="border-destructive/30 bg-destructive/10 p-3"
-      >
+      <Alert v-if="run.error_message" variant="destructive">
         <AlertCircle class="size-4" />
         <AlertDescription class="leading-relaxed break-all">
           {{ run.error_message }}

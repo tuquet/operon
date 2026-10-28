@@ -8,6 +8,7 @@ import {
   Badge,
   Button,
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardHeader,
@@ -274,7 +275,7 @@ onMounted(() => {
             data-testid="kpi-fleet-port"
             class="truncate text-base font-bold tracking-tight text-foreground sm:text-lg"
           >
-            :{{ analyticsData.fleet.loopbackPort }}
+            {{ analyticsData.fleet.loopbackPort }}
           </div>
           <Badge
             variant="secondary"
@@ -322,23 +323,23 @@ onMounted(() => {
     <!-- Analytics Insights Row 1: Workspace Growth & Plan Structure -->
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
       <!-- Growth Summary Card (2 cols on lg) -->
-      <Card class="border-border/60 bg-card shadow-sm lg:col-span-2">
-        <CardHeader class="flex flex-row items-center justify-between pb-2">
-          <div>
-            <CardTitle class="text-base font-semibold text-foreground">
-              {{ $t('page.analytics.growth_timeline') }}
-            </CardTitle>
-            <CardDescription class="text-muted-foreground">
-              {{ $t('page.analytics.weekly_updates') }}
-            </CardDescription>
-          </div>
-          <Badge variant="outline">
-            <ArrowUpRight class="mr-1 size-3 text-emerald-500" />
-            +{{ analyticsData.tenants.growth.length }} records
-          </Badge>
+      <Card class="lg:col-span-2">
+        <CardHeader>
+          <CardTitle class="text-base">
+            {{ $t('page.analytics.growth_timeline') }}
+          </CardTitle>
+          <CardDescription>
+            {{ $t('page.analytics.weekly_updates') }}
+          </CardDescription>
+          <CardAction>
+            <Badge variant="outline">
+              <ArrowUpRight class="mr-1 size-3 text-emerald-500" />
+              +{{ analyticsData.tenants.growth.length }} records
+            </Badge>
+          </CardAction>
         </CardHeader>
 
-        <CardContent class="pt-2">
+        <CardContent>
           <div
             v-if="loading"
             class="flex h-52 items-center justify-center text-muted-foreground"
@@ -410,20 +411,20 @@ onMounted(() => {
       </Card>
 
       <!-- Plan Distribution Breakdown -->
-      <Card class="border-border/60 bg-card shadow-sm">
-        <CardHeader class="flex flex-row items-center justify-between pb-2">
-          <div>
-            <CardTitle class="text-base font-semibold text-foreground">
-              {{ $t('page.analytics.plans_structure') }}
-            </CardTitle>
-            <CardDescription class="text-muted-foreground">
-              {{ $t('page.analytics.actual') }}
-            </CardDescription>
-          </div>
-          <PieChart class="size-4 text-muted-foreground" />
+      <Card>
+        <CardHeader>
+          <CardTitle class="text-base">
+            {{ $t('page.analytics.plans_structure') }}
+          </CardTitle>
+          <CardDescription>
+            {{ $t('page.analytics.actual') }}
+          </CardDescription>
+          <CardAction>
+            <PieChart class="size-4 text-muted-foreground" />
+          </CardAction>
         </CardHeader>
 
-        <CardContent class="pt-2">
+        <CardContent>
           <div
             v-if="loading"
             class="flex h-52 items-center justify-center text-muted-foreground"
@@ -501,22 +502,22 @@ onMounted(() => {
     <!-- Analytics Insights Row 2: Plugins Core vs Module & Infrastructure Status -->
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
       <!-- Plugins Breakdown Card (2 cols on lg) -->
-      <Card class="border-border/60 bg-card shadow-sm lg:col-span-2">
-        <CardHeader class="flex flex-row items-center justify-between pb-2">
-          <div>
-            <CardTitle class="text-base font-semibold text-foreground">
-              {{ $t('page.analytics.plugins_distribution') }}
-            </CardTitle>
-            <CardDescription class="text-muted-foreground">
-              {{ $t('page.analytics.actual') }}
-            </CardDescription>
-          </div>
-          <Badge variant="outline">
-            Total: {{ analyticsData.plugins.total }}
-          </Badge>
+      <Card class="lg:col-span-2">
+        <CardHeader>
+          <CardTitle class="text-base">
+            {{ $t('page.analytics.plugins_distribution') }}
+          </CardTitle>
+          <CardDescription>
+            {{ $t('page.analytics.actual') }}
+          </CardDescription>
+          <CardAction>
+            <Badge variant="outline">
+              Total: {{ analyticsData.plugins.total }}
+            </Badge>
+          </CardAction>
         </CardHeader>
 
-        <CardContent class="pt-2">
+        <CardContent>
           <div
             v-if="loading"
             class="flex h-44 items-center justify-center text-muted-foreground"
@@ -563,17 +564,15 @@ onMounted(() => {
       </Card>
 
       <!-- Infrastructure Status List -->
-      <Card class="border-border/60 bg-card shadow-sm">
-        <CardHeader class="pb-2">
-          <CardTitle class="text-base font-semibold text-foreground">
+      <Card>
+        <CardHeader>
+          <CardTitle class="text-base">
             {{ $t('page.analytics.services_title') }}
           </CardTitle>
-          <CardDescription class="text-muted-foreground">
-            System Core Invariants
-          </CardDescription>
+          <CardDescription> System Core Invariants </CardDescription>
         </CardHeader>
 
-        <CardContent class="pt-2">
+        <CardContent>
           <div class="divide-y divide-border/40">
             <div class="flex items-center justify-between py-2.5">
               <div>
@@ -584,7 +583,7 @@ onMounted(() => {
                   {{ $t('page.analytics.service_database_desc') }}
                 </div>
               </div>
-              <Badge variant="secondary" class="">
+              <Badge variant="secondary">
                 <span
                   class="mr-1.5 size-1.5 rounded-full bg-emerald-500"
                 ></span>
@@ -601,7 +600,7 @@ onMounted(() => {
                   {{ analyticsData.system.edgeProvider }}
                 </div>
               </div>
-              <Badge variant="secondary" class="">
+              <Badge variant="secondary">
                 <span
                   class="mr-1.5 size-1.5 rounded-full bg-emerald-500"
                 ></span>
@@ -618,7 +617,7 @@ onMounted(() => {
                   {{ $t('page.analytics.service_gateway_desc') }}
                 </div>
               </div>
-              <Badge variant="secondary" class="">
+              <Badge variant="secondary">
                 <span
                   class="mr-1.5 size-1.5 rounded-full bg-emerald-500"
                 ></span>

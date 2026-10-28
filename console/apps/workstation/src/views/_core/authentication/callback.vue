@@ -6,7 +6,17 @@ import { $t } from '@operon/locales';
 import { preferences } from '@operon/preferences';
 import { useAccessStore, useUserStore } from '@operon/stores';
 
-import { Button, Card, Spinner, toast } from '@operon-core/shadcn-ui';
+import {
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  Spinner,
+  toast,
+} from '@operon-core/shadcn-ui';
 
 import { Copy, ExternalLink, Laptop } from '@lucide/vue';
 
@@ -211,36 +221,28 @@ onMounted(async () => {
 
     <!-- Desktop Web Bridge View (VS Code / Linear Style) -->
     <div v-else-if="isDesktopBridge" class="w-full max-w-md">
-      <Card class="border-border/60 p-6 shadow-xl text-center space-y-5">
-        <div
-          class="mx-auto flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary"
-        >
-          <Laptop class="size-8" />
-        </div>
-
-        <div class="space-y-2">
-          <h2 class="text-xl font-bold tracking-tight text-foreground">
-            {{ $t('authentication.desktopAuthorizedTitle') }}
-          </h2>
-          <p class="text-muted-foreground leading-relaxed max-w-xs mx-auto">
-            {{ $t('authentication.desktopAuthorizedDesc') }}
-          </p>
-        </div>
-
-        <div class="space-y-3 pt-2">
-          <Button
-            class="w-full h-10 flex items-center justify-center gap-2"
-            @click="handleOpenDesktop"
+      <Card class="text-center">
+        <CardHeader class="items-center pb-2">
+          <div
+            class="mb-2 flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary"
           >
+            <Laptop class="size-8" />
+          </div>
+          <CardTitle class="text-xl font-bold tracking-tight">
+            {{ $t('authentication.desktopAuthorizedTitle') }}
+          </CardTitle>
+          <CardDescription class="max-w-xs leading-relaxed">
+            {{ $t('authentication.desktopAuthorizedDesc') }}
+          </CardDescription>
+        </CardHeader>
+
+        <CardContent class="space-y-3 pt-2">
+          <Button class="w-full" @click="handleOpenDesktop">
             <ExternalLink class="size-4" />
             <span>{{ $t('authentication.desktopReopenBtn') }}</span>
           </Button>
 
-          <Button
-            variant="outline"
-            class="w-full h-10 flex items-center justify-center gap-2"
-            @click="handleCopyToken"
-          >
+          <Button variant="outline" class="w-full" @click="handleCopyToken">
             <Copy class="size-4" />
             <span>{{
               isCopied('token')
@@ -248,9 +250,9 @@ onMounted(async () => {
                 : $t('authentication.desktopCopyTokenBtn')
             }}</span>
           </Button>
-        </div>
+        </CardContent>
 
-        <div class="pt-4 border-t border-border/40">
+        <CardFooter class="justify-center border-t border-border/40 pt-4">
           <Button
             variant="ghost"
             size="sm"
@@ -259,7 +261,7 @@ onMounted(async () => {
           >
             {{ $t('authentication.continueOnWeb') }} &rarr;
           </Button>
-        </div>
+        </CardFooter>
       </Card>
     </div>
 

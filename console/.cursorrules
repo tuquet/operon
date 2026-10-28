@@ -18,3 +18,10 @@ Do NOT push code to GitHub before completing and verifying all 3 local checks:
 - Add `[skip ci]` or `[ci skip]` in commit messages for any docs, plans, scratch files, or non-code changes.
 - Batch commits atomically before pushing. Never micro-push single-line edits.
 - Use `gh run list` and `gh run cancel <id>` to cancel redundant or hanging CI runs immediately.
+
+## UI COMPONENT & SHADCN ARCHITECTURE GUIDELINES
+- Strict SSOT: Always follow the guidelines defined in `skills/shadcn-vue` and `skills/shadcn-compound-clean`.
+- Never invent custom components or non-standard props in `@operon-core/shadcn-ui`.
+- Enforce Compound Component Pattern: No monolithic props (`isOpen`, `content`, `actions`, `footer`). Use `<DialogHeader>`, `<DialogTitle>`, `<DialogContent>`, `<DialogFooter>`.
+- Standardize Reka UI Event Contracts: Use `v-model:open` / `@update:open` and `v-model` / `@update:model-value`. Never invent `@change` or `@toggle`.
+- Variants First: Use `variant="..."` and `size="..."` props. Avoid overriding styles with manual inline utility classes.

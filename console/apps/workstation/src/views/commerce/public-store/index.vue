@@ -525,7 +525,7 @@ onBeforeUnmount(() => {
             class="flex items-center gap-1.5 rounded-lg border border-border/60 bg-background px-3 py-2"
           >
             <Zap class="size-4 text-primary" />
-            <span class="">
+            <span>
               {{ $t('page.commerce_view.auto_delivery_3s') }}
             </span>
           </div>
@@ -533,7 +533,7 @@ onBeforeUnmount(() => {
             class="flex items-center gap-1.5 rounded-lg border border-border/60 bg-background px-3 py-2"
           >
             <ShieldCheck class="size-4 text-success" />
-            <span class="">
+            <span>
               {{ $t('page.commerce_view.claim_token_security') }}
             </span>
           </div>
@@ -685,14 +685,13 @@ onBeforeUnmount(() => {
                     v-for="variant in product.variants"
                     :key="variant.id"
                     type="button"
-                    variant="outline"
-                    size="sm"
-                    class="h-auto rounded-lg px-2.5 py-1 transition-colors"
-                    :class="
+                    :variant="
                       getSelectedVariant(product)?.id === variant.id
-                        ? 'border-primary bg-primary/10 font-semibold text-primary'
-                        : 'border-border/70 bg-background text-foreground hover:border-primary/40'
+                        ? 'default'
+                        : 'outline'
                     "
+                    size="sm"
+                    class="h-auto px-2.5 py-1"
                     @click="selectVariant(product.id, variant.id)"
                   >
                     {{ variant.name }}

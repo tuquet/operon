@@ -10,6 +10,7 @@ import {
   Badge,
   Button,
   Card,
+  CardAction,
   CardContent,
   CardHeader,
   CardTitle,
@@ -197,8 +198,6 @@ onMounted(() => {
   <Page
     :title="$t('page.automation.overview')"
     :description="$t('page.automation.overview_desc')"
-    content-class="space-y-3.5 p-3 sm:space-y-5 sm:p-5"
-    header-class="border-b border-border/60 bg-card/60 px-4 py-3 sm:px-6"
   >
     <template #extra>
       <div class="flex shrink-0 flex-wrap items-center gap-1.5 sm:gap-2">
@@ -249,14 +248,15 @@ onMounted(() => {
       <div
         class="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3 lg:grid-cols-5"
       >
-        <Button
+        <Card
           v-for="mod in moduleCards"
           :key="mod.key"
-          type="button"
-          variant="outline"
-          class="group flex h-auto flex-col items-stretch justify-between rounded-xl border border-border/60 bg-card p-3 text-left shadow-xs transition-all hover:border-primary/40 hover:bg-muted/20 sm:p-4"
+          tabindex="0"
+          role="button"
+          class="group cursor-pointer justify-between p-3 transition-all hover:border-primary/40 hover:bg-muted/20 sm:p-4"
           :aria-label="`${mod.title}: ${mod.total}`"
           @click="navigateTo(mod.path)"
+          @keydown.enter="navigateTo(mod.path)"
         >
           <div class="flex items-center justify-between gap-2">
             <div
@@ -270,7 +270,7 @@ onMounted(() => {
           </div>
           <div class="mt-2.5">
             <div class="flex items-baseline justify-between gap-1.5">
-              <span class="truncate text-foreground sm:">
+              <span class="truncate text-foreground">
                 {{ mod.title }}
               </span>
               <span class="text-base font-bold text-foreground sm:text-lg">
@@ -281,33 +281,33 @@ onMounted(() => {
               {{ mod.subtext }}
             </p>
           </div>
-        </Button>
+        </Card>
       </div>
     </div>
 
     <!-- 3. Recent Jobs & Worker Devices -->
-    <div class="grid grid-cols-1 gap-3.5 sm:gap-4 lg:grid-cols-2">
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
       <!-- Recent Runs -->
-      <Card class="rounded-xl border border-border/60 shadow-xs">
-        <CardHeader class="flex flex-row items-center justify-between gap-2 p-3.5 pb-3 sm:p-4 sm:pb-3">
-          <div class="flex items-center gap-2">
+      <Card>
+        <CardHeader>
+          <CardTitle class="flex items-center gap-2">
             <PlayCircle class="size-4 text-muted-foreground" />
-            <CardTitle class="text-base font-semibold text-foreground">
-              {{ $t('page.automation_view.overview_recent_runs') }}
-            </CardTitle>
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            class="h-7 gap-1 px-2 text-muted-foreground hover:text-foreground"
-            @click="navigateTo('/automation/jobs')"
-          >
-            <span>{{ $t('page.automation_view.overview_view_all') }}</span>
-            <ArrowRight class="size-3" />
-          </Button>
+            <span>{{ $t('page.automation_view.overview_recent_runs') }}</span>
+          </CardTitle>
+          <CardAction>
+            <Button
+              variant="ghost"
+              size="sm"
+              class="h-7 gap-1 px-2 text-muted-foreground hover:text-foreground"
+              @click="navigateTo('/automation/jobs')"
+            >
+              <span>{{ $t('page.automation_view.overview_view_all') }}</span>
+              <ArrowRight class="size-3" />
+            </Button>
+          </CardAction>
         </CardHeader>
 
-        <CardContent class="p-3.5 pt-0 sm:p-4 sm:pt-0">
+        <CardContent>
           <div
             v-if="overview.recentRuns.length > 0"
             class="divide-y divide-border/40"
@@ -319,10 +319,10 @@ onMounted(() => {
             >
               <div class="min-w-0 flex-1">
                 <div class="flex items-center gap-2">
-                  <span class="truncate text-foreground sm:">
+                  <span class="truncate text-foreground">
                     {{ run.name }}
                   </span>
-                  <Badge variant="outline" class="shrink-0">
+                  <Badge variant="outline">
                     <span
                       class="mr-1 size-1.5 rounded-full"
                       :class="{
@@ -346,7 +346,7 @@ onMounted(() => {
                     }}
                   </span>
                   <span>&bull;</span>
-                  <span class="">
+                  <span>
                     {{
                       calculateProgressPercentage(
                         run.completed_tasks,
@@ -381,26 +381,28 @@ onMounted(() => {
       </Card>
 
       <!-- Recent Devices -->
-      <Card class="rounded-xl border border-border/60 shadow-xs">
-        <CardHeader class="flex flex-row items-center justify-between gap-2 p-3.5 pb-3 sm:p-4 sm:pb-3">
-          <div class="flex items-center gap-2">
+      <Card>
+        <CardHeader>
+          <CardTitle class="flex items-center gap-2">
             <Laptop class="size-4 text-muted-foreground" />
-            <CardTitle class="text-base font-semibold text-foreground">
-              {{ $t('page.automation_view.overview_recent_devices') }}
-            </CardTitle>
-          </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            class="h-7 gap-1 px-2 text-muted-foreground hover:text-foreground"
-            @click="navigateTo('/automation/devices')"
-          >
-            <span>{{ $t('page.automation_view.overview_view_all') }}</span>
-            <ArrowRight class="size-3" />
-          </Button>
+            <span>{{
+              $t('page.automation_view.overview_recent_devices')
+            }}</span>
+          </CardTitle>
+          <CardAction>
+            <Button
+              variant="ghost"
+              size="sm"
+              class="h-7 gap-1 px-2 text-muted-foreground hover:text-foreground"
+              @click="navigateTo('/automation/devices')"
+            >
+              <span>{{ $t('page.automation_view.overview_view_all') }}</span>
+              <ArrowRight class="size-3" />
+            </Button>
+          </CardAction>
         </CardHeader>
 
-        <CardContent class="p-3.5 pt-0 sm:p-4 sm:pt-0">
+        <CardContent>
           <div
             v-if="overview.recentDevices.length > 0"
             class="divide-y divide-border/40"
@@ -412,10 +414,10 @@ onMounted(() => {
             >
               <div class="min-w-0 flex-1">
                 <div class="flex items-center gap-2">
-                  <span class="truncate text-foreground sm:">
+                  <span class="truncate text-foreground">
                     {{ device.name }}
                   </span>
-                  <Badge variant="outline" class="shrink-0 capitalize">
+                  <Badge variant="outline" class="capitalize">
                     {{ device.os_info }}
                   </Badge>
                 </div>
@@ -439,7 +441,7 @@ onMounted(() => {
                 </div>
               </div>
 
-              <Badge variant="outline" class="shrink-0">
+              <Badge variant="outline">
                 <span
                   class="mr-1 size-1.5 rounded-full"
                   :class="{
@@ -447,7 +449,8 @@ onMounted(() => {
                     'bg-primary animate-pulse': device.status === 'busy',
                     'bg-warning': device.status === 'maintenance',
                     'bg-muted-foreground':
-                      device.status === 'offline' || device.status === 'disabled',
+                      device.status === 'offline' ||
+                      device.status === 'disabled',
                   }"
                 ></span>
                 {{ getDeviceStatusLabel(device.status) }}

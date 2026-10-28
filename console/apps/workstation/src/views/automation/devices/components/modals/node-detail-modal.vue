@@ -80,7 +80,7 @@ const { formatDate } = useDateFormat();
             </div>
           </div>
 
-          <Badge variant="outline" class="">
+          <Badge variant="outline">
             <span
               class="mr-1.5 size-1.5 rounded-full"
               :class="{
@@ -107,13 +107,7 @@ const { formatDate } = useDateFormat();
 
         <!-- Device Specs & Identity Form via VXE UI Form -->
         <div class="rounded-xl border border-border/60 bg-muted/20 p-4">
-          <VxeForm
-            :data="props.node"
-            custom-layout
-            readonly
-            size="small"
-            class="w-full"
-          >
+          <VxeForm :data="props.node" custom-layout readonly class="w-full">
             <!-- Hardware Specs Group -->
             <VxeFormItem :title="$t('page.automation_view.col_cpu')" span="12">
               <template #default>

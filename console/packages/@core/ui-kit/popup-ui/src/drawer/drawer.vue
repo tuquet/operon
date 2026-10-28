@@ -207,6 +207,7 @@ const getForceMount = computed(() => {
       :modal="modal"
       :open="state?.isOpen"
       :side="placement"
+      :show-close-button="!showHeader && closable"
       :z-index="zIndex"
       :overlay-blur="overlayBlur"
       @close-auto-focus="handleFocusOutside"

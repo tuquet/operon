@@ -135,7 +135,7 @@ const { formatDate } = useDateFormat();
 
             <!-- Status Column -->
             <TableCell class="whitespace-nowrap">
-              <Badge variant="outline" class="">
+              <Badge variant="outline">
                 <span
                   class="mr-1.5 size-1.5 rounded-full"
                   :class="

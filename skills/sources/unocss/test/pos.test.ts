@@ -392,7 +392,7 @@ let transition = 'ease-in-out duration-300'
     @edit="(e) => handleEdit()"
     mr-1 px2
     type="editable-card"
-    size="small"
+    
     :animated="false"
     :hideAdd="true"
     :tabBarGutter="3"

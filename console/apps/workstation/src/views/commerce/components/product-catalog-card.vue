@@ -100,14 +100,9 @@ function getProductTypeBadge(type: CommerceProductType) {
             v-for="variant in product.variants"
             :key="variant.id"
             type="button"
-            variant="outline"
+            :variant="currentVariant?.id === variant.id ? 'default' : 'outline'"
             size="sm"
-            class="h-auto rounded-lg px-2.5 py-1 text-left transition-colors"
-            :class="
-              currentVariant?.id === variant.id
-                ? 'border-primary bg-primary/10 font-semibold text-primary'
-                : 'border-border/70 bg-background text-foreground hover:border-primary/40'
-            "
+            class="h-auto px-2.5 py-1 text-left"
             @click="emit('selectVariant', product.id, variant.id)"
           >
             {{ variant.name }}

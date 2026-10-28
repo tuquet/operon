@@ -9,6 +9,7 @@ import { Page } from '@operon/common-ui';
 import {
   Badge,
   Button,
+  Card,
   Empty,
   EmptyDescription,
   EmptyHeader,
@@ -163,8 +164,6 @@ onMounted(() => {
   <Page
     :title="$t('page.system.overview')"
     :description="$t('page.system.overview_desc')"
-    content-class="space-y-3.5 p-3 sm:space-y-5 sm:p-5"
-    header-class="border-b border-border/60 bg-card/60 px-4 py-3 sm:px-6"
   >
     <template #extra>
       <div class="flex shrink-0 flex-wrap items-center gap-1.5 sm:gap-2">
@@ -187,13 +186,14 @@ onMounted(() => {
       <div
         class="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3 lg:grid-cols-6"
       >
-        <Button
+        <Card
           v-for="mod in moduleCards"
           :key="mod.key"
-          type="button"
-          variant="outline"
-          class="group flex h-auto flex-col items-stretch justify-between rounded-xl border border-border/60 bg-card p-3 text-left shadow-xs transition-all hover:border-primary/40 hover:bg-muted/20 sm:p-4"
+          tabindex="0"
+          role="button"
+          class="group cursor-pointer justify-between p-3 transition-all hover:border-primary/40 hover:bg-muted/20 sm:p-4"
           @click="router.push(mod.path)"
+          @keydown.enter="router.push(mod.path)"
         >
           <div class="flex items-center justify-between gap-2">
             <div
@@ -207,7 +207,7 @@ onMounted(() => {
           </div>
           <div class="mt-2.5">
             <div class="flex items-baseline justify-between gap-1.5">
-              <span class="truncate text-foreground sm:">
+              <span class="truncate text-foreground">
                 {{ mod.title }}
               </span>
               <span class="text-base font-bold text-foreground sm:text-lg">
@@ -218,7 +218,7 @@ onMounted(() => {
               {{ mod.subtext }}
             </p>
           </div>
-        </Button>
+        </Card>
       </div>
     </div>
 
@@ -275,7 +275,7 @@ onMounted(() => {
                   }}
                 </span>
                 <span v-if="log.ip_address">&bull;</span>
-                <span v-if="log.ip_address" class="">
+                <span v-if="log.ip_address">
                   {{ log.ip_address }}
                 </span>
               </div>

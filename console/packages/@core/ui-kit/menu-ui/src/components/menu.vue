@@ -449,7 +449,7 @@ $namespace: vben;
 .#{$namespace}-menu {
   --menu-title-width: 140px;
   --menu-item-icon-size: var(--font-size-base, 16px);
-  --menu-item-height: 38px;
+  --menu-item-height: 40px;
   --menu-item-padding-y: 21px;
   --menu-item-padding-x: 12px;
   --menu-item-popup-padding-y: 20px;

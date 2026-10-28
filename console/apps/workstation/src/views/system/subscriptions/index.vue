@@ -178,6 +178,8 @@ const [Grid, gridApi] = useVbenVxeGrid<PlatformSubscription>({
 
 <template>
   <Page
+    auto-content-height
+    content-class="p-2.5 sm:p-4 flex flex-col min-h-0"
     :title="$t('page.system.subscriptions')"
     :description="$t('page.system.subscriptions_desc')"
   >
@@ -216,53 +218,49 @@ const [Grid, gridApi] = useVbenVxeGrid<PlatformSubscription>({
       </div>
     </template>
 
-    <!-- Table Container with Integrated Form & Pager -->
-    <div
-      class="overflow-hidden rounded-xl border border-border/60 bg-card p-3 sm:p-5 shadow-xs"
-    >
-      <Grid class="subscriptions-vxe-grid">
-        <template #workspace-cell="{ row }">
-          <div class="flex min-w-0 flex-col py-1 text-left">
-            <span class="truncate text-foreground">
-              {{ row.tenant_name }}
-            </span>
-            <div class="flex items-center gap-1.5 text-muted-foreground">
-              <span class="truncate">
-                /{{ row.tenant_slug || row.tenant_id.slice(0, 8) }}
-              </span>
-            </div>
-          </div>
-        </template>
-
-        <template #plan-cell="{ row }">
-          <Badge variant="outline" class="font-semibold">
-            {{ row.plan_name }}
-          </Badge>
-        </template>
-
-        <template #price-cell="{ row }">
-          <span class="text-foreground">
-            ${{ row.price_monthly_usd
-            }}{{ $t('page.system_view.per_month_suffix') }}
+    <!-- Table Container with Integrated Form & Pager: Grid at Level 1 -->
+    <Grid class="subscriptions-vxe-grid flex-1 min-h-0 overflow-hidden">
+      <template #workspace-cell="{ row }">
+        <div class="flex min-w-0 flex-col py-1 text-left">
+          <span class="truncate text-foreground">
+            {{ row.tenant_name }}
           </span>
-        </template>
+          <div class="flex items-center gap-1.5 text-muted-foreground">
+            <span class="truncate">
+              /{{ row.tenant_slug || row.tenant_id.slice(0, 8) }}
+            </span>
+          </div>
+        </div>
+      </template>
 
-        <template #status-cell="{ row }">
-          <Badge :variant="getStatusBadge(row.status).variant">
-            {{ getStatusBadge(row.status).label }}
-          </Badge>
-        </template>
+      <template #plan-cell="{ row }">
+        <Badge variant="outline" class="font-semibold">
+          {{ row.plan_name }}
+        </Badge>
+      </template>
 
-        <template #renewal-cell="{ row }">
-          <Badge :variant="row.cancel_at_period_end ? 'outline' : 'secondary'">
-            {{
-              row.cancel_at_period_end
-                ? $t('page.system_view.subs_cancel_period_end')
-                : $t('page.system_view.subs_auto_renew')
-            }}
-          </Badge>
-        </template>
-      </Grid>
-    </div>
+      <template #price-cell="{ row }">
+        <span class="text-foreground">
+          ${{ row.price_monthly_usd
+          }}{{ $t('page.system_view.per_month_suffix') }}
+        </span>
+      </template>
+
+      <template #status-cell="{ row }">
+        <Badge :variant="getStatusBadge(row.status).variant">
+          {{ getStatusBadge(row.status).label }}
+        </Badge>
+      </template>
+
+      <template #renewal-cell="{ row }">
+        <Badge :variant="row.cancel_at_period_end ? 'outline' : 'secondary'">
+          {{
+            row.cancel_at_period_end
+              ? $t('page.system_view.subs_cancel_period_end')
+              : $t('page.system_view.subs_auto_renew')
+          }}
+        </Badge>
+      </template>
+    </Grid>
   </Page>
 </template>

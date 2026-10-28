@@ -53,12 +53,12 @@ const members = [
 
 Say hello to our awesome team.
 
-<VPTeamMembers size="small" :members />
+<VPTeamMembers  :members />
 ```
 
 The above will display a team member in card looking element. It should display something similar to below.
 
-<VPTeamMembers size="small" :members />
+<VPTeamMembers  :members />
 
 `<VPTeamMembers>` component comes in 2 different sizes, `small` and `medium`. While it boils down to your preference, usually `small` size should fit better when used in doc page. Also, you may add more properties to each member such as adding "description" or "sponsor" button. Learn more about it in [`<VPTeamMembers>`](#vpteammembers).
 
@@ -149,7 +149,7 @@ const partners = [...]
     <template #title>Partners</template>
     <template #lead>...</template>
     <template #members>
-      <VPTeamMembers size="small" :members="partners" />
+      <VPTeamMembers  :members="partners" />
     </template>
   </VPTeamPageSection>
 </VPTeamPage>

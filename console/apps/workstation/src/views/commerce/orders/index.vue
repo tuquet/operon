@@ -23,7 +23,7 @@ import {
   toast,
 } from '@operon-core/shadcn-ui';
 
-import { Building2, Eye, RefreshCw, ShoppingBag } from '@lucide/vue';
+import { Building2, Copy, Eye, RefreshCw, ShoppingBag } from '@lucide/vue';
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
 import {
@@ -160,7 +160,7 @@ function getColumns() {
     {
       field: 'created_at',
       title: $t('page.commerce_view.col_created_time'),
-      slots: { default: 'date-cell' },
+      cellRender: { name: 'CellDate' },
     },
     {
       field: 'actions',
@@ -429,12 +429,6 @@ onMounted(() => {
           <Badge :variant="getOrderStatusBadge(row.status).variant">
             {{ getOrderStatusBadge(row.status).label }}
           </Badge>
-        </template>
-
-        <template #date-cell="{ row }">
-          <span class="text-muted-foreground">
-            {{ formatDate(row.created_at) }}
-          </span>
         </template>
 
         <template #action-cell="{ row }">

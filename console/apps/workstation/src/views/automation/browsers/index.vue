@@ -1,4 +1,4 @@
-﻿<script lang="ts" setup>
+<script lang="ts" setup>
 import type { BrowserProfile } from '#/api';
 
 import { ref, watch } from 'vue';
@@ -109,7 +109,31 @@ function getColumns() {
       field: 'status',
       title: $t('common.status'),
 
-      slots: { default: 'status-cell' },
+      cellRender: {
+        name: 'CellStatus',
+        props: {
+          statusMap: {
+            error: {
+              label: $t('common.error'),
+              variant: 'destructive',
+            },
+            idle: {
+              label: $t('page.automation_view.device_status_idle'),
+              variant: 'success',
+            },
+            running: {
+              label: $t('common.running'),
+              pulse: true,
+              variant: 'primary',
+            },
+            syncing: {
+              label: $t('page.automation_view.browser_status_syncing'),
+              pulse: true,
+              variant: 'warning',
+            },
+          },
+        },
+      },
     },
     {
       field: 'created_at',
@@ -265,6 +289,8 @@ watch(
 
 <template>
   <Page
+    auto-content-height
+    content-class="p-2.5 sm:p-4 flex flex-col min-h-0"
     :title="$t('page.automation.browsers')"
     :description="$t('page.automation.browsers_desc')"
   >
@@ -304,186 +330,157 @@ watch(
       </div>
     </template>
 
-    <!-- Main Container -->
-    <div
-      class="overflow-hidden rounded-xl border border-border/60 bg-card p-2.5 shadow-xs sm:p-4"
-    >
-      <Grid class="browsers-vxe-grid">
-        <template #name-cell="{ row }">
-          <div class="flex items-center gap-2.5">
-            <div
-              class="flex size-8 items-center justify-center rounded-lg bg-muted text-foreground shrink-0"
-            >
-              <Globe class="size-4" />
-            </div>
-            <div class="min-w-0">
-              <div class="text-foreground truncate">
-                {{ row.name }}
-              </div>
-              <div class="flex items-center gap-1.5 text-muted-foreground">
-                <Badge variant="outline" class="capitalize py-0 px-1">
-                  {{ row.os_platform }}
-                </Badge>
-                <Badge variant="secondary" class="py-0 px-1">
-                  {{ row.engine_version }}
-                </Badge>
-              </div>
-            </div>
-          </div>
-        </template>
-
-        <template #lock-cell="{ row }">
+    <!-- Main Container: Grid at Level 1 -->
+    <Grid class="browsers-vxe-grid flex-1 min-h-0 overflow-hidden">
+      <template #name-cell="{ row }">
+        <div class="flex items-center gap-2.5">
           <div
-            v-if="row.locked_by_device"
-            class="inline-flex items-center gap-1.5 text-primary truncate"
+            class="flex size-8 items-center justify-center rounded-lg bg-muted text-foreground shrink-0"
           >
-            <Lock class="size-3 text-primary shrink-0" />
-            <span class="truncate">{{ row.locked_by_device.name }}</span>
+            <Globe class="size-4" />
           </div>
-          <div
-            v-else
-            class="inline-flex items-center gap-1.5 text-muted-foreground"
+          <div class="min-w-0">
+            <div class="text-foreground truncate">
+              {{ row.name }}
+            </div>
+            <div class="flex items-center gap-1.5 text-muted-foreground">
+              <Badge variant="outline" class="capitalize py-0 px-1">
+                {{ row.os_platform }}
+              </Badge>
+              <Badge variant="secondary" class="py-0 px-1">
+                {{ row.engine_version }}
+              </Badge>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <template #lock-cell="{ row }">
+        <div
+          v-if="row.locked_by_device"
+          class="inline-flex items-center gap-1.5 text-primary truncate"
+        >
+          <Lock class="size-3 text-primary shrink-0" />
+          <span class="truncate">{{ row.locked_by_device.name }}</span>
+        </div>
+        <div
+          v-else
+          class="inline-flex items-center gap-1.5 text-muted-foreground"
+        >
+          <Unlock class="size-3 shrink-0" />
+          <span>{{ $t('page.automation_view.browser_unlocked') }}</span>
+        </div>
+      </template>
+
+      <template #proxy-cell="{ row }">
+        <div
+          v-if="row.proxy"
+          class="inline-flex items-center gap-1.5 text-foreground truncate"
+        >
+          <Shield class="size-3 text-success shrink-0" />
+          <span class="truncate"
+            >{{ row.proxy.protocol }}://{{ row.proxy.host }}:{{
+              row.proxy.port
+            }}</span
+          >
+        </div>
+        <span v-else class="text-muted-foreground">
+          {{ $t('page.automation_view.proxy_direct') }}
+        </span>
+      </template>
+
+      <template #storage-cell="{ row }">
+        <div class="flex items-center gap-2 text-foreground">
+          <span>{{ formatBytes(row.storage_size_bytes) }}</span>
+          <span class="text-muted-foreground">&bull;</span>
+          <span class="text-muted-foreground">
+            {{
+              $t('page.automation_view.cookies_count_unit', [row.cookies_count])
+            }}
+          </span>
+        </div>
+      </template>
+
+      <template #actions-cell="{ row }">
+        <div class="flex items-center justify-end gap-1">
+          <Button
+            :variant="row.status === 'running' ? 'destructive' : 'default'"
+            size="sm"
+            class="h-7 gap-1 px-2"
+            :class="{
+              'bg-success hover:bg-success/90 text-success-foreground':
+                row.status !== 'running',
+            }"
+            :disabled="isToggling[row.id] || row.status === 'syncing'"
+            :title="
+              row.status === 'running' ? 'Stop Browser' : 'Launch Browser'
+            "
+            @click="handleToggleRun(row)"
+          >
+            <Square
+              v-if="row.status === 'running'"
+              class="size-3 fill-current shrink-0"
+            />
+            <Play v-else class="size-3 fill-current shrink-0" />
+            <span>{{ row.status === 'running' ? 'Stop' : 'Run' }}</span>
+          </Button>
+          <Button
+            v-if="
+              row.locked_by_device ||
+              row.status === 'running' ||
+              row.status === 'error'
+            "
+            variant="ghost"
+            size="sm"
+            class="h-7 gap-1 px-1.5 text-warning hover:text-warning"
+            :disabled="isUnbinding[row.id]"
+            :title="$t('page.automation_view.browser_unlocked')"
+            :aria-label="$t('page.automation_view.browser_unlocked')"
+            @click="handleUnbind(row)"
           >
             <Unlock class="size-3 shrink-0" />
-            <span>{{ $t('page.automation_view.browser_unlocked') }}</span>
-          </div>
-        </template>
-
-        <template #proxy-cell="{ row }">
-          <div
-            v-if="row.proxy"
-            class="inline-flex items-center gap-1.5 text-foreground truncate"
+            <span class="hidden md:inline">{{
+              $t('page.automation_view.browser_unlocked')
+            }}</span>
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            class="h-7 gap-1 px-2"
+            :title="$t('common.edit')"
+            :aria-label="$t('common.edit')"
+            @click="() => gridApi.openDetailSheet(row)"
           >
-            <Shield class="size-3 text-success shrink-0" />
-            <span class="truncate"
-              >{{ row.proxy.protocol }}://{{ row.proxy.host }}:{{
-                row.proxy.port
-              }}</span
-            >
-          </div>
-          <span v-else class="text-muted-foreground">
-            {{ $t('page.automation_view.proxy_direct') }}
-          </span>
-        </template>
-
-        <template #storage-cell="{ row }">
-          <div class="flex items-center gap-2 text-foreground">
-            <span>{{ formatBytes(row.storage_size_bytes) }}</span>
-            <span class="text-muted-foreground">&bull;</span>
-            <span class="text-muted-foreground">
-              {{
-                $t('page.automation_view.cookies_count_unit', [
-                  row.cookies_count,
-                ])
-              }}
-            </span>
-          </div>
-        </template>
-
-        <template #status-cell="{ row }">
-          <Badge variant="outline" class="">
-            <span
-              class="mr-1.5 size-1.5 rounded-full"
-              :class="{
-                'bg-success': row.status === 'idle',
-                'bg-primary animate-pulse': row.status === 'running',
-                'bg-warning animate-pulse': row.status === 'syncing',
-                'bg-destructive': row.status === 'error',
-              }"
-            ></span>
-            {{
-              row.status === 'idle'
-                ? $t('page.automation_view.device_status_idle')
-                : row.status === 'running'
-                  ? $t('common.running')
-                  : row.status === 'syncing'
-                    ? $t('page.automation_view.browser_status_syncing')
-                    : $t('common.error')
-            }}
-          </Badge>
-        </template>
-
-        <template #actions-cell="{ row }">
-          <div class="flex items-center justify-end gap-1">
-            <Button
-              :variant="row.status === 'running' ? 'destructive' : 'default'"
-              size="sm"
-              class="h-7 gap-1 px-2"
-              :class="{
-                'bg-success hover:bg-success/90 text-success-foreground':
-                  row.status !== 'running',
-              }"
-              :disabled="isToggling[row.id] || row.status === 'syncing'"
-              :title="
-                row.status === 'running' ? 'Stop Browser' : 'Launch Browser'
-              "
-              @click="handleToggleRun(row)"
-            >
-              <Square
-                v-if="row.status === 'running'"
-                class="size-3 fill-current shrink-0"
-              />
-              <Play v-else class="size-3 fill-current shrink-0" />
-              <span>{{ row.status === 'running' ? 'Stop' : 'Run' }}</span>
-            </Button>
-            <Button
-              v-if="
-                row.locked_by_device ||
-                row.status === 'running' ||
-                row.status === 'error'
-              "
-              variant="ghost"
-              size="sm"
-              class="h-7 gap-1 px-1.5 text-warning hover:text-warning"
-              :disabled="isUnbinding[row.id]"
-              :title="$t('page.automation_view.browser_unlocked')"
-              :aria-label="$t('page.automation_view.browser_unlocked')"
-              @click="handleUnbind(row)"
-            >
-              <Unlock class="size-3 shrink-0" />
-              <span class="hidden md:inline">{{
-                $t('page.automation_view.browser_unlocked')
-              }}</span>
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              class="h-7 gap-1 px-2"
-              :title="$t('common.edit')"
-              :aria-label="$t('common.edit')"
-              @click="() => gridApi.openDetailSheet(row)"
-            >
-              <Pencil class="size-3 shrink-0" />
-              <span class="hidden sm:inline">{{ $t('common.edit') }}</span>
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              class="h-7 gap-1 px-2"
-              :title="$t('common.copy')"
-              :aria-label="$t('common.copy')"
-              @click="copyToClipboard(row.id, 'Browser ID')"
-            >
-              <Copy class="size-3 shrink-0" />
-              <span>{{ $t('common.copy') }}</span>
-            </Button>
-          </div>
-        </template>
-
-        <template #empty>
-          <div
-            class="flex flex-col items-center justify-center p-8 text-center text-muted-foreground"
+            <Pencil class="size-3 shrink-0" />
+            <span class="hidden sm:inline">{{ $t('common.edit') }}</span>
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            class="h-7 gap-1 px-2"
+            :title="$t('common.copy')"
+            :aria-label="$t('common.copy')"
+            @click="copyToClipboard(row.id, 'Browser ID')"
           >
-            <Globe class="size-10 stroke-[1.5] text-muted-foreground/60 mb-3" />
-            <p class="text-foreground">
-              {{ $t('page.fleet_view.browsers_empty') }}
-            </p>
-            <p class="text-muted-foreground max-w-sm mt-1">
-              {{ $t('page.fleet_view.browsers_empty_desc') }}
-            </p>
-          </div>
-        </template>
-      </Grid>
-    </div>
+            <Copy class="size-3 shrink-0" />
+            <span>{{ $t('common.copy') }}</span>
+          </Button>
+        </div>
+      </template>
+
+      <template #empty>
+        <div
+          class="flex flex-col items-center justify-center p-8 text-center text-muted-foreground"
+        >
+          <Globe class="size-10 stroke-[1.5] text-muted-foreground/60 mb-3" />
+          <p class="text-foreground">
+            {{ $t('page.fleet_view.browsers_empty') }}
+          </p>
+          <p class="text-muted-foreground max-w-sm mt-1">
+            {{ $t('page.fleet_view.browsers_empty_desc') }}
+          </p>
+        </div>
+      </template>
+    </Grid>
   </Page>
 </template>

@@ -594,7 +594,6 @@ async function handleSave() {
         <VxeForm
           :data="formData"
           custom-layout
-          size="small"
           :title-position="isMobile ? 'top' : 'left'"
           class="w-full space-y-3"
         >
@@ -681,7 +680,6 @@ async function handleSave() {
                   v-model="formData[field.field]"
                   :data-testid="`vxe-field-${field.field}`"
                   rows="3"
-                  class=""
                 />
 
                 <!-- Number Input -->

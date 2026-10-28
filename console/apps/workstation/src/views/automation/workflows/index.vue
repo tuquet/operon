@@ -51,13 +51,41 @@ function getColumns() {
       field: 'version',
       title: $t('page.workflows_view.col_version'),
 
-      slots: { default: 'version-cell' },
+      cellRender: {
+        name: 'CellTag',
+        props: {
+          prefix: 'v',
+          variant: 'outline',
+        },
+      },
     },
     {
       field: 'status',
       title: $t('page.workflows_view.col_status'),
 
-      slots: { default: 'status-cell' },
+      cellRender: {
+        name: 'CellStatus',
+        props: {
+          statusMap: {
+            [WORKFLOW_STATUS.ARCHIVED]: {
+              label: $t(
+                WORKFLOW_STATUS_META[WORKFLOW_STATUS.ARCHIVED].labelKey,
+              ),
+              variant: 'muted',
+            },
+            [WORKFLOW_STATUS.DRAFT]: {
+              label: $t(WORKFLOW_STATUS_META[WORKFLOW_STATUS.DRAFT].labelKey),
+              variant: 'warning',
+            },
+            [WORKFLOW_STATUS.PUBLISHED]: {
+              label: $t(
+                WORKFLOW_STATUS_META[WORKFLOW_STATUS.PUBLISHED].labelKey,
+              ),
+              variant: 'success',
+            },
+          },
+        },
+      },
     },
     {
       field: 'created_at',
@@ -166,6 +194,8 @@ function refresh() {
 
 <template>
   <Page
+    auto-content-height
+    content-class="p-2.5 sm:p-4 flex flex-col min-h-0"
     :title="$t('page.automation.workflows')"
     :description="$t('page.automation.workflows_desc')"
   >
@@ -205,62 +235,41 @@ function refresh() {
       </div>
     </template>
 
-    <!-- Main Container -->
-    <div
-      class="overflow-hidden rounded-xl border border-border/60 bg-card p-2.5 shadow-xs sm:p-4"
-    >
-      <!-- Table Grid -->
-      <Grid class="workflow-vxe-grid">
-        <template #name-cell="{ row }">
-          <div class="flex items-center gap-2.5 py-1">
-            <div
-              class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground"
-            >
-              <GitBranch class="size-4" />
-            </div>
-            <div class="min-w-0 flex-1 text-left">
-              <div class="truncate text-foreground">
-                {{ row.name }}
-              </div>
-              <div class="line-clamp-1 max-w-md text-muted-foreground">
-                {{
-                  row.description || $t('page.workflows_view.no_description')
-                }}
-              </div>
-            </div>
-          </div>
-        </template>
-
-        <template #version-cell="{ row }">
-          <Badge variant="outline"> v{{ row.version }} </Badge>
-        </template>
-
-        <template #status-cell="{ row }">
-          <Badge variant="outline" class="">
-            <span
-              class="mr-1.5 size-1.5 rounded-full"
-              :class="getStatusDotClass(row.status)"
-            ></span>
-            {{ getStatusLabel(row.status) }}
-          </Badge>
-        </template>
-
-        <template #empty>
+    <!-- Table Grid: Grid at Level 1 -->
+    <Grid class="workflow-vxe-grid flex-1 min-h-0 overflow-hidden">
+      <template #name-cell="{ row }">
+        <div class="flex items-center gap-2.5 py-1">
           <div
-            class="flex flex-col items-center justify-center px-4 py-8 text-center text-muted-foreground"
+            class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground"
           >
-            <GitBranch
-              class="mb-3 size-10 stroke-[1.5] text-muted-foreground/60"
-            />
-            <p class="text-foreground">
-              {{ $t('page.workflows_view.empty_title') }}
-            </p>
-            <p class="mt-1 max-w-md text-muted-foreground">
-              {{ $t('page.workflows_view.empty_desc') }}
-            </p>
+            <GitBranch class="size-4" />
           </div>
-        </template>
-      </Grid>
-    </div>
+          <div class="min-w-0 flex-1 text-left">
+            <div class="truncate text-foreground">
+              {{ row.name }}
+            </div>
+            <div class="line-clamp-1 max-w-md text-muted-foreground">
+              {{ row.description || $t('page.workflows_view.no_description') }}
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <template #empty>
+        <div
+          class="flex flex-col items-center justify-center px-4 py-8 text-center text-muted-foreground"
+        >
+          <GitBranch
+            class="mb-3 size-10 stroke-[1.5] text-muted-foreground/60"
+          />
+          <p class="text-foreground">
+            {{ $t('page.workflows_view.empty_title') }}
+          </p>
+          <p class="mt-1 max-w-md text-muted-foreground">
+            {{ $t('page.workflows_view.empty_desc') }}
+          </p>
+        </div>
+      </template>
+    </Grid>
   </Page>
 </template>

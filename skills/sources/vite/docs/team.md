@@ -30,7 +30,7 @@ import { core, emeriti } from './_data/team'
       contributions in the past.
     </template>
     <template #members>
-      <VPTeamMembers size="small" :members="emeriti" />
+      <VPTeamMembers  :members="emeriti" />
     </template>
   </VPTeamPageSection>
 </VPTeamPage>

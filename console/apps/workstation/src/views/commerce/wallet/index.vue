@@ -408,8 +408,6 @@ onBeforeUnmount(() => {
   <Page
     :title="$t('page.commerce.wallet')"
     :description="$t('page.commerce.wallet_desc')"
-    content-class="space-y-3 p-3 sm:space-y-4 sm:p-5"
-    header-class="border-b border-border/60 bg-card/60 px-4 py-3 sm:px-6"
   >
     <template #title>
       <div class="flex items-center gap-2">
@@ -502,55 +500,50 @@ onBeforeUnmount(() => {
     </div>
 
     <!-- Ledger VXE Grid -->
-    <div
-      class="overflow-hidden rounded-xl border border-border/60 bg-card p-3 sm:p-5 shadow-xs"
-    >
-      <Grid>
-        <template #type-cell="{ row }">
-          <Badge :variant="getTxTypeBadge(row.tx_type).variant">
-            {{ getTxTypeBadge(row.tx_type).label }}
-          </Badge>
-        </template>
 
-        <template #desc-cell="{ row }">
-          <span class="text-foreground">
-            {{
-              row.description || $t('page.commerce_view.default_wallet_tx_desc')
-            }}
-          </span>
-        </template>
+    <Grid>
+      <template #type-cell="{ row }">
+        <Badge :variant="getTxTypeBadge(row.tx_type).variant">
+          {{ getTxTypeBadge(row.tx_type).label }}
+        </Badge>
+      </template>
 
-        <template #amount-cell="{ row }">
-          <span
-            class="font-bold"
-            :class="
-              row.amount_credits >= 0 ? 'text-success' : 'text-destructive'
-            "
-          >
-            {{ row.amount_credits >= 0 ? '+' : ''
-            }}{{ row.amount_credits.toLocaleString('en-US') }} Xu
-          </span>
-        </template>
+      <template #desc-cell="{ row }">
+        <span class="text-foreground">
+          {{
+            row.description || $t('page.commerce_view.default_wallet_tx_desc')
+          }}
+        </span>
+      </template>
 
-        <template #balance-cell="{ row }">
-          <span class="font-semibold text-foreground">
-            {{ row.balance_after_credits.toLocaleString('en-US') }} Xu
-          </span>
-        </template>
+      <template #amount-cell="{ row }">
+        <span
+          class="font-bold"
+          :class="row.amount_credits >= 0 ? 'text-success' : 'text-destructive'"
+        >
+          {{ row.amount_credits >= 0 ? '+' : ''
+          }}{{ row.amount_credits.toLocaleString('en-US') }} Xu
+        </span>
+      </template>
 
-        <template #ref-cell="{ row }">
-          <span class="text-muted-foreground">
-            {{ row.reference_id ? row.reference_id.slice(0, 12) : '—' }}
-          </span>
-        </template>
+      <template #balance-cell="{ row }">
+        <span class="font-semibold text-foreground">
+          {{ row.balance_after_credits.toLocaleString('en-US') }} Xu
+        </span>
+      </template>
 
-        <template #date-cell="{ row }">
-          <span class="text-muted-foreground">
-            {{ formatDate(row.created_at) }}
-          </span>
-        </template>
-      </Grid>
-    </div>
+      <template #ref-cell="{ row }">
+        <span class="text-muted-foreground">
+          {{ row.reference_id ? row.reference_id.slice(0, 12) : '—' }}
+        </span>
+      </template>
+
+      <template #date-cell="{ row }">
+        <span class="text-muted-foreground">
+          {{ formatDate(row.created_at) }}
+        </span>
+      </template>
+    </Grid>
 
     <!-- Top-up Xu Multi-Channel Dialog -->
     <Dialog v-model:open="topupOpen">
@@ -588,13 +581,8 @@ onBeforeUnmount(() => {
                 v-for="preset in QUICK_TOPUP_PRESETS"
                 :key="preset"
                 type="button"
-                variant="outline"
-                class="h-auto rounded-lg border py-2 text-center font-semibold transition-colors"
-                :class="
-                  topupCredits === preset
-                    ? 'border-primary bg-primary/10 text-primary hover:bg-primary/15'
-                    : 'border-border/60 bg-background text-foreground hover:border-primary/40'
-                "
+                :variant="topupCredits === preset ? 'default' : 'outline'"
+                class="h-auto py-2 font-semibold"
                 @click="topupCredits = preset"
               >
                 +{{ preset.toLocaleString('en-US') }} Xu

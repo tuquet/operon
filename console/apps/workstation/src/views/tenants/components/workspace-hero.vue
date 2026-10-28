@@ -3,7 +3,13 @@ import type { Tenant } from '#/api';
 
 import { computed } from 'vue';
 
-import { Avatar, AvatarFallback, Badge, Button } from '@operon-core/shadcn-ui';
+import {
+  Avatar,
+  AvatarFallback,
+  Badge,
+  Button,
+  Card,
+} from '@operon-core/shadcn-ui';
 
 import {
   Calendar,
@@ -45,9 +51,7 @@ const planName = computed(() => {
 </script>
 
 <template>
-  <div
-    class="rounded-xl border border-border/60 bg-card p-3.5 sm:p-5 shadow-sm"
-  >
+  <Card class="p-3.5 sm:p-5 shadow-sm">
     <div
       class="flex flex-col gap-3.5 md:flex-row md:flex-wrap md:items-center md:justify-between"
     >
@@ -104,7 +108,7 @@ const planName = computed(() => {
           >
             <Badge variant="secondary"> /{{ props.tenant.slug }} </Badge>
             <span class="text-muted-foreground/40">·</span>
-            <span class="">
+            <span>
               {{ props.tenant.id.slice(0, 8) }}
             </span>
             <span class="text-muted-foreground/40">·</span>
@@ -168,5 +172,5 @@ const planName = computed(() => {
         </Button>
       </div>
     </div>
-  </div>
+  </Card>
 </template>

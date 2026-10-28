@@ -1,4 +1,4 @@
-﻿<script lang="ts" setup>
+<script lang="ts" setup>
 import type { Device } from '#/api';
 
 import { ref, watch } from 'vue';
@@ -107,13 +107,45 @@ function getColumns() {
       field: 'driver_type',
       title: $t('page.automation_view.col_driver'),
 
-      slots: { default: 'driver-cell' },
+      cellRender: {
+        name: 'CellTag',
+        props: {
+          capitalize: true,
+          variant: 'secondary',
+        },
+      },
     },
     {
       field: 'status',
       title: $t('common.status'),
 
-      slots: { default: 'status-cell' },
+      cellRender: {
+        name: 'CellStatus',
+        props: {
+          statusMap: {
+            busy: {
+              label: $t('page.automation_view.device_status_busy'),
+              variant: 'primary',
+            },
+            disabled: {
+              label: $t('common.disabled'),
+              variant: 'destructive',
+            },
+            idle: {
+              label: $t('page.automation_view.device_status_idle'),
+              variant: 'success',
+            },
+            maintenance: {
+              label: $t('page.automation_view.device_status_maintenance'),
+              variant: 'warning',
+            },
+            offline: {
+              label: $t('common.offline'),
+              variant: 'muted',
+            },
+          },
+        },
+      },
     },
     {
       field: 'active_jobs',
@@ -244,6 +276,8 @@ watch(
 
 <template>
   <Page
+    auto-content-height
+    content-class="p-2.5 sm:p-4 flex flex-col min-h-0"
     :title="$t('page.automation.devices')"
     :description="$t('page.automation.devices_desc')"
   >
@@ -283,144 +317,106 @@ watch(
       </div>
     </template>
 
-    <!-- Main Container -->
-    <div
-      class="overflow-hidden rounded-xl border border-border/60 bg-card p-2.5 shadow-xs sm:p-4"
-    >
-      <Grid class="devices-vxe-grid">
-        <template #name-cell="{ row }">
-          <div class="flex items-center gap-2.5">
-            <div
-              class="flex size-8 items-center justify-center rounded-lg bg-muted text-foreground shrink-0"
-            >
-              <Laptop class="size-4" />
-            </div>
-            <div class="min-w-0">
-              <div class="text-foreground truncate">
-                {{ row.name }}
-              </div>
-              <div class="text-muted-foreground truncate">
-                {{ row.hostname }} &bull; {{ row.ip_address }}
-              </div>
-            </div>
-          </div>
-        </template>
-
-        <template #os-cell="{ row }">
-          <Badge :variant="getOsBadgeVariant(row.os_info)" class="capitalize">
-            {{ row.os_info }}
-          </Badge>
-        </template>
-
-        <template #hardware-cell="{ row }">
-          <div class="flex items-center gap-2.5 text-foreground">
-            <span class="inline-flex items-center gap-1">
-              <Cpu class="size-3.5 shrink-0 text-muted-foreground" />
-              <span class="leading-none">
-                {{ $t('page.automation_view.cpu_cores_unit', [row.cpu_cores]) }}
-              </span>
-            </span>
-            <span class="inline-flex items-center gap-1">
-              <HardDrive class="size-3.5 shrink-0 text-muted-foreground" />
-              <span class="leading-none">{{ row.ram_gb }} GB</span>
-            </span>
-          </div>
-        </template>
-
-        <template #driver-cell="{ row }">
-          <Badge variant="secondary" class="capitalize">
-            {{ row.driver_type }}
-          </Badge>
-        </template>
-
-        <template #status-cell="{ row }">
-          <Badge variant="outline" class="">
-            <span
-              class="mr-1.5 size-1.5 rounded-full"
-              :class="{
-                'bg-success': row.status === 'idle',
-                'bg-primary': row.status === 'busy',
-                'bg-warning': row.status === 'maintenance',
-                'bg-destructive': row.status === 'disabled',
-                'bg-muted-foreground': row.status === 'offline',
-              }"
-            ></span>
-            {{
-              row.status === 'idle'
-                ? $t('page.automation_view.device_status_idle')
-                : row.status === 'busy'
-                  ? $t('page.automation_view.device_status_busy')
-                  : row.status === 'maintenance'
-                    ? $t('page.automation_view.device_status_maintenance')
-                    : row.status === 'disabled'
-                      ? $t('common.disabled')
-                      : $t('common.offline')
-            }}
-          </Badge>
-        </template>
-
-        <template #jobs-cell="{ row }">
-          <span
-            class="font-semibold"
-            :class="
-              row.active_jobs > 0 ? 'text-primary' : 'text-muted-foreground'
-            "
-          >
-            {{ $t('page.automation_view.active_jobs_unit', [row.active_jobs]) }}
-          </span>
-        </template>
-
-        <template #actions-cell="{ row }">
-          <div class="flex items-center justify-end gap-1.5">
-            <AlertDialog>
-              <AlertDialogTrigger as-child>
-                <Button variant="destructive" size="sm" class="h-7">
-                  {{ $t('page.automation_view.revoke_btn') }}
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>
-                    {{ $t('page.automation_view.revoke_device_confirm_title') }}
-                  </AlertDialogTitle>
-                  <AlertDialogDescription>
-                    {{
-                      $t('page.automation_view.revoke_device_confirm_desc', {
-                        name: row.name,
-                      })
-                    }}
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>
-                    {{ $t('common.cancel') }}
-                  </AlertDialogCancel>
-                  <AlertDialogAction @click="handleRevokeNode(row)">
-                    {{ $t('page.automation_view.revoke_btn') }}
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          </div>
-        </template>
-
-        <template #empty>
+    <!-- Main Container: Grid at Level 1 -->
+    <Grid class="devices-vxe-grid flex-1 min-h-0 overflow-hidden">
+      <template #name-cell="{ row }">
+        <div class="flex items-center gap-2.5">
           <div
-            class="flex flex-col items-center justify-center p-8 text-center text-muted-foreground"
+            class="flex size-8 items-center justify-center rounded-lg bg-muted text-foreground shrink-0"
           >
-            <Laptop
-              class="size-10 stroke-[1.5] text-muted-foreground/60 mb-3"
-            />
-            <p class="text-foreground">
-              {{ $t('page.fleet_view.empty_all') }}
-            </p>
-            <p class="text-muted-foreground max-w-sm mt-1">
-              {{ $t('page.fleet_view.empty_desc') }}
-            </p>
+            <Laptop class="size-4" />
           </div>
-        </template>
-      </Grid>
-    </div>
+          <div class="min-w-0">
+            <div class="text-foreground truncate">
+              {{ row.name }}
+            </div>
+            <div class="text-muted-foreground truncate">
+              {{ row.hostname }} &bull; {{ row.ip_address }}
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <template #os-cell="{ row }">
+        <Badge :variant="getOsBadgeVariant(row.os_info)" class="capitalize">
+          {{ row.os_info }}
+        </Badge>
+      </template>
+
+      <template #hardware-cell="{ row }">
+        <div class="flex items-center gap-2.5 text-foreground">
+          <span class="inline-flex items-center gap-1">
+            <Cpu class="size-3.5 shrink-0 text-muted-foreground" />
+            <span class="leading-none">
+              {{ $t('page.automation_view.cpu_cores_unit', [row.cpu_cores]) }}
+            </span>
+          </span>
+          <span class="inline-flex items-center gap-1">
+            <HardDrive class="size-3.5 shrink-0 text-muted-foreground" />
+            <span class="leading-none">{{ row.ram_gb }} GB</span>
+          </span>
+        </div>
+      </template>
+
+      <template #jobs-cell="{ row }">
+        <span
+          class="font-semibold"
+          :class="
+            row.active_jobs > 0 ? 'text-primary' : 'text-muted-foreground'
+          "
+        >
+          {{ $t('page.automation_view.active_jobs_unit', [row.active_jobs]) }}
+        </span>
+      </template>
+
+      <template #actions-cell="{ row }">
+        <div class="flex items-center justify-end gap-1.5">
+          <AlertDialog>
+            <AlertDialogTrigger as-child>
+              <Button variant="destructive" size="sm" class="h-7">
+                {{ $t('page.automation_view.revoke_btn') }}
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>
+                  {{ $t('page.automation_view.revoke_device_confirm_title') }}
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  {{
+                    $t('page.automation_view.revoke_device_confirm_desc', {
+                      name: row.name,
+                    })
+                  }}
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>
+                  {{ $t('common.cancel') }}
+                </AlertDialogCancel>
+                <AlertDialogAction @click="handleRevokeNode(row)">
+                  {{ $t('page.automation_view.revoke_btn') }}
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
+      </template>
+
+      <template #empty>
+        <div
+          class="flex flex-col items-center justify-center p-8 text-center text-muted-foreground"
+        >
+          <Laptop class="size-10 stroke-[1.5] text-muted-foreground/60 mb-3" />
+          <p class="text-foreground">
+            {{ $t('page.fleet_view.empty_all') }}
+          </p>
+          <p class="text-muted-foreground max-w-sm mt-1">
+            {{ $t('page.fleet_view.empty_desc') }}
+          </p>
+        </div>
+      </template>
+    </Grid>
 
     <!-- Modals -->
     <ConnectFleetModal

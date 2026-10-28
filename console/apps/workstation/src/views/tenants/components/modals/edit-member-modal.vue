@@ -95,7 +95,6 @@ function handleOk() {
         <VxeForm
           :data="{ selectedRoleId, status }"
           custom-layout
-          size="small"
           class="w-full space-y-3"
         >
           <VxeFormItem

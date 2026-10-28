@@ -129,6 +129,10 @@ setupVbenVxeTable({
         scrollX: {
           enabled: false,
         },
+        scrollY: {
+          enabled: true,
+          gt: 30,
+        },
         showOverflow: true,
         size: 'medium',
       } as VxeTableGridOptions,
@@ -272,10 +276,13 @@ setupVbenVxeTable({
         const dotClassMap: Record<string, string> = {
           destructive: 'bg-destructive',
           muted: 'bg-muted-foreground',
+          primary: 'bg-primary',
+          secondary: 'bg-secondary-foreground',
           success: 'bg-success',
           warning: 'bg-warning',
         };
         const dotClasses = dotClassMap[config.variant] || 'bg-muted-foreground';
+        const pulseClass = config.pulse ? ' animate-pulse' : '';
 
         return h(
           Badge,
@@ -283,12 +290,34 @@ setupVbenVxeTable({
           {
             default: () => [
               h('span', {
-                class: `mr-1.5 size-1.5 rounded-full ${dotClasses}`,
+                class: `mr-1.5 size-1.5 rounded-full ${dotClasses}${pulseClass}`,
               }),
               config.label,
             ],
           },
         );
+      },
+    });
+
+    // Tag / Badge Renderer: cellRender: { name: 'CellTag', props: { variant, prefix, suffix, uppercase, capitalize } }
+    vxeUI.renderer.add('CellTag', {
+      renderTableDefault(renderOpts, params) {
+        const { props } = renderOpts;
+        const { column, row } = params;
+        const raw = row[column.field];
+        if (raw === undefined || raw === null || raw === '') {
+          return h('span', { class: 'text-muted-foreground' }, '—');
+        }
+
+        let text = String(raw);
+        if (props?.uppercase) text = text.toUpperCase();
+        if (props?.prefix) text = `${props.prefix}${text}`;
+        if (props?.suffix) text = `${text}${props.suffix}`;
+
+        const badgeClass = props?.capitalize ? 'capitalize' : '';
+        const variant = props?.variant || 'secondary';
+
+        return h(Badge, { class: badgeClass, variant }, () => text);
       },
     });
   },

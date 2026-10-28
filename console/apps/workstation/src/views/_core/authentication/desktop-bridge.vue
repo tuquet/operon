@@ -185,7 +185,7 @@ onMounted(() => {
 
 <template>
   <div class="flex min-h-screen items-center justify-center bg-background p-4">
-    <Card class="w-full max-w-lg shadow-lg border-border/60 p-6">
+    <Card class="w-full max-w-lg">
       <template v-if="isAuthorized">
         <div class="text-center py-6 space-y-4">
           <div
@@ -213,7 +213,7 @@ onMounted(() => {
               </Button>
             </div>
             <div>
-              <Button class="w-full h-10" @click="handleCancel">
+              <Button class="w-full" @click="handleCancel">
                 {{ $t('authentication.desktopCloseTab') }}
               </Button>
             </div>
@@ -240,16 +240,13 @@ onMounted(() => {
             </span>
             <div class="flex items-center justify-between">
               <span class="text-foreground">{{ machineName }}</span>
-              <Badge
-                variant="outline"
-                class="bg-primary/10 text-primary border-primary/30"
-              >
+              <Badge variant="secondary">
                 {{ $t('authentication.desktopLocalWorkstation') }}
               </Badge>
             </div>
           </div>
 
-          <Button class="w-full h-10" @click="goToLogin">
+          <Button class="w-full" @click="goToLogin">
             {{ $t('common.login') }}
           </Button>
         </div>
@@ -301,7 +298,7 @@ onMounted(() => {
               $t('term.workspace')
             }}</span>
             <Select v-model="selectedTenant">
-              <SelectTrigger class="h-10 w-full bg-background">
+              <SelectTrigger class="w-full bg-background">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -317,36 +314,26 @@ onMounted(() => {
           </div>
         </div>
 
-        <Alert
-          class="mt-4 rounded-lg border-warning/20 bg-warning/10 p-3 text-warning"
-        >
+        <Alert class="mt-4">
           <AlertTitle class="mb-0.5 font-semibold">
             {{ $t('authentication.desktopSecurityNoteTitle') }}
           </AlertTitle>
-          <AlertDescription class="text-warning">
+          <AlertDescription>
             {{ $t('authentication.desktopSecurityNoteDesc') }}
           </AlertDescription>
         </Alert>
 
-        <Alert
-          v-if="errorMessage"
-          variant="destructive"
-          class="mt-3 border-destructive/30 bg-destructive/10 p-3"
-        >
-          <AlertDescription class="">
+        <Alert v-if="errorMessage" variant="destructive" class="mt-3">
+          <AlertDescription>
             {{ errorMessage }}
           </AlertDescription>
         </Alert>
 
         <div class="mt-6 flex gap-3">
-          <Button variant="outline" class="flex-1 h-10" @click="handleCancel">
+          <Button variant="outline" class="flex-1" @click="handleCancel">
             {{ $t('common.cancel') }}
           </Button>
-          <Button
-            class="flex-1 h-10"
-            :disabled="loading"
-            @click="handleAuthorize"
-          >
+          <Button class="flex-1" :disabled="loading" @click="handleAuthorize">
             {{
               loading
                 ? $t('authentication.desktopProcessing')

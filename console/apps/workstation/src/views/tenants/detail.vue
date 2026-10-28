@@ -13,6 +13,7 @@ import { useUserStore } from '@operon/stores';
 
 import {
   Button,
+  Card,
   Tabs,
   TabsContent,
   TabsList,
@@ -296,10 +297,7 @@ onMounted(() => {
     />
 
     <!-- Main Workspace 4-Tab Container -->
-    <div
-      v-if="detailData"
-      class="sm:rounded-xl sm:border sm:border-border/60 sm:bg-card sm:p-5 sm:shadow-sm"
-    >
+    <Card v-if="detailData" class="sm:p-5 shadow-sm">
       <Tabs v-model="currentTab" class="w-full">
         <TabsList
           class="mb-3 grid h-auto w-full grid-cols-4 gap-1 overflow-x-auto p-1 sm:mb-4 sm:inline-flex sm:w-auto"
@@ -382,7 +380,7 @@ onMounted(() => {
           <WorkspaceAuditTab :tenant-id="detailData.tenant.id" />
         </TabsContent>
       </Tabs>
-    </div>
+    </Card>
 
     <!-- Modals -->
     <InviteMemberModal

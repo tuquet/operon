@@ -53,12 +53,12 @@ const members = [
 
 Saluda a nuestro increible equipo.
 
-<VPTeamMembers size="small" :members />
+<VPTeamMembers  :members />
 ```
 
 El código anterior mostrará a un miembro del equipo en un elemento similar a una tarjeta. Debería mostrar algo similar a lo siguiente.
 
-<VPTeamMembers size="small" :members />
+<VPTeamMembers  :members />
 
 El componente `<VPTeamMembers>` viene en dos tamaños diferentes, pequeño `small` y médio `medium`. Si bien es una cuestión de preferencia, generalmente el tamaño `small` debería encajar mejor cuando se use en la página del documento. Además, puede agregar más propiedades a cada miembro, como agregar el botón "descripción" o "patrocinador". Obtenga más información sobre en [`<VPTeamMembers>`](#vpteammembers).
 
@@ -149,7 +149,7 @@ const partners = [...]
     <template #title>Amigos</template>
     <template #lead>...</template>
     <template #members>
-      <VPTeamMembers size="small" :members="partners" />
+      <VPTeamMembers  :members="partners" />
     </template>
   </VPTeamPageSection>
 </VPTeamPage>

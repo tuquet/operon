@@ -20,6 +20,7 @@ interface SheetContentProps extends DialogContentProps {
   modal?: boolean;
   open?: boolean;
   overlayBlur?: number;
+  showCloseButton?: boolean;
   side?: SheetVariants['side'];
   zIndex?: number;
 }
@@ -30,6 +31,7 @@ defineOptions({
 
 const props = withDefaults(defineProps<SheetContentProps>(), {
   appendTo: 'body',
+  showCloseButton: true,
 });
 
 const emits = defineEmits<
@@ -41,6 +43,7 @@ const delegatedProps = computed(() => {
     class: _,
     modal: _modal,
     open: _open,
+    showCloseButton: __,
     side: _side,
     ...delegated
   } = props;
@@ -98,6 +101,7 @@ const { handleAnimationEvent } = useDialogStateEvents({
       <slot></slot>
 
       <DialogClose
+        v-if="showCloseButton"
         class="data-[state=open]:bg-secondary absolute top-4 right-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-hidden disabled:pointer-events-none"
       >
         <X class="size-4 text-muted-foreground" />

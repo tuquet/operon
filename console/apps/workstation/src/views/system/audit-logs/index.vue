@@ -154,6 +154,8 @@ function refresh() {
 
 <template>
   <Page
+    auto-content-height
+    content-class="p-2.5 sm:p-4 flex flex-col min-h-0"
     :title="$t('page.system.auditLogs')"
     :description="$t('page.system.auditLogs_desc')"
   >
@@ -184,51 +186,47 @@ function refresh() {
       </div>
     </template>
 
-    <!-- Table View -->
-    <div
-      class="overflow-hidden rounded-xl border border-border/60 bg-card p-3 sm:p-5 shadow-xs"
-    >
-      <Grid class="audit-logs-vxe-grid">
-        <template #action-cell="{ row }">
-          <div class="flex min-w-0 flex-col items-start gap-0.5 py-0.5">
-            <Badge :variant="getActionBadgeVariant(row.action)">
-              {{ row.action }}
-            </Badge>
-          </div>
-        </template>
+    <!-- Table View: Grid at Level 1 -->
+    <Grid class="audit-logs-vxe-grid flex-1 min-h-0 overflow-hidden">
+      <template #action-cell="{ row }">
+        <div class="flex min-w-0 flex-col items-start gap-0.5 py-0.5">
+          <Badge :variant="getActionBadgeVariant(row.action)">
+            {{ row.action }}
+          </Badge>
+        </div>
+      </template>
 
-        <template #entity-cell="{ row }">
-          <div class="flex items-center gap-1.5">
-            <span class="text-foreground">{{ row.entity_type }}</span>
-            <span class="text-muted-foreground/70"
-              >#{{ row.entity_id.slice(0, 8) }}</span
-            >
-          </div>
-        </template>
+      <template #entity-cell="{ row }">
+        <div class="flex items-center gap-1.5">
+          <span class="text-foreground">{{ row.entity_type }}</span>
+          <span class="text-muted-foreground/70"
+            >#{{ row.entity_id.slice(0, 8) }}</span
+          >
+        </div>
+      </template>
 
-        <template #tenant-cell="{ row }">
-          <Badge variant="outline"> {{ row.tenant_id.slice(0, 8) }}... </Badge>
-        </template>
+      <template #tenant-cell="{ row }">
+        <Badge variant="outline"> {{ row.tenant_id.slice(0, 8) }}... </Badge>
+      </template>
 
-        <template #actor-cell="{ row }">
-          <div class="flex items-center gap-1 text-muted-foreground">
-            <User class="size-3 text-muted-foreground/70" />
-            <span class="">
-              {{
-                row.actor_id
-                  ? row.actor_id.slice(0, 8)
-                  : $t('page.system_view.audit_actor_system')
-              }}
-            </span>
-          </div>
-        </template>
-
-        <template #ip-cell="{ row }">
-          <span class="text-muted-foreground">
-            {{ row.ip_address || '—' }}
+      <template #actor-cell="{ row }">
+        <div class="flex items-center gap-1 text-muted-foreground">
+          <User class="size-3 text-muted-foreground/70" />
+          <span>
+            {{
+              row.actor_id
+                ? row.actor_id.slice(0, 8)
+                : $t('page.system_view.audit_actor_system')
+            }}
           </span>
-        </template>
-      </Grid>
-    </div>
+        </div>
+      </template>
+
+      <template #ip-cell="{ row }">
+        <span class="text-muted-foreground">
+          {{ row.ip_address || '—' }}
+        </span>
+      </template>
+    </Grid>
   </Page>
 </template>

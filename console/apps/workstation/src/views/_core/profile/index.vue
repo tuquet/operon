@@ -185,7 +185,7 @@ onMounted(async () => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage class="">
+            <BreadcrumbPage>
               {{ $t('profile.personalProfile') }}
             </BreadcrumbPage>
           </BreadcrumbItem>
@@ -214,16 +214,11 @@ onMounted(async () => {
             >
               {{ fullName || $t('profile.defaultEngineerName') }}
             </h1>
-            <Badge
-              variant="outline"
-              class="bg-primary/10 text-primary border-primary/30"
-            >
+            <Badge variant="secondary">
               {{ $t('profile.superAdminBadge') }}
             </Badge>
-            <Badge
-              variant="outline"
-              class="bg-success/10 text-success border-success/30"
-            >
+            <Badge variant="outline">
+              <span class="mr-1.5 size-1.5 rounded-full bg-success"></span>
               {{ $t('common.active') }}
             </Badge>
           </div>
@@ -295,7 +290,6 @@ onMounted(async () => {
             <VxeForm
               :data="{ fullName, email, avatarUrl, bio }"
               custom-layout
-              size="small"
               class="w-full space-y-3"
             >
               <VxeFormItem :title="$t('profile.fullName')" span="24">
@@ -383,7 +377,6 @@ onMounted(async () => {
             <VxeForm
               :data="{ newPassword, confirmPassword }"
               custom-layout
-              size="small"
               class="w-full space-y-3"
             >
               <VxeFormItem :title="$t('authentication.newPassword')" span="24">

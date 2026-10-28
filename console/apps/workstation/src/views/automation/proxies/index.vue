@@ -1,4 +1,4 @@
-﻿<script lang="ts" setup>
+<script lang="ts" setup>
 import type { ProxyServer } from '#/api';
 
 import { ref, watch } from 'vue';
@@ -57,7 +57,30 @@ function getColumns() {
     {
       field: 'status',
       title: $t('common.status'),
-      slots: { default: 'status-cell' },
+      cellRender: {
+        name: 'CellStatus',
+        props: {
+          statusMap: {
+            active: {
+              label: $t('common.active'),
+              variant: 'success',
+            },
+            disabled: {
+              label: $t('common.disabled'),
+              variant: 'muted',
+            },
+            failing: {
+              label: $t('page.automation_view.proxy_status_failing'),
+              variant: 'destructive',
+            },
+            testing: {
+              label: $t('page.automation_view.proxy_status_testing'),
+              pulse: true,
+              variant: 'warning',
+            },
+          },
+        },
+      },
     },
     {
       field: 'last_checked_at',
@@ -201,6 +224,8 @@ watch(
 
 <template>
   <Page
+    auto-content-height
+    content-class="p-2.5 sm:p-4 flex flex-col min-h-0"
     :title="$t('page.automation.proxies')"
     :description="$t('page.automation.proxies_desc')"
   >
@@ -240,134 +265,103 @@ watch(
       </div>
     </template>
 
-    <!-- Main Container -->
-    <div
-      class="overflow-hidden rounded-xl border border-border/60 bg-card p-2.5 shadow-xs sm:p-4"
-    >
-      <Grid class="proxies-vxe-grid">
-        <template #proxy-cell="{ row }">
-          <div class="flex items-center gap-2.5">
-            <div
-              class="flex size-8 items-center justify-center rounded-lg bg-muted text-foreground shrink-0"
-            >
-              <Network class="size-4" />
-            </div>
-            <div class="min-w-0 text-foreground truncate">
-              {{ row.protocol }}://{{ row.host }}:{{ row.port }}
-            </div>
+    <!-- Main Container: Grid at Level 1 -->
+    <Grid class="proxies-vxe-grid flex-1 min-h-0 overflow-hidden">
+      <template #proxy-cell="{ row }">
+        <div class="flex items-center gap-2.5">
+          <div
+            class="flex size-8 items-center justify-center rounded-lg bg-muted text-foreground shrink-0"
+          >
+            <Network class="size-4" />
           </div>
-        </template>
-
-        <template #location-cell="{ row }">
-          <div class="flex items-center gap-2">
-            <span
-              v-if="row.country_code"
-              class="font-semibold text-foreground uppercase"
-            >
-              {{ row.country_code }}
-            </span>
-            <span v-if="row.city" class="text-muted-foreground truncate">
-              · {{ row.city }}
-            </span>
-            <Badge
-              :variant="row.is_residential ? 'secondary' : 'outline'"
-              class="shrink-0"
-            >
-              {{
-                row.is_residential
-                  ? $t('page.automation_view.proxy_type_residential')
-                  : $t('page.automation_view.proxy_type_datacenter')
-              }}
-            </Badge>
+          <div class="min-w-0 text-foreground truncate">
+            {{ row.protocol }}://{{ row.host }}:{{ row.port }}
           </div>
-        </template>
+        </div>
+      </template>
 
-        <template #latency-cell="{ row }">
-          <div class="flex items-center gap-1.5">
-            <Activity class="size-3.5 shrink-0 text-muted-foreground" />
-            <span :class="getLatencyBadgeClass(row.latency_ms)">
-              {{
-                row.latency_ms !== null && row.latency_ms !== undefined
-                  ? `${row.latency_ms} ms`
-                  : '—'
-              }}
-            </span>
-          </div>
-        </template>
-
-        <template #error-cell="{ row }">
+      <template #location-cell="{ row }">
+        <div class="flex items-center gap-2">
           <span
-            :class="
-              row.error_count > 0
-                ? 'text-destructive font-semibold'
-                : 'text-muted-foreground'
-            "
+            v-if="row.country_code"
+            class="font-semibold text-foreground uppercase"
+          >
+            {{ row.country_code }}
+          </span>
+          <span v-if="row.city" class="text-muted-foreground truncate">
+            · {{ row.city }}
+          </span>
+          <Badge
+            :variant="row.is_residential ? 'secondary' : 'outline'"
+            class="shrink-0"
           >
             {{
-              $t('page.automation_view.proxy_errors_count', [row.error_count])
-            }}
-          </span>
-        </template>
-
-        <template #status-cell="{ row }">
-          <Badge variant="outline" class="">
-            <span
-              class="mr-1.5 size-1.5 rounded-full"
-              :class="{
-                'bg-success': row.status === 'active',
-                'bg-destructive': row.status === 'failing',
-                'bg-warning animate-pulse': row.status === 'testing',
-                'bg-muted-foreground': row.status === 'disabled',
-              }"
-            ></span>
-            {{
-              row.status === 'active'
-                ? $t('common.active')
-                : row.status === 'failing'
-                  ? $t('page.automation_view.proxy_status_failing')
-                  : row.status === 'testing'
-                    ? $t('page.automation_view.proxy_status_testing')
-                    : $t('common.disabled')
+              row.is_residential
+                ? $t('page.automation_view.proxy_type_residential')
+                : $t('page.automation_view.proxy_type_datacenter')
             }}
           </Badge>
-        </template>
+        </div>
+      </template>
 
-        <template #actions-cell="{ row }">
-          <div class="flex items-center justify-end gap-1">
-            <Button
-              variant="outline"
-              size="sm"
-              class="h-7 gap-1 px-2"
-              :title="$t('common.copy')"
-              @click="
-                copyToClipboard(
-                  `${row.protocol}://${row.host}:${row.port}`,
-                  'Proxy URL',
-                )
-              "
-            >
-              <Copy class="size-3 shrink-0" />
-              <span>{{ $t('common.copy') }}</span>
-            </Button>
-          </div>
-        </template>
+      <template #latency-cell="{ row }">
+        <div class="flex items-center gap-1.5">
+          <Activity class="size-3.5 shrink-0 text-muted-foreground" />
+          <span :class="getLatencyBadgeClass(row.latency_ms)">
+            {{
+              row.latency_ms !== null && row.latency_ms !== undefined
+                ? `${row.latency_ms} ms`
+                : '—'
+            }}
+          </span>
+        </div>
+      </template>
 
-        <template #empty>
-          <div
-            class="flex flex-col items-center justify-center p-8 text-center text-muted-foreground"
+      <template #error-cell="{ row }">
+        <span
+          :class="
+            row.error_count > 0
+              ? 'text-destructive font-semibold'
+              : 'text-muted-foreground'
+          "
+        >
+          {{ $t('page.automation_view.proxy_errors_count', [row.error_count]) }}
+        </span>
+      </template>
+
+      <template #actions-cell="{ row }">
+        <div class="flex items-center justify-end gap-1">
+          <Button
+            variant="outline"
+            size="sm"
+            class="h-7 gap-1 px-2"
+            :title="$t('common.copy')"
+            @click="
+              copyToClipboard(
+                `${row.protocol}://${row.host}:${row.port}`,
+                'Proxy URL',
+              )
+            "
           >
-            <Network
-              class="size-10 stroke-[1.5] text-muted-foreground/60 mb-3"
-            />
-            <p class="text-foreground">
-              {{ $t('page.fleet_view.proxies_empty') }}
-            </p>
-            <p class="text-muted-foreground max-w-sm mt-1">
-              {{ $t('page.fleet_view.proxies_empty_desc') }}
-            </p>
-          </div>
-        </template>
-      </Grid>
-    </div>
+            <Copy class="size-3 shrink-0" />
+            <span>{{ $t('common.copy') }}</span>
+          </Button>
+        </div>
+      </template>
+
+      <template #empty>
+        <div
+          class="flex flex-col items-center justify-center p-8 text-center text-muted-foreground"
+        >
+          <Network class="size-10 stroke-[1.5] text-muted-foreground/60 mb-3" />
+          <p class="text-foreground">
+            {{ $t('page.fleet_view.proxies_empty') }}
+          </p>
+          <p class="text-muted-foreground max-w-sm mt-1">
+            {{ $t('page.fleet_view.proxies_empty_desc') }}
+          </p>
+        </div>
+      </template>
+    </Grid>
   </Page>
 </template>

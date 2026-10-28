@@ -259,7 +259,7 @@ function getRowCopyValue(row: Record<string, any>, index: number): string {
                   :key="col.field"
                   class="px-3 py-2 align-middle whitespace-nowrap"
                 >
-                  <Badge v-if="col.type === 'badge'" variant="outline" class="">
+                  <Badge v-if="col.type === 'badge'" variant="outline">
                     {{ formatCellValue(relRow, col) }}
                   </Badge>
 

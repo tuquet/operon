@@ -102,3 +102,23 @@ Operon features two interactive user surfaces: the GUI Workstation and the CLI (
   - Workstation GUI reads device identity and token on boot to bootstrap authentication state.
   - Logging out on either surface revokes local session tokens.
 
+---
+
+## 5. Frontend & UI Architecture Constraints
+
+### Invariant F1: Compound UI Primitives Only (Zero Monolithic Wrapper Sprawl)
+- **Rule:** Tất cả các thành phần giao diện (Dialog, Sheet, Select, DropdownMenu, Card) phải sử dụng cấu trúc Compound Component chuẩn Reka UI / Radix.
+- **Enforcement:**
+  - Tuyệt đối không truyền prop nguyên khối (`isOpen`, `content`, `actions`, `footer`) vào Root Component.
+  - Phải tách bạch các sub-component con: `<DialogHeader>`, `<DialogTitle>`, `<DialogDescription>`, `<DialogFooter>`, `<DialogClose>`.
+  - Cấm tạo wrapper lặp lại hoặc tự chế props trái chuẩn trong `@operon-core/shadcn-ui`.
+
+### Invariant F2: Reka UI Standard Event Contracts
+- **Rule:** Tất cả sự kiện tương tác trên headless primitives phải tuân thủ hợp đồng Reka UI.
+- **Enforcement:**
+  - Sự kiện đóng/mở: `v-model:open="isOpen"` hoặc `@update:open="(val: boolean) => ..."`.
+  - Sự kiện chọn giá trị: `v-model="modelValue"` hoặc `@update:model-value="(val: string) => ..."`.
+  - Giữ vững tính trợ năng (a11y) với `as-child` khi bọc Custom Button/IconButton trong Trigger/Close.
+  - Ưu tiên biến thể CVA (`variant`, `size`) thay vì đè class CSS màu sắc/kích thước thủ công.
+
+

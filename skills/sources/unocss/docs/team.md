@@ -30,7 +30,7 @@ import { teamMembers, teamEmeritiMembers } from './.vitepress/contributors'
       contributions in the past.
     </template>
     <template #members>
-      <VPTeamMembers size="small" :members="teamEmeritiMembers" />
+      <VPTeamMembers  :members="teamEmeritiMembers" />
     </template>
   </VPTeamPageSection>
 </VPTeamPage>

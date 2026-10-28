@@ -160,6 +160,8 @@ const [Grid, gridApi] = useVbenVxeGrid<BillingPlan>({
 
 <template>
   <Page
+    auto-content-height
+    content-class="p-2.5 sm:p-4 flex flex-col min-h-0"
     :title="$t('page.system.plans')"
     :description="$t('page.system.plans_desc')"
   >
@@ -198,85 +200,80 @@ const [Grid, gridApi] = useVbenVxeGrid<BillingPlan>({
       </div>
     </template>
 
-    <!-- Main Container -->
-    <div
-      class="overflow-hidden rounded-xl border border-border/60 bg-card p-3 sm:p-5 shadow-xs"
-    >
-      <!-- Table Grid -->
-      <Grid class="plans-vxe-grid">
-        <template #name-cell="{ row }">
-          <div class="flex items-center gap-2.5 py-1">
-            <div
-              class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground"
-            >
-              <CreditCard class="size-4" />
+    <!-- Main Container: Table Grid at Level 1 -->
+    <Grid class="plans-vxe-grid flex-1 min-h-0 overflow-hidden">
+      <template #name-cell="{ row }">
+        <div class="flex items-center gap-2.5 py-1">
+          <div
+            class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground"
+          >
+            <CreditCard class="size-4" />
+          </div>
+          <div class="min-w-0 text-left">
+            <div class="truncate text-foreground">
+              {{ row.name }}
             </div>
-            <div class="min-w-0 text-left">
-              <div class="truncate text-foreground">
-                {{ row.name }}
-              </div>
-              <div class="flex items-center gap-1.5 text-muted-foreground">
-                <span class="truncate">{{ row.id }}</span>
-              </div>
+            <div class="flex items-center gap-1.5 text-muted-foreground">
+              <span class="truncate">{{ row.id }}</span>
             </div>
           </div>
-        </template>
+        </div>
+      </template>
 
-        <template #price-cell="{ row }">
-          <div v-if="row.price_monthly_usd === 0">
-            <Badge variant="secondary" class="">
-              {{ $t('page.system_view.plans_free') }}
-            </Badge>
-          </div>
-          <div v-else class="font-semibold text-foreground">
-            ${{ row.price_monthly_usd }}
-            <span class="text-muted-foreground">{{
-              $t('page.system_view.per_month_suffix')
-            }}</span>
-          </div>
-        </template>
-
-        <template #members-cell="{ row }">
-          <div class="inline-flex items-center gap-1.5 text-foreground">
-            <Users class="size-3.5 text-muted-foreground shrink-0" />
-            <span>{{
-              $t('page.system_view.plans_members_unit', [row.max_members])
-            }}</span>
-          </div>
-        </template>
-
-        <template #storage-cell="{ row }">
-          <div class="inline-flex items-center gap-1.5 text-foreground">
-            <HardDrive class="size-3.5 text-muted-foreground shrink-0" />
-            <span>{{ formatStorage(row.max_storage_mb) }}</span>
-          </div>
-        </template>
-
-        <template #runs-cell="{ row }">
-          <div class="inline-flex items-center gap-1.5 text-foreground">
-            <Cpu class="size-3.5 text-muted-foreground shrink-0" />
-            <span>{{
-              $t('page.system_view.plans_runs_unit', [
-                row.max_monthly_runs.toLocaleString(),
-              ])
-            }}</span>
-          </div>
-        </template>
-
-        <template #status-cell="{ row }">
-          <Badge variant="outline" class="">
-            <span
-              class="mr-1.5 size-1.5 rounded-full"
-              :class="row.is_active ? 'bg-success' : 'bg-muted-foreground'"
-            ></span>
-            {{
-              row.is_active
-                ? $t('page.system_view.plans_badge_active')
-                : $t('page.system_view.status_paused')
-            }}
+      <template #price-cell="{ row }">
+        <div v-if="row.price_monthly_usd === 0">
+          <Badge variant="secondary">
+            {{ $t('page.system_view.plans_free') }}
           </Badge>
-        </template>
-      </Grid>
-    </div>
+        </div>
+        <div v-else class="font-semibold text-foreground">
+          ${{ row.price_monthly_usd }}
+          <span class="text-muted-foreground">{{
+            $t('page.system_view.per_month_suffix')
+          }}</span>
+        </div>
+      </template>
+
+      <template #members-cell="{ row }">
+        <div class="inline-flex items-center gap-1.5 text-foreground">
+          <Users class="size-3.5 text-muted-foreground shrink-0" />
+          <span>{{
+            $t('page.system_view.plans_members_unit', [row.max_members])
+          }}</span>
+        </div>
+      </template>
+
+      <template #storage-cell="{ row }">
+        <div class="inline-flex items-center gap-1.5 text-foreground">
+          <HardDrive class="size-3.5 text-muted-foreground shrink-0" />
+          <span>{{ formatStorage(row.max_storage_mb) }}</span>
+        </div>
+      </template>
+
+      <template #runs-cell="{ row }">
+        <div class="inline-flex items-center gap-1.5 text-foreground">
+          <Cpu class="size-3.5 text-muted-foreground shrink-0" />
+          <span>{{
+            $t('page.system_view.plans_runs_unit', [
+              row.max_monthly_runs.toLocaleString(),
+            ])
+          }}</span>
+        </div>
+      </template>
+
+      <template #status-cell="{ row }">
+        <Badge variant="outline">
+          <span
+            class="mr-1.5 size-1.5 rounded-full"
+            :class="row.is_active ? 'bg-success' : 'bg-muted-foreground'"
+          ></span>
+          {{
+            row.is_active
+              ? $t('page.system_view.plans_badge_active')
+              : $t('page.system_view.status_paused')
+          }}
+        </Badge>
+      </template>
+    </Grid>
   </Page>
 </template>

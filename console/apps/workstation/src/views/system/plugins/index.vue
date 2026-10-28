@@ -187,6 +187,8 @@ function refresh() {
 
 <template>
   <Page
+    auto-content-height
+    content-class="p-2.5 sm:p-4 flex flex-col min-h-0"
     :title="$t('page.system.plugins')"
     :description="$t('page.system.plugins_desc')"
   >
@@ -225,72 +227,67 @@ function refresh() {
       </div>
     </template>
 
-    <!-- Main Container -->
-    <div
-      class="overflow-hidden rounded-xl border border-border/60 bg-card p-3 sm:p-5 shadow-xs"
-    >
-      <!-- Table Grid -->
-      <Grid class="plugins-vxe-grid">
-        <template #plugin-cell="{ row }">
-          <div class="flex items-center gap-2.5 py-1">
-            <div
-              class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground"
-            >
-              <component :is="getPluginIcon(row.id)" class="size-4" />
+    <!-- Main Container: Table Grid at Level 1 -->
+    <Grid class="plugins-vxe-grid flex-1 min-h-0 overflow-hidden">
+      <template #plugin-cell="{ row }">
+        <div class="flex items-center gap-2.5 py-1">
+          <div
+            class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground"
+          >
+            <component :is="getPluginIcon(row.id)" class="size-4" />
+          </div>
+          <div class="min-w-0 text-left">
+            <div class="truncate text-foreground">
+              {{ row.name }}
             </div>
-            <div class="min-w-0 text-left">
-              <div class="truncate text-foreground">
-                {{ row.name }}
-              </div>
-              <div class="flex items-center gap-1.5 text-muted-foreground">
-                <span class="truncate">{{ row.id }}</span>
-              </div>
+            <div class="flex items-center gap-1.5 text-muted-foreground">
+              <span class="truncate">{{ row.id }}</span>
             </div>
           </div>
-        </template>
+        </div>
+      </template>
 
-        <template #type-cell="{ row }">
-          <Badge :variant="row.is_core ? 'default' : 'secondary'" class="">
+      <template #type-cell="{ row }">
+        <Badge :variant="row.is_core ? 'default' : 'secondary'">
+          {{
+            row.is_core
+              ? $t('page.system_view.plugins_type_core')
+              : $t('page.system_view.plugins_type_extension')
+          }}
+        </Badge>
+      </template>
+
+      <template #version-cell="{ row }">
+        <div class="flex items-center gap-2">
+          <Badge variant="outline"> v{{ row.version }} </Badge>
+          <span v-if="row.schema_name" class="text-muted-foreground">
             {{
-              row.is_core
-                ? $t('page.system_view.plugins_type_core')
-                : $t('page.system_view.plugins_type_extension')
+              $t('page.system_view.plugins_schema_prefix', [row.schema_name])
             }}
-          </Badge>
-        </template>
+          </span>
+        </div>
+      </template>
 
-        <template #version-cell="{ row }">
-          <div class="flex items-center gap-2">
-            <Badge variant="outline"> v{{ row.version }} </Badge>
-            <span v-if="row.schema_name" class="text-muted-foreground">
-              {{
-                $t('page.system_view.plugins_schema_prefix', [row.schema_name])
-              }}
-            </span>
-          </div>
-        </template>
-
-        <template #status-cell="{ row }">
-          <Badge variant="outline" class="">
-            <span
-              class="mr-1.5 size-1.5 rounded-full"
-              :class="{
-                'bg-success': row.status === SYSTEM_PLUGIN_STATUS.INSTALLED,
-                'bg-muted-foreground':
-                  row.status === SYSTEM_PLUGIN_STATUS.DISABLED,
-                'bg-warning': row.status === SYSTEM_PLUGIN_STATUS.PENDING,
-              }"
-            ></span>
-            {{
-              row.status === SYSTEM_PLUGIN_STATUS.INSTALLED
-                ? $t('page.system_view.plugins_status_installed')
-                : row.status === SYSTEM_PLUGIN_STATUS.DISABLED
-                  ? $t('page.system_view.status_paused')
-                  : $t('common.pending')
-            }}
-          </Badge>
-        </template>
-      </Grid>
-    </div>
+      <template #status-cell="{ row }">
+        <Badge variant="outline">
+          <span
+            class="mr-1.5 size-1.5 rounded-full"
+            :class="{
+              'bg-success': row.status === SYSTEM_PLUGIN_STATUS.INSTALLED,
+              'bg-muted-foreground':
+                row.status === SYSTEM_PLUGIN_STATUS.DISABLED,
+              'bg-warning': row.status === SYSTEM_PLUGIN_STATUS.PENDING,
+            }"
+          ></span>
+          {{
+            row.status === SYSTEM_PLUGIN_STATUS.INSTALLED
+              ? $t('page.system_view.plugins_status_installed')
+              : row.status === SYSTEM_PLUGIN_STATUS.DISABLED
+                ? $t('page.system_view.status_paused')
+                : $t('common.pending')
+          }}
+        </Badge>
+      </template>
+    </Grid>
   </Page>
 </template>

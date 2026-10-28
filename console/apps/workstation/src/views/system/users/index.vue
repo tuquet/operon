@@ -205,6 +205,8 @@ async function handleRefresh() {
 
 <template>
   <Page
+    auto-content-height
+    content-class="p-2.5 sm:p-4 flex flex-col min-h-0"
     :title="$t('page.system.users')"
     :description="$t('page.system.users_desc')"
   >
@@ -237,87 +239,82 @@ async function handleRefresh() {
       </Button>
     </template>
 
-    <!-- Main Container: VXE Grid -->
-    <div
-      class="overflow-hidden rounded-xl border border-border/60 bg-card p-3 sm:p-5 shadow-xs"
-    >
-      <!-- VXE Grid Table -->
-      <Grid class="users-vxe-grid">
-        <template #user-cell="{ row }">
-          <div class="flex items-center gap-2.5 sm:gap-3">
-            <Avatar
-              class="size-8 shrink-0 rounded-lg border border-border/50 sm:size-9"
+    <!-- Main Container: VXE Grid at Level 1 -->
+    <Grid class="users-vxe-grid flex-1 min-h-0 overflow-hidden">
+      <template #user-cell="{ row }">
+        <div class="flex items-center gap-2.5 sm:gap-3">
+          <Avatar
+            class="size-8 shrink-0 rounded-lg border border-border/50 sm:size-9"
+          >
+            <AvatarImage
+              v-if="row.avatar_url"
+              :src="row.avatar_url"
+              :alt="row.full_name || ''"
+            />
+            <AvatarFallback
+              class="rounded-lg bg-muted font-semibold text-foreground"
             >
-              <AvatarImage
-                v-if="row.avatar_url"
-                :src="row.avatar_url"
-                :alt="row.full_name || ''"
-              />
-              <AvatarFallback
-                class="rounded-lg bg-muted font-semibold text-foreground"
-              >
-                {{ getInitials(row.full_name) }}
-              </AvatarFallback>
-            </Avatar>
-            <div class="flex min-w-0 flex-col text-left leading-snug">
-              <span class="truncate font-semibold text-foreground">
-                {{ row.full_name || $t('page.system_view.users_anonymous') }}
+              {{ getInitials(row.full_name) }}
+            </AvatarFallback>
+          </Avatar>
+          <div class="flex min-w-0 flex-col text-left leading-snug">
+            <span class="truncate font-semibold text-foreground">
+              {{ row.full_name || $t('page.system_view.users_anonymous') }}
+            </span>
+            <div class="flex items-center gap-1.5 text-muted-foreground">
+              <span class="truncate">
+                {{ row.email || $t('page.system_view.users_no_email') }}
               </span>
-              <div class="flex items-center gap-1.5 text-muted-foreground">
-                <span class="truncate">
-                  {{ row.email || $t('page.system_view.users_no_email') }}
-                </span>
-              </div>
             </div>
           </div>
-        </template>
+        </div>
+      </template>
 
-        <template #role-cell="{ row }">
-          <RoleBadge
-            v-if="row.primary_role"
-            :role="row.primary_role"
-            :uppercase="true"
-          />
-          <span v-else class="text-muted-foreground">{{
-            $t('page.system_view.users_unassigned_role')
-          }}</span>
-        </template>
+      <template #role-cell="{ row }">
+        <RoleBadge
+          v-if="row.primary_role"
+          :role="row.primary_role"
+          :uppercase="true"
+        />
+        <span v-else class="text-muted-foreground">{{
+          $t('page.system_view.users_unassigned_role')
+        }}</span>
+      </template>
 
-        <template #tenant-cell="{ row }">
-          <div class="flex items-center gap-2 min-w-0">
-            <Badge
-              :variant="row.tenant_count > 0 ? 'outline' : 'secondary'"
-              class="shrink-0 gap-1"
-            >
-              <Building2 class="size-3 text-muted-foreground shrink-0" />
-              <span>{{
-                $t('page.system_view.users_orgs_count', [row.tenant_count])
-              }}</span>
-            </Badge>
-            <span
-              v-if="row.workspaces?.[0]?.tenant_name"
-              class="truncate text-muted-foreground"
-              :title="row.workspaces[0].tenant_name"
-            >
-              {{ row.workspaces[0].tenant_name }}
-            </span>
-          </div>
-        </template>
-
-        <template #empty>
-          <div
-            class="flex flex-col items-center justify-center p-8 text-center text-muted-foreground"
+      <template #tenant-cell="{ row }">
+        <div class="flex items-center gap-2 min-w-0">
+          <Badge
+            :variant="row.tenant_count > 0 ? 'outline' : 'secondary'"
+            class="shrink-0 gap-1"
           >
-            <Users class="size-10 stroke-[1.5] text-muted-foreground/60 mb-3" />
-            <p class="text-foreground">
-              {{ $t('page.system_view.users_empty_title') }}
-            </p>
-            <p class="text-muted-foreground max-w-sm mt-1">
-              {{ $t('page.system_view.users_empty_desc') }}
-            </p>
-          </div>
-        </template>
-      </Grid>
-    </div>
+            <Building2 class="size-3 text-muted-foreground shrink-0" />
+            <span>{{
+              $t('page.system_view.users_orgs_count', [row.tenant_count])
+            }}</span>
+          </Badge>
+          <span
+            v-if="row.workspaces?.[0]?.tenant_name"
+            class="truncate text-muted-foreground"
+            :title="row.workspaces[0].tenant_name"
+          >
+            {{ row.workspaces[0].tenant_name }}
+          </span>
+        </div>
+      </template>
+
+      <template #empty>
+        <div
+          class="flex flex-col items-center justify-center p-8 text-center text-muted-foreground"
+        >
+          <Users class="size-10 stroke-[1.5] text-muted-foreground/60 mb-3" />
+          <p class="text-foreground">
+            {{ $t('page.system_view.users_empty_title') }}
+          </p>
+          <p class="text-muted-foreground max-w-sm mt-1">
+            {{ $t('page.system_view.users_empty_desc') }}
+          </p>
+        </div>
+      </template>
+    </Grid>
   </Page>
 </template>

@@ -142,7 +142,7 @@ onMounted(() => {
               </div>
             </TableCell>
             <TableCell class="whitespace-nowrap">
-              <Badge variant="outline" class="">
+              <Badge variant="outline">
                 {{ log.action }}
               </Badge>
             </TableCell>

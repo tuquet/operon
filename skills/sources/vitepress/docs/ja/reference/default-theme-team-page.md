@@ -53,12 +53,12 @@ const members = [
 
 私たちの素晴らしいチームを紹介します。
 
-<VPTeamMembers size="small" :members />
+<VPTeamMembers  :members />
 ```
 
 上記のように、カード風の要素でメンバーが表示されます。下図のような見た目になります。
 
-<VPTeamMembers size="small" :members />
+<VPTeamMembers  :members />
 
 `<VPTeamMembers>` コンポーネントには `small` と `medium` の 2 種類のサイズがあります。好みによりますが、ドキュメントページ内で使う場合は `small` が馴染みやすいことが多いでしょう。各メンバーに「説明文」や「スポンサー」ボタンなど、追加のプロパティを付けることもできます。詳細は [`<VPTeamMembers>`](#vpteammembers) を参照してください。
 
@@ -149,7 +149,7 @@ const partners = [...]
     <template #title>パートナー</template>
     <template #lead>...</template>
     <template #members>
-      <VPTeamMembers size="small" :members="partners" />
+      <VPTeamMembers  :members="partners" />
     </template>
   </VPTeamPageSection>
 </VPTeamPage>

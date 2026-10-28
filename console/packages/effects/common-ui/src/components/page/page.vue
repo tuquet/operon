@@ -24,12 +24,6 @@ const contentStyle = computed<StyleValue>(() => {
 
   return {
     '--page-content-height-offset': `${heightOffset}px`,
-    // In auto-content-height mode the content region manages its own scrolling.
-    // Size containment prevents the inner content's min-content height from
-    // feeding back into the outer flex layout, which would clamp the content
-    // region taller than the available space and push the layout footer below
-    // the viewport (upstream issue #5677).
-    contain: 'size',
     marginBlockEnd: 'var(--page-content-height-offset)',
   };
 });
@@ -54,7 +48,7 @@ const contentStyle = computed<StyleValue>(() => {
       "
       :class="
         cn(
-          'relative flex shrink-0 flex-wrap items-end justify-between gap-2 border-b border-border bg-card px-4 py-3 sm:px-6 sm:py-4',
+          'relative flex shrink-0 flex-wrap items-end justify-between gap-2 border-b border-border bg-card px-4 py-3 sm:px-6 sm:py-4 space-y-4',
           headerClass,
         )
       "
@@ -85,7 +79,9 @@ const contentStyle = computed<StyleValue>(() => {
       data-layout-region="page-content"
       :class="
         cn(
-          autoContentHeight ? 'min-h-0 flex-1 overflow-y-auto' : 'flex-1',
+          autoContentHeight
+            ? 'min-h-0 flex-1 flex flex-col overflow-hidden'
+            : 'flex-1',
           'p-4',
           contentClass,
         )
