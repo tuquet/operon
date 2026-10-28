@@ -97,6 +97,13 @@ pub enum Commands {
 
     /// Run Model Context Protocol (MCP) JSON-RPC 2.0 stdio server for AI agents
 
+    /// Inspect and export system and configuration schemas
+    #[command(name = "schema")]
+    Schema {
+        #[command(subcommand)]
+        command: Option<SchemaSubcommands>,
+    },
+
     #[command(name = "mcp", hide = true)]
     Mcp,
 }

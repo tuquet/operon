@@ -74,6 +74,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             }
         },
         Some(Commands::Workstation(args)) => commands::workstation::handle(args).await,
+        Some(Commands::Schema { command }) => commands::schema::handle(command, false).await,
         Some(Commands::Mcp) => commands::mcp::run().await,
         None => {
             let readiness = automation_core::core::readiness::quick_probe();

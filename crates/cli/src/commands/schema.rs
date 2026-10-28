@@ -45,7 +45,7 @@ pub async fn handle(
         }
         Some(SchemaSubcommands::Config { service }) => match service {
             Some(srv) => {
-                if let Some(schema) = get_config_schema(&srv) {
+                if let Some(schema) = get_dynamic_schema(&srv).or_else(|| get_config_schema(&srv).map(str::to_string)) {
                     println!("{}", schema.trim());
                 } else {
                     return Err(format!(
@@ -89,7 +89,7 @@ pub async fn handle(
                     match clack_select("Select a microservice schema to inspect", &opts, 0, 8)? {
                         Some(idx) => {
                             let (srv, _) = services[idx];
-                            if let Some(schema) = get_config_schema(srv) {
+                            if let Some(schema) = get_dynamic_schema(srv).or_else(|| get_config_schema(srv).map(str::to_string)) {
                                 println!("{}", schema.trim());
                             }
                             clack_outro(&format!("Exported {}.schema.json.", srv));
@@ -392,6 +392,10 @@ const WORKER_SCHEMA: &str = include_str!("../../schema/config/worker.schema.json
 const FAKER_SCHEMA: &str = include_str!("../../schema/config/faker.schema.json");
 const SYSTEM_SCHEMA: &str = include_str!("../../schema/config/system.schema.json");
 const INBOX_SCHEMA: &str = include_str!("../../schema/config/inbox.schema.json");
+
+pub fn get_dynamic_schema(service: &str) -> Option<String> {
+    crate::config::ConfigRegistry::get_schema_json(service).and_then(|v| serde_json::to_string_pretty(&v).ok())
+}
 
 pub fn get_config_schema(service: &str) -> Option<&'static str> {
     match crate::config::ConfigRegistry::canonical_service(service)? {
