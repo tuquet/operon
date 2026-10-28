@@ -391,6 +391,9 @@ const headerSlots = computed(() => {
         <template #user-dropdown>
           <slot name="user-dropdown"></slot>
         </template>
+        <template #window-controls>
+          <slot name="window-controls"></slot>
+        </template>
         <template #notification>
           <slot name="notification"></slot>
         </template>

@@ -229,9 +229,13 @@ const rightSlots = computed(() => {
       list.push({ index, name: key });
     }
   });
-  // Append user dropdown at the end, capping index at 1000
+  // Append user dropdown, capping index at 1000
   const userDropdownIndex = Math.min(1000, nextIndex(list));
   list.push({ index: userDropdownIndex, name: 'user-dropdown' });
+
+  // Append desktop window controls after user dropdown
+  list.push({ index: 1010, name: 'window-controls' });
+
   // Sort by index to maintain slot order
   return list.toSorted((a, b) => a.index - b.index);
 });
@@ -313,6 +317,7 @@ function clearPreferencesAndLogout() {
   <div
     :class="`menu-align-${preferences.header.menuAlign}`"
     class="flex h-full min-w-0 flex-1 items-center"
+    data-tauri-drag-region
   >
     <slot name="menu"></slot>
   </div>

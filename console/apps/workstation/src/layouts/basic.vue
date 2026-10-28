@@ -19,7 +19,7 @@ import { openWindow } from '@operon/utils';
 
 import { isTauriEnvironment } from '#/adapter/desktop';
 import WorkspaceSelector from '#/components/common/workspace-selector.vue';
-import DashboardTitlebar from '#/layouts/widgets/dashboard-titlebar.vue';
+import WindowControls from '#/layouts/widgets/window-controls.vue';
 import { $t } from '#/locales';
 import { useAuthStore } from '#/store';
 import LoginForm from '#/views/_core/authentication/login.vue';
@@ -213,59 +213,51 @@ watch(
 </script>
 
 <template>
-  <div
-    :class="
-      isDesktop
-        ? 'flex h-screen w-full flex-col overflow-hidden bg-background'
-        : 'contents'
-    "
+  <BasicLayout
+    :avatar
+    :text="userStore.userInfo?.realName"
+    @clear-preferences-and-logout="handleLogout"
+    @logout="handleLogout"
   >
-    <DashboardTitlebar v-if="isDesktop" />
-    <div :class="isDesktop ? 'relative flex-1 overflow-hidden' : 'contents'">
-      <BasicLayout
+    <template #logo="{ collapsed }">
+      <WorkspaceSelector :collapsed="collapsed" />
+    </template>
+    <template #user-dropdown>
+      <UserDropdown
         :avatar
+        :menus
         :text="userStore.userInfo?.realName"
+        description="admin@operon.com"
+        tag-text="ID"
         @clear-preferences-and-logout="handleLogout"
         @logout="handleLogout"
+      />
+    </template>
+    <template #window-controls>
+      <WindowControls />
+    </template>
+    <template #notification>
+      <Notification
+        :dot="showDot"
+        :notifications="notifications"
+        @clear="handleNoticeClear"
+        @read="(item) => item.id && markRead(item.id)"
+        @remove="(item) => item.id && remove(item.id)"
+        @make-all="handleMakeAll"
+        @on-click="handleClick"
+        @view-all="viewAll"
+      />
+    </template>
+    <template #extra>
+      <AuthenticationLoginExpiredModal
+        v-model:open="accessStore.loginExpired"
+        :avatar
       >
-        <template #logo="{ collapsed }">
-          <WorkspaceSelector :collapsed="collapsed" />
-        </template>
-        <template #user-dropdown>
-          <UserDropdown
-            :avatar
-            :menus
-            :text="userStore.userInfo?.realName"
-            description="admin@operon.com"
-            tag-text="ID"
-            @clear-preferences-and-logout="handleLogout"
-            @logout="handleLogout"
-          />
-        </template>
-        <template #notification>
-          <Notification
-            :dot="showDot"
-            :notifications="notifications"
-            @clear="handleNoticeClear"
-            @read="(item) => item.id && markRead(item.id)"
-            @remove="(item) => item.id && remove(item.id)"
-            @make-all="handleMakeAll"
-            @on-click="handleClick"
-            @view-all="viewAll"
-          />
-        </template>
-        <template #extra>
-          <AuthenticationLoginExpiredModal
-            v-model:open="accessStore.loginExpired"
-            :avatar
-          >
-            <LoginForm />
-          </AuthenticationLoginExpiredModal>
-        </template>
-        <template #lock-screen>
-          <LockScreen :avatar @to-login="handleLogout" />
-        </template>
-      </BasicLayout>
-    </div>
-  </div>
+        <LoginForm />
+      </AuthenticationLoginExpiredModal>
+    </template>
+    <template #lock-screen>
+      <LockScreen :avatar @to-login="handleLogout" />
+    </template>
+  </BasicLayout>
 </template>
