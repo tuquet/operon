@@ -1,4 +1,4 @@
-use crate::core::browser::ExtensionRegistry;
+﻿use crate::core::browser::ExtensionRegistry;
 use crate::ui::{Card, badge_online};
 
 pub async fn launch_browser(

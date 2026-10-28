@@ -1,3 +1,13 @@
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize, Default)]
+#[serde(rename_all = "snake_case")]
+pub enum FingerprintNoiseLevel {
+    Off,
+    Subtle,
+    #[default]
+    Balanced,
+    Aggressive,
+}
+
 use serde::{Deserialize, Serialize};
 use std::path::{Path, PathBuf};
 
@@ -396,6 +406,37 @@ impl BrowserProfile {
     }
 
     /// Generates canonical command line arguments matching the C++ Antidetect Chromium specification
+
+    /// Harmonizes Sec-CH-UA and platform client hints with user_agent string
+    pub fn align_client_hints(&mut self) {
+        if let Some(ref ua) = self.user_agent {
+            let mut major_ver = "148".to_string();
+            if let Some(pos) = ua.find("Chrome/") {
+                let rest = &ua[pos + 7..];
+                if let Some(end) = rest.find('.') {
+                    major_ver = rest[..end].to_string();
+                }
+            }
+
+            let platform = if ua.contains("Macintosh") || ua.contains("Mac OS X") {
+                "\"macOS\""
+            } else if ua.contains("Linux") && !ua.contains("Android") {
+                "\"Linux\""
+            } else {
+                "\"Windows\""
+            };
+
+            let is_mobile = ua.contains("Mobile") || ua.contains("Android");
+
+            self.sec_ch_ua = Some(format!(
+                "\"Chromium\";v=\"{0}\", \"Not A(Brand\";v=\"24\", \"Google Chrome\";v=\"{0}\"",
+                major_ver
+            ));
+            self.sec_ch_ua_platform = Some(platform.to_string());
+            self.sec_ch_ua_mobile = Some(is_mobile);
+        }
+    }
+
     pub fn build_cli_args(&self, base_dir: &Path) -> Vec<String> {
         let sandbox_dir = self.get_sandbox_dir(base_dir);
         let mut args = vec![
@@ -450,6 +491,12 @@ impl BrowserProfile {
             if self.webrtc_mode.as_deref() == Some("proxy_shielded") || self.webrtc_mode.is_none() {
                 args.push("--disable-non-proxied-udp".to_string());
             }
+        }
+
+        // 7b. Client Hints Flags
+        if let Some(ref ch_ua) = self.sec_ch_ua {
+            // Can be picked up by extensions / CDP runtime
+            let _ = ch_ua;
         }
 
         // 8. Screen Geometry & HiDPI Scaling
