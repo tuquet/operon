@@ -477,6 +477,35 @@ describe('automation core api & helpers (automation & workers schemas)', () => {
       expect(workflowsApi.list).toBe(listWorkflows);
       expect(proxiesApi.list).toBe(listProxies);
     });
+
+    it('should call local daemon session endpoint when starting and stopping browser', async () => {
+      const mockFetch = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({ status: 'success' }),
+      });
+      vi.stubGlobal('fetch', mockFetch);
+
+      const { startBrowserProfile, stopBrowserProfile } = await import('../automation');
+
+      await startBrowserProfile('test-browser-id', { headless: false });
+      expect(mockFetch).toHaveBeenCalledWith(
+        'http://127.0.0.1:8765/api/v1/browsers/test-browser-id/session',
+        expect.objectContaining({
+          method: 'POST',
+          body: JSON.stringify({ headless: false }),
+        }),
+      );
+
+      await stopBrowserProfile('test-browser-id');
+      expect(mockFetch).toHaveBeenCalledWith(
+        'http://127.0.0.1:8765/api/v1/browsers/test-browser-id/session',
+        expect.objectContaining({
+          method: 'DELETE',
+        }),
+      );
+
+      vi.unstubAllGlobals();
+    });
   });
 
   describe('calculateAutomationOverviewSummary', () => {

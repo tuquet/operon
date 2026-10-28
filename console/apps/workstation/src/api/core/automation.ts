@@ -577,7 +577,7 @@ export async function startBrowserProfile(
   const daemonPort = options?.port ?? 8765;
   try {
     const res = await fetch(
-      `http://127.0.0.1:${daemonPort}/api/v1/browsers/${browserId}/start`,
+      `http://127.0.0.1:${daemonPort}/api/v1/browsers/${browserId}/session`,
       {
         body: JSON.stringify({ headless: !!options?.headless }),
         headers: { 'Content-Type': 'application/json' },
@@ -623,9 +623,9 @@ export async function stopBrowserProfile(
   const daemonPort = options?.port ?? 8765;
   try {
     const res = await fetch(
-      `http://127.0.0.1:${daemonPort}/api/v1/browsers/${browserId}/stop`,
+      `http://127.0.0.1:${daemonPort}/api/v1/browsers/${browserId}/session`,
       {
-        method: 'POST',
+        method: 'DELETE',
       },
     );
     if (res.ok) {
