@@ -1,5 +1,5 @@
 -- ============================================================================
--- OPN-CLOUD PLUGIN: SUBSCRIPTIONS, QUOTA & PAYMENT GATEWAY (INSTALLATION)
+-- TUQUET-CLOUD PLUGIN: SUBSCRIPTIONS, QUOTA & PAYMENT GATEWAY (INSTALLATION)
 -- Plugin ID: subscriptions
 -- Version: 1.2.0
 -- Architecture: PostgreSQL Dedicated Schema Isolation (schema: billing)
@@ -9,7 +9,7 @@
 CREATE SCHEMA IF NOT EXISTS billing;
 GRANT USAGE ON SCHEMA billing TO authenticated, service_role, anon;
 ALTER DEFAULT PRIVILEGES IN SCHEMA billing GRANT ALL ON TABLES TO authenticated, service_role;
-ALTER DEFAULT PRIVILEGES IN SCHEMA billing GRANT ALL ON FUNCTIONS TO authenticated, service_role, anon;
+ALTER DEFAULT PRIVILEGES IN SCHEMA billing GRANT ALL ON FUNCTIONS TO authenticated, service_role;
 
 -- 2. Enums in schema billing
 DO $$ BEGIN
@@ -117,6 +117,8 @@ COMMENT ON TABLE billing.wallet_transactions IS '[Plugin: subscriptions] Immutab
 
 CREATE INDEX IF NOT EXISTS idx_billing_wallet_tx_tenant ON billing.wallet_transactions (tenant_id, created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_billing_wallet_tx_created_brin ON billing.wallet_transactions USING brin (created_at);
+CREATE INDEX IF NOT EXISTS idx_billing_wallet_tx_wallet_id ON billing.wallet_transactions (wallet_id);
+CREATE INDEX IF NOT EXISTS idx_billing_usage_meters_tenant ON billing.usage_meters (tenant_id);
 
 -- 2.3. Pluggable Multi-Platform Payment Gateways & Isolated Secrets
 CREATE TABLE IF NOT EXISTS billing.payment_gateways (
@@ -175,6 +177,8 @@ CREATE INDEX IF NOT EXISTS idx_billing_payment_intents_transfer_code
     ON billing.payment_intents (transfer_code);
 CREATE INDEX IF NOT EXISTS idx_billing_payment_intents_created_brin
     ON billing.payment_intents USING brin (created_at);
+CREATE INDEX IF NOT EXISTS idx_billing_payment_intents_pending_code
+    ON billing.payment_intents (transfer_code) WHERE status = 'pending';
 
 -- 2.4. Bank Receiving Accounts Pool Table
 CREATE TABLE IF NOT EXISTS billing.bank_receiving_accounts (
@@ -198,103 +202,6 @@ CREATE TABLE IF NOT EXISTS billing.bank_receiving_accounts (
 COMMENT ON TABLE billing.bank_receiving_accounts IS '[Plugin: subscriptions] Dynamic receiving account pool supporting MMO multi-bank rotation and daily limit guards';
 
 CREATE INDEX IF NOT EXISTS idx_billing_bank_accounts_active ON billing.bank_receiving_accounts (is_active, status, priority ASC);
-
--- 3. Seed Default Plans & Pluggable Payment Gateways
-INSERT INTO billing.plans (id, name, description, max_members, max_storage_mb, max_monthly_runs, price_monthly_usd)
-VALUES 
-    ('free', 'Free Starter', 'Entry plan for individual developers and small tests', 2, 500, 1000, 0.00),
-    ('pro', 'Team Pro', 'Advanced automation capabilities with team collaboration', 10, 10240, 50000, 29.00),
-    ('enterprise', 'Enterprise Fleet', 'Dedicated workers, custom quotas, and SLAs', 100, 102400, 1000000, 199.00)
-ON CONFLICT (id) DO UPDATE SET
-    name = EXCLUDED.name,
-    max_members = EXCLUDED.max_members,
-    max_storage_mb = EXCLUDED.max_storage_mb,
-    max_monthly_runs = EXCLUDED.max_monthly_runs;
-
-INSERT INTO billing.payment_gateways (id, name, channel, driver, currency, rate_per_credit, public_config, is_active, sort_order)
-VALUES
-    (
-        'internal_wallet',
-        'Vi Xu Noi Bo (Thanh toan tuc thi)',
-        'internal_wallet',
-        'ledger',
-        'CREDITS',
-        1.000000,
-        '{"unit": "Xu", "instant": true}'::jsonb,
-        TRUE,
-        1
-    ),
-    (
-        'bank_vietqr',
-        'Chuyen khoan Ngan hang 24/7 (VietQR / Napas247)',
-        'bank_transfer',
-        'sepay',
-        'VND',
-        1000.000000,
-        '{"bank_bin": "970422", "bank_name": "MBBank", "account_no": "0000123456789", "account_name": "OPN PLATFORM", "qr_template": "compact2"}'::jsonb,
-        TRUE,
-        2
-    ),
-    (
-        'momo_ewallet',
-        'Vi Dien Tu MoMo (QR / Chuyen khoan SĐT)',
-        'e_wallet',
-        'momo_ipn',
-        'VND',
-        1000.000000,
-        '{"wallet_provider": "MoMo", "wallet_phone": "0900000000", "account_name": "OPN PLATFORM"}'::jsonb,
-        TRUE,
-        3
-    ),
-    (
-        'stripe_card',
-        'The Quoc Te Visa / Mastercard / Apple Pay (Stripe)',
-        'card_intl',
-        'stripe',
-        'USD',
-        0.040000,
-        '{"provider": "Stripe", "supported_cards": ["visa", "mastercard", "amex", "apple_pay"]}'::jsonb,
-        TRUE,
-        4
-    ),
-    (
-        'crypto_usdt',
-        'Tien Ma Hoa USDT (TRC20 / BEP20 / Binance Pay)',
-        'crypto',
-        'trc20',
-        'USDT',
-        0.040000,
-        '{"network": "TRC20", "token": "USDT", "wallet_address": "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb"}'::jsonb,
-        TRUE,
-        5
-    )
-ON CONFLICT (id) DO UPDATE SET
-    name = EXCLUDED.name,
-    channel = EXCLUDED.channel,
-    driver = EXCLUDED.driver,
-    currency = EXCLUDED.currency,
-    rate_per_credit = EXCLUDED.rate_per_credit,
-    public_config = EXCLUDED.public_config,
-    sort_order = EXCLUDED.sort_order;
-
-INSERT INTO billing.payment_gateway_secrets (gateway_id, secret_config)
-VALUES
-    ('bank_vietqr', '{"webhook_secret": "test-sepay-hmac-secret-placeholder"}'::jsonb),
-    ('momo_ewallet', '{"webhook_secret": "test-momo-hmac-secret-placeholder"}'::jsonb),
-    ('stripe_card', '{"webhook_secret": "whsec_test_stripe_placeholder"}'::jsonb),
-    ('crypto_usdt', '{"webhook_secret": "test-crypto-hmac-secret-placeholder"}'::jsonb)
-ON CONFLICT (gateway_id) DO NOTHING;
-
-INSERT INTO billing.bank_receiving_accounts (id, bank_bin, bank_name, account_no, account_name, qr_template, daily_limit_vnd, priority, is_active, status)
-VALUES
-    ('mbbank_primary', '970422', 'MBBank', '0000123456789', 'OPN PLATFORM', 'compact2', 300000000.00, 1, TRUE, 'active'),
-    ('vpbank_secondary', '970432', 'VPBank', '9888777666', 'OPN MEDIA CORP', 'compact2', 500000000.00, 2, TRUE, 'active'),
-    ('techcombank_backup', '970407', 'Techcombank', '19033445566778', 'OPN BACKUP', 'compact2', 150000000.00, 3, TRUE, 'active')
-ON CONFLICT (id) DO UPDATE SET
-    bank_name = EXCLUDED.bank_name,
-    account_no = EXCLUDED.account_no,
-    account_name = EXCLUDED.account_name,
-    daily_limit_vnd = EXCLUDED.daily_limit_vnd;
 
 -- 4. Generic Quota Checking & Usage Recording Functions
 CREATE OR REPLACE FUNCTION billing.check_tenant_quota(
@@ -405,6 +312,13 @@ DECLARE
     v_wallet_id UUID;
     v_new_balance BIGINT;
 BEGIN
+    IF current_setting('request.jwt.claim.role', true) IS DISTINCT FROM 'service_role'
+       AND COALESCE(NULLIF(current_setting('role', true), 'none'), session_user) NOT IN ('postgres', 'supabase_admin')
+       AND NOT public.is_platform_admin() THEN
+        RAISE EXCEPTION 'Unauthorized: Only platform admin or internal service can credit wallet'
+            USING ERRCODE = '42501';
+    END IF;
+
     IF _amount_credits IS NULL OR _amount_credits <= 0 THEN
         RAISE EXCEPTION 'Credit amount in Xu must be strictly positive (got %)', _amount_credits
             USING ERRCODE = '22023';
@@ -478,6 +392,13 @@ DECLARE
     v_wallet billing.wallets%ROWTYPE;
     v_new_balance BIGINT;
 BEGIN
+    IF current_setting('request.jwt.claim.role', true) IS DISTINCT FROM 'service_role'
+       AND COALESCE(NULLIF(current_setting('role', true), 'none'), session_user) NOT IN ('postgres', 'supabase_admin')
+       AND NOT public.is_platform_admin() THEN
+        RAISE EXCEPTION 'Unauthorized: Only platform admin or internal service can debit wallet'
+            USING ERRCODE = '42501';
+    END IF;
+
     IF _amount_credits IS NULL OR _amount_credits <= 0 THEN
         RAISE EXCEPTION 'Debit amount in Xu must be strictly positive (got %)', _amount_credits
             USING ERRCODE = '22023';
@@ -675,7 +596,7 @@ BEGIN
             -- Static fallback if bank pool table is unseeded
             v_bank_bin := COALESCE(v_gateway.public_config->>'bank_bin', '970422');
             v_account_no := COALESCE(v_gateway.public_config->>'account_no', '0000123456789');
-            v_account_name := COALESCE(v_gateway.public_config->>'account_name', 'OPN PLATFORM');
+            v_account_name := COALESCE(v_gateway.public_config->>'account_name', 'TUQUET PLATFORM');
             v_qr_template := COALESCE(v_gateway.public_config->>'qr_template', 'compact2');
         END IF;
 
@@ -798,7 +719,7 @@ DECLARE
 BEGIN
     -- 1. Authorize caller: Only service_role (Webhook Edge Function), postgres superuser (tests), or Platform Admin
     IF current_setting('request.jwt.claim.role', true) IS DISTINCT FROM 'service_role'
-       AND current_user NOT IN ('postgres', 'supabase_admin')
+       AND COALESCE(NULLIF(current_setting('role', true), 'none'), session_user) NOT IN ('postgres', 'supabase_admin')
        AND NOT public.is_platform_admin() THEN
         RAISE EXCEPTION 'Unauthorized: Only payment webhook service or platform admin can settle intents'
             USING ERRCODE = '42501';

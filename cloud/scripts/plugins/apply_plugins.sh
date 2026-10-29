@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# OPN-CLOUD PLUGIN RUNNER UTILITY (BASH / LINUX / CI)
+# TUQUET-CLOUD PLUGIN RUNNER UTILITY (BASH / LINUX / CI)
 # Description: Automates atomic installation & uninstallation of plugins
 #              in canonical architectural order against local or linked Supabase.
 # ============================================================================
@@ -13,7 +13,7 @@ ACTION="${3:-install}"
 WITH_SEED="${4:-true}"
 
 echo "===================================================================="
-echo " [OPN-CLOUD] Plugin Pipeline Runner (Action: $ACTION, Target: $TARGET)"
+echo " [TUQUET-CLOUD] Plugin Pipeline Runner (Action: $ACTION, Target: $TARGET)"
 echo "===================================================================="
 
 if [[ "$ACTION" == "uninstall" ]]; then
@@ -33,6 +33,8 @@ else
         "workers:supabase/plugins/workers/install.sql:Workers & Compute Fleet (schema: workers)"
         "browsers:supabase/plugins/browsers/install.sql:Cloud Browser Profiles (schema: browsers)"
         "automation:supabase/plugins/automation/install.sql:Automation Cloud Bridge (schema: automation)"
+        "secrets:supabase/plugins/secrets/install.sql:Zero-Knowledge DEK & Vault (schema: secrets)"
+        "commerce:supabase/plugins/commerce/install.sql:Digital Store & Auto-Fulfillment (schema: commerce)"
     )
 fi
 

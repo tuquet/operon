@@ -1,5 +1,5 @@
 -- ============================================================================
--- OPN-CLOUD PLUGIN: AUTOMATION CLOUD BRIDGE (INSTALLATION SCRIPT)
+-- OPERON-CLOUD PLUGIN: AUTOMATION CLOUD BRIDGE (INSTALLATION SCRIPT)
 -- Plugin ID: automation
 -- Version: 1.0.0
 -- Architecture: PostgreSQL Dedicated Schema Isolation (schema: automation)
@@ -707,6 +707,7 @@ CREATE OR REPLACE FUNCTION automation.notify_job_queued()
 RETURNS TRIGGER
 LANGUAGE plpgsql
 SECURITY DEFINER
+SET search_path = ''
 AS $$
 BEGIN
     IF NEW.status = 'queued' AND (OLD IS NULL OR OLD.status <> 'queued') THEN

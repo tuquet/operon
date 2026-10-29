@@ -135,6 +135,63 @@
       }
     },
     {
+      "label": "[cloud] test db (all 11 suites)",
+      "detail": "Chạy trực quan toàn bộ 11 test suites kiểm thử tính toàn vẹn DB Supabase (Core IAM, Plugins, RLS, RBAC).",
+      "type": "shell",
+      "command": "powershell -ExecutionPolicy Bypass -File scripts/test_db.ps1 -Target local",
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}/cloud"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "[cloud] test db (specific suite)",
+      "detail": "Chạy trực quan 1 test suite cụ thể (01_iam, 09_rls, 10_rbac, 04_subscriptions, 08_commerce...).",
+      "type": "shell",
+      "command": "powershell -ExecutionPolicy Bypass -File scripts/test_db.ps1 -Target local -SpecificTest '${input:testSuiteName}'",
+      "group": "test",
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}/cloud"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "[cloud] reset & test db (local)",
+      "detail": "Reset sạch DB local, áp dụng plugins & seeds rồi chạy toàn bộ 11 test suites.",
+      "type": "shell",
+      "command": "supabase db reset --local && powershell -ExecutionPolicy Bypass -File scripts/plugins/apply_plugins.ps1 -Target local && powershell -ExecutionPolicy Bypass -File scripts/test_db.ps1 -Target local",
+      "group": "test",
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}/cloud"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
       "label": "[web] console dev",
       "detail": "Khởi động Vite dev server cho ứng dụng OperonConsole / Workstation.",
       "type": "shell",
@@ -257,6 +314,27 @@
         "reveal": "always",
         "panel": "shared"
       }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "testSuiteName",
+      "type": "pickString",
+      "description": "Chọn Test Suite DB muốn chạy:",
+      "options": [
+        "01_verify_core_iam",
+        "02_verify_automation_plugin",
+        "03_verify_browsers_plugin",
+        "03_verify_storage_plugin",
+        "04_verify_subscriptions_plugin",
+        "05_verify_webhooks_plugin",
+        "06_verify_test_presets",
+        "07_verify_secrets_plugin",
+        "08_verify_commerce_plugin",
+        "09_verify_rls_isolation",
+        "10_verify_rbac_permissions"
+      ],
+      "default": "09_verify_rls_isolation"
     }
   ]
 }

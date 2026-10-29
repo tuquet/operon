@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# OPN-CLOUD DATABASE TEST RUNNER
+# OPERON-CLOUD DATABASE TEST RUNNER
 # Description: Executes automated SQL verification suites against local Supabase
 # ============================================================================
 
@@ -9,7 +9,7 @@ set -euo pipefail
 TARGET="${1:-local}"
 
 echo "===================================================================="
-echo " [OPN-CLOUD] Database Test Suite Runner (Target: $TARGET)"
+echo " [OPERON-CLOUD] Database Test Suite Runner (Target: $TARGET)"
 echo "===================================================================="
 
 TEST_FILES=(
@@ -20,6 +20,10 @@ TEST_FILES=(
     "tests/db/04_verify_subscriptions_plugin.sql"
     "tests/db/05_verify_webhooks_plugin.sql"
     "tests/db/06_verify_test_presets.sql"
+    "tests/db/07_verify_secrets_plugin.sql"
+    "tests/db/08_verify_commerce_plugin.sql"
+    "tests/db/09_verify_rls_isolation.sql"
+    "tests/db/10_verify_rbac_permissions.sql"
 )
 
 # Ensure provision helper procedure is present for verification

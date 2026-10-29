@@ -115,7 +115,7 @@ Operon implements a zero-intermediate-storage design. All jobs, schedules, and w
 1. **Gateway Proxy Forwarder**:
    ```bash
    # Terminal 1: Launch SOCKS5 (1080) and HTTP (8118) tunnel
-   tq gateway start --http
+   opn gateway start --http
    ```
 
 2. **Dedicated Antidetect Chromium**:

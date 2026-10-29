@@ -18,10 +18,10 @@ Currently, `operon` (`crates/cli`) bundles a custom `gateway` subsystem consisti
 
 | Question | Answer |
 | :--- | :--- |
-| **What** | Remove `commands/gateway` and `infrastructure/gateway` from `operon`. Create a standalone CLI script `tunnel.ps1` in `C:\Users\ndtu6\.tq\bin\` and update global `AGENTS.md`. |
+| **What** | Remove `commands/gateway` and `infrastructure/gateway` from `operon`. Create a standalone CLI script `tunnel.ps1` in `C:\Users\ndtu6\.opn\bin\` and update global `AGENTS.md`. |
 | **Why** | Eliminate code debt, remove failure points, align with Unix/Google philosophy (do one thing well), and leverage native Cloudflare/SSH tooling. |
 | **Who** | System Engineers and AI Agents running on this workstation. |
-| **Where** | 1. Script: `C:\Users\ndtu6\.tq\bin\tunnel.ps1` & `tunnel.cmd` (already in `$env:PATH`).<br>2. Rule: `C:\Users\ndtu6\.gemini\config\AGENTS.md`.<br>3. Operon Codebase: `crates/cli/src/commands/gateway` and `crates/cli/src/infrastructure/gateway`. |
+| **Where** | 1. Script: `C:\Users\ndtu6\.opn\bin\tunnel.ps1` & `tunnel.cmd` (already in `$env:PATH`).<br>2. Rule: `C:\Users\ndtu6\.gemini\config\AGENTS.md`.<br>3. Operon Codebase: `crates/cli/src/commands/gateway` and `crates/cli/src/infrastructure/gateway`. |
 | **When** | Immediate rollout in 3 phases. |
 | **How** | 1. Deploy native standalone script `tunnel.ps1`.<br>2. Update Global Agent Rules `AGENTS.md`.<br>3. Remove gateway code from `operon` crate and update `CONSTRAINTS.md`. |
 
@@ -52,7 +52,7 @@ Currently, `operon` (`crates/cli`) bundles a custom `gateway` subsystem consisti
 ## 4. Phase-by-Phase Implementation Plan
 
 ### Phase 1: Standalone Native Tunnel Tooling (Zero-Dependency)
-- **Path:** `C:\Users\ndtu6\.tq\bin\tunnel.ps1` and shim `tunnel.cmd` (in global `$env:PATH`).
+- **Path:** `C:\Users\ndtu6\.opn\bin\tunnel.ps1` and shim `tunnel.cmd` (in global `$env:PATH`).
 - **Features:**
   - `tunnel on` / `tunnel start`: Launches `ssh -N -D 1080 my-vps-cf` in the background with PID tracking (`~/.operon/network/tunnel.pid`).
   - `tunnel off` / `tunnel stop`: Terminates the background tunnel process cleanly.
@@ -61,8 +61,8 @@ Currently, `operon` (`crates/cli`) bundles a custom `gateway` subsystem consisti
 ### Phase 2: Update Global Agent Rules & Constraints
 - **File:** `C:\Users\ndtu6\.gemini\config\AGENTS.md`.
 - **Change:**
-  - Replace references to `tq gateway start` with `tunnel on` (or `tunnel start`).
-  - Replace `tq gateway status` with `tunnel status`.
+  - Replace references to `opn gateway start` with `tunnel on` (or `tunnel start`).
+  - Replace `opn gateway status` with `tunnel status`.
   - Update `CONSTRAINTS.md` in `operon` to reflect external tunnel dependency.
 
 ### Phase 3: Clean Decoupling from `operon` Codebase
