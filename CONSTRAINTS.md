@@ -121,4 +121,27 @@ Operon features two interactive user surfaces: the GUI Workstation and the CLI (
   - Giữ vững tính trợ năng (a11y) với `as-child` khi bọc Custom Button/IconButton trong Trigger/Close.
   - Ưu tiên biến thể CVA (`variant`, `size`) thay vì đè class CSS màu sắc/kích thước thủ công.
 
+---
+
+## 6. Cloud Control Plane & Database Invariants (Supabase Core)
+
+### Invariant S1: Public RPC Encapsulation (Zero Direct Private Schema Access)
+- **Rule:** Client bên ngoài (Workstation UI, Worker Daemon, Antidetect CLI) tuyệt đối không truy cập trực tiếp các schema nghiệp vụ riêng tư (`automation.*`, `secrets.*`, `workers.*`, `billing.*`).
+- **Enforcement:**
+  - Mọi thao tác ghi/đọc nghiệp vụ bắt buộc phải qua hàm wrapper `public.<domain>_*` (ví dụ: `public.automation_claim_jobs`, `public.secret_store_push`).
+  - Hàm RPC phải được khai báo với thuộc tính `SECURITY INVOKER` (tuân thủ Row-Level Security RLS, nghiêm cấm lạm dụng `SECURITY DEFINER`) và `GRANT EXECUTE` cho role `authenticated`.
+
+### Invariant S2: Connection Pooling Enforcement (High-Concurrency Mesh)
+- **Rule:** Cụm Worker Daemon và Automation Fleet trên toàn mạng lưới khi kết nối tới Supabase bắt buộc phải đi qua Transaction Pooler.
+- **Enforcement:**
+  - Sử dụng cổng Transaction Pooler `6543` (Supavisor / PgBouncer) cho toàn bộ API calls từ các worker phân tán để tránh cạn kiệt connection limits của Postgres.
+  - Cổng Direct Session `5432` chỉ được sử dụng cho việc chạy DDL Migration hoặc quản trị viên từ CLI nội bộ.
+
+### Invariant S3: Immutable Migration Discipline & Automated Test Gating
+- **Rule:** Tuyệt đối cấm thao tác sửa đổi schema, bảng, RPC trực tiếp trên giao diện Supabase Studio Dashboard.
+- **Enforcement:**
+  - 100% thay đổi schema phải được viết thành mã nguồn SQL trong `supabase/migrations/` hoặc `supabase/plugins/`.
+  - Mọi thay đổi DB phải vượt qua toàn bộ 11 Automated Test Suites (`scripts/test_db.ps1` hoặc `bash scripts/test_db.sh`) trước khi áp dụng lên Staging/Production.
+
+
 
