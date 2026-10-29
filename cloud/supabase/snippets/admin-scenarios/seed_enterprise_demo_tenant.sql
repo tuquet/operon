@@ -16,13 +16,11 @@ DECLARE
     v_profile_id UUID;
     v_proxy_id   UUID;
 BEGIN
-    -- 1. Create Demo Tenant
     INSERT INTO public.tenants (name, slug, tier, status)
     VALUES ('Tuquet Enterprise Labs', 'tuquet-enterprise', 'enterprise', 'active')
     ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name
     RETURNING id INTO v_tenant_id;
 
-    -- 2. Lookup or Provision Owner User in auth.users
     SELECT id INTO v_user_id FROM auth.users WHERE email = 'demo.owner@tuquet.local' LIMIT 1;
     IF v_user_id IS NULL THEN
         v_user_id := extensions.gen_random_uuid();
@@ -39,13 +37,11 @@ BEGIN
         );
     END IF;
 
-    -- 3. Bind Role & Tenant Membership
     SELECT id INTO v_role_id FROM public.roles WHERE name = 'owner' AND tenant_id IS NULL LIMIT 1;
     INSERT INTO public.tenant_users (tenant_id, user_id, role_id)
     VALUES (v_tenant_id, v_user_id, v_role_id)
     ON CONFLICT (tenant_id, user_id) DO NOTHING;
 
-    -- 4. Assign Pro Subscription Plan
     SELECT id INTO v_plan_id FROM billing.plans WHERE code = 'plan_pro' LIMIT 1;
     IF v_plan_id IS NOT NULL THEN
         INSERT INTO billing.subscriptions (tenant_id, plan_id, status, current_period_end)
@@ -53,18 +49,15 @@ BEGIN
         ON CONFLICT (tenant_id) DO UPDATE SET status = 'active', current_period_end = now() + interval '30 days';
     END IF;
 
-    -- 5. Seed Xu Wallet Balance (1,000 Xu)
     INSERT INTO billing.wallets (tenant_id, currency, balance, lifetime_credited)
     VALUES (v_tenant_id, 'XU', 1000.00, 1000.00)
     ON CONFLICT (tenant_id) DO UPDATE SET balance = 1000.00
     RETURNING id INTO v_wallet_id;
 
-    -- 6. Seed Sample Residential Proxy
     INSERT INTO workers.proxies (tenant_id, name, protocol, host, port, username, password, country_code, status)
     VALUES (v_tenant_id, 'VN Residential High-Speed', 'http', '103.150.12.34', 8080, 'resi_user', 'resi_pass', 'VN', 'active')
     RETURNING id INTO v_proxy_id;
 
-    -- 7. Seed Sample Antidetect Browser Profile
     INSERT INTO browsers.profiles (
         tenant_id, name, group_name, browser_type, engine_version,
         fingerprint_seed, os_platform, os_version, browser_brand,
