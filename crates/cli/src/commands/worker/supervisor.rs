@@ -10,7 +10,9 @@ use crate::config::AppConfig;
 use crate::infrastructure::db::AutomationDb;
 
 pub fn get_pid_file_path(data_dir: &str) -> PathBuf {
-    Path::new(data_dir).join(crate::constants::DIR_WORKER).join(crate::constants::FILE_WORKER_PID)
+    Path::new(data_dir)
+        .join(crate::constants::DIR_WORKER)
+        .join(crate::constants::FILE_WORKER_PID)
 }
 
 pub fn get_log_file_path(data_dir: &str) -> PathBuf {
@@ -444,10 +446,20 @@ pub async fn run_server(
         crate::infrastructure::cloud_reporter::CloudReporter::start_background_loop(state.clone());
 
     // Start in-process Supabase Claim Loop if --claim is set or CLAIM_ENABLED=1
-    let claim_requested = claim || std::env::var("CLAIM_ENABLED").map(|v| v == "1" || v.to_lowercase() == "true").unwrap_or(false);
+    let claim_requested = claim
+        || std::env::var("CLAIM_ENABLED")
+            .map(|v| v == "1" || v.to_lowercase() == "true")
+            .unwrap_or(false);
     if claim_requested {
-        if let Some(creds) = crate::infrastructure::cloud_reporter::CloudReporter::load_credentials(&config.data_dir).await {
-            let resolved_cloud_url = config.cloud_url.clone().or_else(|| creds.cloud_url.clone()).unwrap_or_else(|| "https://dswhacsoaxgpfnkaxnhz.supabase.co".to_string());
+        if let Some(creds) =
+            crate::infrastructure::cloud_reporter::CloudReporter::load_credentials(&config.data_dir)
+                .await
+        {
+            let resolved_cloud_url = config
+                .cloud_url
+                .clone()
+                .or_else(|| creds.cloud_url.clone())
+                .unwrap_or_else(|| "https://dswhacsoaxgpfnkaxnhz.supabase.co".to_string());
             let ident = ::worker::core::identity::DeviceIdentity {
                 device_id: creds.device_id.clone(),
                 tenant_id: creds.tenant_id.clone().unwrap_or_default(),
@@ -456,15 +468,22 @@ pub async fn run_server(
                 cloud_url: resolved_cloud_url,
                 api_key: creds.api_key.clone(),
                 env: "dev".to_string(),
-                enrolled_at: creds.registered_at.clone().unwrap_or_else(|| chrono::Utc::now().to_rfc3339()),
+                enrolled_at: creds
+                    .registered_at
+                    .clone()
+                    .unwrap_or_else(|| chrono::Utc::now().to_rfc3339()),
             };
             let engine = std::sync::Arc::new(::worker::core::engine::RunnerEngine::new());
             let mut claim_cfg = ::worker::core::claim_loop::ClaimConfig::from_env();
             claim_cfg.enabled = true;
             let _ = ::worker::core::claim_loop::spawn(engine, ident, claim_cfg);
-            tracing::info!("In-process Supabase Cloud Claim Loop spawned successfully with Unified CredentialStore (SSOT).");
+            tracing::info!(
+                "In-process Supabase Cloud Claim Loop spawned successfully with Unified CredentialStore (SSOT)."
+            );
         } else {
-            tracing::warn!("Claim loop requested but no enrolled DeviceCredentials found in ~/.operon/system/.identity.json");
+            tracing::warn!(
+                "Claim loop requested but no enrolled DeviceCredentials found in ~/.operon/system/.identity.json"
+            );
         }
     }
 
@@ -485,10 +504,7 @@ pub async fn run_server(
         }
         card.add_kv(
             "Cloud Hub",
-            config
-                .cloud_url
-                .as_deref()
-                .unwrap_or("(not configured)"),
+            config.cloud_url.as_deref().unwrap_or("(not configured)"),
         );
         card.add_kv(
             "Proxy Mesh",

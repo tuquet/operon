@@ -16,26 +16,78 @@ impl GeoIpResolver {
     pub fn resolve_country(country_code: &str) -> Option<GeoIpMetadata> {
         let code = country_code.trim().to_uppercase();
         let (tz, lang, accept) = match code.as_str() {
-            "VN" => ("Asia/Ho_Chi_Minh", "vi-VN", "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7"),
+            "VN" => (
+                "Asia/Ho_Chi_Minh",
+                "vi-VN",
+                "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7",
+            ),
             "US" => ("America/New_York", "en-US", "en-US,en;q=0.9"),
             "JP" => ("Asia/Tokyo", "ja-JP", "ja-JP,ja;q=0.9,en-US;q=0.8,en;q=0.7"),
-            "SG" => ("Asia/Singapore", "en-SG", "en-SG,en;q=0.9,zh-CN;q=0.8,zh;q=0.7"),
+            "SG" => (
+                "Asia/Singapore",
+                "en-SG",
+                "en-SG,en;q=0.9,zh-CN;q=0.8,zh;q=0.7",
+            ),
             "GB" | "UK" => ("Europe/London", "en-GB", "en-GB,en;q=0.9,en-US;q=0.8"),
-            "DE" => ("Europe/Berlin", "de-DE", "de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7"),
-            "FR" => ("Europe/Paris", "fr-FR", "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7"),
+            "DE" => (
+                "Europe/Berlin",
+                "de-DE",
+                "de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7",
+            ),
+            "FR" => (
+                "Europe/Paris",
+                "fr-FR",
+                "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+            ),
             "KR" => ("Asia/Seoul", "ko-KR", "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"),
-            "TH" => ("Asia/Bangkok", "th-TH", "th-TH,th;q=0.9,en-US;q=0.8,en;q=0.7"),
-            "ID" => ("Asia/Jakarta", "id-ID", "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"),
+            "TH" => (
+                "Asia/Bangkok",
+                "th-TH",
+                "th-TH,th;q=0.9,en-US;q=0.8,en;q=0.7",
+            ),
+            "ID" => (
+                "Asia/Jakarta",
+                "id-ID",
+                "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
+            ),
             "PH" => ("Asia/Manila", "en-PH", "en-PH,en;q=0.9,tl;q=0.8"),
-            "MY" => ("Asia/Kuala_Lumpur", "ms-MY", "ms-MY,ms;q=0.9,en-US;q=0.8,en;q=0.7"),
+            "MY" => (
+                "Asia/Kuala_Lumpur",
+                "ms-MY",
+                "ms-MY,ms;q=0.9,en-US;q=0.8,en;q=0.7",
+            ),
             "IN" => ("Asia/Kolkata", "en-IN", "en-IN,en;q=0.9,hi;q=0.8"),
             "AU" => ("Australia/Sydney", "en-AU", "en-AU,en;q=0.9,en-US;q=0.8"),
-            "CA" => ("America/Toronto", "en-CA", "en-CA,en;q=0.9,fr-CA;q=0.8,en-US;q=0.7"),
-            "BR" => ("America/Sao_Paulo", "pt-BR", "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7"),
-            "RU" => ("Europe/Moscow", "ru-RU", "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7"),
-            "NL" => ("Europe/Amsterdam", "nl-NL", "nl-NL,nl;q=0.9,en-US;q=0.8,en;q=0.7"),
-            "TW" => ("Asia/Taipei", "zh-TW", "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7"),
-            "HK" => ("Asia/Hong_Kong", "zh-HK", "zh-HK,zh;q=0.9,en-US;q=0.8,en;q=0.7"),
+            "CA" => (
+                "America/Toronto",
+                "en-CA",
+                "en-CA,en;q=0.9,fr-CA;q=0.8,en-US;q=0.7",
+            ),
+            "BR" => (
+                "America/Sao_Paulo",
+                "pt-BR",
+                "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+            ),
+            "RU" => (
+                "Europe/Moscow",
+                "ru-RU",
+                "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
+            ),
+            "NL" => (
+                "Europe/Amsterdam",
+                "nl-NL",
+                "nl-NL,nl;q=0.9,en-US;q=0.8,en;q=0.7",
+            ),
+            "TW" => (
+                "Asia/Taipei",
+                "zh-TW",
+                "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
+            ),
+            "HK" => (
+                "Asia/Hong_Kong",
+                "zh-HK",
+                "zh-HK,zh;q=0.9,en-US;q=0.8,en;q=0.7",
+            ),
             _ => return None,
         };
 

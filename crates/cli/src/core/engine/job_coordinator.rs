@@ -319,11 +319,16 @@ impl JobCoordinator {
             Err(e) => {
                 tracing::error!("Failed to parse workflow graph for job {}: {}", job_id, e);
                 let log_msg = format!("DAG Parse Error: {}", e);
-                let _ = Self::record_log(&state, &job_id, &crate::api::handlers::jobs::JobLogPayload {
-                    r#type: "error".to_string(),
-                    message: Some(log_msg),
-                    logs: None,
-                }).await;
+                let _ = Self::record_log(
+                    &state,
+                    &job_id,
+                    &crate::api::handlers::jobs::JobLogPayload {
+                        r#type: "error".to_string(),
+                        message: Some(log_msg),
+                        logs: None,
+                    },
+                )
+                .await;
                 let _ = Self::finish_with_status(
                     &state,
                     &job_id,
@@ -346,11 +351,16 @@ impl JobCoordinator {
                         e
                     );
                     let log_msg = format!("CDP Connect Error: {}", e);
-                    let _ = Self::record_log(&state, &job_id, &crate::api::handlers::jobs::JobLogPayload {
-                        r#type: "error".to_string(),
-                        message: Some(log_msg),
-                        logs: None,
-                    }).await;
+                    let _ = Self::record_log(
+                        &state,
+                        &job_id,
+                        &crate::api::handlers::jobs::JobLogPayload {
+                            r#type: "error".to_string(),
+                            message: Some(log_msg),
+                            logs: None,
+                        },
+                    )
+                    .await;
                     let _ = Self::finish_with_status(
                         &state,
                         &job_id,

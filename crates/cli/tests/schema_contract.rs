@@ -17,13 +17,7 @@ fn test_manifest_schema_and_json_validity() {
     );
 
     // 2. Canonical pillars check (5 microservice storage pillars + execution runtimes)
-    let required_pillars = [
-        "system",
-        "automation",
-        "browser",
-        "runner",
-        "cloud",
-    ];
+    let required_pillars = ["system", "automation", "browser", "runner", "cloud"];
     for p in &required_pillars {
         assert!(
             m.pillars.iter().any(|item| item.eq_ignore_ascii_case(p)),
@@ -200,7 +194,6 @@ fn test_runtime_manifest_queries() {
         "Expected browser commands in manifest"
     );
 
-
     let auth_cmd = find_by_route(&["auth", "whoami"]);
     assert!(
         auth_cmd.is_some(),
@@ -211,12 +204,7 @@ fn test_runtime_manifest_queries() {
 
 #[test]
 fn test_config_schemas_contract() {
-    let services = [
-        "browser",
-        "automation",
-        "worker",
-        "system",
-    ];
+    let services = ["browser", "automation", "worker", "system"];
     for s in services {
         let path = std::path::Path::new("schema/config").join(format!("{}.schema.json", s));
         assert!(path.exists(), "Schema file {:?} must exist", path);

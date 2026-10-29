@@ -19,7 +19,10 @@ pub fn resolve_supabase_anon_key(saved: Option<&str>) -> Result<String, String> 
 
 /// Fails fast (plan 011): resolve the Supabase cloud URL. No hardcoded fallback.
 /// Order: configured (AppConfig) → saved credential → SUPABASE_URL env → actionable error.
-pub fn resolve_supabase_url(configured: Option<&str>, saved: Option<&str>) -> Result<String, String> {
+pub fn resolve_supabase_url(
+    configured: Option<&str>,
+    saved: Option<&str>,
+) -> Result<String, String> {
     for src in [configured, saved] {
         if let Some(u) = src
             .map(str::trim)

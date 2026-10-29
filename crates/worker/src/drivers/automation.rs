@@ -45,7 +45,11 @@ impl AutomaDriver {
             target
         };
 
-        if binary_name.starts_with('/') || binary_name.starts_with('\\') || std::path::Path::new(binary_name).is_absolute() || std::path::Path::new(binary_name).exists() {
+        if binary_name.starts_with('/')
+            || binary_name.starts_with('\\')
+            || std::path::Path::new(binary_name).is_absolute()
+            || std::path::Path::new(binary_name).exists()
+        {
             return binary_name.to_string();
         }
 
@@ -369,7 +373,11 @@ impl ExecutionDriver for AutomaDriver {
         let cli_args = automa_payload.build_cli_args();
         ctx.emit_log(
             LogChannel::System,
-            &format!("Assembled automation command: {} automation {}", bin_name, cli_args.join(" ")),
+            &format!(
+                "Assembled automation command: {} automation {}",
+                bin_name,
+                cli_args.join(" ")
+            ),
         );
         for arg in cli_args {
             cmd.arg(arg);

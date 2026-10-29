@@ -179,7 +179,11 @@ impl TuiState {
             ssh_online: ssh_active,
             ssh_port,
             default_server: "my-vps".to_string(),
-            active_servers: if git_active || ssh_active || http_active { 1 } else { 0 },
+            active_servers: if git_active || ssh_active || http_active {
+                1
+            } else {
+                0
+            },
             total_servers: 1,
         };
 

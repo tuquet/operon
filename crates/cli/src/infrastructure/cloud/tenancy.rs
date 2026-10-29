@@ -168,10 +168,8 @@ impl TenancyManager {
             .await
             .ok_or("No active cloud session found on this machine. Run 'opn login' first.")?;
 
-        let cloud_url = super::credential_store::resolve_supabase_url(
-            None,
-            creds.cloud_url.as_deref(),
-        )?;
+        let cloud_url =
+            super::credential_store::resolve_supabase_url(None, creds.cloud_url.as_deref())?;
         let api_key = super::credential_store::resolve_supabase_anon_key(creds.api_key.as_deref())?;
 
         let client = CloudApiClient::build_http_client();

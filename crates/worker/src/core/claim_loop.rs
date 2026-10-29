@@ -80,7 +80,9 @@ impl CloudRpc {
             .post(&endpoint)
             .header("Content-Type", "application/json");
         if let Some(key) = &self.api_key {
-            request = request.header("apikey", key).header("Authorization", format!("Bearer {key}"));
+            request = request
+                .header("apikey", key)
+                .header("Authorization", format!("Bearer {key}"));
         }
 
         let response = request
@@ -181,7 +183,9 @@ pub fn spawn(
         return None;
     }
 
-    Some(tokio::spawn(async move { run(engine, identity, config).await }))
+    Some(tokio::spawn(
+        async move { run(engine, identity, config).await },
+    ))
 }
 
 async fn run(engine: Arc<RunnerEngine>, identity: DeviceIdentity, config: ClaimConfig) {
@@ -207,12 +211,7 @@ async fn run(engine: Arc<RunnerEngine>, identity: DeviceIdentity, config: ClaimC
 }
 
 /// Runs one claimed job end-to-end and reports the outcome.
-async fn execute(
-    engine: Arc<RunnerEngine>,
-    rpc: CloudRpc,
-    envelope: Value,
-    lease_minutes: i64,
-) {
+async fn execute(engine: Arc<RunnerEngine>, rpc: CloudRpc, envelope: Value, lease_minutes: i64) {
     let job_id = envelope
         .get("job_id")
         .and_then(|value| value.as_str())
@@ -224,7 +223,13 @@ async fn execute(
         return;
     }
 
-    info!("Claimed job {job_id} ({})", envelope.get("workflow_name").and_then(|value| value.as_str()).unwrap_or("-"));
+    info!(
+        "Claimed job {job_id} ({})",
+        envelope
+            .get("workflow_name")
+            .and_then(|value| value.as_str())
+            .unwrap_or("-")
+    );
 
     // The engine takes the same payload shape the CLI dispatches.
     let payload = json!({
@@ -306,7 +311,10 @@ async fn execute(
 
         for batch in events.chunks(200) {
             if let Err(e) = rpc.log_events(&job_id, batch).await {
-                warn!("Failed to push {} log event(s) for job {job_id}: {e}", batch.len());
+                warn!(
+                    "Failed to push {} log event(s) for job {job_id}: {e}",
+                    batch.len()
+                );
             }
         }
     }
@@ -323,8 +331,14 @@ async fn execute(
         "logs": chunks.len(),
     });
 
-    match rpc.finish(&job_id, status, summary, result.error.clone()).await {
-        Ok(()) => info!("Job {job_id} finished: {status} ({} ms)", result.duration_ms),
+    match rpc
+        .finish(&job_id, status, summary, result.error.clone())
+        .await
+    {
+        Ok(()) => info!(
+            "Job {job_id} finished: {status} ({} ms)",
+            result.duration_ms
+        ),
         Err(e) => warn!("Failed to report completion of job {job_id}: {e}"),
     }
 }
@@ -367,7 +381,10 @@ mod tests {
         assert!(config.enabled);
         assert_eq!(config.interval, Duration::from_secs(5));
         assert_eq!(config.batch_size, 20, "batch size is clamped");
-        assert_eq!(config.lease_minutes, 1, "lease is clamped to at least a minute");
+        assert_eq!(
+            config.lease_minutes, 1,
+            "lease is clamped to at least a minute"
+        );
 
         for key in [
             "CLAIM_ENABLED",

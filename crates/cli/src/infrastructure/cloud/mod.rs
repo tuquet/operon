@@ -8,9 +8,8 @@ pub mod workflow_store;
 
 pub use client::CloudApiClient;
 pub use credential_store::{
-    CloudStatusInfo, CloudSyncResult, CredentialStore, resolve_supabase_anon_key,
-    resolve_supabase_url,
-    DeviceCredentials, TenantInfo,
+    CloudStatusInfo, CloudSyncResult, CredentialStore, DeviceCredentials, TenantInfo,
+    resolve_supabase_anon_key, resolve_supabase_url,
 };
 pub use fingerprint::MachineFingerprint;
 pub use secret_sync::{RemoteSecret, SecretClient};

@@ -45,10 +45,7 @@ impl SecretClient {
             "Workstation not enrolled with Cloud. Run `opn auth login` first.".to_string()
         })?;
 
-        let cloud_url = resolve_supabase_url(
-            cfg.cloud_url.as_deref(),
-            creds.cloud_url.as_deref(),
-        )?;
+        let cloud_url = resolve_supabase_url(cfg.cloud_url.as_deref(), creds.cloud_url.as_deref())?;
         let anon_key = resolve_supabase_anon_key(creds.api_key.as_deref())?;
         let keypair = DeviceKeypair::load_or_create(store_dir)?;
 

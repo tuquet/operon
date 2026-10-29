@@ -405,8 +405,6 @@ impl BrowserProfile {
         list
     }
 
-    /// Generates canonical command line arguments matching the C++ Antidetect Chromium specification
-
     /// Harmonizes Sec-CH-UA and platform client hints with user_agent string
     pub fn align_client_hints(&mut self) {
         if let Some(ref ua) = self.user_agent {

@@ -96,10 +96,7 @@ impl CloudWorkflowRepository {
             .tenant_id
             .clone()
             .ok_or_else(|| "No tenant bound. Run `opn auth login` again.".to_string())?;
-        let base = resolve_supabase_url(
-            config.cloud_url.as_deref(),
-            creds.cloud_url.as_deref(),
-        )?;
+        let base = resolve_supabase_url(config.cloud_url.as_deref(), creds.cloud_url.as_deref())?;
 
         Ok(Self {
             client: reqwest::Client::new(),

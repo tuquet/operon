@@ -1,42 +1,14 @@
-# EXAMPLE USAGE:
-#
-#   Refer for explanation to following link:
-#   https://lefthook.dev/configuration/
-#
-# pre-push:
-#   jobs:
-#     - name: packages audit
-#       tags:
-#         - frontend
-#         - security
-#       run: yarn audit
-#
-#     - name: gems audit
-#       tags:
-#         - backend
-#         - security
-#       run: bundle audit
-#
-# pre-commit:
-#   parallel: true
-#   jobs:
-#     - run: yarn eslint {staged_files}
-#       glob: "*.{js,ts,jsx,tsx}"
-#
-#     - name: rubocop
-#       glob: "*.rb"
-#       exclude:
-#         - config/application.rb
-#         - config/routes.rb
-#       run: bundle exec rubocop --force-exclusion -- {all_files}
-#
-#     - name: govet
-#       files: git ls-files -m
-#       glob: "*.go"
-#       run: go vet -- {files}
-#
-#     - script: "hello.js"
-#       runner: node
-#
-#     - script: "hello.go"
-#       runner: go run
+pre-commit:
+  parallel: false
+  commands:
+    rustfmt:
+      glob: "*.rs"
+      run: cargo fmt --all -- --check
+    oxlint:
+      glob: "console/**/*.{js,jsx,ts,tsx,vue,cjs,mjs,cts,mts}"
+      run: cd console && pnpm exec oxlint --fix --type-aware --no-error-on-unmatched-pattern {staged_files}
+      stage_fixed: true
+    oxfmt:
+      glob: "console/**/*.{js,jsx,ts,tsx,vue,cjs,mjs,cts,mts,json,jsonc}"
+      run: cd console && pnpm exec oxfmt --no-error-on-unmatched-pattern {staged_files}
+      stage_fixed: true

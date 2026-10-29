@@ -16,7 +16,6 @@ import { listWorkflows } from '#/api';
 import {
   buildEnumFilterOptions,
   FILTER_ALL,
-  getStatusToneMeta,
   WORKFLOW_STATUS,
   WORKFLOW_STATUS_META,
 } from '#/constants';
@@ -29,15 +28,6 @@ const route = useRoute();
 const { isMobile } = usePreferences();
 
 const allWorkflows = ref<Workflow[]>([]);
-
-function getStatusDotClass(status: string): string {
-  return getStatusToneMeta(status, WORKFLOW_STATUS_META).dotClass;
-}
-
-function getStatusLabel(status: string): string {
-  const meta = getStatusToneMeta(status, WORKFLOW_STATUS_META);
-  return meta.labelKey ? $t(meta.labelKey) : (meta.fallbackLabel ?? status);
-}
 
 function getColumns() {
   return [

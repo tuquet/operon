@@ -47,8 +47,7 @@ pub use crate::constants::DEFAULT_SSOT_ROOT_DIR as DEFAULT_SSOT_DIR_NAME;
 
 /// Resolves the canonical SSOT root directory (~/.operon/ or $DATA_DIR)
 pub fn canonical_ssot_dir() -> std::path::PathBuf {
-    if let Ok(dir) = std::env::var(crate::constants::envs::ENV_DATA_DIR)
-    {
+    if let Ok(dir) = std::env::var(crate::constants::envs::ENV_DATA_DIR) {
         if !dir.trim().is_empty() {
             return std::path::PathBuf::from(dir);
         }
@@ -89,6 +88,8 @@ mod tests {
     #[test]
     fn test_canonical_ssot_dir() {
         let dir = canonical_ssot_dir();
-        assert!(dir.to_string_lossy().contains(".operon") || dir.to_string_lossy().contains(".opn"));
+        assert!(
+            dir.to_string_lossy().contains(".operon") || dir.to_string_lossy().contains(".opn")
+        );
     }
 }

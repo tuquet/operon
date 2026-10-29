@@ -34,7 +34,7 @@ import {
   listTenants,
   setActiveTenantId,
 } from '#/api';
-import { useClipboard, useDateFormat } from '#/composables';
+import { useClipboard } from '#/composables';
 import {
   buildEnumFilterOptions,
   COMMERCE_ORDER_STATUS,
@@ -52,7 +52,6 @@ import OrderDeliveriesModal from '../components/order-deliveries-modal.vue';
 defineOptions({ name: 'CommerceOrders' });
 
 const router = useRouter();
-const { formatDate } = useDateFormat();
 const { copyText } = useClipboard();
 const { isMobile } = usePreferences();
 

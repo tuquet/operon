@@ -12,10 +12,63 @@ concurrency:
 
 jobs:
   # ============================================================================
-  # 1. RUST WORKSPACE VERIFICATION
+  # 0. PATH FILTER TO SKIP UNNECESSARY HEAVY JOBS
+  # ============================================================================
+  changes:
+    name: Detect Changed Subsystems
+    runs-on: ubuntu-latest
+    outputs:
+      rust: ${{ steps.filter.outputs.rust }}
+      frontend: ${{ steps.filter.outputs.frontend }}
+      docker: ${{ steps.filter.outputs.docker }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Path Filters
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            rust:
+              - 'crates/**'
+              - 'Cargo.toml'
+              - 'Cargo.lock'
+              - '.github/workflows/ci.yml'
+              - '.github/workflows/reusable-rust-ci.yml'
+            frontend:
+              - 'console/**'
+              - '.github/workflows/ci.yml'
+            docker:
+              - 'docker-compose.yml'
+              - '**/deploy/**'
+              - '.github/workflows/ci.yml'
+
+  # ============================================================================
+  # 1. SECURITY: GITLEAKS SECRET SCANNER
+  # ============================================================================
+  secret-scan:
+    name: Secret & Credential Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+  # ============================================================================
+  # 2. RUST WORKSPACE VERIFICATION
   # ============================================================================
   rust-check:
-    name: Rust Check & Tests
+    name: Rust Check, Format & Tests
+    needs: [changes]
+    if: ${{ needs.changes.outputs.rust == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -35,14 +88,19 @@ jobs:
       - name: Cargo Check
         run: cargo check --workspace --all-targets
 
+      - name: Cargo Clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+
       - name: Cargo Test
         run: cargo test --workspace
 
   # ============================================================================
-  # 2. CONSOLE FRONTEND TYPECHECK
+  # 3. CONSOLE FRONTEND TYPECHECK & LINT
   # ============================================================================
   frontend-check:
     name: Console Frontend Check
+    needs: [changes]
+    if: ${{ needs.changes.outputs.frontend == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -67,3 +125,18 @@ jobs:
         run: |
           cd console
           pnpm --filter @operon/workstation typecheck
+
+  # ============================================================================
+  # 4. DOCKER COMPOSE CONFIG VALIDATION
+  # ============================================================================
+  docker-check:
+    name: Docker Compose Validation
+    needs: [changes]
+    if: ${{ needs.changes.outputs.docker == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Validate Docker Compose Configuration
+        run: docker compose config -q

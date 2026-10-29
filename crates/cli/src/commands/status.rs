@@ -18,10 +18,7 @@ pub async fn show_dashboard(format: OutputFormat) -> Result<(), Box<dyn std::err
     let (system_badge, cloud_target_val, cloud_status) = if let Some(ref creds) = cloud_creds {
         (
             badge_online("ENROLLED (PROD)"),
-            creds
-                .cloud_url
-                .as_deref()
-                .unwrap_or("(not configured)"),
+            creds.cloud_url.as_deref().unwrap_or("(not configured)"),
             badge_online("CONNECTED"),
         )
     } else {

@@ -3,8 +3,8 @@ use std::path::PathBuf;
 use tracing::{info, warn};
 
 pub use super::cloud::{
-    CloudApiClient, CloudStatusInfo, CloudSyncResult, CredentialStore,
-    DeviceCredentials, MachineFingerprint,
+    CloudApiClient, CloudStatusInfo, CloudSyncResult, CredentialStore, DeviceCredentials,
+    MachineFingerprint,
 };
 
 /// Facade coordinator for Cloud communication, local identity, and background telemetry

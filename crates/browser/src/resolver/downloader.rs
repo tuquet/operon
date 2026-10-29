@@ -627,7 +627,8 @@ pub async fn resolve_executable_path(_default_browser: &str) -> Result<String> {
     #[cfg(windows)]
     {
         if let Ok(home) = env::var("USERPROFILE") {
-            let scoop_chromium = std::path::PathBuf::from(home).join("scoop\\apps\\chromium\\current\\chrome.exe");
+            let scoop_chromium =
+                std::path::PathBuf::from(home).join("scoop\\apps\\chromium\\current\\chrome.exe");
             if scoop_chromium.exists() {
                 return Ok(scoop_chromium.to_string_lossy().to_string());
             }

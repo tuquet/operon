@@ -45,7 +45,9 @@ pub async fn handle(
         }
         Some(SchemaSubcommands::Config { service }) => match service {
             Some(srv) => {
-                if let Some(schema) = get_dynamic_schema(&srv).or_else(|| get_config_schema(&srv).map(str::to_string)) {
+                if let Some(schema) =
+                    get_dynamic_schema(&srv).or_else(|| get_config_schema(&srv).map(str::to_string))
+                {
                     println!("{}", schema.trim());
                 } else {
                     return Err(format!(
@@ -84,7 +86,9 @@ pub async fn handle(
                     match clack_select("Select a microservice schema to inspect", &opts, 0, 8)? {
                         Some(idx) => {
                             let (srv, _) = services[idx];
-                            if let Some(schema) = get_dynamic_schema(srv).or_else(|| get_config_schema(srv).map(str::to_string)) {
+                            if let Some(schema) = get_dynamic_schema(srv)
+                                .or_else(|| get_config_schema(srv).map(str::to_string))
+                            {
                                 println!("{}", schema.trim());
                             }
                             clack_outro(&format!("Exported {}.schema.json.", srv));
@@ -350,10 +354,7 @@ fn show_config_overview() {
     card.with_min_width(70);
 
     card.add_kv("Standard", "JSON Schema Specification (Draft 2020-12)");
-    card.add_kv(
-        "Supported Services",
-        "browser, automation, worker, system",
-    );
+    card.add_kv("Supported Services", "browser, automation, worker, system");
     card.add_line("");
     card.add_line(format!(
         "  {BOLD_WHITE}Usage Example:{RESET}",
@@ -387,7 +388,8 @@ const WORKER_SCHEMA: &str = include_str!("../../schema/config/worker.schema.json
 const SYSTEM_SCHEMA: &str = include_str!("../../schema/config/system.schema.json");
 
 pub fn get_dynamic_schema(service: &str) -> Option<String> {
-    crate::config::ConfigRegistry::get_schema_json(service).and_then(|v| serde_json::to_string_pretty(&v).ok())
+    crate::config::ConfigRegistry::get_schema_json(service)
+        .and_then(|v| serde_json::to_string_pretty(&v).ok())
 }
 
 pub fn get_config_schema(service: &str) -> Option<&'static str> {

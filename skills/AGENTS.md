@@ -113,7 +113,7 @@ description: {description}
 metadata:
   author: "@operon/skills"
   version: "2026.1.1"
-  source: Generated from {source-url}, scripts located at https://github.com/operon/skills
+  source: Generated from {source-url}, scripts located at https://github.com/tuquet/operon/tree/main/skills
 ---
 
 > The skill is based on {project} v{version}, generated at {date}.

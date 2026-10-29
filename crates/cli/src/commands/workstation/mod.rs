@@ -1,5 +1,5 @@
-use std::path::PathBuf;
 use clap::Args;
+use std::path::PathBuf;
 
 #[derive(Args, Debug, Clone)]
 pub struct WorkstationArgs {
@@ -46,7 +46,10 @@ pub async fn handle(args: WorkstationArgs) -> Result<(), Box<dyn std::error::Err
 
     // 1. Verify or auto-start background daemon unless --no-daemon is specified
     if !args.no_daemon {
-        print!("operon: verifying daemon health on port {}... ", daemon_port);
+        print!(
+            "operon: verifying daemon health on port {}... ",
+            daemon_port
+        );
         let client = reqwest::Client::builder()
             .timeout(std::time::Duration::from_millis(1500))
             .build()?;
@@ -61,11 +64,22 @@ pub async fn handle(args: WorkstationArgs) -> Result<(), Box<dyn std::error::Err
             println!("\x1b[32m[ok]\x1b[0m active");
         } else {
             println!("\x1b[33m[not running]\x1b[0m");
-            println!("operon: starting daemon in background on port {}...", daemon_port);
+            println!(
+                "operon: starting daemon in background on port {}...",
+                daemon_port
+            );
 
             let current_exe = std::env::current_exe()?;
             let mut cmd = std::process::Command::new(&current_exe);
-            cmd.args(["worker", "start", "-H", "127.0.0.1", "-p", &daemon_port.to_string(), "-d"]);
+            cmd.args([
+                "worker",
+                "start",
+                "-H",
+                "127.0.0.1",
+                "-p",
+                &daemon_port.to_string(),
+                "-d",
+            ]);
 
             #[cfg(windows)]
             {
@@ -123,7 +137,9 @@ pub async fn handle(args: WorkstationArgs) -> Result<(), Box<dyn std::error::Err
         let possible_native_paths = [
             PathBuf::from("target/release/operon-desktop.exe"),
             PathBuf::from("target/release/operon-desktop"),
-            PathBuf::from("../console/apps/workstation/src-tauri/target/release/operon-workstation.exe"),
+            PathBuf::from(
+                "../console/apps/workstation/src-tauri/target/release/operon-workstation.exe",
+            ),
         ];
 
         let mut launched = false;
@@ -137,7 +153,9 @@ pub async fn handle(args: WorkstationArgs) -> Result<(), Box<dyn std::error::Err
         }
 
         if !launched {
-            println!("operon: native desktop binary not found in build paths, falling back to web console");
+            println!(
+                "operon: native desktop binary not found in build paths, falling back to web console"
+            );
         } else {
             return Ok(());
         }
@@ -150,7 +168,10 @@ pub async fn handle(args: WorkstationArgs) -> Result<(), Box<dyn std::error::Err
         .unwrap_or(5666);
 
     let target_url = format!("http://localhost:{}{}", web_port, route);
-    println!("operon: launching workstation control plane at \x1b[1;32m{}\x1b[0m", target_url);
+    println!(
+        "operon: launching workstation control plane at \x1b[1;32m{}\x1b[0m",
+        target_url
+    );
 
     open_in_system_browser(&target_url)?;
 

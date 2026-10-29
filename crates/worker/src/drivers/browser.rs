@@ -43,7 +43,11 @@ impl BrowserDriver {
                 target
             };
 
-        if binary_name.starts_with('/') || binary_name.starts_with('\\') || std::path::Path::new(binary_name).is_absolute() || std::path::Path::new(binary_name).exists() {
+        if binary_name.starts_with('/')
+            || binary_name.starts_with('\\')
+            || std::path::Path::new(binary_name).is_absolute()
+            || std::path::Path::new(binary_name).exists()
+        {
             return binary_name.to_string();
         }
 

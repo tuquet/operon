@@ -197,7 +197,9 @@ pub async fn bootstrap(force_browser: bool) -> Result<(), Box<dyn std::error::Er
             "Pending download (opn browser install)"
         },
     );
-    card.with_footer("Next: Run 'opn doctor' to inspect dependencies or 'opn status' for dashboard.");
+    card.with_footer(
+        "Next: Run 'opn doctor' to inspect dependencies or 'opn status' for dashboard.",
+    );
     card.print();
     println!();
 

@@ -1,5 +1,5 @@
-use schemars::JsonSchema;
 use crate::config::expander::{EnvExpander, canonical_dir};
+use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fs;

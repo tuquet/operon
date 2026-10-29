@@ -18,8 +18,8 @@ services:
       context: .
       dockerfile: crates/cli/deploy/Dockerfile
       args:
-        - HTTP_PROXY=http://host.docker.internal:8118
-        - HTTPS_PROXY=http://host.docker.internal:8118
+        - HTTP_PROXY=${BUILD_HTTP_PROXY:-}
+        - HTTPS_PROXY=${BUILD_HTTPS_PROXY:-}
         - NO_PROXY=localhost,127.0.0.1
     command: ["worker", "start", "-H", "0.0.0.0", "-p", "8765"]
     restart: unless-stopped
@@ -54,8 +54,8 @@ services:
       context: ./console
       dockerfile: deploy/Dockerfile
       args:
-        - HTTP_PROXY=http://host.docker.internal:8118
-        - HTTPS_PROXY=http://host.docker.internal:8118
+        - HTTP_PROXY=${BUILD_HTTP_PROXY:-}
+        - HTTPS_PROXY=${BUILD_HTTPS_PROXY:-}
         - NO_PROXY=localhost,127.0.0.1
     restart: unless-stopped
     ports:

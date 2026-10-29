@@ -276,7 +276,8 @@ async fn perform_in_place_self_update(
                 break;
             }
         }
-        extracted.ok_or("Failed to locate 'opn' executable inside the downloaded tarball archive")?
+        extracted
+            .ok_or("Failed to locate 'opn' executable inside the downloaded tarball archive")?
     } else {
         // Direct raw binary
         downloaded_bytes.to_vec()

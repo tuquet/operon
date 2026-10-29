@@ -41,8 +41,7 @@ pub fn resolve_cli_runner_extension_path() -> String {
         possible_paths.push(exe_dir.join("../../../apps/runner/dist"));
     }
 
-    if let Ok(env_ext) = std::env::var(crate::constants::ENV_EXTENSION_PATH)
-    {
+    if let Ok(env_ext) = std::env::var(crate::constants::ENV_EXTENSION_PATH) {
         possible_paths.insert(0, std::path::PathBuf::from(env_ext));
     }
 

@@ -1,18 +1,18 @@
-﻿pub mod constants;
+pub mod constants;
 pub mod coordinator;
 pub mod extension;
+pub mod geoip;
 pub mod launcher;
 pub mod manager;
 pub mod manifest;
 pub mod packer;
 pub mod profile;
 pub mod proxy;
-pub mod geoip;
 pub mod resolver;
 
+pub use geoip::{GeoIpMetadata, GeoIpResolver};
 pub use packer::{DEFAULT_PROFILE_IGNORE, PackReport, ProfilePacker, UnpackReport};
 pub use proxy::{ProxyProbe, ProxyProbeResult};
-pub use geoip::{GeoIpMetadata, GeoIpResolver};
 
 pub use coordinator::{
     connected_browsers, get_browser_launcher_lock, resolve_cli_runner_extension_path,

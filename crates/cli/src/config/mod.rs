@@ -53,14 +53,13 @@ impl AppConfig {
             }
         }
 
-        let environment = env::var(crate::constants::ENV_APP_ENV)
-            .unwrap_or_else(|_| "development".to_string());
+        let environment =
+            env::var(crate::constants::ENV_APP_ENV).unwrap_or_else(|_| "development".to_string());
 
-        let log_level = env::var(crate::constants::ENV_RUST_LOG)
-            .unwrap_or_else(|_| "info".to_string());
+        let log_level =
+            env::var(crate::constants::ENV_RUST_LOG).unwrap_or_else(|_| "info".to_string());
 
-        let data_dir = env::var(crate::constants::ENV_DATA_DIR)
-            .unwrap_or_else(|_| {
+        let data_dir = env::var(crate::constants::ENV_DATA_DIR).unwrap_or_else(|_| {
             canonical_ssot_dir()
                 .join(crate::constants::PILLAR_AUTOMATION)
                 .to_string_lossy()
@@ -95,11 +94,10 @@ impl AppConfig {
             .ok()
             .filter(|s| !s.trim().is_empty());
 
-        let cloud_heartbeat_interval_secs =
-            env::var(crate::constants::ENV_HEARTBEAT_INTERVAL)
-                .ok()
-                .and_then(|s| s.parse::<u64>().ok())
-                .unwrap_or(crate::constants::DEFAULT_HEARTBEAT_INTERVAL_SECS);
+        let cloud_heartbeat_interval_secs = env::var(crate::constants::ENV_HEARTBEAT_INTERVAL)
+            .ok()
+            .and_then(|s| s.parse::<u64>().ok())
+            .unwrap_or(crate::constants::DEFAULT_HEARTBEAT_INTERVAL_SECS);
 
         Self {
             server_host,

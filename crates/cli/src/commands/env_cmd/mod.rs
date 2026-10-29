@@ -74,8 +74,7 @@ pub const WINDOWS_ESSENTIAL_ENV_VARS: &[&str] = &[
 ];
 
 /// Non-secret Operonruntime environment variables that can safely ride along
-pub const CONTEXT_VARS: &[&str] =
-    &["DATA_DIR", "TENANT_ID", "SESSION_ID", "PROFILE"];
+pub const CONTEXT_VARS: &[&str] = &["DATA_DIR", "TENANT_ID", "SESSION_ID", "PROFILE"];
 
 /// Check if an environment variable name is considered secret
 pub fn is_secret_env_name(name: &str) -> bool {

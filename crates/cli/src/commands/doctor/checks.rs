@@ -2,8 +2,8 @@ use std::path::Path;
 
 use super::types::DiagnosticItem;
 use crate::config::{AppConfig, canonical_dir};
-use crate::core::network::probe_port;
 use crate::core::network::find_executable;
+use crate::core::network::probe_port;
 use crate::ui::{
     Card, Column, Table, badge_error, badge_online, badge_warn, create_network_topology_card,
     default_workstation_endpoints,

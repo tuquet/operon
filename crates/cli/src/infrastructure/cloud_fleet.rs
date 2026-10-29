@@ -2,9 +2,7 @@ use browser::{BrowserProfile, PackReport, ProxyProbe, ProxyProbeResult};
 use serde_json::Value;
 use std::path::Path;
 
-use crate::infrastructure::cloud_reporter::{
-    CloudReporter, DeviceCredentials,
-};
+use crate::infrastructure::cloud_reporter::{CloudReporter, DeviceCredentials};
 use crate::ui::{Card, badge_error, badge_online, badge_step};
 
 pub struct CloudFleetOrchestrator;

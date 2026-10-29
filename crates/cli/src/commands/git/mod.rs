@@ -276,7 +276,9 @@ pub async fn handle(
     };
 
     if selected_action == "push-gateway" && !probe_port(1080) {
-        return Err("SOCKS5 tunnel on port 1080 is offline. Run 'tunnel on' before pushing.".into());
+        return Err(
+            "SOCKS5 tunnel on port 1080 is offline. Run 'tunnel on' before pushing.".into(),
+        );
     }
 
     let is_batch = target_repos.len() > 1;

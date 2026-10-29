@@ -3,13 +3,13 @@
 Official operational directives, architectural constraints, and Single Source of Truth (SSOT) rules for autonomous AI coding agents operating across the Operonworkspace.
 
 ::: tip Distributed via Skills CLI
-You can pull and configure Operonagent rules and skill suites directly into your workspace or agent runtime using:
+You can pull and configure Operon agent rules and skill suites directly into your workspace or agent runtime using:
 ```bash
-npx skills add operon/skills --skill='*'
+npx skills add tuquet/operon --skill='*'
 ```
 Or for a specific agent runtime (Cursor, Claude Code, Antigravity):
 ```bash
-npx skills add operon/skills --agent antigravity --skill='*' -y
+npx skills add tuquet/operon --agent antigravity --skill='*' -y
 ```
 :::
 

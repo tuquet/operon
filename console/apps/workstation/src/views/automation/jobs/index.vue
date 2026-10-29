@@ -35,22 +35,12 @@ function handleViewDetail(id: string) {
   router.push(`/automation/runs/${id}`);
 }
 
-function getRunStatusDotClass(status: string): string {
-  const meta = getStatusToneMeta(status, JOB_STATUS_META);
-  return `${meta.dotClass}${meta.pulse ? ' animate-pulse' : ''}`;
-}
-
 function getRunStatusBarClass(status: string): string {
   const meta = getStatusToneMeta(status, JOB_STATUS_META);
   if (meta.tone === 'info') return 'bg-primary';
   if (meta.tone === 'success') return 'bg-success';
   if (meta.tone === 'danger') return 'bg-destructive';
   return 'bg-muted-foreground';
-}
-
-function getRunStatusLabel(status: string): string {
-  const meta = getStatusToneMeta(status, JOB_STATUS_META);
-  return meta.labelKey ? $t(meta.labelKey) : (meta.fallbackLabel ?? status);
 }
 
 function getColumns() {

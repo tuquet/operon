@@ -12,26 +12,26 @@ A curated collection of [Agent Skills](https://agentskills.io/home) reflecting O
 To install all skills from this repository into your project, use the [skills](https://github.com/vercel-labs/skills) CLI:
 
 ```bash
-npx skills add operon/skills --skill='*'
+npx skills add tuquet/operon --skill='*'
 ```
 
 Or install all of them globally for all projects on your workstation:
 
 ```bash
-npx skills add operon/skills --skill='*' -g
+npx skills add tuquet/operon --skill='*' -g
 ```
 
-Or install only agent
+Or install only agent (e.g. Antigravity):
 
 ```bash
-npx skills add operon/skills --agent antigravity --skill='*' -y
+npx skills add tuquet/operon --agent antigravity --skill='*' -y
 ```
 
 To install an individual skill:
 
 ```bash
-npx skills add operon/skills --skill=vue
-npx skills add operon/skills --skill=vitest
+npx skills add tuquet/operon --skill=vue
+npx skills add tuquet/operon --skill=vitest
 ```
 
 ---

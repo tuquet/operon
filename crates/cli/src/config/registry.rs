@@ -242,7 +242,10 @@ mod tests {
             let schema = ConfigRegistry::get_schema_json(p);
             assert!(schema.is_some(), "Schema must be generated for {}", p);
             let val = schema.unwrap();
-            assert!(val.get("properties").is_some(), "Schema must have properties");
+            assert!(
+                val.get("properties").is_some(),
+                "Schema must have properties"
+            );
         }
     }
 
@@ -262,7 +265,8 @@ mod tests {
                     .path
                     .to_string_lossy()
                     .contains(crate::constants::DEFAULT_SSOT_ROOT_DIR)
-                    || entry.path.to_string_lossy().contains(".opn") || entry.path.to_string_lossy().contains(".operon")
+                    || entry.path.to_string_lossy().contains(".opn")
+                    || entry.path.to_string_lossy().contains(".operon")
             );
         }
     }

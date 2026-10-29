@@ -68,8 +68,9 @@ pub async fn handle_profile_cloud(
                 creds.tenant_id.as_deref().unwrap_or("Personal"),
             );
             header_card.add_kv("Cloud Endpoint", cloud_url);
-            header_card
-                .with_footer("Acquire exclusive lease with: opn browser profile cloud acquire <id>");
+            header_card.with_footer(
+                "Acquire exclusive lease with: opn browser profile cloud acquire <id>",
+            );
             header_card.print();
             println!();
 

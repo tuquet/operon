@@ -70,8 +70,12 @@ pub async fn handle(command: AutomationSubcommands) -> Result<(), Box<dyn std::e
             WorkflowCommands::List { search, format } => {
                 list_workflows(search, format.resolve()).await
             }
-            WorkflowCommands::Import { .. } => Err("Local SQLite import deprecated. Manage workflows via Supabase Cloud.".into()),
-            WorkflowCommands::Export { .. } => Err("Local SQLite export deprecated. Manage workflows via Supabase Cloud.".into()),
+            WorkflowCommands::Import { .. } => {
+                Err("Local SQLite import deprecated. Manage workflows via Supabase Cloud.".into())
+            }
+            WorkflowCommands::Export { .. } => {
+                Err("Local SQLite export deprecated. Manage workflows via Supabase Cloud.".into())
+            }
             WorkflowCommands::Info { id } => inspect_workflow(&id).await,
             WorkflowCommands::Delete { id } => {
                 let repo = crate::infrastructure::cloud::CloudWorkflowRepository::connect().await?;

@@ -127,8 +127,7 @@ pub fn get_config_dir() -> PathBuf {
     if local.exists() {
         return local;
     }
-    if let Ok(dir) = std::env::var(worker::constants::ENV_DATA_DIR)
-    {
+    if let Ok(dir) = std::env::var(worker::constants::ENV_DATA_DIR) {
         if !dir.trim().is_empty() {
             return PathBuf::from(dir).join("config");
         }

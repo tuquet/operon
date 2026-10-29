@@ -17,14 +17,11 @@ import { preferences, usePreferences } from '@operon/preferences';
 import { useAccessStore, useUserStore } from '@operon/stores';
 import { openWindow } from '@operon/utils';
 
-import { isTauriEnvironment } from '#/adapter/desktop';
 import WorkspaceSelector from '#/components/common/workspace-selector.vue';
 import WindowControls from '#/layouts/widgets/window-controls.vue';
 import { $t } from '#/locales';
 import { useAuthStore } from '#/store';
 import LoginForm from '#/views/_core/authentication/login.vue';
-
-const isDesktop = ref(isTauriEnvironment());
 
 const notifications = ref<NotificationItem[]>([
   {

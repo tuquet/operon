@@ -1,8 +1,7 @@
 use crate::cli::CloudSubcommands;
 use crate::config::AppConfig;
 use crate::infrastructure::cloud::{
-    CloudApiClient, CredentialStore, SupabaseAuthClient, TenancyManager,
-    TenantInfo,
+    CloudApiClient, CredentialStore, SupabaseAuthClient, TenancyManager, TenantInfo,
 };
 use crate::infrastructure::cloud_reporter::CloudReporter;
 use crate::ui::{
@@ -659,10 +658,7 @@ fn present_whoami(
             );
             card.add_kv(
                 "Endpoint",
-                creds
-                    .cloud_url
-                    .as_deref()
-                    .unwrap_or("(not configured)"),
+                creds.cloud_url.as_deref().unwrap_or("(not configured)"),
             );
 
             if let Some(exp) = creds.token_expires_at {

@@ -43,14 +43,20 @@ pub async fn handle(cmd: SecretSubcommands) -> Result<(), Box<dyn std::error::Er
             let mut card = Card::new("SECRET STORE READY");
             card.with_badge("INITIALIZED");
             card.add_kv("dir", store.dir().display().to_string());
-            card.add_kv("store", store.dir().join("secrets.json").display().to_string());
+            card.add_kv(
+                "store",
+                store.dir().join("secrets.json").display().to_string(),
+            );
             card.add_kv(
                 "store key",
                 format!("{} (0600)", store.dir().join(".secret_key").display()),
             );
             card.add_kv(
                 "device key",
-                format!("{} (0600, X25519)", store.dir().join(".device_key").display()),
+                format!(
+                    "{} (0600, X25519)",
+                    store.dir().join(".device_key").display()
+                ),
             );
             card.add_kv("device pub", B64.encode(kp.public));
             card.with_footer("Add: opn secret set <name> <val> | Sync: opn secret push");

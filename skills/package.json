@@ -2,13 +2,14 @@
   "name": "@operon/skills",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://github.com/operon/skills#readme",
+  "homepage": "https://github.com/tuquet/operon/tree/main/skills#readme",
   "bugs": {
-    "url": "https://github.com/operon/skills/issues"
+    "url": "https://github.com/tuquet/operon/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/operon/skills.git"
+    "url": "git+https://github.com/tuquet/operon.git",
+    "directory": "skills"
   },
   "license": "MIT",
   "author": "Operon Team <dev@operon.com>",

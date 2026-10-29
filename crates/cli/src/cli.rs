@@ -177,7 +177,6 @@ pub enum SchemaSubcommands {
     Mcp,
 }
 
-
 #[derive(Subcommand, Debug, Clone)]
 pub enum InboxSubcommands {
     /// Retrieve latest OTP code for a recipient email address
@@ -1373,7 +1372,3 @@ mod tests {
         Cli::command().debug_assert();
     }
 }
-
-
-
-
