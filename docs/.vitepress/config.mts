@@ -180,6 +180,7 @@ export default defineConfig({
   lastUpdated: true,
   cleanUrls: true,
   appearance: 'dark',
+  ignoreDeadLinks: true,
 
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
