@@ -1,147 +1,111 @@
 # Quality and Architectural Constraints Contract
 
-This document codifies the non-negotiable architectural boundaries and quality gates for `operon`. All agents and contributors must respect these invariants.
+This document codifies the non-negotiable architectural boundaries, system invariants, and quality gates for the `operon` ecosystem. All contributors, automated tools, and AI agents must strictly uphold these contracts without weakening assertions or introducing shims.
 
 ---
 
-## 1. Concurrency and Process Ownership Contract (Workstation UI vs. CLI Daemon)
+## 1. Process Lifecycle & State Ownership
 
-### Context
-Operon features two entry points for automation workloads:
-1. **CLI Daemon (`opn worker start` / `opn runner start`)**: Standalone, headless automation engine running as a background service.
-2. **Workstation Desktop (`src-tauri`)**: Visual control center embedding the worker engine in-process for single-click operation, but capable of controlling a standalone daemon.
-
-Both interface over the local loopback port `127.0.0.1:8765` and filesystem state in `~/.operon/`.
-
----
-
-### Invariant C1: Single Instance & Port Arbitration
-- **Rule:** Exactly one daemon server may bind to `127.0.0.1:8765` at any given time.
+### Invariant P1: Single-Instance Engine Arbitration
+- **Principle:** Exactly one automation runtime engine may bind to the local loopback management interface (`127.0.0.1:8765`) and manipulate browser hardware drivers at any given moment.
 - **Enforcement:**
-  - `src-tauri` must pre-flight probe `http://127.0.0.1:8765/api/v1/health` prior to binding.
-  - If a daemon responds with HTTP `200 OK`, `src-tauri` must transition to **Client View Mode** and forfeit spawning an in-process server.
-  - If no daemon responds, `src-tauri` spawns the embedded server with an explicit ownership flag `is_embedded = true`.
+  - Any auxiliary surface (Workstation Desktop GUI / CLI client) must perform pre-flight health discovery prior to binding.
+  - If an active daemon responds, the secondary surface must forfeit spawning an internal engine and seamlessly attach in **Client View Mode**.
+  - Embedded engine instances must be explicitly flagged to prevent background state collisions.
+
+### Invariant P2: Asymmetric Lifecycle Isolation
+- **Principle:** Presentation surfaces (UI/Tauri) are decoupled consumer views; their termination, reload, or crash must never interrupt background execution workloads.
+- **Enforcement:**
+  - Standalone daemon processes manage their own lifecycle and continuous job queues independently of client connections.
+  - Client exit hooks must only clean up client-owned resources without propagating SIGTERM or kill signals to detached worker engines.
+
+### Invariant P3: Supervisor PID Integrity
+- **Principle:** Process ID ownership files in `~/.operon/` are exclusive leases reserved for standalone supervisors.
+- **Enforcement:**
+  - Process termination signals must cross-verify executable identities against OS kernel tables before execution to prevent accidental termination of unrelated processes.
 
 ---
 
-### Invariant C2: Asymmetric Shutdown Ownership
-- **Rule:** A visual client exit must never terminate an external standalone daemon.
+## 2. Single Source of Truth (SSOT) & Fail-Fast Doctrine
+
+### Invariant S1: Strict SSOT Storage Hierarchy
+- **Principle:** All system identities, daemon runtimes, browser profiles, databases, and logs must resolve exclusively to `~/.operon/<pillar>/` (or `$DATA_DIR/<pillar>/`).
 - **Enforcement:**
-  - `src-tauri` tracks daemon ownership in runtime state (`tauri::State<DaemonOwnership>`).
-  - Upon window close (`RunEvent::ExitRequested`):
-    - If `is_embedded == true`: Tauri gracefully reaps its child browser instances and terminates the in-process server.
-    - If `is_embedded == false` (attached to external CLI daemon): Tauri gracefully disconnects without signaling SIGTERM / process termination to the daemon.
-  - The CLI standalone daemon continues executing queued batch jobs uninterrupted.
+  - Storing state in flat root paths (`~/.operon/workflows`), legacy directories (`~/.tq`, `~/.specter`, `~/.automa`), or scattered temp files is strictly prohibited.
+
+### Invariant S2: Zero-Shim & No-Fallback Invariant
+- **Principle:** No backward-compatibility shims, union types, or fallback chains may be used to mask schema drift or missing configurations.
+- **Enforcement:**
+  - If a mandatory configuration or environment variable is missing, the system must fail fast with actionable diagnostics rather than silently defaulting to dangerous assumptions.
+  - Canonical terminology must be applied uniformly across all interfaces; legacy aliases must be ripped and replaced at the source.
 
 ---
 
-### Invariant C3: PID File Isolation and Mutual Exclusion
-- **Rule:** The primary PID file `~/.operon/worker/worker.pid` is reserved exclusively for the standalone CLI daemon.
+## 3. Distributed Mesh & Concurrency Arbitration
+
+### Invariant M1: Lease-Bounded Autonomous Job Claiming
+- **Principle:** Task distribution across distributed worker nodes operates via non-blocking, lease-bounded database transactions.
 - **Enforcement:**
-  - When running in-process via Tauri (`is_embedded`), the process must not overwrite `worker.pid` with the GUI PID.
-  - CLI `opn worker stop` must only terminate processes listed in `worker.pid` if their executable matches `opn` or `worker` (preventing accidental GUI termination).
-  - Stale PID files must be validated via OS process tables (`sysinfo`) before sending termination signals.
+  - Workers acquire jobs atomically using row-level locking (`FOR UPDATE SKIP LOCKED`).
+  - Every running job holds a strictly bounded lease (`lease_expires_at`). If a node disconnects, crashes, or stalls, the orchestrator automatically reaps and releases the job back to the fleet without orphan states or double-execution.
+
+### Invariant M2: Deterministic Antidetect Sandbox Isolation
+- **Principle:** Browser profiles running automation must guarantee zero mutual interference and zero hardware fingerprint leaks.
+- **Enforcement:**
+  - PRNG fingerprint seeds, screen geometries, client hints, and proxy forwarders are deterministically derived and isolated per profile directory.
+  - Multiple concurrent browser profiles must run with dedicated debugging ports and isolated user-data directories.
 
 ---
 
-## 2. Network & Egress Routing Guardrails
+## 4. Cloud Control Plane & Storage Governance (Supabase / Postgres)
 
-### Invariant N1: Asymmetric Git Routing (Corporate Workstation Policy)
-- **Direct Fetch/Clone:** All inbound git operations (`fetch`, `pull`, `clone`) must connect directly to remotes without proxying.
-- **Proxied Push:** Outbound git operations (`push`) are blocked by corporate DPI firewalls (HTTP 403 / RPC failed) and must be routed via Gateway SOCKS5 proxy (`127.0.0.1:1080`) using `git spush`.
-- **HTTP Forwarder:** Non-SOCKS5 tools (Supabase CLI, curl) must use embedded HTTP forwarder `127.0.0.1:8118` with `$env:HTTP_PROXY="http://127.0.0.1:8118"`.
+### Invariant D1: Public RPC Encapsulation (Private Schema Perimeter)
+- **Principle:** External clients, edge workers, and client-facing frontends must never directly query or mutate internal domain schemas (`automation`, `secrets`, `workers`, `billing`, `media`).
+- **Enforcement:**
+  - All public mutations and workflow dispatches must route through dedicated `public.<domain>_*` RPC wrappers.
+  - RPC wrappers must execute under `SECURITY INVOKER` semantics to enforce Row-Level Security (RLS) rules against the caller's JWT identity.
+
+### Invariant D2: Dual-Plane Connection Multiplexing
+- **Principle:** High-frequency edge worker nodes must not exhaust relational database connection limits.
+- **Enforcement:**
+  - Distributed fleet workers must connect exclusively via the Transaction Pooler (Port 6543 / Supavisor).
+  - Direct Session access (Port 5432) is restricted exclusively to DDL schema migrations, database seeding, and administrative operators.
+
+### Invariant D3: Immutable Migration Discipline
+- **Principle:** Database schemas are immutable code artifacts. Manual schema alterations via visual dashboards are prohibited.
+- **Enforcement:**
+  - 100% of schema definitions, RLS policies, and triggers must be committed as reproducible SQL migrations under `cloud/supabase/migrations/` or `cloud/supabase/plugins/`.
+  - All database changes must pass the automated test suites (`cloud/scripts/test_db.sh` or `cloud/scripts/test_db.ps1`) prior to Staging/Production promotion.
 
 ---
 
-## 3. Database & Credential SSOT
+## 5. Zero-Trust Security Perimeter & Credential Isolation
 
-### Invariant D1: Unified Device Identity
-- Cloud registration credentials reside strictly at `~/.operon/system/.identity.json`.
-- In-process claim loops and detached cloud workers must query the same single-source-of-truth credential store.
+### Invariant Z1: Zero-Knowledge Secret Governance
+- **Principle:** Sensitive credentials (account passwords, proxy credentials, OTP keys) must never reside in plaintext on disk, in git commits, or in raw database columns.
+- **Enforcement:**
+  - Cloud-stored secrets are encrypted using Supabase Vault Key-Encryption-Keys (KEK) and per-tenant Data-Encryption-Keys (DEK).
+  - Workstation secrets are decrypted only within device-enrolled memory spaces holding valid asymmetric keys (`.device_key`).
+
+### Invariant Z2: Unified Mutual Identity & Session Revocation
+- **Principle:** Device identity and operator access tokens must maintain synchronized authentication state across all operational surfaces.
+- **Enforcement:**
+  - Workstation GUI and CLI share the verified identity state (`~/.operon/system/.identity.json`).
+  - Revocation of a session on any surface immediately invalidates authentication tokens across all local tools.
 
 ---
 
-## 4. Authentication & Access Gate Contract (Zero Unauthorized Bypass)
+## 6. Resource Protection & Quality Verification Gates
 
-### Context
-Operon features two interactive user surfaces: the GUI Workstation and the CLI (`opn`). Both interface with Cloud fleet execution, remote browser automation, and tenant-scoped resources.
-
----
-
-### Invariant A1: Workstation UI Hard Route Guard (Zero Unauthorized View Leak)
-- **Rule:** Unauthenticated users must never access internal application views or trigger authenticated API requests.
+### Invariant Q1: Environment Resource Boundaries
+- **Principle:** Development and staging host environments (VPS / local nodes) must prioritize stability and remain responsive.
 - **Enforcement:**
-  - Route navigation interceptor (`guard.ts`) must evaluate `accessToken` on all routes outside `coreRouteNames` (`/auth/login`, `/auth/callback`).
-  - Unauthenticated requests must redirect immediately to `/auth/login?redirect=<target>` with `replace: true`.
-  - HTTP 401 responses from background API requests must trigger immediate token refresh or session eviction, redirecting to login.
+  - **Never run `cargo build --release` on resource-constrained host machines (VPS).** Heavy release compilation is reserved exclusively for GitHub Actions CI/CD runners.
+  - Local verification relies on incremental compilation (`cargo check --workspace`). Build artifacts must be pruned to maintain disk usage safely $\le 85\%$.
 
----
-
-### Invariant A2: CLI Centralized Auth Guard (The "AGY Gate")
-- **Rule:** Protected CLI commands must verify an active cloud session or workstation identity before execution, failing fast with Google-standard guidance when unauthenticated.
+### Invariant Q2: Zero-Bypass Pre-Push Gates
+- **Principle:** Code merged into the primary branch (`main`) must be verified by automated quality gates.
 - **Enforcement:**
-  - **Exempt Subcommands (Allowlist):**
-    - `opn auth login`, `opn auth status`, `opn auth logout`
-    - `opn gateway *` (workstation network manager)
-    - `opn env *` (local environment audit)
-    - `opn faker *` (local test data generator)
-    - `opn --version`, `opn --help`
-  - **Protected Subcommands (Guard Required):**
-    - `opn automation *` (workflow execution & sync)
-    - `opn tenant *` (multi-tenant workspace switching)
-    - `opn worker start --cloud`, `opn worker claim`, `opn worker enroll`
-    - `opn browser cloud *` (remote cloud browser automation)
-  - **Failure Mechanics:** If no valid credentials exist in `~/.operon/system/.identity.json`, abort immediately with exit code `1`, presenting an authenticated prompt card directing the user to `opn auth login`.
-
----
-
-### Invariant A3: Shared Session Single-Source-of-Truth
-- **Rule:** Authentication performed in either UI or CLI must be mutually recognized.
-- **Enforcement:**
-  - `opn auth login` populates `~/.operon/system/.identity.json`.
-  - Workstation GUI reads device identity and token on boot to bootstrap authentication state.
-  - Logging out on either surface revokes local session tokens.
-
----
-
-## 5. Frontend & UI Architecture Constraints
-
-### Invariant F1: Compound UI Primitives Only (Zero Monolithic Wrapper Sprawl)
-- **Rule:** Tất cả các thành phần giao diện (Dialog, Sheet, Select, DropdownMenu, Card) phải sử dụng cấu trúc Compound Component chuẩn Reka UI / Radix.
-- **Enforcement:**
-  - Tuyệt đối không truyền prop nguyên khối (`isOpen`, `content`, `actions`, `footer`) vào Root Component.
-  - Phải tách bạch các sub-component con: `<DialogHeader>`, `<DialogTitle>`, `<DialogDescription>`, `<DialogFooter>`, `<DialogClose>`.
-  - Cấm tạo wrapper lặp lại hoặc tự chế props trái chuẩn trong `@operon-core/shadcn-ui`.
-
-### Invariant F2: Reka UI Standard Event Contracts
-- **Rule:** Tất cả sự kiện tương tác trên headless primitives phải tuân thủ hợp đồng Reka UI.
-- **Enforcement:**
-  - Sự kiện đóng/mở: `v-model:open="isOpen"` hoặc `@update:open="(val: boolean) => ..."`.
-  - Sự kiện chọn giá trị: `v-model="modelValue"` hoặc `@update:model-value="(val: string) => ..."`.
-  - Giữ vững tính trợ năng (a11y) với `as-child` khi bọc Custom Button/IconButton trong Trigger/Close.
-  - Ưu tiên biến thể CVA (`variant`, `size`) thay vì đè class CSS màu sắc/kích thước thủ công.
-
----
-
-## 6. Cloud Control Plane & Database Invariants (Supabase Core)
-
-### Invariant S1: Public RPC Encapsulation (Zero Direct Private Schema Access)
-- **Rule:** Client bên ngoài (Workstation UI, Worker Daemon, Antidetect CLI) tuyệt đối không truy cập trực tiếp các schema nghiệp vụ riêng tư (`automation.*`, `secrets.*`, `workers.*`, `billing.*`).
-- **Enforcement:**
-  - Mọi thao tác ghi/đọc nghiệp vụ bắt buộc phải qua hàm wrapper `public.<domain>_*` (ví dụ: `public.automation_claim_jobs`, `public.secret_store_push`).
-  - Hàm RPC phải được khai báo với thuộc tính `SECURITY INVOKER` (tuân thủ Row-Level Security RLS, nghiêm cấm lạm dụng `SECURITY DEFINER`) và `GRANT EXECUTE` cho role `authenticated`.
-
-### Invariant S2: Connection Pooling Enforcement (High-Concurrency Mesh)
-- **Rule:** Cụm Worker Daemon và Automation Fleet trên toàn mạng lưới khi kết nối tới Supabase bắt buộc phải đi qua Transaction Pooler.
-- **Enforcement:**
-  - Sử dụng cổng Transaction Pooler `6543` (Supavisor / PgBouncer) cho toàn bộ API calls từ các worker phân tán để tránh cạn kiệt connection limits của Postgres.
-  - Cổng Direct Session `5432` chỉ được sử dụng cho việc chạy DDL Migration hoặc quản trị viên từ CLI nội bộ.
-
-### Invariant S3: Immutable Migration Discipline & Automated Test Gating
-- **Rule:** Tuyệt đối cấm thao tác sửa đổi schema, bảng, RPC trực tiếp trên giao diện Supabase Studio Dashboard.
-- **Enforcement:**
-  - 100% thay đổi schema phải được viết thành mã nguồn SQL trong `supabase/migrations/` hoặc `supabase/plugins/`.
-  - Mọi thay đổi DB phải vượt qua toàn bộ 11 Automated Test Suites (`scripts/test_db.ps1` hoặc `bash scripts/test_db.sh`) trước khi áp dụng lên Staging/Production.
-
-
-
+  - **Rust Toolchain:** Must pass `cargo fmt --all --check`, `cargo check --workspace --all-targets`, and `cargo clippy --workspace --all-targets -- -D warnings`.
+  - **Console Frontend:** Must satisfy `pnpm check:type` (0 errors) and dependency catalog constraints (`"catalog:"`).
+  - **Security Gate:** Must pass automated Gitleaks secret verification with zero detected credential leaks.
