@@ -30,9 +30,31 @@ ssh tattoo@103.249.201.142          # key-only, đã hoạt động
 
 `~/launchpad-registry-stack`: `data/` (1.5G), `n8n-data/`, `nginx-ui/`, `registry/` — n8n + registry.
 
-## 3. Domain (Cloudflare → nginx-ui → WP)
+## 3. Domain & ingress — **Cloudflare Tunnel làm cổng duy nhất** (plan 012, 30/10/2026)
 
-`nhaateliertattoo.com` · `cms.` · `admin.` · `nginx-ui.` · `dozzle.` · `cockpit.nhaateliertattoo.com`
+```
+Internet → Cloudflare edge → cloudflared (outbound-only) → wordpress:80 (không publish port)
+```
+
+| Tunnel | ID | Nguồn config |
+|---|---|---|
+| `wp-tattoo` | `e21ecbe0-2b1b-49bc-848f-065afba5cdc4` | remote-managed (Cloudflare dashboard/API) |
+
+Container `cloudflared` (`cloudflare/cloudflared:latest`, network `wp-network`, token ở `proxy/tunnel.env` chmod 600, đã gitignore).
+
+DNS (zone `nhaateliertattoo.com`, Free): `@`, `www`, `cms`, `admin` → CNAME `<tunnel-id>.cfargotunnel.com` proxied. Đã xoá: `nginx-ui`, `dozzle`, `cockpit`, `n8n`, `registry-ui` (service chết + không phơi admin UI). `always_use_https=on`.
+
+**Port matrix (đo lại từ internet, 30/10/2026):** `80/443/8888/8080/9090` → **closed**; chỉ còn `22` open (user yêu cầu giữ SSH nguyên trạng).
+
+## 3b. Truy cập quản trị (không phơi internet)
+
+```bash
+# nginx-ui (reverse proxy/SSL cũ, nay bind 127.0.0.1)
+ssh -N -L 8081:127.0.0.1:80 tattoo@103.249.201.142     # → http://localhost:8081
+# dozzle (log viewer)
+ssh -N -L 8080:127.0.0.1:8080 tattoo@103.249.201.142   # → http://localhost:8080
+```
+
 
 ## 4. Env — nguồn sự thật
 

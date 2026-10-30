@@ -60,6 +60,8 @@ Quản trị (nginx-ui / dozzle / cockpit / SSH) ──► Tailscale tailnet 100
 
 ## Phase
 
+> **Trạng thái thực thi 30/10/2026:** Phase 0, 2, 3, 4, 7 ✅ DONE · Phase 1 (Tailscale) & Phase 5 (siết SSH) ❌ **SKIP theo yêu cầu user** ("để SSH lại, không làm") · Phase 6 ⏳ phần cần sudo còn chờ (38 bản vá + unattended-upgrades).
+
 ### Phase 0 — Baseline & đường lui (20 phút)
 - Snapshot DNS zone ra file: `cf-dns-backup-20261030.json` (9 bản ghi) — nguồn để rollback.
 - Xác nhận đã có: dump DB (`backups/db-20261030123030.sql.gz`), `.env` backup, 4 key SSH hoạt động.
