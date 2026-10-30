@@ -19,16 +19,17 @@ ssh tattoo@103.249.201.142          # key-only, đã hoạt động
 
 ## 2. Stacks (không có systemd app nào — tất cả là Docker)
 
-`~/launchpad-wp-stack` (repo private `tuquet/nhaateliertattoo-wp-stack`, upstream `tuquet/launchpad-wp-stack`):
+**Chỉ còn 3 container** (plan 013, 30/10/2026 — đã bỏ nginx-ui, dozzle, registry, n8n):
 
 | Container | Image | Port | Vai trò |
 |---|---|---|---|
-| `registry-nginx-ui` | `uozi/nginx-ui` | 80, 443 | reverse proxy + quản lý SSL |
-| `wordpress` | `wordpress:latest` | 8888 | CMS (PHP 8.3), healthy |
-| `wp-db` | `mariadb:10.11` | 3306 (internal) | DB `wordpress` |
-| `registry-dozzle` | `amir20/dozzle` | 127.0.0.1:8080 | xem log |
+| `cloudflared` | `cloudflare/cloudflared` | — (outbound) | ingress duy nhất từ Cloudflare |
+| `wordpress` | `wordpress:latest` (Apache + mod_php, đã tune) | không publish, `expose 80` | CMS (PHP 8.3) |
+| `wp-db` | `mariadb:10.11` (đã tune) | internal 3306 | DB `wordpress` |
 
-`~/launchpad-registry-stack`: `data/` (1.5G), `n8n-data/`, `nginx-ui/`, `registry/` — n8n + registry.
+Tuning RAM: `config/apache/tuning.conf` (MaxRequestWorkers 20, KeepAlive Off), `config/php/uploads.ini` (memory_limit 192M, opcache 64M), `config/mysql/tuning.cnf` (max_connections 25, key_buffer 16M). RAM used **730 MB / 1967 MB**, available 1.2 GB → chi tiết `plans/013`.
+
+`~/launchpad-registry-stack`: **đã ngưng dùng** — `data/` (1.5 G) chờ xoá bằng sudo.
 
 ## 3. Domain & ingress — **Cloudflare Tunnel làm cổng duy nhất** (plan 012, 30/10/2026)
 
