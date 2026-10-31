@@ -75,6 +75,22 @@ Key của `.env` (chỉ tên, không giá trị): `COMPOSE_FILE`, `DB_NAME`, `DB
 - **Disk 96%** (`/dev/vda1` 25G, còn ~1G): `/var/log/journal` 2.0G, `btmp*` 124M (SSH brute-force), docker images reclaimable 4.3G.
 - `wpcli` container không chạy (compose profile) → thao tác WP phải dùng `docker compose run --rm wpcli`.
 
+## 5b. Sự cố 31/10/2026 — firewall chặn toàn bộ inbound (đã khôi phục)
+
+**Triệu chứng:** 00:08 VN mất ping + SSH + HTTP; Cloudflare trả 530; `cloudflared` chết và **restart 362 lần**. Panel restart không cứu được.
+
+**Nguyên nhân (từ log):** `apt upgrade -y` chạy 13:06:32 → dừng giữa `configure openssh-server` lúc 13:09:24 (giờ máy) = **00:09 VN**, đúng 1 phút sau khi tunnel chết. Cùng lúc đó `iptables INPUT policy DROP` được áp → mọi traffic vào bị drop. Panel restart cắt ngang apt → **dpkg dở dang** (`openssh-server` half-configured, `/var/lib/dpkg/updates/0000,0001` chưa xử lý).
+
+**Khôi phục (31/10):** user `iptables -P INPUT ACCEPT` → access trở lại; `sudo dpkg --configure -a` + `apt-get -f install` (giữ local `sshd_config`, không lấy bản maintainer) → **0 gói half-configured, 0 bản vá chờ**; kernel đang chạy `6.1.0-54-amd64` (trước `6.1.0-47`); `initramfs-tools` configure 01:44→01:47.
+
+**Sau sự cố:** `cloudflared` recreate → `restarts=0`, tunnel healthy 4 conn; backup chạy tay OK (`db-20261031_013045.sql.gz`) + đã kéo offsite.
+
+**Trạng thái bảo mật hiện tại (đo 31/10):**
+- `cockpit` đã **purge hoàn toàn** (0 gói), port 9090 closed
+- `ufw`: **systemd-enabled nhưng đang inactive** → chưa có lớp firewall; `netfilter-persistent` không tồn tại
+- Port mở từ internet: **chỉ 22** (80/443/8888/9090/8080 đều closed — không container nào publish port)
+- ⚠️ **Rủi ro mở:** nếu `ufw` tự start lúc reboot với ruleset cũ mà không có `ALLOW 22` → lặp lại đúng sự cố trên. **Phải chạy `sudo ufw show added` + `grep ^ENABLED /etc/ufw/ufw.conf` trước lần reboot kế tiếp**, và nếu bật ufw thì luôn kèm `ufw allow 22/tcp` + dead-man timer.
+
 ## 6. Runbook
 
 ```bash
