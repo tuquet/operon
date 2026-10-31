@@ -43,7 +43,7 @@ Internet → Cloudflare edge → cloudflared (outbound-only) → wordpress:80 (k
 
 Container `cloudflared` (`cloudflare/cloudflared:latest`, network `wp-network`, token ở `proxy/tunnel.env` chmod 600, đã gitignore).
 
-DNS (zone `nhaateliertattoo.com`, Free): `@`, `www`, `cms`, `admin` → CNAME `<tunnel-id>.cfargotunnel.com` proxied. Đã xoá: `nginx-ui`, `dozzle`, `cockpit`, `n8n`, `registry-ui` (service chết + không phơi admin UI). `always_use_https=on`.
+DNS (zone `nhaateliertattoo.com`, Free): **chỉ còn `@` và `www`** → CNAME `<tunnel-id>.cfargotunnel.com` (proxied) + 1 TXT `google-site-verification`. Đã xoá: `nginx-ui`, `dozzle`, `cockpit`, `n8n`, `registry-ui`, `test`, **`admin`, `cms`** (alias dư, đều 301 về apex). Tunnel ingress chỉ còn 2 hostname + fallback 404. `always_use_https=on`. Không còn bản ghi A nào trỏ về IP origin.
 
 **Port matrix (đo lại từ internet, 30/10/2026):** `80/443/8888/8080/9090` → **closed**; chỉ còn `22` open (user yêu cầu giữ SSH nguyên trạng).
 
