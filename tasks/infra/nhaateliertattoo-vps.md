@@ -87,9 +87,9 @@ Key của `.env` (chỉ tên, không giá trị): `COMPOSE_FILE`, `DB_NAME`, `DB
 
 **Trạng thái bảo mật hiện tại (đo 31/10):**
 - `cockpit` đã **purge hoàn toàn** (0 gói), port 9090 closed
-- `ufw`: **systemd-enabled nhưng đang inactive** → chưa có lớp firewall; `netfilter-persistent` không tồn tại
+- `ufw`: **đã `systemctl disable ufw` + `ufw --force disable`** (31/10) → không còn tự bật lúc boot, triệt tiêu nguyên nhân sự cố. `netfilter-persistent` không tồn tại trên máy
 - Port mở từ internet: **chỉ 22** (80/443/8888/9090/8080 đều closed — không container nào publish port)
-- ⚠️ **Rủi ro mở:** nếu `ufw` tự start lúc reboot với ruleset cũ mà không có `ALLOW 22` → lặp lại đúng sự cố trên. **Phải chạy `sudo ufw show added` + `grep ^ENABLED /etc/ufw/ufw.conf` trước lần reboot kế tiếp**, và nếu bật ufw thì luôn kèm `ufw allow 22/tcp` + dead-man timer.
+- Nếu sau này cần bật lại firewall: **bắt buộc** `ufw allow 22/tcp` TRƯỚC `ufw --force enable`, kèm dead-man timer (`at now + 10 minutes` → `ufw disable`) để không tự khoá mình
 
 ## 6. Runbook
 
