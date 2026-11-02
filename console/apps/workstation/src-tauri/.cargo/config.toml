@@ -1,7 +1,0 @@
-[http]
-proxy = ""
-timeout = 300
-low-speed-limit = 0
-
-[net]
-retry = 10
