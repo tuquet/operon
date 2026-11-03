@@ -76,7 +76,9 @@ pub mod endpoints {
 pub mod paths {
     pub const DEFAULT_SSOT_ROOT_DIR: &str = ".operon";
 
-    pub const FILE_AUTOMATION_SQLITE: &str = "automation.sqlite";
+    pub const FILE_OPERON_SQLITE: &str = "operon.sqlite";
+    pub const FILE_AUTOMATION_SQLITE: &str = FILE_OPERON_SQLITE;
+    pub const FILE_LEGACY_AUTOMATION_SQLITE: &str = "automation.sqlite";
     pub const FILE_GATEWAY_JSON: &str = "gateway.json";
     pub const FILE_BROWSER_JSON: &str = "browser.json";
     pub const FILE_AUTOMATION_JSON: &str = "automation.json";
@@ -87,6 +89,7 @@ pub mod paths {
     pub const FILE_WORKER_PID: &str = "worker.pid";
     pub const FILE_WORKER_LOG: &str = "worker.log";
 
+    pub const DIR_DATA: &str = "data";
     pub const DIR_WORKER: &str = "worker";
     pub const DIR_RUNTIMES: &str = "runtimes";
     pub const DIR_PROFILES: &str = "profiles";

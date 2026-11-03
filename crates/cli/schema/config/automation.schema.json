@@ -24,7 +24,7 @@
     },
     "sqlite_path": {
       "type": "string",
-      "description": "Path to local SQLite database (defaults to ~/.operon/automation/automation.sqlite)"
+      "description": "Path to local SQLite database (defaults to ~/.operon/data/operon.sqlite)"
     }
   }
 }

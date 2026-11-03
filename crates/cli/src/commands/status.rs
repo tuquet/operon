@@ -102,7 +102,19 @@ pub async fn show_dashboard(format: OutputFormat) -> Result<(), Box<dyn std::err
         _ => false,
     };
 
-    let db_path = PathBuf::from(&config.data_dir).join(crate::constants::FILE_AUTOMATION_SQLITE);
+    let db_path = {
+        let canonical = PathBuf::from(&config.data_dir)
+            .join(crate::constants::DIR_DATA)
+            .join(crate::constants::FILE_OPERON_SQLITE);
+        if canonical.exists() {
+            canonical
+        } else {
+            let legacy = PathBuf::from(&config.data_dir)
+                .join(crate::constants::PILLAR_AUTOMATION)
+                .join(crate::constants::FILE_LEGACY_AUTOMATION_SQLITE);
+            if legacy.exists() { legacy } else { canonical }
+        }
+    };
     let db_size_str = if db_path.exists() {
         std::fs::metadata(&db_path)
             .map(|meta| format!("{:.2} KB", meta.len() as f64 / 1024.0))
@@ -131,11 +143,7 @@ pub async fn show_dashboard(format: OutputFormat) -> Result<(), Box<dyn std::err
         ),
         TabularRow::new(
             "SQLite State",
-            format!(
-                "{} ({})",
-                crate::constants::FILE_AUTOMATION_SQLITE,
-                db_size_str
-            ),
+            format!("{} ({})", crate::constants::FILE_OPERON_SQLITE, db_size_str),
             "Workflow & Job DB",
             if db_path.exists() {
                 badge_online("READY")

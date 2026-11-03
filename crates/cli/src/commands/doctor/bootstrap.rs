@@ -23,6 +23,7 @@ pub async fn bootstrap(force_browser: bool) -> Result<(), Box<dyn std::error::Er
     // ─────────────────────────────────────────────────────────────────────────────
     let dirs = [
         root.join("bin"),
+        root.join(crate::constants::DIR_DATA),
         root.join(crate::constants::PILLAR_SYSTEM),
         root.join(crate::constants::PILLAR_AUTOMATION),
         root.join(crate::constants::PILLAR_BROWSER)
@@ -49,9 +50,15 @@ pub async fn bootstrap(force_browser: bool) -> Result<(), Box<dyn std::error::Er
     // ─────────────────────────────────────────────────────────────────────────────
     // 2. Initialize Automation SQLite Database
     // ─────────────────────────────────────────────────────────────────────────────
-    let db_path = root
+    let data_dir = root.join(crate::constants::DIR_DATA);
+    let _ = std::fs::create_dir_all(&data_dir);
+    let db_path = data_dir.join(crate::constants::FILE_OPERON_SQLITE);
+    let legacy_db_path = root
         .join(crate::constants::PILLAR_AUTOMATION)
-        .join(crate::constants::FILE_AUTOMATION_SQLITE);
+        .join(crate::constants::FILE_LEGACY_AUTOMATION_SQLITE);
+    if !db_path.exists() && legacy_db_path.exists() {
+        let _ = std::fs::copy(&legacy_db_path, &db_path);
+    }
     match crate::infrastructure::db::AutomationDb::new(&db_path) {
         Ok(_) => {
             println!(
@@ -183,7 +190,7 @@ pub async fn bootstrap(force_browser: bool) -> Result<(), Box<dyn std::error::Er
     card.with_badge(badge_online("READY"));
     card.with_min_width(68);
     card.add_kv("SSOT Root", root.display().to_string());
-    card.add_kv("SQLite Database", "automation.sqlite (Schema initialized)");
+    card.add_kv("SQLite Database", "operon.sqlite (Schema initialized)");
     card.add_kv(
         "MCP Agent Protocol",
         "opn stdio server registered (~/.gemini/config/mcp_config.json)",

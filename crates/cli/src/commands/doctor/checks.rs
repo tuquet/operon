@@ -239,6 +239,11 @@ pub fn check_storage_pillars() -> Table {
 
     let pillars = &[
         (
+            crate::constants::DIR_DATA,
+            "operon/data (Storage)",
+            "Local-First SQLite DB (operon.sqlite), session state",
+        ),
+        (
             crate::constants::PILLAR_SYSTEM,
             "operon/cli (System)",
             "Identity (.identity.json), CLI history, machine ID",
