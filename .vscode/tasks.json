@@ -2,10 +2,10 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "local: <engine> dev",
+      "label": "local: <cli> dev",
       "type": "shell",
       "command": "cargo",
-      "args": ["run", "--bin", "operon"],
+      "args": ["run", "--bin", "opn"],
       "isBackground": true,
       "group": {
         "kind": "build",
@@ -19,10 +19,10 @@
       "problemMatcher": []
     },
     {
-      "label": "local: <engine> check",
+      "label": "local: <cli> install",
       "type": "shell",
       "command": "cargo",
-      "args": ["check"],
+      "args": ["install", "--path", "crates/cli", "--bin", "opn", "--debug", "--force", "--root", "${userHome}/.operon"],
       "presentation": {
         "reveal": "always",
         "panel": "shared",
@@ -31,10 +31,22 @@
       "problemMatcher": ["$rustc"]
     },
     {
-      "label": "local: <engine> test",
+      "label": "local: <cli> check",
       "type": "shell",
       "command": "cargo",
-      "args": ["test"],
+      "args": ["check", "--bin", "opn"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": ["$rustc"]
+    },
+    {
+      "label": "local: <cli> test",
+      "type": "shell",
+      "command": "cargo",
+      "args": ["test", "-p", "operon"],
       "presentation": {
         "reveal": "always",
         "panel": "shared",
