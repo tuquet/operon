@@ -92,7 +92,7 @@ impl WorkflowResolver {
             ));
         }
 
-        // Cloud resolution — `automation.workflows` (single source of truth).
+        // Cloud resolution — `operon.workflows` (single source of truth).
         let cloud_workflow = find_in_cloud(wf_id).await;
 
         if let Some(wf) = cloud_workflow {

@@ -85,7 +85,7 @@ pub async fn read_and_validate_file(path: &Path) -> Result<ResolvedWorkflow, Wor
 }
 
 /// Resolve a workflow document (graph + metadata) by UUID or name from the Cloud
-/// table `automation.workflows` — the single source of truth (the local SQLite
+/// table `operon.workflows` — the single source of truth (the local SQLite
 /// workflow store was removed).
 pub async fn find_in_cloud(wf_id: &str) -> Option<serde_json::Value> {
     let repo = crate::infrastructure::cloud::CloudWorkflowRepository::connect()

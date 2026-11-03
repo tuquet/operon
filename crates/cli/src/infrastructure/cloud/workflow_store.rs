@@ -1,4 +1,4 @@
-//! Cloud workflow repository — reads/writes `automation.workflows` through the
+//! Cloud workflow repository — reads/writes `operon.workflows` through the
 //! `public.workflow_*` RPCs.
 //!
 //! PostgREST in this project only exposes the `public` schema (probed: `PGRST106`),

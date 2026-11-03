@@ -1262,7 +1262,7 @@ pub enum ExtCommands {
 
 #[derive(Subcommand, Debug)]
 pub enum WorkflowCommands {
-    /// List all workflows stored in the Cloud (automation.workflows)
+    /// List all workflows stored in the Cloud (operon.workflows)
     #[command(name = "list")]
     List {
         /// Filter workflows by keyword (name, ID, or description)
@@ -1273,7 +1273,7 @@ pub enum WorkflowCommands {
         format: crate::ui::FormatArgs,
     },
 
-    /// Import a workflow file (.json) into the Cloud (automation.workflows)
+    /// Import a workflow file (.json) into the Cloud (operon.workflows)
     #[command(name = "import")]
     Import {
         /// Path to workflow JSON file (.workflow.json or .json)

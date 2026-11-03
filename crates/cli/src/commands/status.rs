@@ -110,7 +110,7 @@ pub async fn show_dashboard(format: OutputFormat) -> Result<(), Box<dyn std::err
     } else {
         "Not initialized".to_string()
     };
-    // Workflows live in the Cloud table `automation.workflows` (single source of truth).
+    // Workflows live in the Cloud table `operon.workflows` (single source of truth).
     let workflow_count =
         match crate::infrastructure::cloud::CloudWorkflowRepository::connect().await {
             Ok(repo) => repo.count().await.unwrap_or(0),

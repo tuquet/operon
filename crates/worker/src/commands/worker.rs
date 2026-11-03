@@ -103,7 +103,7 @@ pub async fn handle_worker(
                     Ok(false) => {
                         eprintln!();
                         Notify::revocation(format!(
-                            "Cloud device identity {} was removed from workers.devices!",
+                            "Cloud device identity {} was removed from operon.devices!",
                             device_id
                         ));
                         Notify::info("Purging local credentials and initiating self-healing re-enrollment...");

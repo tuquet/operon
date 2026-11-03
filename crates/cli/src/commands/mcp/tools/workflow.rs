@@ -19,7 +19,7 @@ pub async fn execute_workflow_list(args: &Value) -> Result<String, String> {
         .map(|s| s.to_string());
     let mut workflows: Vec<WfSummary> = Vec::new();
 
-    // Workflows come from the Cloud table `automation.workflows` (single source of truth).
+    // Workflows come from the Cloud table `operon.workflows` (single source of truth).
     let repo = crate::infrastructure::cloud::CloudWorkflowRepository::connect().await?;
     for wf in repo.list(search.as_deref()).await? {
         let blocks_count = wf.block_count();
@@ -137,7 +137,7 @@ async fn resolve_workflow_content(target: &str) -> Result<(String, String), Stri
         return Ok((text, format!("File: {}", target_path.display())));
     }
 
-    // Resolve from the Cloud table `automation.workflows`.
+    // Resolve from the Cloud table `operon.workflows`.
     let repo = crate::infrastructure::cloud::CloudWorkflowRepository::connect().await?;
     if let Some(wf) = repo.find(target).await? {
         let nodes = wf
@@ -160,12 +160,12 @@ async fn resolve_workflow_content(target: &str) -> Result<(String, String), Stri
         });
         return Ok((
             serde_json::to_string(&doc).unwrap_or_default(),
-            format!("Cloud (automation.workflows · ID: {})", wf.id),
+            format!("Cloud (operon.workflows · ID: {})", wf.id),
         ));
     }
 
     Err(format!(
-        "Workflow '{}' not found in automation.workflows.",
+        "Workflow '{}' not found in operon.workflows.",
         target
     ))
 }

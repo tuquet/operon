@@ -2,7 +2,7 @@
 //!
 //! Implements SPEC-automation-execution §10: when `CLAIM_ENABLED=1` the worker polls
 //! `public.automation_claim_jobs`, runs each claimed job through the normal engine path
-//! (the same one `DispatchJob` uses), streams its step logs to `automation.execution_logs`
+//! (the same one `DispatchJob` uses), streams its step logs to `operon.execution_logs`
 //! and closes the job with `public.automation_finish_job`. The lease is renewed while the
 //! job runs so the stale-lease reaper does not steal it.
 //!

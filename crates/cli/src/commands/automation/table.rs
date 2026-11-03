@@ -13,7 +13,7 @@ pub async fn list_workflows(
 
     let mut workflows: Vec<WfInfo> = Vec::new();
 
-    // Workflows come from the Cloud table `automation.workflows` (single source of truth).
+    // Workflows come from the Cloud table `operon.workflows` (single source of truth).
     let repo = crate::infrastructure::cloud::CloudWorkflowRepository::connect()
         .await
         .map_err(|e| -> Box<dyn std::error::Error> { e.into() })?;

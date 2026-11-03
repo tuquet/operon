@@ -16,7 +16,7 @@ pub async fn inspect_workflow(target: &str) -> Result<(), Box<dyn std::error::Er
                 format!("File: {}", target_path.display()),
             )
         } else {
-            // Resolve the workflow from the Cloud table `automation.workflows`.
+            // Resolve the workflow from the Cloud table `operon.workflows`.
             let repo = CloudWorkflowRepository::connect()
                 .await
                 .map_err(|e| -> Box<dyn std::error::Error> { e.into() })?;
@@ -30,11 +30,11 @@ pub async fn inspect_workflow(target: &str) -> Result<(), Box<dyn std::error::Er
                         "nodes": wf.graph_data.get("nodes").cloned().unwrap_or_else(|| json!([])),
                         "edges": wf.graph_data.get("edges").cloned().unwrap_or_else(|| json!([])),
                     }))?,
-                    format!("Cloud (automation.workflows · ID: {})", wf.id),
+                    format!("Cloud (operon.workflows · ID: {})", wf.id),
                 ),
                 None => {
                     return Err(format!(
-                        "Workflow file or ID '{}' not found in automation.workflows.",
+                        "Workflow file or ID '{}' not found in operon.workflows.",
                         target
                     )
                     .into());
