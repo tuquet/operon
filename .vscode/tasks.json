@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "local(operon): <engine> dev",
+      "label": "local: <engine> dev",
       "type": "shell",
       "command": "cargo",
       "args": ["run", "--bin", "operon"],
@@ -19,7 +19,7 @@
       "problemMatcher": []
     },
     {
-      "label": "local(operon): <engine> check",
+      "label": "local: <engine> check",
       "type": "shell",
       "command": "cargo",
       "args": ["check"],
