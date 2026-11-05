@@ -25,3 +25,4 @@ node_modules/
 
 # Standalone Excavator Distribution Bucket (Automated CI/CD)
 scoop-bucket/
+tasks
