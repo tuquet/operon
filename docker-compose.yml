@@ -107,31 +107,7 @@ services:
       start_period: 5s
 
   # ============================================================================
-  # 3. OPTIONAL: Telegram ChatOps Bot (--profile ops, --profile all)
-  # ============================================================================
-  bot:
-    container_name: bot
-    profiles:
-      - ops
-      - all
-    build:
-      context: ./bot
-      dockerfile: deploy/Dockerfile
-    restart: unless-stopped
-    environment:
-      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-}
-      - ALLOWED_CHAT_IDS=${ALLOWED_CHAT_IDS:-}
-      - ADMIN_USER_IDS=${ADMIN_USER_IDS:-}
-    networks:
-      - operon-net
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
-
-  # ============================================================================
-  # 4. OPTIONAL: Self-hosted Bugsink Tracker (--profile telemetry, --profile all)
+  # 3. OPTIONAL: Self-hosted Bugsink Tracker (--profile telemetry, --profile all)
   # ============================================================================
   bugsink:
     container_name: bugsink

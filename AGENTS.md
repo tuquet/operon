@@ -45,8 +45,7 @@ Agent Reasoning & Tool Verification
 | **Stealth Sandbox** | `./crates/browser` | Rust (CDP, PRNG, WebSockets) | Antidetect Chromium launcher, hardware masking, and profile isolation. |
 | **Workstation UI** | `./console` | Vue 3, Shadcn UI, Tauri v2 | Central workstation GUI, preferences engine, and desktop wrapper. |
 | **Control Plane** | `./cloud` | Supabase, PostgreSQL, RLS, Vault | Core IAM and 8 isolated domain plugins (automations, workers, secrets...). |
-| **Error Relay** | `./relay` | Cloudflare Worker, TypeScript | Edge ingestion and sanitization routing Sentry alerts to Telegram. |
-| **ChatOps Bot** | `./bot` | TypeScript, grammY | Telegram operations assistant and cluster health monitoring. |
+| **Alert & Incident Hub** | `tuquet/bot` (External Hub) | Node.js, CF Worker, grammY | Centralized error telemetry relay (Cloudflare) & Telegram ChatOps daemon.
 | **Documentation** | `./docs` | VitePress | Official portal for architecture specs, block schemas, and guides. |
 | **Agent Skills** | `./skills` | Agent Skills Specification | Standardized engineering runbooks and operational checklists. |
 | **Production Tasks** | `./tasks` | Markdown & Workflows | Complex end-to-end production workflow plans (e.g. HRMS automation). |
