@@ -1,4 +1,4 @@
-name: Reusable Rust CI
+name: "CI: reusable rust"
 
 on:
   workflow_call:

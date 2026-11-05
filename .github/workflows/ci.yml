@@ -1,4 +1,4 @@
-name: "CI: Operon Mesh Engine & Subsystems"
+name: "CI: rust workspace"
 
 on:
   push:
