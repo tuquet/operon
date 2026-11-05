@@ -64,7 +64,7 @@ docker compose up -d
 ```
 
 - **Daemon API & Worker Gateway**: `http://localhost:8765`
-- **Operon Workstation**: `http://localhost:5666`
+- **Operon**: `http://localhost:5666`
 
 ---
 
