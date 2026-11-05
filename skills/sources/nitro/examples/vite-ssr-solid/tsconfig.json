@@ -1,7 +1,0 @@
-{
-  "extends": "nitro/tsconfig",
-  "compilerOptions": {
-    "jsx": "preserve",
-    "jsxImportSource": "solid-js"
-  }
-}

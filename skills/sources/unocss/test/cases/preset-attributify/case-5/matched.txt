@@ -1,5 +1,0 @@
-absolute
-text-red
-[bottom-5=""]
-[top-5=""]
-[text~="green"]

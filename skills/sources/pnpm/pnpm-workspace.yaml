@@ -1,9 +1,0 @@
-allowBuilds:
-  '@parcel/watcher': true
-  '@swc/core': true
-  core-js: false
-  core-js-pure: false
-
-publicHoistPattern:
-  - '@mdx-js/react'
-  - url-loader

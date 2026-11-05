@@ -1,7 +1,0 @@
-export * from './colors'
-export * from './directive'
-export * from './handlers'
-export * from './icon'
-export * from './pseudo'
-export * from './utilities'
-export * from './variants'

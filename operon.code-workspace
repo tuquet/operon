@@ -25,16 +25,8 @@
       "path": "worker"
     },
     {
-      "name": "Documentation Hub",
-      "path": "docs"
-    },
-    {
       "name": "UI Component Library",
       "path": "lib"
-    },
-    {
-      "name": "AI Skills",
-      "path": "skills"
     },
     {
       "name": "Landing Page",

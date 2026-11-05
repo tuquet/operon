@@ -1,2 +1,0 @@
-custom-2
-[custom~="1"]

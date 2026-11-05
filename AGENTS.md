@@ -1,7 +1,6 @@
 # Operon — Autonomous Agent Operational Directives
 
 > **Contractual Authority:** [`./CONSTRAINTS.md`](./CONSTRAINTS.md) is the non-negotiable architectural contract. When modifying code, never weaken, bypass, or delete assertions to satisfy checks.  
-> **Documentation Hub:** Technical specifications and architecture guides reside in [`./docs/`](./docs/) and [`./cloud/README.md`](./cloud/README.md).
 
 ---
 
@@ -24,14 +23,14 @@ When encountering ambiguous requirements or conflicting patterns, agents must ad
        ↓
 Database Schemas & DDL (Data Integrity SSOT)
        ↓
-./docs/ & SPECs (System & Component Design)
+Architecture SPECs (System & Component Design)
        ↓
 Local Domain Directives (Subsystem READMEs)
        ↓
 Agent Reasoning & Tool Verification
 ```
 
-- **Anti-Hallucination Rule:** Never invent CLI flags, database columns, or API endpoints absent from schemas and `./docs/`. If an interface lacks documentary foundation, escalate it as a specification blocker before writing code.
+- **Anti-Hallucination Rule:** Never invent CLI flags, database columns, or API endpoints absent from schemas and SPECs. If an interface lacks documentary foundation, escalate it as a specification blocker before writing code.
 - **Fail-Fast Rule:** Never implement backward-compatibility shims, union types, or fallback chains to conceal schema drift. Raise clear, actionable runtime errors at the boundary.
 
 ---
@@ -46,8 +45,6 @@ Agent Reasoning & Tool Verification
 | **Workstation UI** | `./console` | Vue 3, Shadcn UI, Tauri v2 | Central workstation GUI, preferences engine, and desktop wrapper. |
 | **Control Plane** | `./cloud` | Supabase, PostgreSQL, RLS, Vault | Core IAM and 8 isolated domain plugins (automations, workers, secrets...). |
 | **Alert & Incident Hub** | `tuquet/bot` (External Hub) | Node.js, CF Worker, grammY | Centralized error telemetry relay (Cloudflare) & Telegram ChatOps daemon.
-| **Documentation** | `./docs` | VitePress | Official portal for architecture specs, block schemas, and guides. |
-| **Agent Skills** | `./skills` | Agent Skills Specification | Standardized engineering runbooks and operational checklists. |
 | **Production Tasks** | `./tasks` | Markdown & Workflows | Complex end-to-end production workflow plans (e.g. HRMS automation). |
 
 ---
@@ -80,4 +77,3 @@ To prevent context bloating and preserve token bandwidth:
 - When working within a specific domain, progressively discover its dedicated directives:
   - Working on Supabase / DDL: inspect `./cloud/README.md` and `./cloud/supabase/plugins/`.
   - Working on Workstation UI: inspect `./console/` guidelines.
-  - Working on Automation workflows: inspect `./tasks/` and `./docs/en/automation/`.

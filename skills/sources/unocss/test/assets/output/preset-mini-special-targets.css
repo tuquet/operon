@@ -1,3 +1,0 @@
-/* layer: default */
-.\[\&\>\*\]\:content-\[\'\,\\00a0\'\]>*{content:',\00a0';}
-.\[\&\>\*\:not\(\:last-child\)\]\:after\:content-\[\'\,\\00a0\'\]>*:not(:last-child)::after{content:',\00a0';}
