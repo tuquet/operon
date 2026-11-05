@@ -1,6 +1,0 @@
-name = "operon-error-relay"
-main = "src/index.ts"
-compatibility_date = "2024-04-01"
-
-[vars]
-TELEGRAM_CHAT_ID = "-5079028223"
