@@ -11,10 +11,12 @@ kanban-plugin: basic
   - [ ] Enforce Supabase RLS `tenant_id` membership checks
   - [ ] Define cached-session behavior when offline and re-validation on reconnect
 
-## Tasks
+## Ready
 
 ## In Progress
 
 ## Review
+
+## Testing
 
 ## Done

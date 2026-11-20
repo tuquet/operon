@@ -11,10 +11,12 @@ kanban-plugin: basic
   - [ ] Define push/pull sync order with valid session and active `tenant_id`
   - [ ] Define conflict resolution, schema version fail-fast, and idempotent offline queue retry
 
-## Tasks
+## Ready
 
 ## In Progress
 
 ## Review
+
+## Testing
 
 ## Done
