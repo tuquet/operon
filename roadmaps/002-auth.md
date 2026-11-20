@@ -9,7 +9,7 @@ depends_on: [ROADMAP-001]
 
 # ROADMAP-002: Auth, Session & Permission Boundary
 
-Execution sequence for user identity, JWT validation, Supabase RLS, and offline session caching across `console`, `id`, and `operon`.
+Execution sequence for user identity, JWT validation, RLS, and offline session caching between the host UI, auth provider, and local daemon.
 
 ## Phases
 
