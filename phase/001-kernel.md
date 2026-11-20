@@ -12,16 +12,13 @@ kanban-plugin: basic
 
 - [ ] [[specs/001-kernel/001-shell|KERNEL-001: Host Kernel & Isolation Boundary]]
   - [ ] Expose `useKernel()` reactive context (`kernel.tenant`)
-  - [ ] Enforce host/micro-app isolation boundary (no direct `apps/shell` or sibling imports)
-- [ ] [[specs/001-kernel/001-shell|KERNEL-001: Layout UI & Shell Framing]]
-  - [ ] Align sidebar-header with tabbar (`paddingTop` offset & hidden-header reset)
-  - [ ] Align header icon button, sidebar footer settings, and content margins (`px-3`)
-  - [ ] Remove redundant settings headings/labels in `@operon/layouts`
-- [ ] [[specs/001-kernel/001-shell|KERNEL-001: Design Tokens & Darkmode]]
-  - [ ] Increase darkmode contrast between content and chrome (`@operon-core/design`)
-  - [ ] Darken `background-deep` in dark themes
-- [ ] [[specs/001-kernel/001-shell|KERNEL-001: Shell Widget Slots & Playground]]
-  - [ ] Add `sidebar-header` widget slot and combobox widget registration
-  - [ ] Clean up `@operon/playground` overview and scope to implemented demos
+  - [ ] Enforce host/micro-app isolation boundary
+- [ ] [[specs/001-kernel/001-shell|KERNEL-001: Shell Layout & Widget Slots]]
+  - [ ] App shell framing and navigation layout
+  - [ ] `sidebar-header` widget slot and registration
+- [ ] [[specs/001-kernel/001-shell|KERNEL-001: Theme & Design System]]
+  - [ ] Design tokens and dark mode contrast
+- [ ] [[specs/001-kernel/001-shell|KERNEL-001: Playground & Demo Verification]]
+  - [ ] Overview page scoped to implemented demos
 
 ## Done
