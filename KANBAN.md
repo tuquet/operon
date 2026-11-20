@@ -14,8 +14,8 @@ kanban-plugin: basic
 
 ## Review
 
-## Done
+- [ ] [[phase/001-kernel|Phase 001: Kernel Shell & Host Context]]
+- [ ] [[phase/003-tenant|Phase 003: Tenant Management & Selector]]
+- [ ] [[phase/006-browsers|Phase 006: Browser Management & Antidetect Runtime]]
 
-- [x] [[phase/001-kernel|Phase 001: Kernel Shell & Host Context]]
-- [x] [[phase/003-tenant|Phase 003: Tenant Management & Selector]]
-- [x] [[phase/006-browsers|Phase 006: Browser Management & Antidetect Runtime]]
+## Done
