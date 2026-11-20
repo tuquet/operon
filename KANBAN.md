@@ -4,12 +4,13 @@ kanban-plugin: basic
 
 ## Draft
 
-- [ ] [[specs/002-auth/001-session|AUTH-001: Auth, Session & Permission Boundary]]
-- [ ] [[specs/004-data-sync/001-erd-sync|DATA-SYNC-001: Local DB, Cloud DB ERD & Sync]]
-- [ ] [[specs/005-cli/001-overview|CLI-001: Operon CLI Overview]]
-- [ ] [[roadmaps/002-auth|ROADMAP-002: Auth, Session & Permission Boundary]]
-- [ ] [[roadmaps/004-data-sync|ROADMAP-004: Local DB, Cloud DB ERD & Sync]]
-- [ ] [[roadmaps/005-cli|ROADMAP-005: Operon CLI & Local Daemon]]
+- [ ] Write JWT & daemon (`:8765`) auth contract [[specs/002-auth/001-session|AUTH-001]]
+- [ ] Define Supabase RLS & offline cached-session rules [[specs/002-auth/001-session|AUTH-001]]
+- [ ] Document `localDB` (SQLite) & `cloudDB` (Postgres) ERD [[specs/004-data-sync/001-erd-sync|DATA-SYNC-001]]
+- [ ] Define `local <-> cloud` push/pull sync & conflict rules [[specs/004-data-sync/001-erd-sync|DATA-SYNC-001]]
+- [ ] Implement CLI Phase 1 Core Ops (`config`, `logs`, `secrets`, `update`) [[specs/005-cli/001-overview|CLI-001]]
+- [ ] Implement CLI Phase 2 UI Launchers (`dashboard`, `webapp`, `desktop`) [[specs/005-cli/001-overview|CLI-001]]
+- [ ] Refactor CLI Phase 3 Domain (`workflow` alias `automation`, hide `schema`) [[specs/005-cli/001-overview|CLI-001]]
 
 ## Review
 
