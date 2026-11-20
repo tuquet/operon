@@ -1,1 +1,0 @@
-export { playgroundManifest } from './manifest';

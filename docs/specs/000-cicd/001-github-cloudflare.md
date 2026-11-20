@@ -9,7 +9,7 @@ updated: 2026-11-20
 # CICD-001: GitHub Actions & Cloudflare Deployment
 
 ## Goal
-Standardize CI/CD pipelines in the unified `tuquet/operon` monorepo using GitHub Actions (`paths:`-filtered workflows), Cloudflare Pages/Workers deployment, and clear separation between GitHub Variables (`vars.*`) and GitHub Secrets (`secrets.*`).
+Standardize centralized CI/CD pipelines in the umbrella `tuquet/operon` repository (with Git submodules `console/` → `tuquet/console`, `core/` → `tuquet/core`, and native `docs/`) using GitHub Actions (`submodules: recursive`, `paths:`-filtered workflows), Cloudflare Pages/Workers deployment, and clear separation between GitHub Variables (`vars.*`) and GitHub Secrets (`secrets.*`).
 
 ## Repository Governance
 - Protected `main` branch requiring passing CI status checks before merge.

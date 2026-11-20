@@ -1,1 +1,0 @@
-export { tenantsManifest } from './manifest';

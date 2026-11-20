@@ -1,7 +1,8 @@
 # Phase 000: CI/CD & DevOps
 
 ## Backlog
-- [ ] Configure GitHub repository branch protection & PR rules
+- [ ] Configure GitHub repository branch protection & PR rules on `tuquet/operon` and `tuquet/core`
+- [ ] Merge `tuquet/console` PR #44 (`feat/dashboard-overview-platform-unification` -> `main`) and switch `console` submodule tracking to `main`
 
 ## Ready
 
@@ -10,11 +11,11 @@
 ## Review
 
 ## Testing
-- [ ] Verify root `.github/workflows/console-*.yml` (using `vars.VITE_*` & `secrets.CLOUDFLARE_*`) on GitHub Actions
+- [ ] Verify centralized `.github/workflows/` (`submodules: recursive`, `vars.VITE_*` & `secrets.CLOUDFLARE_*`) on `tuquet/operon` GitHub Actions
 
 ## Done
-- [x] Consolidate `console` and `specs-operon` into `tuquet/operon` monorepo (`console/`, `docs/`) with preserved git history
-- [x] Migrate all `console/.github/workflows` (`quality`, `deploy-pages`, `preview-build`, `release*`) and `setup-desktop` action to root `.github/` and remove `console/.github/`
+- [x] Rename `tuquet/operon` -> `tuquet/core` (preserving Rust history) and create umbrella `tuquet/operon` with `console` & `core` submodules + native `docs/`
+- [x] Consolidate all CI/CD workflows at `tuquet/operon/.github/workflows/` with `submodules: recursive` and `paths:` filters (`console`, `core`)
 - [x] `console` — Composite action: `setup-desktop` (`.github/actions/setup-desktop/action.yml`)
 - [x] `console` — `CI: quality` (`.github/workflows/quality.yml`)
 - [x] `console` — `Preview: desktop` (`.github/workflows/preview-build.yml`)

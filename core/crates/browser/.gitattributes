@@ -1,2 +1,0 @@
-# GitHub Linguist Invariant: Treat external utility scripts as vendored to preserve 100% Rust classification
-scripts/* linguist-vendored

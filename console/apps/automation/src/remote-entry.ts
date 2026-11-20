@@ -1,1 +1,0 @@
-export { automationManifest } from './manifest';

@@ -32,6 +32,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
+          submodules: recursive
           persist-credentials: false
 
       - name: Path Filters
@@ -40,6 +41,7 @@ jobs:
         with:
           filters: |
             rust:
+              - 'core'
               - 'core/crates/**'
               - 'core/Cargo.toml'
               - 'core/Cargo.lock'
@@ -82,6 +84,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
+          submodules: recursive
           persist-credentials: false
 
       - name: Read toolchain pin and normalize file timestamps for Cargo cache
@@ -125,6 +128,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
+          submodules: recursive
           persist-credentials: false
 
       - name: Validate Docker Compose Configuration

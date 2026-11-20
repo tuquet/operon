@@ -4,6 +4,7 @@ on:
   pull_request:
     branches: [main]
     paths:
+      - 'console'
       - 'console/**'
       - '.github/workflows/console-preview-build.yml'
       - '.github/actions/setup-desktop/**'
@@ -24,6 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
+          submodules: recursive
           persist-credentials: false
       - uses: ./.github/actions/setup-desktop
         with:
