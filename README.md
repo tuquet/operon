@@ -41,7 +41,11 @@ specs-operon/
 | 002 | [Auth, Session & Permission Boundary](./specs/core/002-auth.md) | `draft` |
 | 003 | [Tenant Management & Selector](./specs/core/003-tenant.md) | `implemented` |
 | 004 | [Local DB, Cloud DB ERD & Sync](./specs/core/004-data-sync.md) | `draft` |
-| 005 | [Browser Management CRUD & Lifecycle](./specs/core/005-browsers.md) | `implemented` |
+
+### App Specs (`browsers`)
+| ID | Title | Status |
+| --- | --- | --- |
+| 001 | [Browser Management CRUD & Lifecycle](./specs/browsers/001-crud.md) | `implemented` |
 
 ### Roadmaps
 | ID | Title | Status |

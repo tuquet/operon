@@ -9,7 +9,7 @@ depends_on: [ROADMAP-004]
 
 # ROADMAP-005: Browser Management
 
-Execution sequence for [005-browsers.md](../specs/core/005-browsers.md) after [004-data-sync.md](./004-data-sync.md) is ready.
+Execution sequence for [001-crud.md](../specs/browsers/001-crud.md) after [004-data-sync.md](./004-data-sync.md) is ready.
 
 ```mermaid
 flowchart LR
