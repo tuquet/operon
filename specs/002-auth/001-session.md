@@ -1,13 +1,13 @@
 ---
-id: SPEC-002
+id: AUTH-001
 title: Auth, Session & Permission Boundary
 status: draft
 created: 2026-11-20
 updated: 2026-11-20
-depends_on: [SPEC-001]
+depends_on: [KERNEL-001]
 ---
 
-# SPEC-002: Auth, Session & Permission Boundary
+# AUTH-001: Auth, Session & Permission Boundary
 
 ## Goal
 Define how user identity, JWTs, cloud RLS, and local daemon auth work together, including offline mode.

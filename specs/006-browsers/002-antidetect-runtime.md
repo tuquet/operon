@@ -4,7 +4,7 @@ title: Antidetect Fingerprint Browser Runtime
 status: implemented
 created: 2026-11-20
 updated: 2026-11-20
-depends_on: [SPEC-001, SPEC-003]
+depends_on: [KERNEL-001, TENANT-001]
 ---
 
 # BROWSERS-002: Antidetect Fingerprint Browser Runtime

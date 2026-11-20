@@ -4,7 +4,7 @@ title: Operon CLI Overview & Command Surface
 status: draft
 created: 2026-11-20
 updated: 2026-11-20
-depends_on: [SPEC-001, SPEC-002, SPEC-003, SPEC-004]
+depends_on: [KERNEL-001, AUTH-001, TENANT-001, DATA-SYNC-001]
 ---
 
 # CLI-001: Operon CLI (`opn`) Overview

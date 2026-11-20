@@ -1,13 +1,13 @@
 ---
-id: SPEC-004
+id: DATA-SYNC-001
 title: Local DB, Cloud DB ERD & Sync
 status: draft
 created: 2026-11-20
 updated: 2026-11-20
-depends_on: [SPEC-002, SPEC-003]
+depends_on: [AUTH-001, TENANT-001]
 ---
 
-# SPEC-004: Local DB, Cloud DB ERD & Sync
+# DATA-SYNC-001: Local DB, Cloud DB ERD & Sync
 
 ## Goal
 Define table ownership between `localDB` (SQLite) and `cloudDB` (Postgres), shared `tenant_id` keys, and bidirectional sync rules.
