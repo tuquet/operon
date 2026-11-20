@@ -2,9 +2,7 @@
 
 ## Backlog
 - [ ] Configure GitHub repository branch protection & PR rules
-- [ ] Standardize environment config in GitHub Variables (`vars.*`) & Secrets (`secrets.*`) across workflows
-- [ ] Consolidate `console` and `specs-operon` into `tuquet/operon` monorepo (`console/`, `docs/` or `specs/`)
-- [ ] Merge `.github/workflows` into `tuquet/operon` with `paths:` filters (`console/**`, `crates/**`, `cloud/**`) and update Cloudflare Pages deploy root
+- [ ] Migrate remaining `console/.github/workflows` (`preview-build.yml`, `release-prepare.yml`, `release.yml`, `release-manage.yml`) and `setup-desktop` action to root `.github/`
 
 ## Ready
 
@@ -13,8 +11,10 @@
 ## Review
 
 ## Testing
+- [ ] Verify root `.github/workflows/console-quality.yml` and `.github/workflows/console-deploy-pages.yml` (using `vars.VITE_*` & `secrets.CLOUDFLARE_*`) on GitHub Actions
 
 ## Done
+- [x] Consolidate `console` and `specs-operon` into `tuquet/operon` monorepo (`console/`, `specs/`) with preserved git history
 - [x] `console` — Composite action: `setup-desktop` (`.github/actions/setup-desktop/action.yml`)
 - [x] `console` — `CI: quality` (`.github/workflows/quality.yml`)
 - [x] `console` — `Preview: desktop` (`.github/workflows/preview-build.yml`)
