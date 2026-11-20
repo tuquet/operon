@@ -2,7 +2,7 @@
 kanban-plugin: basic
 ---
 
-## Draft
+## Backlog
 
 - [ ] Write JWT & daemon (`:8765`) auth contract [[specs/002-auth/001-session|AUTH-001]]
 - [ ] Define Supabase RLS & offline cached-session rules [[specs/002-auth/001-session|AUTH-001]]
@@ -12,11 +12,11 @@ kanban-plugin: basic
 - [ ] Implement CLI Phase 2 UI Launchers (`dashboard`, `webapp`, `desktop`) [[specs/005-cli/001-overview|CLI-001]]
 - [ ] Refactor CLI Phase 3 Domain (`workflow` alias `automation`, hide `schema`) [[specs/005-cli/001-overview|CLI-001]]
 
+## In Progress
+
 ## Review
 
-## Approved
-
-## Implemented
+## Done
 
 - [x] [[specs/001-kernel/001-shell|KERNEL-001: Kernel Shell & Host Context]]
 - [x] [[specs/003-tenant/001-management|TENANT-001: Tenant Management & Selector]]
