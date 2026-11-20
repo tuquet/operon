@@ -1,4 +1,4 @@
-name: 'Maintenance: manage releases'
+name: 'Maintenance: manage console releases'
 
 on:
   workflow_dispatch:
@@ -42,8 +42,9 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version-file: .node-version
+          node-version-file: console/.node-version
       - name: Update release registry and channel feeds
+        working-directory: console
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_ACTION: ${{ github.event_name == 'schedule' && 'prune' || inputs.action }}

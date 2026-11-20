@@ -1,4 +1,4 @@
-name: 'Release: prepare'
+name: 'Release: console prepare'
 
 on:
   workflow_dispatch:
@@ -26,8 +26,9 @@ jobs:
           ref: main
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version-file: .node-version
+          node-version-file: console/.node-version
       - name: Create version PR and start quality checks
+        working-directory: console
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_VERSION: ${{ inputs.version }}

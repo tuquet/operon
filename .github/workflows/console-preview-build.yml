@@ -1,19 +1,19 @@
-name: 'Preview: desktop'
+name: 'Preview: console desktop'
 
 on:
   pull_request:
     branches: [main]
-    paths-ignore:
-      - '**/*.md'
-      - 'docs/**'
-      - '.changeset/**'
+    paths:
+      - 'console/**'
+      - '.github/workflows/console-preview-build.yml'
+      - '.github/actions/setup-desktop/**'
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: preview-${{ github.ref }}
+  group: console-preview-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -24,16 +24,15 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          path: console
           persist-credentials: false
-      - uses: ./console/.github/actions/setup-desktop
+      - uses: ./.github/actions/setup-desktop
         with:
           save-cache: ${{ github.ref == 'refs/heads/main' }}
       - name: Build preview without release signing credentials
         working-directory: console/apps/shell
         env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
           OPERON_SKIP_WINRES: '1'
         shell: pwsh
         run: |

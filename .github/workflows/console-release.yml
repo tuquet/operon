@@ -1,8 +1,11 @@
-name: 'Release: desktop binaries'
+name: 'Release: console desktop binaries'
 
 on:
   push:
     branches: [main]
+    paths:
+      - 'console/**'
+      - '.github/workflows/console-release.yml'
     tags: ['v*']
   workflow_dispatch:
 
@@ -10,13 +13,13 @@ permissions:
   contents: read
 
 concurrency:
-  group: release-${{ github.ref }}
+  group: console-release-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
   quality:
     name: Quality
-    uses: ./.github/workflows/quality.yml
+    uses: ./.github/workflows/console-quality.yml
 
   build:
     name: Signed Windows x64
@@ -29,10 +32,9 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          path: console
           fetch-depth: 0
           persist-credentials: false
-      - uses: ./console/.github/actions/setup-desktop
+      - uses: ./.github/actions/setup-desktop
         with:
           save-cache: 'true'
           cache-bundler-tools: 'true'
@@ -45,8 +47,8 @@ jobs:
       - name: Build signed updater artifacts
         working-directory: console/apps/shell
         env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
           OPERON_SKIP_WINRES: '1'
@@ -85,12 +87,13 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version-file: .node-version
+          node-version-file: console/.node-version
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           name: release-${{ needs.build.outputs.tag }}
-          path: dist-release
+          path: console/dist-release
       - name: Verify and publish draft, then advance channel
+        working-directory: console
         env:
           GH_TOKEN: ${{ github.token }}
         run: node scripts/release/publish.mjs
