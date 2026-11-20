@@ -22,6 +22,7 @@ specs-operon/
 
 ## Naming & Status Rules
 
+- **Layers:** `GLOSSARY.md` + `adr/` (conventions) → `specs/core/` (default platform layer; `tenant` isolation is assumed) → `specs/<app>/` (app-specific behavior).
 - **Spec:** `specs/<app>/<NNN>-<slug>.md` (use `core/` for multi-app specs)
 - **ADR:** `adr/<NNNN>-<slug>.md`
 - **Roadmap:** `roadmaps/<NNN>-<slug>.md`
@@ -42,4 +43,4 @@ specs-operon/
 ### Roadmaps
 | ID | Title | Status |
 | --- | --- | --- |
-| 001 | [Tenant & Browser Management](./roadmaps/001-tenant-browsers.md) | `implemented` |
+| 001 | [Foundation: Tenant & Browsers](./roadmaps/001-foundation.md) | `implemented` |

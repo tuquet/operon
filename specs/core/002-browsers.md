@@ -35,20 +35,20 @@ stateDiagram-v2
 
 ## 3. Data Model (`BrowserResponse`)
 
-| Field | Type | Required | Default | Notes |
-| --- | --- | --- | --- | --- |
-| `id` | `string` | No | `prf_<12hex>` | Validated by `BrowserId::is_valid()`, immutable |
-| `tenantId` | `string` | No | `'local-default'` | Indexed in SQLite (`idx_browsers_tenant`) |
-| `name` | `string` | Yes | — | Trimmed `1..100` chars |
-| `groupName` | `string \| null` | No | `'default'` | Group label |
-| `tags` | `string[]` | No | `[]` | Max 20 lowercase tags |
-| `proxy` | `string \| null` | No | `null` | `http://`, `https://`, `socks5://`, `socks5h://` |
-| `timezone` / `userAgent` | `string \| null` | No | Auto | Passed to Chromium on launch |
-| `fingerprintConfig` | `FingerprintConfig` | No | PRNG seeded | `seed`, `osPlatform`, `hardwareConcurrency`, `deviceMemoryGb`, `screenWidth`, `screenHeight`, `webrtcMode`, `lang` |
-| `extensions` | `string[]` | No | `['automation']` | Extension IDs or unpacked paths |
-| `startupFlags` | `string[]` | No | `[]` | Dangerous flags blocked |
-| `isDefault` | `boolean` | Read-only | `false` | Per-tenant (`settings.browser.default_profiles[tenantId]`) |
-| `isOnline` / `pid` / `debuggingPort` / `wsUrl` | Live | Read-only | — | From active Chromium session |
+| Field                                          | Type                | Required  | Default           | Notes                                                                                                              |
+| ---------------------------------------------- | ------------------- | --------- | ----------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `id`                                           | `string`            | No        | `prf_<12hex>`     | Validated by `BrowserId::is_valid()`, immutable                                                                    |
+| `tenantId`                                     | `string`            | No        | `'local-default'` | Indexed in SQLite (`idx_browsers_tenant`)                                                                          |
+| `name`                                         | `string`            | Yes       | —                 | Trimmed `1..100` chars                                                                                             |
+| `groupName`                                    | `string \| null`    | No        | `'default'`       | Group label                                                                                                        |
+| `tags`                                         | `string[]`          | No        | `[]`              | Max 20 lowercase tags                                                                                              |
+| `proxy`                                        | `string \| null`    | No        | `null`            | `http://`, `https://`, `socks5://`, `socks5h://`                                                                   |
+| `timezone` / `userAgent`                       | `string \| null`    | No        | Auto              | Passed to Chromium on launch                                                                                       |
+| `fingerprintConfig`                            | `FingerprintConfig` | No        | PRNG seeded       | `seed`, `osPlatform`, `hardwareConcurrency`, `deviceMemoryGb`, `screenWidth`, `screenHeight`, `webrtcMode`, `lang` |
+| `extensions`                                   | `string[]`          | No        | `['automation']`  | Extension IDs or unpacked paths                                                                                    |
+| `startupFlags`                                 | `string[]`          | No        | `[]`              | Dangerous flags blocked                                                                                            |
+| `isDefault`                                    | `boolean`           | Read-only | `false`           | Per-tenant (`settings.browser.default_profiles[tenantId]`)                                                         |
+| `isOnline` / `pid` / `debuggingPort` / `wsUrl` | Live                | Read-only | —                 | From active Chromium session                                                                                       |
 
 ## 4. Daemon REST Endpoints (`/api/v1/browsers`)
 
