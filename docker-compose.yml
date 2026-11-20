@@ -15,7 +15,7 @@ services:
   daemon:
     container_name: daemon
     build:
-      context: .
+      context: ./core
       dockerfile: crates/cli/deploy/Dockerfile
       args:
         - HTTP_PROXY=${BUILD_HTTP_PROXY:-}

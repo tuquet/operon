@@ -40,9 +40,9 @@ jobs:
         with:
           filters: |
             rust:
-              - 'crates/**'
-              - 'Cargo.toml'
-              - 'Cargo.lock'
+              - 'core/crates/**'
+              - 'core/Cargo.toml'
+              - 'core/Cargo.lock'
               - '.github/workflows/ci.yml'
             docker:
               - 'docker-compose.yml'
@@ -75,6 +75,9 @@ jobs:
     needs: [changes]
     if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'repository_dispatch' || needs.changes.outputs.rust == 'true' }}
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: core
     steps:
       - name: Checkout Code
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
@@ -97,6 +100,7 @@ jobs:
       - name: Rust Cache
         uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2
         with:
+          workspaces: core -> target
           cache-workspace-crates: true
           save-if: ${{ github.ref == 'refs/heads/main' }}
 

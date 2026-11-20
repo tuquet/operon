@@ -3,4 +3,4 @@ pre-commit:
   commands:
     rustfmt:
       glob: "*.rs"
-      run: cargo fmt --all -- --check
+      run: cargo fmt --manifest-path core/Cargo.toml --all -- --check
