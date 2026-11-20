@@ -1,0 +1,27 @@
+---
+id: ROADMAP-002
+title: Browser Management Phased Roadmap
+status: implemented
+created: 2026-11-20
+updated: 2026-11-20
+depends_on: [ROADMAP-001]
+---
+
+# ROADMAP-002: Browser Management
+
+Execution sequence for [002-browsers.md](../specs/core/002-browsers.md) after [001-foundation.md](./001-foundation.md) (kernel shell & tenant layer) is ready.
+
+```mermaid
+flowchart LR
+    P1["Phase 1: Daemon Browser APIs"] --> P2["Phase 2: Console Browser UI"]
+    P2 --> P3["Phase 3: Lease Unbind & Cleanup"]
+```
+
+## Phases
+
+1. **Phase 1 — Daemon Browser CRUD & Antidetect Launch:**
+   - Strict `400`/`404`/`409` guards, `PATCH`, `clone`, `move`, `proxy/probe`, `batch/delete`, `PUT /extensions`, disk cleanup, RFC-4180 CSV import, and antidetect Chromium flags.
+2. **Phase 2 — Console Browser Management UI:**
+   - `apps/automation/src/views/browsers.vue`, `useBrowsersStore` (SSE + tenant watcher), and Form/Detail/CSV/Delete modals.
+3. **Phase 3 — Lease Unbind & Tenant Delete Guard:**
+   - `POST /api/v1/browsers/{id}/unbind` and tenant delete guard/cascade cleanup in `useTenantStore`.

@@ -43,4 +43,5 @@ specs-operon/
 ### Roadmaps
 | ID | Title | Status |
 | --- | --- | --- |
-| 001 | [Foundation: Tenant & Browsers](./roadmaps/001-foundation.md) | `implemented` |
+| 001 | [Foundation: Kernel Shell & Tenant](./roadmaps/001-foundation.md) | `implemented` |
+| 002 | [Browser Management](./roadmaps/002-browsers.md) | `implemented` |
