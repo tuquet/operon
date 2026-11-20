@@ -9,7 +9,7 @@ depends_on: [ROADMAP-001, ROADMAP-002]
 
 # ROADMAP-003: Tenant Management & Selector
 
-Execution sequence for [tenant/001-management.md](../specs/tenant/001-management.md) after [001-kernel.md](./001-kernel.md) and [002-auth.md](./002-auth.md).
+Execution sequence for [003-tenant/001-management.md](../specs/003-tenant/001-management.md) after [001-kernel.md](./001-kernel.md) and [002-auth.md](./002-auth.md).
 
 ```mermaid
 flowchart LR

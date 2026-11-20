@@ -37,21 +37,21 @@ specs-operon/
 ### Core Specs
 | ID | Title | Status |
 | --- | --- | --- |
-| 001 | [Kernel Shell & Host Context](./specs/kernel/001-shell.md) | `implemented` |
-| 002 | [Auth, Session & Permission Boundary](./specs/auth/001-session.md) | `draft` |
-| 003 | [Tenant Management & Selector](./specs/tenant/001-management.md) | `implemented` |
-| 004 | [Local DB, Cloud DB ERD & Sync](./specs/data-sync/001-erd-sync.md) | `draft` |
+| 001 | [Kernel Shell & Host Context](./specs/001-kernel/001-shell.md) | `implemented` |
+| 002 | [Auth, Session & Permission Boundary](./specs/002-auth/001-session.md) | `draft` |
+| 003 | [Tenant Management & Selector](./specs/003-tenant/001-management.md) | `implemented` |
+| 004 | [Local DB, Cloud DB ERD & Sync](./specs/004-data-sync/001-erd-sync.md) | `draft` |
 
 ### App Specs (`browsers`)
 | ID | Title | Status |
 | --- | --- | --- |
-| 001 | [Browser Management CRUD & Lifecycle](./specs/browsers/001-crud.md) | `implemented` |
-| 002 | [Antidetect Fingerprint Browser Runtime](./specs/browsers/002-antidetect-runtime.md) | `implemented` |
+| 001 | [Browser Management CRUD & Lifecycle](./specs/005-browsers/001-crud.md) | `implemented` |
+| 002 | [Antidetect Fingerprint Browser Runtime](./specs/005-browsers/002-antidetect-runtime.md) | `implemented` |
 
 ### App Specs (`cli`)
 | ID | Title | Status |
 | --- | --- | --- |
-| 001 | [Operon CLI Overview & Command Surface](./specs/cli/001-overview.md) | `implemented` |
+| 001 | [Operon CLI Overview & Command Surface](./specs/006-cli/001-overview.md) | `implemented` |
 
 ### Roadmaps
 | ID | Title | Status |

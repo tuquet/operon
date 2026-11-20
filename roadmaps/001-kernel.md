@@ -8,7 +8,7 @@ updated: 2026-11-20
 
 # ROADMAP-001: Kernel Shell & Host Context
 
-Execution sequence for [kernel/001-shell.md](../specs/kernel/001-shell.md) (host kernel shell and reactive context boundary via `useKernel()`).
+Execution sequence for [001-kernel/001-shell.md](../specs/001-kernel/001-shell.md) (host kernel shell and reactive context boundary via `useKernel()`).
 
 ## Phases
 
