@@ -33,7 +33,8 @@ specs-operon/
 
 ### Glossary & ADRs
 - [GLOSSARY.md](./GLOSSARY.md) — Standard terms (`tenant`, `browser profile`, `daemon`, `kernel`)
-- [0001-tenant-term.md](./adr/0001-tenant-term.md) — Use `tenant` everywhere, remove `workspace` from domain code
+- [0001-kernel-architecture.md](./adr/0001-kernel-architecture.md) — Kernel isolation boundary, reactive context, and widget slots
+- [0003-tenant-term.md](./adr/0003-tenant-term.md) — Use `tenant` everywhere, remove `workspace` from domain code
 
 ### Core Specs
 | ID | Title | Status |

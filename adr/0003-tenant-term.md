@@ -1,5 +1,5 @@
 ---
-id: ADR-0001
+id: ADR-0003
 title: Use tenant everywhere instead of workspace
 status: accepted
 date: 2026-11-19

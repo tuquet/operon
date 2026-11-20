@@ -1,6 +1,6 @@
 # Glossary (SSOT)
 
-Every spec, API, database schema, and UI label in Operon must use these exact terms. Do not add aliases ([ADR-0001](./adr/0001-tenant-term.md)).
+Every spec, API, database schema, and UI label in Operon must use these exact terms. Do not add aliases ([ADR-0003](./adr/0003-tenant-term.md)).
 
 | Standard Term                | Meaning                                                                                    | Do Not Use                                |
 | ---------------------------- | ------------------------------------------------------------------------------------------ | ----------------------------------------- |
