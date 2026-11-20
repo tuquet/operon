@@ -11,12 +11,13 @@ specs-operon/
 ├── templates/       # Templates for new specs and ADRs
 ├── adr/             # Short, permanent architecture decisions
 ├── specs/
-│   ├── core/        # Cross-app specs
-│   ├── operon/      # Rust CLI, daemon (:8765), stealth browser
-│   ├── console/     # Vue 3 / Tauri UI
-│   ├── bot/         # Alerts and ChatOps
-│   ├── id/          # Auth and identity
-│   └── store/       # Storefront and commerce
+│   ├── 001-kernel/  # Host kernel shell & context
+│   ├── 002-auth/    # Auth, JWT, RLS & offline session
+│   ├── 003-tenant/  # Tenant management & selector
+│   ├── 004-data-sync/# Local/Cloud ERD & sync
+│   ├── 005-cli/     # CLI & local daemon (:8765)
+│   └── 006-browsers/# Browser CRUD & antidetect runtime
+├── phase/           # Per-phase Obsidian Kanban boards
 └── roadmaps/        # Phased delivery plans
 ```
 
