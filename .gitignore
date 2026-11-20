@@ -1,0 +1,8 @@
+.DS_Store
+Thumbs.db
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+node_modules/
+dist/
+.vitepress/cache/
+.vitepress/dist/
