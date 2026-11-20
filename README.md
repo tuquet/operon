@@ -47,6 +47,11 @@ specs-operon/
 | --- | --- | --- |
 | 001 | [Browser Management CRUD & Lifecycle](./specs/browsers/001-crud.md) | `implemented` |
 
+### App Specs (`cli`)
+| ID | Title | Status |
+| --- | --- | --- |
+| 001 | [Operon CLI Overview & Command Surface](./specs/cli/001-overview.md) | `implemented` |
+
 ### Roadmaps
 | ID | Title | Status |
 | --- | --- | --- |
