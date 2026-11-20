@@ -1,15 +1,15 @@
 ---
-id: ROADMAP-002
+id: ROADMAP-003
 title: Browser Management Phased Roadmap
 status: implemented
 created: 2026-11-20
 updated: 2026-11-20
-depends_on: [ROADMAP-001]
+depends_on: [ROADMAP-002]
 ---
 
-# ROADMAP-002: Browser Management
+# ROADMAP-003: Browser Management
 
-Execution sequence for [002-browsers.md](../specs/core/002-browsers.md) after [001-foundation.md](./001-foundation.md) (kernel shell & tenant layer) is ready.
+Execution sequence for [002-browsers.md](../specs/core/002-browsers.md) after [002-tenant.md](./002-tenant.md) is ready.
 
 ```mermaid
 flowchart LR
