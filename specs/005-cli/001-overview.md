@@ -1,7 +1,7 @@
 ---
 id: CLI-001
 title: Operon CLI Overview & Command Surface
-status: implemented
+status: draft
 created: 2026-11-20
 updated: 2026-11-20
 depends_on: [SPEC-001, SPEC-002, SPEC-003, SPEC-004]
@@ -10,18 +10,19 @@ depends_on: [SPEC-001, SPEC-002, SPEC-003, SPEC-004]
 # CLI-001: Operon CLI (`opn`) Overview
 
 ## Goal
-Provide the local-first CLI and daemon (`:8765`) for browser automation, worker execution, secrets, and workstation control, inheriting `specs/core/` (`kernel`, `auth`, `tenant`, `data-sync`).
+Provide a clean, local-first CLI and daemon (`:8765`) for browser automation, worker execution, secrets, and workstation control, inheriting `specs/001`–`004` (`kernel`, `auth`, `tenant`, `data-sync`).
 
-## Top-Level Commands
-- `auth` — Cloud login, credentials, and session management.
-- `worker` — Distributed worker daemon and cloud execution node.
-- `automation` — Manage and run automation workflows.
-- `env` — Inspect/switch `.env` profiles (`--check`, `--switch`, `--list`, `--format table|json|card`).
+## Top-Level Commands (Target)
+- `auth` — Cloud login, session, and tenant context.
 - `browser` — Isolated antidetect browser runtime and profile sandbox.
-- `secret` (`secrets`) — Local encrypted Secret Store (`~/.operon/system/.secret_key`, `{{secrets@name}}`).
+- `workflow` (hidden alias: `automation`) — Manage and run automation workflows.
+- `worker` — Distributed worker daemon and cloud execution node.
 - `workstation` (`desktop`) — Launch the Workstation Control Plane UI.
-- `schema` — Inspect and export system/config schemas.
-- `mcp` (hidden) — MCP JSON-RPC 2.0 stdio server for AI agents.
+- `secret` (`secrets`) — Local encrypted Secret Store (`{{secrets@name}}`) and env config.
+
+## Hidden / Internal Commands
+- `mcp` — MCP JSON-RPC 2.0 stdio server for AI agents.
+- `schema` — Inspect and export system/config schemas (dev/codegen only).
 
 ## Local Daemon (`:8765`)
 - Exposes HTTP/SSE/WS endpoints for `browsers`, `jobs`, `secrets`, `settings`, `system` (`tenant`, `cloud`, `metrics`, `process`), `history`, `lint`, and `health`.
