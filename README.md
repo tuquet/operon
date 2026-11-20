@@ -44,5 +44,7 @@ specs-operon/
 | ID | Title | Status |
 | --- | --- | --- |
 | 001 | [Kernel Shell & Host Context](./roadmaps/001-kernel.md) | `implemented` |
-| 002 | [Tenant Management & Selector](./roadmaps/002-tenant.md) | `implemented` |
-| 003 | [Browser Management](./roadmaps/003-browsers.md) | `implemented` |
+| 002 | [Auth, Session & Permission Boundary](./roadmaps/002-auth.md) | `draft` |
+| 003 | [Tenant Management & Selector](./roadmaps/003-tenant.md) | `implemented` |
+| 004 | [Local DB, Cloud DB ERD & Sync](./roadmaps/004-data-sync.md) | `draft` |
+| 005 | [Browser Management](./roadmaps/005-browsers.md) | `implemented` |

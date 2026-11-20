@@ -1,15 +1,15 @@
 ---
-id: ROADMAP-002
+id: ROADMAP-003
 title: Tenant Management & Selector
 status: implemented
 created: 2026-11-20
 updated: 2026-11-20
-depends_on: [ROADMAP-001]
+depends_on: [ROADMAP-001, ROADMAP-002]
 ---
 
-# ROADMAP-002: Tenant Management & Selector
+# ROADMAP-003: Tenant Management & Selector
 
-Execution sequence for [001-tenant.md](../specs/core/001-tenant.md) across `operon` and `console` after [001-kernel.md](./001-kernel.md).
+Execution sequence for [001-tenant.md](../specs/core/001-tenant.md) across `operon` and `console` after [001-kernel.md](./001-kernel.md) and [002-auth.md](./002-auth.md).
 
 ```mermaid
 flowchart LR
