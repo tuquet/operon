@@ -1,6 +1,6 @@
 # Quality and Architectural Constraints Contract
 
-This document codifies the non-negotiable architectural boundaries, system invariants, and quality gates for the `operon` ecosystem. All contributors, automated tools, and AI agents must strictly uphold these contracts without weakening assertions or introducing shims.
+This document codifies the non-negotiable architectural boundaries, system invariants, and quality gates for the Operon project. All contributors, automated tools, and AI agents must strictly uphold these contracts without weakening assertions or introducing shims.
 
 ---
 
@@ -74,8 +74,8 @@ This document codifies the non-negotiable architectural boundaries, system invar
 ### Invariant D3: Immutable Migration Discipline
 - **Principle:** Database schemas are immutable code artifacts. Manual schema alterations via visual dashboards are prohibited.
 - **Enforcement:**
-  - 100% of schema definitions, RLS policies, and triggers must be committed as reproducible SQL migrations under `cloud/supabase/migrations/` or `cloud/supabase/plugins/`.
-  - All database changes must pass the automated test suites (`cloud/scripts/test_db.sh` or `cloud/scripts/test_db.ps1`) prior to Staging/Production promotion.
+  - 100% of schema definitions, RLS policies, and triggers must be committed as reproducible SQL migrations in the control plane repository.
+  - All database changes must pass automated database test suites prior to Staging/Production promotion.
 
 ---
 
@@ -101,11 +101,11 @@ This document codifies the non-negotiable architectural boundaries, system invar
 - **Principle:** Development and staging host environments (VPS / local nodes) must prioritize stability and remain responsive.
 - **Enforcement:**
   - **Never run `cargo build --release` on resource-constrained host machines (VPS).** Heavy release compilation is reserved exclusively for GitHub Actions CI/CD runners.
-  - Local verification relies on incremental compilation (`cargo check --workspace`). Build artifacts must be pruned to maintain disk usage safely $\le 85\%$.
+  - Local verification relies on incremental compilation (`cargo check --manifest-path core/Cargo.toml --workspace`). Build artifacts must be pruned to maintain disk usage safely $\le 85\%$.
 
 ### Invariant Q2: Zero-Bypass Pre-Push Gates
 - **Principle:** Code merged into the primary branch (`main`) must be verified by automated quality gates.
 - **Enforcement:**
-  - **Rust Toolchain:** Must pass `cargo fmt --all --check`, `cargo check --workspace --all-targets`, and `cargo clippy --workspace --all-targets -- -D warnings`.
-  - **Console Frontend:** Must satisfy `pnpm check:type` (0 errors) and dependency catalog constraints (`"catalog:"`).
+  - **Rust Toolchain:** Must pass `cargo fmt --manifest-path core/Cargo.toml --all -- --check`, `cargo check --manifest-path core/Cargo.toml --workspace --all-targets`, and `cargo clippy --manifest-path core/Cargo.toml --workspace --all-targets -- -D warnings`.
+  - **Console Frontend:** Must satisfy `pnpm --dir console check:type` (0 errors) and dependency catalog constraints (`"catalog:"`).
   - **Security Gate:** Must pass automated Gitleaks secret verification with zero detected credential leaks.

@@ -1,79 +1,49 @@
-# Operon — Autonomous Agent Operational Directives
+# Operon — Agent Directives
 
-> **Contractual Authority:** [`./CONSTRAINTS.md`](./CONSTRAINTS.md) is the non-negotiable architectural contract. When modifying code, never weaken, bypass, or delete assertions to satisfy checks.  
+> **Contracts:** [`./CONSTRAINTS.md`](./CONSTRAINTS.md) (invariants) · [`./docs/GLOSSARY.md`](./docs/GLOSSARY.md) (mandatory domain terms). Never weaken or bypass assertions.
 
----
+## 1. Architecture
 
-## 1. System Mission & Architectural Model
+Two decoupled planes:
+1. **Device-Local Execution Plane:** Local `daemon` (`opn`, `:8765`) handling Chromium hardware sandboxing, `browser profile` / `browser session` isolation, and offline runs.
+2. **Cloud Orchestration Plane:** Supabase Postgres handling multi-`tenant` state, `SKIP LOCKED` job leases, and Vault KEK/DEK encryption.
 
-Operon is a **distributed automation mesh and stealth browser sandbox runtime in Rust**, coordinated by a **Supabase multi-tenant control plane** and managed via a **Vue 3 / Tauri v2 workstation UI**.
+**Precedence:** `CONSTRAINTS.md` → `docs/GLOSSARY.md` → DDL Schemas → `docs/specs/` & `docs/adr/` → Submodule `AGENTS.md` → Agent reasoning.
+- **Anti-Hallucination & Fail-Fast:** Never invent CLI flags, columns, or endpoints; never add shims or fallback chains to hide schema drift.
 
-The architecture operates across **Two Decoupled Planes**:
-1. **Device-Local Execution Plane:** Managed by the local CLI daemon (`opn`, port `8765`), handling deterministic Chromium hardware sandboxing, local profile isolation, and offline execution.
-2. **Distributed Cloud Orchestration Plane:** Managed by Supabase Postgres, handling multi-tenant state, fleet coordination via non-blocking lease claiming (`SKIP LOCKED`), and zero-knowledge credential encryption (Vault KEK/DEK).
+## 2. Subsystems
 
----
-
-## 2. Authority Hierarchy & Decision Precedence
-
-When encountering ambiguous requirements or conflicting patterns, agents must adhere strictly to this precedence hierarchy:
-
-```text
-./CONSTRAINTS.md (Contractual Invariants)
-       ↓
-Database Schemas & DDL (Data Integrity SSOT)
-       ↓
-Architecture SPECs (System & Component Design)
-       ↓
-Local Domain Directives (Subsystem READMEs)
-       ↓
-Agent Reasoning & Tool Verification
-```
-
-- **Anti-Hallucination Rule:** Never invent CLI flags, database columns, or API endpoints absent from schemas and SPECs. If an interface lacks documentary foundation, escalate it as a specification blocker before writing code.
-- **Fail-Fast Rule:** Never implement backward-compatibility shims, union types, or fallback chains to conceal schema drift. Raise clear, actionable runtime errors at the boundary.
-
----
-
-## 3. High-Level Subsystems Topology (Relative to Monorepo Root)
-
-| Subsystem | Relative Path | Core Technology | Architectural Responsibility |
+| Subsystem | Path | Stack | Role |
 | :--- | :--- | :--- | :--- |
-| **CLI Coordinator** | `./crates/cli` | Rust (Axum, Clap, Tokio) | Master binary (`opn`), daemon API (:8765), local automation engine. |
-| **Process Supervisor** | `./crates/worker` | Rust (Tokio, PostgREST) | Zero-zombie process supervisor & distributed cloud claim loop. |
-| **Stealth Sandbox** | `./crates/browser` | Rust (CDP, PRNG, WebSockets) | Antidetect Chromium launcher, hardware masking, and profile isolation. |
-| **Workstation UI** | `./console` | Vue 3, Shadcn UI, Tauri v2 | Central workstation GUI, preferences engine, and desktop wrapper. |
-| **Control Plane** | `./cloud` | Supabase, PostgreSQL, RLS, Vault | Core IAM and 8 isolated domain plugins (automations, workers, secrets...). |
-| **Alert & Incident Hub** | `tuquet/bot` (External Hub) | Node.js, CF Worker, grammY | Centralized error telemetry relay (Cloudflare) & Telegram ChatOps daemon.
-| **Production Tasks** | `./tasks` | Markdown & Workflows | Complex end-to-end production workflow plans (e.g. HRMS automation). |
+| **CLI** | `./core/crates/cli` | Rust (Axum, Clap, Tokio) | `opn` binary, `daemon` API (`:8765`) (`tuquet/core`). |
+| **Worker** | `./core/crates/worker` | Rust (Tokio, PostgREST) | Process supervisor & cloud claim loop (`tuquet/core`). |
+| **Browser** | `./core/crates/browser` | Rust (CDP, PRNG) | Stealth Chromium launcher & `browser profile` isolation (`tuquet/core`). |
+| **Console** | `./console` | Vue 3, Shadcn, Tauri v2 | `host shell`, `kernel`, `micro-app` modules (`tuquet/console`). |
+| **Docs** | `./docs` | Markdown, Kanban | Glossary, ADRs, specs, roadmaps, phase boards. |
+| **CI/CD** | `./.github` | GitHub Actions | Centralized workflows for `core`, `console`, umbrella. |
 
----
+## 3. Local CI/CD & Verification
 
-## 4. Agent Operational Directives (Mindset & Boundaries)
+Run locally before pushing (mirrors `.github/workflows/ci.yml` & `console-quality.yml`; tasks in [`.vscode/tasks.json`](./.vscode/tasks.json) write UTF-8 logs to `.logs/ci-core.log` & `.logs/ci-console.log`, follow with `Get-Content .logs/ci-core.log -Encoding utf8 -Wait`):
 
-### 1. Minimal Invasive Change (Occam's Razor)
-- Solve the user's objective with the smallest, most targeted architectural delta.
-- Avoid architectural churn: do not refactor working code outside the direct scope of the task.
+- **Quick check (per-edit):**
+  - Core: `cargo check --manifest-path core/Cargo.toml --workspace`
+  - Console: `pnpm --dir console check:type`
+- **Local CI (`ci: core`):**
+  ```bash
+  cargo fmt --manifest-path core/Cargo.toml --all -- --check
+  cargo clippy --manifest-path core/Cargo.toml --workspace --all-targets -- -D warnings
+  cargo test --manifest-path core/Cargo.toml --workspace --lib --bins --tests
+  ```
+- **Local CI (`ci: console`):**
+  ```bash
+  pnpm --dir console release:check && pnpm --dir console check && pnpm --dir console lint && pnpm --dir console test:unit
+  ```
+- **Docker:** `docker compose config -q`
 
-### 2. Evidence-Driven Completion (Run & Verify First)
-- A task is considered complete **only** when backed by concrete verification from real tool output (`cargo check`, `cargo fmt -- --check`, `cargo clippy`, `pnpm check:type`, or automated test suites).
-- Never report a feature or fix as working without executing the corresponding verification command.
+## 4. Guardrails
 
-### 3. Local-First & Zero Unsolicited Side-Effects
-- All development and testing run locally.
-- **Never run `git push` or trigger external deployments without explicit operator instruction.**
-- Preserve clean git working trees with atomic commits adhering to Conventional Commits.
-
-### 4. VPS Resource Stewardship (3.8GB RAM / 2 Cores)
-- **NEVER execute `cargo build --release` on host environments.** Release packaging is reserved strictly for GitHub Actions CI/CD.
-- Rely on incremental checks (`cargo check --workspace`). Always clean build artifacts (`rm -rf target/`) to maintain disk usage $\le 85\%$.
-
----
-
-## 5. Progressive Discovery Workflow
-
-To prevent context bloating and preserve token bandwidth:
-- **Do not load all subdirectories simultaneously.**
-- When working within a specific domain, progressively discover its dedicated directives:
-  - Working on Supabase / DDL: inspect `./cloud/README.md` and `./cloud/supabase/plugins/`.
-  - Working on Workstation UI: inspect `./console/` guidelines.
+- **Minimal change:** Smallest diff that solves the task; no unrelated refactoring.
+- **Commit & push:** When finishing a coding task, only commit locally with `git commit --no-verify`; only push when the user explicitly requests it in the latest prompt. Never deploy without explicit user instruction.
+- **VPS limits (3.8GB RAM / 2 Cores):** **NEVER** run `cargo build --release` on host; clean `core/target/` if disk $> 85\%$.
+- **Progressive discovery:** Inspect `./docs/GLOSSARY.md`, `./core/AGENTS.md`, or `./console/AGENTS.md` only when working in that domain.

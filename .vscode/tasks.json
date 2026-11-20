@@ -2,207 +2,113 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "local: <daemon> start",
+      "label": "ci: core",
       "type": "shell",
-      "command": "cargo",
-      "args": ["run", "--bin", "opn", "--", "worker", "start", "-H", "127.0.0.1", "-p", "8765"],
+      "command": "New-Item -ItemType Directory -Force ../.logs | Out-Null; [Console]::OutputEncoding = [Text.Encoding]::UTF8; & { cargo fmt --all -- --check && cargo clippy --workspace --all-targets --quiet -- -D warnings && cargo test --workspace --lib --bins --tests -q } *>&1 | Where-Object { $_ -notmatch '^\\.+(\\s+\\d+/\\d+)?$' } | Tee-Object -FilePath ../.logs/ci-core.log; exit $LASTEXITCODE",
+      "options": {
+        "cwd": "${workspaceFolder}/core",
+        "shell": { "executable": "pwsh", "args": ["-NoProfile", "-Command"] }
+      },
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "ci: console",
+      "type": "shell",
+      "command": "New-Item -ItemType Directory -Force ../.logs | Out-Null; [Console]::OutputEncoding = [Text.Encoding]::UTF8; & { pnpm install --frozen-lockfile && pnpm release:check && pnpm check && pnpm lint && pnpm test:unit -- --reporter=dot } *>&1 | Tee-Object -FilePath ../.logs/ci-console.log; exit $LASTEXITCODE",
+      "options": {
+        "cwd": "${workspaceFolder}/console",
+        "env": {
+          "NO_COLOR": "1",
+          "CI": "true",
+          "TURBO_OUTPUT_LOGS": "errors-only"
+        },
+        "shell": { "executable": "pwsh", "args": ["-NoProfile", "-Command"] }
+      },
+      "group": "test",
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "ci: all",
+      "dependsOrder": "sequence",
+      "dependsOn": ["ci: core", "ci: console"],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "core: daemon start",
+      "type": "shell",
+      "command": "cargo run --bin opn -- worker start -H 127.0.0.1 -p 8765",
+      "options": { "cwd": "${workspaceFolder}/core" },
       "isBackground": true,
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
+      "group": { "kind": "build", "isDefault": true },
       "problemMatcher": []
     },
     {
-      "label": "local: <daemon> status",
+      "label": "core: daemon stop",
       "type": "shell",
-      "command": "cargo",
-      "args": ["run", "--bin", "opn", "--", "worker", "status"],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
+      "command": "cargo run --bin opn -- worker stop",
+      "options": { "cwd": "${workspaceFolder}/core" },
       "problemMatcher": []
     },
     {
-      "label": "local: <daemon> stop",
+      "label": "core: check",
       "type": "shell",
-      "command": "cargo",
-      "args": ["run", "--bin", "opn", "--", "worker", "stop"],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
+      "command": "cargo check --workspace --all-targets",
+      "options": { "cwd": "${workspaceFolder}/core" },
       "problemMatcher": []
     },
     {
-      "label": "local: <cli> dev",
+      "label": "core: fmt",
       "type": "shell",
-      "command": "cargo",
-      "args": ["run", "--bin", "opn"],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
+      "command": "cargo fmt --all",
+      "options": { "cwd": "${workspaceFolder}/core" },
       "problemMatcher": []
     },
     {
-      "label": "local: <cli> env:check",
+      "label": "core: test",
       "type": "shell",
-      "command": "cargo",
-      "args": ["run", "--bin", "opn", "--", "env", "--check"],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
+      "command": "cargo test --workspace --lib --bins --tests",
+      "options": { "cwd": "${workspaceFolder}/core" },
+      "group": { "kind": "test", "isDefault": true },
       "problemMatcher": []
     },
     {
-      "label": "local: <cli> install",
+      "label": "console: dev",
       "type": "shell",
-      "command": "cargo",
-      "args": ["install", "--path", "crates/cli", "--bin", "opn", "--debug", "--force", "--root", "${userHome}/.operon"],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
-      "problemMatcher": ["$rustc"]
-    },
-    {
-      "label": "local: <workspace> check",
-      "type": "shell",
-      "command": "cargo",
-      "args": ["check", "--workspace", "--all-targets"],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
-      "problemMatcher": ["$rustc"]
-    },
-    {
-      "label": "local: <workspace> clippy",
-      "type": "shell",
-      "command": "cargo",
-      "args": ["clippy", "--workspace", "--all-targets"],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
-      "problemMatcher": ["$rustc"]
-    },
-    {
-      "label": "local: <workspace> fmt:check",
-      "type": "shell",
-      "command": "cargo",
-      "args": ["fmt", "--all", "--", "--check"],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
+      "command": "pnpm dev",
+      "options": { "cwd": "${workspaceFolder}/console" },
+      "isBackground": true,
       "problemMatcher": []
     },
     {
-      "label": "local: <workspace> fmt",
+      "label": "console: dev:desktop",
       "type": "shell",
-      "command": "cargo",
-      "args": ["fmt", "--all"],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
+      "command": "pnpm dev:desktop",
+      "options": { "cwd": "${workspaceFolder}/console" },
+      "isBackground": true,
       "problemMatcher": []
     },
     {
-      "label": "local: <workspace> test",
+      "label": "console: check:type",
       "type": "shell",
-      "command": "cargo",
-      "args": ["test", "--workspace"],
-      "group": {
-        "kind": "test",
-        "isDefault": true
-      },
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
-      "problemMatcher": ["$rustc"]
+      "command": "pnpm check:type",
+      "options": { "cwd": "${workspaceFolder}/console" },
+      "problemMatcher": ["$tsc"]
     },
     {
-      "label": "local: <cli> check",
+      "label": "console: lint",
       "type": "shell",
-      "command": "cargo",
-      "args": ["check", "--bin", "opn"],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
-      "problemMatcher": ["$rustc"]
+      "command": "pnpm lint",
+      "options": { "cwd": "${workspaceFolder}/console" },
+      "problemMatcher": []
     },
     {
-      "label": "local: <cli> test",
+      "label": "console: test",
       "type": "shell",
-      "command": "cargo",
-      "args": ["test", "-p", "operon"],
+      "command": "pnpm test:unit",
+      "options": { "cwd": "${workspaceFolder}/console" },
       "group": "test",
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
-      "problemMatcher": ["$rustc"]
-    },
-    {
-      "label": "local: <worker> test",
-      "type": "shell",
-      "command": "cargo",
-      "args": ["test", "-p", "worker"],
-      "group": "test",
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
-      "problemMatcher": ["$rustc"]
-    },
-    {
-      "label": "local: <browser> test",
-      "type": "shell",
-      "command": "cargo",
-      "args": ["test", "-p", "browser"],
-      "group": "test",
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
-      "problemMatcher": ["$rustc"]
-    },
-    {
-      "label": "local: <workspace> clean",
-      "type": "shell",
-      "command": "cargo",
-      "args": ["clean"],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      },
       "problemMatcher": []
     }
   ]

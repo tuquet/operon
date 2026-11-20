@@ -1,7 +1,7 @@
 [submodule "console"]
 	path = console
 	url = https://github.com/tuquet/console.git
-	branch = feat/dashboard-overview-platform-unification
+	branch = main
 [submodule "core"]
 	path = core
 	url = https://github.com/tuquet/core.git

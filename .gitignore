@@ -9,6 +9,7 @@ Cargo.lock
 
 # Temporary & Cache Directories
 *.log
+.logs/
 *.tmp
 scratch/
 .idea/
