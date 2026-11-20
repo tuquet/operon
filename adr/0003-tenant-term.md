@@ -1,31 +1,21 @@
 ---
 id: ADR-0003
-title: Use tenant everywhere instead of workspace
+title: Canonical Tenant Terminology
 status: accepted
 date: 2026-11-19
-apps: [core, operon, console]
 ---
 
-# ADR-0001: Use `tenant` everywhere instead of `workspace`
+# ADR-0003: Canonical Tenant Terminology
 
 ## Context
-
-The codebase mixed two names for the same multi-tenant boundary:
-- Cloud DB (`public.tenants`), constants (`TENANT_STATUS`), `/tenants` routes, and daemon APIs used **`tenant`**.
-- Some UI widgets (`WorkspaceSelector`), stores (`useWorkspaceStore`), and draft columns used **`workspace`**.
-
-Having two names caused confusion and schema drift.
+The ecosystem mixed two terms (`tenant` and `workspace`) for the same multi-tenant isolation boundary across schemas, APIs, and UI, causing ambiguity and schema drift.
 
 ## Decision
+Standardize **`tenant`** as the sole domain term across all layers:
+1. **Data & APIs:** All schemas, foreign keys, and endpoints scope resources by `tenant`.
+2. **Kernel & State:** Host context and client stores expose `tenant` as the active isolation boundary.
+3. **UI & Copy:** All selectors, routes, and user-facing labels use `tenant` (no `workspace` aliases).
 
-Use **`tenant`** as the only domain term across all repos:
-1. **DB & API:** `tenant_id`, `tenantId`, `DEFAULT_TENANT_ID = "local-default"`, `tenants` / `tenant_members`.
-2. **Kernel & Stores:** `KernelTenantContext` (`kernel.tenant`), `useTenantStore`, event `opn:tenant-changed`.
-3. **UI & Locales:** `TenantSelector`, `TenantCreateDialog`, `tenantSelectorButtonPosition`, `page.tenant.*` / `tenants.*`.
-
-Remove all `workspace` aliases from domain code.
-
-## Result
-
-- One consistent model from Postgres and SQLite up to Vue UI.
-- `workspace` remains only in package-manager config (`pnpm-workspace.yaml`, `workspace:*`, Cargo workspace).
+## Consequences
+- One consistent ubiquitous language from storage to UI.
+- `workspace` is permitted only for build tooling (package managers, Cargo) and external product names.
