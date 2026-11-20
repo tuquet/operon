@@ -1,5 +1,5 @@
 ---
-id: SPEC-001
+id: SPEC-003
 title: Tenant Management & Selector Widget
 app: core
 status: implemented
@@ -8,7 +8,7 @@ updated: 2026-11-20
 related_adrs: [ADR-0001]
 ---
 
-# SPEC-001: Tenant Management & Selector Widget
+# SPEC-003: Tenant Management & Selector Widget
 
 ## 1. Goal & Scope
 

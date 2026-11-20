@@ -1,5 +1,5 @@
 ---
-id: SPEC-002
+id: BROWSERS-001
 title: Browser Management CRUD & Lifecycle
 app: core
 status: implemented
@@ -8,7 +8,7 @@ updated: 2026-11-20
 related_adrs: [ADR-0001]
 ---
 
-# SPEC-002: Browser Management CRUD & Lifecycle
+# BROWSERS-001: Browser Management CRUD & Lifecycle
 
 ## 1. Goal & Scope
 
