@@ -1,6 +1,6 @@
 ---
 id: SPEC-NNN
-title: <Feature / System Title>
+title: <Short Title>
 app: core | operon | console | bot | id | store
 status: draft
 owner: <name>
@@ -9,34 +9,30 @@ updated: YYYY-MM-DD
 related_adrs: []
 ---
 
-# SPEC-NNN: <Title>
+# SPEC-NNN: <Short Title>
 
-## 1. Mục tiêu & Phạm vi (Goal & Scope)
-- **Bài toán:** ...
-- **Trong phạm vi (In-Scope):** ...
-- **Ngoài phạm vi (Out-of-Scope):** ...
+## 1. Goal & Scope
+- **Problem:** What problem are we solving?
+- **In scope:** Minimal set of changes needed.
+- **Out of scope:** What we explicitly skip.
 
-## 2. Kiến trúc & Luồng dữ liệu (Architecture & Flow)
+## 2. Flow
 
 ```mermaid
 flowchart LR
-    A[Client] --> B[Service]
+    A[Caller] --> B[Handler]
 ```
 
-## 3. Data Model & Contracts
+## 3. Data Model
 
-| Field | Type | Required | Default | Validation / Notes |
+| Field | Type | Required | Default | Notes |
 | --- | --- | --- | --- | --- |
-| `id` | `string` | Auto | UUID | ... |
-| `tenantId` | `string` | Yes | `local-default` | ... |
+| `id` | `string` | Auto | UUID | Immutable |
+| `tenantId` | `string` | Yes | `local-default` | Owning tenant |
 
-## 4. API / UI / CLI Behavior
-- **Create:** ...
-- **Read / Filter:** ...
-- **Update:** ...
-- **Delete & Guardrails:** ...
-- **Error Handling (`400` / `404` / `409`):** ...
+## 4. Behavior & Guardrails
+- **Create / Read / Update / Delete:** Exact behavior and validation.
+- **Errors (`400` / `404` / `409`):** Explicit failure rules, no silent fallbacks.
 
-## 5. Kế hoạch kiểm thử (Verification Plan)
-- Unit tests: ...
-- Integration / E2E tests: ...
+## 5. Checks
+- Tests and lint/typecheck commands that must pass.

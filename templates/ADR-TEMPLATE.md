@@ -1,22 +1,22 @@
 ---
 id: ADR-NNNN
-title: <Short Noun Phrase Decision>
+title: <Short Decision Title>
 status: proposed | accepted | deprecated | superseded
 date: YYYY-MM-DD
 apps: [core]
 ---
 
-# ADR-NNNN: <Title>
+# ADR-NNNN: <Short Decision Title>
 
-## Bối cảnh (Context)
-Vấn đề kỹ thuật hoặc kiến trúc cần giải quyết là gì?
+## Context
+What is the problem or trade-off?
 
-## Các phương án đã cân nhắc (Options Considered)
-1. **Phương án A:** Ưu / nhược điểm...
-2. **Phương án B:** Ưu / nhược điểm...
+## Options
+1. **Option A:** Pros and cons.
+2. **Option B:** Pros and cons.
 
-## Quyết định (Decision)
-Chọn phương án nào và lý do cốt lõi.
+## Decision
+What we chose and why.
 
-## Hệ quả (Consequences)
-Ảnh hưởng tới các repo, migration, hoặc quy trình vận hành.
+## Result
+Impact on code, data, or workflow.
