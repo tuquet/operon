@@ -1,15 +1,15 @@
 ---
-id: ROADMAP-005
+id: ROADMAP-006
 title: Browser Management Phased Roadmap
 status: implemented
 created: 2026-11-20
 updated: 2026-11-20
-depends_on: [ROADMAP-004]
+depends_on: [ROADMAP-004, ROADMAP-005]
 ---
 
-# ROADMAP-005: Browser Management
+# ROADMAP-006: Browser Management
 
-Execution sequence for [005-browsers/001-crud.md](../specs/005-browsers/001-crud.md) after [004-data-sync.md](./004-data-sync.md) is ready.
+Execution sequence for [006-browsers/001-crud.md](../specs/006-browsers/001-crud.md) after [004-data-sync.md](./004-data-sync.md) and [005-cli.md](./005-cli.md) are ready.
 
 ```mermaid
 flowchart LR
