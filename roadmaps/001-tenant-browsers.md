@@ -8,7 +8,7 @@ updated: 2026-11-20
 
 # ROADMAP-001: Tenant & Browser Management
 
-Execution sequence for [SPEC-001](../specs/core/SPEC-001-tenant-and-widget.md) and [SPEC-002](../specs/core/SPEC-002-browser-management-crud.md) across `operon` and `console`.
+Execution sequence for [001-tenant.md](../specs/core/001-tenant.md) and [002-browsers.md](../specs/core/002-browsers.md) across `operon` and `console`.
 
 ```mermaid
 flowchart LR

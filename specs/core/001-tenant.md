@@ -12,7 +12,7 @@ related_adrs: [ADR-0001]
 
 ## 1. Goal & Scope
 
-Unify multi-tenant state across `console` (`@operon/kernel`, `apps/shell`, `apps/tenants`, `packages/local-db`) and `operon` (`crates/cli`) using `tenant` ([ADR-0001](../../adr/ADR-0001-canonical-tenant-terminology.md)).
+Unify multi-tenant state across `console` (`@operon/kernel`, `apps/shell`, `apps/tenants`, `packages/local-db`) and `operon` (`crates/cli`) using `tenant` ([ADR-0001](../../adr/0001-tenant-term.md)).
 
 - **In scope:** Reactive `kernel.tenant` context, Shell tenant store (Local + Cloud CRUD), `TenantSelector` header widget, `/tenants` micro-app, and daemon `local-*` tenant switching.
 - **Out of scope:** Cloud billing/member invite UI changes.
