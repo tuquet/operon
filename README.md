@@ -46,6 +46,7 @@ specs-operon/
 | ID | Title | Status |
 | --- | --- | --- |
 | 001 | [Browser Management CRUD & Lifecycle](./specs/browsers/001-crud.md) | `implemented` |
+| 002 | [Antidetect Fingerprint Browser Runtime](./specs/browsers/002-antidetect-runtime.md) | `implemented` |
 
 ### App Specs (`cli`)
 | ID | Title | Status |
