@@ -1,0 +1,10 @@
+{
+  "repository": "tuquet/console",
+  "stateBranch": "release-state",
+  "platforms": ["windows-x86_64"],
+  "nightlyRetention": {
+    "keep": 14,
+    "days": 30
+  },
+  "rustToolchain": "1.99.1"
+}

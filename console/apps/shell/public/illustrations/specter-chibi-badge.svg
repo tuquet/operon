@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="zincBgChibi" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18181b" />
+      <stop offset="60%" stop-color="#09090b" />
+      <stop offset="100%" stop-color="#020408" />
+    </linearGradient>
+
+    <linearGradient id="zincBorderChibi" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3f3f46" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#27272a" stop-opacity="0.25" />
+    </linearGradient>
+
+    <linearGradient id="zincGhostBodyChibi" x1="30%" y1="5%" x2="70%" y2="95%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="35%" stop-color="#f4f4f5" />
+      <stop offset="70%" stop-color="#e4e4e7" />
+      <stop offset="100%" stop-color="#cbd5e1" />
+    </linearGradient>
+
+    <filter id="chibiBadgeAura" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="26" />
+    </filter>
+
+    <filter id="ghostAuraChibi" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.6" />
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#ffffff" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- Khung nền Squircle -->
+  <rect 
+    x="16" 
+    y="16" 
+    width="480" 
+    height="480" 
+    rx="108" 
+    ry="108" 
+    fill="url(#zincBgChibi)" 
+    stroke="url(#zincBorderChibi)" 
+    stroke-width="2.5" 
+  />
+
+  <circle cx="260" cy="255" r="115" fill="#f4f4f5" opacity="0.06" filter="url(#chibiBadgeAura)" />
+
+  <g filter="url(#ghostAuraChibi)">
+    <path 
+      d="M 245,115 
+         C 170,115 150,175 155,250 
+         C 158,285 168,340 166,368 
+         C 164,388 120,358 115,358 
+         C 112,358 120,418 205,418 
+         C 225,418 220,438 245,446 
+         C 288,455 315,420 324,398 
+         C 350,385 380,320 412,238 
+         C 400,216 370,246 356,255 
+         C 360,208 330,115 245,115 Z" 
+      fill="url(#zincGhostBodyChibi)" 
+      stroke="#18181b" 
+      stroke-width="7" 
+      stroke-linejoin="round"
+    />
+    <path 
+      d="M 205,290 
+         C 218,318 240,338 262,320 
+         C 268,315 262,295 236,272" 
+      fill="none" 
+      stroke="#18181b" 
+      stroke-width="7" 
+      stroke-linecap="round" 
+      stroke-linejoin="round"
+    />
+  </g>
+
+  <!-- Highlight bóng mờ & má hồng -->
+  <path d="M 200,152 C 215,130 242,125 264,128" fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round" opacity="0.9" />
+  <ellipse cx="192" cy="170" rx="4" ry="8" transform="rotate(-30 192 170)" fill="#ffffff" opacity="0.85" />
+  <ellipse cx="204" cy="246" rx="12" ry="7" fill="#a1a1aa" opacity="0.35" />
+  <ellipse cx="328" cy="238" rx="12" ry="7" fill="#a1a1aa" opacity="0.35" />
+
+  <!-- Mắt sao & nụ cười -->
+  <ellipse cx="246" cy="204" rx="20" ry="24" fill="#09090b" />
+  <path d="M 250,190 Q 250,198 258,198 Q 250,198 250,206 Q 250,198 242,198 Q 250,198 250,190 Z" fill="#ffffff" />
+  <circle cx="240" cy="214" r="2.8" fill="#ffffff" />
+
+  <ellipse cx="316" cy="196" rx="20" ry="24" fill="#09090b" />
+  <path d="M 320,182 Q 320,190 328,190 Q 320,190 320,198 Q 320,190 312,190 Q 320,190 320,182 Z" fill="#ffffff" />
+  <circle cx="310" cy="206" r="2.8" fill="#ffffff" />
+
+  <g>
+    <path d="M 260,240 C 263,230 312,223 318,235 C 321,260 272,284 260,240 Z" fill="#09090b" />
+    <path d="M 272,255 C 284,249 302,247 311,250 C 305,266 280,269 272,255 Z" fill="#a1a1aa" />
+  </g>
+</svg>

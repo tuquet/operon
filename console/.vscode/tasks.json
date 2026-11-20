@@ -1,0 +1,262 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "local: <web> dev",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["-F", "@operon/shell", "dev"],
+      "isBackground": true,
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "local: <web> dev:automation",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "dev:automation"],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "local: <web> dev:system",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "dev:system"],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "local: <web> dev:tenants",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "dev:tenants"],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "local: <web> dev:playground",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "dev:playground"],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "local: <tauri> dev",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["-F", "@operon/shell", "tauri:dev"],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "local: <tauri> check",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "tauri:check"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": ["$rustc"]
+    },
+    {
+      "label": "local: <tauri> build:exe",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["-F", "@operon/shell", "tauri:build:exe"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "local: <web> check",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "check"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "local: <web> check:type",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "check:type"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "local: <web> lint",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "lint"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "local: <web> format",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "format"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "local: <web> test",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "test:unit"],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "local: <web> check:console",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "check:console"],
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "local: <db> studio",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "db:studio"],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "local: <db> generate",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "db:generate"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "local: <db> push",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "db:push"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "local: <db> test-sync",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "db:test-sync"],
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "local: <web> build",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["-F", "@operon/shell", "build"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "local: <workspace> clean",
+      "type": "shell",
+      "command": "pnpm",
+      "args": ["run", "clean"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+name: 'Preview: desktop'
+
+on:
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+      - '.changeset/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Unsigned PR preview
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          path: console
+          persist-credentials: false
+      - uses: ./console/.github/actions/setup-desktop
+        with:
+          save-cache: ${{ github.ref == 'refs/heads/main' }}
+      - name: Build preview without release signing credentials
+        working-directory: console/apps/shell
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          OPERON_SKIP_WINRES: '1'
+        shell: pwsh
+        run: |
+          Remove-Item -Force src-tauri/target/x86_64-pc-windows-msvc/release/workstation.exe, src-tauri/target/x86_64-pc-windows-msvc/release/Operon.exe -ErrorAction SilentlyContinue
+          pnpm tauri build --ci --target x86_64-pc-windows-msvc --no-bundle -- --locked
+      - working-directory: console
+        run: pnpm release:package --preview
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: preview-${{ github.event.pull_request.number || github.run_number }}
+          path: console/dist-release/
+          if-no-files-found: error
+          retention-days: 7

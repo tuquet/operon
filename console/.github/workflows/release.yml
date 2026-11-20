@@ -1,0 +1,96 @@
+name: 'Release: desktop binaries'
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  quality:
+    name: Quality
+    uses: ./.github/workflows/quality.yml
+
+  build:
+    name: Signed Windows x64
+    needs: quality
+    runs-on: windows-latest
+    environment: release-build
+    outputs:
+      tag: ${{ steps.release.outputs.tag }}
+      channel: ${{ steps.release.outputs.channel }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          path: console
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: ./console/.github/actions/setup-desktop
+        with:
+          save-cache: 'true'
+          cache-bundler-tools: 'true'
+      - name: Verify checkout and prepare release identity
+        id: release
+        working-directory: console
+        run: |
+          pnpm desktop:check
+          pnpm release:prepare
+      - name: Build signed updater artifacts
+        working-directory: console/apps/shell
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+          OPERON_SKIP_WINRES: '1'
+        shell: pwsh
+        run: |
+          Remove-Item -Recurse -Force src-tauri/target/x86_64-pc-windows-msvc/release/bundle, src-tauri/target/x86_64-pc-windows-msvc/release/workstation.exe, src-tauri/target/x86_64-pc-windows-msvc/release/Operon.exe -ErrorAction SilentlyContinue
+          $configPath = (Resolve-Path ../../.temp/release/tauri.json).Path
+          pnpm tauri build --ci --target x86_64-pc-windows-msvc --bundles nsis --config $configPath -- --locked
+      - name: Package and verify signatures, checksums and manifests
+        working-directory: console
+        shell: pwsh
+        run: |
+          pnpm release:package
+          pnpm release:verify
+          Remove-Item -Recurse -Force apps/shell/src-tauri/target/x86_64-pc-windows-msvc/release/bundle, apps/shell/src-tauri/target/x86_64-pc-windows-msvc/release/workstation.exe, apps/shell/src-tauri/target/x86_64-pc-windows-msvc/release/Operon.exe -ErrorAction SilentlyContinue
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: release-${{ steps.release.outputs.tag }}
+          path: console/dist-release/
+          if-no-files-found: error
+          retention-days: 14
+
+  publish:
+    name: Publish immutable release
+    needs: build
+    runs-on: ubuntu-latest
+    environment: ${{ needs.build.outputs.channel == 'stable' && 'release-stable' || 'release-prerelease' }}
+    permissions:
+      contents: write
+    concurrency:
+      group: release-registry
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .node-version
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: release-${{ needs.build.outputs.tag }}
+          path: dist-release
+      - name: Verify and publish draft, then advance channel
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/release/publish.mjs

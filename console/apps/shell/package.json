@@ -1,0 +1,66 @@
+{
+  "name": "@operon/shell",
+  "version": "5.8.0",
+  "homepage": "https://operon.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/operon/console.git",
+    "directory": "apps/shell"
+  },
+  "license": "MIT",
+  "author": "operon",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm vite build --mode production",
+    "build:analyze": "pnpm vite build --mode analyze",
+    "dev": "pnpm vite --mode development",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "tauri:build": "tauri build",
+    "tauri:build:exe": "tauri build --no-bundle",
+    "tauri:dev": "tauri dev",
+    "typecheck": "vue-tsc --noEmit --skipLibCheck"
+  },
+  "imports": {
+    "#/*": "./src/*"
+  },
+  "dependencies": {
+    "@lucide/vue": "catalog:",
+    "@operon-core/shadcn-ui": "workspace:*",
+    "@operon/access": "workspace:*",
+    "@operon/automation": "workspace:*",
+    "@operon/common-ui": "workspace:*",
+    "@operon/constants": "workspace:*",
+    "@operon/hooks": "workspace:*",
+    "@operon/icons": "workspace:*",
+    "@operon/kernel": "workspace:*",
+    "@operon/layouts": "workspace:*",
+    "@operon/locales": "workspace:*",
+    "@operon/playground": "workspace:*",
+    "@operon/preferences": "workspace:*",
+    "@operon/stores": "workspace:*",
+    "@operon/styles": "workspace:*",
+    "@operon/system": "workspace:*",
+    "@operon/tenants": "workspace:*",
+    "@operon/types": "workspace:*",
+    "@operon/utils": "workspace:*",
+    "@sentry/vue": "catalog:",
+    "@tauri-apps/api": "catalog:",
+    "@tauri-apps/plugin-deep-link": "catalog:",
+    "@tauri-apps/plugin-dialog": "catalog:",
+    "@tauri-apps/plugin-notification": "catalog:",
+    "@tauri-apps/plugin-opener": "catalog:",
+    "@tauri-apps/plugin-process": "catalog:",
+    "@tauri-apps/plugin-store": "catalog:",
+    "@tauri-apps/plugin-updater": "catalog:",
+    "@vueuse/core": "catalog:",
+    "dayjs": "catalog:",
+    "pinia": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "catalog:",
+    "vue-tsc": "catalog:"
+  }
+}

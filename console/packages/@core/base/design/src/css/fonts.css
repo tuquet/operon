@@ -1,0 +1,12 @@
+/* Self-hosted Sans-serif font families (Zero Google CDN Latency) */
+
+/* 1. Inter (Primary Default Sans-serif — Google Fonts Inter WOFF2, Latin + Vietnamese) */
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+
+/* 2. Roboto (Google Classic Sans-serif) */
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';

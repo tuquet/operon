@@ -1,0 +1,27 @@
+# — Agent Rules for Cursor & AI Assistants
+
+Always follow the engineering guidelines defined in `AGENTS.md`.
+
+## ZERO-WASTE CI GATE (PRE-PUSH VERIFICATION)
+Do NOT push code to GitHub before completing and verifying all 3 local checks:
+1. `pnpm check:type` (0 errors)
+2. `pnpm run lint` (0 errors, all files formatted)
+3. `pnpm run build:workstation` (11 packages build successfully)
+
+## PNPM CATALOG RULE
+- Dependencies added to `apps/workstation/package.json` MUST use `"catalog:"`.
+- Versions must be defined in `pnpm-workspace.yaml` under `catalog:`.
+- Never use direct version strings like `"0.2.1"` in package.json.
+- Remove any unused catalog items to avoid `pnpm/yaml-no-unused-catalog-item`.
+
+## CI MINUTES CONSERVATION
+- Add `[skip ci]` or `[ci skip]` in commit messages for any docs, plans, scratch files, or non-code changes.
+- Batch commits atomically before pushing. Never micro-push single-line edits.
+- Use `gh run list` and `gh run cancel <id>` to cancel redundant or hanging CI runs immediately.
+
+## UI COMPONENT & SHADCN ARCHITECTURE GUIDELINES
+- Strict SSOT: Always follow the guidelines defined in `skills/shadcn-vue` and `skills/shadcn-compound-clean`.
+- Never invent custom components or non-standard props in `@operon-core/shadcn-ui`.
+- Enforce Compound Component Pattern: No monolithic props (`isOpen`, `content`, `actions`, `footer`). Use `<DialogHeader>`, `<DialogTitle>`, `<DialogContent>`, `<DialogFooter>`.
+- Standardize Reka UI Event Contracts: Use `v-model:open` / `@update:open` and `v-model` / `@update:model-value`. Never invent `@change` or `@toggle`.
+- Variants First: Use `variant="..."` and `size="..."` props. Avoid overriding styles with manual inline utility classes.

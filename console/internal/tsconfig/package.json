@@ -1,0 +1,25 @@
+{
+  "name": "@operon/tsconfig",
+  "version": "5.8.0",
+  "private": true,
+  "homepage": "https://github.com/operon/console",
+  "bugs": "https://github.com/operon/console/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/operon/console.git",
+    "directory": "internal/tsconfig"
+  },
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "base.json",
+    "library.json",
+    "node.json",
+    "web-app.json",
+    "web.json"
+  ],
+  "dependencies": {
+    "@operon/types": "workspace:*",
+    "vite": "catalog:"
+  }
+}

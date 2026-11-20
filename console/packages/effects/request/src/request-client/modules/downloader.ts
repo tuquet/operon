@@ -1,0 +1,60 @@
+import type { RequestClient } from '../request-client';
+import type { RequestClientConfig } from '../types';
+
+type DownloadRequestConfig = Omit<RequestClientConfig, 'responseReturn'> & {
+  /**
+   * Define expected return data type.
+   * raw: Raw AxiosResponse including headers, status, etc.
+   * body: Returns only the response body (Blob)
+   */
+  responseReturn?: 'body' | 'raw';
+};
+
+class FileDownloader {
+  private client: RequestClient;
+
+  constructor(client: RequestClient) {
+    this.client = client;
+  }
+  /**
+   * Download file
+   * @param url Full file URL
+   * @param config Request configuration, optional.
+   * @returns If config.responseReturn is 'body', returns Blob (default); otherwise returns RequestResponse<Blob>
+   */
+  public async download<T = Blob>(
+    url: string,
+    config?: DownloadRequestConfig,
+  ): Promise<T> {
+    const finalConfig: DownloadRequestConfig = {
+      responseReturn: 'body',
+      method: 'GET',
+      ...config,
+      responseType: 'blob',
+    };
+
+    // Prefer a generic request if available; otherwise, dispatch to method-specific calls.
+    const method = (finalConfig.method || 'GET').toUpperCase();
+    const clientAny = this.client as any;
+
+    if (typeof clientAny.request === 'function') {
+      return await clientAny.request(url, finalConfig);
+    }
+    const lower = method.toLowerCase();
+
+    if (typeof clientAny[lower] === 'function') {
+      if (['POST', 'PUT'].includes(method)) {
+        const { data, ...rest } = finalConfig as Record<string, any>;
+        return await clientAny[lower](url, data, rest);
+      }
+
+      return await clientAny[lower](url, finalConfig);
+    }
+
+    throw new Error(
+      `RequestClient does not support method "${method}". Please ensure the method is properly implemented in your RequestClient instance.`,
+    );
+  }
+}
+
+export { FileDownloader };

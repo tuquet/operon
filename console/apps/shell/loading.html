@@ -1,0 +1,326 @@
+<style data-app-loading="inject-css">
+  html {
+    line-height: 1.15;
+  }
+
+  .loading {
+    --hl-plate: #ffffff;
+    --hl-hi: #232327;
+    --hl-edge: #a4a4ac;
+    --hl-mid: #c3c3c9;
+    --hl-lo: #e0e0e4;
+    --hl-muted: #6f6f78;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--hl-plate);
+    color: var(--hl-hi);
+    font-family:
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      'Segoe UI',
+      sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .dark .loading {
+    --hl-plate: #08090a;
+    --hl-hi: #d0d6e0;
+    --hl-edge: #5b5d64;
+    --hl-mid: #3e3e44;
+    --hl-lo: #29292d;
+    --hl-muted: #8a8c95;
+  }
+
+  .loading.hidden {
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .opn-stage {
+    position: relative;
+    width: 240px;
+    height: 196px;
+  }
+
+  .opn-stage svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+  }
+
+  .opn-stage path,
+  .opn-stage ellipse,
+  .opn-stage line {
+    fill: var(--hl-plate);
+    stroke: var(--hl-mid);
+    stroke-width: 1.05;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .opn-stage .nf {
+    fill: none;
+  }
+
+  .opn-stage .sil {
+    stroke: var(--hl-edge);
+  }
+
+  .opn-stage .hi {
+    stroke: var(--hl-hi);
+  }
+
+  .opn-stage .lo {
+    stroke: var(--hl-lo);
+  }
+
+  .opn-stage .dash {
+    fill: none;
+    stroke: var(--hl-lo);
+    stroke-dasharray: 1.5 3.5;
+  }
+
+  .opn-stage .dot {
+    stroke: none;
+    fill: var(--hl-hi);
+  }
+
+  .opn-stage .dot-m {
+    stroke: none;
+    fill: var(--hl-edge);
+  }
+
+  .opn-stage .dot-off {
+    stroke: none;
+    fill: var(--hl-lo);
+  }
+
+  .opn-ghost-group {
+    animation: opn-levitate 2.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    transform-origin: 120px 86px;
+  }
+
+  .opn-shadow-ring {
+    animation: opn-pulse 2.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    transform-origin: 120px 146px;
+  }
+
+  .pillar-dot {
+    animation: pillar-scan 2.5s ease-in-out infinite;
+  }
+
+  .pillar-dot.p1 {
+    animation-delay: 0s;
+  }
+  .pillar-dot.p2 {
+    animation-delay: 0.35s;
+  }
+  .pillar-dot.p3 {
+    animation-delay: 0.7s;
+  }
+  .pillar-dot.p4 {
+    animation-delay: 1.05s;
+  }
+  .pillar-dot.p5 {
+    animation-delay: 1.4s;
+  }
+
+  .opn-meta {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--hl-hi);
+  }
+
+  .sub-readout {
+    font:
+      11px/1 ui-monospace,
+      SFMono-Regular,
+      Menlo,
+      Consolas,
+      monospace;
+    letter-spacing: 0.04em;
+    color: var(--hl-muted);
+  }
+
+  .scan-track {
+    margin-top: 4px;
+    width: 136px;
+    height: 1.5px;
+    background: var(--hl-lo);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .scan-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 44%;
+    height: 100%;
+    background: var(--hl-hi);
+    animation: opn-scan 1.6s cubic-bezier(0.32, 0.72, 0, 1) infinite;
+  }
+
+  @keyframes opn-levitate {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-9px);
+    }
+  }
+
+  @keyframes opn-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.9;
+    }
+    50% {
+      transform: scale(0.86);
+      opacity: 0.45;
+    }
+  }
+
+  @keyframes pillar-scan {
+    0%,
+    100% {
+      fill: var(--hl-lo);
+    }
+    40% {
+      fill: var(--hl-hi);
+    }
+    70% {
+      fill: var(--hl-edge);
+    }
+  }
+
+  @keyframes opn-scan {
+    0% {
+      transform: translateX(-110%);
+    }
+    100% {
+      transform: translateX(240%);
+    }
+  }
+</style>
+<div class="loading" id="__app-loading__">
+  <div class="opn-stage" aria-hidden="true">
+    <svg viewBox="0 0 240 196">
+      <!-- Fading reflection under the isometric plinth -->
+      <path
+        class="nf lo"
+        opacity="0.45"
+        d="M 52 154 L 52 166 Q 52 171 59 174.5 L 111 200.5 Q 120 205 129 200.5 L 181 174.5 Q 188 171 188 166 L 188 154"
+      />
+
+      <!-- Isometric rounded plinth (hull silhouette + top crease) -->
+      <path
+        class="sil"
+        d="M 111 111.5 Q 120 107 129 111.5 L 181 137.5 Q 188 141 188 146 L 188 155 Q 188 160 181 163.5 L 129 189.5 Q 120 194 111 189.5 L 59 163.5 Q 52 160 52 155 L 52 146 Q 52 141 59 137.5 Z"
+      />
+      <path
+        class="nf lo"
+        d="M 57 146 Q 57 148.5 62 151 L 113 176.5 Q 120 180 127 176.5 L 178 151 Q 183 148.5 183 146"
+      />
+
+      <!-- 5 Microservice Pillar pads on the plinth (system, automation, browser, gateway, faker) -->
+      <ellipse class="nf lo" cx="120" cy="126" rx="7" ry="3.5" />
+      <ellipse class="nf lo" cx="84" cy="145" rx="7" ry="3.5" />
+      <ellipse class="nf lo" cx="156" cy="145" rx="7" ry="3.5" />
+      <ellipse class="nf lo" cx="101" cy="164" rx="7" ry="3.5" />
+      <ellipse class="nf lo" cx="139" cy="164" rx="7" ry="3.5" />
+
+      <ellipse class="pillar-dot p1" cx="120" cy="126" rx="2.2" ry="1.1" />
+      <ellipse class="pillar-dot p2" cx="84" cy="145" rx="2.2" ry="1.1" />
+      <ellipse class="pillar-dot p3" cx="156" cy="145" rx="2.2" ry="1.1" />
+      <ellipse class="pillar-dot p4" cx="101" cy="164" rx="2.2" ry="1.1" />
+      <ellipse class="pillar-dot p5" cx="139" cy="164" rx="2.2" ry="1.1" />
+
+      <!-- Isometric levitation target ring & vertical dashed guides -->
+      <g class="opn-shadow-ring">
+        <ellipse class="dash" cx="120" cy="146" rx="28" ry="14" />
+        <ellipse class="nf lo" cx="120" cy="146" rx="14" ry="7" />
+        <ellipse class="dot-m" cx="120" cy="146" rx="2.2" ry="1.1" />
+      </g>
+      <line class="dash" x1="92" y1="146" x2="92" y2="108" />
+      <line class="dash" x1="148" y1="146" x2="148" y2="108" />
+      <line class="dash" x1="120" y1="160" x2="120" y2="115" />
+
+      <!-- Hovering 3D Hairline Ghost -->
+      <g class="opn-ghost-group">
+        <!-- 3D extruded back rim of the Ghost -->
+        <path
+          class="lo"
+          d="M 125 22 C 94 22 81 46 81 77 C 81 98 80 116 81 128 C 82 134 90 135 95 130 C 102 121 110 121 116 130 C 121 135 129 135 134 130 C 140 121 148 121 155 130 C 160 135 168 134 169 128 C 170 116 169 98 169 77 C 169 46 156 22 125 22 Z"
+        />
+
+        <!-- Front opaque silhouette (bright stroke, hides guides behind it) -->
+        <path
+          class="sil hi"
+          d="M 120 26 C 89 26 76 50 76 81 C 76 102 75 120 76 132 C 77 138 85 139 90 134 C 97 125 105 125 111 134 C 116 139 124 139 129 134 C 135 125 143 125 150 134 C 155 139 163 138 164 132 C 165 120 164 102 164 81 C 164 50 151 26 120 26 Z"
+        />
+
+        <!-- Inner Hairline crease -->
+        <path
+          class="nf lo"
+          d="M 81 126 C 80 114 81 98 81 81 C 81 53 93 31 120 31 C 147 31 159 53 159 81 C 159 98 160 114 159 126"
+        />
+
+        <!-- Eyes (Hairline rings + bright pupil dots) -->
+        <ellipse class="nf hi" cx="105" cy="76" rx="5.5" ry="7.8" />
+        <ellipse class="nf hi" cx="135" cy="76" rx="5.5" ry="7.8" />
+        <ellipse class="dot" cx="106.5" cy="73.5" rx="2" ry="2.4" />
+        <ellipse class="dot" cx="136.5" cy="73.5" rx="2" ry="2.4" />
+      </g>
+    </svg>
+  </div>
+
+  <div class="opn-meta">
+    <div class="title">%VITE_APP_TITLE%</div>
+    <div class="sub-readout">opn · console</div>
+    <div class="scan-track">
+      <div class="scan-bar"></div>
+    </div>
+  </div>
+</div>
+<script data-app-loading="inject-js">
+  setTimeout(function () {
+    var loader = document.getElementById('__app-loading__');
+    var app = document.getElementById('app');
+    if (loader && (!app || !app.children.length)) {
+      var hint = document.createElement('div');
+      hint.style.cssText =
+        'margin-top:24px;font-size:12px;color:#8a8c95;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:0 16px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;';
+      hint.innerHTML =
+        '<span>ket noi lau hon du kien...</span><button onclick="window.location.reload(true)" style="padding:6px 14px;background:var(--hl-hi);color:var(--hl-plate);border:1px solid var(--hl-edge);border-radius:6px;cursor:pointer;font-size:11px;font-weight:500;font-family:inherit;">reload console</button>';
+      loader.appendChild(hint);
+    }
+  }, 10000);
+</script>

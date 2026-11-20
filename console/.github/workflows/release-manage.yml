@@ -1,0 +1,54 @@
+name: 'Maintenance: manage releases'
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        type: choice
+        required: true
+        options: [promote, revoke, reconcile, prune]
+      tag:
+        description: Exact release tag (required except for prune)
+        type: string
+      channel:
+        type: choice
+        options: [stable, beta, nightly]
+        default: stable
+      reason:
+        description: Required when revoking a release
+        type: string
+      apply:
+        description: Actually delete expired managed nightlies (prune only)
+        type: boolean
+        default: false
+  schedule:
+    - cron: '17 4 * * 0'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-registry
+  cancel-in-progress: false
+
+jobs:
+  manage:
+    runs-on: ubuntu-latest
+    environment: release-management
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .node-version
+      - name: Update release registry and channel feeds
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_ACTION: ${{ github.event_name == 'schedule' && 'prune' || inputs.action }}
+          RELEASE_TAG: ${{ inputs.tag }}
+          RELEASE_CHANNEL: ${{ inputs.channel }}
+          RELEASE_REASON: ${{ inputs.reason }}
+          RELEASE_APPLY: ${{ github.event_name == 'schedule' && 'true' || inputs.apply && 'true' || 'false' }}
+        run: node scripts/release/state.mjs

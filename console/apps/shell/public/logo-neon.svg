@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="84 76 344 344" width="100%" height="100%">
+  <defs>
+    <!-- Gradient Neon Dusk (Indigo -> Violet -> Cyan) -->
+    <linearGradient id="ghostColorGrad3" x1="15%" y1="0%" x2="85%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="45%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+
+    <!-- Quầng phát sáng mờ -->
+    <linearGradient id="auraGlowGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818cf8" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.2" />
+    </linearGradient>
+
+    <!-- Vệt sáng phản chiếu (Glossy Highlight) -->
+    <linearGradient id="ghostShine3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Viền mạ kính (Glass stroke) -->
+    <linearGradient id="ghostStroke3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#a5b4fc" stop-opacity="0.35" />
+    </linearGradient>
+
+    <filter id="auraBlur3" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="26" />
+    </filter>
+
+    <!-- Đổ bóng màu mềm mại -->
+    <filter id="softElevation3" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#4f46e5" flood-opacity="0.32" />
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#09090b" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <!-- Quầng sáng neon xung quanh (Đã bỏ nền trắng đục) -->
+  <circle cx="256" cy="255" r="125" fill="url(#auraGlowGrad3)" filter="url(#auraBlur3)" />
+
+  <!-- Khối thân Ghost -->
+  <path 
+    d="M 256,110 
+       C 185,110 144,165 144,235 
+       C 144,285 142,342 144,374 
+       C 145,389 166,392 176,380 
+       C 192,360 210,360 226,380 
+       C 236,392 256,392 266,380 
+       C 282,360 300,360 316,380 
+       C 328,394 350,389 351,374 
+       C 353,342 368,285 368,235 
+       C 368,165 327,110 256,110 Z" 
+    fill="url(#ghostColorGrad3)" 
+    stroke="url(#ghostStroke3)"
+    stroke-width="2"
+    filter="url(#softElevation3)" 
+  />
+
+  <!-- Vệt bóng sáng cong trên đỉnh đầu -->
+  <path 
+    d="M 256,114 
+       C 196,114 158,160 152,220 
+       C 165,170 205,130 256,130 
+       C 307,130 347,170 360,220 
+       C 354,160 316,114 256,114 Z" 
+    fill="url(#ghostShine3)" 
+  />
+
+  <!-- Đôi mắt -->
+  <ellipse cx="220" cy="235" rx="13" ry="20" fill="#09090b" />
+  <ellipse cx="292" cy="235" rx="13" ry="20" fill="#09090b" />
+
+  <!-- Điểm bắt sáng lấp lánh trong mắt -->
+  <circle cx="224" cy="227" r="4.5" fill="#ffffff" />
+  <circle cx="296" cy="227" r="4.5" fill="#ffffff" />
+</svg>

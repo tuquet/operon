@@ -1,0 +1,27 @@
+<svg viewBox="14 4 372 392" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .specter-stop-top { stop-color: #52525b; }
+    .specter-stop-mid { stop-color: #3f3f46; }
+    .specter-stop-bot { stop-color: #27272a; }
+    .specter-eye { fill: #fafafa; }
+    @media (prefers-color-scheme: dark) {
+      .specter-stop-top { stop-color: #ffffff; }
+      .specter-stop-mid { stop-color: #e4e4e7; }
+      .specter-stop-bot { stop-color: #d4d4d8; }
+      .specter-eye { fill: #09090b; }
+    }
+  </style>
+  <defs>
+    <linearGradient id="specter-body" x1="112" y1="14" x2="310" y2="386" gradientUnits="userSpaceOnUse">
+      <stop class="specter-stop-top" offset="0%" />
+      <stop class="specter-stop-mid" offset="50%" />
+      <stop class="specter-stop-bot" offset="100%" />
+    </linearGradient>
+  </defs>
+  <path
+    d="M200 14C294.993 14 372 91.007 372 186V342C372 366.301 352.301 386 328 386C296 386 296 351 264 351C232 351 232 386 200 386C168 386 168 351 136 351C104 351 104 386 72 386C47.699 386 28 366.301 28 342V186C28 91.007 105.007 14 200 14Z"
+    fill="url(#specter-body)"
+  />
+  <rect class="specter-eye" x="112" y="154" width="56" height="64" rx="28" />
+  <rect class="specter-eye" x="232" y="154" width="56" height="64" rx="28" />
+</svg>

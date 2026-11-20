@@ -1,0 +1,1 @@
+export { systemManifest } from './manifest';
