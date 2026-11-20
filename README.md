@@ -37,10 +37,10 @@ specs-operon/
 ### Core Specs
 | ID | Title | Status |
 | --- | --- | --- |
-| 001 | [Kernel Shell & Host Context](./specs/core/kernel/001-shell.md) | `implemented` |
-| 002 | [Auth, Session & Permission Boundary](./specs/core/auth/001-session.md) | `draft` |
-| 003 | [Tenant Management & Selector](./specs/core/tenant/001-management.md) | `implemented` |
-| 004 | [Local DB, Cloud DB ERD & Sync](./specs/core/data-sync/001-erd-sync.md) | `draft` |
+| 001 | [Kernel Shell & Host Context](./specs/kernel/001-shell.md) | `implemented` |
+| 002 | [Auth, Session & Permission Boundary](./specs/auth/001-session.md) | `draft` |
+| 003 | [Tenant Management & Selector](./specs/tenant/001-management.md) | `implemented` |
+| 004 | [Local DB, Cloud DB ERD & Sync](./specs/data-sync/001-erd-sync.md) | `draft` |
 
 ### App Specs (`browsers`)
 | ID | Title | Status |
