@@ -4,7 +4,9 @@ title: Local DB, Cloud DB ERD & Sync
 status: draft
 created: 2026-11-20
 updated: 2026-11-20
-depends_on: [ROADMAP-002, ROADMAP-003]
+depends_on:
+  - ROADMAP-002
+  - ROADMAP-003
 ---
 
 # ROADMAP-004: Local DB, Cloud DB ERD & Sync

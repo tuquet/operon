@@ -35,10 +35,13 @@ specs-operon/
 - [0001-tenant-term.md](./adr/0001-tenant-term.md) — Use `tenant` everywhere, remove `workspace` from domain code
 
 ### Core Specs
-| ID | Title | Apps | Status |
-| --- | --- | --- | --- |
-| 001 | [Tenant Management & Selector Widget](./specs/core/001-tenant.md) | `console`, `operon` | `implemented` |
-| 002 | [Browser Management CRUD & Lifecycle](./specs/core/002-browsers.md) | `operon`, `console` | `implemented` |
+| ID | Title | Status |
+| --- | --- | --- |
+| 001 | [Kernel Shell & Host Context](./specs/core/001-kernel.md) | `implemented` |
+| 002 | [Auth, Session & Permission Boundary](./specs/core/002-auth.md) | `draft` |
+| 003 | [Tenant Management & Selector](./specs/core/003-tenant.md) | `implemented` |
+| 004 | [Local DB, Cloud DB ERD & Sync](./specs/core/004-data-sync.md) | `draft` |
+| 005 | [Browser Management CRUD & Lifecycle](./specs/core/005-browsers.md) | `implemented` |
 
 ### Roadmaps
 | ID | Title | Status |
