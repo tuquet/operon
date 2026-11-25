@@ -41,6 +41,12 @@
       "problemMatcher": []
     },
     {
+      "label": "ops: releases",
+      "type": "shell",
+      "command": "node scripts/releases.mjs --commands",
+      "problemMatcher": []
+    },
+    {
       "label": "core: daemon start",
       "type": "shell",
       "command": "cargo run --bin opn -- worker start -H 127.0.0.1 -p 8765",
