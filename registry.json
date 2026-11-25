@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "product": "operon-console",
+  "channels": {
+    "stable": {
+      "tag": "console-v5.8.0",
+      "updatedAt": "2026-11-25T05:03:24.559Z",
+      "updatedBy": "tuquet"
+    }
+  },
+  "releases": {
+    "console-v5.8.0": {
+      "version": "5.8.0",
+      "channel": "stable",
+      "status": "published",
+      "githubReleaseId": 457674304,
+      "publishedAt": "2026-11-25T05:03:23Z",
+      "source": {
+        "consoleCommit": "8e462f8ee45f6b5e32dcac6c22bc12dd8a3daf0c",
+        "operonCommit": "e975a3dbb4ec0d701c6a48bdccfe815d26db9b5a"
+      },
+      "manifestUrl": "https://github.com/tuquet/operon/releases/download/console-v5.8.0/release-manifest.json",
+      "artifacts": [
+        {
+          "name": "Operon-5.8.0-windows-x86_64-setup.exe",
+          "kind": "installer",
+          "platform": "windows-x86_64",
+          "size": 6125237,
+          "sha256": "eb715a76aa928748d89f14954bfa12f1b90b4ec8e046262e8c5b905f162d4686",
+          "url": "https://github.com/tuquet/operon/releases/download/console-v5.8.0/Operon-5.8.0-windows-x86_64-setup.exe",
+          "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRY1pOc1Z6c0UwMTArbjhLK2EybFNRSHE5bVI0T3A4LzZ2NmVIT0NWSlVYRHdML0pWMlpVRnFxWE03V1Arb29CZjhIdzVTYjQ2cG5RdkVSb1ZkaWgyekNTUllFYUVoZFE4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk1NTgyOTczCWZpbGU6T3Blcm9uXzUuOC4wX3g2NC1zZXR1cC5leGUJdmVyc2lvbjo1LjguMApDSjViSWtYUnhSTi90R2EreFA4TW04Ky9LYUo1UXh2QTBOajc0LzNOK2RKM2JseWNVZEtoY1RIcU00cDlGellmUjBPWUZ3ZVRtUkpKREt0bnFHY1ZCZz09Cg==",
+          "githubAssetId": 790134900
+        },
+        {
+          "name": "Operon-5.8.0-windows-x86_64-portable.zip",
+          "kind": "portable",
+          "platform": "windows-x86_64",
+          "size": 7455730,
+          "sha256": "ca4c4a4ec7095b7aa2ad6c7f8a522a95eaac8bc03329222d9be27d253954b4c9",
+          "url": "https://github.com/tuquet/operon/releases/download/console-v5.8.0/Operon-5.8.0-windows-x86_64-portable.zip",
+          "githubAssetId": 790134828
+        }
+      ],
+      "updater": {
+        "version": "5.8.0",
+        "notes": "Operon 5.8.0. See the GitHub release for changes.",
+        "pub_date": "2026-11-25T05:01:04.444Z",
+        "platforms": {
+          "windows-x86_64": {
+            "url": "https://github.com/tuquet/operon/releases/download/console-v5.8.0/Operon-5.8.0-windows-x86_64-setup.exe",
+            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRY1pOc1Z6c0UwMTArbjhLK2EybFNRSHE5bVI0T3A4LzZ2NmVIT0NWSlVYRHdML0pWMlpVRnFxWE03V1Arb29CZjhIdzVTYjQ2cG5RdkVSb1ZkaWgyekNTUllFYUVoZFE4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk1NTgyOTczCWZpbGU6T3Blcm9uXzUuOC4wX3g2NC1zZXR1cC5leGUJdmVyc2lvbjo1LjguMApDSjViSWtYUnhSTi90R2EreFA4TW04Ky9LYUo1UXh2QTBOajc0LzNOK2RKM2JseWNVZEtoY1RIcU00cDlGellmUjBPWUZ3ZVRtUkpKREt0bnFHY1ZCZz09Cg=="
+          }
+        }
+      }
+    }
+  },
+  "history": [
+    {
+      "at": "2026-11-25T05:03:24.559Z",
+      "actor": "tuquet",
+      "runUrl": "https://github.com/tuquet/operon/actions/runs/45550198673",
+      "action": "register",
+      "tag": "console-v5.8.0"
+    },
+    {
+      "at": "2026-11-25T05:03:24.559Z",
+      "actor": "tuquet",
+      "runUrl": "https://github.com/tuquet/operon/actions/runs/45550198673",
+      "action": "promote",
+      "channel": "stable",
+      "tag": "console-v5.8.0"
+    }
+  ]
+}
