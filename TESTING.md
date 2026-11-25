@@ -2,7 +2,6 @@
 
 ## 0. First Time / Session Start
 - [ ] `node scripts/doctor.mjs`
-- [ ] Never run `cargo build --release` on low-RAM hosts.
 
 ## 1. While Coding (no full binary needed)
 - [ ] **Rust (`core/`):** `cargo check --manifest-path core/Cargo.toml --workspace --all-targets` · `cargo test --manifest-path core/Cargo.toml -p operon <test>`
