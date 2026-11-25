@@ -51,7 +51,7 @@ docker compose up -d
 ```bash
 # Core (Rust)
 cargo check --manifest-path core/Cargo.toml --workspace
-cargo run --manifest-path core/Cargo.toml -p operon --bin opn -- doctor
+cargo run --manifest-path core/Cargo.toml -p operon --bin operon -- doctor
 
 # Console (Frontend / Tauri)
 pnpm --dir console install
