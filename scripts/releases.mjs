@@ -94,11 +94,12 @@ async function main() {
   }
 
   console.log(`${repo} — local: CLI ${cliVersion}, Desktop ${consoleVersion}`);
-  console.log(`CLI (core-v*): ${cliReleases.length ? '' : '(none)'}`);
-  for (const r of cliReleases.slice(0, 8)) console.log(`  ${r.tag.padEnd(18)} ${r.date}  assets=${r.assets}${r.flags ? ` [${r.flags}]` : ''}`);
+  console.log(`${'CLI (core-v*):'.padEnd(22)}${cliReleases.length ? '' : '(none)'}`);
+  for (const r of cliReleases.slice(0, 8)) console.log(`  ${r.tag.padEnd(24)} ${r.date}  assets=${r.assets}${r.flags ? ` [${r.flags}]` : ''}`);
 
   const activeCh = ['stable', 'beta', 'nightly'].filter((c) => channels[c]).map((c) => `${c}=${channels[c].tag}`);
-  console.log(`Desktop:      ${activeCh.length ? activeCh.join(' | ') : '(none)'}`);
+  const desktopInfo = activeCh.length ? activeCh.join(' | ') : (desktopReleases.length ? '' : '(none)');
+  console.log(`${'Desktop (console-v*):'.padEnd(22)}${desktopInfo}`);
   for (const r of desktopReleases.slice(0, 8)) console.log(`  ${r.tag.padEnd(24)} ${r.date}  assets=${r.assets}${r.flags ? ` [${r.flags}]` : ''}`);
 
   if (args.includes('--commands') || selectedTag) {
