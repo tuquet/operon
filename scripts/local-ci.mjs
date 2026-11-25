@@ -1,6 +1,7 @@
 import { execSync, spawn } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import readline from 'node:readline/promises';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -156,16 +157,88 @@ async function runSuite(suiteName, suite) {
   return { suiteName, code: failedCode, seconds: totalSec, logPath: path.relative(ROOT, logPath) };
 }
 
+/** Print summaries and tail lines from existing .logs/ci-*.log files. */
+function showLogs() {
+  if (!fs.existsSync(LOGS_DIR)) {
+    console.log('No .logs directory yet.');
+    return;
+  }
+  const files = fs.readdirSync(LOGS_DIR).filter((f) => /^ci-.*\.log$/.test(f)).sort();
+  if (files.length === 0) {
+    console.log('No ci-*.log files found in .logs/.');
+    return;
+  }
+  for (const file of files) {
+    const content = fs.readFileSync(path.join(LOGS_DIR, file), 'utf8').replace(/\r\n/g, '\n');
+    const lines = content.split('\n');
+    const summaryIdx = lines.findIndex((l) => l.startsWith('--- Summary:'));
+    const headerLines = lines.slice(0, 4).filter(Boolean);
+    const failed = lines.some((l) => l.startsWith('[FAIL]'));
+    console.log(`\n=== ${file} ===`);
+    for (const h of headerLines) console.log(h);
+    if (summaryIdx >= 0) {
+      if (failed) {
+        const tail = lines.slice(Math.max(0, summaryIdx - 15), summaryIdx).filter(Boolean);
+        console.log('... last lines before failure ...');
+        for (const l of tail) console.log(l);
+      }
+      for (const s of lines.slice(summaryIdx).filter(Boolean)) console.log(s);
+    } else {
+      console.log('(incomplete log — tail:)');
+      for (const l of lines.slice(-10).filter(Boolean)) console.log(l);
+    }
+  }
+}
+
+/** Prompt TTY user to pick a CI action when invoked without arguments. */
+async function promptTarget() {
+  const options = [
+    ['1', 'core', 'Run core (fmt, clippy, test)'],
+    ['2', 'console', 'Run console (quality + unit tests)'],
+    ['3', 'docker', 'Run docker (compose config -q)'],
+    ['4', 'all', 'Run all (core -> console -> docker)'],
+    ['5', 'logs', 'Inspect recent .logs/ci-*.log'],
+    ['0', '', 'Cancel'],
+  ];
+  console.log('=== local-ci ===');
+  for (const [key, , label] of options) console.log(`  [${key}] ${label}`);
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  try {
+    const answer = (await rl.question('\nSelect option: ')).trim();
+    const match = options.find(([key]) => key === answer);
+    if (!match || !match[1]) {
+      console.log('Cancelled.');
+      return null;
+    }
+    return match[1];
+  } catch {
+    console.log('\nCancelled.');
+    return null;
+  } finally {
+    rl.close();
+  }
+}
+
 async function main() {
   const args = process.argv.slice(2);
-  const target = args.find((a) => !a.startsWith('-'));
+  let target = args.find((a) => !a.startsWith('-'));
   const withInstall = args.includes('--install');
   const suites = buildSuites(withInstall);
-  const validTargets = [...Object.keys(suites), 'all'];
+  const validTargets = [...Object.keys(suites), 'all', 'logs'];
+
+  if (!target && process.stdin.isTTY && !args.includes('--help') && !args.includes('-h')) {
+    target = await promptTarget();
+    if (!target) process.exit(0);
+  }
 
   if (!target || !validTargets.includes(target)) {
     console.error(`Usage: node scripts/local-ci.mjs <${validTargets.join('|')}> [--install]`);
     process.exit(2);
+  }
+
+  if (target === 'logs') {
+    showLogs();
+    process.exit(0);
   }
 
   const queue = target === 'all' ? ['core', 'console', 'docker'] : [target];

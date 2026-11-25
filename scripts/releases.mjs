@@ -1,6 +1,8 @@
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
+import net from 'node:net';
 import path from 'node:path';
+import readline from 'node:readline/promises';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -93,12 +95,82 @@ function printCommands({ repo, stateBranch, cliVersion, consoleVersion, cliLates
   console.log(`  Desktop release: git tag console-v${consoleVersion} && git spush origin console-v${consoleVersion}`);
 }
 
+function checkPort(port) {
+  return new Promise((resolve) => {
+    const socket = net.createConnection({ host: '127.0.0.1', port });
+    socket.setTimeout(600);
+    socket.on('connect', () => {
+      socket.destroy();
+      resolve(true);
+    });
+    socket.on('error', () => resolve(false));
+    socket.on('timeout', () => {
+      socket.destroy();
+      resolve(false);
+    });
+  });
+}
+
+async function createTagWizard(rl, tag) {
+  const dirty = execFileSync('git', ['status', '--porcelain'], { cwd: ROOT, encoding: 'utf8' }).trim();
+  if (dirty) {
+    console.log('\n[BLOCKED] Root working tree is not clean. Commit or stash changes before tagging:');
+    console.log(dirty);
+    return;
+  }
+  const exists = spawnSync('git', ['rev-parse', '-q', '--verify', `refs/tags/${tag}`], { cwd: ROOT, stdio: 'ignore' });
+  if (exists.status === 0) {
+    console.log(`\n[BLOCKED] Tag '${tag}' already exists locally.`);
+    return;
+  }
+  const tunnelUp = await checkPort(1080);
+  if (!tunnelUp) {
+    console.log('\n[WARN] SOCKS5 tunnel 127.0.0.1:1080 is offline (`tunnel on` required before `git spush`).');
+  }
+  console.log(`\nPlanned command:\n  git tag ${tag} && git spush origin ${tag}`);
+  const confirm = (await rl.question('Proceed? (y/N): ')).trim().toLowerCase();
+  if (confirm !== 'y' && confirm !== 'yes') {
+    console.log('Cancelled.');
+    return;
+  }
+  execFileSync('git', ['tag', tag], { cwd: ROOT, stdio: 'inherit' });
+  if (!tunnelUp) {
+    console.log(`Created local tag '${tag}'. Run 'tunnel on && git spush origin ${tag}' when ready to push.`);
+    return;
+  }
+  execFileSync('git', ['spush', 'origin', tag], { cwd: ROOT, stdio: 'inherit' });
+}
+
+async function runInteractiveMenu(meta, cliReleases) {
+  const cliTag = `v${meta.cliVersion}`;
+  const desktopTag = `console-v${meta.consoleVersion}`;
+  console.log('\n=== Actions ===');
+  console.log('  [1] Show install / update commands');
+  console.log(`  [2] Release CLI tag (${cliTag})`);
+  console.log(`  [3] Release Desktop tag (${desktopTag})`);
+  console.log('  [0] Exit');
+
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  try {
+    const choice = (await rl.question('\nSelect option: ')).trim();
+    if (choice === '1') printCommands({ ...meta, cliLatest: cliReleases[0] });
+    else if (choice === '2') await createTagWizard(rl, cliTag);
+    else if (choice === '3') await createTagWizard(rl, desktopTag);
+    else console.log('Done.');
+  } catch {
+    console.log('\nCancelled.');
+  } finally {
+    rl.close();
+  }
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const asJson = args.includes('--json');
   const showCommands = args.includes('--commands') || args.includes('--install');
   const tagIdx = args.indexOf('--tag');
   const selectedTag = tagIdx >= 0 ? args[tagIdx + 1] : undefined;
+  const interactive = args.length === 0 && process.stdin.isTTY;
 
   const meta = readLocalVersions();
   const [releases, latestCli, registry] = await Promise.all([
@@ -150,6 +222,8 @@ async function main() {
 
   if (showCommands || selectedTag) {
     printCommands({ ...meta, cliLatest: cliReleases[0], selectedTag });
+  } else if (interactive) {
+    await runInteractiveMenu(meta, cliReleases);
   } else {
     console.log('\nTip: run `node scripts/releases.mjs --commands` for install/update/tag commands.');
   }
