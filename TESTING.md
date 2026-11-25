@@ -18,8 +18,8 @@ flowchart LR
   Edit --> E2["UI: pnpm --dir console check:type"]
   Edit --> E3["Tauri: pnpm --dir console tauri:check"]
 
-  Run --> R1["opn worker stop"]
-  Run --> R2["cargo r worker start -d"]
+  Run --> R1["node scripts/switch.mjs dev --build"]
+  Run --> R2["opn worker start -d"]
   Run --> R3["pnpm --dir console dev (or dev:desktop)"]
 
   Ship --> C1["node scripts/local-ci.mjs core | console | all"]
@@ -57,11 +57,12 @@ flowchart LR
   ```
 
 ### 2. Local App Smoke (daemon + UI)
-- [ ] Stop any old installed daemon on `:8765`: `opn worker stop`
-- [ ] Start dev daemon from source:
+- [ ] Switch `opn` to your local dev build (`--build` recompiles first):
   ```bash
-  cargo r worker start -H 127.0.0.1 -p 8765
+  node scripts/switch.mjs dev --build
+  opn worker start -H 127.0.0.1 -p 8765 -d
   ```
+- [ ] Switch back to the installed release when done: `node scripts/switch.mjs release`
 - [ ] Open UI: `pnpm --dir console dev` (fast Web HMR) or `pnpm --dir console dev:desktop` (Tauri).
 - [ ] Skip `opn desk` for dev builds if `~/.operon/apps/desk/Operon.exe` is already installed (`opn desk` runs the installed copy first).
 - [ ] Pass `--data-dir <tmp>` or temp `DATA_DIR` when testing state/profiles so you do not dirty `~/.operon/`.
