@@ -78,18 +78,47 @@ function formatRelease(r, latestId) {
   return { tag, date, flags, assets: r.assets?.length ?? 0, url: r.html_url };
 }
 
-function printCommands({ repo, stateBranch, cliVersion, consoleVersion, cliLatest, selectedTag }) {
+function printCommands({
+  repo,
+  stateBranch,
+  cliVersion,
+  consoleVersion,
+  hasLatestCli,
+  cliReleases,
+  desktopReleases,
+  channels,
+  selectedTag,
+}) {
   const base = `https://github.com/${repo}`;
-  const cliTarget = selectedTag?.startsWith('v') ? selectedTag : cliLatest?.tag ?? `v${cliVersion}`;
   console.log('\n=== Install / Update Commands ===');
-  console.log('CLI (opn - latest):');
-  console.log(`  Windows (pwsh):  irm ${base}/releases/latest/download/install.ps1 | iex`);
-  console.log(`  macOS / Linux:   curl -fsSL ${base}/releases/latest/download/install.sh | sh`);
-  console.log(`  Direct (${cliTarget}): ${base}/releases/tag/${cliTarget}`);
+  console.log('CLI (opn):');
+  if (cliReleases.length === 0) {
+    console.log('  (not published yet — trigger first CLI release below)');
+  } else {
+    if (hasLatestCli) {
+      console.log(`  Windows (pwsh):  irm ${base}/releases/latest/download/install.ps1 | iex`);
+      console.log(`  macOS / Linux:   curl -fsSL ${base}/releases/latest/download/install.sh | sh`);
+    }
+    const target = selectedTag?.startsWith('v')
+      ? cliReleases.find((r) => r.tag === selectedTag)
+      : cliReleases[0];
+    if (target) console.log(`  Direct (${target.tag}): ${target.url}`);
+  }
+
   console.log('\nDesktop (Operon - updater feeds):');
   for (const ch of ['stable', 'beta', 'nightly']) {
-    console.log(`  ${ch.padEnd(7)}: https://raw.githubusercontent.com/${repo}/${stateBranch}/updates/${ch}/latest.json`);
+    if (channels[ch]) {
+      console.log(`  ${ch.padEnd(7)}: https://raw.githubusercontent.com/${repo}/${stateBranch}/updates/${ch}/latest.json`);
+    } else {
+      console.log(`  ${ch.padEnd(7)}: (not published yet)`);
+    }
   }
+
+  if (selectedTag) {
+    const match = [...cliReleases, ...desktopReleases].find((r) => r.tag === selectedTag);
+    console.log(`\nTag '${selectedTag}': ${match ? match.url : '(not published yet)'}`);
+  }
+
   console.log('\nRelease Tag Triggers:');
   console.log(`  CLI release:     git tag v${cliVersion} && git spush origin v${cliVersion}`);
   console.log(`  Desktop release: git tag console-v${consoleVersion} && git spush origin console-v${consoleVersion}`);
@@ -141,9 +170,9 @@ async function createTagWizard(rl, tag) {
   execFileSync('git', ['spush', 'origin', tag], { cwd: ROOT, stdio: 'inherit' });
 }
 
-async function runInteractiveMenu(meta, cliReleases) {
-  const cliTag = `v${meta.cliVersion}`;
-  const desktopTag = `console-v${meta.consoleVersion}`;
+async function runInteractiveMenu(cmdCtx) {
+  const cliTag = `v${cmdCtx.cliVersion}`;
+  const desktopTag = `console-v${cmdCtx.consoleVersion}`;
   console.log('\n=== Actions ===');
   console.log('  [1] Show install / update commands');
   console.log(`  [2] Release CLI tag (${cliTag})`);
@@ -153,7 +182,7 @@ async function runInteractiveMenu(meta, cliReleases) {
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
   try {
     const choice = (await rl.question('\nSelect option: ')).trim();
-    if (choice === '1') printCommands({ ...meta, cliLatest: cliReleases[0] });
+    if (choice === '1') printCommands(cmdCtx);
     else if (choice === '2') await createTagWizard(rl, cliTag);
     else if (choice === '3') await createTagWizard(rl, desktopTag);
     else console.log('Done.');
@@ -220,10 +249,18 @@ async function main() {
     }
   }
 
+  const cmdCtx = {
+    ...meta,
+    hasLatestCli: Boolean(latestCli),
+    cliReleases,
+    desktopReleases,
+    channels,
+    selectedTag,
+  };
   if (showCommands || selectedTag) {
-    printCommands({ ...meta, cliLatest: cliReleases[0], selectedTag });
+    printCommands(cmdCtx);
   } else if (interactive) {
-    await runInteractiveMenu(meta, cliReleases);
+    await runInteractiveMenu(cmdCtx);
   } else {
     console.log('\nTip: run `node scripts/releases.mjs --commands` for install/update/tag commands.');
   }
