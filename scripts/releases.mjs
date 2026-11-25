@@ -199,10 +199,10 @@ Inspect published CLI (v*) and Desktop (console-v*) releases on GitHub,
 or run an interactive TTY wizard when invoked with no options.
 
 Options:
-  --commands, --install  Print install, updater feed, and release tag commands
-  --tag <tag>            Show direct link/status for a specific release tag
-  --json                 Output machine-readable JSON summary
-  -h, --help             Show this help message`;
+  --commands   Print install, updater feed, and release tag commands
+  --tag <tag>  Show direct link/status for a specific release tag
+  --json       Output machine-readable JSON summary
+  -h, --help   Show this help message`;
 
 async function main() {
   const args = process.argv.slice(2);
@@ -211,7 +211,7 @@ async function main() {
     process.exit(0);
   }
   const asJson = args.includes('--json');
-  const showCommands = args.includes('--commands') || args.includes('--install');
+  const showCommands = args.includes('--commands');
   const tagIdx = args.indexOf('--tag');
   const selectedTag = tagIdx >= 0 ? args[tagIdx + 1] : undefined;
   const interactive = args.length === 0 && process.stdin.isTTY;
