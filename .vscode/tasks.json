@@ -37,7 +37,7 @@
     },
     {
       "label": "dev: stack",
-      "dependsOn": ["core: daemon start", "console: dev"],
+      "dependsOn": ["dev: cli daemon", "dev: web"],
       "problemMatcher": []
     },
     {
@@ -53,7 +53,14 @@
       "problemMatcher": []
     },
     {
-      "label": "core: daemon start",
+      "label": "dev: cli",
+      "type": "shell",
+      "command": "cargo run --bin operon -- ${input:opnArgs}",
+      "options": { "cwd": "${workspaceFolder}/core" },
+      "problemMatcher": []
+    },
+    {
+      "label": "dev: cli daemon",
       "type": "shell",
       "command": "cargo run --bin operon -- worker start -H 127.0.0.1 -p 8765",
       "options": { "cwd": "${workspaceFolder}/core" },
@@ -99,7 +106,7 @@
       "problemMatcher": []
     },
     {
-      "label": "console: dev",
+      "label": "dev: web",
       "type": "shell",
       "command": "pnpm dev",
       "options": { "cwd": "${workspaceFolder}/console" },
@@ -108,7 +115,7 @@
       "problemMatcher": []
     },
     {
-      "label": "console: dev:desktop",
+      "label": "dev: desktop",
       "type": "shell",
       "command": "pnpm dev:desktop",
       "options": { "cwd": "${workspaceFolder}/console" },
@@ -144,6 +151,14 @@
       "command": "pnpm tauri:check",
       "options": { "cwd": "${workspaceFolder}/console" },
       "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "opnArgs",
+      "type": "promptString",
+      "description": "opn CLI arguments (e.g. --help, web, browser list)",
+      "default": "--help"
     }
   ]
 }
