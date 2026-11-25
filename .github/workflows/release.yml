@@ -63,18 +63,19 @@ jobs:
             target: x86_64-pc-windows-msvc
             bin: operon.exe
             asset: operon-windows-x64.exe
-          - os: ubuntu-latest
-            target: x86_64-unknown-linux-gnu
-            bin: operon
-            asset: operon-linux-x64
-          - os: macos-latest
-            target: aarch64-apple-darwin
-            bin: operon
-            asset: operon-macos-arm64
-          - os: macos-latest
-            target: x86_64-apple-darwin
-            bin: operon
-            asset: operon-macos-x64
+          # Temporarily disabled to speed up CI/CD while focusing on Windows
+          # - os: ubuntu-latest
+          #   target: x86_64-unknown-linux-gnu
+          #   bin: operon
+          #   asset: operon-linux-x64
+          # - os: macos-latest
+          #   target: aarch64-apple-darwin
+          #   bin: operon
+          #   asset: operon-macos-arm64
+          # - os: macos-latest
+          #   target: x86_64-apple-darwin
+          #   bin: operon
+          #   asset: operon-macos-x64
     runs-on: ${{ matrix.os }}
     defaults:
       run:
