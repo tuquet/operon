@@ -6,6 +6,11 @@
       "tag": "console-v5.8.0",
       "updatedAt": "2026-11-25T05:03:24.559Z",
       "updatedBy": "tuquet"
+    },
+    "nightly": {
+      "tag": "console-v5.8.0-nightly.6.1",
+      "updatedAt": "2026-11-25T05:03:47.950Z",
+      "updatedBy": "tuquet"
     }
   },
   "releases": {
@@ -52,6 +57,50 @@
           }
         }
       }
+    },
+    "console-v5.8.0-nightly.6.1": {
+      "version": "5.8.0-nightly.6.1",
+      "channel": "nightly",
+      "status": "published",
+      "githubReleaseId": 457674557,
+      "publishedAt": "2026-11-25T05:03:47Z",
+      "source": {
+        "consoleCommit": "8e462f8ee45f6b5e32dcac6c22bc12dd8a3daf0c",
+        "operonCommit": "e975a3dbb4ec0d701c6a48bdccfe815d26db9b5a"
+      },
+      "manifestUrl": "https://github.com/tuquet/operon/releases/download/console-v5.8.0-nightly.6.1/release-manifest.json",
+      "artifacts": [
+        {
+          "name": "Operon-5.8.0-nightly.6.1-windows-x86_64-setup.exe",
+          "kind": "installer",
+          "platform": "windows-x86_64",
+          "size": 6132060,
+          "sha256": "e8f0be7d09afa6162c04a4a384a4cf44b0ba397614c438eb920a5c5a2f518153",
+          "url": "https://github.com/tuquet/operon/releases/download/console-v5.8.0-nightly.6.1/Operon-5.8.0-nightly.6.1-windows-x86_64-setup.exe",
+          "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRY1pOc1Z6c0UwMXgzWDhwdWYvU3lYaGNDZkpDREJuMUJlcVBwQ1B4TXNkUVozY1VWSy9pQ1JuNjhUMmk5WkU2U0Fsb0E2NXg5QnRmcHZjM1ZmL1FwY0hSTEF6bHh4eFE4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk1NTgyOTc5CWZpbGU6T3Blcm9uXzUuOC4wLW5pZ2h0bHkuNi4xX3g2NC1zZXR1cC5leGUJdmVyc2lvbjo1LjguMC1uaWdodGx5LjYuMQphNEhFa05QemJlU3JvRWRZQUZuNFh1ZllCeDcyYnNXVW0rN0RGYldvQ1V6T1pHbFd3aXR2UmtxWXNqUUJvMytkVGVjR1g4aXNROXRmWUFoV2t2ZVNBUT09Cg==",
+          "githubAssetId": 790136011
+        },
+        {
+          "name": "Operon-5.8.0-nightly.6.1-windows-x86_64-portable.zip",
+          "kind": "portable",
+          "platform": "windows-x86_64",
+          "size": 7455875,
+          "sha256": "fe07acbb5a20ffe41e8a084a4a0ad02e166c216a9734978ac97812588002644a",
+          "url": "https://github.com/tuquet/operon/releases/download/console-v5.8.0-nightly.6.1/Operon-5.8.0-nightly.6.1-windows-x86_64-portable.zip",
+          "githubAssetId": 790135968
+        }
+      ],
+      "updater": {
+        "version": "5.8.0-nightly.6.1",
+        "notes": "Operon 5.8.0-nightly.6.1. See the GitHub release for changes.",
+        "pub_date": "2026-11-25T05:01:14.368Z",
+        "platforms": {
+          "windows-x86_64": {
+            "url": "https://github.com/tuquet/operon/releases/download/console-v5.8.0-nightly.6.1/Operon-5.8.0-nightly.6.1-windows-x86_64-setup.exe",
+            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRY1pOc1Z6c0UwMXgzWDhwdWYvU3lYaGNDZkpDREJuMUJlcVBwQ1B4TXNkUVozY1VWSy9pQ1JuNjhUMmk5WkU2U0Fsb0E2NXg5QnRmcHZjM1ZmL1FwY0hSTEF6bHh4eFE4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk1NTgyOTc5CWZpbGU6T3Blcm9uXzUuOC4wLW5pZ2h0bHkuNi4xX3g2NC1zZXR1cC5leGUJdmVyc2lvbjo1LjguMC1uaWdodGx5LjYuMQphNEhFa05QemJlU3JvRWRZQUZuNFh1ZllCeDcyYnNXVW0rN0RGYldvQ1V6T1pHbFd3aXR2UmtxWXNqUUJvMytkVGVjR1g4aXNROXRmWUFoV2t2ZVNBUT09Cg=="
+          }
+        }
+      }
     }
   },
   "history": [
@@ -69,6 +118,21 @@
       "action": "promote",
       "channel": "stable",
       "tag": "console-v5.8.0"
+    },
+    {
+      "at": "2026-11-25T05:03:47.950Z",
+      "actor": "tuquet",
+      "runUrl": "https://github.com/tuquet/operon/actions/runs/45550187162",
+      "action": "register",
+      "tag": "console-v5.8.0-nightly.6.1"
+    },
+    {
+      "at": "2026-11-25T05:03:47.950Z",
+      "actor": "tuquet",
+      "runUrl": "https://github.com/tuquet/operon/actions/runs/45550187162",
+      "action": "promote",
+      "channel": "nightly",
+      "tag": "console-v5.8.0-nightly.6.1"
     }
   ]
 }

@@ -1,0 +1,11 @@
+{
+  "version": "5.8.0-nightly.6.1",
+  "notes": "Operon 5.8.0-nightly.6.1. See the GitHub release for changes.",
+  "pub_date": "2026-11-25T05:01:14.368Z",
+  "platforms": {
+    "windows-x86_64": {
+      "url": "https://github.com/tuquet/operon/releases/download/console-v5.8.0-nightly.6.1/Operon-5.8.0-nightly.6.1-windows-x86_64-setup.exe",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVRY1pOc1Z6c0UwMXgzWDhwdWYvU3lYaGNDZkpDREJuMUJlcVBwQ1B4TXNkUVozY1VWSy9pQ1JuNjhUMmk5WkU2U0Fsb0E2NXg5QnRmcHZjM1ZmL1FwY0hSTEF6bHh4eFE4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk1NTgyOTc5CWZpbGU6T3Blcm9uXzUuOC4wLW5pZ2h0bHkuNi4xX3g2NC1zZXR1cC5leGUJdmVyc2lvbjo1LjguMC1uaWdodGx5LjYuMQphNEhFa05QemJlU3JvRWRZQUZuNFh1ZllCeDcyYnNXVW0rN0RGYldvQ1V6T1pHbFd3aXR2UmtxWXNqUUJvMytkVGVjR1g4aXNROXRmWUFoV2t2ZVNBUT09Cg=="
+    }
+  }
+}
