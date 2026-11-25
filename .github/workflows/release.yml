@@ -3,7 +3,7 @@ name: "Release: opn Local Bridge"
 on:
   push:
     tags:
-      - 'v*'
+      - 'core-v*'
   workflow_dispatch:
 
 permissions:

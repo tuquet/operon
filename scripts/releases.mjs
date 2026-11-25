@@ -64,7 +64,7 @@ function printCommands({ repo, stateBranch, cliVersion, consoleVersion, hasLates
     const match = [...cliReleases, ...desktopReleases].find((r) => r.tag === selectedTag);
     console.log(`  Tag ${selectedTag}: ${match ? match.url : '(not published)'}`);
   }
-  console.log(`  Tag CLI:       git tag v${cliVersion} && git spush origin v${cliVersion}`);
+  console.log(`  Tag CLI:       git tag core-v${cliVersion} && git spush origin core-v${cliVersion}`);
   console.log(`  Tag Desktop:   git tag console-v${consoleVersion} && git spush origin console-v${consoleVersion}`);
 }
 
@@ -85,7 +85,7 @@ async function main() {
     ghJson(`repos/${repo}/contents/registry.json?ref=${stateBranch}`, { optional: true, raw: true }),
   ]);
 
-  const cliReleases = releases.filter((r) => /^v\d/.test(r.tag_name)).map((r) => fmtRelease(r, latestCli?.id));
+  const cliReleases = releases.filter((r) => r.tag_name.startsWith('core-v')).map((r) => fmtRelease(r, latestCli?.id));
   const desktopReleases = releases.filter((r) => r.tag_name.startsWith('console-v')).map((r) => fmtRelease(r, null));
   const channels = registry?.channels ?? {};
 
@@ -93,8 +93,8 @@ async function main() {
     return console.log(JSON.stringify({ repo, stateBranch, cliVersion, consoleVersion, channels, cliReleases, desktopReleases }, null, 2));
   }
 
-  console.log(`${repo} — local: CLI v${cliVersion}, Desktop ${consoleVersion}`);
-  console.log(`CLI (v*):     ${cliReleases.length ? '' : '(none)'}`);
+  console.log(`${repo} — local: CLI ${cliVersion}, Desktop ${consoleVersion}`);
+  console.log(`CLI (core-v*): ${cliReleases.length ? '' : '(none)'}`);
   for (const r of cliReleases.slice(0, 8)) console.log(`  ${r.tag.padEnd(18)} ${r.date}  assets=${r.assets}${r.flags ? ` [${r.flags}]` : ''}`);
 
   const activeCh = ['stable', 'beta', 'nightly'].filter((c) => channels[c]).map((c) => `${c}=${channels[c].tag}`);
