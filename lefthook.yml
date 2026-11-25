@@ -4,3 +4,6 @@ pre-commit:
     rustfmt:
       glob: "*.rs"
       run: cargo fmt --manifest-path core/Cargo.toml --all -- --check
+    docker-compose:
+      glob: "docker-compose.yml"
+      run: docker compose config -q

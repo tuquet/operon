@@ -24,22 +24,18 @@ Two decoupled planes:
 
 ## 3. Local CI/CD & Verification
 
-Run locally before pushing (mirrors `.github/workflows/ci.yml` & `console-quality.yml`; tasks in [`.vscode/tasks.json`](./.vscode/tasks.json) write UTF-8 logs to `.logs/ci-core.log` & `.logs/ci-console.log`, follow with `Get-Content .logs/ci-core.log -Encoding utf8 -Wait`):
+Run locally before pushing (mirrors `.github/workflows/ci.yml` & `console-quality.yml`; tasks in [`.vscode/tasks.json`](./.vscode/tasks.json) invoke [`scripts/local-ci.mjs`](./scripts/local-ci.mjs) and write UTF-8 logs to `.logs/ci-<target>.log`, follow with `Get-Content .logs/ci-core.log -Encoding utf8 -Wait`):
 
 - **Quick check (per-edit):**
-  - Core: `cargo check --manifest-path core/Cargo.toml --workspace`
+  - Core: `cargo check --manifest-path core/Cargo.toml --workspace --all-targets`
   - Console: `pnpm --dir console check:type`
-- **Local CI (`ci: core`):**
+- **Local CI (`ci: core`, `ci: console`, `ci: docker`, `ci: all`):**
   ```bash
-  cargo fmt --manifest-path core/Cargo.toml --all -- --check
-  cargo clippy --manifest-path core/Cargo.toml --workspace --all-targets -- -D warnings
-  cargo test --manifest-path core/Cargo.toml --workspace --lib --bins --tests
+  node scripts/local-ci.mjs core     # fmt, clippy -D warnings, cargo test
+  node scripts/local-ci.mjs console  # release:check, check:architecture/circular/type/i18n/dep, lint, test:unit
+  node scripts/local-ci.mjs docker   # docker compose config -q
+  node scripts/local-ci.mjs all      # runs core, console, docker in sequence without masking failures
   ```
-- **Local CI (`ci: console`):**
-  ```bash
-  pnpm --dir console release:check && pnpm --dir console check && pnpm --dir console lint && pnpm --dir console test:unit
-  ```
-- **Docker:** `docker compose config -q`
 
 ## 4. Guardrails
 

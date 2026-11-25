@@ -5,36 +5,16 @@
       "path": "."
     },
     {
-      "name": "CLI Core (opn)",
-      "path": "cli"
+      "name": "Core (Rust)",
+      "path": "core"
     },
     {
-      "name": "Cloud Control Plane",
-      "path": "cloud"
-    },
-    {
-      "name": "Console Desktop & Web",
+      "name": "Console (Web & Desktop)",
       "path": "console"
     },
     {
-      "name": "Browser Runtime",
-      "path": "browser"
-    },
-    {
-      "name": "Worker Engine",
-      "path": "worker"
-    },
-    {
-      "name": "UI Component Library",
-      "path": "lib"
-    },
-    {
-      "name": "Landing Page",
-      "path": "operon.com"
-    },
-    {
-      "name": "Yak Shaving Map",
-      "path": "yak-map"
+      "name": "Docs",
+      "path": "docs"
     }
   ],
   "settings": {
