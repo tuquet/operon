@@ -14,7 +14,7 @@ flowchart LR
 
   Setup --> S1["node scripts/doctor.mjs"]
 
-  Edit --> E1["Rust: cargo c & cargo t <name>"]
+  Edit --> E1["Rust: cargo check & cargo test filter"]
   Edit --> E2["UI: pnpm --dir console check:type"]
   Edit --> E3["Tauri: pnpm --dir console tauri:check"]
 
@@ -38,13 +38,13 @@ flowchart LR
 ### 1. While Coding (fast checks only)
 - [ ] **Rust (`core/`):**
   ```bash
-  cargo c
-  cargo t <test_name>
+  cargo check --manifest-path core/Cargo.toml --workspace --all-targets
+  cargo test --manifest-path core/Cargo.toml -p operon <test_name>
   ```
 - [ ] **CLI flags/commands:**
   ```bash
-  cargo t test_cli_debug_assert
-  cargo r <cmd> --help
+  cargo test --manifest-path core/Cargo.toml -p operon test_cli_debug_assert
+  cargo run --manifest-path core/Cargo.toml -p operon --bin operon -- <cmd> --help
   ```
 - [ ] **Console (`console/`):**
   ```bash
