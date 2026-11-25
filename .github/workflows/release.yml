@@ -112,7 +112,7 @@ jobs:
           cp "target/${{ matrix.target }}/release/${{ matrix.bin }}" "dist/${{ matrix.asset }}"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@ea165f8d65b6e75b540447e917e570d86574b085 # v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: ${{ matrix.asset }}
           path: core/dist/${{ matrix.asset }}
@@ -143,7 +143,6 @@ jobs:
           cat SHA256SUMS.txt
 
       - name: Publish Release
-        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b7ef26a5da # v2
-        with:
-          files: release-assets/*
-          generate_release_notes: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${GITHUB_REF_NAME}" --latest --generate-notes release-assets/*
