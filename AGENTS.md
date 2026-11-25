@@ -36,7 +36,7 @@ Run locally before pushing (mirrors `.github/workflows/ci.yml` & `console-qualit
   node scripts/local-ci.mjs docker   # docker compose config -q
   node scripts/local-ci.mjs all      # runs core, console, docker in sequence without masking failures
   node scripts/local-ci.mjs logs     # summarize .logs/ci-*.log and show recent failure tails
-  node scripts/doctor.mjs            # verify submodules, toolchains, .env, docker, and tunnel ports
+  node scripts/doctor.mjs            # verify submodules, toolchains, .env, and docker
   node scripts/releases.mjs --commands # check CLI (core-v*) / Desktop (console-v*) releases & install commands
   ```
 

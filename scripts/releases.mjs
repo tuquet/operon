@@ -64,8 +64,8 @@ function printCommands({ repo, stateBranch, cliVersion, consoleVersion, hasLates
     const match = [...cliReleases, ...desktopReleases].find((r) => r.tag === selectedTag);
     console.log(`  Tag ${selectedTag}: ${match ? match.url : '(not published)'}`);
   }
-  console.log(`  Tag CLI:       git tag core-v${cliVersion} && git spush origin core-v${cliVersion}`);
-  console.log(`  Tag Desktop:   git tag console-v${consoleVersion} && git spush origin console-v${consoleVersion}`);
+  console.log(`  Tag CLI:       git tag core-v${cliVersion} && git push origin core-v${cliVersion}`);
+  console.log(`  Tag Desktop:   git tag console-v${consoleVersion} && git push origin console-v${consoleVersion}`);
 }
 
 async function main() {

@@ -1,6 +1,5 @@
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
-import net from 'node:net';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -12,17 +11,7 @@ function runCheck(cmd, cwd = ROOT) {
   return { ok: res.status === 0, out: `${res.stdout ?? ''}${res.stderr ?? ''}`.trim() };
 }
 
-function checkPort(port) {
-  return new Promise((resolve) => {
-    const socket = net.createConnection({ host: '127.0.0.1', port });
-    socket.setTimeout(500);
-    socket.on('connect', () => { socket.destroy(); resolve(true); });
-    socket.on('error', () => resolve(false));
-    socket.on('timeout', () => { socket.destroy(); resolve(false); });
-  });
-}
-
-async function main() {
+function main() {
   const args = process.argv.slice(2);
   if (args.includes('--help') || args.includes('-h')) return console.log(HELP);
 
@@ -63,9 +52,6 @@ async function main() {
   const gh = runCheck('gh auth status');
   add('gh-auth', gh.ok ? 'OK' : 'WARN', gh.ok ? 'authenticated' : 'not logged in', 'gh auth login');
 
-  const [p1080, p8118] = await Promise.all([checkPort(1080), checkPort(8118)]);
-  add('proxy-tunnel', p1080 && p8118 ? 'OK' : 'WARN', `1080=${p1080 ? 'up' : 'down'}, 8118=${p8118 ? 'up' : 'down'}`, 'tunnel on');
-
   if (args.includes('--json')) return console.log(JSON.stringify({ checks }, null, 2));
 
   for (const c of checks) {
@@ -74,7 +60,4 @@ async function main() {
   process.exit(checks.some((c) => c.status === 'FAIL') ? 1 : 0);
 }
 
-main().catch((err) => {
-  console.error(err.message);
-  process.exit(1);
-});
+main();
