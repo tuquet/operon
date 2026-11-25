@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: console-release-${{ github.ref }}
@@ -26,6 +26,8 @@ jobs:
     name: Signed Windows x64
     needs: quality
     runs-on: windows-latest
+    permissions:
+      contents: read
     environment: release-build
     outputs:
       tag: ${{ steps.release.outputs.tag }}
