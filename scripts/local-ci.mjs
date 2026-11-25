@@ -219,20 +219,38 @@ async function promptTarget() {
   }
 }
 
+const HELP_TEXT = `Usage: node scripts/local-ci.mjs [target] [options]
+
+Targets:
+  core        Run Rust fmt (--check), clippy (-D warnings), cargo test
+  console     Run console-quality checks + unit tests
+  docker      Run docker compose config -q
+  all         Run core -> console -> docker without masking failures
+  logs        Print summaries and failure tails from .logs/ci-*.log
+  (none)      Open interactive menu when running in a TTY
+
+Options:
+  --install   Run 'pnpm install --frozen-lockfile' before console checks
+  -h, --help  Show this help message`;
+
 async function main() {
   const args = process.argv.slice(2);
+  if (args.includes('--help') || args.includes('-h')) {
+    console.log(HELP_TEXT);
+    process.exit(0);
+  }
   let target = args.find((a) => !a.startsWith('-'));
   const withInstall = args.includes('--install');
   const suites = buildSuites(withInstall);
   const validTargets = [...Object.keys(suites), 'all', 'logs'];
 
-  if (!target && process.stdin.isTTY && !args.includes('--help') && !args.includes('-h')) {
+  if (!target && process.stdin.isTTY) {
     target = await promptTarget();
     if (!target) process.exit(0);
   }
 
   if (!target || !validTargets.includes(target)) {
-    console.error(`Usage: node scripts/local-ci.mjs <${validTargets.join('|')}> [--install]`);
+    console.error(HELP_TEXT);
     process.exit(2);
   }
 

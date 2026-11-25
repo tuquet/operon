@@ -193,8 +193,23 @@ async function runInteractiveMenu(cmdCtx) {
   }
 }
 
+const HELP_TEXT = `Usage: node scripts/releases.mjs [options]
+
+Inspect published CLI (v*) and Desktop (console-v*) releases on GitHub,
+or run an interactive TTY wizard when invoked with no options.
+
+Options:
+  --commands, --install  Print install, updater feed, and release tag commands
+  --tag <tag>            Show direct link/status for a specific release tag
+  --json                 Output machine-readable JSON summary
+  -h, --help             Show this help message`;
+
 async function main() {
   const args = process.argv.slice(2);
+  if (args.includes('--help') || args.includes('-h')) {
+    console.log(HELP_TEXT);
+    process.exit(0);
+  }
   const asJson = args.includes('--json');
   const showCommands = args.includes('--commands') || args.includes('--install');
   const tagIdx = args.indexOf('--tag');

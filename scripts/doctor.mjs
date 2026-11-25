@@ -50,8 +50,22 @@ function dirSizeMb(dir) {
   return Math.round(total / (1024 * 1024));
 }
 
+const HELP_TEXT = `Usage: node scripts/doctor.mjs [options]
+
+Verify local development prerequisites: submodules, Rust pin & tools,
+Node/pnpm & console deps, .env, Docker, gh auth, tunnel ports, and target size.
+
+Options:
+  --json      Output machine-readable JSON results
+  -h, --help  Show this help message`;
+
 async function main() {
-  const asJson = process.argv.includes('--json');
+  const args = process.argv.slice(2);
+  if (args.includes('--help') || args.includes('-h')) {
+    console.log(HELP_TEXT);
+    process.exit(0);
+  }
+  const asJson = args.includes('--json');
   const checks = [];
   const add = (name, status, detail, fix = '') => checks.push({ name, status, detail, fix });
 
