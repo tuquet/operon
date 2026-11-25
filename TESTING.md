@@ -14,12 +14,12 @@ flowchart LR
 
   Setup --> S1["node scripts/doctor.mjs"]
 
-  Edit --> E1["Rust: cargo check & cargo test filter"]
+  Edit --> E1["Rust: cargo c & cargo t <name>"]
   Edit --> E2["UI: pnpm --dir console check:type"]
   Edit --> E3["Tauri: pnpm --dir console tauri:check"]
 
   Run --> R1["opn worker stop"]
-  Run --> R2["cargo run --bin operon -- worker start -d"]
+  Run --> R2["cargo r worker start -d"]
   Run --> R3["pnpm --dir console dev (or dev:desktop)"]
 
   Ship --> C1["node scripts/local-ci.mjs core | console | all"]
@@ -38,13 +38,13 @@ flowchart LR
 ### 1. While Coding (fast checks only)
 - [ ] **Rust (`core/`):**
   ```bash
-  cargo check --manifest-path core/Cargo.toml --workspace --all-targets
-  cargo test --manifest-path core/Cargo.toml -p operon <test_name>
+  cargo c
+  cargo t <test_name>
   ```
 - [ ] **CLI flags/commands:**
   ```bash
-  cargo test --manifest-path core/Cargo.toml -p operon test_cli_debug_assert
-  cargo run --manifest-path core/Cargo.toml -p operon --bin operon -- <cmd> --help
+  cargo t test_cli_debug_assert
+  cargo r <cmd> --help
   ```
 - [ ] **Console (`console/`):**
   ```bash
@@ -60,7 +60,7 @@ flowchart LR
 - [ ] Stop any old installed daemon on `:8765`: `opn worker stop`
 - [ ] Start dev daemon from source:
   ```bash
-  cargo run --manifest-path core/Cargo.toml -p operon --bin operon -- worker start -H 127.0.0.1 -p 8765
+  cargo r worker start -H 127.0.0.1 -p 8765
   ```
 - [ ] Open UI: `pnpm --dir console dev` (fast Web HMR) or `pnpm --dir console dev:desktop` (Tauri).
 - [ ] Skip `opn desk` for dev builds if `~/.operon/apps/desk/Operon.exe` is already installed (`opn desk` runs the installed copy first).

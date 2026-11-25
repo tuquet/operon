@@ -1,0 +1,4 @@
+[alias]
+c = "check --manifest-path core/Cargo.toml --workspace --all-targets"
+t = "test --manifest-path core/Cargo.toml -p operon"
+r = "run --manifest-path core/Cargo.toml -p operon --bin operon --"
