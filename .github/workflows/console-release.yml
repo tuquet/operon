@@ -1,8 +1,9 @@
 name: 'Release: console desktop binaries'
 
 on:
-  push:
-    tags: ['console-v*']
+  # Paused: focus on Web (console-deploy-pages.yml) + opn CLI (release.yml)
+  # push:
+  #   tags: ['console-v*']
   workflow_dispatch:
 
 permissions:
