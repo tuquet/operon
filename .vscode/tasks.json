@@ -36,6 +36,11 @@
       "problemMatcher": []
     },
     {
+      "label": "dev: stack",
+      "dependsOn": ["core: daemon start", "console: dev"],
+      "problemMatcher": []
+    },
+    {
       "label": "core: daemon start",
       "type": "shell",
       "command": "cargo run --bin opn -- worker start -H 127.0.0.1 -p 8765",
