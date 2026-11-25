@@ -2,33 +2,6 @@
 
 Fast test loop so you only run heavy checks when ready to commit or release.
 
-## Mindmap
-
-```mermaid
-flowchart LR
-  Test["Test Loop"] --> Setup["0. Setup"]
-  Test --> Edit["1. Per Edit"]
-  Test --> Run["2. App Smoke"]
-  Test --> Ship["3. Before Commit"]
-  Test --> Release["4. Release"]
-
-  Setup --> S1["node scripts/doctor.mjs"]
-
-  Edit --> E1["Rust: cargo check & cargo test filter"]
-  Edit --> E2["UI: pnpm --dir console check:type"]
-  Edit --> E3["Tauri: pnpm --dir console tauri:check"]
-
-  Run --> R1["node scripts/switch.mjs dev --build"]
-  Run --> R2["opn worker start -d"]
-  Run --> R3["pnpm --dir console dev (or dev:desktop)"]
-
-  Ship --> C1["node scripts/local-ci.mjs core | console | all"]
-  Ship --> C2["gitleaks detect --no-banner --redact"]
-
-  Release --> L1["node scripts/releases.mjs --commands"]
-  Release --> L2["pnpm --dir console updater:simulate"]
-```
-
 ## Checklist
 
 ### 0. Setup (once per session)
