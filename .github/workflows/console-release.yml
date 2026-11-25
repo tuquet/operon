@@ -7,7 +7,7 @@ on:
       - 'console'
       - 'console/**'
       - '.github/workflows/console-release.yml'
-    tags: ['v*']
+    tags: ['console-v*']
   workflow_dispatch:
 
 permissions:
@@ -44,7 +44,7 @@ jobs:
         id: release
         working-directory: console
         run: |
-          pnpm desktop:check
+          pnpm tauri:check
           pnpm release:prepare
       - name: Build signed updater artifacts
         working-directory: console/apps/shell
