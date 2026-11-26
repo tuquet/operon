@@ -36,11 +36,11 @@ Built on `@operon/common-ui` `DataTable` (`enable-row-selection`, `interactive-r
   - View controls: `DataTableDensityToggle` (`Compact` / `Default` / `Comfortable`) and `DataTableViewOptions` (`Columns` toggle).
 - **Table Columns (`columns.ts`):**
   - Selection checkbox (header select-all + per-row checkbox, click stopped from triggering row inspect).
-  - `Profile` (clickable `name` opens Detail Sheet, `Default` badge, `tenantId` badge when `scope === 'all'`, `id • groupName`, plus compact `#tag` badges up to 3 tags and `+N` overflow).
-  - `Status` (`Running` + `:debuggingPort` when online, `Idle` when offline).
+  - `Profile` (clickable `name` opens Detail Sheet, `Default` badge, `tenantId` badge when `scope === 'all'`, `id`, non-default `• groupName`, plus compact `#tag` badges up to 3 tags and `+N` overflow).
+  - `Status` (`Running` badge + `:debuggingPort` when online, muted `Idle` text indicator when offline).
   - `Fingerprint` (`osPlatform · hardwareConcurrency c / deviceMemoryGb GB`).
-  - `Proxy` (URI monospace or `Direct` badge).
-  - `Extensions` (extension count badge).
+  - `Proxy` (URI monospace or muted `Direct` text).
+  - `Extensions` (muted count text for `0..1`, badge when `> 1`).
   - `Actions` (`Run`/`Stop` button + `...` menu).
 - **Empty State:** Shows filter `Reset` when items exist but filters exclude all rows; shows `+ New profile`, `Import CSV`, and `Auto-detect` CTAs when no profiles exist.
 
