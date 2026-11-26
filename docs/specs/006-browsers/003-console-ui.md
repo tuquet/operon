@@ -54,10 +54,11 @@ Built on `@operon/common-ui` `DataTable` (`enable-row-selection`, `interactive-r
   - Fields: `name` (required), custom `id` (editable on create only), `groupName` (`default`), comma-separated `tags`, `osPlatform` preset (`macOS` sets `2560x1440`, DPR `2`; `Windows`/`Linux` sets `1920x1080`, DPR `1`), numeric `seed` + `Randomize` button, `hardwareConcurrency`, `deviceMemoryGb`, `screenWidth` x `screenHeight`, `webrtcMode`, `timezone`, `lang`, `proxy` + inline `Test` probe badge, `userAgent`.
   - Editing an online profile shows warning banner and secondary `Save & Restart` action (`PATCH` + `stopSession` + `launchProfile`).
 - **`BrowserDetailSheet` (Inspector):**
-  - Header badges (`Running`, `Default`, full `profile.tags`), quick actions (`Run`/`Stop`, `Set default`, `Duplicate`), and 3 tabs:
-    - `Overview`: `tenantId`, `diskSizeBytes`, live `pid`/`debuggingPort`/`wsUrl` with copy button, and `Move to Tenant` control (shown when >1 tenant exists, disabled while profile is online).
+  - Compact single-row fixed header (`border-b`, profile name + 1-click copy ID button + status/default badges + aligned close button) and independently scrollable body (`px-5 py-4`).
+  - Quick actions (`Run`/`Stop`, `Edit`, `Set default`, `Duplicate`) with per-row mutation lock and toast notifications, and 3 tabs:
+    - `Overview`: `tenantId`, `groupName`, `proxy` (or `Direct`), `diskSizeBytes` (with loading skeleton during inspect fetch), `tags` badges (when present), live `pid`/`debuggingPort`/`wsUrl` with copy button, and `Move to Tenant` control (shown when >1 tenant exists, disabled while profile is online).
     - `Fingerprint`: read-only summary (`OS`, `Seed`, `CPU/RAM`, `Viewport`, `WebRTC`, `Timezone/Lang`).
-    - `Extensions`: comma-separated editor (`PUT /browsers/{id}/extensions`) + extension badges.
+    - `Extensions`: comma-separated editor (`PUT /browsers/{id}/extensions`, save disabled until modified) + extension badges.
 - **`BrowserImportCsvDialog`:** CSV textarea (`id,name,userAgent,timezone,proxy,group,tags`) with sample CSV loader and per-row import/skip error report.
 - **`BrowserDeleteDialog`:** Single or batch confirmation; if any target `isOnline`, locks `Delete` until user checks the force-stop confirmation (`force=true`).
 
