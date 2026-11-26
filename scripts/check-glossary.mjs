@@ -63,7 +63,6 @@ function scanRepoAliases(repoName, pathFilters) {
       ).trim();
       if (out) {
         for (const line of out.split(/\r?\n/)) {
-          if (/legacy|migration:/i.test(line)) continue;
           errors.push(
             `[glossary:${repoName}] Forbidden alias "${alias}" (use "${canonical}") -> ${repoName}/${line}`,
           );

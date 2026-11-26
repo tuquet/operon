@@ -22,7 +22,7 @@ Provide workspace-scoped `browser profile` CRUD, persistent SQLite + filesystem 
 
 ```mermaid
 flowchart LR
-    UI["Console (/automation/browsers)"] -->|REST /api/v1/browsers*| API["Operon Daemon :8765"]
+    UI["Console (/browsers/index)"] -->|REST /api/v1/browsers*| API["Operon Daemon :8765"]
     UI <-->|SSE /api/v1/events| API
     API -->|SQLite| DB["~/.operon/data/operon.sqlite"]
     API -->|Profiles & Locks| FS["~/.operon/automation/browsers/<id>/ (+ .zip)"]
@@ -48,6 +48,7 @@ stateDiagram-v2
 | --- | --- | --- | --- | --- |
 | `id` | `string` | No | `prf_<12hex>` | Validated by `BrowserId::is_valid()`, immutable |
 | `workspaceId` | `string` | No | `'local-default'` | Indexed in SQLite (`idx_browsers_workspace`) |
+| `source` | `'local' \| 'cloud'` | Read-only | `'local'` | Derived from workspace origin (`local-*` vs Cloud) |
 | `name` | `string` | Yes | — | Trimmed `1..100` chars |
 | `groupName` | `string \| null` | No | `'default'` | Group label |
 | `tags` | `string[]` | No | `[]` | Lowercase deduplicated, max 20 items |
@@ -63,7 +64,7 @@ stateDiagram-v2
 ## 4. Daemon REST Endpoints (`/api/v1/browsers`)
 
 - **Read:**
-  - `GET /api/v1/browsers` — Supports server-side filtering (`workspaceId` or `scope=all`, `search`, `status`, `hasProxy`, `platform`, `group`, `limit`, `offset`). Console UI fetches workspace/all list and performs filtering/sorting/pagination client-side ([003-console-ui.md](./003-console-ui.md)).
+  - `GET /api/v1/browsers` — Supports server-side filtering (`workspaceId` or `scope=all`, `search`, `status`, `source`, `hasProxy`, `platform`, `group`, `limit`, `offset`). Console UI fetches workspace/all list and performs filtering/sorting/pagination client-side ([003-console-ui.md](./003-console-ui.md)).
   - `GET /api/v1/browsers/{id}` — Full detail + live session + `diskSizeBytes` (`404` if missing).
 - **Create & Import:**
   - `POST /api/v1/browsers` — Enforces `'automation'` in `extensions`; `400` on blank name / invalid ID / invalid proxy / blocked flags; `409` on duplicate ID.
@@ -72,12 +73,12 @@ stateDiagram-v2
   - `POST /api/v1/browsers/auto-detect` — Detect host Chromium and ensure default profile exists when missing.
 - **Update & Move:**
   - `PUT /api/v1/browsers/{id}` & `PATCH /api/v1/browsers/{id}` — `PATCH` updates only provided fields and clears explicit `null` fields (`404` if missing).
-  - `POST /api/v1/browsers/{id}/move` — Reassign offline profile to `targetWorkspaceId` (`409` if running; clears old workspace default if pointing to this profile).
+  - `POST /api/v1/browsers/{id}/move` — Reassign offline profile to `targetWorkspaceId` (`409` if running; clears old workspace default if pointing to this profile; unlinks any `tasks` in other workspaces by setting `browser_id = NULL` to preserve same-workspace isolation per [TASKS-001](../007-tasks/001-tasks-and-jobs.md)).
   - `POST /api/v1/browsers/{id}/set-default` — Set default profile for its `workspaceId`.
   - `PUT /api/v1/browsers/{id}/extensions` — Replace extension list while protecting `'automation'` unless `allowRemoveAutomation: true`.
   - `POST /api/v1/browsers/{id}/extensions` — Sideload unpacked extension path after validating `manifest.json`.
 - **Delete:**
-  - `DELETE /api/v1/browsers/{id}?force=false` — `404` if missing; `409` if running unless `force=true`. Stops session (if forced), deletes SQLite row, clears workspace default if matching, and removes disk folders/archives.
+  - `DELETE /api/v1/browsers/{id}?force=false` — `404` if missing; `409` if running unless `force=true`. Stops session (if forced), deletes SQLite row (triggering `ON DELETE SET NULL` on linked `tasks.browser_id` and `jobs.browser_id` per [TASKS-001](../007-tasks/001-tasks-and-jobs.md)), clears workspace default if matching, and removes disk folders/archives.
   - `POST /api/v1/browsers/batch/delete` — Batch delete returning `{ deleted, skipped, errors }` (skips active sessions unless `force=true`).
 - **Sessions, Proxy & Cloud Lease:**
   - `POST /api/v1/browsers/{id}/session` — Launch Chromium (`headless`, `startUrl`, `proxy` override, `args`) with deterministic `--fingerprint*`, `--lang`, `--accept-lang`, `--window-size`, `--force-device-scale-factor`, and `--disable-non-proxied-udp` when proxied and `webrtcMode !== 'default'`.

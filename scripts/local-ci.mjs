@@ -1,11 +1,13 @@
 import crypto from 'node:crypto';
 import { execFileSync, execSync, spawn } from 'node:child_process';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const LOGS_DIR = path.join(ROOT, '.logs');
+const SSOT_DIR = process.env.DATA_DIR?.trim() || path.join(os.homedir(), '.operon');
+const LOGS_DIR = path.join(SSOT_DIR, 'logs', 'ci');
 const CACHE_PATH = path.join(LOGS_DIR, '.ci-cache.json');
 
 const SUITES = {
@@ -141,7 +143,7 @@ function runStep(name, command, cwd, env, logStream) {
 
 async function runSuite(name, steps, cwd, env, useCache) {
   const logPath = path.join(LOGS_DIR, `ci-${name}.log`);
-  const relLog = path.relative(ROOT, logPath);
+  const relLog = logPath;
   const fp = suiteFingerprint(name, steps);
   const cached = useCache && fp ? readCache()[name] : null;
   if (cached && cached.hash === fp) {
@@ -176,7 +178,7 @@ async function runSuite(name, steps, cwd, env, useCache) {
 }
 
 function showLogs() {
-  if (!fs.existsSync(LOGS_DIR)) return console.log('No .logs directory.');
+  if (!fs.existsSync(LOGS_DIR)) return console.log(`No CI logs directory at ${LOGS_DIR}.`);
   const files = fs.readdirSync(LOGS_DIR).filter((f) => /^ci-.*\.log$/.test(f)).sort();
   if (!files.length) return console.log('No ci-*.log files found.');
   for (const file of files) {

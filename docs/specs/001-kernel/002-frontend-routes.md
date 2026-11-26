@@ -29,7 +29,7 @@ Inventory and contract for all frontend routes registered in `console/apps/shell
 | :--- | :--- | :--- | :--- | :--- |
 | `/dashboard` → `/dashboard/overview` | `Dashboard` / `Overview` | `-1` | `platform: 'all'`, `affixTab: true` | `views/dashboard/overview/index.vue` |
 | `/dashboard/analytics` | `Analytics` | `-1` | `platform: 'all'`, `affixTab: true` | `views/dashboard/analytics/index.vue` |
-| `/browsers` → `/browsers/index` | `Browsers` / `BrowsersIndex` | `10` | `['superadmin', 'local_operator']`, `hideChildrenInMenu: true` | `AutomationBrowsers` (`@operon/automation`) + `setupLocales()` |
+| `/browser-profiles` → `/browser-profiles/index` | `BrowserProfiles` / `BrowserProfilesIndex` | `10` | `['superadmin', 'local_operator']`, `hideChildrenInMenu: true` | `AutomationBrowsers` (`@operon/automation`) + `setupLocales()` |
 | `/tasks` → `/tasks/index` | `Tasks` / `TasksIndex` | `20` | `['superadmin', 'local_operator']`, `hideChildrenInMenu: true` | `TasksTasks` (`@operon/tasks`) + `setupLocales()` |
 | `/workspaces` | `WorkspacesRoot` | — | `['superadmin', 'workspaces:read']`, `requiresCloud: true`, `hideChildrenInMenu: true` | `@operon/workspaces` |
 | `/system` | `System` | — | `requiresCloud: true` | `@operon/system` |
@@ -38,7 +38,7 @@ Inventory and contract for all frontend routes registered in `console/apps/shell
 
 | Path | Name | Plugin | Target / Notes |
 | :--- | :--- | :--- | :--- |
-| `/automation/*` | `Automation` | `operon` | `@operon/automation` (retains direct URLs such as `/automation/browsers`) |
+| `/automation/*` | `Automation` | `operon` | `@operon/automation` (internal micro-app route mount) |
 | `/tasks/*` | `Tasks` | `operon` | `@operon/tasks` |
 
 ## 5. Checks

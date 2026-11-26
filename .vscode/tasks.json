@@ -30,6 +30,15 @@
       "problemMatcher": []
     },
     {
+      "label": "dev: logs",
+      "type": "shell",
+      "command": "pnpm -F @operon/logs dev",
+      "options": { "cwd": "${workspaceFolder}/console" },
+      "isBackground": true,
+      "presentation": { "panel": "dedicated" },
+      "problemMatcher": []
+    },
+    {
       "label": "ci: secret",
       "type": "shell",
       "command": "gitleaks detect --no-banner --redact",
@@ -50,6 +59,12 @@
       "label": "ops: doctor",
       "type": "shell",
       "command": "node scripts/doctor.mjs",
+      "problemMatcher": []
+    },
+    {
+      "label": "db: reset",
+      "type": "shell",
+      "command": "node scripts/db-reset.mjs",
       "problemMatcher": []
     },
     {

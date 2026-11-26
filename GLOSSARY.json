@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Single Source of Truth (SSOT) for canonical domain terminology and file naming conventions across operon, console, and core.",
   "terms": [
     {
@@ -62,7 +62,13 @@
         "Fleet Bridge",
         "Desktop Bridge",
         "opn runner",
-        "Runner daemon daemon"
+        "Runner worker daemon",
+        "PILLAR_WORKER",
+        "is_valid_worker_name",
+        "run_cloud_worker",
+        "fleet",
+        "Fleet gateway",
+        "Sandbox Fleet"
       ]
     },
     {
@@ -73,8 +79,12 @@
         "rust": "browser_profile",
         "sql": "browser_profiles"
       },
-      "definition": "Saved antidetect browser configuration (fingerprint, proxy, extensions, data directory).",
-      "forbiddenAliases": []
+      "definition": "Saved antidetect browser configuration (fingerprint, proxy, extensions, data directory, local or cloud source).",
+      "forbiddenAliases": [
+        "cloud fleet",
+        "fleet profiles",
+        "CLOUD BROWSER FLEET"
+      ]
     },
     {
       "id": "browser_session",
@@ -85,6 +95,29 @@
       },
       "definition": "Live running browser process bound to a browser profile.",
       "forbiddenAliases": []
+    },
+    {
+      "id": "browser_driver",
+      "term": "browser driver",
+      "codeIdentifier": {
+        "ts": "browserDriver",
+        "rust": "browser_driver"
+      },
+      "definition": "Downloadable antidetect Chromium binary version used to launch browser sessions.",
+      "note": "Internal directory `~/.operon/browser/runtimes/` holds downloaded binaries on disk; UI, REST APIs, and domain identifiers use `browser driver`.",
+      "forbiddenAliases": [
+        "BrowserRuntimesDialog",
+        "browser-runtimes-dialog",
+        "useBrowserRuntimesStore",
+        "runtimes_btn",
+        "runtimes_title",
+        "runtimes_desc",
+        "runtime_selected",
+        "runtime_install_btn",
+        "runtime_select_btn",
+        "runtime_selected_msg",
+        "runtime_deleted_msg"
+      ]
     },
     {
       "id": "task",
@@ -106,6 +139,102 @@
         "sql": "schedules"
       },
       "definition": "Trigger plan defining when a browser profile runs assigned tasks.",
+      "forbiddenAliases": []
+    },
+    {
+      "id": "workflow",
+      "term": "workflow",
+      "codeIdentifier": {
+        "ts": "workflow",
+        "rust": "workflow",
+        "sql": "workflows"
+      },
+      "definition": "Declarative automation flow graph executed inside a browser session.",
+      "forbiddenAliases": []
+    },
+    {
+      "id": "job",
+      "term": "job",
+      "codeIdentifier": {
+        "ts": "job",
+        "rust": "job",
+        "sql": "jobs"
+      },
+      "definition": "Queued or active execution run triggered from a task or workflow.",
+      "forbiddenAliases": []
+    },
+    {
+      "id": "proxy",
+      "term": "proxy",
+      "codeIdentifier": {
+        "ts": "proxy",
+        "rust": "proxy",
+        "sql": "proxies"
+      },
+      "definition": "Network egress endpoint (HTTP, HTTPS, SOCKS5) attached to a browser profile.",
+      "forbiddenAliases": []
+    },
+    {
+      "id": "device",
+      "term": "device",
+      "codeIdentifier": {
+        "ts": "device",
+        "rust": "device",
+        "sql": "devices"
+      },
+      "definition": "Enrolled host machine running the Operon daemon.",
+      "forbiddenAliases": [
+        "device fleet",
+        "worker fleet",
+        "Cloud Fleet"
+      ]
+    },
+    {
+      "id": "secret",
+      "term": "secret",
+      "codeIdentifier": {
+        "ts": "secret",
+        "rust": "secret",
+        "sql": "secrets"
+      },
+      "definition": "Encrypted credential stored in Vault/device keystore and referenced via `{{secrets@name}}`.",
+      "forbiddenAliases": []
+    },
+    {
+      "id": "plugin",
+      "term": "plugin",
+      "codeIdentifier": {
+        "ts": "plugin",
+        "sql": "system_plugins"
+      },
+      "definition": "Capability module gating platform features (`identity`, `operon`, `billing`).",
+      "forbiddenAliases": []
+    },
+    {
+      "id": "ci_suite",
+      "term": "ci suite",
+      "codeIdentifier": {
+        "ts": "ciSuite"
+      },
+      "definition": "Local CI verification group (`core`, `console`, `docker`, `glossary`) orchestrated by `scripts/local-ci.mjs`.",
+      "forbiddenAliases": []
+    },
+    {
+      "id": "ci_step",
+      "term": "ci step",
+      "codeIdentifier": {
+        "ts": "ciStep"
+      },
+      "definition": "Single command stage within a `ci suite` delimited by `> [<step>] <command>` in local CI output.",
+      "forbiddenAliases": []
+    },
+    {
+      "id": "ci_log",
+      "term": "ci log",
+      "codeIdentifier": {
+        "ts": "ciLog"
+      },
+      "definition": "UTF-8 output log `~/.operon/logs/ci/ci-<suite>.log` and `~/.operon/logs/ci/.ci-cache.json` produced by `scripts/local-ci.mjs`.",
       "forbiddenAliases": []
     }
   ],

@@ -4,15 +4,15 @@ title: Workspace Management & Selector Widget
 app: core
 status: implemented
 created: 2026-11-19
-updated: 2026-11-20
-related_adrs: [ADR-0001]
+updated: 2026-11-26
+related_adrs: [ADR-0001, ADR-0003]
 ---
 
 # WORKSPACE-001: Workspace Management & Selector Widget
 
 ## 1. Goal & Scope
 
-Unify multi-workspace state across `console` (`@operon/kernel`, `apps/shell`, `apps/workspaces`, `packages/local-db`) and `operon` (`crates/cli`) using `workspace` ([ADR-0001](../../adr/0001-workspace-term.md)).
+Unify multi-workspace state across `console` (`@operon/kernel`, `apps/shell`, `apps/workspaces`, `packages/local-db`) and `operon` (`crates/cli`) using `workspace` ([ADR-0003](../../adr/0003-workspace-term.md)).
 
 - **In scope:** Reactive `kernel.workspace` context, Shell workspace store (Local + Cloud CRUD), `WorkspaceSelector` header widget, `/workspaces` micro-app, and daemon `local-*` workspace switching.
 - **Out of scope:** Cloud billing/member invite UI changes.
@@ -27,7 +27,7 @@ flowchart TB
     STORE -->|saves| LS["localStorage (activeWorkspaceId + local-workspaces)"]
     STORE -->|emits| EVT["CustomEvent: opn:workspace-changed"]
     STORE -->|POST /api/v1/system/workspaces/switch| DAEMON["Operon Daemon :8765"]
-    KERNEL -->|reactive watch| AUTO["@operon/automation (Browsers / Workflows / Jobs)"]
+    KERNEL -->|reactive watch| AUTO["@operon/automation & @operon/tasks (Browsers / Tasks / Jobs)"]
 ```
 
 ## 3. Data Model (`KernelWorkspaceRecord`)

@@ -24,7 +24,7 @@ Two decoupled planes:
 
 ## 3. Local CI/CD & Verification
 
-Run locally before pushing (mirrors `.github/workflows/ci.yml` & `console-quality.yml`; tasks in [`.vscode/tasks.json`](./.vscode/tasks.json) invoke [`scripts/local-ci.mjs`](./scripts/local-ci.mjs) and write UTF-8 logs to `.logs/ci-<target>.log`, follow with `Get-Content .logs/ci-core.log -Encoding utf8 -Wait`):
+Run locally before pushing (mirrors `.github/workflows/ci.yml` & `console-quality.yml`; tasks in [`.vscode/tasks.json`](./.vscode/tasks.json) invoke [`scripts/local-ci.mjs`](./scripts/local-ci.mjs) and write UTF-8 logs to `~/.operon/logs/ci/ci-<target>.log`, follow with `Get-Content "$env:USERPROFILE/.operon/logs/ci/ci-core.log" -Encoding utf8 -Wait`):
 
 - **Quick check (per-edit):**
   - Core: `cargo check --manifest-path core/Cargo.toml --workspace --all-targets`
@@ -35,7 +35,7 @@ Run locally before pushing (mirrors `.github/workflows/ci.yml` & `console-qualit
   node scripts/local-ci.mjs console  # release:check, check:architecture/circular/type/i18n/dep, lint, test:unit
   node scripts/local-ci.mjs docker   # docker compose config -q
   node scripts/local-ci.mjs all      # runs core, console, docker in sequence without masking failures
-  node scripts/local-ci.mjs logs     # summarize .logs/ci-*.log and show recent failure tails
+  node scripts/local-ci.mjs logs     # summarize ~/.operon/logs/ci/ci-*.log and show recent failure tails
   node scripts/doctor.mjs            # verify submodules, toolchains, .env, and docker
   node scripts/releases.mjs --commands # check CLI (core-v*) / Desktop (console-v*) releases & install commands
   ```

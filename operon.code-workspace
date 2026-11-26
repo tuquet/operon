@@ -1,20 +1,24 @@
 {
   "folders": [
     {
-      "name": "Workspace Root",
+      "name": "..",
       "path": "."
     },
     {
-      "name": "Core (Rust)",
+      "name": "core",
       "path": "core"
     },
     {
-      "name": "Console (Web & Desktop)",
+      "name": "console",
       "path": "console"
     },
     {
-      "name": "Docs",
+      "name": "docs",
       "path": "docs"
+    },
+    {
+      "name": ".operon",
+      "path": "../../.operon"
     }
   ],
   "settings": {

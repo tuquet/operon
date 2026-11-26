@@ -1,6 +1,6 @@
 ---
 id: BROWSERS-003
-title: Automation Browsers Console UI (/automation/browsers)
+title: Automation Browsers Console UI (/browsers/index)
 app: console
 status: implemented
 created: 2026-11-26
@@ -8,11 +8,11 @@ updated: 2026-11-26
 depends_on: [BROWSERS-001, WORKSPACE-001, KERNEL-001]
 ---
 
-# BROWSERS-003: Automation Browsers Console UI (`/automation/browsers`)
+# BROWSERS-003: Automation Browsers Console UI (`/browsers/index`)
 
 ## 1. Goal & Scope
 
-Define the `micro-app` UI at `/automation/browsers` (`console/apps/automation/src/views/browsers.vue`, `useBrowsersStore`), consuming `operon` daemon endpoints from [BROWSERS-001](./001-crud.md) via shared `@operon/common-ui` `DataTable`.
+Define the `micro-app` UI mounted at `/browsers/index` (with `/automation/browsers` kept as a hidden direct mount) in `console/apps/automation/src/views/browsers.vue` (`useBrowsersStore`), consuming `operon` daemon endpoints from [BROWSERS-001](./001-crud.md) via shared `@operon/common-ui` `DataTable`.
 
 ## 2. States, Scoping & Real-Time Sync
 
@@ -32,12 +32,13 @@ Built on `@operon/common-ui` `DataTable` (`enable-row-selection`, `interactive-r
 - **KPI Preset Cards (`BrowsersTableMetrics`):** 4 clickable summary cards computed over current loaded scope (`Total profiles`, `Running now`, `With proxy`, `Direct route`). Clicking a card sets the matching filter preset; clicking again (or clicking `Total profiles`) clears filters.
 - **Toolbar (`BrowsersTableToolbar`):**
   - Search input matching `name`, `id`, `groupName`, `proxy`, or any entry in `tags` (keyboard shortcut `/` focuses search outside editable inputs).
-  - 3 faceted filters (`DataTableFacetedFilter`): `Status` (`online` / `offline`), `Network` (`proxied` / `direct`), `OS Platform` (`windows` / `macos` / `linux`), plus conditional `Reset` button.
+  - 4 faceted filters (`DataTableFacetedFilter`): `Status` (`online` / `offline`), `Source` (`local` / `cloud`), `Network` (`proxied` / `direct`), `OS Platform` (`windows` / `macos` / `linux`), plus conditional `Reset` button.
   - View controls: `DataTableDensityToggle` (`Compact` / `Default` / `Comfortable`) and `DataTableViewOptions` (`Columns` toggle).
 - **Table Columns (`columns.ts`):**
   - Selection checkbox (header select-all + per-row checkbox, click stopped from triggering row inspect).
   - `Profile` (clickable `name` opens Detail Sheet, `Default` badge, `id`, non-default `• groupName`, plus compact `#tag` badges up to 3 tags and `+N` overflow).
   - `Status` (`Running` badge + `:debuggingPort` when online, muted `Idle` text indicator when offline).
+  - `Source` (`Local` or `Cloud` origin indicator).
   - `Fingerprint` (`osPlatform · hardwareConcurrency c / deviceMemoryGb GB`).
   - `Proxy` (URI monospace or muted `Direct` text).
   - `Extensions` (muted count text for `0..1`, badge when `> 1`).
@@ -61,7 +62,7 @@ Built on `@operon/common-ui` `DataTable` (`enable-row-selection`, `interactive-r
     - `Extensions`: comma-separated editor (`PUT /browsers/{id}/extensions`, save disabled until modified) + extension badges.
 - **`BrowserImportCsvDialog`:** CSV textarea (`id,name,userAgent,timezone,proxy,group,tags`) with sample CSV loader and per-row import/skip error report.
 - **`BrowserDeleteDialog`:** Single or batch confirmation; if any target `isOnline`, locks `Delete` until user checks the force-stop confirmation (`force=true`).
-- **`BrowserDriversDialog` (Driver Store):** Visualizes curated releases & installed browser drivers from [BROWSERS-002](./002-antidetect-runtime.md); supports `Install` (with live `<Progress>` `% / MB` via SSE `runtime_download_progress`), `Select` (marks **`Selected`** / active driver), and `Delete` (disabled while selected or any session is running).
+- **`BrowserDriversDialog` (Driver Store):** Visualizes curated releases & installed browser drivers from [BROWSERS-002](./002-antidetect-runtime.md); supports `Install` (with live `<Progress>` `% / MB` via SSE `driver_download_progress`), `Select` (marks **`Selected`** / active driver), and `Delete` (disabled while selected or any session is running).
 
 ## 5. Out of Scope in Console UI v1 (API / CLI Only)
 

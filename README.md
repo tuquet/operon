@@ -29,7 +29,7 @@ operon/
 ├── .github/             # Centralized CI/CD workflows
 ├── console/             # Submodule (tuquet/console) — Vue 3 host shell, micro-apps, Tauri v2
 ├── core/                # Submodule (tuquet/core) — Rust workspace (crates/cli, daemon, browser)
-├── docs/                # Specs, ADRs, glossary, roadmaps, phase Kanban boards
+├── docs/                # Specs, ADRs, ROADMAP.md
 └── docker-compose.yml   # Local stack
 ```
 
@@ -57,7 +57,12 @@ cargo run --manifest-path core/Cargo.toml -p operon --bin operon -- doctor
 pnpm --dir console install
 pnpm --dir console dev          # web
 pnpm --dir console dev:desktop  # desktop
+
+# Reset & seed local SQLite for UI acceptance testing
+node scripts/db-reset.mjs
 ```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for local CI checks, `db-reset` options, and Cloudflare/release deployment workflows.
 
 ## CLI
 
