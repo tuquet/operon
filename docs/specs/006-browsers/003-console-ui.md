@@ -18,7 +18,7 @@ Define the `micro-app` UI at `/automation/browsers` (`console/apps/automation/sr
 
 - **Heartbeat Gates:**
   - `bridge.isInitialChecking`: renders 4 KPI skeletons + table row skeletons.
-  - `!bridge.isHealthy`: renders Daemon Offline card (`common.refresh` triggers `bridge.checkNow()`), disabling header mutations (`Refresh`, `Auto-detect`, `Import CSV`, `New profile`).
+  - `!bridge.isHealthy`: renders Daemon Offline card (`common.refresh` triggers `bridge.checkNow()`), disabling header mutations (`Refresh`, `Import CSV`, `New profile`).
 - **Tenant & Scope Control:**
   - Header toggle switches `scopeMode` between `tenant` (`Current tenant`, default) and `all` (`All tenants`).
   - Switching active `tenant` in `kernel` or toggling `scopeMode` clears row selection and resets/refreshes data (and displays each profile's `tenantId` badge on the `Profile` cell in `all` mode).
@@ -28,7 +28,7 @@ Define the `micro-app` UI at `/automation/browsers` (`console/apps/automation/sr
 
 Built on `@operon/common-ui` `DataTable` (`enable-row-selection`, `interactive-rows`, client-side filtering/sorting/pagination from loaded `store.items`):
 
-- **Header Action Group:** `Scope Toggle` (`Current tenant` / `All tenants`), `Auto-detect` (`POST /browsers/auto-detect`), `Refresh`, `Import CSV`, and `+ New profile`.
+- **Header Action Group:** `Scope Toggle` (`Current tenant` / `All tenants`), `Refresh`, `Import CSV`, and `+ New profile` (`Auto-detect` remains in Empty State only).
 - **KPI Preset Cards (`BrowsersTableMetrics`):** 4 clickable summary cards computed over current loaded scope (`Total profiles`, `Running now`, `With proxy`, `Direct route`). Clicking a card sets the matching filter preset; clicking again (or clicking `Total profiles`) clears filters.
 - **Toolbar (`BrowsersTableToolbar`):**
   - Search input matching `name`, `id`, `groupName`, `proxy`, or any entry in `tags` (keyboard shortcut `/` focuses search outside editable inputs).
