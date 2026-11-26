@@ -33,11 +33,18 @@ Download, verify, store, and switch versioned C++ antidetect Chromium binaries (
 - **`use <VERSION>`:** Switch active antidetect runtime version for subsequent `browser session` launches.
 - **`status` / `clean`:** Inspect active executable path/disk usage or remove installed runtimes.
 
-## 4. Non-Goals
+## 4. Daemon REST & SSE Contract (`/api/v1/browsers/runtimes`)
+
+- `GET /api/v1/browsers/runtimes` — Return curated `manifest.releases`, locally installed runtimes, and `activeVersion`.
+- `POST /api/v1/browsers/runtimes/{version}/install` — Start background download/extraction (`download_stealth_runtime`) and stream SSE `runtime_download_progress` (`{ version, stage, percent, downloadedBytes, totalBytes, error? }`).
+- `POST /api/v1/browsers/runtimes/{version}/use` — Switch active runtime via `set_active_version`.
+- `DELETE /api/v1/browsers/runtimes/{version}` — Remove an installed runtime directory (`409` if currently selected/active or if any `browser session` is running).
+
+## 5. Non-Goals
 
 - Profile CRUD, proxy probing, and Console UI live in [001-crud.md](./001-crud.md) and [003-console-ui.md](./003-console-ui.md).
 
-## 5. Checks
+## 6. Checks
 
 - `node scripts/local-ci.mjs core` (`cargo test -p operon --lib`)
 - `opn browser status`

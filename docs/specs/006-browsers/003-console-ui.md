@@ -28,7 +28,7 @@ Define the `micro-app` UI at `/automation/browsers` (`console/apps/automation/sr
 
 Built on `@operon/common-ui` `DataTable` (`enable-row-selection`, `interactive-rows`, client-side filtering/sorting/pagination from loaded `store.items`):
 
-- **Header Action Group:** `Refresh`, `Import CSV`, and `+ New profile` (`Auto-detect` remains in Empty State only).
+- **Header Action Group:** `Runtimes` (opens Runtime Store dialog), `Refresh`, `Import CSV`, and `+ New profile` (`Auto-detect` remains in Empty State only).
 - **KPI Preset Cards (`BrowsersTableMetrics`):** 4 clickable summary cards computed over current loaded scope (`Total profiles`, `Running now`, `With proxy`, `Direct route`). Clicking a card sets the matching filter preset; clicking again (or clicking `Total profiles`) clears filters.
 - **Toolbar (`BrowsersTableToolbar`):**
   - Search input matching `name`, `id`, `groupName`, `proxy`, or any entry in `tags` (keyboard shortcut `/` focuses search outside editable inputs).
@@ -61,6 +61,7 @@ Built on `@operon/common-ui` `DataTable` (`enable-row-selection`, `interactive-r
     - `Extensions`: comma-separated editor (`PUT /browsers/{id}/extensions`, save disabled until modified) + extension badges.
 - **`BrowserImportCsvDialog`:** CSV textarea (`id,name,userAgent,timezone,proxy,group,tags`) with sample CSV loader and per-row import/skip error report.
 - **`BrowserDeleteDialog`:** Single or batch confirmation; if any target `isOnline`, locks `Delete` until user checks the force-stop confirmation (`force=true`).
+- **`BrowserRuntimesDialog` (Runtime Store):** Visualizes curated releases & installed runtimes from [BROWSERS-002](./002-antidetect-runtime.md); supports `Install` (with live `<Progress>` `% / MB` via SSE `runtime_download_progress`), `Select` (marks **`Selected`** / active runtime), and `Delete` (disabled while selected or any session is running).
 
 ## 5. Out of Scope in Console UI v1 (API / CLI Only)
 
@@ -69,7 +70,6 @@ To keep forms and table controls minimal, these daemon/CLI capabilities are inte
 - Custom launch overrides (`headless`, `startUrl`, `args`) and clone options (`preserveSeed`, `copyStorage`)
 - Unpacked extension path sideloading (`POST /api/v1/browsers/{id}/extensions` + `allowRemoveAutomation` toggle)
 - Server-side paginated querying and `group` faceted dropdown (Search `/` covers `groupName` and `tags`)
-- Managing Chromium runtime versions inside Console UI ([BROWSERS-002](./002-antidetect-runtime.md))
 
 ## 6. Checks
 
