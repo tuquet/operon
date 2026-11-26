@@ -57,7 +57,7 @@ function resolveDevBinary(shouldBuild) {
 function stopRunningDaemon() {
   for (const bin of [PRIMARY_BIN, ALIAS_BIN]) {
     if (!fs.existsSync(bin)) continue;
-    spawnSync(bin, ['worker', 'stop', '--force'], { stdio: 'ignore', windowsHide: true });
+    spawnSync(bin, ['daemon', 'stop', '--force'], { stdio: 'ignore', windowsHide: true });
   }
   if (IS_WIN) {
     for (let i = 0; i < 12; i++) {

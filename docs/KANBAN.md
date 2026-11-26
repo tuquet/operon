@@ -7,7 +7,7 @@ kanban-plugin: board
 ## Backlog
 
 - [ ] [[phase/002-auth|Phase 002: Auth, Session & Permission Boundary]]
-- [ ] [[phase/003-tenant|Phase 003: Tenant Management & Selector]]
+- [ ] [[phase/003-workspace|Phase 003: Workspace Management & Selector]]
 - [ ] [[phase/004-data-sync|Phase 004: Local DB, Cloud DB ERD & Sync]]
 - [ ] [[phase/005-cli|Phase 005: Operon CLI & Local Daemon]]
 - [ ] [[phase/006-browsers|Phase 006: Browser Management & Antidetect Runtime]]

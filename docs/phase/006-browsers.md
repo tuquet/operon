@@ -11,10 +11,10 @@ kanban-plugin: board
 	  - [ ] Disk cleanup, RFC-4180 CSV import, and antidetect Chromium flags
 - [ ] [[specs/006-browsers/002-antidetect-runtime|BROWSERS-002: Antidetect Fingerprint Runtime]]
 	  - [ ] `search`, `install`, `use`, `list` (`adryfish/fingerprint-chromium`, `lts` channel)
-- [ ] [[specs/006-browsers/001-crud|BROWSERS-001: Lease Unbind & Tenant Delete Guard]]
-	  - [ ] `POST /api/v1/browsers/{id}/unbind` and tenant delete guard/cascade cleanup
+- [ ] [[specs/006-browsers/001-crud|BROWSERS-001: Lease Unbind & Workspace Delete Guard]]
+	  - [ ] `POST /api/v1/browsers/{id}/unbind` and workspace delete guard/cascade cleanup
 - [ ] [[specs/006-browsers/001-crud|BROWSERS-001: Console Browser Management UI]]
-	  - [ ] `browsers.vue`, `useBrowsersStore` (SSE + tenant watcher), and Form/Detail/CSV/Delete modals
+	  - [ ] `browsers.vue`, `useBrowsersStore` (SSE + workspace watcher), and Form/Detail/CSV/Delete modals
 
 
 ## Ready

@@ -15,5 +15,5 @@ Define how user identity, JWTs, cloud RLS, and local daemon auth work together, 
 ## Rules (Draft)
 - **Host UI ↔ Auth Provider:** Host obtains and refreshes user JWTs; `useKernel()` exposes current user/session state.
 - **Host UI ↔ Local Daemon:** Host passes the active session/token to the local daemon (`:8765`) for authenticated local operations.
-- **Cloud RLS:** All cloud Postgres tables enforce `tenant_id` membership via RLS using the verified JWT.
-- **Offline Mode:** Local daemon caches the last valid session/tenant binding so local execution continues when offline, and re-validates on reconnect.
+- **Cloud RLS:** All cloud Postgres tables enforce `workspace_id` membership via RLS using the verified JWT.
+- **Offline Mode:** Local daemon caches the last valid session/workspace binding so local execution continues when offline, and re-validates on reconnect.

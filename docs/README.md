@@ -7,8 +7,6 @@ Documentation repository for the Operon project (specs, architecture decisions, 
 ```text
 root/
 ├── README.md        # Index and rules
-├── GLOSSARY.md      # Standard terms across all repos
-├── templates/       # Templates for new specs and ADRs
 ├── adr/             # Short, permanent architecture decisions
 ├── specs/           # Feature specifications
 ├── phase/           # Per-phase Obsidian Kanban boards
@@ -25,7 +23,6 @@ root/
 
 ## Index
 
-- [GLOSSARY.md](./GLOSSARY.md) — Standard domain terms
 - [adr/](./adr/) — Architecture decisions
 - [specs/](./specs/) — Feature specifications
 - [roadmaps/](./roadmaps/) — Phased delivery plans

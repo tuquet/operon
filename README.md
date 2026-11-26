@@ -20,7 +20,7 @@
 Operon is an execution runtime and browser orchestration platform built in Rust, coordinated by a Supabase control plane and managed via a Vue 3 / Tauri v2 Console (`host shell`, `kernel`, `micro-app`).
 
 - **Docs & Specs:** [docs/README.md](docs/README.md)
-- **Standard Glossary:** [docs/GLOSSARY.md](docs/GLOSSARY.md)
+- **Standard Glossary:** [GLOSSARY.json](GLOSSARY.json)
 
 ## Structure
 
@@ -28,7 +28,7 @@ Operon is an execution runtime and browser orchestration platform built in Rust,
 operon/
 ├── .github/             # Centralized CI/CD workflows
 ├── console/             # Submodule (tuquet/console) — Vue 3 host shell, micro-apps, Tauri v2
-├── core/                # Submodule (tuquet/core) — Rust workspace (crates/cli, worker, browser)
+├── core/                # Submodule (tuquet/core) — Rust workspace (crates/cli, daemon, browser)
 ├── docs/                # Specs, ADRs, glossary, roadmaps, phase Kanban boards
 └── docker-compose.yml   # Local stack
 ```
@@ -63,7 +63,7 @@ pnpm --dir console dev:desktop  # desktop
 
 ```bash
 opn doctor
-opn worker start --cloud --claim
+opn daemon start --cloud --claim
 opn browser launch "Campaign-US" --proxy socks5://127.0.0.1:1080
 opn gateway start --http
 ```

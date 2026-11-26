@@ -9,7 +9,7 @@ This document codifies the non-negotiable architectural boundaries, system invar
 ### Invariant P1: Single-Instance Engine Arbitration
 - **Principle:** Exactly one automation runtime engine may bind to the local loopback management interface (`127.0.0.1:8765`) and manipulate browser hardware drivers at any given moment.
 - **Enforcement:**
-  - Any auxiliary surface (Workstation Desktop GUI / CLI client) must perform pre-flight health discovery prior to binding.
+  - Any auxiliary surface (Desktop Desktop GUI / CLI client) must perform pre-flight health discovery prior to binding.
   - If an active daemon responds, the secondary surface must forfeit spawning an internal engine and seamlessly attach in **Client View Mode**.
   - Embedded engine instances must be explicitly flagged to prevent background state collisions.
 
@@ -17,7 +17,7 @@ This document codifies the non-negotiable architectural boundaries, system invar
 - **Principle:** Presentation surfaces (UI/Tauri) are decoupled consumer views; their termination, reload, or crash must never interrupt background execution workloads.
 - **Enforcement:**
   - Standalone daemon processes manage their own lifecycle and continuous job queues independently of client connections.
-  - Client exit hooks must only clean up client-owned resources without propagating SIGTERM or kill signals to detached worker engines.
+  - Client exit hooks must only clean up client-owned resources without propagating SIGTERM or kill signals to detached daemon engines.
 
 ### Invariant P3: Supervisor PID Integrity
 - **Principle:** Process ID ownership files in `~/.operon/` are exclusive leases reserved for standalone supervisors.
@@ -31,7 +31,7 @@ This document codifies the non-negotiable architectural boundaries, system invar
 ### Invariant S1: Strict SSOT Storage Hierarchy
 - **Principle:** All system identities, daemon runtimes, browser profiles, databases, and logs must resolve exclusively to `~/.operon/<pillar>/` (or `$DATA_DIR/<pillar>/`).
 - **Enforcement:**
-  - Storing state in flat root paths (`~/.operon/workflows`), legacy directories (`~/.tq`, `~/.specter`, `~/.automa`), or scattered temp files is strictly prohibited.
+  - Storing state in flat root paths (`~/.operon/workflows`), legacy directories (`~/.tq`, `~/.operon`, `~/.automa`), or scattered temp files is strictly prohibited.
 
 ### Invariant S2: Zero-Shim & No-Fallback Invariant
 - **Principle:** No backward-compatibility shims, union types, or fallback chains may be used to mask schema drift or missing configurations.
@@ -44,7 +44,7 @@ This document codifies the non-negotiable architectural boundaries, system invar
 ## 3. Distributed Mesh & Concurrency Arbitration
 
 ### Invariant M1: Lease-Bounded Autonomous Job Claiming
-- **Principle:** Task distribution across distributed worker nodes operates via non-blocking, lease-bounded database transactions.
+- **Principle:** Task distribution across distributed daemon nodes operates via non-blocking, lease-bounded database transactions.
 - **Enforcement:**
   - Workers acquire jobs atomically using row-level locking (`FOR UPDATE SKIP LOCKED`).
   - Every running job holds a strictly bounded lease (`lease_expires_at`). If a node disconnects, crashes, or stalls, the orchestrator automatically reaps and releases the job back to the fleet without orphan states or double-execution.
@@ -66,7 +66,7 @@ This document codifies the non-negotiable architectural boundaries, system invar
   - RPC wrappers must execute under `SECURITY INVOKER` semantics to enforce Row-Level Security (RLS) rules against the caller's JWT identity.
 
 ### Invariant D2: Dual-Plane Connection Multiplexing
-- **Principle:** High-frequency edge worker nodes must not exhaust relational database connection limits.
+- **Principle:** High-frequency edge daemon nodes must not exhaust relational database connection limits.
 - **Enforcement:**
   - Distributed fleet workers must connect exclusively via the Transaction Pooler (Port 6543 / Supavisor).
   - Direct Session access (Port 5432) is restricted exclusively to DDL schema migrations, database seeding, and administrative operators.
@@ -84,13 +84,13 @@ This document codifies the non-negotiable architectural boundaries, system invar
 ### Invariant Z1: Zero-Knowledge Secret Governance
 - **Principle:** Sensitive credentials (account passwords, proxy credentials, OTP keys) must never reside in plaintext on disk, in git commits, or in raw database columns.
 - **Enforcement:**
-  - Cloud-stored secrets are encrypted using Supabase Vault Key-Encryption-Keys (KEK) and per-tenant Data-Encryption-Keys (DEK).
-  - Workstation secrets are decrypted only within device-enrolled memory spaces holding valid asymmetric keys (`.device_key`).
+  - Cloud-stored secrets are encrypted using Supabase Vault Key-Encryption-Keys (KEK) and per-workspace Data-Encryption-Keys (DEK).
+  - Desktop secrets are decrypted only within device-enrolled memory spaces holding valid asymmetric keys (`.device_key`).
 
 ### Invariant Z2: Unified Mutual Identity & Session Revocation
 - **Principle:** Device identity and operator access tokens must maintain synchronized authentication state across all operational surfaces.
 - **Enforcement:**
-  - Workstation GUI and CLI share the verified identity state (`~/.operon/system/.identity.json`).
+  - Desktop GUI and CLI share the verified identity state (`~/.operon/system/.identity.json`).
   - Revocation of a session on any surface immediately invalidates authentication tokens across all local tools.
 
 ---

@@ -28,7 +28,7 @@ flowchart LR
 | Field | Type | Required | Default | Notes |
 | --- | --- | --- | --- | --- |
 | `id` | `string` | Auto | UUID | Immutable |
-| `tenantId` | `string` | Yes | `local-default` | Owning tenant |
+| `workspaceId` | `string` | Yes | `local-default` | Owning workspace |
 
 ## 4. Behavior & Guardrails
 - **Create / Read / Update / Delete:** Exact behavior and validation.

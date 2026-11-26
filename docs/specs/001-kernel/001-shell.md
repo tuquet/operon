@@ -17,7 +17,7 @@ Provide a single host runtime (`useKernel()`) and `host shell` layout so `micro-
 - When `useKernel()` is called outside the `host shell` (e.g. standalone dev or unit tests), it returns a safe default/empty fallback context instead of throwing.
 
 ## `useKernel()` Contract
-- **`kernel.tenant`** (`KernelTenantContext`): reactive active `tenant`; switching tenant updates all subscribed views/stores without full page reload.
+- **`kernel.workspace`** (`KernelWorkspaceContext`): reactive active `workspace`; switching workspace updates all subscribed views/stores without full page reload.
 - **`kernel.auth`**: reactive session state (current user, token/auth status, logout trigger).
 - **`kernel.navigate(target, params?)`**: host-coordinated navigation between micro-apps; each micro-app manages only its own internal sub-routes.
 - **`kernel.theme`**: reactive theme state (`'light' | 'dark' | 'system'`).

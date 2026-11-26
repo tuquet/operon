@@ -62,7 +62,7 @@
     {
       "label": "dev: cli daemon",
       "type": "shell",
-      "command": "cargo run --bin operon -- worker start -H 127.0.0.1 -p 8765",
+      "command": "cargo run --bin operon -- daemon start -H 127.0.0.1 -p 8765",
       "options": { "cwd": "${workspaceFolder}/core" },
       "isBackground": true,
       "presentation": { "panel": "dedicated" },
@@ -71,7 +71,7 @@
     {
       "label": "core: daemon stop",
       "type": "shell",
-      "command": "cargo run --bin operon -- worker stop",
+      "command": "cargo run --bin operon -- daemon stop",
       "options": { "cwd": "${workspaceFolder}/core" },
       "problemMatcher": []
     },

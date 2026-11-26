@@ -1,14 +1,14 @@
 # Operon — Agent Directives
 
-> **Contracts:** [`./CONSTRAINTS.md`](./CONSTRAINTS.md) (invariants) · [`./docs/GLOSSARY.md`](./docs/GLOSSARY.md) (mandatory domain terms). Never weaken or bypass assertions.
+> **Contracts:** [`./CONSTRAINTS.md`](./CONSTRAINTS.md) (invariants) · [`./GLOSSARY.json`](./GLOSSARY.json) (mandatory domain terms). Never weaken or bypass assertions.
 
 ## 1. Architecture
 
 Two decoupled planes:
 1. **Device-Local Execution Plane:** Local `daemon` (`opn`, `:8765`) handling Chromium hardware sandboxing, `browser profile` / `browser session` isolation, and offline runs.
-2. **Cloud Orchestration Plane:** Supabase Postgres handling multi-`tenant` state, `SKIP LOCKED` job leases, and Vault KEK/DEK encryption.
+2. **Cloud Orchestration Plane:** Supabase Postgres handling multi-`workspace` state, `SKIP LOCKED` job leases, and Vault KEK/DEK encryption.
 
-**Precedence:** `CONSTRAINTS.md` → `docs/GLOSSARY.md` → DDL Schemas → `docs/specs/` & `docs/adr/` → Submodule `AGENTS.md` → Agent reasoning.
+**Precedence:** `CONSTRAINTS.md` → `GLOSSARY.json` → DDL Schemas → `docs/specs/` & `docs/adr/` → Submodule `AGENTS.md` → Agent reasoning.
 - **Anti-Hallucination & Fail-Fast:** Never invent CLI flags, columns, or endpoints; never add shims or fallback chains to hide schema drift.
 
 ## 2. Subsystems
@@ -16,7 +16,7 @@ Two decoupled planes:
 | Subsystem | Path | Stack | Role |
 | :--- | :--- | :--- | :--- |
 | **CLI** | `./core/crates/cli` | Rust (Axum, Clap, Tokio) | `opn` binary, `daemon` API (`:8765`) (`tuquet/core`). |
-| **Worker** | `./core/crates/worker` | Rust (Tokio, PostgREST) | Process supervisor & cloud claim loop (`tuquet/core`). |
+| **Worker** | `./core/crates/daemon` | Rust (Tokio, PostgREST) | Process supervisor & cloud claim loop (`tuquet/core`). |
 | **Browser** | `./core/crates/browser` | Rust (CDP, PRNG) | Stealth Chromium launcher & `browser profile` isolation (`tuquet/core`). |
 | **Console** | `./console` | Vue 3, Shadcn, Tauri v2 | `host shell`, `kernel`, `micro-app` modules (`tuquet/console`). |
 | **Docs** | `./docs` | Markdown, Kanban | Glossary, ADRs, specs, roadmaps, phase boards. |
@@ -45,4 +45,4 @@ Run locally before pushing (mirrors `.github/workflows/ci.yml` & `console-qualit
 - **Minimal change:** Smallest diff that solves the task; no unrelated refactoring.
 - **Commit & push:** When finishing a coding task, only commit locally with `git commit --no-verify`; only push when the user explicitly requests it in the latest prompt. Never deploy without explicit user instruction.
 - **VPS limits (3.8GB RAM / 2 Cores):** **NEVER** run `cargo build --release` on host; clean `core/target/` if disk $> 85\%$.
-- **Progressive discovery:** Inspect `./docs/GLOSSARY.md`, `./core/AGENTS.md`, or `./console/AGENTS.md` only when working in that domain.
+- **Progressive discovery:** Inspect `./GLOSSARY.json`, `./core/AGENTS.md`, or `./console/AGENTS.md` only when working in that domain.

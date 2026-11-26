@@ -5,7 +5,7 @@ app: core
 status: implemented
 created: 2026-11-19
 updated: 2026-11-26
-depends_on: [KERNEL-001, TENANT-001, BROWSERS-002]
+depends_on: [KERNEL-001, WORKSPACE-001, BROWSERS-002]
 related_adrs: [ADR-0001]
 ---
 
@@ -13,7 +13,7 @@ related_adrs: [ADR-0001]
 
 ## 1. Goal & Scope
 
-Provide tenant-scoped `browser profile` CRUD, persistent SQLite + filesystem recovery, antidetect Chromium `browser session` launch, proxy probing, CSV import, Cloud unbind, and real-time SSE events in `operon` (`127.0.0.1:8765`).
+Provide workspace-scoped `browser profile` CRUD, persistent SQLite + filesystem recovery, antidetect Chromium `browser session` launch, proxy probing, CSV import, Cloud unbind, and real-time SSE events in `operon` (`127.0.0.1:8765`).
 
 - Console UI specifications live in [003-console-ui.md](./003-console-ui.md).
 - Antidetect binary runtime installation and version resolution live in [002-antidetect-runtime.md](./002-antidetect-runtime.md).
@@ -47,7 +47,7 @@ stateDiagram-v2
 | Field | Type | Required | Default | Notes |
 | --- | --- | --- | --- | --- |
 | `id` | `string` | No | `prf_<12hex>` | Validated by `BrowserId::is_valid()`, immutable |
-| `tenantId` | `string` | No | `'local-default'` | Indexed in SQLite (`idx_browsers_tenant`) |
+| `workspaceId` | `string` | No | `'local-default'` | Indexed in SQLite (`idx_browsers_workspace`) |
 | `name` | `string` | Yes | — | Trimmed `1..100` chars |
 | `groupName` | `string \| null` | No | `'default'` | Group label |
 | `tags` | `string[]` | No | `[]` | Lowercase deduplicated, max 20 items |
@@ -56,28 +56,28 @@ stateDiagram-v2
 | `fingerprintConfig` | `FingerprintConfig` | No | PRNG seeded | `seed`, `osPlatform`, `osVersion`, `hardwareConcurrency`, `deviceMemoryGb`, `screenWidth`, `screenHeight`, `devicePixelRatio`, `webrtcMode`, `noiseLevel`, `lang`, `acceptLang` |
 | `extensions` | `string[]` | No | `['automation']` | Extension IDs or unpacked paths |
 | `startupFlags` | `string[]` | No | `[]` | Must start with `-`; blocks `--no-sandbox`, `--disable-web-security`, `--user-data-dir`, `--remote-debugging-port`, `--load-extension` |
-| `isDefault` | `boolean` | Read-only | `false` | Per-tenant (`settings.browser.default_profiles[tenantId]`, or `id === 'default'` fallback on `local-default`) |
+| `isDefault` | `boolean` | Read-only | `false` | Per-workspace (`settings.browser.default_profiles[workspaceId]`, or `id === 'default'` fallback on `local-default`) |
 | `isOnline` / `pid` / `debuggingPort` / `wsUrl` | Live | Read-only | — | Reflects active Chromium session |
 | `diskSizeBytes` | `number \| null` | Read-only | `null` | Computed on `GET /api/v1/browsers/{id}` |
 
 ## 4. Daemon REST Endpoints (`/api/v1/browsers`)
 
 - **Read:**
-  - `GET /api/v1/browsers` — Supports server-side filtering (`tenantId` or `scope=all`, `search`, `status`, `hasProxy`, `platform`, `group`, `limit`, `offset`). Console UI fetches tenant/all list and performs filtering/sorting/pagination client-side ([003-console-ui.md](./003-console-ui.md)).
+  - `GET /api/v1/browsers` — Supports server-side filtering (`workspaceId` or `scope=all`, `search`, `status`, `hasProxy`, `platform`, `group`, `limit`, `offset`). Console UI fetches workspace/all list and performs filtering/sorting/pagination client-side ([003-console-ui.md](./003-console-ui.md)).
   - `GET /api/v1/browsers/{id}` — Full detail + live session + `diskSizeBytes` (`404` if missing).
 - **Create & Import:**
   - `POST /api/v1/browsers` — Enforces `'automation'` in `extensions`; `400` on blank name / invalid ID / invalid proxy / blocked flags; `409` on duplicate ID.
-  - `POST /api/v1/browsers/{id}/clone` — Copy profile (`name`, `newId`, `targetTenantId`, `preserveSeed`, `copyStorage`) with fresh PRNG seed unless `preserveSeed: true`.
-  - `POST /api/v1/browsers/import-csv` — RFC-4180 CSV parser scoped to `tenantId`, returning `{ imported, skipped, errors }`.
+  - `POST /api/v1/browsers/{id}/clone` — Copy profile (`name`, `newId`, `targetWorkspaceId`, `preserveSeed`, `copyStorage`) with fresh PRNG seed unless `preserveSeed: true`.
+  - `POST /api/v1/browsers/import-csv` — RFC-4180 CSV parser scoped to `workspaceId`, returning `{ imported, skipped, errors }`.
   - `POST /api/v1/browsers/auto-detect` — Detect host Chromium and ensure default profile exists when missing.
 - **Update & Move:**
   - `PUT /api/v1/browsers/{id}` & `PATCH /api/v1/browsers/{id}` — `PATCH` updates only provided fields and clears explicit `null` fields (`404` if missing).
-  - `POST /api/v1/browsers/{id}/move` — Reassign offline profile to `targetTenantId` (`409` if running; clears old tenant default if pointing to this profile).
-  - `POST /api/v1/browsers/{id}/set-default` — Set default profile for its `tenantId`.
+  - `POST /api/v1/browsers/{id}/move` — Reassign offline profile to `targetWorkspaceId` (`409` if running; clears old workspace default if pointing to this profile).
+  - `POST /api/v1/browsers/{id}/set-default` — Set default profile for its `workspaceId`.
   - `PUT /api/v1/browsers/{id}/extensions` — Replace extension list while protecting `'automation'` unless `allowRemoveAutomation: true`.
   - `POST /api/v1/browsers/{id}/extensions` — Sideload unpacked extension path after validating `manifest.json`.
 - **Delete:**
-  - `DELETE /api/v1/browsers/{id}?force=false` — `404` if missing; `409` if running unless `force=true`. Stops session (if forced), deletes SQLite row, clears tenant default if matching, and removes disk folders/archives.
+  - `DELETE /api/v1/browsers/{id}?force=false` — `404` if missing; `409` if running unless `force=true`. Stops session (if forced), deletes SQLite row, clears workspace default if matching, and removes disk folders/archives.
   - `POST /api/v1/browsers/batch/delete` — Batch delete returning `{ deleted, skipped, errors }` (skips active sessions unless `force=true`).
 - **Sessions, Proxy & Cloud Lease:**
   - `POST /api/v1/browsers/{id}/session` — Launch Chromium (`headless`, `startUrl`, `proxy` override, `args`) with deterministic `--fingerprint*`, `--lang`, `--accept-lang`, `--window-size`, `--force-device-scale-factor`, and `--disable-non-proxied-udp` when proxied and `webrtcMode !== 'default'`.
@@ -90,7 +90,7 @@ stateDiagram-v2
 Daemon broadcasts JSON frames consumed by Console clients:
 - `browser_changed` (`action`: `create` | `update` | `delete` | `move` | `unbind` | `batch_create`)
 - `browser_online` / `browser_offline`
-- `settings_updated` (emitted on `set-default`) / `tenant_switched`
+- `settings_updated` (emitted on `set-default`) / `workspace_switched`
 
 ## 6. Checks
 

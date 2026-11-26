@@ -13,5 +13,5 @@ Execution sequence for [001-kernel/001-shell.md](../specs/001-kernel/001-shell.m
 ## Phases
 
 1. **Phase 1 — Kernel Reactivity & Host Boundary:**
-   - Reactive `kernel.tenant` (`KernelTenantContext`) exposed to micro-apps via `useKernel()`.
+   - Reactive `kernel.workspace` (`KernelWorkspaceContext`) exposed to micro-apps via `useKernel()`.
    - Host/micro-app isolation boundary (micro-apps never import `apps/shell` or sibling apps).

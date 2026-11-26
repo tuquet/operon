@@ -11,14 +11,14 @@
 - [ ] Switch global `operon` / `opn` to your local debug build:
   ```bash
   node scripts/switch.mjs dev --build
-  opn worker start -H 127.0.0.1 -p 8765 -d
+  opn daemon start -H 127.0.0.1 -p 8765 -d
   ```
 - [ ] Start UI: `pnpm --dir console dev` (Web `:5666`) or `pnpm --dir console dev:desktop` (Tauri).
 - [ ] Isolate state when testing destructive/install flows: set temporary `DATA_DIR` / `OPERON_HOME`.
 - [ ] Restore installed release binary when done:
   ```bash
   node scripts/switch.mjs release
-  opn worker start -H 127.0.0.1 -p 8765 -d
+  opn daemon start -H 127.0.0.1 -p 8765 -d
   ```
 
 ## 3. Local Update Simulation

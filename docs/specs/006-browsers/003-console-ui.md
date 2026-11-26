@@ -5,7 +5,7 @@ app: console
 status: implemented
 created: 2026-11-26
 updated: 2026-11-26
-depends_on: [BROWSERS-001, TENANT-001, KERNEL-001]
+depends_on: [BROWSERS-001, WORKSPACE-001, KERNEL-001]
 ---
 
 # BROWSERS-003: Automation Browsers Console UI (`/automation/browsers`)
@@ -19,10 +19,10 @@ Define the `micro-app` UI at `/automation/browsers` (`console/apps/automation/sr
 - **Heartbeat Gates:**
   - `bridge.isInitialChecking`: renders 4 KPI skeletons + table row skeletons.
   - `!bridge.isHealthy`: renders Daemon Offline card (`common.refresh` triggers `bridge.checkNow()`), disabling header mutations (`Refresh`, `Import CSV`, `New profile`).
-- **Tenant Scoping:**
-  - Always scoped to the active `tenant` selected in the host shell `TenantSelector` widget (no tenant labels or scope toggles on the page).
-  - Switching active `tenant` in `kernel` clears row selection and refreshes data.
-- **SSE Auto-Sync:** Subscribes to `http://127.0.0.1:<daemonPort>/api/v1/events` and triggers a 150ms debounced silent refresh on `browser_changed`, `browser_online`, `browser_offline`, `settings_updated`, and `tenant_switched`.
+- **Workspace Scoping:**
+  - Always scoped to the active `workspace` selected in the host shell `WorkspaceSelector` widget (no workspace labels or scope toggles on the page).
+  - Switching active `workspace` in `kernel` clears row selection and refreshes data.
+- **SSE Auto-Sync:** Subscribes to `http://127.0.0.1:<daemonPort>/api/v1/events` and triggers a 150ms debounced silent refresh on `browser_changed`, `browser_online`, `browser_offline`, `settings_updated`, and `workspace_switched`.
 
 ## 3. DataTable, KPI Presets & Filter Toolbar
 
@@ -56,7 +56,7 @@ Built on `@operon/common-ui` `DataTable` (`enable-row-selection`, `interactive-r
 - **`BrowserDetailSheet` (Inspector):**
   - Compact single-row fixed header (`border-b`, profile name + 1-click copy ID button + status/default badges + aligned close button) and independently scrollable body (`px-5 py-4`).
   - Quick actions (`Run`/`Stop`, `Edit`, `Set default`, `Duplicate`) with per-row mutation lock and toast notifications, and 3 tabs:
-    - `Overview`: `groupName`, `proxy` (or `Direct`), `diskSizeBytes` (with loading skeleton during inspect fetch), `tags` badges (when present), live `pid`/`debuggingPort`/`wsUrl` with copy button, and `Move to Tenant` control (shown when >1 tenant exists, disabled while profile is online).
+    - `Overview`: `groupName`, `proxy` (or `Direct`), `diskSizeBytes` (with loading skeleton during inspect fetch), `tags` badges (when present), live `pid`/`debuggingPort`/`wsUrl` with copy button, and `Move to Workspace` control (shown when >1 workspace exists, disabled while profile is online).
     - `Fingerprint`: read-only summary (`OS`, `Seed`, `CPU/RAM`, `Viewport`, `WebRTC`, `Timezone/Lang`).
     - `Extensions`: comma-separated editor (`PUT /browsers/{id}/extensions`, save disabled until modified) + extension badges.
 - **`BrowserImportCsvDialog`:** CSV textarea (`id,name,userAgent,timezone,proxy,group,tags`) with sample CSV loader and per-row import/skip error report.

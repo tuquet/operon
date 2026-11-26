@@ -21,7 +21,7 @@ Standardize end-user installation and launch around the CLI (`operon` primary bi
 | **Primary CLI** | `bin/operon.exe` (Windows), `bin/operon` (Unix) | Canonical executable (`[[bin]] name = "operon"`). |
 | **CLI Alias** | `bin/opn.exe` (hardlink/copy), `bin/opn` (symlink → `operon`) | Short CLI alias; identical behavior. |
 | **Desktop App** | `apps/desk/` (`Operon.exe`, `version.json`) | Tauri-wrapped `host shell` installed on demand by `opn desk`. |
-| **Daemon & Data** | `logs/`, `system/`, `profiles/`, `secrets/`, `data/` | Strict SSOT runtime directories; zero legacy `automation/` or `workstation` labels. |
+| **Daemon & Data** | `logs/`, `system/`, `profiles/`, `secrets/`, `data/` | Strict SSOT runtime directories; zero legacy `automation/` or `desktop` labels. |
 
 ---
 
@@ -48,7 +48,7 @@ Standardize end-user installation and launch around the CLI (`operon` primary bi
 
 ## 4. `operon desk` / `opn desk` Lifecycle
 
-Unifies and replaces legacy `workstation` (`desktop` becomes `desk`; Tauri Desktop is simply the packaged `host shell`).
+Unifies and replaces legacy `desktop` (`desktop` becomes `desk`; Tauri Desktop is simply the packaged `host shell`).
 
 1. **Ensure `daemon` Online:** Probe `http://127.0.0.1:${DAEMON_PORT:-8765}/api/v1/health`; if offline, spawn detached `daemon` and wait for health check (`CONSTRAINTS.md` P1/P2).
 2. **`--web` Mode:** Skip native binary lookup and open the Web `host shell` in the system browser.
@@ -70,6 +70,6 @@ Canonical command is **`opn update`** (replaces all `opn upgrade` strings in CLI
 
 ---
 
-## 6. Terminology Alignment (`docs/GLOSSARY.md`)
+## 6. Terminology Alignment (`GLOSSARY.json`)
 
-All installer messages, CLI `--help`, and `daemon` status output use canonical terms: **`daemon`** (not `Local Bridge` / `[WORKER]`), **`host shell`** (not `Web-UI` / `workstation`), and **`Operon Desktop`**.
+All installer messages, CLI `--help`, and `daemon` status output use canonical terms: **`daemon`** (not `Local Bridge` / `[WORKER]`), **`host shell`** (not `Web-UI` / `desktop`), and **`Operon Desktop`**.

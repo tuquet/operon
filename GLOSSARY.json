@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "description": "Single Source of Truth (SSOT) for canonical domain terminology and file naming conventions across operon, console, and core.",
+  "terms": [
+    {
+      "id": "workspace",
+      "term": "workspace",
+      "codeIdentifier": {
+        "ts": "workspace",
+        "rust": "workspace",
+        "sql": "workspaces"
+      },
+      "definition": "Primary isolation boundary for accounts, data, and resources.",
+      "forbiddenAliases": [
+        "tenant"
+      ],
+      "note": "Build tooling (`pnpm workspace`, `Cargo workspace`) uses the same word; domain scoping uses `workspace` uniformly across schemas, APIs, and UI."
+    },
+    {
+      "id": "kernel",
+      "term": "kernel",
+      "codeIdentifier": {
+        "ts": "kernel",
+        "package": "@operon/kernel"
+      },
+      "definition": "Host runtime bridge exposing shared reactive context (workspace, session, daemon API) to micro-apps.",
+      "forbiddenAliases": []
+    },
+    {
+      "id": "host_shell",
+      "term": "host shell",
+      "codeIdentifier": {
+        "ts": "shell",
+        "package": "@operon/shell"
+      },
+      "definition": "Top-level application frame hosting navigation, layouts, and micro-app modules.",
+      "forbiddenAliases": []
+    },
+    {
+      "id": "micro_app",
+      "term": "micro-app",
+      "codeIdentifier": {
+        "ts": "microApp"
+      },
+      "definition": "Independently developed feature module consuming host capabilities via kernel.",
+      "forbiddenAliases": []
+    },
+    {
+      "id": "daemon",
+      "term": "daemon",
+      "codeIdentifier": {
+        "ts": "daemon",
+        "rust": "daemon",
+        "cli": "opn daemon"
+      },
+      "definition": "Device-local background service (`opn`, :8765) managing local execution, SQLite state, browser sessions, and schedules.",
+      "forbiddenAliases": [
+        "local-bridge",
+        "localBridge",
+        "LocalBridge",
+        "Fleet Bridge",
+        "Desktop Bridge",
+        "opn runner",
+        "Runner daemon daemon"
+      ]
+    },
+    {
+      "id": "browser_profile",
+      "term": "browser profile",
+      "codeIdentifier": {
+        "ts": "browserProfile",
+        "rust": "browser_profile",
+        "sql": "browser_profiles"
+      },
+      "definition": "Saved antidetect browser configuration (fingerprint, proxy, extensions, data directory).",
+      "forbiddenAliases": []
+    },
+    {
+      "id": "browser_session",
+      "term": "browser session",
+      "codeIdentifier": {
+        "ts": "browserSession",
+        "rust": "browser_session"
+      },
+      "definition": "Live running browser process bound to a browser profile.",
+      "forbiddenAliases": []
+    },
+    {
+      "id": "task",
+      "term": "task",
+      "codeIdentifier": {
+        "ts": "task",
+        "rust": "task",
+        "sql": "tasks"
+      },
+      "definition": "Executable automation unit assigned to a browser profile and backed by SQLite.",
+      "forbiddenAliases": []
+    },
+    {
+      "id": "schedule",
+      "term": "schedule",
+      "codeIdentifier": {
+        "ts": "schedule",
+        "rust": "schedule",
+        "sql": "schedules"
+      },
+      "definition": "Trigger plan defining when a browser profile runs assigned tasks.",
+      "forbiddenAliases": []
+    }
+  ],
+  "namingConventions": {
+    "console": {
+      "sourceFiles": "kebab-case",
+      "extensions": [".ts", ".tsx", ".js", ".mjs", ".vue", ".css", ".scss", ".json"],
+      "exemptPaths": [
+        "/locales/langs/",
+        "/migrations/meta/",
+        "packages/@core/ui-kit/shadcn-ui/src/ui/"
+      ],
+      "exemptBasenames": [
+        "README.md",
+        "LICENSE",
+        "CHANGELOG.md",
+        "AGENTS.md",
+        "CONTRIBUTING.md",
+        "CONSTRAINTS.md",
+        "tsconfig",
+        "package.json",
+        "components.json",
+        "turbo.json"
+      ]
+    },
+    "core": {
+      "sourceFiles": "snake_case",
+      "extensions": [".rs"]
+    }
+  }
+}

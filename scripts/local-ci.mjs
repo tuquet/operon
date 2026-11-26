@@ -35,9 +35,13 @@ const SUITES = {
     cwd: ROOT,
     steps: [['docker compose', 'docker compose config -q']],
   },
+  glossary: {
+    cwd: ROOT,
+    steps: [['check:glossary', 'node scripts/check-glossary.mjs']],
+  },
 };
 
-const HELP = `Usage: node scripts/local-ci.mjs <core|console|docker|all|logs> [--install] [--no-cache] [-h|--help]`;
+const HELP = `Usage: node scripts/local-ci.mjs <core|console|docker|glossary|all|logs> [--install] [--no-cache] [-h|--help]`;
 
 function readGitMeta() {
   try {
@@ -81,6 +85,11 @@ function suiteFingerprint(name, steps) {
     } else if (name === 'docker') {
       hashFile(hash, path.join(ROOT, 'docker-compose.yml'));
       hashFile(hash, path.join(ROOT, '.env'));
+    } else if (name === 'glossary') {
+      hashFile(hash, path.join(ROOT, 'GLOSSARY.json'));
+      hashFile(hash, path.join(ROOT, 'scripts', 'check-glossary.mjs'));
+      hashGitRepo(hash, path.join(ROOT, 'console'));
+      hashGitRepo(hash, path.join(ROOT, 'core'));
     }
     return hash.digest('hex');
   } catch {
@@ -193,7 +202,7 @@ async function main() {
 
   const withInstall = args.includes('--install');
   const useCache = !args.includes('--no-cache') && !withInstall;
-  const queue = target === 'all' ? ['core', 'console', 'docker'] : [target];
+  const queue = target === 'all' ? ['glossary', 'core', 'console', 'docker'] : [target];
   const results = [];
   for (const name of queue) {
     const suite = SUITES[name];

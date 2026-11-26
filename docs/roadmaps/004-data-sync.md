@@ -16,6 +16,6 @@ Execution sequence for the local SQLite (`opn`) and cloud Postgres (Supabase) ER
 ## Phases
 
 1. **Phase 1 — ERD & Ownership:**
-   - Define which tables live in `localDB` (SQLite), `cloudDB` (Postgres + RLS), and shared `tenant_id` foreign keys.
+   - Define which tables live in `localDB` (SQLite), `cloudDB` (Postgres + RLS), and shared `workspace_id` foreign keys.
 2. **Phase 2 — Sync & Failure Recovery:**
    - Define push/pull sync order, conflict resolution, schema version checks, and offline queue recovery.

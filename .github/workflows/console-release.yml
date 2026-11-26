@@ -54,7 +54,7 @@ jobs:
           OPERON_SKIP_WINRES: '1'
         shell: pwsh
         run: |
-          Remove-Item -Recurse -Force src-tauri/target/x86_64-pc-windows-msvc/release/bundle, src-tauri/target/x86_64-pc-windows-msvc/release/workstation.exe, src-tauri/target/x86_64-pc-windows-msvc/release/Operon.exe -ErrorAction SilentlyContinue
+          Remove-Item -Recurse -Force src-tauri/target/x86_64-pc-windows-msvc/release/bundle, src-tauri/target/x86_64-pc-windows-msvc/release/desktop.exe, src-tauri/target/x86_64-pc-windows-msvc/release/Operon.exe -ErrorAction SilentlyContinue
           $configPath = (Resolve-Path ../../.temp/release/tauri.json).Path
           pnpm tauri build --ci --target x86_64-pc-windows-msvc --bundles nsis --config $configPath -- --locked
       - name: Package and verify signatures, checksums and manifests
@@ -63,7 +63,7 @@ jobs:
         run: |
           pnpm release:package
           pnpm release:verify
-          Remove-Item -Recurse -Force apps/shell/src-tauri/target/x86_64-pc-windows-msvc/release/bundle, apps/shell/src-tauri/target/x86_64-pc-windows-msvc/release/workstation.exe, apps/shell/src-tauri/target/x86_64-pc-windows-msvc/release/Operon.exe -ErrorAction SilentlyContinue
+          Remove-Item -Recurse -Force apps/shell/src-tauri/target/x86_64-pc-windows-msvc/release/bundle, apps/shell/src-tauri/target/x86_64-pc-windows-msvc/release/desktop.exe, apps/shell/src-tauri/target/x86_64-pc-windows-msvc/release/Operon.exe -ErrorAction SilentlyContinue
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: release-${{ steps.release.outputs.tag }}

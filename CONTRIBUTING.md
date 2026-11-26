@@ -15,7 +15,7 @@ Requires **Git**, **Rust** (edition 2024), **Node 20+**, **pnpm 9+**, and option
 ## Commits & PRs
 
 - Follow [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, `test:`).
-- Use canonical domain terms from [docs/GLOSSARY.md](docs/GLOSSARY.md).
+- Use canonical domain terms from [GLOSSARY.json](GLOSSARY.json).
 - Verify locally before opening a PR against `main`:
   ```bash
   cargo fmt --manifest-path core/Cargo.toml --all -- --check

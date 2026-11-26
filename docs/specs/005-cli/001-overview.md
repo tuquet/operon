@@ -4,16 +4,16 @@ title: Operon CLI Overview & Command Surface
 status: draft
 created: 2026-11-20
 updated: 2026-11-20
-depends_on: [KERNEL-001, AUTH-001, TENANT-001, DATA-SYNC-001]
+depends_on: [KERNEL-001, AUTH-001, WORKSPACE-001, DATA-SYNC-001]
 ---
 
 # CLI-001: Operon CLI (`opn`) Overview
 
 ## Goal
-Provide a clean, local-first CLI and daemon (`:8765`) for core ops, UI launching, browser automation, and worker execution, inheriting `specs/001`–`004` (`kernel`, `auth`, `tenant`, `data-sync`).
+Provide a clean, local-first CLI and daemon (`:8765`) for core ops, UI launching, browser automation, and daemon execution, inheriting `specs/001`–`004` (`kernel`, `auth`, `workspace`, `data-sync`).
 
 ## 1. Core Ops Commands
-- `auth` — Cloud login, session, and tenant context.
+- `auth` — Cloud login, session, and workspace context.
 - `config` — View configuration; `config edit` opens config in `$EDITOR`.
 - `logs` — View `agent.log` (last 50 lines), `-f` follow, `errors` (`errors.log`), `--since 1h`.
 - `secrets` — Manage local and external secret sources (`{{secrets@name}}`).
@@ -28,7 +28,7 @@ Provide a clean, local-first CLI and daemon (`:8765`) for core ops, UI launching
 ## 3. Domain Commands
 - `browser` — Isolated antidetect browser runtime and profile sandbox.
 - `workflow` (hidden alias: `automation`) — Manage and run automation workflows.
-- `worker` — Distributed worker daemon and cloud execution node.
+- `daemon` — Distributed daemon daemon and cloud execution node.
 
 ## 4. Hidden / Internal Commands
 - `mcp` — MCP JSON-RPC 2.0 stdio server for AI agents.
